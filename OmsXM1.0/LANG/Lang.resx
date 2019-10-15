@@ -1,0 +1,3356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="abort" xml:space="preserve">
+    <value>OPERACIÓ AVORTADA</value>
+    <comment>comu</comment>
+  </data>
+  <data name="campObligatori" xml:space="preserve">
+    <value>(*) OBLIGATORI</value>
+    <comment>comu.altres</comment>
+  </data>
+  <data name="cmdAfegir" xml:space="preserve">
+    <value>AFEGIR</value>
+    <comment>comu.boto</comment>
+  </data>
+  <data name="cmdAnterior" xml:space="preserve">
+    <value>ANTERIOR</value>
+    <comment>comu.boto</comment>
+  </data>
+  <data name="cmdCancelar" xml:space="preserve">
+    <value>&amp;CANCEL·LAR</value>
+    <comment>comu.boto</comment>
+  </data>
+  <data name="cmdEliminar" xml:space="preserve">
+    <value>&amp;ELIMINAR</value>
+    <comment>comu.boto</comment>
+  </data>
+  <data name="cmdFinalitzar" xml:space="preserve">
+    <value>&amp;FINALITZAR</value>
+    <comment>comu.boto</comment>
+  </data>
+  <data name="cmdGuardar" xml:space="preserve">
+    <value>&amp;GUARDAR</value>
+    <comment>comu.boto</comment>
+  </data>
+  <data name="cmdModificar" xml:space="preserve">
+    <value>MODIFICAR</value>
+    <comment>comu.boto</comment>
+  </data>
+  <data name="cmdSeguent" xml:space="preserve">
+    <value>SEGÜENT</value>
+    <comment>comu.boto</comment>
+  </data>
+  <data name="cmdTancar" xml:space="preserve">
+    <value>TANCAR</value>
+    <comment>comu.boto</comment>
+  </data>
+  <data name="cmdValidar" xml:space="preserve">
+    <value>VALIDAR</value>
+    <comment>comu.boto</comment>
+  </data>
+  <data name="columna" xml:space="preserve">
+    <value>columna</value>
+    <comment>comu</comment>
+  </data>
+  <data name="confirmar" xml:space="preserve">
+    <value>CONFIRMAR OPERACIÓ</value>
+    <comment>comu</comment>
+  </data>
+  <data name="db.connectServer.Missatge" xml:space="preserve">
+    <value>CONNECTANT AL SERVIDOR ...</value>
+    <comment>db</comment>
+  </data>
+  <data name="de" xml:space="preserve">
+    <value>de</value>
+    <comment>comu</comment>
+  </data>
+  <data name="documents" xml:space="preserve">
+    <value>Documents</value>
+    <comment>comu</comment>
+  </data>
+  <data name="tipusError" xml:space="preserve">
+    <value>ERROR</value>
+    <comment>comu</comment>
+  </data>
+  <data name="esperar.moment" xml:space="preserve">
+    <value>ESPERI UNS MOMENTS ... </value>
+    <comment>comu</comment>
+  </data>
+  <data name="esperar_moment" xml:space="preserve">
+    <value>Espera un Moment</value>
+    <comment>FrmAvis.Caption</comment>
+  </data>
+  <data name="estat.correcte" xml:space="preserve">
+    <value>CORRECTE</value>
+    <comment>comu.estat</comment>
+  </data>
+  <data name="estat.eliminat" xml:space="preserve">
+    <value>ELIMINAT</value>
+    <comment>comu.estat</comment>
+  </data>
+  <data name="estat.erroni" xml:space="preserve">
+    <value>ERRONI</value>
+    <comment>comu.estat</comment>
+  </data>
+  <data name="estat.incomplet" xml:space="preserve">
+    <value>INCOMPLET</value>
+    <comment>comu.estat</comment>
+  </data>
+  <data name="estat.validant" xml:space="preserve">
+    <value>VALIDANT</value>
+    <comment>comu.estat</comment>
+  </data>
+  <data name="excepcioSqlConnectdb" xml:space="preserve">
+    <value>ERR. NO ES POT CONNECTAR AMB LA BASE DE DADES DEL MYDOC. Revisar configuració del sistema (CONNEXIÓ DB)</value>
+    <comment>excepcio.sql</comment>
+  </data>
+  <data name="excepcioconfig_getvalue" xml:space="preserve">
+    <value>No es pot llegir el fitxer APP.CONFIG</value>
+    <comment>excepcio.config</comment>
+  </data>
+  <data name="excepcioconfig_setvalue" xml:space="preserve">
+    <value>No es pot actualitzar el fitxer APP.CONFIG</value>
+    <comment>excepcio.config</comment>
+  </data>
+  <data name="fila" xml:space="preserve">
+    <value>fila</value>
+    <comment>comu</comment>
+  </data>
+  <data name="frmserverdata_caption" xml:space="preserve">
+    <value>ESCOLLIR SERVIDOR DE DADES</value>
+    <comment>frmServerData</comment>
+  </data>
+  <data name="frmserverdata_frmavis_caption" xml:space="preserve">
+    <value>ESPERA UN MOMENT .... </value>
+    <comment>frmServerData</comment>
+  </data>
+  <data name="frmserverdata_frmavis_missatge" xml:space="preserve">
+    <value>CONNECTANT... </value>
+    <comment>frmServerData</comment>
+  </data>
+  <data name="frmserverdata_frmavis_titol" xml:space="preserve">
+    <value>COMPROVANT SERVIDOR SQL_SERVER...</value>
+    <comment>frmServerData</comment>
+  </data>
+  <data name="frmserverdata_lblclau" xml:space="preserve">
+    <value>CLAU:</value>
+    <comment>frmServerData</comment>
+  </data>
+  <data name="frmserverdata_lbldata" xml:space="preserve">
+    <value>NOM SERVIDOR DADES:</value>
+    <comment>frmServerData</comment>
+  </data>
+  <data name="frmserverdata_lblusuari" xml:space="preserve">
+    <value>USUARI:</value>
+    <comment>frmServerData</comment>
+  </data>
+  <data name="mnuConfigEmpreses_Caption" xml:space="preserve">
+    <value>EMPRESES</value>
+    <comment>mnuConfig</comment>
+  </data>
+  <data name="mnuConfigProjectes_Caption" xml:space="preserve">
+    <value>PROJECTES</value>
+    <comment>mnuConfig</comment>
+  </data>
+  <data name="mnuConfigServerConnect_Caption" xml:space="preserve">
+    <value>SERVIDOR DADES (SQL_SERVER)</value>
+    <comment>mnuConfig</comment>
+  </data>
+  <data name="mnuConfigServerContaplus_Caption" xml:space="preserve">
+    <value>RUTA EMPRESES CONTAPLUS (CTBLD)</value>
+    <comment>mnuConfig</comment>
+  </data>
+  <data name="mnuConfigServerDirectori_Caption" xml:space="preserve">
+    <value>DIRECTORI SERVIDOR DADES</value>
+    <comment>mnuConfig</comment>
+  </data>
+  <data name="mnuConfigServer_Caption" xml:space="preserve">
+    <value>CONFIGURACIÓ SERVIDORS DADES</value>
+    <comment>mnuConfig</comment>
+  </data>
+  <data name="mnuConfigSubctes_Caption" xml:space="preserve">
+    <value>SUBCOMPTES</value>
+    <comment>mnuConfig</comment>
+  </data>
+  <data name="mnuConfig_Caption" xml:space="preserve">
+    <value>CONFIGURACIÓ</value>
+    <comment>FrmMnuConfig</comment>
+  </data>
+  <data name="filtrarPer" xml:space="preserve">
+    <value>FILTRAR PER</value>
+    <comment>comu</comment>
+  </data>
+  <data name="missatgeEliminarProjecte" xml:space="preserve">
+    <value>-. VOLS ELIMINAR EL PROJECTE</value>
+    <comment>missatge</comment>
+  </data>
+  <data name="missatgeEliminarProjecteActual" xml:space="preserve">
+    <value>-. VOLS ELIMINAR EL PROJECTE ACTUAL? </value>
+    <comment>missatge</comment>
+  </data>
+  <data name="departamentProjecteNoDonatAlta" xml:space="preserve">
+    <value>NO_DONAT_ALTA.</value>
+    <comment>ClasseDepartament</comment>
+  </data>
+  <data name="codi" xml:space="preserve">
+    <value>CODI</value>
+    <comment>comu</comment>
+  </data>
+  <data name="empresa" xml:space="preserve">
+    <value>EMPRESA</value>
+    <comment>comu</comment>
+  </data>
+  <data name="id" xml:space="preserve">
+    <value>ID</value>
+    <comment>comu</comment>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>NO</value>
+    <comment>comu</comment>
+  </data>
+  <data name="nom" xml:space="preserve">
+    <value>NOM</value>
+    <comment>comu</comment>
+  </data>
+  <data name="notes" xml:space="preserve">
+    <value>NOTES</value>
+    <comment>comu</comment>
+  </data>
+  <data name="si" xml:space="preserve">
+    <value>SÍ</value>
+    <comment>comu</comment>
+  </data>
+  <data name="SubCompra" xml:space="preserve">
+    <value>D. Compra</value>
+    <comment>comu</comment>
+  </data>
+  <data name="SubVariable" xml:space="preserve">
+    <value>D.Varible</value>
+    <comment>comu</comment>
+  </data>
+  <data name="projecte" xml:space="preserve">
+    <value>PROJECTE</value>
+    <comment>comu</comment>
+  </data>
+  <data name="actualitzar" xml:space="preserve">
+    <value>ACTUALITZAR</value>
+    <comment>comu</comment>
+  </data>
+  <data name="anomalia" xml:space="preserve">
+    <value>AVÍS ANOMALIA</value>
+    <comment>comu</comment>
+  </data>
+  <data name="any" xml:space="preserve">
+    <value>ANY</value>
+    <comment>comu</comment>
+  </data>
+  <data name="anyo" xml:space="preserve">
+    <value>ANY</value>
+    <comment>comu</comment>
+  </data>
+  <data name="dataModificat" xml:space="preserve">
+    <value>DATA MODIFICAT</value>
+    <comment>comu</comment>
+  </data>
+  <data name="ERR_FITXER_DIARIO_OBERT" xml:space="preserve">
+    <value>ERR: NO ES POT COPIAR EL FITXER DIARIO. UNA ALTRA APLICACIÓ EL TÉ OBERT!!!.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="estat" xml:space="preserve">
+    <value>ESTAT</value>
+    <comment>comu</comment>
+  </data>
+  <data name="local" xml:space="preserve">
+    <value>LOCAL</value>
+    <comment>comu</comment>
+  </data>
+  <data name="participacio" xml:space="preserve">
+    <value>PARTICIPACIO:</value>
+    <comment>comu</comment>
+  </data>
+  <data name="remot" xml:space="preserve">
+    <value>REMOT</value>
+    <comment>comu</comment>
+  </data>
+  <data name="actiu" xml:space="preserve">
+    <value>ACTIU</value>
+    <comment>comu</comment>
+  </data>
+  <data name="activa" xml:space="preserve">
+    <value>ACTIVA</value>
+    <comment>comu</comment>
+  </data>
+  <data name="noActiu" xml:space="preserve">
+    <value>NO ACTIU</value>
+    <comment>comu</comment>
+  </data>
+  <data name="noActiva" xml:space="preserve">
+    <value>NO ACTIVA</value>
+    <comment>comu</comment>
+  </data>
+  <data name="seccio" xml:space="preserve">
+    <value>SECCIO</value>
+    <comment>comu</comment>
+  </data>
+  <data name="dadesBudget" xml:space="preserve">
+    <value>DADES  BUDGET</value>
+    <comment>dBorrarDades</comment>
+  </data>
+  <data name="dadesDeDetall" xml:space="preserve">
+    <value>DADES DE DETALL </value>
+    <comment>dBorrarDades</comment>
+  </data>
+  <data name="esborrarDadesBudget" xml:space="preserve">
+    <value>ESBORRAR DADES BUDGET.</value>
+    <comment>dBorrarDades</comment>
+  </data>
+  <data name="esborrarDadesDetall" xml:space="preserve">
+    <value>ESBORRAR DADES DETALL</value>
+    <comment>dBorrarDades</comment>
+  </data>
+  <data name="esborrarDadesTransitories" xml:space="preserve">
+    <value>ESBORRAR DADES TRANSITORIES</value>
+    <comment>dBorrarDades</comment>
+  </data>
+  <data name="transitories" xml:space="preserve">
+    <value>TRANSITORIES</value>
+    <comment>dBorrarDades</comment>
+  </data>
+  <data name="cmdSeleccionar" xml:space="preserve">
+    <value>SELECCIONAR</value>
+    <comment>comu</comment>
+  </data>
+  <data name="dProjecteAfegirProjecte" xml:space="preserve">
+    <value>AFEGIR NOU PROJECTE</value>
+    <comment>DProjecte</comment>
+  </data>
+  <data name="dProjecteModificarProjecte" xml:space="preserve">
+    <value>MODIFICAR PROJECTE</value>
+    <comment>DProjecte</comment>
+  </data>
+  <data name="excepcioSqlRemove" xml:space="preserve">
+    <value>No es pot Eliminar el Registre. Hi ha registres vinculats en altres taules. Cal revisar.</value>
+    <comment>excepcio.sql</comment>
+  </data>
+  <data name="codiIncorrecte" xml:space="preserve">
+    <value>(*) CODI INCORRECTE</value>
+    <comment>comu</comment>
+  </data>
+  <data name="dSubcompteAfegirSubcompte" xml:space="preserve">
+    <value>AFEGIR NOU SUBCOMPTE</value>
+    <comment>DSubcompte</comment>
+  </data>
+  <data name="dSubcompteModificarSubcompte" xml:space="preserve">
+    <value>MODIFICAR SUBCOMPTE</value>
+    <comment>DSubcompte</comment>
+  </data>
+  <data name="missatgeEliminarSubcompte" xml:space="preserve">
+    <value>-. VOLS ELIMINAR EL SUBCOMPTE</value>
+    <comment>missatge</comment>
+  </data>
+  <data name="missatgeEliminarSubcompteActual" xml:space="preserve">
+    <value>-. VOLS ELIMINAR EL SUBCOMPTE ACTUAL? </value>
+    <comment>missatge</comment>
+  </data>
+  <data name="projectes" xml:space="preserve">
+    <value>PROJECTES</value>
+    <comment>comu</comment>
+  </data>
+  <data name="subcomptes" xml:space="preserve">
+    <value>SUBCOMPTES</value>
+    <comment>comu</comment>
+  </data>
+  <data name="anyComptable" xml:space="preserve">
+    <value>ANY COMPTABLE</value>
+    <comment>DContaplus</comment>
+  </data>
+  <data name="dEmpresaAfegirEmpresa" xml:space="preserve">
+    <value>AFEGIR NOVA EMPRESA</value>
+    <comment>dEmpresa</comment>
+  </data>
+  <data name="dEmpresaModificarEmpresa" xml:space="preserve">
+    <value>MODIFICAR EMPRESA ACTUAL</value>
+    <comment>dEmpresa</comment>
+  </data>
+  <data name="empreses" xml:space="preserve">
+    <value>EMPRESES</value>
+    <comment>comu</comment>
+  </data>
+  <data name="ERR_EXIST_ANY_COMPTABLE" xml:space="preserve">
+    <value>ERR. L'EMPRESA ACTUAL JA CONTÉ UN MATEIX ANY COMPTABLE CONTAPLUS.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="ERR_EXIST_NAME_CONTAPLUS" xml:space="preserve">
+    <value>ERR. L'EMPRESA ACTUAL JA ESTÀ VINCULADA A L'EMPRESA CONTAPLUS.</value>
+  </data>
+  <data name="missatgeEliminarEmpresa" xml:space="preserve">
+    <value>-. VOLS ELIMINAR L'EMPRESA</value>
+    <comment>missatge</comment>
+  </data>
+  <data name="missatgeEliminarEmpresaActual" xml:space="preserve">
+    <value>-. VOLS ELIMINAR L'EMPRESA ACTUAL?.</value>
+    <comment>missatge</comment>
+  </data>
+  <data name="noContaplus" xml:space="preserve">
+    <value>NO CONTAPLUS</value>
+    <comment>DContaplus</comment>
+  </data>
+  <data name="ERR_EXIST_ANY_REGISTRE" xml:space="preserve">
+    <value>ERR. JA EXISTEIX UN REGISTRE DEL MATEIX ANY</value>
+    <comment>excepcio.sql</comment>
+  </data>
+  <data name="ERR_EXIST_CODI_REGISTRE" xml:space="preserve">
+    <value>ERR. JA EXISTEIX UN REGISTRE AMB EL MATEIX CODI</value>
+    <comment>excepcio.sql</comment>
+  </data>
+  <data name="ERR_EXIST_NOM_REGISTRE" xml:space="preserve">
+    <value>ERR. JA EXISTEIX UN REGISTRE AMB EL MATEIX NOM</value>
+    <comment>excepcio.sql</comment>
+  </data>
+  <data name="dPrefixSubcompteAfegirPrefix" xml:space="preserve">
+    <value>AFEGIR NOU PREFIX SUBCOMPTE PRETANCAMENT</value>
+    <comment>dPrefixSubcompte</comment>
+  </data>
+  <data name="dPrefixSubcompteModificarPrefix" xml:space="preserve">
+    <value>MODIFICAR PREFIX SUBCOMPTE PRETANCAMENT ACTUAL</value>
+    <comment>dPrefixSubcompte</comment>
+  </data>
+  <data name="prefixSubcompte" xml:space="preserve">
+    <value>PREFIX</value>
+    <comment>comu</comment>
+  </data>
+  <data name="subcompte" xml:space="preserve">
+    <value>SUBCOMPTE</value>
+    <comment>comu</comment>
+  </data>
+  <data name="actualitzarSubtes" xml:space="preserve">
+    <value>ACTUALITZAR SUBCTES</value>
+    <comment>dPrefixSubcompte</comment>
+  </data>
+  <data name="menuCaptionPrefixSubcomptes" xml:space="preserve">
+    <value>CONFIG PREFIXOS SUBCOMPTES PRETANCAMENT</value>
+    <comment>menu</comment>
+  </data>
+  <data name="cercador" xml:space="preserve">
+    <value>CERCADOR:</value>
+    <comment>comu</comment>
+  </data>
+  <data name="cmdCercador" xml:space="preserve">
+    <value>CERCAR</value>
+    <comment>comu</comment>
+  </data>
+  <data name="cmdEditarGrups" xml:space="preserve">
+    <value>EDITAR &amp;GRUPS</value>
+    <comment>comu</comment>
+  </data>
+  <data name="cmdEditarSubcomptes" xml:space="preserve">
+    <value>EDITAR &amp;SUBCOMPTES</value>
+    <comment>comu</comment>
+  </data>
+  <data name="dsubgrupAfegirsubgrup" xml:space="preserve">
+    <value>AFEGIR NOU SUBGRUP COMPTABLE</value>
+    <comment>dsubgrup</comment>
+  </data>
+  <data name="dsubgrupModificarsubgrup" xml:space="preserve">
+    <value>MODIFICAR SUBGRUP COMPTABLE ACTUAL</value>
+    <comment>dsubgrup</comment>
+  </data>
+  <data name="grups" xml:space="preserve">
+    <value>GRUPS</value>
+    <comment>comu</comment>
+  </data>
+  <data name="missatgeEliminarSubgrup" xml:space="preserve">
+    <value>-. VOLS ELIMINAR EL SUBGRUP </value>
+    <comment>missatge</comment>
+  </data>
+  <data name="missatgeEliminarSubgrupActual" xml:space="preserve">
+    <value>-. VOLS ELIMINAR EL SUBGRUP COMPTABLE ACTUAL?</value>
+    <comment>missatge</comment>
+  </data>
+  <data name="SubCompres" xml:space="preserve">
+    <value>SUBCOMPTES DE COMPRES</value>
+    <comment>comu</comment>
+  </data>
+  <data name="subgrupsComptables" xml:space="preserve">
+    <value>SUBGRUPS COMPTABLES</value>
+    <comment>comu</comment>
+  </data>
+  <data name="SubVariables" xml:space="preserve">
+    <value>SUBCOMPTES DE DESPESES VARIABLES</value>
+    <comment>comu</comment>
+  </data>
+  <data name="cmdCercadorSeguent" xml:space="preserve">
+    <value>CERCAR SEGÜENT ... </value>
+    <comment>cercador</comment>
+  </data>
+  <data name="NOT_SEARCH_ACCOUNT" xml:space="preserve">
+    <value>NO S'HA TROBAT CAP SUBGRUP-SUBCOMPTE!!!.</value>
+    <comment>missatges</comment>
+  </data>
+  <data name="NOT_SEARCH_ANOTHER_ACCOUNT" xml:space="preserve">
+    <value>NO S'HA TROBAT CAP MES SUBGRUP-SUBCOMPTE!!!.</value>
+    <comment>missatges</comment>
+  </data>
+  <data name="sbcte" xml:space="preserve">
+    <value>SUBCTE</value>
+    <comment>comu</comment>
+  </data>
+  <data name="dGrupAfegirGrup" xml:space="preserve">
+    <value>AFEGIR NOU GRUP.</value>
+    <comment>dGrup</comment>
+  </data>
+  <data name="dGrupEsResum" xml:space="preserve">
+    <value>Es Resum (regularitzacio.xls):</value>
+    <comment>dGrup</comment>
+  </data>
+  <data name="dGrupModificarGrup" xml:space="preserve">
+    <value>MODIFICAR GRUP COMPTABLE ACTUAL.</value>
+    <comment>dGrup</comment>
+  </data>
+  <data name="grupsComptables" xml:space="preserve">
+    <value>GRUPS COMPTABLES</value>
+    <comment>dGrups</comment>
+  </data>
+  <data name="missatgeTreureSubcompteGrup" xml:space="preserve">
+    <value>-.. VOLS TREURE/DESVINCULAR EL SUBCOMPTE SELECCIONAT DEL SUBGRUP COMPTABLE ACTUAL? </value>
+    <comment>missatges</comment>
+  </data>
+  <data name="dSelectSubcomptesNomes67" xml:space="preserve">
+    <value>NOMÉS SUBCOMPTES DEL GRUP 6 I 7</value>
+    <comment>dSelectSubcomptes</comment>
+  </data>
+  <data name="dSubcomptesSubgrup" xml:space="preserve">
+    <value>MODIFICAR SUBCOMPTE-SUBGRUP</value>
+    <comment>dSubcomptesSubgrup</comment>
+  </data>
+  <data name="cmdEditarEmpreses" xml:space="preserve">
+    <value>EDITAR &amp;EMPRESES</value>
+    <comment>comu.boto</comment>
+  </data>
+  <data name="cmdSortir" xml:space="preserve">
+    <value>SORTIR</value>
+    <comment>comu</comment>
+  </data>
+  <data name="dSeccioCaption" xml:space="preserve">
+    <value>MODIFICAR SECCIO ACTUAL</value>
+    <comment>dSeccio</comment>
+  </data>
+  <data name="dSeccioNovaCaption" xml:space="preserve">
+    <value>AFEGIR NOVA SECCIO</value>
+    <comment>dSeccio</comment>
+  </data>
+  <data name="fitxerVoss" xml:space="preserve">
+    <value>FITXER VOSS:</value>
+    <comment>dCentre</comment>
+  </data>
+  <data name="missatgeEliminarCentre" xml:space="preserve">
+    <value>-. VOLS ELIMINAR EL CENTRE</value>
+    <comment>missatges</comment>
+  </data>
+  <data name="missatgeEliminarCentreActual" xml:space="preserve">
+    <value>-. VOLS ELIMINAR EL CENTRE ACTUAL?</value>
+    <comment>missatges</comment>
+  </data>
+  <data name="missatgeEliminarProjecteCentre" xml:space="preserve">
+    <value>-. VOLS DESVINCULAR EL PROJECTE SELECCIONAT DEL CENTRE ACTUAL?</value>
+    <comment>missatge</comment>
+  </data>
+  <data name="missatgeEliminarSeccio" xml:space="preserve">
+    <value>-. VOLS ELIMINAR LA SECCIO </value>
+    <comment>missatges</comment>
+  </data>
+  <data name="missatgeEliminarSeccioActual" xml:space="preserve">
+    <value>-. VOLS ELIMINAR LA SECCIO ACTUAL?</value>
+    <comment>missatges</comment>
+  </data>
+  <data name="ordre" xml:space="preserve">
+    <value>ORDRE</value>
+    <comment>comu</comment>
+  </data>
+  <data name="centres" xml:space="preserve">
+    <value>CENTRES</value>
+    <comment>comu</comment>
+  </data>
+  <data name="cmdTreure" xml:space="preserve">
+    <value>TREURE</value>
+    <comment>comu.boto</comment>
+  </data>
+  <data name="seccions" xml:space="preserve">
+    <value>SECCIONS</value>
+    <comment>comu</comment>
+  </data>
+  <data name="columnes" xml:space="preserve">
+    <value>COLUMNES</value>
+    <comment>comu</comment>
+  </data>
+  <data name="dColumnaAfegirColumna" xml:space="preserve">
+    <value>AFEGIR  COLUMNA NOVA</value>
+    <comment>dColumna</comment>
+  </data>
+  <data name="dColumnaModificarColumna" xml:space="preserve">
+    <value>MODIFICAR COLUMNA SELECCIONADA</value>
+    <comment>dColumna</comment>
+  </data>
+  <data name="lblTotalitzador" xml:space="preserve">
+    <value>TOTALITZADORA (expram.xls) SUMA COLUMNES.</value>
+    <comment>dColumna</comment>
+  </data>
+  <data name="missatgeEliminarColumna" xml:space="preserve">
+    <value>-. VOLS  ELIMNAR  LA COLUMNA</value>
+    <comment>missatge</comment>
+  </data>
+  <data name="missatgeEliminarColumnaActual" xml:space="preserve">
+    <value>-. VOLS ELIMINAR LA COLUMNA ACTUAL?.</value>
+    <comment>missatge</comment>
+  </data>
+  <data name="missatgeEliminarColumnaFilla" xml:space="preserve">
+    <value>-. VOLS DESVINCULAR LA COLUMNA ACTUAL?.</value>
+    <comment>missatge</comment>
+  </data>
+  <data name="totalitza" xml:space="preserve">
+    <value>TOTALITZA</value>
+    <comment>comu</comment>
+  </data>
+  <data name="configColumnes" xml:space="preserve">
+    <value>COLUMNES EXPRAM</value>
+    <comment>ColumnesProjectes</comment>
+  </data>
+  <data name="columnesDe" xml:space="preserve">
+    <value>COLUMNES DE: </value>
+    <comment>projectesColumnes</comment>
+  </data>
+  <data name="missatgeEliminarProjecteColumna" xml:space="preserve">
+    <value>-. VOLS DESVINCULAR  EL PROJECTE DE LA COLUMNA ACTUAL?</value>
+    <comment>missatge</comment>
+  </data>
+  <data name="projectesDe" xml:space="preserve">
+    <value>PROJECTES DE</value>
+    <comment>projectesColumnes</comment>
+  </data>
+  <data name="afegirNouClient" xml:space="preserve">
+    <value>AFEGIR NOU CLIENT</value>
+    <comment>dClient</comment>
+  </data>
+  <data name="color" xml:space="preserve">
+    <value>COLOR:</value>
+    <comment>dClient</comment>
+  </data>
+  <data name="configClients" xml:space="preserve">
+    <value>CONFIGURAR CLIENTS</value>
+    <comment>clientsProjectes</comment>
+  </data>
+  <data name="missatgeEliminarClient" xml:space="preserve">
+    <value>-. VOLS ELIMINAR EL CLIENT </value>
+    <comment>missatge</comment>
+  </data>
+  <data name="missatgeEliminarClientActual" xml:space="preserve">
+    <value>-. VOLS ELIMINAR EL CLIENT ACTUAL?</value>
+    <comment>missatge</comment>
+  </data>
+  <data name="missatgeTreureProjecteClient" xml:space="preserve">
+    <value>-. VOLS DESVINCULKAR EL PROJECTE DEL CLIENT ACTUAL?</value>
+    <comment>missatge</comment>
+  </data>
+  <data name="modificarClient" xml:space="preserve">
+    <value>MODIFICAR CLIENT </value>
+    <comment>dClient</comment>
+  </data>
+  <data name="dDepartamentAfegirDepartament" xml:space="preserve">
+    <value>AFEGIR NOU DEPARTAMENT</value>
+    <comment>DDepartament</comment>
+  </data>
+  <data name="dDepartamentModificarDepartament" xml:space="preserve">
+    <value>MODIFICAR EL DEPARTAMENT ACTUAL</value>
+    <comment>DDepartament</comment>
+  </data>
+  <data name="menuCaptionDepartaments" xml:space="preserve">
+    <value>CONFIGURACIÓ DEPARTAMENTS</value>
+    <comment>menu</comment>
+  </data>
+  <data name="missatgeEliminarDepartament" xml:space="preserve">
+    <value>-. VOLS ELIMINAR EL DEPARTAMENT ACTUAL?.</value>
+    <comment>missatge</comment>
+  </data>
+  <data name="cmdDirectori" xml:space="preserve">
+    <value>&amp;DIR</value>
+    <comment>comu</comment>
+  </data>
+  <data name="actualitzarFitxerDiario" xml:space="preserve">
+    <value>-. VOLS ACTUALITZAR EL FITXER DIARIO.DBF</value>
+    <comment>DDiarioContaplus</comment>
+  </data>
+  <data name="actualitzarFitxerDiarioActualitzar" xml:space="preserve">
+    <value>CAL ACTUALITZAR EL FITXER DIARIO.DBF CONTAPLUS</value>
+    <comment>DDiarioContaplus</comment>
+  </data>
+  <data name="actualitzarFitxerDiarioActualitzat" xml:space="preserve">
+    <value>EL FITXER DIARIO.DBF CONTAPLUS JA ESTÀ ACTUALITZAT</value>
+  </data>
+  <data name="actualitzarFitxerDiarioCopiantFitxer" xml:space="preserve">
+    <value>Copiant fitxer diari.dbf ..... ... .</value>
+    <comment>DDiarioContaplus</comment>
+  </data>
+  <data name="actualitzarFitxerDiarioErrContaplus" xml:space="preserve">
+    <value>ERR.CAL SELECCIONAR UNA EMPRESA CONTAPLUS</value>
+    <comment>DDiarioContaplus</comment>
+  </data>
+  <data name="actualitzarFitxerDiarioErrCopiat" xml:space="preserve">
+    <value>ERR NO S'HA POGUT COPIAR EL DIARIO.dbf ..... ... .</value>
+    <comment>DDiarioContaplus</comment>
+  </data>
+  <data name="actualitzarFitxerDiarioErrEmpresa" xml:space="preserve">
+    <value>ERR. CAL SELECCIONAR UNA EMPRESA</value>
+    <comment>DDiarioContaplus</comment>
+  </data>
+  <data name="actualitzarFitxerDiarioErrFitxerContaplus" xml:space="preserve">
+    <value>ERR.NO EXISTEIX FITXER DIARIO.DBF CONTAPLUS</value>
+    <comment>DDiarioContaplus</comment>
+  </data>
+  <data name="actualitzarFitxerDiarioFitxerActualitzat" xml:space="preserve">
+    <value>FITXER ACTUALITZAT!!!</value>
+    <comment>DDiarioContaplus</comment>
+  </data>
+  <data name="actualitzarFitxerDiarioOrigen" xml:space="preserve">
+    <value>*** DE (ORIGEN):</value>
+    <comment>DDiarioContaplus</comment>
+  </data>
+  <data name="configRutaContaplus" xml:space="preserve">
+    <value>CONFIGURACIÓ RUTA SERVIDOR CONTAPLUS</value>
+    <comment>FrmApliOms</comment>
+  </data>
+  <data name="configRutaServidorDades" xml:space="preserve">
+    <value>CONFIGURACIÓ RUTA SERVIDOR DE DADES</value>
+    <comment>FrmApliOms</comment>
+  </data>
+  <data name="escollirDirectori" xml:space="preserve">
+    <value>Directori Actual:</value>
+    <comment>Directori</comment>
+  </data>
+  <data name="escollirFitxer" xml:space="preserve">
+    <value>Fitxer Actual</value>
+    <comment>Directori</comment>
+  </data>
+  <data name="actualitzarDirectoriServidor" xml:space="preserve">
+    <value>ACTUALITZAR FITXERS SERVIDOR DE DADES</value>
+    <comment>copyDB</comment>
+  </data>
+  <data name="cmdCopiar" xml:space="preserve">
+    <value>&amp;COPIAR</value>
+    <comment>comu.boto</comment>
+  </data>
+  <data name="copiarFitxer" xml:space="preserve">
+    <value>COPIANT FITXER. ...</value>
+    <comment>copyDB</comment>
+  </data>
+  <data name="dDiarioContaplusCaption" xml:space="preserve">
+    <value>ACTUALITZAR FITXERS DIARIOS. ... (CONTAPLUS a la APLICACIÓ)</value>
+    <comment>DDiarioContaplus</comment>
+  </data>
+  <data name="empresesContaplus" xml:space="preserve">
+    <value>EMPRESES CONTAPLUS</value>
+    <comment>DDiarioContaplus</comment>
+  </data>
+  <data name="mnuActualitzarDiarioCaption" xml:space="preserve">
+    <value>ACTUALITZAR DIARIOS's.dbf (de CONTAPLUS a l'APLICACIÓ).</value>
+  </data>
+  <data name="mnuCopyDB" xml:space="preserve">
+    <value>ACTUALITZAR SERVIDOR DE DADES LOCAL. (C:\...)</value>
+    <comment>menu</comment>
+  </data>
+  <data name="estatObert" xml:space="preserve">
+    <value>OBERT</value>
+    <comment>pEstatMes</comment>
+  </data>
+  <data name="estatOberta" xml:space="preserve">
+    <value>OBERTA</value>
+    <comment>pEstatMes</comment>
+  </data>
+  <data name="estatTancada" xml:space="preserve">
+    <value>TANCADA</value>
+    <comment>pEstatMes</comment>
+  </data>
+  <data name="estatTancat" xml:space="preserve">
+    <value>TANCAT</value>
+    <comment>pEstatMes</comment>
+  </data>
+  <data name="elProjecte" xml:space="preserve">
+    <value>El projecte</value>
+    <comment>ModelDiario</comment>
+  </data>
+  <data name="elSubcompte" xml:space="preserve">
+    <value>EL SUBCOMPTE</value>
+    <comment>ModelDiario</comment>
+  </data>
+  <data name="lAssentamentN" xml:space="preserve">
+    <value>L'assentament Nº</value>
+    <comment>ModelDiario</comment>
+  </data>
+  <data name="logExportGB" xml:space="preserve">
+    <value>LOG EXPORT DADES GB</value>
+    <comment>ModulActulitzacioGB</comment>
+  </data>
+  <data name="mes" xml:space="preserve">
+    <value>MES</value>
+    <comment>comu</comment>
+  </data>
+  <data name="noClau" xml:space="preserve">
+    <value>NO CLAVE</value>
+    <comment>ModelDiario</comment>
+  </data>
+  <data name="noDonatAltaSistema" xml:space="preserve">
+    <value>no està donat d'alta en el sistema. Té moviments en el contaplus</value>
+    <comment>ModelDiario</comment>
+  </data>
+  <data name="noExisteixSistema" xml:space="preserve">
+    <value>NO EXISTEIX EN EL SISTEMA</value>
+    <comment>ModelDiario</comment>
+  </data>
+  <data name="noProjecte" xml:space="preserve">
+    <value>NO PROJECTE</value>
+    <comment>ModelDiario</comment>
+  </data>
+  <data name="noProjecteAssociat" xml:space="preserve">
+    <value>. No té Projecte associat.</value>
+    <comment>ModelDiario</comment>
+  </data>
+  <data name="noSubcompte" xml:space="preserve">
+    <value>NO SUBCOMPTE</value>
+    <comment>ModelDiario</comment>
+  </data>
+  <data name="noVinculatCentre" xml:space="preserve">
+    <value>No està vinculat a un CENTRE. Té moviments en el contaplus.</value>
+    <comment>ModelDiario</comment>
+  </data>
+  <data name="noVinculatSubGrup" xml:space="preserve">
+    <value>no està VINCULAT a un subgrup. Té moviments en el contaplus</value>
+    <comment>ModelDiario</comment>
+  </data>
+  <data name="registreEstatAccionsLogGB" xml:space="preserve">
+    <value>Registre d'estat de les accions realitzades  en l'exportació de dades a la GB actual</value>
+    <comment>ModulActulitzacioGB</comment>
+  </data>
+  <data name="transitoria" xml:space="preserve">
+    <value>TRANSITORIA</value>
+    <comment>comu</comment>
+  </data>
+  <data name="abril" xml:space="preserve">
+    <value>ABRIL</value>
+    <comment>comu</comment>
+  </data>
+  <data name="agost" xml:space="preserve">
+    <value>AGOST</value>
+    <comment>comu</comment>
+  </data>
+  <data name="anyFitxerNoExisteix" xml:space="preserve">
+    <value>ERR: L'ANY DEL FITXER NO CORRESPON A L'ANY ACTUAL ESCOLLIT.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="dadesAndorra" xml:space="preserve">
+    <value>DADES ANDORRA</value>
+    <comment>dImportUtes</comment>
+  </data>
+  <data name="dadesZamora" xml:space="preserve">
+    <value>DADES ZAMORA</value>
+    <comment>dImportUtes</comment>
+  </data>
+  <data name="decembre" xml:space="preserve">
+    <value>DECEMBRE</value>
+    <comment>comu</comment>
+  </data>
+  <data name="descripcioLogImportZamora" xml:space="preserve">
+    <value>IMPORTACIÓ DE  DADES FITXER *.XLS DE ZAMORA I GUARDAR-LES A LA BASE DE DADES DEL SISTEMA.</value>
+    <comment>ModulImportZamora</comment>
+  </data>
+  <data name="escollirFitxerAndorra" xml:space="preserve">
+    <value>ESCOLLIR FITXER DADES ANDORRA</value>
+    <comment>dImportUtes</comment>
+  </data>
+  <data name="escollirFitxerZamora" xml:space="preserve">
+    <value>ESCOLLIR FITXER DADES ZAMORA</value>
+    <comment>dImportUtes</comment>
+  </data>
+  <data name="existirCodiAnd" xml:space="preserve">
+    <value>HA D'EXISTIR UNA EMPRESA AMB CODI 'AND', PER PODER IMPORTAR DADES.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="existirCodiZam" xml:space="preserve">
+    <value>HA D'EXISTIR UNA EMPRESA AMB CODI 'ZAM', PER PODER IMPORTAR DADES.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="exportPretancament" xml:space="preserve">
+    <value>Export PRETANCAMENT a</value>
+    <comment>dExportGB</comment>
+  </data>
+  <data name="exportTancament" xml:space="preserve">
+    <value>Export TANCAMENT a</value>
+    <comment>dExportGB</comment>
+  </data>
+  <data name="febrer" xml:space="preserve">
+    <value>FEBRER</value>
+    <comment>comu</comment>
+  </data>
+  <data name="fitxerMan" xml:space="preserve">
+    <value>FITXER MAN</value>
+    <comment>dExportGB</comment>
+  </data>
+  <data name="gener" xml:space="preserve">
+    <value>GENER</value>
+    <comment>comu</comment>
+  </data>
+  <data name="guardarDadesA" xml:space="preserve">
+    <value>GUARDA LES DADES A</value>
+    <comment>dImportUtes</comment>
+  </data>
+  <data name="importDataAndorra" xml:space="preserve">
+    <value>IMPORT DATA UTE-ANDORRA</value>
+    <comment>errors</comment>
+  </data>
+  <data name="importDataZamora" xml:space="preserve">
+    <value>IMPORT DATA UTE-ZAMORA</value>
+    <comment>dImportUtes</comment>
+  </data>
+  <data name="iniImportAny" xml:space="preserve">
+    <value>INI IMPORT ANY</value>
+    <comment>comu</comment>
+  </data>
+  <data name="iniImport1" xml:space="preserve">
+    <value>Inici importació de dades de l'any:</value>
+    <comment>comu</comment>
+  </data>
+  <data name="juliol" xml:space="preserve">
+    <value>JULIOL</value>
+    <comment>comu</comment>
+  </data>
+  <data name="juny" xml:space="preserve">
+    <value>JUNY</value>
+    <comment>comu</comment>
+  </data>
+  <data name="maig" xml:space="preserve">
+    <value>MAIG</value>
+    <comment>comu</comment>
+  </data>
+  <data name="març" xml:space="preserve">
+    <value>MARÇ</value>
+    <comment>comu</comment>
+  </data>
+  <data name="noEmpresaAndorra" xml:space="preserve">
+    <value>ERR: NO EXISTEIX UNA EMPRESA QUE PERTANYI A ANDORRA.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="noEmpresaZamora" xml:space="preserve">
+    <value>ERR: NO EXISTEIX UNA EMPRESA QUE PERTANYI A ZAMORA.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="novembre" xml:space="preserve">
+    <value>NOVEMBRE</value>
+    <comment>comu</comment>
+  </data>
+  <data name="octubre" xml:space="preserve">
+    <value>OCTUBRE</value>
+    <comment>comu</comment>
+  </data>
+  <data name="setembre" xml:space="preserve">
+    <value>SETEMBRE</value>
+    <comment>comu</comment>
+  </data>
+  <data name="titolLogImportZamora" xml:space="preserve">
+    <value>IMPORT_DATA_ZAMORA</value>
+    <comment>ModulImportZamora</comment>
+  </data>
+  <data name="avisFiImportData" xml:space="preserve">
+    <value>AVIS FI IMPORT DATA</value>
+    <comment>log</comment>
+  </data>
+  <data name="dadesActualitzades" xml:space="preserve">
+    <value>DADES ACTUALITZADES !!!. </value>
+    <comment>missatge</comment>
+  </data>
+  <data name="deZamoraNoExisteix" xml:space="preserve">
+    <value>DEL FITXER DE ZAMORA,  NO EXISTEIX O NO ESTÀ DONADA D'ALTA EN UN SUBGRUPCOMPTABLE.</value>
+    <comment>log</comment>
+  </data>
+  <data name="errAnyDiario" xml:space="preserve">
+    <value>ERR: NO ES POT GUARDAR. EL FITXER DIARIO ACTUAL COMPTÉ DADES D'UN ANY DIFERENT A L'ACTUAL</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errAnyDiario1" xml:space="preserve">
+    <value>GUARDA I ELIMINA EL DIARIO DE LA UTE ACTUAL. TORNA A IMPORTAR LES DADES I EL SISTEMA CREARÀ UN NOU DIARIO</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errFitxerActual" xml:space="preserve">
+    <value>ERR:EL FITXER ACTUAL</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errNoExistSubte" xml:space="preserve">
+    <value>ERR.SUBCTE NO EXIST..</value>
+    <comment>log</comment>
+  </data>
+  <data name="errNoZamora" xml:space="preserve">
+    <value>. NO CORRESPON A ZAMORA. REVISA EL FITXER</value>
+    <comment>errors</comment>
+  </data>
+  <data name="fiImportDataAny" xml:space="preserve">
+    <value>Fi importació dades de l'any actual</value>
+    <comment>log</comment>
+  </data>
+  <data name="logErrAnyDiario" xml:space="preserve">
+    <value>ERR ANY DIARIO</value>
+    <comment>log</comment>
+  </data>
+  <data name="logErrAnyDiarioDescripcio" xml:space="preserve">
+    <value>ERROR. EL DIARIO ACTUAL COMPTÉ DADES D'ANY DIFERENT A L'ACTUAL</value>
+    <comment>log</comment>
+  </data>
+  <data name="logErrFitxer" xml:space="preserve">
+    <value>ERR FITXER</value>
+    <comment>log</comment>
+  </data>
+  <data name="logErrFitxerZamora" xml:space="preserve">
+    <value>ERROR. EL FITXER ACTUAL NO CORRESPON A DADES DE ZAMORA. REVISAR FITXER</value>
+    <comment>log</comment>
+  </data>
+  <data name="logErrorAny" xml:space="preserve">
+    <value>ERR ANY ACTUAL</value>
+    <comment>log</comment>
+  </data>
+  <data name="logErrorAnyDescripcio" xml:space="preserve">
+    <value>ERROR. Les dades del fitxer.xls actual no corresponen a l'any actual</value>
+    <comment>log</comment>
+  </data>
+  <data name="logFiGuardar" xml:space="preserve">
+    <value>AVIS FI GUARDAR</value>
+    <comment>log</comment>
+  </data>
+  <data name="logFiGuardarDescripcio" xml:space="preserve">
+    <value>FINAL guardar dades</value>
+    <comment>log</comment>
+  </data>
+  <data name="logIniGuardar" xml:space="preserve">
+    <value>AVIS INI GUARDAR</value>
+    <comment>log</comment>
+  </data>
+  <data name="logIniGuardarDescripcio" xml:space="preserve">
+    <value>Inici guardar dades</value>
+    <comment>log</comment>
+  </data>
+  <data name="msgErrImportZamora" xml:space="preserve">
+    <value>ERROR A L'IMPORTAR DADES DE ZAMORA.</value>
+    <comment>ModulImportZamora</comment>
+  </data>
+  <data name="avisLogFiDadesAndorra" xml:space="preserve">
+    <value>FINAL guardar dades UTE ANDORRA</value>
+    <comment>modulImportAndorra</comment>
+  </data>
+  <data name="avisLogIniDadesAndorra" xml:space="preserve">
+    <value>Inici guardar dades UTE ANDORRA</value>
+    <comment>modulImportAndorra</comment>
+  </data>
+  <data name="avisLogSubcompte" xml:space="preserve">
+    <value>AVIS SUBCOMPTE GRUP</value>
+    <comment>modulImportAndorra</comment>
+  </data>
+  <data name="avisLogSubcompteAndorra" xml:space="preserve">
+    <value>No està vinculat a cap grup.</value>
+    <comment>modulImportAndorra</comment>
+  </data>
+  <data name="errAnyAndorra" xml:space="preserve">
+    <value>ERR: NO S'HA TROBAT CAP FULLA DE PRETANCAMENT EN EL FITXER ACTUAL!!!.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errLogAndorraAny" xml:space="preserve">
+    <value>ERROR. Les dades no corresponen a l'any escollit. Revisar la configuració de  la Fulla PRETANCAMENT, o escollir un any diferent.</value>
+    <comment>modelImportAndorra</comment>
+  </data>
+  <data name="errLogAndorraPretancament" xml:space="preserve">
+    <value>ERR PRETANCAMENT</value>
+    <comment>modulImportAndorra</comment>
+  </data>
+  <data name="errLogAndorraPretancament1" xml:space="preserve">
+    <value>NO EXISTEIX UNA FULLA PRETANCAMENT A</value>
+    <comment>modulImportAndorra</comment>
+  </data>
+  <data name="errLogAndorraPretancament2" xml:space="preserve">
+    <value>. Revisar la configuració del fitxer. Si existeix una fulla Pretancament i si existeix el projecte.</value>
+    <comment>modulImportAndorra</comment>
+  </data>
+  <data name="errLogAndorraProjecte" xml:space="preserve">
+    <value>ERR.NO PROJECTE</value>
+    <comment>modelImportAndorra</comment>
+  </data>
+  <data name="errLogAndorraProjecte1" xml:space="preserve">
+    <value>ERROR. NO HI HA CAP PROJECTE CONFIGURAT QUE PERTANYI A L'UTE ANDORRA</value>
+    <comment>modelImportAndorra</comment>
+  </data>
+  <data name="errLogAndorraSubcte" xml:space="preserve">
+    <value>de la fulla pretancament d'Andorra, no està donat d'alta a cap subgrup del sistema</value>
+    <comment>modulImportAndorra</comment>
+  </data>
+  <data name="logImportAndorraTitol" xml:space="preserve">
+    <value>IMPORT_DATA_ANDORRA</value>
+    <comment>modulImportAndorra</comment>
+  </data>
+  <data name="logImportDadesAndorra" xml:space="preserve">
+    <value>IMPORTACIÓ DE  DADES FITXER *.XLS D'ANDORRA I GUARDAR-LES A LA BASE DE DADES DEL SISTEMA.</value>
+    <comment>modulImportAndorra</comment>
+  </data>
+  <data name="msgErrImportAndorra" xml:space="preserve">
+    <value>ERROR A L'IMPORTAR DADES D'ANDORRA</value>
+    <comment>modulImportAndorra</comment>
+  </data>
+  <data name="dadesPretancament" xml:space="preserve">
+    <value>DADES PRETANCAMENT</value>
+    <comment>dExportGB</comment>
+  </data>
+  <data name="dadesTancament" xml:space="preserve">
+    <value>DADES TANCAMENT</value>
+    <comment>dExportGB</comment>
+  </data>
+  <data name="escollirFitxerPretancament" xml:space="preserve">
+    <value>ESCOLLIR FITXER GB DADES PRETANCAMENT</value>
+    <comment>dExportGB</comment>
+  </data>
+  <data name="escollirFitxerTancament" xml:space="preserve">
+    <value>ESCOLLIR FITXER GB DADES TANCAMENT</value>
+    <comment>dExportGB</comment>
+  </data>
+  <data name="avis" xml:space="preserve">
+    <value>AVÍS</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="avisos" xml:space="preserve">
+    <value>AVISOS</value>
+    <comment>comu</comment>
+  </data>
+  <data name="descripcio" xml:space="preserve">
+    <value>DESCRIPCIO</value>
+    <comment>comu</comment>
+  </data>
+  <data name="errors" xml:space="preserve">
+    <value>ERRORS</value>
+    <comment>comu</comment>
+  </data>
+  <data name="selectCentres" xml:space="preserve">
+    <value>SELECCIONAR CENTRES </value>
+    <comment>dSelectCentres</comment>
+  </data>
+  <data name="selectCentresDe" xml:space="preserve">
+    <value>SELECCIONAR CENTRES DE</value>
+    <comment>dSelectCentres</comment>
+  </data>
+  <data name="tipus" xml:space="preserve">
+    <value>TIPUS</value>
+    <comment>comu</comment>
+  </data>
+  <data name="data" xml:space="preserve">
+    <value>DATA</value>
+    <comment>comu</comment>
+  </data>
+  <data name="infoAvisos" xml:space="preserve">
+    <value>INFORMACIÓ SOBRE AVISOS</value>
+    <comment>dLogs</comment>
+  </data>
+  <data name="infoErrors" xml:space="preserve">
+    <value>INFORMACIÓ SOBRE ERRORS</value>
+    <comment>dLogs</comment>
+  </data>
+  <data name="mostrarLog" xml:space="preserve">
+    <value>MOSTRAR LOG</value>
+    <comment>comu</comment>
+  </data>
+  <data name="noTancarForm" xml:space="preserve">
+    <value>NO TANCAR EL FORMULARI.</value>
+    <comment>comu</comment>
+  </data>
+  <data name="totAny" xml:space="preserve">
+    <value>TOT L'ANY</value>
+    <comment>comu</comment>
+  </data>
+  <data name="cmdExportar" xml:space="preserve">
+    <value>&amp;EXPORTAR</value>
+    <comment>comu.boto</comment>
+  </data>
+  <data name="cmdImportar" xml:space="preserve">
+    <value>IMPORTAR</value>
+    <comment>comu.boto</comment>
+  </data>
+  <data name="exportTransitoriaCaption" xml:space="preserve">
+    <value>TRANSITOR. EXPORTAR DADES A FITXER RESUM</value>
+    <comment>dimportsTransitories</comment>
+  </data>
+  <data name="importTransitoriaCaption" xml:space="preserve">
+    <value>TRANSITOR. IMPORT DADES A BD</value>
+    <comment>dimportsTransitories</comment>
+  </data>
+  <data name="selectTots" xml:space="preserve">
+    <value>Select Tots</value>
+    <comment>comu</comment>
+  </data>
+  <data name="dadesImportades" xml:space="preserve">
+    <value>DADES IMPORTADES</value>
+    <comment>comu</comment>
+  </data>
+  <data name="enApartat" xml:space="preserve">
+    <value>en l'apartat</value>
+    <comment>modelPlantillaTransitoria</comment>
+  </data>
+  <data name="enFitxerResum" xml:space="preserve">
+    <value>en el fitxer Resum</value>
+    <comment>ModelPlantillaTransitoria</comment>
+  </data>
+  <data name="errCodi" xml:space="preserve">
+    <value>ERR.CODI</value>
+    <comment>comu</comment>
+  </data>
+  <data name="errImport" xml:space="preserve">
+    <value>ERR.IMPORT</value>
+    <comment>comu</comment>
+  </data>
+  <data name="errNoDadaTransitoria" xml:space="preserve">
+    <value>ERROR. NO S'HA TROBAT CAP DADA DE TRANSITORIA. Revisar la configuració del fitxer de transitòries. ETIQUETA AS**</value>
+    <comment>ModulImportTransitories</comment>
+  </data>
+  <data name="errNoDadaTransitoria1" xml:space="preserve">
+    <value>ERROR. NO S'HA TROBAT LA TAULA RESUM. Revisar configuració del fitxer de transitòries.</value>
+    <comment>ModulImportTransitories</comment>
+  </data>
+  <data name="errNoGuardarTransitoria" xml:space="preserve">
+    <value>ERROR. NO S'HA POGUT GUARDAR LES DADES DE LA TRANSITORIA</value>
+    <comment>ModulImportTransitories</comment>
+  </data>
+  <data name="errSubcompte" xml:space="preserve">
+    <value>ERROR  SUBCOMPTE</value>
+    <comment>comu</comment>
+  </data>
+  <data name="escollirFitxersTransitories" xml:space="preserve">
+    <value>ESCOLLIR FITXERS TRANSITORIES </value>
+    <comment>ModulImportTransitoria</comment>
+  </data>
+  <data name="exportTransitoria" xml:space="preserve">
+    <value>EXPORT  TRANSITORIES</value>
+    <comment>ModulExportTransitories</comment>
+  </data>
+  <data name="exportTransitoria1" xml:space="preserve">
+    <value>Exporta les dades de transitòries a un fitxer RESUM</value>
+    <comment>ModulExportTransitories</comment>
+  </data>
+  <data name="fImport" xml:space="preserve">
+    <value>FI IMPORT DADES</value>
+    <comment>comu</comment>
+  </data>
+  <data name="import" xml:space="preserve">
+    <value>IMPORT</value>
+    <comment>comu</comment>
+  </data>
+  <data name="importDataDe" xml:space="preserve">
+    <value>IMPORT DADES DE:</value>
+    <comment>modulImportTransitoria</comment>
+  </data>
+  <data name="importDataTransitoria" xml:space="preserve">
+    <value>IMPORT DADES TRANSITORIES</value>
+    <comment>ModulImportTransitoria</comment>
+  </data>
+  <data name="importDataTransitoria1" xml:space="preserve">
+    <value>Importació de dades de diferents fitxers  de transitòries.</value>
+    <comment>ModulImportTransitoria</comment>
+  </data>
+  <data name="iniExportClient" xml:space="preserve">
+    <value>Inici EXPORTACIÓ DADES DEL CLIENT</value>
+    <comment>ModelPlantillaTransitoria</comment>
+  </data>
+  <data name="iniExportDades" xml:space="preserve">
+    <value>Inici exportació dades de</value>
+    <comment>ModelPlantillaTransitoria</comment>
+  </data>
+  <data name="iniImport" xml:space="preserve">
+    <value>INICI IMPORT DADES</value>
+    <comment>comu</comment>
+  </data>
+  <data name="noAny" xml:space="preserve">
+    <value>ANY NO TROBAT</value>
+    <comment>comu</comment>
+  </data>
+  <data name="noAnyActual" xml:space="preserve">
+    <value>ERROR. LES DADES NO SÓN DE L'ANY ACTUAL.</value>
+    <comment>comu</comment>
+  </data>
+  <data name="noCodi" xml:space="preserve">
+    <value>NO EXISTEIX EL CODI</value>
+    <comment>comu</comment>
+  </data>
+  <data name="noDades" xml:space="preserve">
+    <value>NO DADES</value>
+    <comment>comu</comment>
+  </data>
+  <data name="noMes" xml:space="preserve">
+    <value>MES NO TROBAT</value>
+    <comment>comu</comment>
+  </data>
+  <data name="noMesErr" xml:space="preserve">
+    <value>ERROR. NO S'HA TROBAT EL MES</value>
+    <comment>comu</comment>
+  </data>
+  <data name="noNumeric" xml:space="preserve">
+    <value>NO NUMERIC</value>
+    <comment>comu</comment>
+  </data>
+  <data name="noProjecteTransitoria" xml:space="preserve">
+    <value>. La casella EXPLOTACION ha de contenir el codi del projecte i el codi de l'empresa, entre parèntesis. EX: MAN004020 (OMS)</value>
+    <comment>ModulImportTransitoria</comment>
+  </data>
+  <data name="noProjecteTransitoria1" xml:space="preserve">
+    <value>ERROR. No s'ha trobat cap projecte. Revisar la configuració deL FITXER de  transitòries:</value>
+    <comment>ModulImportTransitoria</comment>
+  </data>
+  <data name="revisarFitxerTransitoria" xml:space="preserve">
+    <value>. Revisar configuració del fitxer de transitòries.</value>
+    <comment>ModulImportTransitoria</comment>
+  </data>
+  <data name="valor" xml:space="preserve">
+    <value>Valor</value>
+    <comment>comu</comment>
+  </data>
+  <data name="deEmpresa" xml:space="preserve">
+    <value>de l'empresa</value>
+    <comment>modulExportTransitoria</comment>
+  </data>
+  <data name="errAvisarAdministrador" xml:space="preserve">
+    <value>AVISAR A L'ADMINISTRADOR DEL SISTEMA.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errBudgetNo" xml:space="preserve">
+    <value>ERR. FITXER  BUDGET NO CORRECTE.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errCentreGb" xml:space="preserve">
+    <value>ERR. JA EXISTEIX UN ALTRE CENTRE VINCULAT  A UNA FULLA GB.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errCentreGb1" xml:space="preserve">
+    <value>ERR. JA EXISTEIX UN  CENTRE VINCULAT  A AQUESTA FULLA GB.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errClauPas" xml:space="preserve">
+    <value>CLAU DE PAS ERRÒNEA.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errCrearVoss" xml:space="preserve">
+    <value>NO ES PODEN CREAR ELS FITXERS VOSS.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errDadesPredeterminades" xml:space="preserve">
+    <value>NO HI HA DADES PREDETERMINADES GUARDADES.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errEliminarCentre" xml:space="preserve">
+    <value>ERR NO ES POT ELIMINAR. HI HA PROJECTES VINCULATS AL CENTRE ACTUAL.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errEliminarCentre1" xml:space="preserve">
+    <value>ERR. NO ES POT ELIMINAR EL CENTRE:</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errEliminarCentre2" xml:space="preserve">
+    <value>EXISTEIXEN DADES COMPTABLES (DETALL.XLS).</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errEliminarCentre3" xml:space="preserve">
+    <value>PER PODER-LO ELIMNAR CAL DESVINCULAR O ELIMINAR LES DADES DE DETALL</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errEliminarClient" xml:space="preserve">
+    <value>ERR NO ES POT ELIMINAR. HI HA PROJECTES VINCULATS AL CLIENT ACTUAL.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errEliminarColumnaColumna" xml:space="preserve">
+    <value>ERR NO ES POT ELIMINAR. LA COLUMNA TÉ COLUMNES ASSOCIADES.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errEliminarColumnaProjecte" xml:space="preserve">
+    <value>ERR NO ES POT ELIMINAR. LA COLUMNA TÉ PROJECTES ASSOCIATS.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errEliminarEmpresa" xml:space="preserve">
+    <value>ERR NO ES POT ELIMINAR. HI HA SECCIONS ACTIVES ASSOCIADES A L'EMPRESA ACTUAL.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errEliminarProjecteDetall" xml:space="preserve">
+    <value>ERR NO ES POT ELIMINAR. EL PROJECTE ESTÀ VINCULAT A UNA CENTRE (DETALLS*.XLS).</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errEliminarProjecteExpram" xml:space="preserve">
+    <value>ERR NO ES POT ELIMINAR. EL PROJECTE ESTÀ VINCULAT A UNA COLUMNA(EXPRAM*.XLS).</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errEliminarSeccio" xml:space="preserve">
+    <value>ERR NO ES POT ELIMINAR. HI HA CENTRES ACTIUS ASSOCIATS A LA SECCIO ACTUAL.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errEliminarSubcompteSubgrup" xml:space="preserve">
+    <value>ERR NO ES POT ELIMINAR. EL SUBCTE ESTÀ ASSOCIAT A UN SUBGRUP.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errEliminarSubcompteSubgrup1" xml:space="preserve">
+    <value>Per poder elimina'l, cal desvincular-lo del SubGrup!!!.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errExistCentreCodi" xml:space="preserve">
+    <value>ERR NO ES POT GUARDAR. JA EXISTEIX UNA CENTRE AMB EL MATEIX CODI.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errExistCentreNom" xml:space="preserve">
+    <value>ERR NO ES POT GUARDAR. JA EXISTEIX UNA CENTRE AMB EL MATEIX NOM.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errExistColumnaNom" xml:space="preserve">
+    <value>ERR NO ES POT GUARDAR. JA EXISTEIX UNA COLUMNA AMB EL MATEIX NOM.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errExisteixDepartamentCodi" xml:space="preserve">
+    <value>ERR NO ES POT GUARDAR. JA EXISTEIX UN DEPARTAMENT AMB EL MATEIX CODI.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errExisteixSeccioCodi" xml:space="preserve">
+    <value>ERR NO ES POT GUARDAR. JA EXISTEIX UNA SECCIO AMB EL MATEIX CODI.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errExisteixSeccioNom" xml:space="preserve">
+    <value>ERR NO ES POT GUARDAR. JA EXISTEIX UNA SECCIO AMB EL MATEIX NOM.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errExisteixYellow" xml:space="preserve">
+    <value>ERR NO ES POT GUARDAR. JA EXISTEIX UN GRUP YELLOW SHEET AMB EL MATEIX CODI o NOM.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errFitxer" xml:space="preserve">
+    <value>ERR: NO EXISTEIX EL FITXER</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errFitxerDiarioRevisar" xml:space="preserve">
+    <value>REVISA I/O ACTUALITZA EL FITXER DIARIO DES DE CONTAPLUS.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errFitxerEmpresa" xml:space="preserve">
+    <value>ERR: EL FITXER ESCOLLIT NO PERTANY A UNA EMPRESA CONTAPLUS DE</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errFitxerEmpresa1" xml:space="preserve">
+    <value>REVISA LA CONFIGURACIÓ DE L'EMPRESA. NOM CONTAPLUS</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errFitxerResumTransitories" xml:space="preserve">
+    <value>ERR: EL FITXER ESCOLLIT NO ES UN FITXER DE RESUM TRANSITORIES.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errFitxerResumTransitoriesAny" xml:space="preserve">
+    <value>ERR: EL FITXER RESUM TRANSITORIES. NO CORRESPON A L'ANY ESCOLLIT.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errFitxerResumTransitoriesDiario" xml:space="preserve">
+    <value>ERR: EL NOM DEL FITXER TRANSITORIES, NO POT SER DIARIO.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errFitxerResumTransitoriesDiarioExtorn" xml:space="preserve">
+    <value>ERR: EL NOM DEL FITXER EXTORN TRANSITORIES, NO POT SER DIARIO.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errFitxerResumTransitoriesEmpresa" xml:space="preserve">
+    <value>ERR: EL FITXER RESUM TRANSITORIES. NO CORRESPON A L'EMPRESA ESCOLLIDA.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errGbNoOberta" xml:space="preserve">
+    <value>ERR. NO S'HA TROBAT UN FITXER GB OBERT.!!!</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errGrupExisteix" xml:space="preserve">
+    <value>EL GRUP JA EXISTEIX, NO ES POT AFEGIR.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errGuardarPrefix" xml:space="preserve">
+    <value>ERR: NO ES POT GUARDAR. EL PREFIX ACTUAL JA EXISTEIX.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errLlibreMajor" xml:space="preserve">
+    <value>ERR: LA PLANTILLA LLIBRE MAJOR/ANALITIC, NO EXISTEIX. AVISAR L'ADMINISTRADOR DEL SISTEMA.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errMesReObrir" xml:space="preserve">
+    <value>ERR: NO ES POT REOBRIR EL MES ACTUAL.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errMesReObrir1" xml:space="preserve">
+    <value>HI HA MESOS POSTERIORS TANCATS.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errMesReObrir2" xml:space="preserve">
+    <value>ERR: MES TANCAT. NO ES PODEN REOBRIR LES TRANSITORIES!!!.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errMesTancar" xml:space="preserve">
+    <value>ERR: NO ES POT TANCAR EL MES ACTUAL.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errMesTancar1" xml:space="preserve">
+    <value>HI HA MESOS ANTERIORS OBERTS.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errMesTancar2" xml:space="preserve">
+    <value>NO HI HA DADES DEL FITXER DETALL.XLS.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errMesTancatBorrar" xml:space="preserve">
+    <value>ERR: MES TANCAT. NO ES PODEN BORRAR DADES!!!.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errNoAfegir" xml:space="preserve">
+    <value>NO ES POT AFEGIR.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errNoAny" xml:space="preserve">
+    <value>ERR.NO ANY</value>
+    <comment>modulExportTransitoria</comment>
+  </data>
+  <data name="errNoAny1" xml:space="preserve">
+    <value>no pertany a l'any actual</value>
+    <comment>modulExportTransitoria</comment>
+  </data>
+  <data name="errNoCentre" xml:space="preserve">
+    <value>ERR. NO S'HA TROBAT CAP CENTRE.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errNoDadesTresoreria" xml:space="preserve">
+    <value>AVIS. NO EXISTEIXEN DADES DE TRESORERIA EN EL FITXER ESCOLLIT (</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errNoDadesTresoreria1" xml:space="preserve">
+    <value>REVISAR LA CONFIGURACIÓ DEL FITXER.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errNoDadesTresoreria2" xml:space="preserve">
+    <value>NOTA: CAL QUE EN EL NOM DE LA FULLA HI HAGI EL CODI DEL PROJECTE (DEPARTAMENT+CLAU), EX: RIC004770 GREFACSA</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errNoDiario" xml:space="preserve">
+    <value>ERR. NO EXISTEIX EL FITXER DIARIO.DBF.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errNoEmpresa" xml:space="preserve">
+    <value>ERR.NO EMPRESA</value>
+    <comment>modulExportTransitoria</comment>
+  </data>
+  <data name="errNoEmpresa1" xml:space="preserve">
+    <value>no pertany a l'empresa actual</value>
+    <comment>modulExportTransitoria</comment>
+  </data>
+  <data name="errNoExisteixFitxer" xml:space="preserve">
+    <value>ERR. NO EXISTEIX EL FITXER</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errNoExisteixFulla" xml:space="preserve">
+    <value>ERR. NO EXISTEIX LA FULLA</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errNoFitxer" xml:space="preserve">
+    <value>ERR.NO FITXER</value>
+    <comment>modulExportTransitoria</comment>
+  </data>
+  <data name="errNoFitxer1" xml:space="preserve">
+    <value>ERROR. El fitxer seleccionat</value>
+    <comment>modulExportTransitoria</comment>
+  </data>
+  <data name="errNoFitxer2" xml:space="preserve">
+    <value>no es un fitxer resum de transitòries</value>
+    <comment>modulExportTransitoria</comment>
+  </data>
+  <data name="errNoFulla" xml:space="preserve">
+    <value>ERR. NO EXISTEIX LA FULLA</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errNoFulla1" xml:space="preserve">
+    <value>EN EL FITXER VOSS</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errNoFulla2" xml:space="preserve">
+    <value>REVISAR LA CONFIGURACIÓ PARÀMETRES DEL MENU BUDGET.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errNoInsertarTresoreria" xml:space="preserve">
+    <value>ERR. NO ES PODEN INSERTAR MES REGISTRES.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errNoInsertarTresoreria1" xml:space="preserve">
+    <value>CAL BORRAR DADES ANTIGUES.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errNoInsertarTresoreria2" xml:space="preserve">
+    <value>S'HA SOBREPASSAT ELS 100.000 REGISTES.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errNomSubcompteZamora" xml:space="preserve">
+    <value>ERR. JA EXISTEIX UNA DEFINICIÓ SUBCOMPTE ZAMORA IGUAL.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errNoPlantilla" xml:space="preserve">
+    <value>ERR NO PLANTILLA</value>
+    <comment>modulExportTransitoria</comment>
+  </data>
+  <data name="errNoRang" xml:space="preserve">
+    <value>ERR. NO EXISTEIX EL RANG</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errOrdre" xml:space="preserve">
+    <value>NO ES POT CANVIAR L'ORDRE DEL GRUP ACTUAL.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errServidorConfigurat" xml:space="preserve">
+    <value>NO HI HA CAP SERVIDOR DE DADES CONFIGURAT!!!</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errServidorLocalConfigurat" xml:space="preserve">
+    <value>NO HI HA CAP SERVIDOR LOCAL DE DADES CONFIGURAT!!!</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errSubcompteExisteix" xml:space="preserve">
+    <value>EL SUBCOMPTE JA EXISTEIX, NO ES POT AFEGIR.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errSubgrupExisteix" xml:space="preserve">
+    <value>EL SUBGRUP JA EXISTEIX, NO ES POT AFEGIR.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errTancar" xml:space="preserve">
+    <value>CAL TANCAR-LO!!!.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errTransitoriaMes" xml:space="preserve">
+    <value>ERR:TRANSITORIA MES</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errTransitoriaMes1" xml:space="preserve">
+    <value>TANCADA. NO ES PODEN IMPORTAR DADES!!!.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errTransitoriaNoTancada" xml:space="preserve">
+    <value>LA TRANSITORIA NO ESTÀ TANCADA.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errTransitoriaTancatBorrar" xml:space="preserve">
+    <value>ERR: TRANSOTORIA MES TANCADA. NO ES PODEN BORRAR DADES!!!.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errVosObert" xml:space="preserve">
+    <value>ERR. FITXER PLANTILLA VOSS ESTÀ OBERT, NO ES POT COPIAR.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="escollirResumTransitoria" xml:space="preserve">
+    <value>ESCOLLIR FITXER RESUM TRANSITORIES DE</value>
+    <comment>ModulExportTransitoria</comment>
+  </data>
+  <data name="getData" xml:space="preserve">
+    <value>OBTENIR DADES</value>
+    <comment>modulExportTransitoria</comment>
+  </data>
+  <data name="getData1" xml:space="preserve">
+    <value>Es carreguen les dades de transitòries</value>
+    <comment>modulExportTransitoria</comment>
+  </data>
+  <data name="noExisteixPlantillaDades" xml:space="preserve">
+    <value>NO EXISTEIX  LA PLANTILLA DE DADES EN EL FITXER</value>
+    <comment>modulExportTransitoria</comment>
+  </data>
+  <data name="noSubcompteTrobada" xml:space="preserve">
+    <value>No es troba el subcompte</value>
+    <comment>modulExportTransitoria</comment>
+  </data>
+  <data name="resumTransi" xml:space="preserve">
+    <value>Resum Transi</value>
+    <comment>ModulExportTransitoria</comment>
+  </data>
+  <data name="altres" xml:space="preserve">
+    <value>ALTRES</value>
+    <comment>comu</comment>
+  </data>
+  <data name="noDadesTransitories" xml:space="preserve">
+    <value>No hi ha  dades de transitòries</value>
+    <comment>ModulExportTransitoria</comment>
+  </data>
+  <data name="projectesNoClient" xml:space="preserve">
+    <value>Projectes que no tenen client.</value>
+    <comment>ModulExportTransitoria</comment>
+  </data>
+  <data name="centreNoTrobat" xml:space="preserve">
+    <value>CENTRE NO TROBAT</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="elCentre" xml:space="preserve">
+    <value>El centre</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="elCodi" xml:space="preserve">
+    <value>El codi</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="elSubGrup" xml:space="preserve">
+    <value>El subgrup</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="errGB" xml:space="preserve">
+    <value>ERROR GB.</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="escollirFitxerGB" xml:space="preserve">
+    <value>Escollir fitxer GB</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="exportDadesde" xml:space="preserve">
+    <value>EXPORTANT DADES DE: </value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="exportDadesGB" xml:space="preserve">
+    <value>EXPORTANT DADES A GB</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="fitxerSeleccionat" xml:space="preserve">
+    <value>El fitxer seleccionat</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="fullaVinculada" xml:space="preserve">
+    <value>FULLA VINCULADA</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="importantDades" xml:space="preserve">
+    <value>IMPORTANT DADES!!!</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="importantDadesDe" xml:space="preserve">
+    <value>IMPORTANT DADES DE</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="iniExport" xml:space="preserve">
+    <value>INICI EXPORT DADES</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="noExisteixAGB" xml:space="preserve">
+    <value>no existeix A LA GB. Pertany al centre.</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="noExisteixMes" xml:space="preserve">
+    <value>No existeix en el mes</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="noFitxerGB" xml:space="preserve">
+    <value>NO és un fitxer GB. No s'ha trobat la fulla de dades 'DADESOMS'</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="subGrupNoTrobat" xml:space="preserve">
+    <value>SUBGRUP NO TROBAT</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="variesFulles" xml:space="preserve">
+    <value>VARIES FULLES</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="vinculadaFulla" xml:space="preserve">
+    <value>Està vinculat a la fulla</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="vinculatVariesFulles" xml:space="preserve">
+    <value>vinculant a varies fulles</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="borrarSelect" xml:space="preserve">
+    <value>Borrar Select</value>
+    <comment>comu</comment>
+  </data>
+  <data name="campIncorrecte" xml:space="preserve">
+    <value>(*) INCORRECTE</value>
+    <comment>comu</comment>
+  </data>
+  <data name="cancelarOperacio" xml:space="preserve">
+    <value>S'ha cancel·lat l'operació d'esborrar</value>
+    <comment>modelBudget</comment>
+  </data>
+  <data name="cmdAcceptar" xml:space="preserve">
+    <value>&amp;ACCEPTAR</value>
+    <comment>COMU</comment>
+  </data>
+  <data name="esborrar" xml:space="preserve">
+    <value>ESBORRAR</value>
+    <comment>modelBudget</comment>
+  </data>
+  <data name="esborrarBudget" xml:space="preserve">
+    <value>ESBORRAR BUDGETS</value>
+    <comment>modelBudget</comment>
+  </data>
+  <data name="esborrarBudgetDe" xml:space="preserve">
+    <value>S'esborren budgets de</value>
+    <comment>modelBudget</comment>
+  </data>
+  <data name="esborrarDadesDe" xml:space="preserve">
+    <value>Esborrar dades de: </value>
+    <comment>modelBudget</comment>
+  </data>
+  <data name="esborrarErr" xml:space="preserve">
+    <value>No s'ha esborrat els budgets</value>
+    <comment>modelBudget</comment>
+  </data>
+  <data name="esborrarErr1" xml:space="preserve">
+    <value>Comprovar si existeixen</value>
+    <comment>modelBudget</comment>
+  </data>
+  <data name="esborrarOk" xml:space="preserve">
+    <value>ESBORRAR.OK</value>
+    <comment>modelBudget</comment>
+  </data>
+  <data name="logEsborrarBudgets" xml:space="preserve">
+    <value>LOG ESBORRAR BUDGETS.</value>
+    <comment>modelBudget</comment>
+  </data>
+  <data name="logEsborrarBudgets1" xml:space="preserve">
+    <value>Informació relacionada amb esborrar dades de BUDGET. Per Empresa, any, MES i projectes</value>
+    <comment>modelBudget</comment>
+  </data>
+  <data name="seleccionarData" xml:space="preserve">
+    <value>SELECCIONAR DATA (ANY-MES)</value>
+    <comment>frmMes</comment>
+  </data>
+  <data name="obrirMesActual" xml:space="preserve">
+    <value>-. VOLS TORNAR A OBRIR EL MES ACTUAL?.</value>
+    <comment>missatges</comment>
+  </data>
+  <data name="obrirTransitoriaActual" xml:space="preserve">
+    <value>-. VOLS TORNAR A OBRIR LA TRANSITORIA ACTUAL?.</value>
+    <comment>missatges</comment>
+  </data>
+  <data name="tancarMesActual" xml:space="preserve">
+    <value>-. VOLS TANCAR EL MES ACTUAL?.</value>
+    <comment>missatges</comment>
+  </data>
+  <data name="tancarTransitoriaActual" xml:space="preserve">
+    <value>-. VOLS TANCAR LA TRANSITORIA ACTUAL?.</value>
+    <comment>missatges</comment>
+  </data>
+  <data name="actualitzaWorkBooks" xml:space="preserve">
+    <value>ACTUALITZA WORKBOOKS.</value>
+    <comment>menuActualitzar</comment>
+  </data>
+  <data name="mnuEstatMesos" xml:space="preserve">
+    <value>ACTUALITZAR ESTAT MESOS</value>
+    <comment>menu</comment>
+  </data>
+  <data name="resetDades" xml:space="preserve">
+    <value>RESET DADES</value>
+    <comment>menuActualitzar</comment>
+  </data>
+  <data name="resetIndex" xml:space="preserve">
+    <value>RESETEJA INDEXOS</value>
+    <comment>menuActualitzar</comment>
+  </data>
+  <data name="assentaments400" xml:space="preserve">
+    <value>ASSENTAMENTS CARREGATS A UN SUBCOMPTE 400</value>
+    <comment>ModelProveidor</comment>
+  </data>
+  <data name="assentamentsDesquadrats" xml:space="preserve">
+    <value>Assentaments desquadrats</value>
+    <comment>ModelProveidor</comment>
+  </data>
+  <data name="assentamentsNo400" xml:space="preserve">
+    <value>ASSENTAMENTS NO CARREGATS A UN SUBCOMPTE  400</value>
+    <comment>ModelProveidor</comment>
+  </data>
+  <data name="base" xml:space="preserve">
+    <value>BASE</value>
+    <comment>Modeltressoreria</comment>
+  </data>
+  <data name="concepte" xml:space="preserve">
+    <value>CONCEPTE</value>
+    <comment>ModelTresoreria</comment>
+  </data>
+  <data name="dataEmisio" xml:space="preserve">
+    <value>D.EMISSIO</value>
+    <comment>Modeltressoreria</comment>
+  </data>
+  <data name="dataVenciment" xml:space="preserve">
+    <value>D.VENCIMENT</value>
+    <comment>Modeltressoreria</comment>
+  </data>
+  <data name="esIngres" xml:space="preserve">
+    <value>ING/PAG</value>
+    <comment>ModelTresoreria</comment>
+  </data>
+  <data name="iva" xml:space="preserve">
+    <value>IVA</value>
+    <comment>Modeltressoreria</comment>
+  </data>
+  <data name="llibreMajor" xml:space="preserve">
+    <value>LLIBRE MAJOR</value>
+    <comment>ModelProveidor</comment>
+  </data>
+  <data name="sumesSaldos" xml:space="preserve">
+    <value>SUMES I SALDOS</value>
+    <comment>ModelProveidor</comment>
+  </data>
+  <data name="total" xml:space="preserve">
+    <value>TOTAL</value>
+    <comment>Modeltressoreria</comment>
+  </data>
+  <data name="totalProveidors" xml:space="preserve">
+    <value>TOTAL PROVEIDORS</value>
+    <comment>ModelProveidor</comment>
+  </data>
+  <data name="missatge" xml:space="preserve">
+    <value>missatge</value>
+    <comment>comu</comment>
+  </data>
+  <data name="assentaments401Imp" xml:space="preserve">
+    <value>ERRORS. ASSENTAMENTS 401 IMPUTATS DUES VEGADES</value>
+    <comment>modelProveidor</comment>
+  </data>
+  <data name="assentaments401Reg" xml:space="preserve">
+    <value>AVIS. ASSENTAMENTS 401 REGULARITZATS PER SALDO I DOCUMENT</value>
+    <comment>modelProveidor</comment>
+  </data>
+  <data name="mnuEsborrar" xml:space="preserve">
+    <value>ESBORRRAR</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuExportar" xml:space="preserve">
+    <value>EXPORTAR</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuResetDades" xml:space="preserve">
+    <value>RESET DADES</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuVeure" xml:space="preserve">
+    <value>VEURE</value>
+    <comment>menu</comment>
+  </data>
+  <data name="acumulat" xml:space="preserve">
+    <value>Acumulat</value>
+    <comment>PanelData</comment>
+  </data>
+  <data name="budgets" xml:space="preserve">
+    <value>BUDGETS</value>
+    <comment>menu</comment>
+  </data>
+  <data name="dadesDe" xml:space="preserve">
+    <value>DADES DE </value>
+    <comment>comu</comment>
+  </data>
+  <data name="dadesDiario" xml:space="preserve">
+    <value>DADES DIARIO.DBF</value>
+    <comment>PanelData</comment>
+  </data>
+  <data name="detalls" xml:space="preserve">
+    <value>DETALLS</value>
+    <comment>menu</comment>
+  </data>
+  <data name="esborrarTransitories" xml:space="preserve">
+    <value>ESBORRAR TRANSITORIES</value>
+    <comment>comu</comment>
+  </data>
+  <data name="perCentres" xml:space="preserve">
+    <value>PER CENTRES</value>
+    <comment>menu</comment>
+  </data>
+  <data name="perProjectes" xml:space="preserve">
+    <value>PER PROJECTES</value>
+    <comment>menu</comment>
+  </data>
+  <data name="cmdEsborrar" xml:space="preserve">
+    <value>&amp;ESBORRAR</value>
+    <comment>comu.boto</comment>
+  </data>
+  <data name="dCentreModificarCaption" xml:space="preserve">
+    <value>MODIFICAR CENTRE ACTUAL</value>
+    <comment>dCentres</comment>
+  </data>
+  <data name="dCentreNouCaption" xml:space="preserve">
+    <value>AFEGIR NOU CENTRE</value>
+    <comment>dCentres</comment>
+  </data>
+  <data name="aGb" xml:space="preserve">
+    <value>A GB</value>
+    <comment>menu</comment>
+  </data>
+  <data name="aMan" xml:space="preserve">
+    <value>A MAN</value>
+    <comment>menu</comment>
+  </data>
+  <data name="dataGb" xml:space="preserve">
+    <value>CANVIAR DATA FITXER GB</value>
+    <comment>menu</comment>
+  </data>
+  <data name="dataMan" xml:space="preserve">
+    <value>CANVIAR DATA FITXER  MAN</value>
+    <comment>menu</comment>
+  </data>
+  <data name="exportPreTancamentGb" xml:space="preserve">
+    <value>EXPORTAR DADES PRETANCAMENT A GB</value>
+    <comment>menu</comment>
+  </data>
+  <data name="exportTancamentGb" xml:space="preserve">
+    <value>EXPORTAR DADES TANCAMENT A GB</value>
+    <comment>menu</comment>
+  </data>
+  <data name="exportTancamentMan" xml:space="preserve">
+    <value>EXPORTAR DADES TANCAMENT A MAN</value>
+    <comment>menu</comment>
+  </data>
+  <data name="avisLog" xml:space="preserve">
+    <value>AVÍS</value>
+    <comment>comu.log</comment>
+  </data>
+  <data name="cmdImprimir" xml:space="preserve">
+    <value>IMPRIMIR</value>
+    <comment>comu.boto</comment>
+  </data>
+  <data name="cmdMostrar" xml:space="preserve">
+    <value>MOSTRAR</value>
+    <comment>comu.boto</comment>
+  </data>
+  <data name="errorLog" xml:space="preserve">
+    <value>ERROR</value>
+    <comment>comuLog</comment>
+  </data>
+  <data name="missatgeLog" xml:space="preserve">
+    <value>MISSATGE</value>
+    <comment>comuLog</comment>
+  </data>
+  <data name="modeLocal" xml:space="preserve">
+    <value>MODE LOCAL</value>
+    <comment>frmAplicacio</comment>
+  </data>
+  <data name="modeServidor" xml:space="preserve">
+    <value>MODE SERVIDOR</value>
+    <comment>frmAplicacio</comment>
+  </data>
+  <data name="plantillaDadesGB" xml:space="preserve">
+    <value>PLANTILLA DADES GB</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="configDadesGB" xml:space="preserve">
+    <value>ACTUALITZAR CENTRES GB</value>
+    <comment>menu</comment>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Lang" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>lang.resx;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="mnuAssentamentTransitoria" xml:space="preserve">
+    <value>CREAR ASSENTAMENT TRANSITORIES</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuConfigClients" xml:space="preserve">
+    <value>CONFIG CLIENTS TRANSITORIES</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuExportTransitories" xml:space="preserve">
+    <value>EXPORTAR DADES TRANSITORIES A FITXER RESUM</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuImportTransitories" xml:space="preserve">
+    <value>IMPORTAR DADES TRANSITORIES DE PROJECTES</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuPlantillaTransitoria" xml:space="preserve">
+    <value>CREAR PLANTILLA RESUM TRANSITORIA</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuTransitories" xml:space="preserve">
+    <value>TRANSITORIES</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuYellowSheets" xml:space="preserve">
+    <value>CONFIG. GRUPS YELLOW SHEETS (TRANSITORIES)</value>
+    <comment>menu</comment>
+  </data>
+  <data name="cmdCrear" xml:space="preserve">
+    <value>&amp;CREAR</value>
+    <comment>comu.boto</comment>
+  </data>
+  <data name="crearPlantillaTransitoria" xml:space="preserve">
+    <value>CREAR PLANTILLA TRANSITORIA (EMPRESA,ANY)</value>
+    <comment>panelPlantillaTransitoria</comment>
+  </data>
+  <data name="fitxerGBNoObert" xml:space="preserve">
+    <value>NO HI HA UN FITXER GB OBERT!!!. CAL QUE ALMENYS HI HAGI UN FITXER OBERT.</value>
+    <comment>modulActualitzacioGB</comment>
+  </data>
+  <data name="seleccionarSubcomptes" xml:space="preserve">
+    <value>SELECCIONAR SUBCOMPTES</value>
+    <comment>DSelectSubcomptes</comment>
+  </data>
+  <data name="ySheets" xml:space="preserve">
+    <value>YELLOW SHEETS</value>
+    <comment>DSelectYsheets</comment>
+  </data>
+  <data name="errNoRutaApliMacros" xml:space="preserve">
+    <value>NO ES POT ACCEDIR AL DIRECTORI DE MACROS DEL SERVIDOR. REVISAR CONFIGURACIO SERVIDOR</value>
+    <comment>modelPlantillaTransitories</comment>
+  </data>
+  <data name="assentamentTransitoriaExportat" xml:space="preserve">
+    <value>ASSENTAMENT TRANSITORIA EXPORTAT</value>
+    <comment>modelAssentamentTransitoria</comment>
+  </data>
+  <data name="concepteExt" xml:space="preserve">
+    <value>CONCEPTE EXT</value>
+    <comment>frmExportTransitoriesDBF</comment>
+  </data>
+  <data name="crearAssentamentTransitoria" xml:space="preserve">
+    <value>CREAR ASSENTAMENT TRANSITORIA (MES/ANY...DBF)</value>
+    <comment>frmExportTransitoriesDBF</comment>
+  </data>
+  <data name="dadesAssentament" xml:space="preserve">
+    <value>DADES ASSENTAMENT</value>
+    <comment>frmExportTransitoriesDBF</comment>
+  </data>
+  <data name="dadesFitxer" xml:space="preserve">
+    <value>DADES FITXER</value>
+    <comment>frmExportTransitoriesDBF</comment>
+  </data>
+  <data name="dataExt" xml:space="preserve">
+    <value>DATA EXT.</value>
+    <comment>frmExportTransitoriesDBF</comment>
+  </data>
+  <data name="directoriExportar" xml:space="preserve">
+    <value>DIRECTORI A EXPORTAR EL FITXER DBF</value>
+    <comment>frmExportTransitoriesDBF</comment>
+  </data>
+  <data name="document" xml:space="preserve">
+    <value>DOCUMENT</value>
+    <comment>frmExportTransitoriesDBF</comment>
+  </data>
+  <data name="escollirDirectoriAssentamentTransitoria" xml:space="preserve">
+    <value>Escollir directori d'exportació, fitxer DBF. </value>
+    <comment>frmExportTransitoriesDBF</comment>
+  </data>
+  <data name="nomesUnFitxerExport" xml:space="preserve">
+    <value>Només un fitxer d'exportació.</value>
+    <comment>frmExportTransitoriesDBF</comment>
+  </data>
+  <data name="nomFitxer" xml:space="preserve">
+    <value>NOM FITXER</value>
+    <comment>frmExportTransitoriesDBF</comment>
+  </data>
+  <data name="nomFitxerExt" xml:space="preserve">
+    <value>NOM FITXER EXT.</value>
+    <comment>frmExportTransitoriesDBF</comment>
+  </data>
+  <data name="subcompteSaldarCompres" xml:space="preserve">
+    <value>SUBCOMPTE PER SALDAR LES COMPRES</value>
+    <comment>frmExportTransitoriesDBF</comment>
+  </data>
+  <data name="subcompteSaldarVendes" xml:space="preserve">
+    <value>SUBCOMPTE PER SALDAR LES VENDES</value>
+    <comment>frmExportTransitoriesDBF</comment>
+  </data>
+  <data name="mnuAnaliticLlibreMajor" xml:space="preserve">
+    <value>ANALITIC/LLIBRE MAJOR</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuCrearLlibreMajor" xml:space="preserve">
+    <value>CREAR LLIBRE MAJOR PROJECTES</value>
+    <comment>menu</comment>
+  </data>
+  <data name="analiticLlibreMajor" xml:space="preserve">
+    <value>ANALITIC. CREAR MAJORS DELS PROJECTES SELECCIONATS.</value>
+    <comment>dCrearllibreMajor</comment>
+  </data>
+  <data name="dataFi" xml:space="preserve">
+    <value>Data Final</value>
+    <comment>comu</comment>
+  </data>
+  <data name="dataIni" xml:space="preserve">
+    <value>Data Inici</value>
+    <comment>comu</comment>
+  </data>
+  <data name="selectAnyComptable" xml:space="preserve">
+    <value>(*) CAL SELECCIONAR UN ANY COMPTABLE.</value>
+    <comment>dCrearllibreMajor</comment>
+  </data>
+  <data name="borrarSeleccio" xml:space="preserve">
+    <value>Borrar select.</value>
+    <comment>comu</comment>
+  </data>
+  <data name="crearLlibreMajor" xml:space="preserve">
+    <value>CREAR LLIBRE MAJOR</value>
+    <comment>dCrearLlibreMajor</comment>
+  </data>
+  <data name="departaments" xml:space="preserve">
+    <value>DEPARTAMENTS</value>
+    <comment>dDepartaments</comment>
+  </data>
+  <data name="seguirExportDadesLlibreMajor" xml:space="preserve">
+    <value>-.VOLS SEGUIR  EXPORTANT DADES DEL LLIBRE MAJOR?.</value>
+    <comment>missatges</comment>
+  </data>
+  <data name="selectDepartament" xml:space="preserve">
+    <value>SELECCIONAR DEPARTAMENTS</value>
+    <comment>dDepartaments</comment>
+  </data>
+  <data name="selectDepartamentProjecte" xml:space="preserve">
+    <value>Seleccionar departament/s o Projecte/s</value>
+    <comment>dCrearLlibreMajor</comment>
+  </data>
+  <data name="errFitxerPlantillaLLM" xml:space="preserve">
+    <value>NO EXISTEIX  EL FITXER -FONT  ANALITIC-LLIBRE MAJOR</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errRevisarConfiguracioSistema" xml:space="preserve">
+    <value>REVISAR CONFIGURACIO SISTEMA i/o AVISAR  ADMINISTRADOR</value>
+    <comment>errors</comment>
+  </data>
+  <data name="analiticDe" xml:space="preserve">
+    <value>ANALITIC DE</value>
+    <comment>modulExportarDepartament</comment>
+  </data>
+  <data name="exportarDepartament" xml:space="preserve">
+    <value>EXPORTAR PROJECTES DEPARTAMENT.</value>
+    <comment>modulExportarDepartament</comment>
+  </data>
+  <data name="incremental" xml:space="preserve">
+    <value>Incremental</value>
+    <comment>comu</comment>
+  </data>
+  <data name="asien" xml:space="preserve">
+    <value>ASIEN</value>
+    <comment>comu</comment>
+  </data>
+  <data name="deure" xml:space="preserve">
+    <value>DEURE</value>
+    <comment>comu</comment>
+  </data>
+  <data name="doc" xml:space="preserve">
+    <value>DOC</value>
+    <comment>comu</comment>
+  </data>
+  <data name="haver" xml:space="preserve">
+    <value>HAVER</value>
+    <comment>comu</comment>
+  </data>
+  <data name="saldo" xml:space="preserve">
+    <value>SALDO</value>
+    <comment>comu</comment>
+  </data>
+  <data name="carregantDades" xml:space="preserve">
+    <value>CARREGANT DADES ... </value>
+    <comment>comu</comment>
+  </data>
+  <data name="dadesComptabilitat" xml:space="preserve">
+    <value>DADES COMPTABILITAT</value>
+    <comment>comu</comment>
+  </data>
+  <data name="dadesTransitories" xml:space="preserve">
+    <value>DADES TRANSITORIES</value>
+    <comment>comu</comment>
+  </data>
+  <data name="projectesExpram" xml:space="preserve">
+    <value>PROJECTES EXPRAM</value>
+    <comment>menu</comment>
+  </data>
+  <data name="errSqlConnectDb" xml:space="preserve">
+    <value>NO ES POT CONNECTAR AL SERVIDOR DE DADES, REVISA CONFIGURACIO SERVIDOR</value>
+    <comment>error</comment>
+  </data>
+  <data name="clauPas" xml:space="preserve">
+    <value>CLAU DE PAS</value>
+    <comment>frmUsuari</comment>
+  </data>
+  <data name="usuariActual" xml:space="preserve">
+    <value>USUARI ACTUAL</value>
+    <comment>missatge</comment>
+  </data>
+  <data name="usuariAdministrador" xml:space="preserve">
+    <value>USUSARI ADMIN</value>
+    <comment>frmApliOms</comment>
+  </data>
+  <data name="usuariExplotacions" xml:space="preserve">
+    <value>USUARI EXPLOTACIONS</value>
+    <comment>frmApliOms</comment>
+  </data>
+  <data name="usuaris" xml:space="preserve">
+    <value>USUARIS</value>
+    <comment>frmApliOms</comment>
+  </data>
+  <data name="usuariSuperAdministrador" xml:space="preserve">
+    <value>USUARI SUPER ADMIN</value>
+    <comment>frmApliOms</comment>
+  </data>
+  <data name="validarAccio" xml:space="preserve">
+    <value>VALIDAR ACCIÓ</value>
+    <comment>frmUsuari</comment>
+  </data>
+  <data name="configModulTresoreria" xml:space="preserve">
+    <value>CONFIGURACIÓ MODUL TRESORERIA</value>
+    <comment>dConfigTresoreria</comment>
+  </data>
+  <data name="lblCobros" xml:space="preserve">
+    <value>Etiqueta cobros/ingressos (columna A:A)</value>
+    <comment>dConfigTresoreria</comment>
+  </data>
+  <data name="lblColumnaTresoreri" xml:space="preserve">
+    <value>1ª Columna que conté dades</value>
+    <comment>dConfigTresoreria</comment>
+  </data>
+  <data name="lblFitxerCash" xml:space="preserve">
+    <value>FITXER  RESUM CASH</value>
+    <comment>dConfigTresoreria</comment>
+  </data>
+  <data name="lblFitxerImportacioObres" xml:space="preserve">
+    <value>FITXER IMPORTACIÓ OBRES</value>
+    <comment>dConfigTresoreria</comment>
+  </data>
+  <data name="lblFullaDades" xml:space="preserve">
+    <value>Nom fulla Dades</value>
+    <comment>dConfigTresoreria</comment>
+  </data>
+  <data name="lblNomConfigTresoreria" xml:space="preserve">
+    <value>Codi Projecte incrustant en un rang de la fulla</value>
+    <comment>dConfigTresoreria</comment>
+  </data>
+  <data name="lblPagaments" xml:space="preserve">
+    <value>Etiqueta gastos/despeses (columna A:A)</value>
+    <comment>dConfigTresoreria</comment>
+  </data>
+  <data name="mnuEditar" xml:space="preserve">
+    <value>EDITAR</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuImportar" xml:space="preserve">
+    <value>IMPORTAR</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuTresoreria" xml:space="preserve">
+    <value>TRESORERIA</value>
+    <comment>menu</comment>
+  </data>
+  <data name="xecProjecteIncrustat" xml:space="preserve">
+    <value>Codi Projecte incrustat en el nom de la fulla</value>
+    <comment>dConfigTresoreria</comment>
+  </data>
+  <data name="escollirFitxerCashCaption" xml:space="preserve">
+    <value>ESCOLLIR FITXER CASH AS EXPORTAR LES DADES</value>
+    <comment>DRutaTresoreria</comment>
+  </data>
+  <data name="escollirFitxerTresoreriaCaption" xml:space="preserve">
+    <value>ESCOLLIR FITXER TRESORERIA A IMPORTAR</value>
+    <comment>DRutaTresoreria</comment>
+  </data>
+  <data name="fitxerTresoreria" xml:space="preserve">
+    <value>Tresoreria</value>
+    <comment>DRutaTresoreria</comment>
+  </data>
+  <data name="logDescripcioImportDadesTresoreria" xml:space="preserve">
+    <value>Importació de dades estimades de la tresoreria del departament d'obres d'OMS-SACEDE.SAU.</value>
+    <comment>modulImportTresoreria</comment>
+  </data>
+  <data name="logTitolImportDadesTresoreria" xml:space="preserve">
+    <value>IMPORT DADES TRESORERIA OBRES OMS-SACEDE.SAU</value>
+    <comment>modulImportTresoreria</comment>
+  </data>
+  <data name="crearFitxersPlantillaTransitoria" xml:space="preserve">
+    <value>CREAR PLANTILLA TRANSITORIA</value>
+    <comment>modulFitxerTransitoria</comment>
+  </data>
+  <data name="errNofitxerPlantilla" xml:space="preserve">
+    <value>NO EXISTEIX EL FITXER PLANTILLA</value>
+    <comment>modulFitxerTransitoria</comment>
+  </data>
+  <data name="mnuPlantillaFitxersTransitoria" xml:space="preserve">
+    <value>CREAR FITXERS-PROJECTES TRANSITORIA</value>
+    <comment>modulFitxerTransitoria</comment>
+  </data>
+  <data name="dadesBudgetMan" xml:space="preserve">
+    <value>DADES BUDGET FITXER MAN</value>
+    <comment>ModulActualitzacioMan</comment>
+  </data>
+  <data name="dadesRealsMan" xml:space="preserve">
+    <value>DADES REALS A FITXER MAN</value>
+    <comment>ModulActualitzacioMan</comment>
+  </data>
+  <data name="elFitxerSeleccionat" xml:space="preserve">
+    <value>El fitxer seleccionat </value>
+    <comment>modulActualitzarMan</comment>
+  </data>
+  <data name="errFitxerMan" xml:space="preserve">
+    <value>ERR FITXER MAN</value>
+    <comment>dCentresMan</comment>
+  </data>
+  <data name="logDescripcioMan" xml:space="preserve">
+    <value>Registre d'estat de les accions realitzades  en l'exportació de dades aL FITXER MAN actual</value>
+    <comment>modulActualitzarMan</comment>
+  </data>
+  <data name="logExportMan" xml:space="preserve">
+    <value>LOG EXPORT DADES A MAN</value>
+    <comment>modulActualitzarMan</comment>
+  </data>
+  <data name="mnuConfigCentresMan" xml:space="preserve">
+    <value>CONFIGURACIO CENTRES FITXER MAN</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuConfigGB" xml:space="preserve">
+    <value>CONFIGURACIO FITXER GB </value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuConfigMan" xml:space="preserve">
+    <value>CONFIGURACIO FITXER MAN</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuConfigMesGb" xml:space="preserve">
+    <value>CANVIAR  MES  FITXER  GB</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuConfigMesMan" xml:space="preserve">
+    <value>CANVIAR  MES  FITXER  MAN</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuConfigPlantillaGB" xml:space="preserve">
+    <value>ACTUALITZAR PLANTILLA DADES GB</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuConfigPlantillaMan" xml:space="preserve">
+    <value>ACTUALITZAR PLANTILLA DADES MAN</value>
+    <comment>menu</comment>
+  </data>
+  <data name="noFitxerMan" xml:space="preserve">
+    <value>No és un fitxer MAN. </value>
+    <comment>modulActualitzarMan</comment>
+  </data>
+  <data name="setData" xml:space="preserve">
+    <value>SET DATA</value>
+    <comment>log</comment>
+  </data>
+  <data name="errConfigMan" xml:space="preserve">
+    <value>ERROR. NO S'HA POGUT  CONFIGURAR  ELS DIFERENTS CENTRES EN EL FITXER MAN ACTUAL. REVISAR  CONFIGURACIÓ SISTEMA.</value>
+    <comment>error</comment>
+  </data>
+  <data name="errManNoOberta" xml:space="preserve">
+    <value>ERROR. NO S'HA TROBAT UN FITXER 'MAN' OBERT.</value>
+    <comment>error</comment>
+  </data>
+  <data name="errNoExistConfigMan" xml:space="preserve">
+    <value>ERROR. NO EXISTEIX LA FULLA CONFIG EN EL FITXER. REVISAR CONFIGURACIÓ FITXER.</value>
+    <comment>error</comment>
+  </data>
+  <data name="errLog" xml:space="preserve">
+    <value>ERROR</value>
+    <comment>err</comment>
+  </data>
+  <data name="guardarDades" xml:space="preserve">
+    <value>GUARDAR DADES</value>
+    <comment>utes</comment>
+  </data>
+  <data name="mnuImportAndorra" xml:space="preserve">
+    <value>IMPORTAR DADES DE ANDORRA</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuImportZamora" xml:space="preserve">
+    <value>IMPORTAR DADES DE ZAMORA</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuUte" xml:space="preserve">
+    <value>UTES</value>
+    <comment>menu</comment>
+  </data>
+  <data name="obrirFitxer" xml:space="preserve">
+    <value>OBRINT FITXER .... </value>
+    <comment>utes</comment>
+  </data>
+  <data name="dadesComptabilitatConsolidades" xml:space="preserve">
+    <value>Dades de Comptabilitat consolidades</value>
+    <comment>dataPretancamentCentresDesglossat</comment>
+  </data>
+  <data name="dadesPretancamentMesActual" xml:space="preserve">
+    <value>Total dades pretancament del mes actual</value>
+    <comment>dataPretancamentCentresDesglossat</comment>
+  </data>
+  <data name="dadesTancamentMesAnterior" xml:space="preserve">
+    <value>DADES TANCAMENT MES ANTERIOR</value>
+    <comment>dataPretancamentCentresDesglossat</comment>
+  </data>
+  <data name="descripcioTransitoriaMesActual" xml:space="preserve">
+    <value>Dades de la transitoria del mes actual.</value>
+    <comment>dataPretancamentCentresDesglossat</comment>
+  </data>
+  <data name="diario" xml:space="preserve">
+    <value>DIARIO</value>
+    <comment>comu</comment>
+  </data>
+  <data name="diarioAssentaments" xml:space="preserve">
+    <value>Dades comptables, assentaments diario.dbf del mes actual</value>
+    <comment>dataPretancamentCentresDesglossat</comment>
+  </data>
+  <data name="diarioMesActual" xml:space="preserve">
+    <value>DIARIO MES ACTUAL</value>
+    <comment>dataPretancamentCentresDesglossat</comment>
+  </data>
+  <data name="transitoriaMesActual" xml:space="preserve">
+    <value>TRANSITORIA MES ACTUAL</value>
+    <comment>dataPretancamentCentresDesglossat</comment>
+  </data>
+  <data name="budget" xml:space="preserve">
+    <value>BUDGET</value>
+    <comment>DataTancamentCentresMes</comment>
+  </data>
+  <data name="tancament" xml:space="preserve">
+    <value>TANCAMENT</value>
+    <comment>DataTancamentCentresMes</comment>
+  </data>
+  <data name="formula" xml:space="preserve">
+    <value>FORMULA</value>
+    <comment>modelGB</comment>
+  </data>
+  <data name="subgrup" xml:space="preserve">
+    <value>SUBGRUP</value>
+    <comment>DSubGrupGB</comment>
+  </data>
+  <data name="subgrupGb" xml:space="preserve">
+    <value>SUBGRUP GB</value>
+    <comment>DSubGrupGB</comment>
+  </data>
+  <data name="mnuConfigSubgrupsGB" xml:space="preserve">
+    <value>SUBGRUPS GB</value>
+    <comment>frmApliOms</comment>
+  </data>
+  <data name="sumaSubgrups" xml:space="preserve">
+    <value>SUMA SUBGRUPS</value>
+    <comment>DSubgrupGB</comment>
+  </data>
+  <data name="mnuActualitzarPlantillaGB" xml:space="preserve">
+    <value>ACTUALIZAR PLANTILLA FITXER GB</value>
+    <comment>frmApliOms</comment>
+  </data>
+  <data name="selectColumnes" xml:space="preserve">
+    <value>SELECCIONAR COLUMNES</value>
+    <comment>DColumnes</comment>
+  </data>
+  <data name="escollirFitxerMan" xml:space="preserve">
+    <value>ESCOLLIR FITXER MAN DADES TANCAMENT</value>
+    <comment>DExportGB</comment>
+  </data>
+  <data name="mnuBudgetConfigCentresFullesGb" xml:space="preserve">
+    <value>VINCULAR  CENTRES AMB PESTANYES GB</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuBudgetConfigFitxerVoss" xml:space="preserve">
+    <value>CREAR FITXER VOSS A PARTIR DE PLANTILLES</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuBudgetConfigVossCentres" xml:space="preserve">
+    <value>VINCULAR CENTRES AMB FITXERS VOSS</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuBudgetExportarGB" xml:space="preserve">
+    <value>2. A FITXER GB</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuBudgetExportarMan" xml:space="preserve">
+    <value>1. A FITXER MAN</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuBudgetExportarVoss" xml:space="preserve">
+    <value>3. A FITXERS VOSS</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuBudgetImportarCesmed" xml:space="preserve">
+    <value>CESMED (gbcesmed.xls)</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuBudgetImportarGB" xml:space="preserve">
+    <value>BUDGETS DE DADES REALS-DETALLS DE GB ANY ANTERIOR</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuBudgetImportarHead" xml:space="preserve">
+    <value>HEADQUARTERS (PG*.ODS)</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuBudgetImportarObres" xml:space="preserve">
+    <value>OBRES</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuConfiguracio" xml:space="preserve">
+    <value>CONFIGURACIO</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuExplotacions" xml:space="preserve">
+    <value>EXPLOTACIONS</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuParametres" xml:space="preserve">
+    <value>PARAMETRES</value>
+    <comment>menu</comment>
+  </data>
+  <data name="dPametresBudget" xml:space="preserve">
+    <value>PARAMETRES IMPORT/EXPORT BUDGETS</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblDadesAnyActual" xml:space="preserve">
+    <value>Rang dades inici Any Actual</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblDadesAnySeguent" xml:space="preserve">
+    <value>Rang dades inici Any Següent</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblFullaParametres" xml:space="preserve">
+    <value>Nom fulla paràmetres</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblInfoAnyActual" xml:space="preserve">
+    <value>Rang info inici Any Actual</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblInfoAnySeguent" xml:space="preserve">
+    <value>Rang info Any Següent</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblInfoDadesAnyActual" xml:space="preserve">
+    <value>Rang inici taula de valors de l'any actual (ex: GENER R01)</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblInfoDadesAnySeguent" xml:space="preserve">
+    <value>Rang inici taula de valors de l'any següent (ex: GENER R01)</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblInfoInfoAnyActual" xml:space="preserve">
+    <value>Rang inici informació de l'any actual (ex: GENER dades de )</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblInfoInfoAnySeguent" xml:space="preserve">
+    <value>Rang inici informació de l'any següent (ex: GENER dades de )</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblInfoRangAnyFitxerVoss" xml:space="preserve">
+    <value>Rang on està ubicat l'any actual (fulla paràmetres, fitxer VOSS)</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblInfoRangCodiGrup" xml:space="preserve">
+    <value>Rang inicial on estan ubicats els codis dels diferents subgrups (ex. R01)</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblInfoRangProjecteVoss" xml:space="preserve">
+    <value>Rang on està ubicat el nom del projecte (fulla paràmetres, fitxer VOSS)</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblNomfullaDadesBudget" xml:space="preserve">
+    <value>Nom fulla dades BUDGET</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblNomFullaDadesCopiar" xml:space="preserve">
+    <value>Nom Fulla dades a Copiar</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblNomInformePresentar" xml:space="preserve">
+    <value>Nom Fulla Informe a presentar</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblRangAnyFitxerVoss" xml:space="preserve">
+    <value>Rang Any fitxer VOSS</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblRangCodiGrup" xml:space="preserve">
+    <value>Rang Inici codi grup</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblRangProjecteVoss" xml:space="preserve">
+    <value>Rang nom Projecte VOSS</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblTitol1" xml:space="preserve">
+    <value>1. PARAMETRES FITXERS VOSS (COPIAR/ENGANTXAR)</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblTitol2" xml:space="preserve">
+    <value>2. PARAMETRES IMPORTACIO EXPLOTACIONS</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblTitol3" xml:space="preserve">
+    <value>3. PARAMETRES IMPORTACIO OBRES</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="lblTitol4" xml:space="preserve">
+    <value>4. PARAMETRES IMPORTACIO HEAD-QUARTERS</value>
+    <comment>DParametresBudget</comment>
+  </data>
+  <data name="dDadesImport" xml:space="preserve">
+    <value>ESCOLLIR  IMPORT DADES DE ... </value>
+    <comment>DMesosEmpresa</comment>
+  </data>
+  <data name="escollirFitxersBudget" xml:space="preserve">
+    <value>ESCOLLIR FITXERS BUDGET A IMPORTAR</value>
+    <comment>ModulImportBudget</comment>
+  </data>
+  <data name="importDataBudget" xml:space="preserve">
+    <value>IMPORTAR DADES DE BUDGET</value>
+    <comment>modulImportBudget</comment>
+  </data>
+  <data name="importDataBudget1" xml:space="preserve">
+    <value>Importació de dades de diferents fitxers  de pretancament</value>
+    <comment>modulImportBudget</comment>
+  </data>
+  <data name="noProjecteBudget" xml:space="preserve">
+    <value>. La casella A3 ha de contenir el codi EMPRESA i la casella B3 el codi PROJECTE.</value>
+    <comment>ModulImportBudget</comment>
+  </data>
+  <data name="noProjecteBudget1" xml:space="preserve">
+    <value>ERROR. No s'ha trobat cap projecte. Revisar la configuració deL FITXER de  transitòries:</value>
+    <comment>ModulImportBudget</comment>
+  </data>
+  <data name="abrev." xml:space="preserve">
+    <value>ABREV.</value>
+    <comment>dPais</comment>
+  </data>
+  <data name="dPaisAfegirPais" xml:space="preserve">
+    <value>AFEGIR NOU PAIS</value>
+    <comment>dPais</comment>
+  </data>
+  <data name="dPaisModificarPais" xml:space="preserve">
+    <value>MODIFICAR PAIS ACTUAL</value>
+    <comment>dPais</comment>
+  </data>
+  <data name="missatgeEliminarPaisActual" xml:space="preserve">
+    <value>- VOLS ELIMINAR EL PAIS ACTUAL?.</value>
+    <comment>MISSATGES</comment>
+  </data>
+  <data name="mnuAxiliars" xml:space="preserve">
+    <value>AUXILIARS</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="paisos" xml:space="preserve">
+    <value>PAISOS</value>
+    <comment>comu</comment>
+  </data>
+  <data name="selectPais" xml:space="preserve">
+    <value>SELECCIONAR PAIS</value>
+    <comment>DPaisos</comment>
+  </data>
+  <data name="dprovinciaAfegirprovincia" xml:space="preserve">
+    <value>AFEGIR PROVINCIA</value>
+    <comment>dProvincia</comment>
+  </data>
+  <data name="dprovinciaModificarprovincia" xml:space="preserve">
+    <value>MODIFICAR PROVINCIA</value>
+    <comment>dProvincia</comment>
+  </data>
+  <data name="missatgeEliminarProvinciaActual" xml:space="preserve">
+    <value>- VOLS ELIMINAR LA PROVINCIA ACTUAL?.</value>
+    <comment>missatges</comment>
+  </data>
+  <data name="provincies" xml:space="preserve">
+    <value>PROVINCIES</value>
+    <comment>DAxiliars</comment>
+  </data>
+  <data name="selectProvincia" xml:space="preserve">
+    <value>SELECCIONAR PROVINCIA</value>
+    <comment>DAxiliars</comment>
+  </data>
+  <data name="dia" xml:space="preserve">
+    <value>DIA</value>
+    <comment>DTipusPagament</comment>
+  </data>
+  <data name="diaPagament" xml:space="preserve">
+    <value>Nº dia pagament del mes</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="dies" xml:space="preserve">
+    <value>DIES</value>
+    <comment>DTipusPagament</comment>
+  </data>
+  <data name="diesA" xml:space="preserve">
+    <value>dies a pagar</value>
+    <comment>DTipusPagament</comment>
+  </data>
+  <data name="diesAPagar" xml:space="preserve">
+    <value>DIES A</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="dtipusPagamentAfegirtipusPagament" xml:space="preserve">
+    <value>AFEGIR NOU TIPUS PAGAMENT</value>
+    <comment>DTipusPagament</comment>
+  </data>
+  <data name="dtipusPagamentModificartipusPagament" xml:space="preserve">
+    <value>MODIFICAR TIPUS PAGAMENT</value>
+    <comment>DTipusPagament</comment>
+  </data>
+  <data name="errExistCodiPais" xml:space="preserve">
+    <value>ERR. JA EXISTEIX UN PAÍS AMB EL MATEIX CODI.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errExistCodiProvincia" xml:space="preserve">
+    <value>ERR. JA EXISTEIX UNA PROVINCIA AMB EL MATEIX CODI.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errExistNomPais" xml:space="preserve">
+    <value>ERR. JA EXISTEIX UN PAÍS AMB EL MATEIX NOM.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="errExistNomProvincia" xml:space="preserve">
+    <value>ERR. JA EXISTEIX UNA PROVINCIA AMB EL MATEIX NOM.</value>
+    <comment>errors</comment>
+  </data>
+  <data name="missatgeEliminarTipusPagamentActual" xml:space="preserve">
+    <value>- VOLS ELIMINAR EL TIPUS DE PAGAMENT ACTUAL? </value>
+    <comment>missatges</comment>
+  </data>
+  <data name="selectTipusPagament" xml:space="preserve">
+    <value>Seleccionar Tipus Pagament</value>
+    <comment>DAuxiliars</comment>
+  </data>
+  <data name="tipusPagament" xml:space="preserve">
+    <value>TIPUS PAGAMENT</value>
+    <comment>DAuxiliars</comment>
+  </data>
+  <data name="dtipusIvaAfegirtipusIva" xml:space="preserve">
+    <value>AFEGIR NOU TIPUS IVA</value>
+    <comment>DTipusIva</comment>
+  </data>
+  <data name="dtipusIvaModificartipusIva" xml:space="preserve">
+    <value>MODIFICAR TIPUS IVA </value>
+    <comment>DTipusIva</comment>
+  </data>
+  <data name="impost" xml:space="preserve">
+    <value>IMPOST</value>
+  </data>
+  <data name="r.equiv." xml:space="preserve">
+    <value>R. EQUIV.</value>
+  </data>
+  <data name="selectTipusIva" xml:space="preserve">
+    <value>Seleccionar Tipus Iva</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="tipusIva" xml:space="preserve">
+    <value>TIPUS IVA</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="poblacio" xml:space="preserve">
+    <value>POBLACIO</value>
+    <comment>comu</comment>
+  </data>
+  <data name="proveidors" xml:space="preserve">
+    <value>PROVEIDORS</value>
+    <comment>comu</comment>
+  </data>
+  <data name="provincia" xml:space="preserve">
+    <value>PROVINCIA</value>
+    <comment>comu</comment>
+  </data>
+  <data name="selectProveidor" xml:space="preserve">
+    <value>SELECCIONAR PROVEIDOR</value>
+    <comment>comu</comment>
+  </data>
+  <data name="cif" xml:space="preserve">
+    <value>CIF</value>
+    <comment>comu</comment>
+  </data>
+  <data name="departament" xml:space="preserve">
+    <value>DEPARTAMENT</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>EMAIL</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="telefon" xml:space="preserve">
+    <value>TELEFON</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="afegirProveidor" xml:space="preserve">
+    <value>AFEGIR NOU PROVEIDOR</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="cp" xml:space="preserve">
+    <value>CP</value>
+    <comment>comu</comment>
+  </data>
+  <data name="dadesBancaries" xml:space="preserve">
+    <value>DADES BANCARIES</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="direccio" xml:space="preserve">
+    <value>DIRECCIO</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="iban" xml:space="preserve">
+    <value>IBAN</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="modificarProveidor" xml:space="preserve">
+    <value>MODIFICAR PROVEIDOR ACTUAL</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="nomComercial" xml:space="preserve">
+    <value>NOM COMERCIAL</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="nomFiscal" xml:space="preserve">
+    <value>NOM FISCAL</value>
+    <comment>v</comment>
+  </data>
+  <data name="bloquejat" xml:space="preserve">
+    <value>BLOQUEJAT</value>
+    <comment>comu</comment>
+  </data>
+  <data name="afegirAvis" xml:space="preserve">
+    <value>ANOTAR NOU AVIS DEL PROVEIDOR ACTUAL</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="contactes" xml:space="preserve">
+    <value>CONTACTES</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="missatgeEliminarAnotacioProveidor" xml:space="preserve">
+    <value>-. VOLS ELIMINAR L'ANOTACIO DE PROVEIDOR ACTUAL?</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="missatgeEliminarContacteProveidor" xml:space="preserve">
+    <value>-. VOLS ELIMINAR EL CONTACTE ACTUAL?</value>
+    <comment>v</comment>
+  </data>
+  <data name="missatgeEliminarProveidor" xml:space="preserve">
+    <value>-. VOLS ELIMINAR EL PROVEIDOR ACTUAL?</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="modificarAvis" xml:space="preserve">
+    <value>MODIFICAR AVIS DEL PROVEIDOR ACTUAL</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>AVISOS</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="contacte" xml:space="preserve">
+    <value>CONTACTE</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="entrega" xml:space="preserve">
+    <value>ENTREGA</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="pais" xml:space="preserve">
+    <value>PAIS</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="afegirNouContacteProveidor" xml:space="preserve">
+    <value>AFEGIR NOU CONTACTE DEL PROVEIDOR ACTUAL</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="modificarContacteProveidor" xml:space="preserve">
+    <value>MODIFICAR CONTACTE DEL PROVEIDOR ACTUAL</value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>- VOLS ELIMINAR  EL PROVEIDOR ACTUAL?. </value>
+    <comment>dProveidor</comment>
+  </data>
+  <data name="fabricants" xml:space="preserve">
+    <value>FABRICANTS</value>
+    <comment>dAuxiliars</comment>
+  </data>
+  <data name="families" xml:space="preserve">
+    <value>FAMILIES</value>
+    <comment>dAuxiliars</comment>
+  </data>
+  <data name="selectFabricant" xml:space="preserve">
+    <value>SELECCIONAR FABRICANT</value>
+    <comment>dAuxiliars</comment>
+  </data>
+  <data name="selectFamilia" xml:space="preserve">
+    <value>SELECCIONAR FAMILIA</value>
+    <comment>dAuxiliars</comment>
+  </data>
+  <data name="selectUnitat" xml:space="preserve">
+    <value>SELECCIONAR UNITAT</value>
+    <comment>dAuxiliars</comment>
+  </data>
+  <data name="unitats" xml:space="preserve">
+    <value>UNITATS</value>
+    <comment>dAuxiliars</comment>
+  </data>
+  <data name="afegirProvincia" xml:space="preserve">
+    <value>AFEGIR NOVA PROVINCIA</value>
+  </data>
+  <data name="fabricant" xml:space="preserve">
+    <value>FABRICANT</value>
+  </data>
+  <data name="familia" xml:space="preserve">
+    <value>FAMILIA</value>
+  </data>
+  <data name="unitat" xml:space="preserve">
+    <value>UNITAT</value>
+  </data>
+  <data name="missatgeEliminarArticle" xml:space="preserve">
+    <value>-. VOLS ELIMINAR L'ARTICLE ACTUAL?</value>
+  </data>
+  <data name="articles" xml:space="preserve">
+    <value>ARTICLES</value>
+  </data>
+  <data name="afegirElementLlista" xml:space="preserve">
+    <value>Per afegir un nou element a la llista</value>
+    <comment>lstAuxiliars1</comment>
+  </data>
+  <data name="descompte" xml:space="preserve">
+    <value>DESCOMPTE</value>
+  </data>
+  <data name="missatgeEliminarArticlePreu" xml:space="preserve">
+    <value>-. VOLS ELIMINAR  EL PREU DE L'ARTICLE ACTUAL?</value>
+    <comment>missatges</comment>
+  </data>
+  <data name="historialArticle" xml:space="preserve">
+    <value>HISTORIAL IMPORTS ARTICLE</value>
+    <comment>SelectArticlesPreus</comment>
+  </data>
+  <data name="article" xml:space="preserve">
+    <value>ARTICLE</value>
+    <comment>comu</comment>
+  </data>
+  <data name="proveidor" xml:space="preserve">
+    <value>PROVEIDOR</value>
+    <comment>comu</comment>
+  </data>
+  <data name="cognom" xml:space="preserve">
+    <value>COGNOM</value>
+    <comment>comu</comment>
+  </data>
+  <data name="cognoms" xml:space="preserve">
+    <value>COGNOMS</value>
+    <comment>comu</comment>
+  </data>
+  <data name="missatgeEliminarContacte" xml:space="preserve">
+    <value>-. VOLS ELIMINAR EL CONTACTE ACTUAL?</value>
+    <comment>pContactes</comment>
+  </data>
+  <data name="afegirContacte" xml:space="preserve">
+    <value>AFEGIR NOU CONTACTE</value>
+    <comment>DContacte</comment>
+  </data>
+  <data name="afegirLlocEntrega" xml:space="preserve">
+    <value>AFEGIR NOU MAGATZEM</value>
+    <comment>DLlocEntrega</comment>
+  </data>
+  <data name="magatzems" xml:space="preserve">
+    <value>MAGATZEMS</value>
+  </data>
+  <data name="missatgeEliminarLlocEntrega" xml:space="preserve">
+    <value>-. VOLS ELIMINAR EL MAGATZEM ACTUAL? </value>
+    <comment>pLlocEntrega</comment>
+  </data>
+  <data name="modificarContacte" xml:space="preserve">
+    <value>MODIFICAR CONTACTE</value>
+    <comment>DContacte</comment>
+  </data>
+  <data name="modificarLlocEntrega" xml:space="preserve">
+    <value>MODIFICAR MAGATZEM</value>
+    <comment>DLlocEntrega</comment>
+  </data>
+  <data name="selectContactes" xml:space="preserve">
+    <value>SELECCIONAR CONTACTE/S A VINCULAR.</value>
+    <comment>dAuxiliars</comment>
+  </data>
+  <data name="missatgeDesvincularContacte" xml:space="preserve">
+    <value>-. VOLS DESVINCULAR EL CONTACTE ACTUAL?.</value>
+  </data>
+  <data name="missatgeEliminarProjecteEntrega" xml:space="preserve">
+    <value>-. VOLS DESVINCULAR EL MAGATZEM ACTUAL?.</value>
+  </data>
+  <data name="afegirNouElement" xml:space="preserve">
+    <value>AFEGIR NOU ELEMENT</value>
+  </data>
+  <data name="amagaDadesMagatzem" xml:space="preserve">
+    <value>Amaga les dades de contacte del magatzem</value>
+  </data>
+  <data name="amagaDadesProveidor" xml:space="preserve">
+    <value>Amaga les dades de contacte del proveidor</value>
+  </data>
+  <data name="modificarElementLlista" xml:space="preserve">
+    <value>modificar l'element actual de la llista</value>
+  </data>
+  <data name="mostraDadesMagatzem" xml:space="preserve">
+    <value>Mostra les dades de contacte del magatzem</value>
+  </data>
+  <data name="mostraDadesProveidor" xml:space="preserve">
+    <value>Mostra les dades de contacte del proveidor</value>
+  </data>
+  <data name="amagarDades" xml:space="preserve">
+    <value>Amaga dades</value>
+  </data>
+  <data name="mostrarDades" xml:space="preserve">
+    <value>Mostra dades</value>
+  </data>
+  <data name="telEmail" xml:space="preserve">
+    <value>TEL/MAIL</value>
+  </data>
+  <data name="magatzem" xml:space="preserve">
+    <value>MAGATZEM</value>
+  </data>
+  <data name="dataEntrega" xml:space="preserve">
+    <value>D.ENTREGA EQUIPS</value>
+  </data>
+  <data name="dataMuntatge" xml:space="preserve">
+    <value>D.MUNTATGE</value>
+  </data>
+  <data name="numOferta" xml:space="preserve">
+    <value>N.OFERTA</value>
+  </data>
+  <data name="ports" xml:space="preserve">
+    <value>PORTS</value>
+  </data>
+  <data name="retencio" xml:space="preserve">
+    <value>RETENCIO</value>
+  </data>
+  <data name="copiar" xml:space="preserve">
+    <value>Copiar</value>
+  </data>
+  <data name="dte." xml:space="preserve">
+    <value>DTE.</value>
+  </data>
+  <data name="eliminar" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="engantxar" xml:space="preserve">
+    <value>Engantxar</value>
+  </data>
+  <data name="engatxar" xml:space="preserve">
+    <value>Engatxar</value>
+  </data>
+  <data name="qnt." xml:space="preserve">
+    <value>QNT.</value>
+  </data>
+  <data name="ref." xml:space="preserve">
+    <value>REF.</value>
+  </data>
+  <data name="uni." xml:space="preserve">
+    <value>UNID.</value>
+  </data>
+  <data name="nComanda" xml:space="preserve">
+    <value>Nº COMANDA</value>
+  </data>
+  <data name="interAval" xml:space="preserve">
+    <value>INT/AVAL</value>
+  </data>
+  <data name="referencia" xml:space="preserve">
+    <value>REFERENCIA</value>
+  </data>
+  <data name="String3" xml:space="preserve">
+    <value>T. IVA</value>
+  </data>
+  <data name="afegir" xml:space="preserve">
+    <value>AFEGIR</value>
+  </data>
+  <data name="afegirNouArticle" xml:space="preserve">
+    <value>AFEGIR NOU ARTICLE</value>
+  </data>
+  <data name="modificarArticle" xml:space="preserve">
+    <value>MODIFICAR ARTICLE</value>
+  </data>
+  <data name="preu" xml:space="preserve">
+    <value>PREU</value>
+  </data>
+  <data name="quantitat" xml:space="preserve">
+    <value>QUANTITAT</value>
+  </data>
+  <data name="seleccionarPreu" xml:space="preserve">
+    <value>SELECCIONAR PREU</value>
+  </data>
+  <data name="lblEscollirServidor" xml:space="preserve">
+    <value>ESCOLLIR SERVIDOR DE DADES</value>
+  </data>
+  <data name="optDbf" xml:space="preserve">
+    <value>DATA BASE FILES (DBF)</value>
+  </data>
+  <data name="optSqlServer" xml:space="preserve">
+    <value>SQL SERVER</value>
+  </data>
+  <data name="serverSql" xml:space="preserve">
+    <value>PARAMETRES SQL SERVER</value>
+  </data>
+  <data name="imprimir" xml:space="preserve">
+    <value>IMPRIMIR</value>
+    <comment>comu</comment>
+  </data>
+  <data name="noContacteComanda" xml:space="preserve">
+    <value>FALTA CONTACTE EMPRESA. No hi ha cap contacte  seleccionat</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="noContacteProveidorComanda" xml:space="preserve">
+    <value>FALTA CONTACTE PROVEIDOR. No hi ha cap contacte proveidor seleccionat</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="noEmpresaComanda" xml:space="preserve">
+    <value>FALTA EMPRESA. No hi ha cap empresa seleccionada</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="noMagatzemComanda" xml:space="preserve">
+    <value>FALTA MAGATZEM EMPRESA. No hi ha cap lloc d'entrega de l'empresa actual.</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="noProjecteComanda" xml:space="preserve">
+    <value>FALTA PROJECTE. No hi ha cap projecte seleccionat</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="noProveidorComanda" xml:space="preserve">
+    <value>FALTA PROVEIDOR. No hi ha cap proveidor seleccionat</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="revisarAnomalies" xml:space="preserve">
+    <value>REVISAR ANOMALIES </value>
+    <comment>comu</comment>
+  </data>
+  <data name="sortir" xml:space="preserve">
+    <value>SORTIR</value>
+    <comment>comu</comment>
+  </data>
+  <data name="cmdCompres" xml:space="preserve">
+    <value>COMPRES</value>
+    <comment>Dinici</comment>
+  </data>
+  <data name="cmdComptabilitat" xml:space="preserve">
+    <value>COMPTABILITAT</value>
+    <comment>Dinici</comment>
+  </data>
+  <data name="cmdFacturacio" xml:space="preserve">
+    <value>FACTURACIO</value>
+    <comment>Dinici</comment>
+  </data>
+  <data name="escollirModulAplicacio" xml:space="preserve">
+    <value>ESCOLLIR MODUL APLICACIO</value>
+    <comment>Dinici</comment>
+  </data>
+  <data name="mnuComandes" xml:space="preserve">
+    <value>COMANDES</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuImportarComandes" xml:space="preserve">
+    <value>IMPORTAR NOVES COMANDES</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuInformes" xml:space="preserve">
+    <value>INFORMES</value>
+    <comment>menu</comment>
+  </data>
+  <data name="mnuNovaComanda" xml:space="preserve">
+    <value>NOVA COMANDA</value>
+    <comment>menu</comment>
+  </data>
+  <data name="crearNovaComanda" xml:space="preserve">
+    <value>CREAR NOVA COMANDA. ESCOLLIR ... </value>
+    <comment>dNovaComanda</comment>
+  </data>
+</root>

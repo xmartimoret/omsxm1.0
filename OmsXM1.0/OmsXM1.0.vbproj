@@ -1,0 +1,1651 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{19EC5285-8920-4900-B6DF-B5362ADFB559}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>OmsXM.My.MyApplication</StartupObject>
+    <RootNamespace>OmsXM</RootNamespace>
+    <AssemblyName>OmsXM1.0</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\xavier\Documents\Visual Studio 2015\Publish\OmsXM1.0\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>OmsXM1.0.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>OmsXM1.0.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DocumentationFile>OmsXM1.0.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DocumentationFile>OmsXM1.0.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DocumentationFile>OmsXM1.0.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DocumentationFile>OmsXM1.0.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>C487E016A20AE747AACCDA675DAD2649361752BF</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>OmsXM1.0_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CLASSES\AnyMesos.vb" />
+    <Compile Include="CLASSES\Aplicacio.vb" />
+    <Compile Include="CLASSES\COMANDES\Article.vb" />
+    <Compile Include="CLASSES\COMANDES\ArticleComanda.vb" />
+    <Compile Include="CLASSES\COMANDES\ArticlePreu.vb" />
+    <Compile Include="CLASSES\COMANDES\Comanda.vb" />
+    <Compile Include="CLASSES\COMANDES\Contacte.vb" />
+    <Compile Include="CLASSES\COMANDES\Fabricant.vb" />
+    <Compile Include="CLASSES\COMANDES\Familia.vb" />
+    <Compile Include="CLASSES\COMANDES\LlocEntrega.vb" />
+    <Compile Include="CLASSES\COMANDES\Pais.vb" />
+    <Compile Include="CLASSES\COMANDES\ProjecteContacte.vb" />
+    <Compile Include="CLASSES\COMANDES\ProjecteEntrega.vb" />
+    <Compile Include="CLASSES\COMANDES\Proveidor.vb" />
+    <Compile Include="CLASSES\COMANDES\proveidorAnotacio.vb" />
+    <Compile Include="CLASSES\COMANDES\ProveidorCont.vb" />
+    <Compile Include="CLASSES\COMANDES\Provincia.vb" />
+    <Compile Include="CLASSES\COMANDES\TipusIva.vb" />
+    <Compile Include="CLASSES\COMANDES\TipusPagament.vb" />
+    <Compile Include="CLASSES\COMANDES\Unitat.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\Assentament.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\AssentamentTransitoria.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\Centre.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\CentreFullaGB.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\CentresGB.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\Client.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\SubGrupGB.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\Columna.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\ColumnaFilla.vb" />
+    <Compile Include="CLASSES\COMUNES\Base.vb" />
+    <Compile Include="CLASSES\COMUNES\ButtonTab.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CLASSES\COMUNES\CodiDescripcio.vb" />
+    <Compile Include="CLASSES\COMUNES\ComparadorOrdre.vb" />
+    <Compile Include="CLASSES\COMUNES\DataList.vb" />
+    <Compile Include="CLASSES\COMUNES\dataReport.vb" />
+    <Compile Include="CLASSES\COMUNES\EnterLlarg.vb" />
+    <Compile Include="CLASSES\COMUNES\ListViewComparer.vb" />
+    <Compile Include="CLASSES\COMUNES\Mes.vb" />
+    <Compile Include="CLASSES\COMUNES\ToolsXM.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CLASSES\COMUNES\ValorMes.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\Contaplus.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\Departament.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\Empresa.vb" />
+    <Compile Include="CLASSES\EntradaLog.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\EstatMes.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\GrupGB.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\Grup.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\ImportMesSubgrup.vb" />
+    <Compile Include="CLASSES\Log.vb" />
+    <Compile Include="CLASSES\COMUNES\Parametre.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\PrefixSubcte.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\Pretancament.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\Projecte.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\ProjecteCentre.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\ProjecteClient.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\ProjecteColumna.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\ProjecteDepartament.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\ProjecteTresoreria.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\Seccio.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\SeccioGrup.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\Subcompte.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\SubcompteGrup.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\SubcompteProveidor.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\SubcompteZamora.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\Subgrup.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\Transitoria.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\Tresoreria.vb" />
+    <Compile Include="CLASSES\COMPTABILITAT\YSheet.vb" />
+    <Compile Include="COMU\ADOPARAM.vb" />
+    <Compile Include="COMU\CODIFICACIO.vb" />
+    <Compile Include="COMU\COLUMN.vb" />
+    <Compile Include="COMU\CONFIG.vb" />
+    <Compile Include="COMU\CONFIG_FILE.vb" />
+    <Compile Include="COMU\CONFIG_PARAM_SERVER.vb" />
+    <Compile Include="COMU\DBCONNECT.vb" />
+    <Compile Include="COMU\ERRORS.vb" />
+    <Compile Include="COMU\EXCEL.vb" />
+    <Compile Include="COMU\EXCEPCIONS\ExcepcioConfig.vb" />
+    <Compile Include="COMU\EXCEPCIONS\ExcepcioSql.vb" />
+    <Compile Include="COMU\FILE_IN_OUT.vb" />
+    <Compile Include="COMU\Idioma.vb" />
+    <Compile Include="COMU\MISSATGES.vb" />
+    <Compile Include="COMU\VALIDAR.vb" />
+    <Compile Include="LANG\Lang.Designer.vb" />
+    <Compile Include="MODEL\COMANDES\AUXILIARS\ModelFabricant.vb" />
+    <Compile Include="MODEL\COMANDES\AUXILIARS\ModelFamilia.vb" />
+    <Compile Include="MODEL\COMANDES\AUXILIARS\ModelPais.vb" />
+    <Compile Include="MODEL\COMANDES\AUXILIARS\ModelUnitat.vb" />
+    <Compile Include="MODEL\COMANDES\ModelArticle.vb" />
+    <Compile Include="MODEL\COMANDES\ModelArticleComanda.vb" />
+    <Compile Include="MODEL\COMANDES\ModelArticlePreu.vb" />
+    <Compile Include="MODEL\COMANDES\ModelComanda.vb" />
+    <Compile Include="MODEL\COMANDES\ModelLlocEntrega.vb" />
+    <Compile Include="MODEL\COMANDES\ModelProjecteContacte.vb" />
+    <Compile Include="MODEL\COMANDES\ModelProjecteEntrega.vb" />
+    <Compile Include="MODEL\COMANDES\ModelProveidor.vb" />
+    <Compile Include="MODEL\COMANDES\ModelProveidorAnotacio.vb" />
+    <Compile Include="MODEL\COMANDES\ModelProveidorContacte.vb" />
+    <Compile Include="MODEL\COMANDES\AUXILIARS\ModelProvincia.vb" />
+    <Compile Include="MODEL\COMANDES\AUXILIARS\ModelTipusIva.vb" />
+    <Compile Include="MODEL\COMANDES\AUXILIARS\ModelTipusPagament.vb" />
+    <Compile Include="MODEL\COMANDES\AUXILIARS\ModelAuxiliar.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbArticleComanda.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbComanda.vb" />
+    <Compile Include="VISTES\COMU\DAvisosErrors.Designer.vb">
+      <DependentUpon>DAvisosErrors.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\DAvisosErrors.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\lstContactes.Designer.vb">
+      <DependentUpon>lstContactes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\lstContactes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MODEL\ModelAssentamentTransitoria.vb" />
+    <Compile Include="MODEL\ModelBudget.vb" />
+    <Compile Include="MODEL\ModelCentre.vb" />
+    <Compile Include="MODEL\ModelClient.vb" />
+    <Compile Include="MODEL\ModelColumna.vb" />
+    <Compile Include="MODEL\ModelColumnaFilla.vb" />
+    <Compile Include="MODEL\COMANDES\ModelContacte.vb" />
+    <Compile Include="MODEL\ModelDepartament.vb" />
+    <Compile Include="MODEL\ModelDiario.vb" />
+    <Compile Include="MODEL\ModelEmpresa.vb" />
+    <Compile Include="MODEL\ModelEmpresaContaplus.vb" />
+    <Compile Include="MODEL\ModelEstatMes.vb" />
+    <Compile Include="MODEL\ModelSubGrupGB.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbArticle.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbArticlePreu.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbContacte.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbLlocEntrega.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbProjecteContacte.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbProjecteEntrega.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbProveidor.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbProveidorAnotacio.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbProveidorCont.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbAuxiliars.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbActualitzacioGB.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbBudget.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbCentre.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbClient.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbColumna.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbColumnaFilla.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbDepartament.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbEmpresa.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbEmpresaContaplus.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbEstatMes.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbGrup.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbPrefixSubcompte.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbProjecte.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbProjecteCentre.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbProjecteClient.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbProjecteColumna.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbSeccio.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbSeccioGrup.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbSubcompte.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbSubcomptePretancament.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbSubcomptesGrup.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbSubcompteZamora.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbSubgrup.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbSubgrupGb.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbTransitoria.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbTresoreria.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\dbYSheet.vb" />
+    <Compile Include="MODUL\ModulActualitzacioMan.vb" />
+    <Compile Include="MODUL\ModulExportarDepartaments.vb" />
+    <Compile Include="MODEL\ModelGrup.vb" />
+    <Compile Include="MODEL\ModelLog.vb" />
+    <Compile Include="MODEL\modelPlantillaTransitoria.vb" />
+    <Compile Include="MODEL\ModelPrefixSubcompte.vb" />
+    <Compile Include="MODEL\ModelPretancament.vb" />
+    <Compile Include="MODEL\ModelProjecte.vb" />
+    <Compile Include="MODEL\ModelProjecteCentre.vb" />
+    <Compile Include="MODEL\ModelProjecteClient.vb" />
+    <Compile Include="MODEL\ModelProjecteColumna.vb" />
+    <Compile Include="MODEL\ModelProveidorContaplus.vb" />
+    <Compile Include="MODEL\ModelSeccio.vb" />
+    <Compile Include="MODEL\ModelSeccioGrup.vb" />
+    <Compile Include="MODEL\ModelSubcompte.vb" />
+    <Compile Include="MODEL\ModelSubcomptePretancament.vb" />
+    <Compile Include="MODEL\ModelSubcomptesGrup.vb" />
+    <Compile Include="MODEL\ModelSubcompteZamora.vb" />
+    <Compile Include="MODEL\ModelSubgrup.vb" />
+    <Compile Include="MODEL\ModelTransitoria.vb" />
+    <Compile Include="MODEL\ModelTresoreria.vb" />
+    <Compile Include="MODEL\ModelYSheet.vb" />
+    <Compile Include="MODUL\CopyDB.vb" />
+    <Compile Include="MODUL\ModelInformes.vb" />
+    <Compile Include="MODUL\ModulActualitzacioGB.vb" />
+    <Compile Include="MODUL\ModulCrearDB.vb" />
+    <Compile Include="MODUL\ModulExportTransitoria.vb" />
+    <Compile Include="MODUL\ModulFitxersTransitoria.vb" />
+    <Compile Include="MODUL\ModulImportAndorra.vb" />
+    <Compile Include="MODUL\ModulImportBudget.vb" />
+    <Compile Include="MODUL\ModulImportTransitoria.vb" />
+    <Compile Include="MODUL\ModulImportTresoreria.vb" />
+    <Compile Include="MODUL\ModulImportZamora.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="VISTES\ACTUALITZAR\CONTAPLUS\DDiarioContaplus.Designer.vb">
+      <DependentUpon>DDiarioContaplus.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\ACTUALITZAR\CONTAPLUS\DDiarioContaplus.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\ACTUALITZAR\CONTAPLUS\SelectDiario.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\ACTUALITZAR\ESTAT MESOS\PanelEstatMesos.Designer.vb">
+      <DependentUpon>PanelEstatMesos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\ACTUALITZAR\ESTAT MESOS\PanelEstatMesos.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\LstAuxiliars.Designer.vb">
+      <DependentUpon>LstAuxiliars.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\LstAuxiliars.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\lstAuxiliars1.Designer.vb">
+      <DependentUpon>lstAuxiliars1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\lstAuxiliars1.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\lstContactesProveidor.Designer.vb">
+      <DependentUpon>lstContactesProveidor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\lstContactesProveidor.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\lstLlocsEntrega.Designer.vb">
+      <DependentUpon>lstLlocsEntrega.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\lstLlocsEntrega.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\lstProveidor.Designer.vb">
+      <DependentUpon>lstProveidor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\lstProveidor.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\LVSelectObject.Designer.vb">
+      <DependentUpon>LVSelectObject.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\LVSelectObject.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\DArticlePreus.Designer.vb">
+      <DependentUpon>DArticlePreus.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\DArticlePreus.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\DArticles.Designer.vb">
+      <DependentUpon>DArticles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\DArticles.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\SelectPreus.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DArticleComanda.Designer.vb">
+      <DependentUpon>DArticleComanda.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DArticleComanda.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DNovaComanda.Designer.vb">
+      <DependentUpon>DNovaComanda.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DNovaComanda.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\panelDesplagableProveidor.Designer.vb">
+      <DependentUpon>panelDesplagableProveidor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\panelDesplagableProveidor.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\tabControl.Designer.vb">
+      <DependentUpon>tabControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\tabControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\DArticle.Designer.vb">
+      <DependentUpon>DArticle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\DArticle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\DArticlePreu.Designer.vb">
+      <DependentUpon>DArticlePreu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\DArticlePreu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\pArticles.Designer.vb">
+      <DependentUpon>pArticles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\pArticles.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\SelectArticles.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\SelectArticlesPreus.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\panelDesplagable.Designer.vb">
+      <DependentUpon>panelDesplagable.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\panelDesplagable.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\panelDesplegableComanda.Designer.vb">
+      <DependentUpon>panelDesplegableComanda.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\panelDesplegableComanda.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\pComanda.Designer.vb">
+      <DependentUpon>pComanda.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\pComanda.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\panelDesplegableEmpresa.Designer.vb">
+      <DependentUpon>panelDesplegableEmpresa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\panelDesplegableEmpresa.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\DContacte.Designer.vb">
+      <DependentUpon>DContacte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\DContacte.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\DLlocEntrega.Designer.vb">
+      <DependentUpon>DLlocEntrega.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\DLlocEntrega.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\pContactes.Designer.vb">
+      <DependentUpon>pContactes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\pContactes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\pLlocEntrega.Designer.vb">
+      <DependentUpon>pLlocEntrega.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\pLlocEntrega.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\SelectContactes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\SelectLlocEntrega.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\SelectProjecte.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\SelectProjecteContacte.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\pProjectesContactes.Designer.vb">
+      <DependentUpon>pProjectesContactes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\pProjectesContactes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\SelectProjecteEntrega.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\DAuxiliar.Designer.vb">
+      <DependentUpon>DAuxiliar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\DAuxiliar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\DAuxiliars.Designer.vb">
+      <DependentUpon>DAuxiliars.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\DAuxiliars.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\BUDGET\CONFIGURACIO\DParametresBudget.Designer.vb">
+      <DependentUpon>DParametresBudget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\BUDGET\CONFIGURACIO\DParametresBudget.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\CALENDARI\SelectDia.Designer.vb">
+      <DependentUpon>SelectDia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\CALENDARI\SelectDia.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\dBorrarDades.Designer.vb">
+      <DependentUpon>dBorrarDades.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\dBorrarDades.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\CALENDARI\Calendari.Designer.vb">
+      <DependentUpon>Calendari.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\CALENDARI\Calendari.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\DGVObjects.Designer.vb">
+      <DependentUpon>DGVObjects.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\DGVObjects.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\Directori.Designer.vb">
+      <DependentUpon>Directori.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\Directori.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\DMesos.Designer.vb">
+      <DependentUpon>DMesos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\DMesos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\DMesosEmpresa.Designer.vb">
+      <DependentUpon>DMesosEmpresa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\DMesosEmpresa.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\DMissatges.Designer.vb">
+      <DependentUpon>DMissatges.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\DMissatges.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\FrmAvis.Designer.vb">
+      <DependentUpon>FrmAvis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\FrmAvis.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\dPassword.Designer.vb">
+      <DependentUpon>dPassword.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\dPassword.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\LOG\dLog.Designer.vb">
+      <DependentUpon>dLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\LOG\dLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\LOG\dLogs.Designer.vb">
+      <DependentUpon>dLogs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\LOG\dLogs.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\LOG\panelLog.Designer.vb">
+      <DependentUpon>panelLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\LOG\panelLog.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\LOG\SelectLog.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\LVObjects.Designer.vb">
+      <DependentUpon>LVObjects.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\LVObjects.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\LVObjectsParent.Designer.vb">
+      <DependentUpon>LVObjectsParent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\LVObjectsParent.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\LVSubObjects.Designer.vb">
+      <DependentUpon>LVSubObjects.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\LVSubObjects.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\LVSubObjects1.Designer.vb">
+      <DependentUpon>LVSubObjects1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\LVSubObjects1.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\LVSubObjects2.Designer.vb">
+      <DependentUpon>LVSubObjects2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\LVSubObjects2.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\LVSubObjectsSelect.Designer.vb">
+      <DependentUpon>LVSubObjectsSelect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\LVSubObjectsSelect.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\SelectFiles.Designer.vb">
+      <DependentUpon>SelectFiles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\SelectFiles.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\DTipusIva.Designer.vb">
+      <DependentUpon>DTipusIva.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\DTipusIva.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\DTipusPagament.Designer.vb">
+      <DependentUpon>DTipusPagament.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\DTipusPagament.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\DProveidor.Designer.vb">
+      <DependentUpon>DProveidor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\DProveidor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\DProveidorAnotacio.Designer.vb">
+      <DependentUpon>DProveidorAnotacio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\DProveidorAnotacio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\DProveidorContacte.Designer.vb">
+      <DependentUpon>DProveidorContacte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\DProveidorContacte.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\pProveidors.Designer.vb">
+      <DependentUpon>pProveidors.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\pProveidors.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\SelectProveidor.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\SelectContacteProveidor.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\SelectProveidorAnotacio.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\SelectAuxiliar.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\GRUPSGB\DSubGrupGB.Designer.vb">
+      <DependentUpon>DSubGrupGB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\GRUPSGB\DSubGrupGB.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\GRUPSGB\PanelSubgrupsGB.Designer.vb">
+      <DependentUpon>PanelSubgrupsGB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\GRUPSGB\PanelSubgrupsGB.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\GRUPSGB\SelectSubGrupsGb.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\centresMan\DCentresMan.Designer.vb">
+      <DependentUpon>DCentresMan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\centresMan\DCentresMan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\centresMan\panelCentresMan.Designer.vb">
+      <DependentUpon>panelCentresMan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\centresMan\panelCentresMan.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\centresMan\SelectCentreMan.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\centres\DCentre.Designer.vb">
+      <DependentUpon>DCentre.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\centres\DCentre.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\centres\DSelectCentres.Designer.vb">
+      <DependentUpon>DSelectCentres.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\centres\DSelectCentres.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\centres\SelectCentre.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\centres\SelectCentres.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\departaments\DDepartament.Designer.vb">
+      <DependentUpon>DDepartament.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\departaments\DDepartament.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\departaments\SelectDepartament.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\empresesSeccionsCentres.Designer.vb">
+      <DependentUpon>empresesSeccionsCentres.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\empresesSeccionsCentres.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\empreses\DContaplus.Designer.vb">
+      <DependentUpon>DContaplus.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\empreses\DContaplus.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\empreses\DEmpresa.Designer.vb">
+      <DependentUpon>DEmpresa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\empreses\DEmpresa.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\empreses\SelectEmpreses.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\empreses\SelectEmpresesContaplus.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectesCentre\SelectProjectesCentre.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectesClients\DClient.Designer.vb">
+      <DependentUpon>DClient.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectesClients\DClient.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectesClients\PanelProjecteClients.Designer.vb">
+      <DependentUpon>PanelProjecteClients.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectesClients\PanelProjecteClients.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectesClients\SelectClient.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectesClients\SelectProjecteClient.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectesColumna\DColumna.Designer.vb">
+      <DependentUpon>DColumna.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectesColumna\DColumna.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectesColumna\DColumnes.Designer.vb">
+      <DependentUpon>DColumnes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectesColumna\DColumnes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectesColumna\projectesColumnes.Designer.vb">
+      <DependentUpon>projectesColumnes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectesColumna\projectesColumnes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectesColumna\SelectColumnaFilles.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectesColumna\SelectColumnaProjectes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectesColumna\SelectColumnes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectesColumna\SelectSubColumnes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectes\DProjecte.Designer.vb">
+      <DependentUpon>DProjecte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectes\DProjecte.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectes\DProjectes.Designer.vb">
+      <DependentUpon>DProjectes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectes\DProjectes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectes\SelectProjectes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\seccions\DSeccio.Designer.vb">
+      <DependentUpon>DSeccio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\seccions\DSeccio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\seccions\SelectSeccio.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\RUTES\dRutaServidorDades.Designer.vb">
+      <DependentUpon>dRutaServidorDades.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\RUTES\dRutaServidorDades.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\RUTES\FrmServer.Designer.vb">
+      <DependentUpon>FrmServer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\RUTES\FrmServer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\grupsSubgrupsSubcomptes.Designer.vb">
+      <DependentUpon>grupsSubgrupsSubcomptes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\grupsSubgrupsSubcomptes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\grups\DGrup.Designer.vb">
+      <DependentUpon>DGrup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\grups\DGrup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\grups\DGrups.Designer.vb">
+      <DependentUpon>DGrups.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\grups\DGrups.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\grups\SelectGrup.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\prefixSubcomptes\DPrefixSubcompte.Designer.vb">
+      <DependentUpon>DPrefixSubcompte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\prefixSubcomptes\DPrefixSubcompte.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\prefixSubcomptes\SelectPrefixSubcompte.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\subcomptesGrup\DSubcompteSubgrup.Designer.vb">
+      <DependentUpon>DSubcompteSubgrup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\subcomptesGrup\DSubcompteSubgrup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\subcomptesGrup\SelectSubcomptesSubgrup.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\subcomptes\DSelectSubcomptes.Designer.vb">
+      <DependentUpon>DSelectSubcomptes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\subcomptes\DSelectSubcomptes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\subcomptes\DSubcompte.Designer.vb">
+      <DependentUpon>DSubcompte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\subcomptes\DSubcompte.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\subcomptes\SelectSubcomptes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\subgrups\DSubgrup.Designer.vb">
+      <DependentUpon>DSubgrup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\subgrups\DSubgrup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\subgrups\SelectSubgrups.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\ySheets\dSelectYSheets.Designer.vb">
+      <DependentUpon>dSelectYSheets.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\ySheets\dSelectYSheets.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\ySheets\DYsheet.Designer.vb">
+      <DependentUpon>DYsheet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\ySheets\DYsheet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\SUBCOMPTES\ySheets\SelectYSheets.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\EXPORTAR\DExportGB.Designer.vb">
+      <DependentUpon>DExportGB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\EXPORTAR\DExportGB.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\IMPORTAR\dImportUtes.Designer.vb">
+      <DependentUpon>dImportUtes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\IMPORTAR\dImportUtes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\departaments\dDepartaments.Designer.vb">
+      <DependentUpon>dDepartaments.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\PROJECTES\departaments\dDepartaments.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\LLIBRE MAJOR\dCrearLlibreMajor.Designer.vb">
+      <DependentUpon>dCrearLlibreMajor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\LLIBRE MAJOR\dCrearLlibreMajor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\LLIBRE MAJOR\SelectDepartamentsLLM.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\DPais.Designer.vb">
+      <DependentUpon>DPais.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\DPais.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\TRANSITORIES\dAssentamentTransitories.Designer.vb">
+      <DependentUpon>dAssentamentTransitories.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\TRANSITORIES\dAssentamentTransitories.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\TRANSITORIES\pPlantillaTransitoria.Designer.vb">
+      <DependentUpon>pPlantillaTransitoria.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\TRANSITORIES\pPlantillaTransitoria.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\TRANSITORIES\pPlantillaTransitoriaProjecte.Designer.vb">
+      <DependentUpon>pPlantillaTransitoriaProjecte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\TRANSITORIES\pPlantillaTransitoriaProjecte.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\TRANSITORIES\SelectSubcomptesTransitoria.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\TRANSITORIES\SelectYSheetsTransitoria.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\TRESORERIA\dConfigTresoreria.Designer.vb">
+      <DependentUpon>dConfigTresoreria.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\TRESORERIA\dConfigTresoreria.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\TRESORERIA\dRutaTresoreria.Designer.vb">
+      <DependentUpon>dRutaTresoreria.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\TRESORERIA\dRutaTresoreria.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\VEURE\DIARIO\dataDiarioAssentaments.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\VEURE\DIARIO\dataDiarioCentres.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\VEURE\DIARIO\dataDiarioProjectes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\VEURE\DIARIO\panelDataDiari.Designer.vb">
+      <DependentUpon>panelDataDiari.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\VEURE\DIARIO\panelDataDiari.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\VEURE\panelData.Designer.vb">
+      <DependentUpon>panelData.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\VEURE\panelData.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\VEURE\PRETANCAMENT\dataPretancamentCentres.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\VEURE\PRETANCAMENT\dataPretancamentCentresDesglossat.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\VEURE\PRETANCAMENT\dataPretancamentSubformulariDesglossat.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\VEURE\PRETANCAMENT\panelDataPretancament.Designer.vb">
+      <DependentUpon>panelDataPretancament.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\VEURE\PRETANCAMENT\panelDataPretancament.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\VEURE\TANCAMENT\DataTancamentCentreGB.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\VEURE\TANCAMENT\DataTancamentCentres.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\VEURE\TANCAMENT\DataTancamentCentresMes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\VEURE\TANCAMENT\PanelDataTancament.Designer.vb">
+      <DependentUpon>PanelDataTancament.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\VEURE\TANCAMENT\PanelDataTancament.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\VEURE\TRANSITORIES\dataTransitoriesCentres.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\VEURE\TRANSITORIES\dataTransitoriesProjectes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\VEURE\TRANSITORIES\panelDataTransitories.Designer.vb">
+      <DependentUpon>panelDataTransitories.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\VEURE\TRANSITORIES\panelDataTransitories.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\VISTAGENERAL\DInici.Designer.vb">
+      <DependentUpon>DInici.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\VISTAGENERAL\DInici.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\VISTAGENERAL\FrmApliOms.Designer.vb">
+      <DependentUpon>FrmApliOms.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\VISTAGENERAL\FrmApliOms.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\VISTAGENERAL\frmIniComanda.Designer.vb">
+      <DependentUpon>frmIniComanda.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\VISTAGENERAL\frmIniComanda.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LANG\Lang.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\DAvisosErrors.resx">
+      <DependentUpon>DAvisosErrors.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\lstContactes.resx">
+      <DependentUpon>lstContactes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\ACTUALITZAR\CONTAPLUS\DDiarioContaplus.resx">
+      <DependentUpon>DDiarioContaplus.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\ACTUALITZAR\ESTAT MESOS\PanelEstatMesos.resx">
+      <DependentUpon>PanelEstatMesos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\LstAuxiliars.resx">
+      <DependentUpon>LstAuxiliars.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\lstAuxiliars1.resx">
+      <DependentUpon>lstAuxiliars1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\lstContactesProveidor.resx">
+      <DependentUpon>lstContactesProveidor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\lstLlocsEntrega.resx">
+      <DependentUpon>lstLlocsEntrega.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\lstProveidor.resx">
+      <DependentUpon>lstProveidor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\LVSelectObject.resx">
+      <DependentUpon>LVSelectObject.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\DArticlePreus.resx">
+      <DependentUpon>DArticlePreus.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\DArticles.resx">
+      <DependentUpon>DArticles.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DArticleComanda.resx">
+      <DependentUpon>DArticleComanda.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DNovaComanda.resx">
+      <DependentUpon>DNovaComanda.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\panelDesplagableProveidor.resx">
+      <DependentUpon>panelDesplagableProveidor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\tabControl.resx">
+      <DependentUpon>tabControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\DArticle.resx">
+      <DependentUpon>DArticle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\DArticlePreu.resx">
+      <DependentUpon>DArticlePreu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\pArticles.resx">
+      <DependentUpon>pArticles.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\panelDesplagable.resx">
+      <DependentUpon>panelDesplagable.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\panelDesplegableComanda.resx">
+      <DependentUpon>panelDesplegableComanda.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\pComanda.resx">
+      <DependentUpon>pComanda.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\panelDesplegableEmpresa.resx">
+      <DependentUpon>panelDesplegableEmpresa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\DContacte.resx">
+      <DependentUpon>DContacte.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\DLlocEntrega.resx">
+      <DependentUpon>DLlocEntrega.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\pContactes.resx">
+      <DependentUpon>pContactes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\pLlocEntrega.resx">
+      <DependentUpon>pLlocEntrega.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\pProjectesContactes.resx">
+      <DependentUpon>pProjectesContactes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\DAuxiliar.resx">
+      <DependentUpon>DAuxiliar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\DAuxiliars.resx">
+      <DependentUpon>DAuxiliars.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\BUDGET\CONFIGURACIO\DParametresBudget.resx">
+      <DependentUpon>DParametresBudget.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\CALENDARI\Calendari.resx">
+      <DependentUpon>Calendari.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\CALENDARI\SelectDia.resx">
+      <DependentUpon>SelectDia.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\dBorrarDades.resx">
+      <DependentUpon>dBorrarDades.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\DGVObjects.resx">
+      <DependentUpon>DGVObjects.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\Directori.resx">
+      <DependentUpon>Directori.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\DMesos.resx">
+      <DependentUpon>DMesos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\DMesosEmpresa.resx">
+      <DependentUpon>DMesosEmpresa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\DMissatges.resx">
+      <DependentUpon>DMissatges.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\FrmAvis.resx">
+      <DependentUpon>FrmAvis.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\dPassword.resx">
+      <DependentUpon>dPassword.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\LOG\dLog.resx">
+      <DependentUpon>dLog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\LOG\dLogs.resx">
+      <DependentUpon>dLogs.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\LOG\panelLog.resx">
+      <DependentUpon>panelLog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\LVObjects.resx">
+      <DependentUpon>LVObjects.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\LVObjectsParent.resx">
+      <DependentUpon>LVObjectsParent.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\LVSubObjects.resx">
+      <DependentUpon>LVSubObjects.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\LVSubObjects1.resx">
+      <DependentUpon>LVSubObjects1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\LVSubObjects2.resx">
+      <DependentUpon>LVSubObjects2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\LVSubObjectsSelect.resx">
+      <DependentUpon>LVSubObjectsSelect.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\SelectFiles.resx">
+      <DependentUpon>SelectFiles.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\DTipusIva.resx">
+      <DependentUpon>DTipusIva.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\DTipusPagament.resx">
+      <DependentUpon>DTipusPagament.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\DProveidor.resx">
+      <DependentUpon>DProveidor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\DProveidorAnotacio.resx">
+      <DependentUpon>DProveidorAnotacio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\DProveidorContacte.resx">
+      <DependentUpon>DProveidorContacte.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\pProveidors.resx">
+      <DependentUpon>pProveidors.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\GRUPSGB\DSubGrupGB.resx">
+      <DependentUpon>DSubGrupGB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\GRUPSGB\PanelSubgrupsGB.resx">
+      <DependentUpon>PanelSubgrupsGB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\PROJECTES\centresMan\DCentresMan.resx">
+      <DependentUpon>DCentresMan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\PROJECTES\centresMan\panelCentresMan.resx">
+      <DependentUpon>panelCentresMan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\PROJECTES\centres\DCentre.resx">
+      <DependentUpon>DCentre.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\PROJECTES\centres\DSelectCentres.resx">
+      <DependentUpon>DSelectCentres.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\PROJECTES\departaments\DDepartament.resx">
+      <DependentUpon>DDepartament.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\PROJECTES\departaments\dDepartaments.resx">
+      <DependentUpon>dDepartaments.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\PROJECTES\empresesSeccionsCentres.resx">
+      <DependentUpon>empresesSeccionsCentres.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\PROJECTES\empreses\DContaplus.resx">
+      <DependentUpon>DContaplus.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\PROJECTES\empreses\DEmpresa.resx">
+      <DependentUpon>DEmpresa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\PROJECTES\projectesClients\DClient.resx">
+      <DependentUpon>DClient.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\PROJECTES\projectesClients\PanelProjecteClients.resx">
+      <DependentUpon>PanelProjecteClients.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\PROJECTES\projectesColumna\DColumna.resx">
+      <DependentUpon>DColumna.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\PROJECTES\projectesColumna\DColumnes.resx">
+      <DependentUpon>DColumnes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\PROJECTES\projectesColumna\projectesColumnes.resx">
+      <DependentUpon>projectesColumnes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\PROJECTES\projectes\DProjecte.resx">
+      <DependentUpon>DProjecte.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\PROJECTES\projectes\DProjectes.resx">
+      <DependentUpon>DProjectes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\PROJECTES\seccions\DSeccio.resx">
+      <DependentUpon>DSeccio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\RUTES\dRutaServidorDades.resx">
+      <DependentUpon>dRutaServidorDades.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\RUTES\FrmServer.resx">
+      <DependentUpon>FrmServer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\SUBCOMPTES\grupsSubgrupsSubcomptes.resx">
+      <DependentUpon>grupsSubgrupsSubcomptes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\SUBCOMPTES\grups\DGrup.resx">
+      <DependentUpon>DGrup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\SUBCOMPTES\grups\DGrups.resx">
+      <DependentUpon>DGrups.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\SUBCOMPTES\prefixSubcomptes\DPrefixSubcompte.resx">
+      <DependentUpon>DPrefixSubcompte.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\SUBCOMPTES\subcomptesGrup\DSubcompteSubgrup.resx">
+      <DependentUpon>DSubcompteSubgrup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\SUBCOMPTES\subcomptes\DSelectSubcomptes.resx">
+      <DependentUpon>DSelectSubcomptes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\SUBCOMPTES\subcomptes\DSubcompte.resx">
+      <DependentUpon>DSubcompte.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\SUBCOMPTES\subgrups\DSubgrup.resx">
+      <DependentUpon>DSubgrup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\SUBCOMPTES\ySheets\dSelectYSheets.resx">
+      <DependentUpon>dSelectYSheets.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\SUBCOMPTES\ySheets\DYsheet.resx">
+      <DependentUpon>DYsheet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\EXPORTAR\DExportGB.resx">
+      <DependentUpon>DExportGB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\IMPORTAR\dImportUtes.resx">
+      <DependentUpon>dImportUtes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\LLIBRE MAJOR\dCrearLlibreMajor.resx">
+      <DependentUpon>dCrearLlibreMajor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\DPais.resx">
+      <DependentUpon>DPais.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\TRANSITORIES\dAssentamentTransitories.resx">
+      <DependentUpon>dAssentamentTransitories.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\TRANSITORIES\pPlantillaTransitoria.resx">
+      <DependentUpon>pPlantillaTransitoria.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\TRANSITORIES\pPlantillaTransitoriaProjecte.resx">
+      <DependentUpon>pPlantillaTransitoriaProjecte.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\TRESORERIA\dConfigTresoreria.resx">
+      <DependentUpon>dConfigTresoreria.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\TRESORERIA\dRutaTresoreria.resx">
+      <DependentUpon>dRutaTresoreria.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\VEURE\DIARIO\panelDataDiari.resx">
+      <DependentUpon>panelDataDiari.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\VEURE\panelData.resx">
+      <DependentUpon>panelData.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\VEURE\PRETANCAMENT\panelDataPretancament.resx">
+      <DependentUpon>panelDataPretancament.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\VEURE\TANCAMENT\PanelDataTancament.resx">
+      <DependentUpon>PanelDataTancament.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\VEURE\TRANSITORIES\panelDataTransitories.resx">
+      <DependentUpon>panelDataTransitories.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\VISTAGENERAL\DInici.resx">
+      <DependentUpon>DInici.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\VISTAGENERAL\FrmApliOms.resx">
+      <DependentUpon>FrmApliOms.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\VISTAGENERAL\frmIniComanda.resx">
+      <DependentUpon>frmIniComanda.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="ADODB">
+      <Guid>{B691E011-1797-432E-907A-4D8C69339129}</Guid>
+      <VersionMajor>6</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="ADOR">
+      <Guid>{00000300-0000-0010-8000-00AA006D2EA4}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OmsXM1.0_TemporaryKey.pfx" />
+    <None Include="Resources\descarga.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CLASSES\FACTURACIO\" />
+    <Folder Include="VISTES\VEURE\BUDGET\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\afegir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eliminar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BotoNou.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\13830060-actualizar-el-icono.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\actualitzar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BotoBorrar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BotoBorrarPetit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BotoCercar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BotoCercarPetit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BotoFiltrar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BotoFletxaBaix.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BotoFletxaDalt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BotoFletxaDreta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BotoFletxaEsquerra.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BotoGuardar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\botoImprimir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BotoModificar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BotoModificarPetit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BotoNouPetit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BotoProves.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BotoSortir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control_double_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control_double_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control_left_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\descendent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fons.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fons_Login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImatgeAlerta64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImatgeError64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImatgeInfo64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\validar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\botoCrear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\descarga.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
