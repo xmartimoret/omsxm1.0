@@ -68,7 +68,7 @@ Module DBCONNECT
     '   RETURN: La connexió realitzada. (Objecte Connection )
     Public Function connectDBF(ruta As String) As ADODB.Connection
         Dim sqlString As String
-        sqlString = "Provider=" & PROVIDER_ & ";Data Source=" & ruta & ";Extended Properties=dBASE IV;"
+        sqlString = getStringConnectionDBF(ruta)
         connectDBF = New ADODB.Connection()
         Try
             connectDBF.Open(sqlString)
@@ -98,7 +98,7 @@ Module DBCONNECT
 
             cnDbfActual = New ADODB.Connection()
             Try
-                cnDbfActual.Open(sqlString)
+                cnDbfActual.Open(getStringConnectionDBF(ruta))
 
             Catch ex As Exception
                 'avis.Close()
@@ -387,5 +387,21 @@ Module DBCONNECT
             End If
         End If
         Return True
+    End Function
+    Private Function getStringConnectionDBF(ruta As String) As String
+        getStringConnectionDBF = "DRIVER=Microsoft Access dBASE Driver (*.dbf, *.ndx, *.mdx);UID = admin;UserCommitSync = Yes;" &
+                                "Threads = 3;" &
+                                "Statistics = 0;" &
+                                "SafeTransactions = 0;" &
+                                "PageTimeout = 600;" &
+                                "MaxScanRows = 8;" &
+                                "MaxBufferSize = 2048;" &
+                                "FIL=dBASE 5.0;" &
+                                "DriverId = 533;" &
+                                "Deleted = 1;" &
+                                "DefaultDir=" & ruta & " ;" &
+                                "DBQ=" & ruta & ";" &
+                                "CollatingSequence = ASCII"
+
     End Function
 End Module

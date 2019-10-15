@@ -34,7 +34,7 @@ Module ModulExportTransitoria
         If m IsNot Nothing Then
             mesos = m
         Else
-            mesos = DMesosEmpresa.getMesos(CONFIG_FILE.getTag(TAG.ANY_TRANSITORIA), IDIOMA.getString("exportTransitoriaCaption"))
+            mesos = DMesosEmpresa.getMesos((CONFIG_FILE.getTag(TAG.ANY_TRANSITORIA)), IDIOMA.getString("exportTransitoriaCaption"))
         End If
         If mesos IsNot Nothing Then
             CONFIG_FILE.setTag(TAG.ANY_TRANSITORIA, mesos.any)
