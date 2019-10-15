@@ -122,6 +122,7 @@ Module dbProjecte
             .Parameters.Append(ADOPARAM.ToInt(obj.idEmpresa))
             .Parameters.Append(ADOPARAM.ToString(obj.codi))
             .Parameters.Append(ADOPARAM.ToString(obj.nom))
+
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
         End With
         Try
@@ -160,6 +161,8 @@ Module dbProjecte
         rc.Open("SELECT * FROM " & getTable(), DBCONNECT.getConnectionDbf)
         While Not rc.EOF
             getObjectsDBF.Add(New Projecte(rc(ID).Value, rc(ID_EMPRESA).Value, Trim(rc(CODI).Value), Trim(rc(CODI).Value), Trim(rc(NOM).Value), "", ModelEmpresa.getCodiEmpresa(rc(ID_EMPRESA).Value) & " -" & ModelEmpresa.getNom(rc(ID_EMPRESA).Value)))
+
+
             'getObjectsDBF.Add(New Projecte(rc(ID).Value, rc(ID_EMPRESA).Value, Trim(rc(CODI).Value), Trim(rc(CODI).Value), Trim(rc(NOM).Value), "", ""))
             rc.MoveNext()
         End While

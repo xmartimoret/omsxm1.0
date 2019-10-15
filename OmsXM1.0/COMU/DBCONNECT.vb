@@ -1,12 +1,7 @@
 ﻿Imports System.Data.SqlClient
-Imports ADODB
-Module DBCONNECT
-#If Win64 Then
-    Const PROVIDER_ As String = "Microsoft.ACE.OLEDB.12.0"
-#Else
-    Const PROVIDER_ As String = "Microsoft.Jet.OLEDB.4.0"
-#End If
 
+Module DBCONNECT
+    Const PROVIDER_ As String = "Microsoft.Jet.OLEDB.4.0"
     Private cnActual As SqlConnection
     Private cnDbfActual As ADODB.Connection
     Private Const PROC_DATA_ACTUALITZACIO As String = "GET_DATE_UPDATED"
@@ -153,7 +148,7 @@ Module DBCONNECT
         End Try
     End Function
     Public Function getDateModified(t As String) As Date
-        If IS_SQLSERVER Then
+        If IS_SQLSERVER() Then
             Dim rc As SqlCommand
             rc = New SqlCommand(PROC_DATA_ACTUALITZACIO, DBCONNECT.getConnection)
             rc.CommandType = CommandType.StoredProcedure
@@ -233,7 +228,7 @@ Module DBCONNECT
         Return TAULA_PROVINCIA
     End Function
     Public Function getTaulaTipusPagament() As String
-        Return TAULA_tipus_pagament
+        Return TAULA_TIPUS_PAGAMENT
     End Function
     Public Function getTaulaActualitzacio() As String
         Return TAULA_ACTUALITZACIO
@@ -389,19 +384,22 @@ Module DBCONNECT
         Return True
     End Function
     Private Function getStringConnectionDBF(ruta As String) As String
-        getStringConnectionDBF = "DRIVER=Microsoft Access dBASE Driver (*.dbf, *.ndx, *.mdx);UID = admin;UserCommitSync = Yes;" &
-                                "Threads = 3;" &
-                                "Statistics = 0;" &
-                                "SafeTransactions = 0;" &
-                                "PageTimeout = 600;" &
-                                "MaxScanRows = 8;" &
-                                "MaxBufferSize = 2048;" &
-                                "FIL=dBASE 5.0;" &
-                                "DriverId = 533;" &
-                                "Deleted = 1;" &
-                                "DefaultDir=" & ruta & " ;" &
-                                "DBQ=" & ruta & ";" &
-                                "CollatingSequence = ASCII"
-
+        'If InStr(1, CPU.getCpu, "64", CompareMethod.Text) > 0 Then
+        '    getStringConnectionDBF = "DRIVER=Microsoft Access dBASE Driver (*.dbf, *.ndx, *.mdx);UID = admin;UserCommitSync = Yes;" &
+        '                        "Threads = 3;" &
+        '                        "Statistics = 0;" &
+        '                        "SafeTransactions = 0;" &
+        '                        "PageTimeout = 600;" &
+        '                        "MaxScanRows = 8;" &
+        '                        "MaxBufferSize = 2048;" &
+        '                        "FIL=dBASE 5.0;" &
+        '                        "DriverId = 533;" &
+        '                        "Deleted = 1;" &
+        '                        "DefaultDir=" & ruta & " ;" &
+        '                        "DBQ=" & ruta & ";" &
+        '                        "CollatingSequence = ASCII"
+        'Else
+        getStringConnectionDBF = "Provider=" & PROVIDER_ & ";Data Source=" & ruta & ";Extended Properties=dBASE IV;"
+        'End If
     End Function
 End Module

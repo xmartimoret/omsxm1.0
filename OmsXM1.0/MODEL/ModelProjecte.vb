@@ -109,8 +109,9 @@ Module ModelProjecte
             getDataList.columns.Add(COLUMN.EMPRESA)
             getDataList.columns.Add(COLUMN.CODI)
             getDataList.columns.Add(COLUMN.NOM)
+            getDataList.columns.Add(COLUMN.NOTES)
             For Each p In projectes
-                getDataList.rows.Add(New ListViewItem(New String() {p.id, p.idEmpresa, ModelEmpresa.getNom(p.idEmpresa), p.codi, p.nom}))
+                getDataList.rows.Add(New ListViewItem(New String() {p.id, p.idEmpresa, ModelEmpresa.getNom(p.idEmpresa), p.codi, p.nom, p.notes}))
             Next
         End If
         p = Nothing

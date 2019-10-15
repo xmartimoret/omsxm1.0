@@ -163,7 +163,6 @@
     Private Sub MnuConfigEmpreses_Click(sender As Object, e As EventArgs) Handles MnuConfigEmpreses.Click
         Dim p As SelectEmpreses
         panelData.Controls.Clear()
-        Call DBCONNECT.getConnection()
         p = New SelectEmpreses(1, False, False, IDIOMA.getString("empreses"))
         Call setPanel(p)
 
