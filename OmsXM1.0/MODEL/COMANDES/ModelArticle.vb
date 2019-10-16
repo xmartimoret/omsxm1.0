@@ -20,6 +20,7 @@ Module ModelArticle
                 End If
             End If
         Next
+
     End Function
     Public Function getDataList(articles As List(Of article)) As DataList
         Dim a As article
@@ -42,6 +43,19 @@ Module ModelArticle
             Next
         End If
         a = Nothing
+    End Function
+    Public Function getListStringCodi() As String()
+        Dim ll As List(Of article), o() As String, i As Integer
+        ll = getObjects()
+        If ll.Count > 0 Then
+            ReDim o(ll.Count - 1)
+            For Each t As article In ll
+                o(i) = t.codi
+                i = i + 1
+            Next
+            Return o
+        End If
+        Return Nothing
     End Function
     Public Function getObject(id As Integer) As article
         If Not isUpdated() Then objects = getRemoteObjects()

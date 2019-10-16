@@ -99,7 +99,7 @@
     End Sub
     Private Sub setProveidor(p As Proveidor)
         comandaActual.proveidor = p
-        Call setTipusPagament(p.tipusPagament)
+        If Not IsNothing(comandaActual.proveidor) Then Call setTipusPagament(p.tipusPagament)
     End Sub
     Private Sub setTipusPagament(t As TipusPagament)
         comandaActual.tipusPagament = t
@@ -120,7 +120,9 @@
     Private Sub pComanda_Load(sender As Object, e As EventArgs) Handles Me.Load
         DGVArticles.ContextMenuStrip = Me.mnuContextual
         Call setLanguage()
+
         c7.Items.Clear()
+
         c7.Items.AddRange(ModelTipusIva.getListStringIvaActiva)
         actualitzar = True
         Call setProveidor(comandaActual.proveidor)
@@ -141,7 +143,7 @@
         ByVal sender As Object,
         ByVal e As DataGridViewEditingControlShowingEventArgs) _
             Handles DGVArticles.EditingControlShowing
-        If DGVArticles.CurrentCell.ColumnIndex <> 6 Then
+        If DGVArticles.CurrentCell.ColumnIndex <> 6 And DGVArticles.CurrentCell.ColumnIndex <> 0 Then
             Dim validar As TextBox = CType(e.Control, TextBox)
             ' agregar el controlador de eventos para el KeyPress  
             AddHandler validar.KeyPress, AddressOf validarKeyPress
