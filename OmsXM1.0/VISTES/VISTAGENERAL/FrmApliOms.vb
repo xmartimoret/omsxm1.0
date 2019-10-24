@@ -590,9 +590,9 @@
         p = Nothing
     End Sub
     Private Sub mnuArticles_Click(sender As Object, e As EventArgs) Handles mnuArticles.Click
-        Dim p As pArticles
+        Dim p As pArticlesPreus
         panelData.Controls.Clear()
-        p = New pArticles()
+        p = New pArticlesPreus()
         Call setPanel(p)
     End Sub
 

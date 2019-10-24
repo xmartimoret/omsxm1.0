@@ -176,7 +176,7 @@
     <Compile Include="CLASSES\COMPTABILITAT\Columna.vb" />
     <Compile Include="CLASSES\COMPTABILITAT\ColumnaFilla.vb" />
     <Compile Include="CLASSES\COMUNES\Base.vb" />
-    <Compile Include="CLASSES\COMUNES\ButtonTab.vb">
+    <Compile Include="CLASSES\COMUNES\dgvExtended.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CLASSES\COMUNES\CodiDescripcio.vb" />
@@ -430,6 +430,12 @@
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\SelectPreus.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\pArticles.Designer.vb">
+      <DependentUpon>pArticles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\pArticles.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DArticleComanda.Designer.vb">
       <DependentUpon>DArticleComanda.vb</DependentUpon>
     </Compile>
@@ -466,10 +472,10 @@
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\DArticlePreu.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\pArticles.Designer.vb">
-      <DependentUpon>pArticles.vb</DependentUpon>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\pArticlesPreus.Designer.vb">
+      <DependentUpon>pArticlesPreus.vb</DependentUpon>
     </Compile>
-    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\pArticles.vb">
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\pArticlesPreus.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\SelectArticles.vb">
@@ -1179,6 +1185,9 @@
     <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\DArticles.resx">
       <DependentUpon>DArticles.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\pArticles.resx">
+      <DependentUpon>pArticles.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DArticleComanda.resx">
       <DependentUpon>DArticleComanda.vb</DependentUpon>
     </EmbeddedResource>
@@ -1197,8 +1206,8 @@
     <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\DArticlePreu.resx">
       <DependentUpon>DArticlePreu.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\pArticles.resx">
-      <DependentUpon>pArticles.vb</DependentUpon>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\pArticlesPreus.resx">
+      <DependentUpon>pArticlesPreus.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VISTES\COMU\panelDesplagable.resx">
       <DependentUpon>panelDesplagable.vb</DependentUpon>

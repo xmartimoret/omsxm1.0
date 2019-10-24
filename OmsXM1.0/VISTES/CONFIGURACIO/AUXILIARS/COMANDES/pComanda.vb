@@ -81,6 +81,8 @@
         DGVArticles.Columns(6).HeaderText = IDIOMA.getString("iva")
         DGVArticles.Columns(7).HeaderText = IDIOMA.getString("total")
     End Sub
+
+
     Private Sub validatecontrols()
         If articleComandaActual IsNot Nothing Then
             cmdModificar.Enabled = True
@@ -169,7 +171,10 @@
         End If
     End Sub
 
-
+    ' DGVARTICLES
+    Private Sub DGVArticles_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGVArticles.CellContentClick
+        Call validatecontrols()
+    End Sub
     Private Sub DGVArticles_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles DGVArticles.CellValueChanged
         If actualitzar Then
             Dim columna As Integer = DGVArticles.CurrentCell.ColumnIndex
@@ -177,6 +182,19 @@
                 DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(7).Value = DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(1).Value * DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(4).Value - DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(4).Value * (DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(5).Value / 100)
             End If
             Call validatecontrols()
+        End If
+    End Sub
+    Private Sub DGVArticles_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DGVArticles.CellEndEdit
+        Dim a As article
+        If actualitzar Then
+            If DGVArticles.CurrentCell.ColumnIndex = 0 Then
+                If Not IsNothing(DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(0).Value) Then
+                    a = ModelArticle.getObject(DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(0).Value)
+                    If Not IsNothing(a) Then
+                        Call setArticle()
+                    End If
+                End If
+            End If
         End If
     End Sub
 
@@ -240,9 +258,6 @@
         ac = Nothing
     End Sub
 
-    Private Sub DGVArticles_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGVArticles.CellContentClick
-        Call validatecontrols()
-    End Sub
 
     Private Sub pComanda_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         Panel7.Width = Me.Width / 3 - (20)
@@ -250,6 +265,14 @@
         Panel8.Width = Panel7.Width
         Panel6.Left = Panel7.Left + Panel7.Width + 10
         Panel8.Left = Panel6.Left + Panel6.Width + 10
+        DGVArticles.Columns(0).Width = DGVArticles.Width * 0.15
+        DGVArticles.Columns(1).Width = DGVArticles.Width * 0.05
+        DGVArticles.Columns(2).Width = DGVArticles.Width * 0.05
+        DGVArticles.Columns(3).Width = DGVArticles.Width * 0.4
+        DGVArticles.Columns(4).Width = DGVArticles.Width * 0.1
+        DGVArticles.Columns(5).Width = DGVArticles.Width * 0.05
+        DGVArticles.Columns(6).Width = DGVArticles.Width * 0.05
+        DGVArticles.Columns(7).Width = DGVArticles.Width * 0.15
     End Sub
 
     Private Sub cmdValidar_Click(sender As Object, e As EventArgs) Handles cmdValidar.Click
@@ -257,6 +280,9 @@
 
         End If
     End Sub
+
+
+
     Private Function validarComanda() As Boolean
         Dim isEmpresa As Boolean, isProjecte As Boolean, isContacte As Boolean, isMagatzem As Boolean, isProveidor As Boolean, isContacteProveidor As Boolean
         Dim avisos As String = "", errors As String = ""

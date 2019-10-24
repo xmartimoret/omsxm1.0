@@ -4,6 +4,7 @@
     Public Property unitat As Unitat
     Public Property fabricant As Fabricant
     Public Property iva As TipusIva
+    Public Property preusProveidors As List(Of ArticlePreu)
     Public Sub New()
         _familia = New Familia
         _unitat = New Unitat
@@ -49,6 +50,25 @@
         copy.unitat = _unitat
         copy.fabricant = _fabricant
         copy.iva = _iva
+    End Function
+    Public Function getUltimPreu(idProveidor As Integer) As ArticlePreu
+        Dim ap As ArticlePreu, temp As ArticlePreu
+        temp = Nothing
+        For Each ap In preusProveidors
+            If ap.idProveidor = idProveidor Then
+                If IsNothing(temp) Then
+                    temp = ap
+                Else
+                    If temp.data <= ap.idProveidor Then
+
+                        temp = ap
+                    End If
+                End If
+            End If
+        Next
+        getUltimPreu = temp
+        temp = Nothing
+        ap = Nothing
     End Function
     Protected Overrides Sub Finalize()
         _familia = Nothing

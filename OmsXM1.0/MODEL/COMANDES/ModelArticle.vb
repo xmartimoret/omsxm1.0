@@ -61,7 +61,10 @@ Module ModelArticle
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Find(Function(x) x.id = id)
     End Function
-
+    Public Function getObject(r As String) As article
+        If Not isUpdated() Then objects = getRemoteObjects()
+        Return objects.Find(Function(x) x.codi = r)
+    End Function
     Public Function getCodiUnitat(id As Integer) As String
         Dim u As Unitat
         getCodiUnitat = ""

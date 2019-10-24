@@ -10,6 +10,7 @@ Public Class DArticles
         getArticle = articleActual
         Me.Dispose()
     End Function
+
     Public Sub New()
         InitializeComponent()
         articles = New pArticles()
@@ -25,6 +26,8 @@ Public Class DArticles
         articles.Dock = DockStyle.Fill
         AddHandler articles.selectArticles, AddressOf getArticle
         Me.Controls.Add(articles)
+        articles.Show()
+
     End Sub
     Private Sub getArticle(a As article)
         Me.DialogResult = DialogResult.OK
