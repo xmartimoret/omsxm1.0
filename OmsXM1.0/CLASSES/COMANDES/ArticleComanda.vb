@@ -4,7 +4,7 @@
     Public Property pos As Integer
     Public Property quantitat As Decimal
     Public Property unitat As Unitat
-    Public Property article As article 'referencia, descripcio, preu, descompte, iva
+    Private Property _article As article 'referencia, descripcio, preu, descompte, iva
     Public Property preu As ArticlePreu
     Public Property tIva As TipusIva
 
@@ -74,9 +74,17 @@
         copy.tIva = _tIva
 
     End Function
-
-
-
+    Public Property article() As article
+        Get
+            Return _article
+        End Get
+        Set(value As article)
+            _article = value
+            _unitat = value.unitat
+            nom = value.nom
+            codi = value.codi
+        End Set
+    End Property
     ' nota ens cal tenir una referencia generica * i pot haver-hi dos o mes proveidors amb el mateix article. llavors a l'escollir 
     ' l'article per referencia ens cal presentar les opcions.
     ' nota. ens ha de deixar modificar la descripció de l'article, el preu el descompte i l'iva. 

@@ -29,6 +29,7 @@
         AddHandler panelArticles.selectObject, AddressOf getArticle
         panelArticles.Dock = DockStyle.Fill
         panelArticles.Show()
+        Me.Controls.Add(panelArticles)
     End Sub
     Private Sub getArticle(a As article)
         articleActual = a

@@ -191,6 +191,8 @@
                 If Not IsNothing(DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(0).Value) Then
                     a = ModelArticle.getObject(DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(0).Value)
                     If Not IsNothing(a) Then
+                        articleComandaActual = New articleComanda
+                        articleComandaActual.article = a
                         Call setArticle()
                     End If
                 End If
