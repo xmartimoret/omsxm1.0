@@ -3,7 +3,7 @@ Imports OmsXM.dbProjecte
 Module ModelProjecte
     Private objects As List(Of Projecte)
     Private dateUpdate As DateTime
-    Private Const N_COLUMNS As Integer = 5
+    Private Const N_COLUMNS As Integer = 7
     Public Function getObject(id As Integer) As Projecte
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Find(Function(x) x.id = id)
@@ -110,8 +110,10 @@ Module ModelProjecte
             getDataList.columns.Add(COLUMN.CODI)
             getDataList.columns.Add(COLUMN.NOM)
             getDataList.columns.Add(COLUMN.NOTES)
+            getDataList.columns.Add(COLUMN.GENERICA("responsable", 300, HorizontalAlignment.Center))
+            getDataList.columns.Add(COLUMN.GENERICA("director", 300, HorizontalAlignment.Center))
             For Each p In projectes
-                getDataList.rows.Add(New ListViewItem(New String() {p.id, p.idEmpresa, ModelEmpresa.getNom(p.idEmpresa), p.codi, p.nom, p.notes}))
+                getDataList.rows.Add(New ListViewItem(New String() {p.id, p.idEmpresa, ModelEmpresa.getNom(p.idEmpresa), p.codi, p.nom, p.notes, p.responsable, p.director}))
             Next
         End If
         p = Nothing
@@ -163,3 +165,4 @@ Module ModelProjecte
     End Function
 
 End Module
+

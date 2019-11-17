@@ -196,7 +196,6 @@
             idActual = Val(lstData.SelectedItems(0).Text)
             If accio = 0 Then
                 Call seleccionar(idsActual)
-
                 If isForm Then
                     Me.Parent.Parent.Dispose()
                 Else

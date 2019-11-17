@@ -880,6 +880,12 @@
     <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectes\DProjecte.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\DProjecteResponsables.Designer.vb">
+      <DependentUpon>DProjecteResponsables.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\DProjecteResponsables.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="VISTES\CONFIGURACIO\PROJECTES\projectes\DProjectes.Designer.vb">
       <DependentUpon>DProjectes.vb</DependentUpon>
     </Compile>
@@ -1373,6 +1379,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VISTES\CONFIGURACIO\PROJECTES\projectes\DProjecte.resx">
       <DependentUpon>DProjecte.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\DProjecteResponsables.resx">
+      <DependentUpon>DProjecteResponsables.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VISTES\CONFIGURACIO\PROJECTES\projectes\DProjectes.resx">
       <DependentUpon>DProjectes.vb</DependentUpon>

@@ -4,6 +4,8 @@
     Public Property toStringEmpresa As String
     Public Property magatzems As List(Of projecteEntrega)
     Public Property contactes As List(Of ProjecteContacte)
+    Public Property responsable As String
+    Public Property director As String
     Public Sub New()
         _magatzems = New List(Of projecteEntrega)
         _contactes = New List(Of ProjecteContacte)
@@ -29,7 +31,19 @@
         _magatzems = New List(Of projecteEntrega)
         _contactes = New List(Of ProjecteContacte)
     End Sub
-
+    Public Sub New(pId As Integer, pIdEmpresa As Integer, pOrdre As String, pCodi As String, pNom As String, pNotes As String, pToStringEmpresa As String, pResponsable As String, pDirector As String)
+        Me.id = pId
+        _idEmpresa = pIdEmpresa
+        Me.ordre = pOrdre
+        Me.codi = pCodi
+        Me.nom = pNom
+        Me.notes = pNotes
+        Me.responsable = pResponsable
+        Me.director = pDirector
+        _toStringEmpresa = pToStringEmpresa
+        _magatzems = New List(Of projecteEntrega)
+        _contactes = New List(Of ProjecteContacte)
+    End Sub
 
 
     Public ReadOnly Property copy As Projecte
@@ -44,6 +58,9 @@
             copy.toStringEmpresa = _toStringEmpresa
             copy.magatzems = _magatzems
             copy.contactes = _contactes
+            copy.responsable = _responsable
+            copy.director = _director
+
         End Get
     End Property
     Protected Overrides Sub Finalize()

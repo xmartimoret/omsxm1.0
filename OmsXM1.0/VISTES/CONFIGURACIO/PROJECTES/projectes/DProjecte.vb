@@ -31,6 +31,8 @@ Public Class DProjecte
         cbEmpresa.SelectedIndex = getIdEmpresa()
         txtNom.Text = projecteActual.nom
         txtNotes.Text = projecteActual.notes
+        txtReponsable.Text = projecteActual.responsable
+        txtDirector.Text = projecteActual.director
     End Sub
     Private Sub setLanguage()
         Me.lblCodi.Text = IDIOMA.getString("codi")
@@ -43,6 +45,8 @@ Public Class DProjecte
         Me.cmdGuardar.Text = IDIOMA.getString("cmdGuardar")
         Me.cmdCancelar.Text = IDIOMA.getString("cmdCancelar")
         Me.lblNotes.Text = IDIOMA.getString("notes")
+        Me.lblDirector.Text = IDIOMA.getString("director")
+        Me.lblResponsable.Text = IDIOMA.getString("responsable")
     End Sub
     Private Sub validateControls()
         Me.lblErrEmpresa.Visible = False
@@ -82,6 +86,9 @@ Public Class DProjecte
         getData.nom = txtNom.Text
         getData.notes = txtNotes.Text
         getData.toStringEmpresa = cbEmpresa.Text
+        getData.responsable = txtReponsable.Text
+        getData.director = txtDirector.Text
+
     End Function
 
 

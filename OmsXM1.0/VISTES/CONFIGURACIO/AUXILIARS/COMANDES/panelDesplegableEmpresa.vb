@@ -56,6 +56,7 @@
         Me.lblContacte.Text = IDIOMA.getString("contacte") & ":"
         Me.lblMagatzem.Text = IDIOMA.getString("magatzem") & ":"
         Me.lblProvincia.Text = IDIOMA.getString("provincia") & ":"
+        Me.lblResponsables.Text = IDIOMA.getString("responsables") & ":"
     End Sub
     Private Sub validateControls()
 
@@ -66,6 +67,9 @@
             txtCodiPostal.Enabled = False
             listProvincies.cb.Enabled = False
             txtEmail.Enabled = False
+            txtDirector.Enabled = False
+            txtResponsable.Enabled = False
+
         Else
             cbProjecte.Enabled = True
             txtDireccio.Enabled = True
@@ -73,6 +77,8 @@
             txtCodiPostal.Enabled = True
             listProvincies.cb.Enabled = True
             txtEmail.Enabled = True
+            txtDirector.Enabled = True
+            txtResponsable.Enabled = True
         End If
     End Sub
     Private Sub setEmpresa()
@@ -116,6 +122,9 @@
         Me.panelProvincia.Controls.Clear()
         listProvincies.Dock = DockStyle.Fill
         Me.panelProvincia.Controls.Add(listProvincies)
+        txtResponsable.Text = projecteActual.responsable
+        txtDirector.Text = projecteActual.director
+
         Call validateControls()
     End Sub
     Private Sub setLlocEntrega()
@@ -157,6 +166,8 @@
             e.KeyChar = VALIDAR.texte(e.KeyChar, sender.Text.length, 49)
         ElseIf sender.Equals(txtTelefon) Then
             e.KeyChar = VALIDAR.texte(e.KeyChar, sender.Text.length, 15)
+        ElseIf sender.Equals(txtDirector) Or sender.Equals(txtResponsable) Then
+            e.KeyChar = VALIDAR.texte(e.KeyChar, sender.Text.length, 100)
         Else
             e.KeyChar = VALIDAR.texte(e.KeyChar, sender.Text.length, 254)
         End If
@@ -293,6 +304,8 @@
             Me.txtPoblacio.Text = ""
             Me.txtTelefon.Text = ""
             Me.txtEmail.Text = ""
+            Me.txtResponsable.Text = ""
+            Me.txtDirector.Text = ""
         End If
         Call validateControls()
     End Sub
@@ -309,6 +322,8 @@
                 Me.txtPoblacio.Text = ""
                 Me.txtTelefon.Text = ""
                 Me.txtEmail.Text = ""
+                Me.txtResponsable.Text = ""
+                Me.txtDirector.Text = ""
             End If
         End If
     End Sub
@@ -329,7 +344,9 @@
                                                                          panelProvincia.KeyDown,
                                                                          PanelContacte.KeyDown,
                                                                          txtTelefon.KeyDown,
-                                                                         txtEmail.KeyDown
+                                                                         txtEmail.KeyDown,
+                                                                         txtDirector.KeyDown,
+                                                                         txtResponsable.KeyDown
 
         If e.KeyValue = Keys.Enter Or e.KeyValue = Keys.Down Then
             e.Handled = False
@@ -349,6 +366,8 @@
         getControls.Add(PanelContacte)
         getControls.Add(txtTelefon)
         getControls.Add(txtEmail)
+        getControls.Add(txtResponsable)
+        getControls.Add(txtDirector)
     End Function
     Private Sub getTab(sender As Object, p As Integer)
         Dim i As Integer

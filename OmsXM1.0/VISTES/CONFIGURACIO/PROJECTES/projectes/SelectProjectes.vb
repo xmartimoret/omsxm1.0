@@ -55,7 +55,10 @@ Public Class SelectProjectes
     End Function
 
     Public Overrides Function modificar(id As Integer) As Integer
+
         Return save(DProjecte.getProjecte(ModelProjecte.getObject(id)))
+
+
     End Function
 
     Public Overrides Function seleccionar(ids As List(Of Integer)) As Boolean

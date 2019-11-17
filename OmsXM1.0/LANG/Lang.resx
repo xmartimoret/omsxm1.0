@@ -3353,4 +3353,13 @@
     <value>CREAR NOVA COMANDA. ESCOLLIR ... </value>
     <comment>dNovaComanda</comment>
   </data>
+  <data name="director" xml:space="preserve">
+    <value>DIRECTOR</value>
+  </data>
+  <data name="responsable" xml:space="preserve">
+    <value>RESPONSABLE</value>
+  </data>
+  <data name="responsables" xml:space="preserve">
+    <value>RESP/DIR</value>
+  </data>
 </root>

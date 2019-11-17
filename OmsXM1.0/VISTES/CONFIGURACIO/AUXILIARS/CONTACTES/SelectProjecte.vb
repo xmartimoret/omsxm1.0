@@ -12,4 +12,18 @@
         RaiseEvent selectObject(ModelProjecte.getObject(id))
         Return True
     End Function
+
+    Public Overrides Function modificar(id As Integer) As Integer
+        Return save(DProjecteResponsables.getProjecte(ModelProjecte.getObject(id)))
+    End Function
+    Private Function save(obj As Projecte) As Integer
+        If Not obj Is Nothing Then
+            If Not ModelProjecte.exist(obj) Then
+                Return ModelProjecte.save(obj)
+            Else
+                Throw New ExcepcioSql(ExcepcioSql.ERR_EXIST_CODI_REGISTRE)
+            End If
+        End If
+        Return False
+    End Function
 End Class

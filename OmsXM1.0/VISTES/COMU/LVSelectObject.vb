@@ -8,7 +8,9 @@
         InitializeComponent()
         Me.lstData.Columns.Clear()
     End Sub
+
     Public MustOverride Function seleccionar(id As Integer) As Boolean
+    Public MustOverride Function modificar(id As Integer) As Integer
     Public MustOverride Function filtrar(txt As String) As DataList
     Private Sub setLanguage()
         Me.lblFiltrar.Text = IDIOMA.getString("filtrarPer")
@@ -101,4 +103,11 @@
         Next
         Return True
     End Function
+
+    Private Sub lstData_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles lstData.MouseDoubleClick
+        If lstData.SelectedItems.Count > 0 Then
+            idActual = Val(lstData.SelectedItems(0).Text)
+            Call modificar(idActual)
+        End If
+    End Sub
 End Class

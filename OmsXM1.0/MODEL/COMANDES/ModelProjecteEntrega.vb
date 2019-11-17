@@ -18,11 +18,13 @@ Module ModelProjecteEntrega
             getDataList.columns.Add(COLUMN.ESTAT)
             For Each pc In entregues
                 c = ModelLlocEntrega.getObject(pc.idEntrega)
-                If c.provincia Is Nothing Then c.provincia = New Provincia
-                If c.estat Then
-                    getDataList.rows.Add(New ListViewItem(New String() {c.id, c.nom, c.poblacio, c.provincia.nom, IDIOMA.getString("actiu")}))
-                Else
-                    getDataList.rows.Add(New ListViewItem(New String() {c.id, c.nom, c.poblacio, c.provincia.nom, IDIOMA.getString("noActiu")}))
+                If Not IsNothing(c) Then
+                    If c.provincia Is Nothing Then c.provincia = New Provincia
+                    If c.estat Then
+                        getDataList.rows.Add(New ListViewItem(New String() {c.id, c.nom, c.poblacio, c.provincia.nom, IDIOMA.getString("actiu")}))
+                    Else
+                        getDataList.rows.Add(New ListViewItem(New String() {c.id, c.nom, c.poblacio, c.provincia.nom, IDIOMA.getString("noActiu")}))
+                    End If
                 End If
             Next
         End If
