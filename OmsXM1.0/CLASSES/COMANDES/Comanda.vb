@@ -1,5 +1,6 @@
 ﻿Public Class Comanda
     Inherits Base
+    Private Const delimitador As String = ";"
     Friend Property empresa As Empresa
     Friend Property proveidor As Proveidor
     Friend Property contacteProveidor As ProveidorCont
@@ -75,4 +76,5 @@
         Next
         Return suma
     End Function
+
 End Class

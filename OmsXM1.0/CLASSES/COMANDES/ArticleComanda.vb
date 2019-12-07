@@ -8,6 +8,7 @@
     Public Property preu As ArticlePreu
     Public Property tIva As TipusIva
 
+
     Public Sub New()
         _article = New article
         _preu = New ArticlePreu

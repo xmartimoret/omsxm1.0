@@ -64,6 +64,9 @@
     Public Overrides Function tostring() As String
         Return Me.nom & " " & _cognom1 & " " & _cognom2
     End Function
+    Public Function toTarget() As String
+        Return _telefon & "-" & _email
+    End Function
     Protected Overrides Sub Finalize()
         _pais = Nothing
         _provincia = Nothing

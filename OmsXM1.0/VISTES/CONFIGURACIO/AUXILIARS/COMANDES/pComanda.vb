@@ -1,5 +1,4 @@
 ﻿Public Class pComanda
-
     Private panelProv As panelDesplagableProveidor
     ' Private listProveidor As lstProveidor
     Private comandaActual As Comanda
@@ -35,6 +34,7 @@
         panelProv.setAccio()
         panelEmpr.setAccio()
         panelComanda.setAccio()
+        lblEstatComanda.Text = IDIOMA.getString("nova")
     End Sub
     Public Sub New(p As Comanda)
         actualitzar = False
@@ -42,9 +42,9 @@
         InitializeComponent()
         comandaActual = p
         'listProveidor = New lstProveidor(Nothing)
-        panelProv = New panelDesplagableProveidor(Me.Height * 0.5, "p", comandaActual.proveidor)
-        panelEmpr = New panelDesplegableEmpresa(Me.Height * 0.5, "e", comandaActual.empresa, comandaActual.projecte)
-        panelComanda = New panelDesplegableComanda(Me.Height * 0.5, "c", comandaActual)
+        panelProv = New panelDesplagableProveidor(Me.Height * 0.4, "p", comandaActual.proveidor)
+        panelEmpr = New panelDesplegableEmpresa(Me.Height * 0.4, "e", comandaActual.empresa, comandaActual.projecte)
+        panelComanda = New panelDesplegableComanda(Me.Height * 0.4, "c", comandaActual)
         AddHandler panelProv.accioMostrar, AddressOf setAccio
         AddHandler panelEmpr.accioMostrar, AddressOf setAccio
         AddHandler panelComanda.accioMostrar, AddressOf setAccio
@@ -84,13 +84,27 @@
 
 
     Private Sub validatecontrols()
-        If articleComandaActual IsNot Nothing Then
-            cmdModificar.Enabled = True
-            cmdEliminar.Enabled = True
+        If panelProv.proveidorActual Is Nothing Then
+            Call setPanelArticles(False)
         Else
-            cmdModificar.Enabled = False
-            cmdEliminar.Enabled = False
+            Call setpanelArticles(True)
         End If
+
+        If articleComandaActual IsNot Nothing Then
+            cmdModificarArticle.Enabled = True
+            cmdEliminarArticle.Enabled = True
+        Else
+            cmdModificarArticle.Enabled = False
+            cmdEliminarArticle.Enabled = False
+        End If
+    End Sub
+    Private Sub setPanelArticles(activar As Boolean)
+        cmdAfegirArticle.Enabled = activar
+        cmdCercadorArticle.Enabled = activar
+        cmdEliminarArticle.Enabled = activar
+        cmdModificarArticle.Enabled = activar
+        txtFiltrarArticle.Enabled = activar
+        DGVArticles.Enabled = activar
     End Sub
     Private Sub setAccio()
         Dim mida As Decimal
@@ -108,9 +122,6 @@
         panelComanda.listCondicionsPagament.cb.SelectedItem = t
     End Sub
     Private Sub Boto1_Click(sender As Object, e As EventArgs)
-        Call panelProv.gravarDades()
-        Call panelEmpr.gravarDades()
-
     End Sub
 
     Private Sub mnuEliminar_Click(sender As Object, e As EventArgs) Handles mnuEliminar.Click
@@ -145,7 +156,7 @@
         ByVal sender As Object,
         ByVal e As DataGridViewEditingControlShowingEventArgs) _
             Handles DGVArticles.EditingControlShowing
-        If DGVArticles.CurrentCell.ColumnIndex <> 6 And DGVArticles.CurrentCell.ColumnIndex <> 0 Then
+        If DGVArticles.CurrentCell.ColumnIndex <> 6 Then
             Dim validar As TextBox = CType(e.Control, TextBox)
             ' agregar el controlador de eventos para el KeyPress  
             AddHandler validar.KeyPress, AddressOf validarKeyPress
@@ -159,15 +170,9 @@
 
         ' comprobar si la celda en edición corresponde a la columna 1 o 3  
         If columna = 1 Or columna = 4 Or columna = 5 Then
-
             ' Obtener caracter  
             Dim caracter As Char = e.KeyChar
             e.KeyChar = VALIDAR.DecimalNegatiu(e.KeyChar, sender.text, sender.selectionstart, sender.text.length, 10, 3)
-            ' comprobar si el caracter es un número o el retroceso  
-            'If Not Char.IsNumber(caracter) And (caracter = ChrW(Keys.Back)) = False Then
-            '    'Me.Text = e.KeyChar  
-            '    e.KeyChar = Chr(0)
-            'End If
         End If
     End Sub
 
@@ -180,6 +185,8 @@
             Dim columna As Integer = DGVArticles.CurrentCell.ColumnIndex
             If columna = 1 Or columna = 4 Or columna = 5 Then
                 DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(7).Value = DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(1).Value * DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(4).Value - DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(4).Value * (DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(5).Value / 100)
+            Else
+
             End If
             Call validatecontrols()
         End If
@@ -200,9 +207,9 @@
         End If
     End Sub
 
-    Private Sub cmdCercador_Click(sender As Object, e As EventArgs) Handles cmdCercador.Click
+    Private Sub cmdCercador_Click(sender As Object, e As EventArgs) Handles cmdCercadorArticle.Click
         Dim a As article
-        a = DArticles.getArticle(True, txtFiltrar.Text)
+        a = DArticles.getArticle(True, txtFiltrarArticle.Text)
         If a IsNot Nothing Then
             articleComandaActual = New articleComanda(-1, comandaActual.id, DGVArticles.Rows.Count, a.nom)
             articleComandaActual.article = a
@@ -239,7 +246,7 @@
         DGVArticles.Rows.Add()
     End Sub
 
-    Private Sub cmdAfegir_Click(sender As Object, e As EventArgs) Handles cmdAfegir.Click
+    Private Sub cmdAfegir_Click(sender As Object, e As EventArgs) Handles cmdAfegirArticle.Click
         Dim ac As articleComanda, d As DArticleComanda
         d = New DArticleComanda
         ac = d.getNewArticle(comandaActual.proveidor)
@@ -250,7 +257,7 @@
         ac = Nothing
     End Sub
 
-    Private Sub cmdModificar_Click(sender As Object, e As EventArgs) Handles cmdModificar.Click
+    Private Sub cmdModificar_Click(sender As Object, e As EventArgs) Handles cmdModificarArticle.Click
         Dim ac As articleComanda
         ac = DArticleComanda.getArticle(articleComandaActual, comandaActual.proveidor)
         If ac IsNot Nothing Then
@@ -283,6 +290,15 @@
         End If
     End Sub
 
+
+    Private Sub DGVArticles_CellValuePushed(sender As Object, e As DataGridViewCellValueEventArgs) Handles DGVArticles.CellValuePushed
+        Dim columna As Integer = DGVArticles.CurrentCell.ColumnIndex
+        If columna = 0 Then
+            If Len(DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(0).Value) > 1 Then
+
+            End If
+        End If
+    End Sub
 
 
     Private Function validarComanda() As Boolean

@@ -242,6 +242,7 @@
     <Compile Include="MODEL\COMANDES\ModelArticleComanda.vb" />
     <Compile Include="MODEL\COMANDES\ModelArticlePreu.vb" />
     <Compile Include="MODEL\COMANDES\ModelComanda.vb" />
+    <Compile Include="MODEL\COMANDES\ModelComandaFitxer.vb" />
     <Compile Include="MODEL\COMANDES\ModelLlocEntrega.vb" />
     <Compile Include="MODEL\COMANDES\ModelProjecteContacte.vb" />
     <Compile Include="MODEL\COMANDES\ModelProjecteEntrega.vb" />

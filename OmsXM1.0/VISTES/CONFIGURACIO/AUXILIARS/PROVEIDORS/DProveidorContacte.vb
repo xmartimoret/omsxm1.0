@@ -171,4 +171,8 @@ Public Class DProveidorContacte
         provincies = Nothing
         MyBase.Finalize()
     End Sub
+
+    Private Sub lblIdCaption_Click(sender As Object, e As EventArgs) Handles lblIdCaption.Click
+
+    End Sub
 End Class

@@ -182,6 +182,16 @@ Module CONFIG
         If Right(getRutaBDRemote, 1) <> "\" Then getRutaBDRemote = getRutaBDRemote & "\"
         getRutaBDRemote = getRutaBDRemote & nomTaula
     End Function
+    Public Function getRutaComandesEnEdicio() As String
+        Dim rutaDb As String
+        rutaDb = setseparator(getRutaBDRemote())
+        If folderExist(rutaDb) Then
+            rutaDb = rutaDb & "COMANDES\"
+            If Not folderExist(rutaDb) Then Call MkDir(rutaDb)
+            Return rutaDb
+        End If
+        Return Nothing
+    End Function
     Public Function getDirectoriAssentaments() As String
         getDirectoriAssentaments = setFolder(getDirectoriAplicacio())
         getDirectoriAssentaments = getDirectoriAssentaments & "assentaments"
@@ -568,5 +578,8 @@ Module CONFIG
             IS_SQLSERVER = False
         End If
     End Function
-
+    Public Function setSeparator(p As String) As String
+        If Strings.Right(p, 1) <> "\" Then Return p & "\"
+        Return p
+    End Function
 End Module

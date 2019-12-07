@@ -220,6 +220,4 @@ Public Class DProveidor
 
         MyBase.Finalize()
     End Sub
-
-
 End Class

@@ -19,6 +19,7 @@ Public Class DArticleComanda
     Public Function getNewArticle(pProveidor As Proveidor) As articleComanda
         articleComandaActual = New articleComanda
         proveidorActual = pProveidor
+
         Me.Text = IDIOMA.getString("afegirNouArticle") & " " & proveidorActual.ToString
         Call setLanguage()
         Call setPanels()

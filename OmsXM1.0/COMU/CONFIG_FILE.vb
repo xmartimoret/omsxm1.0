@@ -74,7 +74,7 @@ Module CONFIG_FILE
         Dim result As String = ""
         Try
             Dim config_file = ConfigurationManager.OpenExeConfiguration(Application.StartupPath & "\" & System.IO.Path.GetFileName(Application.ExecutablePath))
-            'Dim config_file = ConfigurationManager.OpenExeConfiguration(CONFIG.getDirectoriAplicacio & "\" & System.IO.Path.GetFileName(Application.ExecutablePath))
+            'Dim config_file = ConfigurationManager.ExeConfiguration(CONFIG.getDirectoriAplicacio & "\" & System.IO.Path.GetFileName(Application.ExecutablePath))
             Dim appSettins = config_file.AppSettings
             Dim settings = config_file.AppSettings.Settings
             'result = appSettins(key)

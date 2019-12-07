@@ -78,6 +78,9 @@
     Public Overrides Function toString() As String
         Return _departament & " " & Me.nom
     End Function
+    Public Function toTarget() As String
+        Return _telefon1 & "-" & _email
+    End Function
     Protected Overrides Sub Finalize()
         pais = Nothing
         provincia = Nothing
