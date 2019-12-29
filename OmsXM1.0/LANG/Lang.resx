@@ -3365,4 +3365,35 @@
   <data name="nova" xml:space="preserve">
     <value>NOVA</value>
   </data>
+  <data name="contacteProjecte" xml:space="preserve">
+    <value>CONTACTE.PROJECTE</value>
+    <comment>comanda</comment>
+  </data>
+  <data name="crearComanda" xml:space="preserve">
+    <value>CREAR COMANDA</value>
+    <comment>pcomanda</comment>
+  </data>
+  <data name="dataComanda" xml:space="preserve">
+    <value>DATA.COMANDA</value>
+    <comment>comanda</comment>
+  </data>
+  <data name="magatzemProjecte" xml:space="preserve">
+    <value>MAGATZEM.PROJECTE</value>
+    <comment>comanda</comment>
+  </data>
+  <data name="projecteEmpresa" xml:space="preserve">
+    <value>PROJ.EMPRESA</value>
+    <comment>comanda</comment>
+  </data>
+  <data name="estatComanda" xml:space="preserve">
+    <value>ESTAT COMANDA</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="departamentOcontacte" xml:space="preserve">
+    <value>(Departament o Contacte)</value>
+  </data>
+  <data name="nomContacte" xml:space="preserve">
+    <value>NOM CONTACTE</value>
+    <comment>DProveidorContacte</comment>
+  </data>
 </root>

@@ -84,7 +84,7 @@ Module dbProjecte
         sc = New SqlCommand("Select * FROM " & getTable(), DBCONNECT.getConnection)
         sdr = sc.ExecuteReader
         While sdr.Read()
-            dades.Add(New Projecte(sdr(ID), sdr(ID_EMPRESA), Trim(sdr(CODI)), Trim(sdr(CODI)), Trim(sdr(NOM)), "", ModelEmpresa.getObject(sdr(ID_EMPRESA)).ToString, Trim(sdr(RESPONSABLE)), Trim(sdr(DIRECTOR))))
+            dades.Add(New Projecte(sdr(ID), sdr(ID_EMPRESA), Trim(sdr(CODI)), Trim(sdr(CODI)), Trim(sdr(NOM)), "", ModelEmpresa.getObject(sdr(ID_EMPRESA)).ToString, Trim(CONFIG.validarNull(sdr(RESPONSABLE))), Trim(CONFIG.validarNull(sdr(DIRECTOR)))))
         End While
         sdr.Close()
         sdr = Nothing

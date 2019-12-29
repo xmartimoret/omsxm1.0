@@ -311,10 +311,10 @@ Partial Class panelDesplegableComanda
         Me.lblComanda.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblComanda.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblComanda.ForeColor = System.Drawing.Color.Black
-        Me.lblComanda.Location = New System.Drawing.Point(21, 10)
+        Me.lblComanda.ForeColor = System.Drawing.Color.Blue
+        Me.lblComanda.Location = New System.Drawing.Point(32, 10)
         Me.lblComanda.Name = "lblComanda"
-        Me.lblComanda.Size = New System.Drawing.Size(397, 18)
+        Me.lblComanda.Size = New System.Drawing.Size(386, 18)
         Me.lblComanda.TabIndex = 80
         Me.lblComanda.Text = "Lblright1"
         Me.lblComanda.TextAlign = System.Drawing.ContentAlignment.MiddleLeft

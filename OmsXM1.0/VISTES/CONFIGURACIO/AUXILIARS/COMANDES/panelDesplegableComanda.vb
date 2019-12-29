@@ -3,10 +3,11 @@
     Private textToolTip As String
     Private comandaActual As Comanda
     Friend listCondicionsPagament As lstAuxiliars1
-    Private dataComanda As SelectDia
-    Private dataEntregaEquips As SelectDia
-    Private dataMuntatgeEquips As SelectDia
+    Private panelDataComanda As SelectDia
+    Private panelDataEntregaEquips As SelectDia
+    Private PanelDataMuntatgeEquips As SelectDia
     Friend Event accioMostrar()
+    Friend Event selectObject()
     Private actualitzar As Boolean
     Private elements As List(Of Control)
 
@@ -49,7 +50,7 @@
         Me.lblPorts.Text = IDIOMA.getString("ports")
     End Sub
     Private Sub setData()
-        Me.lblComanda.Text = IDIOMA.getString("nComanda") & ": " & comandaActual.codi
+        Me.lblComanda.Text = comandaActual.codi
         Me.txtPorts.Text = comandaActual.ports
         Me.txtDadesBancaries.Text = comandaActual.dadesBancaries
         Me.txtOferta.Text = comandaActual.nOferta
@@ -58,25 +59,33 @@
     End Sub
     Private Sub PanelDadesComanda_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call setLanguage()
-        dataComanda = New SelectDia(comandaActual.data, IDIOMA.getString("escollirData"))
-        dataEntregaEquips = New SelectDia(comandaActual.dataEntrega, IDIOMA.getString("escollirData"))
-        dataMuntatgeEquips = New SelectDia(comandaActual.dataMuntatge, IDIOMA.getString("escollirData"))
+        panelDataComanda = New SelectDia(comandaActual.data, IDIOMA.getString("escollirData"))
+        AddHandler panelDataComanda.selectObject, AddressOf setDate
+        panelDataEntregaEquips = New SelectDia(comandaActual.dataEntrega, IDIOMA.getString("escollirData"))
+        PanelDataMuntatgeEquips = New SelectDia(comandaActual.dataMuntatge, IDIOMA.getString("escollirData"))
         listCondicionsPagament = New lstAuxiliars1(comandaActual.tipusPagament, DBCONNECT.getTaulaTipusPagament)
+        AddHandler listCondicionsPagament.selectObject, AddressOf setCondicions
         Me.PanelDate.Controls.Clear()
         Me.panelDataEquips.Controls.Clear()
         Me.panelDataMuntatge.Controls.Clear()
         Me.panelCondicionsPagament.Controls.Clear()
-        dataComanda.Dock = DockStyle.Fill
-        dataEntregaEquips.Dock = DockStyle.Fill
-        dataMuntatgeEquips.Dock = DockStyle.Fill
+        panelDataComanda.Dock = DockStyle.Fill
+        panelDataEntregaEquips.Dock = DockStyle.Fill
+        PanelDataMuntatgeEquips.Dock = DockStyle.Fill
         listCondicionsPagament.Dock = DockStyle.Fill
-        Me.PanelDate.Controls.Add(dataComanda)
-        Me.panelDataEquips.Controls.Add(dataEntregaEquips)
-        Me.panelDataMuntatge.Controls.Add(dataMuntatgeEquips)
+        Me.PanelDate.Controls.Add(panelDataComanda)
+        Me.panelDataEquips.Controls.Add(panelDataEntregaEquips)
+        Me.panelDataMuntatge.Controls.Add(PanelDataMuntatgeEquips)
         Me.panelCondicionsPagament.Controls.Add(listCondicionsPagament)
         elements = getControls()
         If comandaActual IsNot Nothing Then Call setData()
         Call setAccio()
+    End Sub
+    Private Sub setDate(d As Date)
+        RaiseEvent selectObject()
+    End Sub
+    Private Sub setCondicions()
+        RaiseEvent selectObject()
     End Sub
     Friend Sub setAccio()
         If lblAccio.Text = " - " Then
@@ -107,9 +116,9 @@
     Private ReadOnly Property etiqueta As String
         Get
             If listCondicionsPagament.cb.SelectedIndex > -1 Then
-                Return IDIOMA.getString("data") & ": " & dataComanda.dataActual & vbCrLf & IDIOMA.getString("tipusPagament") & ": " & listCondicionsPagament.cb.SelectedItem.ToString
+                Return IDIOMA.getString("data") & ": " & dataActual & vbCrLf & IDIOMA.getString("tipusPagament") & ": " & listCondicionsPagament.cb.SelectedItem.ToString
             Else
-                Return IDIOMA.getString("data") & ": " & dataComanda.dataActual
+                Return IDIOMA.getString("data") & ": " & dataActual
             End If
 
         End Get
@@ -119,10 +128,10 @@
     End Sub
     Private Function getControls() As List(Of Control)
         getControls = New List(Of Control)
-        getControls.Add(Me.dataComanda.txtData)
+        getControls.Add(Me.panelDataComanda.txtData)
         getControls.Add(txtPorts)
-        getControls.Add(Me.dataEntregaEquips.txtData)
-        getControls.Add(Me.dataMuntatgeEquips.txtData)
+        getControls.Add(Me.panelDataEntregaEquips.txtData)
+        getControls.Add(Me.PanelDataMuntatgeEquips.txtData)
         getControls.Add(Me.txtRetencio)
         getControls.Add(Me.txtInterAval)
         getControls.Add(Me.txtOferta)
@@ -144,6 +153,92 @@
             elements(i + p).Select()
         End If
     End Sub
+    Public Property dataActual As Date
+        Get
+            If IsDate(panelDataComanda.txtData.Text) Then
+                Return panelDataComanda.txtData.Text
+            Else
+                Return Nothing
+            End If
 
+        End Get
+        Set(value As Date)
+            panelDataComanda.txtData.Text = value
+        End Set
+    End Property
+    Public Property dataEntregaActual As Date
+        Get
+            If IsDate(panelDataEntregaEquips.txtData.Text) Then
+                Return panelDataEntregaEquips.txtData.Text
+            Else
+                Return Nothing
+            End If
+
+        End Get
+        Set(value As Date)
+            panelDataEntregaEquips.txtData.Text = value
+        End Set
+    End Property
+    Public Property dataMuntatgeActual As Date
+        Get
+            If IsDate(PanelDataMuntatgeEquips.txtData.Text) Then
+                Return PanelDataMuntatgeEquips.txtData.Text
+            Else
+                Return Nothing
+            End If
+
+        End Get
+        Set(value As Date)
+            PanelDataMuntatgeEquips.txtData.Text = value
+        End Set
+    End Property
+    Public Property ports As String
+        Get
+            Return txtPorts.Text
+        End Get
+        Set(value As String)
+            txtPorts.Text = value
+        End Set
+    End Property
+    Public Property intAval As String
+        Get
+            Return txtInterAval.Text
+        End Get
+        Set(value As String)
+            txtInterAval.Text = value
+        End Set
+    End Property
+    Public Property dadesBancaries As String
+        Get
+            Return txtDadesBancaries.Text
+        End Get
+        Set(value As String)
+            txtDadesBancaries.Text = value
+        End Set
+    End Property
+    Public Property oferta As String
+        Get
+            Return txtOferta.Text
+        End Get
+        Set(value As String)
+            txtOferta.Text = value
+        End Set
+    End Property
+    Public Property retencio As String
+        Get
+            Return txtRetencio.Text
+        End Get
+        Set(value As String)
+            txtRetencio.Text = value
+        End Set
+    End Property
+    Public Property tipuspagament As TipusPagament
+        Get
+            Return listCondicionsPagament.obj
+        End Get
+        Set(value As TipusPagament)
+            listCondicionsPagament.obj = value
+        End Set
+    End Property
 
 End Class

@@ -49,6 +49,8 @@ Partial Class DProveidorContacte
         Me.xecActiu = New OmsXM.XEC()
         Me.pPais = New System.Windows.Forms.Panel()
         Me.pProvincia = New System.Windows.Forms.Panel()
+        Me.lblErrDepartament = New System.Windows.Forms.Label()
+        Me.lblErrNom = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'lblPais
@@ -144,7 +146,7 @@ Partial Class DProveidorContacte
         Me.txtDepartament.ForeColor = System.Drawing.Color.Blue
         Me.txtDepartament.Location = New System.Drawing.Point(158, 38)
         Me.txtDepartament.Name = "txtDepartament"
-        Me.txtDepartament.Size = New System.Drawing.Size(340, 26)
+        Me.txtDepartament.Size = New System.Drawing.Size(355, 26)
         Me.txtDepartament.TabIndex = 0
         '
         'lblDepartament
@@ -184,7 +186,7 @@ Partial Class DProveidorContacte
         Me.txtNom.ForeColor = System.Drawing.Color.Blue
         Me.txtNom.Location = New System.Drawing.Point(158, 66)
         Me.txtNom.Name = "txtNom"
-        Me.txtNom.Size = New System.Drawing.Size(540, 26)
+        Me.txtNom.Size = New System.Drawing.Size(355, 26)
         Me.txtNom.TabIndex = 1
         '
         'txtTelefon1
@@ -311,11 +313,35 @@ Partial Class DProveidorContacte
         Me.pProvincia.Size = New System.Drawing.Size(232, 29)
         Me.pProvincia.TabIndex = 89
         '
+        'lblErrDepartament
+        '
+        Me.lblErrDepartament.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblErrDepartament.ForeColor = System.Drawing.Color.Red
+        Me.lblErrDepartament.Location = New System.Drawing.Point(542, 38)
+        Me.lblErrDepartament.Name = "lblErrDepartament"
+        Me.lblErrDepartament.Size = New System.Drawing.Size(156, 26)
+        Me.lblErrDepartament.TabIndex = 91
+        Me.lblErrDepartament.Text = "(*) OBLIGATPORI"
+        Me.lblErrDepartament.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lblErrNom
+        '
+        Me.lblErrNom.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblErrNom.ForeColor = System.Drawing.Color.Red
+        Me.lblErrNom.Location = New System.Drawing.Point(542, 64)
+        Me.lblErrNom.Name = "lblErrNom"
+        Me.lblErrNom.Size = New System.Drawing.Size(156, 26)
+        Me.lblErrNom.TabIndex = 92
+        Me.lblErrNom.Text = "(*) OBLIGATPORI"
+        Me.lblErrNom.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'DProveidorContacte
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(723, 461)
+        Me.Controls.Add(Me.lblErrNom)
+        Me.Controls.Add(Me.lblErrDepartament)
         Me.Controls.Add(Me.pPais)
         Me.Controls.Add(Me.pProvincia)
         Me.Controls.Add(Me.xecActiu)
@@ -382,4 +408,6 @@ Partial Class DProveidorContacte
     Friend WithEvents xecActiu As XEC
     Friend WithEvents pPais As Panel
     Friend WithEvents pProvincia As Panel
+    Friend WithEvents lblErrDepartament As Label
+    Friend WithEvents lblErrNom As Label
 End Class

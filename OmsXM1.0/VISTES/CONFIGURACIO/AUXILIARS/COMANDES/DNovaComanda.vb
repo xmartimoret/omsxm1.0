@@ -1,6 +1,7 @@
 ﻿Imports System.Windows.Forms
 
 Public Class DNovaComanda
+    Private Const SOLICITUD_COMANDA As String = "NOVA"
     Private actualitzar As Boolean
     Private empresaActual As Empresa
     Private listProveidors As lstProveidor
@@ -23,6 +24,7 @@ Public Class DNovaComanda
         Me.ShowDialog()
         If Me.DialogResult = DialogResult.OK Then
             getComanda = New Comanda(-1, "", listProveidors.obj, empresaActual, projecteActual)
+            getComanda.codi = ModelComandaFitxer.getNewCode
         Else
             getComanda = Nothing
         End If

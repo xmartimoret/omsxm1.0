@@ -26,18 +26,22 @@ Public Class DProveidorContacte
         Me.Dispose()
     End Function
     Private Sub setLanguage()
-        Me.lblDepartament.Text = IDIOMA.getString("departament")
-        Me.lblCodiPostal.Text = IDIOMA.getString("cp")
-        Me.lblDireccio.Text = IDIOMA.getString("direccio")
-        Me.lblIdCaption.Text = IDIOMA.getString("id")
-        Me.lblNomFiscal.Text = IDIOMA.getString("nomFiscal")
-        Me.lblPoblacio.Text = IDIOMA.getString("poblacio")
+        Me.lblDepartament.Text = IDIOMA.getString("departament") & ":"
+        Me.lblCodiPostal.Text = IDIOMA.getString("cp") & ":"
+        Me.lblDireccio.Text = IDIOMA.getString("direccio") & ":"
+        Me.lblIdCaption.Text = IDIOMA.getString("id") & ":"
+        Me.lblNomFiscal.Text = IDIOMA.getString("nomContacte") & ":"
+        Me.lblPoblacio.Text = IDIOMA.getString("poblacio") & ":"
+        Me.lblPoblacio.Text = IDIOMA.getString("poblacio") & ":"
         Me.lblProvincia.Text = IDIOMA.getString("provincia")
-        Me.lblPais.Text = IDIOMA.getString("pais")
-        Me.lblNotes.Text = IDIOMA.getString("notes")
-        Me.lblTel1.Text = IDIOMA.getString("telefon") & "1"
-        Me.lblTel2.Text = IDIOMA.getString("telefon") & "2"
-        Me.lblemail.Text = IDIOMA.getString("email")
+        Me.lblPoblacio.Text = IDIOMA.getString("poblacio") & ":"
+        Me.lblPais.Text = IDIOMA.getString("pais") & ":"
+        Me.lblNotes.Text = IDIOMA.getString("notes") & ":"
+        Me.lblTel1.Text = IDIOMA.getString("telefon") & "1" & ":"
+        Me.lblTel2.Text = IDIOMA.getString("telefon") & "2" & ":"
+        Me.lblemail.Text = IDIOMA.getString("email") & ":"
+        Me.lblErrDepartament.Text = IDIOMA.getString("campObligatori")
+        Me.lblErrNom.Text = IDIOMA.getString("departamentOcontacte")
         Me.cmdCancelar.Text = IDIOMA.getString("cmdCancelar")
         Me.cmdGuardar.Text = IDIOMA.getString("cmdGuardar")
         Me.xecActiu.Text = IDIOMA.getString("actiu")
@@ -47,7 +51,17 @@ Public Class DProveidorContacte
             Me.Text = IDIOMA.getString("afegirNouContacteProveidor")
         End If
     End Sub
-
+    Private Sub validateControls()
+        If txtDepartament.Text = "" And txtNom.Text = "" Then
+            lblErrDepartament.Visible = True
+            lblErrNom.Visible = True
+            cmdGuardar.Enabled = False
+        Else
+            lblErrDepartament.Visible = False
+            lblErrNom.Visible = False
+            cmdGuardar.Enabled = True
+        End If
+    End Sub
     Private Sub setData()
         provincies = New lstAuxiliars1(contacteActual.provincia, DBCONNECT.getTaulaProvincia, IDIOMA.getString("afegirProvincia"))
         paisos = New lstAuxiliars1(contacteActual.pais, DBCONNECT.getTaulaPais)
@@ -69,15 +83,6 @@ Public Class DProveidorContacte
         Me.txtNotes.Text = contacteActual.notes
         Me.xecActiu.Checked = contacteActual.actiu
     End Sub
-    'Private Function indexPais() As Integer
-
-    'End Function
-    'Private Function indexProvincia() As Integer
-
-    'End Function
-    'Private Function indexPagament() As Integer
-
-    'End Function
 
     Private Function getData() As ProveidorCont
         getData = contacteActual.copy
@@ -109,6 +114,7 @@ Public Class DProveidorContacte
     Private Sub DProveidor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call setLanguage()
         Call setData()
+        Call validateControls()
     End Sub
     Private Sub getTab(sender As Object, p As Integer)
         Dim i As Integer
@@ -172,7 +178,8 @@ Public Class DProveidorContacte
         MyBase.Finalize()
     End Sub
 
-    Private Sub lblIdCaption_Click(sender As Object, e As EventArgs) Handles lblIdCaption.Click
 
+    Private Sub txtDepartament_TextChanged(sender As Object, e As EventArgs) Handles txtDepartament.TextChanged, txtNom.TextChanged
+        Call validateControls()
     End Sub
 End Class

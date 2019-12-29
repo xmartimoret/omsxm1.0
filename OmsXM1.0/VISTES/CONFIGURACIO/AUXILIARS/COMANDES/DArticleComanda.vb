@@ -82,13 +82,17 @@ Public Class DArticleComanda
         Me.lblTotal.Text = Format(articleComandaActual.total, "#,##0.00")
     End Sub
     Private Function getData() As articleComanda
-        getData = articleComandaActual.copy
-        articleComandaActual.codi = Me.txtCodi.Text
-        articleComandaActual.quantitat = Me.txtQuantitat.Text
-        articleComandaActual.preu.descompte = Me.txtDescompte.Text
-        articleComandaActual.nom = Me.txtDescripcio.Text
-        articleComandaActual.preu.base = Me.txtPreu.Text
-        articleComandaActual.preu.descompte = Me.txtDescompte.Text
+        If IsNothing(articleComandaActual) Then
+            getData = New articleComanda
+        Else
+            getData = articleComandaActual.copy
+        End If
+        getData.codi = Me.txtCodi.Text
+        getData.quantitat = Me.txtQuantitat.Text
+        getData.preu.descompte = Me.txtDescompte.Text
+        getData.nom = Me.txtDescripcio.Text
+        getData.preu.base = Me.txtPreu.Text
+        getData.preu.descompte = Me.txtDescompte.Text
     End Function
 
 

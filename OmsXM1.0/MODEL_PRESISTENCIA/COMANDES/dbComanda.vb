@@ -19,6 +19,8 @@ Module dbComanda
     Private Const DADES_BANCARIES As String = "BANC"
     Private Const PORTS As String = "PORTS"
     Private Const NOTES As String = "notes"
+    Private Const RESPONSABLE As String = "RESPON"
+    Private Const DIRECTOR As String = "DIRECTOR"
     'ACCESSORS CENTRE
     ''' <summary>
     ''' SAVE. Guarda un centre a la base de dades. 
@@ -62,7 +64,9 @@ Module dbComanda
                                       ID_TIPUS_PAGAMENT & " =@idTipusPagament, " &
                                       DADES_BANCARIES & " =@dadesBancaries, " &
                                       PORTS & " =@ports, " &
-                                      NOTES & " =@notes " &
+                                      NOTES & " =@notes, " &
+                                      RESPONSABLE & " =@responsable, " &
+                                      DIRECTOR & " =@director " &
                                       " WHERE " & ID & "=@id", DBCONNECT.getConnection)
         sc.Parameters.Add("@id", SqlDbType.Int).Value = obj.id
         sc.Parameters.Add("@codi", SqlDbType.VarChar).Value = obj.codi
@@ -82,6 +86,9 @@ Module dbComanda
         sc.Parameters.Add("@dadesBancaries", SqlDbType.VarChar).Value = obj.dadesBancaries
         sc.Parameters.Add("@ports", SqlDbType.VarChar).Value = obj.ports
         sc.Parameters.Add("@notes", SqlDbType.VarChar).Value = obj.notes
+        sc.Parameters.Add("@responsable", SqlDbType.VarChar).Value = obj.responsable
+        sc.Parameters.Add("@director", SqlDbType.VarChar).Value = obj.director
+
         i = sc.ExecuteNonQuery
         sc = Nothing
         If i >= 1 Then
@@ -101,8 +108,8 @@ Module dbComanda
         obj.id = DBCONNECT.getMaxId(getTable) + 1
         sc = New SqlCommand(" INSERT INTO " & getTable() & " " &
                         " (" & ID & ", " & CODI & ", " & ID_EMPRESA & ", " & ID_PROVEIDOR & ", " & ID_CONTACTE_PROVEIDOR & ", " & ID_PROJECTE & ", " & ID_CONTACTE_PROJECTE & ", " & ID_MAGATZEM & "," &
-                         DATA_COMANDA & "," & DATA_MUNTATGE & "," & DATA_ENTREGA & "," & RETENCIO & "," & AVAL & "," & OFERTA & "," & ID_TIPUS_PAGAMENT & "," & DADES_BANCARIES & "," & PORTS & "," & NOTES & ")" &
-                        " VALUES(@id,@codi,@idEmpresa,@idProveidor,@idContacteProveidor,@idProjecte,@idContacteProjecte,@idMagatzem,@dataComanda,@dataMuntatge,@dataEntrega,@retencio,@aval,@oferta,@idtipusPagament,@dadesBancaries,@ports,@notes)", DBCONNECT.getConnection)
+                         DATA_COMANDA & "," & DATA_MUNTATGE & "," & DATA_ENTREGA & "," & RETENCIO & "," & AVAL & "," & OFERTA & "," & ID_TIPUS_PAGAMENT & "," & DADES_BANCARIES & "," & PORTS & "," & NOTES & "," & RESPONSABLE & "," & DIRECTOR & ")" &
+                        " VALUES(@id,@codi,@idEmpresa,@idProveidor,@idContacteProveidor,@idProjecte,@idContacteProjecte,@idMagatzem,@dataComanda,@dataMuntatge,@dataEntrega,@retencio,@aval,@oferta,@idtipusPagament,@dadesBancaries,@ports,@notes,@responsable,@director)", DBCONNECT.getConnection)
         sc.Parameters.Add("@id", SqlDbType.Int).Value = obj.id
         sc.Parameters.Add("@codi", SqlDbType.VarChar).Value = obj.codi
         sc.Parameters.Add("@idempresa", SqlDbType.SmallInt).Value = obj.empresa.id
@@ -121,6 +128,8 @@ Module dbComanda
         sc.Parameters.Add("@dadesBancaries", SqlDbType.VarChar).Value = obj.dadesBancaries
         sc.Parameters.Add("@ports", SqlDbType.VarChar).Value = obj.ports
         sc.Parameters.Add("@notes", SqlDbType.VarChar).Value = obj.notes
+        sc.Parameters.Add("@responsable", SqlDbType.VarChar).Value = obj.responsable
+        sc.Parameters.Add("@director", SqlDbType.VarChar).Value = obj.director
         i = sc.ExecuteNonQuery
         sc = Nothing
         If i >= 1 Then
@@ -170,6 +179,8 @@ Module dbComanda
             c.ports = CONFIG.validarNull(Trim(sdr(PORTS)))
             c.retencio = CONFIG.validarNull(Trim(sdr(RETENCIO)))
             c.tipusPagament = ModelTipusPagament.getAuxiliar.getObject(sdr(ID_TIPUS_PAGAMENT))
+            c.responsable = CONFIG.validarNull(sdr(RESPONSABLE))
+            c.director = CONFIG.validarNull(sdr(DIRECTOR))
             getObjectsSQL.Add(c)
         End While
         sdr.Close()
@@ -200,7 +211,9 @@ Module dbComanda
                                       ID_TIPUS_PAGAMENT & " =?, " &
                                       DADES_BANCARIES & " =?, " &
                                       PORTS & " =?, " &
-                                      NOTES & " =? " &
+                                      NOTES & " =?, " &
+                                      RESPONSABLE & " =?, " &
+                                      DIRECTOR & " =? " &
                                       " WHERE " & ID & "=?"
             .Parameters.Append(ADOPARAM.ToString(obj.codi))
             .Parameters.Append(ADOPARAM.ToInt(obj.empresa.id))
@@ -219,6 +232,8 @@ Module dbComanda
             .Parameters.Append(ADOPARAM.ToString(obj.dadesBancaries))
             .Parameters.Append(ADOPARAM.ToString(obj.ports))
             .Parameters.Append(ADOPARAM.ToString(obj.notes))
+            .Parameters.Append(ADOPARAM.ToString(obj.responsable))
+            .Parameters.Append(ADOPARAM.ToString(obj.director))
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
         End With
         Try
@@ -246,8 +261,8 @@ Module dbComanda
             .ActiveConnection = DBCONNECT.getConnectionDbf
             .CommandText = (" INSERT INTO " & getTable() & " " &
                         " (" & ID & ", " & CODI & ", " & ID_EMPRESA & ", " & ID_PROVEIDOR & ", " & ID_CONTACTE_PROVEIDOR & ", " & ID_PROJECTE & ", " & ID_CONTACTE_PROJECTE & ", " & ID_MAGATZEM & "," &
-                         DATA_COMANDA & "," & DATA_MUNTATGE & "," & DATA_ENTREGA & "," & RETENCIO & "," & AVAL & "," & OFERTA & "," & ID_TIPUS_PAGAMENT & "," & DADES_BANCARIES & "," & PORTS & "," & NOTES & ")" &
-                        " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
+                         DATA_COMANDA & "," & DATA_MUNTATGE & "," & DATA_ENTREGA & "," & RETENCIO & "," & AVAL & "," & OFERTA & "," & ID_TIPUS_PAGAMENT & "," & DADES_BANCARIES & "," & PORTS & "," & NOTES & "," & RESPONSABLE & "," & DIRECTOR & ")" &
+                        " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
 
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
             .Parameters.Append(ADOPARAM.ToString(obj.codi))
@@ -267,6 +282,8 @@ Module dbComanda
             .Parameters.Append(ADOPARAM.ToString(obj.dadesBancaries))
             .Parameters.Append(ADOPARAM.ToString(obj.ports))
             .Parameters.Append(ADOPARAM.ToString(obj.notes))
+            .Parameters.Append(ADOPARAM.ToString(obj.responsable))
+            .Parameters.Append(ADOPARAM.ToString(obj.director))
 
         End With
         Try
@@ -328,6 +345,8 @@ Module dbComanda
             c.ports = CONFIG.validarNull(Trim(rc(PORTS).Value))
             c.retencio = CONFIG.validarNull(Trim(rc(RETENCIO).Value))
             c.tipusPagament = ModelTipusPagament.getAuxiliar.getObject(rc(ID_TIPUS_PAGAMENT).Value)
+            c.responsable = CONFIG.validarNull(RESPONSABLE)
+            c.director = CONFIG.validarNull(DIRECTOR)
             getObjectsDBF.Add(c)
             rc.MoveNext()
         End While

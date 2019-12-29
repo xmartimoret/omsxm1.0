@@ -96,7 +96,7 @@
         Dim texte As String
         texte = _direccio & vbCrLf & _codiPostal
         If Not IsNothing(_poblacio) Then texte = texte & "-" & _poblacio
-        If Not IsNothing(_provincia) Then texte = vbCrLf & _provincia.nom
+        If Not IsNothing(_provincia) Then texte = texte & vbCrLf & _provincia.nom
         If Not IsNothing(_pais) Then texte = texte & "-(" & _pais.nom & ")"
         Return texte
     End Function

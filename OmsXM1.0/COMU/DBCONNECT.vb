@@ -131,7 +131,7 @@ Module DBCONNECT
     Public Function existServer(servidor As String, usuari As String, clau As String) As Boolean
         Dim sqlString As String, cn As SqlConnection
         sqlString = "Data Source= " & servidor & ";" &
-            "database=myDB;user ID=" & usuari & " ; password =" & clau
+            "database=" & DATABASE & ";user ID=" & usuari & " ; password =" & clau
         cn = New SqlConnection(sqlString)
         Try
             cn.Open()

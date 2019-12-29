@@ -24,9 +24,9 @@ Partial Class Directori
     Private Sub InitializeComponent()
         Me.fileBrowser = New System.Windows.Forms.OpenFileDialog()
         Me.folderBrowser = New System.Windows.Forms.FolderBrowserDialog()
-        Me.cmdDirectori = New BOTO()
-        Me.lblDirectori = New LBLBLUE()
-        Me.lblCaptionDirectori = New LBLRIGHT()
+        Me.cmdDirectori = New OmsXM.BOTO()
+        Me.lblDirectori = New OmsXM.LBLBLUE()
+        Me.lblCaptionDirectori = New OmsXM.LBLRIGHT()
         Me.SuspendLayout()
         '
         'fileBrowser
@@ -43,9 +43,9 @@ Partial Class Directori
         Me.cmdDirectori.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.cmdDirectori.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmdDirectori.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.cmdDirectori.Location = New System.Drawing.Point(261, 22)
+        Me.cmdDirectori.Location = New System.Drawing.Point(319, 21)
         Me.cmdDirectori.Name = "cmdDirectori"
-        Me.cmdDirectori.Size = New System.Drawing.Size(58, 46)
+        Me.cmdDirectori.Size = New System.Drawing.Size(61, 46)
         Me.cmdDirectori.TabIndex = 2
         Me.cmdDirectori.Text = "Boto1"
         Me.cmdDirectori.UseVisualStyleBackColor = False
@@ -60,7 +60,7 @@ Partial Class Directori
         Me.lblDirectori.ForeColor = System.Drawing.Color.Blue
         Me.lblDirectori.Location = New System.Drawing.Point(21, 22)
         Me.lblDirectori.Name = "lblDirectori"
-        Me.lblDirectori.Size = New System.Drawing.Size(237, 49)
+        Me.lblDirectori.Size = New System.Drawing.Size(292, 50)
         Me.lblDirectori.TabIndex = 1
         Me.lblDirectori.Text = "Directori"
         '
@@ -72,7 +72,7 @@ Partial Class Directori
         Me.lblCaptionDirectori.ForeColor = System.Drawing.Color.Black
         Me.lblCaptionDirectori.Location = New System.Drawing.Point(6, 0)
         Me.lblCaptionDirectori.Name = "lblCaptionDirectori"
-        Me.lblCaptionDirectori.Size = New System.Drawing.Size(313, 18)
+        Me.lblCaptionDirectori.Size = New System.Drawing.Size(374, 18)
         Me.lblCaptionDirectori.TabIndex = 0
         Me.lblCaptionDirectori.Text = "Caption"
         Me.lblCaptionDirectori.TextAlign = System.Drawing.ContentAlignment.BottomLeft
@@ -85,7 +85,7 @@ Partial Class Directori
         Me.Controls.Add(Me.lblDirectori)
         Me.Controls.Add(Me.lblCaptionDirectori)
         Me.Name = "Directori"
-        Me.Size = New System.Drawing.Size(322, 71)
+        Me.Size = New System.Drawing.Size(383, 84)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

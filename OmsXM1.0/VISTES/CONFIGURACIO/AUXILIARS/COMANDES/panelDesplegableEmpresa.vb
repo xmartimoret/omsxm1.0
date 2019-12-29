@@ -7,8 +7,9 @@
     Friend projecteActual As Projecte
     Friend llocActual As LlocEntrega
     Friend contacteActual As Contacte
-    Friend Event tempProveidor(p As Proveidor, c As ProveidorCont)
     Friend Event accioMostrar()
+    Friend Event selectObject()
+    Friend Event selectProjecte()
     Private actualitzar As Boolean
     Private elements As List(Of Control)
     Public Sub New()
@@ -69,6 +70,7 @@
             cbProjecte.SelectedIndex = -1
         End If
         actualitzar = True
+        RaiseEvent selectObject()
         Call validateControls()
     End Sub
     Private Sub setProjecte()
@@ -85,7 +87,6 @@
             listContactes = New lstContactes(ModelContacte.getObject(Nothing))
         End If
         AddHandler listContactes.selectObject, AddressOf setContacte
-
         Me.panelMagatzem.Controls.Clear()
         listLLocsEntrega.Dock = DockStyle.Fill
         Me.panelMagatzem.Controls.Add(listLLocsEntrega)
@@ -98,15 +99,16 @@
         txtResponsable.Text = projecteActual.responsable
         txtDirector.Text = projecteActual.director
         Call validateControls()
+        RaiseEvent selectProjecte()
     End Sub
     Private Sub setLlocEntrega()
-
         llocActual = listLLocsEntrega.obj
         If Not IsNothing(listLLocsEntrega.obj) Then
             lblDireccio.Text = llocActual.toTarget
         Else
             lblDireccio.Text = ""
         End If
+        RaiseEvent selectObject()
     End Sub
     Private Sub setContacte()
         contacteActual = listContactes.obj
@@ -115,6 +117,7 @@
         Else
             lblTelEmail.Text = ""
         End If
+        RaiseEvent selectObject()
     End Sub
     Private ReadOnly Property etiqueta As String
         Get
@@ -244,6 +247,7 @@
             Call getTab(sender, -1)
         End If
     End Sub
+
     Private Function getControls() As List(Of Control)
         getControls = New List(Of Control)
         getControls.Add(panelMagatzem)
@@ -273,5 +277,9 @@
         projecteActual = Nothing
         llocActual = Nothing
         contacteActual = Nothing
+    End Sub
+
+    Private Sub lblEmpresa_Click(sender As Object, e As EventArgs) Handles lblEmpresa.Click
+
     End Sub
 End Class

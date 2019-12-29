@@ -37,13 +37,22 @@ Partial Class pComanda
         Me.mnuEngatxar = New System.Windows.Forms.ToolStripMenuItem()
         Me.panelArticle = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.txtFiltrarArticle = New OmsXM.TXT()
-        Me.lblCercador = New OmsXM.LBLRED()
         Me.cmdCercadorArticle = New System.Windows.Forms.Button()
-        Me.cmdActualitzar = New System.Windows.Forms.Button()
         Me.cmdEliminarArticle = New System.Windows.Forms.Button()
         Me.cmdModificarArticle = New System.Windows.Forms.Button()
         Me.cmdAfegirArticle = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.cbEstat = New System.Windows.Forms.ComboBox()
+        Me.cmdModificar = New System.Windows.Forms.Button()
+        Me.cmdNovaComanda = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.cmdEliminarComanda = New System.Windows.Forms.Button()
+        Me.cmdValidar = New System.Windows.Forms.Button()
+        Me.cmdGuardar = New System.Windows.Forms.Button()
+        Me.lblComptadorEstat = New OmsXM.LBLRED()
+        Me.lblEstatComanda = New OmsXM.LBLRED()
+        Me.txtFiltrarArticle = New OmsXM.TXT()
+        Me.lblCercador = New OmsXM.LBLRED()
         Me.DGVArticles = New OmsXM.dgvExtended()
         Me.c1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.c2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -53,19 +62,11 @@ Partial Class pComanda
         Me.c6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.c7 = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.c8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.cmdNovaComanda = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.cmdEliminarComanda = New System.Windows.Forms.Button()
-        Me.cmdValidar = New System.Windows.Forms.Button()
-        Me.cmdGuardar = New System.Windows.Forms.Button()
-        Me.cmdModificar = New System.Windows.Forms.Button()
-        Me.lblEstatComanda = New OmsXM.LBLRED()
         Me.mnuContextual.SuspendLayout()
         Me.panelArticle.SuspendLayout()
         Me.Panel3.SuspendLayout()
-        CType(Me.DGVArticles, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
+        CType(Me.DGVArticles, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel6
@@ -152,54 +153,23 @@ Partial Class pComanda
         Me.Panel3.Controls.Add(Me.txtFiltrarArticle)
         Me.Panel3.Controls.Add(Me.lblCercador)
         Me.Panel3.Controls.Add(Me.cmdCercadorArticle)
-        Me.Panel3.Controls.Add(Me.cmdActualitzar)
         Me.Panel3.Controls.Add(Me.cmdEliminarArticle)
         Me.Panel3.Controls.Add(Me.cmdModificarArticle)
         Me.Panel3.Controls.Add(Me.cmdAfegirArticle)
         Me.Panel3.Location = New System.Drawing.Point(3, 3)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1210, 32)
+        Me.Panel3.Size = New System.Drawing.Size(1241, 32)
         Me.Panel3.TabIndex = 72
-        '
-        'txtFiltrarArticle
-        '
-        Me.txtFiltrarArticle.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.txtFiltrarArticle.ForeColor = System.Drawing.Color.Red
-        Me.txtFiltrarArticle.Location = New System.Drawing.Point(331, 1)
-        Me.txtFiltrarArticle.Name = "txtFiltrarArticle"
-        Me.txtFiltrarArticle.Size = New System.Drawing.Size(249, 26)
-        Me.txtFiltrarArticle.TabIndex = 35
-        '
-        'lblCercador
-        '
-        Me.lblCercador.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCercador.ForeColor = System.Drawing.Color.Red
-        Me.lblCercador.Location = New System.Drawing.Point(234, 2)
-        Me.lblCercador.Name = "lblCercador"
-        Me.lblCercador.Size = New System.Drawing.Size(91, 23)
-        Me.lblCercador.TabIndex = 34
-        Me.lblCercador.Text = "Cercador"
-        Me.lblCercador.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'cmdCercadorArticle
         '
         Me.cmdCercadorArticle.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.cmdCercadorArticle.Image = Global.OmsXM.My.Resources.Resources.BotoCercar
-        Me.cmdCercadorArticle.Location = New System.Drawing.Point(586, 1)
+        Me.cmdCercadorArticle.Location = New System.Drawing.Point(450, 1)
         Me.cmdCercadorArticle.Name = "cmdCercadorArticle"
         Me.cmdCercadorArticle.Size = New System.Drawing.Size(26, 28)
         Me.cmdCercadorArticle.TabIndex = 33
         Me.cmdCercadorArticle.UseVisualStyleBackColor = True
-        '
-        'cmdActualitzar
-        '
-        Me.cmdActualitzar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdActualitzar.Image = Global.OmsXM.My.Resources.Resources.actualitzar
-        Me.cmdActualitzar.Location = New System.Drawing.Point(137, 1)
-        Me.cmdActualitzar.Name = "cmdActualitzar"
-        Me.cmdActualitzar.Size = New System.Drawing.Size(26, 28)
-        Me.cmdActualitzar.TabIndex = 32
-        Me.cmdActualitzar.UseVisualStyleBackColor = True
         '
         'cmdEliminarArticle
         '
@@ -230,6 +200,143 @@ Partial Class pComanda
         Me.cmdAfegirArticle.Size = New System.Drawing.Size(26, 28)
         Me.cmdAfegirArticle.TabIndex = 28
         Me.cmdAfegirArticle.UseVisualStyleBackColor = True
+        '
+        'Panel1
+        '
+        Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel1.BackColor = System.Drawing.Color.LightGray
+        Me.Panel1.Controls.Add(Me.lblComptadorEstat)
+        Me.Panel1.Controls.Add(Me.lblEstatComanda)
+        Me.Panel1.Controls.Add(Me.cbEstat)
+        Me.Panel1.Controls.Add(Me.cmdModificar)
+        Me.Panel1.Controls.Add(Me.cmdNovaComanda)
+        Me.Panel1.Controls.Add(Me.Button3)
+        Me.Panel1.Controls.Add(Me.cmdEliminarComanda)
+        Me.Panel1.Controls.Add(Me.cmdValidar)
+        Me.Panel1.Controls.Add(Me.cmdGuardar)
+        Me.Panel1.Location = New System.Drawing.Point(3, 3)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(1261, 32)
+        Me.Panel1.TabIndex = 73
+        '
+        'cbEstat
+        '
+        Me.cbEstat.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbEstat.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbEstat.ForeColor = System.Drawing.Color.Red
+        Me.cbEstat.FormattingEnabled = True
+        Me.cbEstat.Location = New System.Drawing.Point(495, 4)
+        Me.cbEstat.Name = "cbEstat"
+        Me.cbEstat.Size = New System.Drawing.Size(609, 24)
+        Me.cbEstat.TabIndex = 37
+        '
+        'cmdModificar
+        '
+        Me.cmdModificar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdModificar.Image = Global.OmsXM.My.Resources.Resources.BotoModificar
+        Me.cmdModificar.Location = New System.Drawing.Point(31, 1)
+        Me.cmdModificar.Name = "cmdModificar"
+        Me.cmdModificar.Size = New System.Drawing.Size(27, 28)
+        Me.cmdModificar.TabIndex = 36
+        Me.cmdModificar.UseVisualStyleBackColor = True
+        '
+        'cmdNovaComanda
+        '
+        Me.cmdNovaComanda.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdNovaComanda.Image = Global.OmsXM.My.Resources.Resources.BotoNou
+        Me.cmdNovaComanda.Location = New System.Drawing.Point(3, 1)
+        Me.cmdNovaComanda.Name = "cmdNovaComanda"
+        Me.cmdNovaComanda.Size = New System.Drawing.Size(26, 28)
+        Me.cmdNovaComanda.TabIndex = 32
+        Me.cmdNovaComanda.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button3.Image = Global.OmsXM.My.Resources.Resources.botoImprimir
+        Me.Button3.Location = New System.Drawing.Point(140, 1)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(26, 28)
+        Me.Button3.TabIndex = 31
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'cmdEliminarComanda
+        '
+        Me.cmdEliminarComanda.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdEliminarComanda.Image = Global.OmsXM.My.Resources.Resources.BotoBorrar
+        Me.cmdEliminarComanda.Location = New System.Drawing.Point(62, 1)
+        Me.cmdEliminarComanda.Name = "cmdEliminarComanda"
+        Me.cmdEliminarComanda.Size = New System.Drawing.Size(26, 28)
+        Me.cmdEliminarComanda.TabIndex = 30
+        Me.cmdEliminarComanda.UseVisualStyleBackColor = True
+        '
+        'cmdValidar
+        '
+        Me.cmdValidar.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.cmdValidar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdValidar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.cmdValidar.Location = New System.Drawing.Point(202, 1)
+        Me.cmdValidar.Name = "cmdValidar"
+        Me.cmdValidar.Size = New System.Drawing.Size(141, 28)
+        Me.cmdValidar.TabIndex = 29
+        Me.cmdValidar.Text = "CREAR COMANDA"
+        Me.cmdValidar.UseVisualStyleBackColor = False
+        '
+        'cmdGuardar
+        '
+        Me.cmdGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdGuardar.Image = Global.OmsXM.My.Resources.Resources.BotoGuardar
+        Me.cmdGuardar.Location = New System.Drawing.Point(94, 3)
+        Me.cmdGuardar.Name = "cmdGuardar"
+        Me.cmdGuardar.Size = New System.Drawing.Size(26, 28)
+        Me.cmdGuardar.TabIndex = 28
+        Me.cmdGuardar.Text = "                                                  "
+        Me.cmdGuardar.UseVisualStyleBackColor = True
+        '
+        'lblComptadorEstat
+        '
+        Me.lblComptadorEstat.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblComptadorEstat.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblComptadorEstat.ForeColor = System.Drawing.Color.Black
+        Me.lblComptadorEstat.Location = New System.Drawing.Point(1110, 3)
+        Me.lblComptadorEstat.Name = "lblComptadorEstat"
+        Me.lblComptadorEstat.Size = New System.Drawing.Size(148, 23)
+        Me.lblComptadorEstat.TabIndex = 74
+        Me.lblComptadorEstat.Text = "Cercador"
+        Me.lblComptadorEstat.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'lblEstatComanda
+        '
+        Me.lblEstatComanda.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEstatComanda.ForeColor = System.Drawing.Color.Red
+        Me.lblEstatComanda.Location = New System.Drawing.Point(349, 3)
+        Me.lblEstatComanda.Name = "lblEstatComanda"
+        Me.lblEstatComanda.Size = New System.Drawing.Size(140, 23)
+        Me.lblEstatComanda.TabIndex = 73
+        Me.lblEstatComanda.Text = "Cercador"
+        Me.lblEstatComanda.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtFiltrarArticle
+        '
+        Me.txtFiltrarArticle.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.txtFiltrarArticle.ForeColor = System.Drawing.Color.Red
+        Me.txtFiltrarArticle.Location = New System.Drawing.Point(195, 2)
+        Me.txtFiltrarArticle.Name = "txtFiltrarArticle"
+        Me.txtFiltrarArticle.Size = New System.Drawing.Size(249, 26)
+        Me.txtFiltrarArticle.TabIndex = 35
+        '
+        'lblCercador
+        '
+        Me.lblCercador.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCercador.ForeColor = System.Drawing.Color.Red
+        Me.lblCercador.Location = New System.Drawing.Point(98, 4)
+        Me.lblCercador.Name = "lblCercador"
+        Me.lblCercador.Size = New System.Drawing.Size(91, 23)
+        Me.lblCercador.TabIndex = 34
+        Me.lblCercador.Text = "Cercador"
+        Me.lblCercador.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'DGVArticles
         '
@@ -314,94 +421,6 @@ Partial Class pComanda
         Me.c8.Name = "c8"
         Me.c8.ReadOnly = True
         '
-        'Panel1
-        '
-        Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel1.Controls.Add(Me.lblEstatComanda)
-        Me.Panel1.Controls.Add(Me.cmdModificar)
-        Me.Panel1.Controls.Add(Me.cmdNovaComanda)
-        Me.Panel1.Controls.Add(Me.Button3)
-        Me.Panel1.Controls.Add(Me.cmdEliminarComanda)
-        Me.Panel1.Controls.Add(Me.cmdValidar)
-        Me.Panel1.Controls.Add(Me.cmdGuardar)
-        Me.Panel1.Location = New System.Drawing.Point(3, 3)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1261, 32)
-        Me.Panel1.TabIndex = 73
-        '
-        'cmdNovaComanda
-        '
-        Me.cmdNovaComanda.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdNovaComanda.Image = Global.OmsXM.My.Resources.Resources.BotoNou
-        Me.cmdNovaComanda.Location = New System.Drawing.Point(3, 1)
-        Me.cmdNovaComanda.Name = "cmdNovaComanda"
-        Me.cmdNovaComanda.Size = New System.Drawing.Size(26, 28)
-        Me.cmdNovaComanda.TabIndex = 32
-        Me.cmdNovaComanda.UseVisualStyleBackColor = True
-        '
-        'Button3
-        '
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button3.Image = Global.OmsXM.My.Resources.Resources.botoImprimir
-        Me.Button3.Location = New System.Drawing.Point(1222, 2)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(26, 28)
-        Me.Button3.TabIndex = 31
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'cmdEliminarComanda
-        '
-        Me.cmdEliminarComanda.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdEliminarComanda.Image = Global.OmsXM.My.Resources.Resources.BotoBorrar
-        Me.cmdEliminarComanda.Location = New System.Drawing.Point(62, 1)
-        Me.cmdEliminarComanda.Name = "cmdEliminarComanda"
-        Me.cmdEliminarComanda.Size = New System.Drawing.Size(26, 28)
-        Me.cmdEliminarComanda.TabIndex = 30
-        Me.cmdEliminarComanda.UseVisualStyleBackColor = True
-        '
-        'cmdValidar
-        '
-        Me.cmdValidar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdValidar.Image = Global.OmsXM.My.Resources.Resources.validar
-        Me.cmdValidar.Location = New System.Drawing.Point(549, 2)
-        Me.cmdValidar.Name = "cmdValidar"
-        Me.cmdValidar.Size = New System.Drawing.Size(26, 28)
-        Me.cmdValidar.TabIndex = 29
-        Me.cmdValidar.UseVisualStyleBackColor = True
-        '
-        'cmdGuardar
-        '
-        Me.cmdGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdGuardar.Image = Global.OmsXM.My.Resources.Resources.BotoGuardar
-        Me.cmdGuardar.Location = New System.Drawing.Point(137, 4)
-        Me.cmdGuardar.Name = "cmdGuardar"
-        Me.cmdGuardar.Size = New System.Drawing.Size(26, 28)
-        Me.cmdGuardar.TabIndex = 28
-        Me.cmdGuardar.Text = "                                                  "
-        Me.cmdGuardar.UseVisualStyleBackColor = True
-        '
-        'cmdModificar
-        '
-        Me.cmdModificar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdModificar.Image = Global.OmsXM.My.Resources.Resources.BotoModificar
-        Me.cmdModificar.Location = New System.Drawing.Point(31, 1)
-        Me.cmdModificar.Name = "cmdModificar"
-        Me.cmdModificar.Size = New System.Drawing.Size(27, 28)
-        Me.cmdModificar.TabIndex = 36
-        Me.cmdModificar.UseVisualStyleBackColor = True
-        '
-        'lblEstatComanda
-        '
-        Me.lblEstatComanda.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEstatComanda.ForeColor = System.Drawing.Color.Red
-        Me.lblEstatComanda.Location = New System.Drawing.Point(169, 5)
-        Me.lblEstatComanda.Name = "lblEstatComanda"
-        Me.lblEstatComanda.Size = New System.Drawing.Size(372, 23)
-        Me.lblEstatComanda.TabIndex = 37
-        Me.lblEstatComanda.Text = "Cercador"
-        Me.lblEstatComanda.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'pComanda
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -419,8 +438,8 @@ Partial Class pComanda
         Me.panelArticle.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
-        CType(Me.DGVArticles, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
+        CType(Me.DGVArticles, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -444,7 +463,6 @@ Partial Class pComanda
     Friend WithEvents Panel3 As Panel
     Friend WithEvents DGVArticles As dgvExtended
     Friend WithEvents cmdCercadorArticle As Button
-    Friend WithEvents cmdActualitzar As Button
     Friend WithEvents cmdEliminarArticle As Button
     Friend WithEvents cmdModificarArticle As Button
     Friend WithEvents cmdAfegirArticle As Button
@@ -464,6 +482,8 @@ Partial Class pComanda
     Friend WithEvents c6 As DataGridViewTextBoxColumn
     Friend WithEvents c7 As DataGridViewComboBoxColumn
     Friend WithEvents c8 As DataGridViewTextBoxColumn
-    Friend WithEvents lblEstatComanda As LBLRED
     Friend WithEvents cmdModificar As Button
+    Friend WithEvents lblComptadorEstat As LBLRED
+    Friend WithEvents lblEstatComanda As LBLRED
+    Friend WithEvents cbEstat As ComboBox
 End Class
