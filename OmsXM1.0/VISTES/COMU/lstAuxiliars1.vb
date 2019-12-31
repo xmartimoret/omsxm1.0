@@ -1,7 +1,7 @@
 ﻿Public Class lstAuxiliars1
     Private objects As Object()
     Private auxiliar As ModelAuxiliar
-    Friend Property obj As Object
+    Private Property _obj As Object
     Private actualitzar As Boolean
     Private titolNouElement As String
     Friend Event selectObject()
@@ -17,7 +17,7 @@
         ' This call is required by the designer.
         auxiliar = New ModelAuxiliar(pTaulaDades)
         titolNouElement = ""
-        obj = pObj
+        _obj = pObj
         InitializeComponent()
         actualitzar = True
         Call setData()
@@ -38,7 +38,7 @@
         ' This call is required by the designer.
         auxiliar = New ModelAuxiliar(pTaulaDades)
         titolNouElement = pTitol
-        obj = pObj
+        _obj = pObj
         InitializeComponent()
         actualitzar = True
         Call setData()
@@ -48,22 +48,31 @@
     Private Sub setData()
         cb.Items.Clear()
         cb.Items.AddRange(auxiliar.getListObjects)
-        cb.SelectedItem = obj
+        cb.SelectedItem = _obj
         cmdAfegir.Select()
     End Sub
+    Public Property obj As Object
+        Get
+            Return _obj
+        End Get
+        Set(value As Object)
+            _obj = value
+            cb.SelectedItem = _obj
+        End Set
+    End Property
     Private Sub validateControls()
-        If obj Is Nothing Then
+        If _obj Is Nothing Then
             cmdModificar.Enabled = False
         Else
             cmdModificar.Enabled = True
         End If
     End Sub
-    Private Sub save(obj As Object)
-        If obj IsNot Nothing Then
-            If Not obj Is Nothing Then
-                If Not auxiliar.exist(obj) Then
-                    If Not auxiliar.existCodi(obj) Then
-                        If auxiliar.save(obj) Then
+    Private Sub save(o As Object)
+        If o IsNot Nothing Then
+            If Not o Is Nothing Then
+                If Not auxiliar.exist(o) Then
+                    If Not auxiliar.existCodi(o) Then
+                        If auxiliar.save(o) Then
                             Call setData()
                         End If
                     Else
@@ -77,7 +86,7 @@
     End Sub
     Private Sub cb_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cb.SelectedIndexChanged
         If cb.SelectedIndex > -1 Then
-            obj = cb.SelectedItem
+            _obj = cb.SelectedItem
             RaiseEvent selectObject()
         Else
             If cb.Items.Count > 0 Then cb.SelectedIndex = 0
@@ -87,7 +96,7 @@
     Private Sub cb_TextChanged(sender As Object, e As EventArgs) Handles cb.TextChanged
         If actualitzar Then
             If cb.Text = "" Then
-                obj = Nothing
+                _obj = Nothing
                 RaiseEvent selectObject()
                 Call validateControls()
             End If
@@ -114,7 +123,7 @@
                 temp = DAuxiliar.getobject(New Provincia, getTitol)
         End Select
         If temp IsNot Nothing Then
-            obj = temp
+            _obj = temp
             Call save(temp)
         End If
         temp = Nothing
@@ -135,24 +144,24 @@
         Dim temp As Object
         Select Case auxiliar.taulaActual
             Case DBCONNECT.getTaulaPais
-                temp = DPais.getPais(obj)
+                temp = DPais.getPais(_obj)
             Case DBCONNECT.getTaulaTipusIva
-                temp = DTipusIva.gettipusIva(obj)
+                temp = DTipusIva.gettipusIva(_obj)
             Case DBCONNECT.getTaulaTipusPagament
-                temp = DTipusPagament.gettipusPagament(obj)
+                temp = DTipusPagament.gettipusPagament(_obj)
             Case DBCONNECT.getTaulaArticle
-                temp = DArticle.getArticle(obj)
+                temp = DArticle.getArticle(_obj)
             Case DBCONNECT.getTaulaProveidor
-                temp = DProveidor.getProveidor(obj)
+                temp = DProveidor.getProveidor(_obj)
             Case DBCONNECT.getTaulaUnitat
-                temp = DAuxiliar.getobject(obj, getTitol)
+                temp = DAuxiliar.getobject(_obj, getTitol)
             Case DBCONNECT.getTaulaFabricant
-                temp = DAuxiliar.getobject(obj, getTitol)
+                temp = DAuxiliar.getobject(_obj, getTitol)
             Case Else
-                temp = DAuxiliar.getobject(obj, getTitol)
+                temp = DAuxiliar.getobject(_obj, getTitol)
         End Select
         If temp IsNot Nothing Then
-            obj = temp
+            _obj = temp
             Call save(temp)
         End If
         temp = Nothing
@@ -160,7 +169,7 @@
     Protected Overrides Sub Finalize()
         auxiliar = Nothing
         objects = Nothing
-        obj = Nothing
+        _obj = Nothing
         MyBase.Finalize()
     End Sub
 End Class

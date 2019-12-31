@@ -51,7 +51,7 @@ Module dbProjecte
     Private Function updateSQL(obj As Projecte) As Integer
         Dim sc As SqlCommand, i As Integer
         sc = New SqlCommand("UPDATE " & getTable() & " " &
-                                " SET " & ID_EMPRESA & "=@idEmpresa," & CODI & "=@codi," & NOM & " =@nom, " & NOTES & "=@notes " & RESPONSABLE & "=@resp " & DIRECTOR & "=@dir " &
+                                " SET " & ID_EMPRESA & "=@idEmpresa," & CODI & "=@codi," & NOM & " =@nom, " & NOTES & "=@notes, " & RESPONSABLE & "=@resp, " & DIRECTOR & "=@dir " &
                                 " WHERE " & ID & "=@id", DBCONNECT.getConnection)
         sc.Parameters.Add("@id", SqlDbType.Int).Value = obj.id
         sc.Parameters.Add("@idEmpresa", SqlDbType.Int).Value = obj.idEmpresa

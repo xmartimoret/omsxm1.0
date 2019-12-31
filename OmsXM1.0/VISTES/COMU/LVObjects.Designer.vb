@@ -29,13 +29,7 @@ Partial Class LVObjects
         Me.lstData = New System.Windows.Forms.ListView()
         Me.lblTitol = New System.Windows.Forms.Label()
         Me.xecTots = New System.Windows.Forms.CheckBox()
-        Me.cmdAfegir = New System.Windows.Forms.Button()
-        Me.cmdModificar = New System.Windows.Forms.Button()
-        Me.cmdEliminar = New System.Windows.Forms.Button()
-        Me.cmdImprimir = New System.Windows.Forms.Button()
-        Me.cmdCancelar = New System.Windows.Forms.Button()
         Me.tTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.cmdActualitzar = New System.Windows.Forms.Button()
         Me.mnuContextual = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.mnoAfegir = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnoModificar = New System.Windows.Forms.ToolStripMenuItem()
@@ -43,6 +37,12 @@ Partial Class LVObjects
         Me.mnoActualitzar = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuImprimir = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuSortir = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cmdSeleccionar = New System.Windows.Forms.Button()
+        Me.cmdCancelar = New System.Windows.Forms.Button()
+        Me.cmdImprimir = New System.Windows.Forms.Button()
+        Me.cmdEliminar = New System.Windows.Forms.Button()
+        Me.cmdModificar = New System.Windows.Forms.Button()
+        Me.cmdAfegir = New System.Windows.Forms.Button()
         Me.mnuContextual.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -87,16 +87,15 @@ Partial Class LVObjects
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lstData.BackColor = System.Drawing.SystemColors.HighlightText
         Me.lstData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lstData.CheckBoxes = True
         Me.lstData.Font = New System.Drawing.Font("Arial", 10.0!)
         Me.lstData.ForeColor = System.Drawing.Color.Blue
         Me.lstData.FullRowSelect = True
         Me.lstData.GridLines = True
         Me.lstData.HideSelection = False
-        Me.lstData.Location = New System.Drawing.Point(-5, 56)
+        Me.lstData.Location = New System.Drawing.Point(0, 56)
         Me.lstData.MultiSelect = False
         Me.lstData.Name = "lstData"
-        Me.lstData.Size = New System.Drawing.Size(593, 373)
+        Me.lstData.Size = New System.Drawing.Size(588, 373)
         Me.lstData.TabIndex = 13
         Me.lstData.UseCompatibleStateImageBehavior = False
         Me.lstData.View = System.Windows.Forms.View.Details
@@ -125,72 +124,11 @@ Partial Class LVObjects
         Me.xecTots.Text = "SelectTots"
         Me.xecTots.UseVisualStyleBackColor = True
         '
-        'cmdAfegir
-        '
-        Me.cmdAfegir.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdAfegir.Image = Global.OmsXM.My.Resources.Resources.BotoNou
-        Me.cmdAfegir.Location = New System.Drawing.Point(3, 1)
-        Me.cmdAfegir.Name = "cmdAfegir"
-        Me.cmdAfegir.Size = New System.Drawing.Size(26, 28)
-        Me.cmdAfegir.TabIndex = 22
-        Me.cmdAfegir.UseVisualStyleBackColor = True
-        '
-        'cmdModificar
-        '
-        Me.cmdModificar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdModificar.Image = Global.OmsXM.My.Resources.Resources.BotoModificar
-        Me.cmdModificar.Location = New System.Drawing.Point(32, 1)
-        Me.cmdModificar.Name = "cmdModificar"
-        Me.cmdModificar.Size = New System.Drawing.Size(26, 28)
-        Me.cmdModificar.TabIndex = 23
-        Me.cmdModificar.UseVisualStyleBackColor = True
-        '
-        'cmdEliminar
-        '
-        Me.cmdEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdEliminar.Image = Global.OmsXM.My.Resources.Resources.BotoBorrar
-        Me.cmdEliminar.Location = New System.Drawing.Point(61, 1)
-        Me.cmdEliminar.Name = "cmdEliminar"
-        Me.cmdEliminar.Size = New System.Drawing.Size(26, 28)
-        Me.cmdEliminar.TabIndex = 24
-        Me.cmdEliminar.UseVisualStyleBackColor = True
-        '
-        'cmdImprimir
-        '
-        Me.cmdImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdImprimir.Image = Global.OmsXM.My.Resources.Resources.botoImprimir
-        Me.cmdImprimir.Location = New System.Drawing.Point(140, 1)
-        Me.cmdImprimir.Name = "cmdImprimir"
-        Me.cmdImprimir.Size = New System.Drawing.Size(26, 28)
-        Me.cmdImprimir.TabIndex = 25
-        Me.cmdImprimir.UseVisualStyleBackColor = True
-        '
-        'cmdCancelar
-        '
-        Me.cmdCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdCancelar.Image = Global.OmsXM.My.Resources.Resources.BotoSortir
-        Me.cmdCancelar.Location = New System.Drawing.Point(562, 3)
-        Me.cmdCancelar.Name = "cmdCancelar"
-        Me.cmdCancelar.Size = New System.Drawing.Size(26, 28)
-        Me.cmdCancelar.TabIndex = 26
-        Me.cmdCancelar.UseVisualStyleBackColor = True
-        '
-        'cmdActualitzar
-        '
-        Me.cmdActualitzar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdActualitzar.Image = Global.OmsXM.My.Resources.Resources.actualitzar
-        Me.cmdActualitzar.Location = New System.Drawing.Point(110, 0)
-        Me.cmdActualitzar.Name = "cmdActualitzar"
-        Me.cmdActualitzar.Size = New System.Drawing.Size(26, 28)
-        Me.cmdActualitzar.TabIndex = 27
-        Me.cmdActualitzar.UseVisualStyleBackColor = True
-        '
         'mnuContextual
         '
         Me.mnuContextual.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnoAfegir, Me.mnoModificar, Me.mnuEliminar, Me.mnoActualitzar, Me.mnuImprimir, Me.mnuSortir})
         Me.mnuContextual.Name = "mnuContextual"
-        Me.mnuContextual.Size = New System.Drawing.Size(183, 158)
+        Me.mnuContextual.Size = New System.Drawing.Size(183, 136)
         '
         'mnoAfegir
         '
@@ -232,11 +170,72 @@ Partial Class LVObjects
         Me.mnuSortir.Size = New System.Drawing.Size(182, 22)
         Me.mnuSortir.Text = "SORTIR"
         '
+        'cmdSeleccionar
+        '
+        Me.cmdSeleccionar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdSeleccionar.Image = Global.OmsXM.My.Resources.Resources.Seleccionar
+        Me.cmdSeleccionar.Location = New System.Drawing.Point(0, 2)
+        Me.cmdSeleccionar.Name = "cmdSeleccionar"
+        Me.cmdSeleccionar.Size = New System.Drawing.Size(26, 28)
+        Me.cmdSeleccionar.TabIndex = 27
+        Me.cmdSeleccionar.UseVisualStyleBackColor = True
+        '
+        'cmdCancelar
+        '
+        Me.cmdCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdCancelar.Image = Global.OmsXM.My.Resources.Resources.BotoSortir
+        Me.cmdCancelar.Location = New System.Drawing.Point(562, 3)
+        Me.cmdCancelar.Name = "cmdCancelar"
+        Me.cmdCancelar.Size = New System.Drawing.Size(26, 28)
+        Me.cmdCancelar.TabIndex = 26
+        Me.cmdCancelar.UseVisualStyleBackColor = True
+        '
+        'cmdImprimir
+        '
+        Me.cmdImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdImprimir.Image = Global.OmsXM.My.Resources.Resources.botoImprimir
+        Me.cmdImprimir.Location = New System.Drawing.Point(125, 1)
+        Me.cmdImprimir.Name = "cmdImprimir"
+        Me.cmdImprimir.Size = New System.Drawing.Size(26, 28)
+        Me.cmdImprimir.TabIndex = 25
+        Me.cmdImprimir.UseVisualStyleBackColor = True
+        '
+        'cmdEliminar
+        '
+        Me.cmdEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdEliminar.Image = Global.OmsXM.My.Resources.Resources.BotoBorrar
+        Me.cmdEliminar.Location = New System.Drawing.Point(92, 1)
+        Me.cmdEliminar.Name = "cmdEliminar"
+        Me.cmdEliminar.Size = New System.Drawing.Size(26, 28)
+        Me.cmdEliminar.TabIndex = 24
+        Me.cmdEliminar.UseVisualStyleBackColor = True
+        '
+        'cmdModificar
+        '
+        Me.cmdModificar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdModificar.Image = Global.OmsXM.My.Resources.Resources.BotoModificar
+        Me.cmdModificar.Location = New System.Drawing.Point(63, 1)
+        Me.cmdModificar.Name = "cmdModificar"
+        Me.cmdModificar.Size = New System.Drawing.Size(26, 28)
+        Me.cmdModificar.TabIndex = 23
+        Me.cmdModificar.UseVisualStyleBackColor = True
+        '
+        'cmdAfegir
+        '
+        Me.cmdAfegir.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdAfegir.Image = Global.OmsXM.My.Resources.Resources.BotoNou
+        Me.cmdAfegir.Location = New System.Drawing.Point(35, 1)
+        Me.cmdAfegir.Name = "cmdAfegir"
+        Me.cmdAfegir.Size = New System.Drawing.Size(26, 28)
+        Me.cmdAfegir.TabIndex = 22
+        Me.cmdAfegir.UseVisualStyleBackColor = True
+        '
         'LVObjects
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.cmdActualitzar)
+        Me.Controls.Add(Me.cmdSeleccionar)
         Me.Controls.Add(Me.cmdCancelar)
         Me.Controls.Add(Me.cmdImprimir)
         Me.Controls.Add(Me.cmdEliminar)
@@ -268,7 +267,6 @@ Partial Class LVObjects
     Friend WithEvents cmdImprimir As Button
     Friend WithEvents cmdCancelar As Button
     Friend WithEvents tTip1 As ToolTip
-    Friend WithEvents cmdActualitzar As Button
     Friend WithEvents mnuContextual As ContextMenuStrip
     Friend WithEvents mnoAfegir As ToolStripMenuItem
     Friend WithEvents mnoModificar As ToolStripMenuItem
@@ -276,4 +274,5 @@ Partial Class LVObjects
     Friend WithEvents mnoActualitzar As ToolStripMenuItem
     Friend WithEvents mnuImprimir As ToolStripMenuItem
     Friend WithEvents mnuSortir As ToolStripMenuItem
+    Friend WithEvents cmdSeleccionar As Button
 End Class

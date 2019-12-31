@@ -28,7 +28,6 @@ Partial Class LVSubObjects
         Me.lstData = New System.Windows.Forms.ListView()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.cmdActualitzar = New System.Windows.Forms.Button()
         Me.cmdImprimir = New System.Windows.Forms.Button()
         Me.cmdEliminar = New System.Windows.Forms.Button()
         Me.cmdModificar = New System.Windows.Forms.Button()
@@ -68,7 +67,6 @@ Partial Class LVSubObjects
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lstData.BackColor = System.Drawing.SystemColors.HighlightText
         Me.lstData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lstData.CheckBoxes = True
         Me.lstData.Font = New System.Drawing.Font("Arial", 10.0!)
         Me.lstData.ForeColor = System.Drawing.Color.Blue
         Me.lstData.FullRowSelect = True
@@ -108,21 +106,11 @@ Partial Class LVSubObjects
         Me.Label2.TabIndex = 32
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'cmdActualitzar
-        '
-        Me.cmdActualitzar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdActualitzar.Image = Global.OmsXM.My.Resources.Resources.actualitzar
-        Me.cmdActualitzar.Location = New System.Drawing.Point(111, 2)
-        Me.cmdActualitzar.Name = "cmdActualitzar"
-        Me.cmdActualitzar.Size = New System.Drawing.Size(26, 28)
-        Me.cmdActualitzar.TabIndex = 37
-        Me.cmdActualitzar.UseVisualStyleBackColor = True
-        '
         'cmdImprimir
         '
         Me.cmdImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.cmdImprimir.Image = Global.OmsXM.My.Resources.Resources.botoImprimir
-        Me.cmdImprimir.Location = New System.Drawing.Point(141, 3)
+        Me.cmdImprimir.Location = New System.Drawing.Point(103, 3)
         Me.cmdImprimir.Name = "cmdImprimir"
         Me.cmdImprimir.Size = New System.Drawing.Size(26, 28)
         Me.cmdImprimir.TabIndex = 36
@@ -132,7 +120,7 @@ Partial Class LVSubObjects
         '
         Me.cmdEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.cmdEliminar.Image = Global.OmsXM.My.Resources.Resources.BotoBorrar
-        Me.cmdEliminar.Location = New System.Drawing.Point(62, 3)
+        Me.cmdEliminar.Location = New System.Drawing.Point(69, 3)
         Me.cmdEliminar.Name = "cmdEliminar"
         Me.cmdEliminar.Size = New System.Drawing.Size(26, 28)
         Me.cmdEliminar.TabIndex = 35
@@ -142,7 +130,7 @@ Partial Class LVSubObjects
         '
         Me.cmdModificar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.cmdModificar.Image = Global.OmsXM.My.Resources.Resources.BotoModificar
-        Me.cmdModificar.Location = New System.Drawing.Point(33, 3)
+        Me.cmdModificar.Location = New System.Drawing.Point(41, 3)
         Me.cmdModificar.Name = "cmdModificar"
         Me.cmdModificar.Size = New System.Drawing.Size(26, 28)
         Me.cmdModificar.TabIndex = 34
@@ -151,8 +139,8 @@ Partial Class LVSubObjects
         'cmdAfegir
         '
         Me.cmdAfegir.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdAfegir.Image = Global.OmsXM.My.Resources.Resources.BotoNou
-        Me.cmdAfegir.Location = New System.Drawing.Point(4, 3)
+        Me.cmdAfegir.Image = Global.OmsXM.My.Resources.Resources.Seleccionar
+        Me.cmdAfegir.Location = New System.Drawing.Point(5, 3)
         Me.cmdAfegir.Name = "cmdAfegir"
         Me.cmdAfegir.Size = New System.Drawing.Size(26, 28)
         Me.cmdAfegir.TabIndex = 33
@@ -162,7 +150,6 @@ Partial Class LVSubObjects
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.cmdActualitzar)
         Me.Controls.Add(Me.cmdImprimir)
         Me.Controls.Add(Me.cmdEliminar)
         Me.Controls.Add(Me.cmdModificar)
@@ -183,7 +170,6 @@ Partial Class LVSubObjects
     Friend WithEvents lstData As ListView
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents cmdActualitzar As Button
     Friend WithEvents cmdImprimir As Button
     Friend WithEvents cmdEliminar As Button
     Friend WithEvents cmdModificar As Button

@@ -106,7 +106,4 @@ Public Class DContaplus
         e.Handled = False
     End Sub
 
-    Private Sub DContaplus_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
 End Class

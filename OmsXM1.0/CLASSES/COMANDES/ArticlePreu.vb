@@ -19,11 +19,7 @@
         _base = pBase
         _descompte = pDescompte
     End Sub
-    Public ReadOnly Property preu As Double
-        Get
-            Return _base - _base * (_descompte / 100)
-        End Get
-    End Property
+
     Public Function copy() As ArticlePreu
         copy = New ArticlePreu
         copy.id = Me.id

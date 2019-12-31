@@ -30,41 +30,36 @@
     Public MustOverride Function filtrar(idParent As Integer, txt As String) As DataList
     Private Sub setLanguage()
         Me.lblFiltrar.Text = IDIOMA.getString("filtrarPer")
-        If accio = 0 Then
-            tTip1.SetToolTip(cmdAfegir, IDIOMA.getString("cmdSeleccionar"))
-        Else
-            tTip1.SetToolTip(cmdAfegir, IDIOMA.getString("cmdAfegir"))
-        End If
+        tTip1.SetToolTip(cmdAfegir, IDIOMA.getString("cmdAfegir"))
         tTip1.SetToolTip(cmdCancelar, IDIOMA.getString("cmdSortir"))
         tTip1.SetToolTip(cmdModificar, IDIOMA.getString("cmdModificar"))
         tTip1.SetToolTip(cmdEliminar, IDIOMA.getString("cmdEliminar"))
-        tTip1.SetToolTip(cmdActualitzar, IDIOMA.getString("cmdActualitzar"))
+        tTip1.SetToolTip(cmdSeleccionar, IDIOMA.getString("cmdSeleccionar"))
         tTip1.SetToolTip(cmdImprimir, IDIOMA.getString("cmdImprimir"))
     End Sub
     Private Sub validateControls()
         If accio = 0 Then
             If idsActual.Count > 0 Or idActual > -1 Then
-                Me.cmdAfegir.Enabled = True
+                Me.cmdSeleccionar.Enabled = True
             Else
-                Me.cmdAfegir.Enabled = False
+                Me.cmdSeleccionar.Enabled = False
             End If
-            Me.cmdModificar.Visible = False
-            Me.cmdEliminar.Visible = False
-            Me.cmdImprimir.Visible = False
         ElseIf accio = 1 Then
+            Me.cmdSeleccionar.Enabled = False
             Me.cmdAfegir.Enabled = True
-            Me.cmdModificar.Visible = True
-            Me.cmdEliminar.Visible = True
-            Me.cmdImprimir.Visible = True
-            If idsActual.Count > 0 Or idActual > 0 Then
-                Me.cmdModificar.Enabled = True
-                Me.cmdEliminar.Enabled = True
-                Me.cmdImprimir.Enabled = True
-            Else
-                Me.cmdModificar.Enabled = False
-                Me.cmdEliminar.Enabled = False
-                Me.cmdImprimir.Enabled = True
-            End If
+
+        End If
+        Me.cmdModificar.Visible = True
+        Me.cmdEliminar.Visible = True
+        Me.cmdImprimir.Visible = True
+        If idsActual.Count > 0 Or idActual > 0 Then
+            Me.cmdModificar.Enabled = True
+            Me.cmdEliminar.Enabled = True
+            Me.cmdImprimir.Enabled = True
+        Else
+            Me.cmdModificar.Enabled = False
+            Me.cmdEliminar.Enabled = False
+            Me.cmdImprimir.Enabled = False
         End If
         If multiselect Then
             If isSelected() Then
@@ -114,30 +109,28 @@
     End Sub
     Private Sub cmdAfegir_Click(sender As Object, e As EventArgs) Handles cmdAfegir.Click
         Dim id As Integer
-        If accio = 0 Then
-            If seleccionar(idsActual) Then
-                If isForm Then
-                    Me.Parent.Parent.Dispose()
-                Else
-                    Me.Parent.Dispose()
-                End If
-                RaiseEvent doubleClick()
+        Try
+            id = afegir(idActual)
+            If id > 0 Then
+                idActual = id
+                Call setData()
+                Call setSelected()
+                Call validateControls()
             End If
-        Else
-            Try
-                id = afegir(idActual)
-                If id > 0 Then
-                    idActual = id
-                    Call setData()
-                    Call setSelected()
-                    Call validateControls()
-                End If
-            Catch ex As Exception
-                MsgBox(ex.Message, MsgBoxStyle.Critical, IDIOMA.getString("abort"))
-            End Try
-
-        End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, IDIOMA.getString("abort"))
+        End Try
         Call validateControls()
+    End Sub
+    Private Sub cmdSeleccionar_Click(sender As Object, e As EventArgs) Handles cmdSeleccionar.Click
+        If seleccionar(idsActual) Then
+            If isForm Then
+                Me.Parent.Parent.Dispose()
+            Else
+                Me.Parent.Dispose()
+            End If
+            RaiseEvent doubleClick()
+        End If
     End Sub
     Private Sub cmdModificar_Click(sender As Object, e As EventArgs) Handles cmdModificar.Click
         Dim id As Integer
@@ -314,9 +307,6 @@
         End If
     End Sub
 
-    Private Sub lblTitol_Click(sender As Object, e As EventArgs) Handles lblTitol.Click
-
-    End Sub
 
     Private Sub mnoAfegir_Click(sender As Object, e As EventArgs) Handles mnoAfegir.Click
         If cmdAfegir.Enabled Then Call cmdAfegir_Click(sender, e)
@@ -332,10 +322,6 @@
 
     Private Sub mnuSortir_Click(sender As Object, e As EventArgs) Handles mnuSortir.Click
         If cmdCancelar.Enabled Then Call cmdCancelar_Click(sender, e)
-    End Sub
-
-    Private Sub mnuContextual_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles mnuContextual.Opening
-
     End Sub
 
 

@@ -99,6 +99,7 @@ Public Class DArticle
         getData.fabricant = Me.fabricants.obj
         getData.unitat = Me.unitats.obj
         getData.iva = Me.ives.obj
+
         'If getData.pais Is Nothing Then getData.pais = ModelPais.getAuxiliar.getObject(0)
         'If getData.provincia Is Nothing Then getData.provincia = ModelProvincia.getAuxiliar.getObject(0)        
     End Function

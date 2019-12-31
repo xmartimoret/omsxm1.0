@@ -3396,4 +3396,16 @@
     <value>NOM CONTACTE</value>
     <comment>DProveidorContacte</comment>
   </data>
+  <data name="idEmpresa" xml:space="preserve">
+    <value>ID EMP.</value>
+    <comment>comu</comment>
+  </data>
+  <data name="totalBase" xml:space="preserve">
+    <value>TOTAL B.I.</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="totalIva" xml:space="preserve">
+    <value>TOTAL IVA</value>
+    <comment>pComanda</comment>
+  </data>
 </root>

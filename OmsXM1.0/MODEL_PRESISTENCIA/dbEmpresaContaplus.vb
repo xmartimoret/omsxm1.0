@@ -120,7 +120,7 @@ Module dbEmpresaContaplus
     Private Function updateDBF(obj As Contaplus) As Integer
         Dim sc As ADODB.Command
         sc = New ADODB.Command
-        obj.id = DBCONNECT.getMaxIdDBF(getTable) + 1
+
         With sc
             .ActiveConnection = DBCONNECT.getConnectionDbf
             .CommandText = "UPDATE " & getTable() & " SET  " & ID_EMPRESA & "   = ?,  " & ANYO & "   =?,  " & NOM & "   = ?, " & CONTAPLUS & "   =? WHERE " & ID & "= ? "

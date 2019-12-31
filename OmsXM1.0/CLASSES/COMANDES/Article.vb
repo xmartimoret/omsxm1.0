@@ -10,6 +10,7 @@
         _unitat = New Unitat
         _fabricant = New Fabricant
         _iva = New TipusIva
+        _preusProveidors = New List(Of ArticlePreu)
     End Sub
     Public Sub New(pId As Integer, pCodi As String, pNom As String, pNotes As String)
         Me.id = pId
@@ -20,6 +21,7 @@
         _unitat = New Unitat
         _fabricant = New Fabricant
         _iva = New TipusIva
+        _preusProveidors = New List(Of ArticlePreu)
     End Sub
     Public Sub New(pId As Integer, pCodi As String, pNom As String, pNotes As String, pUni As Unitat, pfamilia As Familia)
         Me.id = pId
@@ -30,6 +32,7 @@
         _familia = pfamilia
         _fabricant = New Fabricant
         _iva = New TipusIva
+        _preusProveidors = New List(Of ArticlePreu)
     End Sub
     Public Sub New(pId As Integer, pCodi As String, pNom As String, pNotes As String, pUni As Unitat, pfamilia As Familia, pFabricant As Fabricant, pIva As TipusIva)
         Me.id = pId
@@ -53,14 +56,13 @@
     End Function
     Public Function getUltimPreu(idProveidor As Integer) As ArticlePreu
         Dim ap As ArticlePreu, temp As ArticlePreu
-        temp = Nothing
+        temp = New ArticlePreu
         For Each ap In preusProveidors
-            If ap.idProveidor = idProveidor Then
+            If ap.idProveidor = idProveidor Or idProveidor = -1 Then
                 If IsNothing(temp) Then
                     temp = ap
                 Else
-                    If temp.data <= ap.idProveidor Then
-
+                    If temp.data <= ap.data Then
                         temp = ap
                     End If
                 End If
@@ -75,6 +77,7 @@
         _fabricant = Nothing
         _unitat = Nothing
         _iva = Nothing
+        _preusProveidors = Nothing
         MyBase.Finalize()
     End Sub
 End Class

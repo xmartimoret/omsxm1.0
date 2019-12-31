@@ -8,7 +8,7 @@ Public Class SelectContactes
         Me.multiselect = pMultiselect
         Me.isForm = parentForm
         Me.titol = pTitol
-        Me.orderColumn = 1
+        Me.orderColumn = 0
         contactes = New List(Of Contacte)
     End Sub
     Public Overrides Function afegir(id As Integer) As Integer

@@ -40,40 +40,32 @@ Partial Class pProjectesContactes
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.Controls.Add(Me.SContainer)
-        Me.Panel1.Location = New System.Drawing.Point(4, 0)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Panel1.Location = New System.Drawing.Point(3, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1305, 603)
+        Me.Panel1.Size = New System.Drawing.Size(979, 490)
         Me.Panel1.TabIndex = 0
         '
         'SContainer
         '
         Me.SContainer.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SContainer.Location = New System.Drawing.Point(0, 0)
-        Me.SContainer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.SContainer.Name = "SContainer"
         Me.SContainer.Orientation = System.Windows.Forms.Orientation.Horizontal
-        '
-        'SContainer.Panel1
-        '
         '
         'SContainer.Panel2
         '
         Me.SContainer.Panel2.Controls.Add(Me.SplitContainer1)
-        Me.SContainer.Size = New System.Drawing.Size(1305, 603)
-        Me.SContainer.SplitterDistance = 360
-        Me.SContainer.SplitterWidth = 5
+        Me.SContainer.Size = New System.Drawing.Size(979, 490)
+        Me.SContainer.SplitterDistance = 292
         Me.SContainer.TabIndex = 0
         '
         'SplitContainer1
         '
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainer1.Location = New System.Drawing.Point(0, 0)
-        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.SplitContainer1.Name = "SplitContainer1"
-        Me.SplitContainer1.Size = New System.Drawing.Size(1305, 238)
-        Me.SplitContainer1.SplitterDistance = 751
-        Me.SplitContainer1.SplitterWidth = 5
+        Me.SplitContainer1.Size = New System.Drawing.Size(979, 194)
+        Me.SplitContainer1.SplitterDistance = 509
         Me.SplitContainer1.TabIndex = 0
         '
         'cmdCancelar
@@ -86,23 +78,21 @@ Partial Class pProjectesContactes
         Me.cmdCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.cmdCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmdCancelar.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.cmdCancelar.Location = New System.Drawing.Point(1161, 604)
-        Me.cmdCancelar.Margin = New System.Windows.Forms.Padding(4)
+        Me.cmdCancelar.Location = New System.Drawing.Point(871, 491)
         Me.cmdCancelar.Name = "cmdCancelar"
-        Me.cmdCancelar.Size = New System.Drawing.Size(144, 37)
+        Me.cmdCancelar.Size = New System.Drawing.Size(108, 30)
         Me.cmdCancelar.TabIndex = 1
         Me.cmdCancelar.Text = "Boto1"
         Me.cmdCancelar.UseVisualStyleBackColor = False
         '
         'pProjectesContactes
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.cmdCancelar)
         Me.Controls.Add(Me.Panel1)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "pProjectesContactes"
-        Me.Size = New System.Drawing.Size(1309, 645)
+        Me.Size = New System.Drawing.Size(982, 524)
         Me.Panel1.ResumeLayout(False)
         Me.SContainer.Panel2.ResumeLayout(False)
         CType(Me.SContainer, System.ComponentModel.ISupportInitialize).EndInit()

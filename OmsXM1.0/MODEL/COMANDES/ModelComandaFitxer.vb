@@ -1,5 +1,6 @@
 ﻿
 Module ModelComandaFitxer
+    Private Const TIPUS_FITXER As String = "xmm"
     Private Enum comandaTxt
         empresa = 1
         projecte
@@ -20,6 +21,7 @@ Module ModelComandaFitxer
         tipusPagament
         dadesComanda
         article
+        pos
         articleId
         refArticle
         quantitatArticle
@@ -34,16 +36,17 @@ Module ModelComandaFitxer
     Private Function getRemoteObjects() As List(Of Comanda)
         Dim ruta As String, c As Comanda, f As String, fila() As String, a As articleComanda, comandes As List(Of Comanda)
         ruta = CONFIG.setSeparator(CONFIG.getRutaComandesEnEdicio)
-        f = Dir(ruta & "* .txt", FileAttribute.Normal)
+        f = Dir(ruta & "*." & TIPUS_FITXER, FileAttribute.Normal)
         comandes = New List(Of Comanda)
         codis = New List(Of String)
         Do While f <> ""
-            If CONFIG.folderExist(ruta & f) Then
-                Using fitxer As New IO.StreamReader(ruta)
+            If CONFIG.fileExist(ruta & f) Then
+                c = New Comanda
+                codis.Add(f)
+                Using fitxer As New IO.StreamReader(ruta & f)
                     fila = Split(fitxer.ReadLine(), ";")
-                    If UBound(fila) Then
-                        c = New Comanda
-                        codis.Add(f)
+                    If UBound(fila) > 0 Then
+
                         Select Case fila(0)
                             Case comandaTxt.empresa : If IsNumeric(fila(1)) Then c.empresa = ModelEmpresa.getObject(CInt(fila(1)))
                             Case comandaTxt.projecte : If IsNumeric(fila(1)) Then c.projecte = ModelProjecte.getObject(CInt(fila(1)))
@@ -86,6 +89,7 @@ Module ModelComandaFitxer
                 End Using
                 comandes.Add(c)
             End If
+            f = Dir()
         Loop
         Return comandes
     End Function
@@ -93,11 +97,11 @@ Module ModelComandaFitxer
         If IsNothing(objects) Then objects = getRemoteObjects()
         Return objects
     End Function
-    Public Sub saveEditComanda(p As Comanda)
+    Public Function saveEditComanda(p As Comanda) As Boolean
         Dim ruta As String, a As articleComanda, i As Integer
         ruta = CONFIG.setSeparator(CONFIG.getRutaComandesEnEdicio)
         If CONFIG.folderExist(ruta) Then
-            Using fitxer As New IO.StreamWriter(ruta & p.codi)
+            Using fitxer As New IO.StreamWriter(ruta & p.codi & "." & TIPUS_FITXER)
                 If Not IsNothing(p.empresa) Then fitxer.WriteLine(comandaTxt.empresa & ";" & p.empresa.id)
                 If Not IsNothing(p.projecte) Then fitxer.WriteLine(comandaTxt.projecte & ";" & p.projecte.id)
                 If Not IsNothing(p.magatzem) Then fitxer.WriteLine(comandaTxt.magatzem & ";" & p.magatzem.id)
@@ -121,13 +125,13 @@ Module ModelComandaFitxer
                 If Not IsNothing(p.articles) Then
                     For Each a In p.articles
                         fitxer.WriteLine(comandaTxt.article & ";iniciArticle")
-                        fitxer.WriteLine(comandaTxt.articleId & ";" & a.article.id)
-                        fitxer.WriteLine(comandaTxt.refArticle & ";" & a.article.codi)
+                        fitxer.WriteLine(comandaTxt.articleId & ";" & a.id)
+                        fitxer.WriteLine(comandaTxt.refArticle & ";" & a.codi)
                         fitxer.WriteLine(comandaTxt.quantitatArticle & ";" & a.quantitat)
                         If Not IsNothing(a.article.unitat) Then fitxer.WriteLine(comandaTxt.unitatArticle & ";" & a.article.unitat.id)
                         fitxer.WriteLine(comandaTxt.descripcioArticle & ";" & a.nom)
-                        If Not IsNothing(a.preu.preu) Then fitxer.WriteLine(comandaTxt.importArticle & ";" & a.preu.preu)
-                        If Not IsNothing(a.preu.descompte) Then fitxer.WriteLine(comandaTxt.descompteArticle & ";" & a.preu.descompte)
+                        If Not IsNothing(a.preu) Then fitxer.WriteLine(comandaTxt.importArticle & ";" & a.preu.base)
+                        If Not IsNothing(a.preu) Then fitxer.WriteLine(comandaTxt.descompteArticle & ";" & a.preu.descompte)
                         If Not IsNothing(a.iva) Then fitxer.WriteLine(comandaTxt.ivaArticle & ";" & a.article.iva.id)
                         fitxer.WriteLine(comandaTxt.article & ";finalArticle")
                         i = i + 1
@@ -136,9 +140,11 @@ Module ModelComandaFitxer
             End Using
             objects.Add(p)
             codis.Add(p.codi)
+            Return True
         End If
+        Return False
         a = Nothing
-    End Sub
+    End Function
     Public Function removeComanda(c As Comanda, f As String) As Boolean
         Dim ruta As String, result As Boolean = False
         ruta = CONFIG.setSeparator(CONFIG.getRutaComandesEnEdicio)
@@ -171,9 +177,9 @@ Module ModelComandaFitxer
         Dim temp As Integer, p As String
         If IsNothing(objects) Then objects = getRemoteObjects()
         For Each p In codis
-            If IsNumeric(Right(p, 3)) Then
-                If CInt(temp) < CInt(Right(p, 3)) Then
-                    temp = Right(p, 3)
+            If IsNumeric(Left(p, 3)) Then
+                If CInt(temp) < CInt(Left(p, 3)) Then
+                    temp = Left(p, 3)
                 End If
             End If
         Next

@@ -20,7 +20,14 @@
     Friend Property responsable As String
     Friend Property director As String
     Public Sub New()
-
+        _articles = New List(Of articleComanda)
+        _empresa = New Empresa
+        _projecte = New Projecte
+        _proveidor = New Proveidor
+        _contacteProveidor = New ProveidorCont
+        _contacte = New Contacte
+        _magatzem = New LlocEntrega
+        _tipusPagament = New TipusPagament
     End Sub
     Public Sub New(pId As Integer, pCodi As String, pProveidor As Proveidor, pEmpresa As Empresa, pProjecte As Projecte)
         Me.id = pId
@@ -28,6 +35,14 @@
         _proveidor = pProveidor
         _empresa = pEmpresa
         _projecte = pProjecte
+        _articles = New List(Of articleComanda)
+        _empresa = New Empresa
+        _projecte = New Projecte
+        _proveidor = New Proveidor
+        _contacteProveidor = New ProveidorCont
+        _contacte = New Contacte
+        _magatzem = New LlocEntrega
+        _tipusPagament = New TipusPagament
     End Sub
     Public Sub New(pId As Integer, pCodi As String, pProveidor As Proveidor, pEmpresa As Empresa, pProjecte As Projecte, pResponsable As String, pDirector As String)
         Me.id = pId
@@ -37,6 +52,14 @@
         _projecte = pProjecte
         _responsable = pResponsable
         _director = pDirector
+        _articles = New List(Of articleComanda)
+        _empresa = New Empresa
+        _projecte = New Projecte
+        _proveidor = New Proveidor
+        _contacteProveidor = New ProveidorCont
+        _contacte = New Contacte
+        _magatzem = New LlocEntrega
+        _tipusPagament = New TipusPagament
     End Sub
     Public Function copy() As Comanda
         copy = New Comanda
@@ -68,6 +91,7 @@
         Next
         Return suma
     End Function
+
     Public Function descompte() As Double
         Dim a As articleComanda, suma As Double
         For Each a In articles
@@ -135,4 +159,16 @@
     Public Function getCodiString() As String
         Return Strings.Right(Year(data), 2) & "-" & Strings.Right(_projecte.codi, 4) & "-" & codi
     End Function
+
+    Protected Overrides Sub Finalize()
+        _articles = Nothing
+        _empresa = Nothing
+        _projecte = Nothing
+        _proveidor = Nothing
+        _contacteProveidor = Nothing
+        _contacte = Nothing
+        _magatzem = Nothing
+        _tipusPagament = Nothing
+        MyBase.Finalize()
+    End Sub
 End Class

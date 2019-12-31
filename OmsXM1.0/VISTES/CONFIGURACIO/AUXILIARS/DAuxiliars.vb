@@ -235,7 +235,4 @@ Public Class DAuxiliars
         Me.Dispose()
     End Sub
 
-    Private Sub DAuxiliars_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
 End Class

@@ -1,12 +1,16 @@
-﻿Class pComanda
+﻿'TODO CAL PREVEURE QUAN ES MOSTRIN COMANDES EXISTENTS, ES A DIR QUE NO SIGUIN SOLICITUTS
+Class pComanda
     Private Const SOLICITUD_COMANDA As String = "NOVA"
     Private panelProv As panelDesplagableProveidor
     ' Private listProveidor As lstProveidor
     Private comandaActual As Comanda
     Private articleComandaActual As articleComanda
+    Private articleCopiat As articleComanda
     Private panelEmpr As panelDesplegableEmpresa
     Private panelComanda As panelDesplegableComanda
     Private actualitzar As Boolean
+    Private filesCopiades As List(Of DataGridViewRow)
+    Private isEnterCell As Boolean
     Public Sub New()
         actualitzar = False
         '      proveidorActual = New Proveidor
@@ -14,7 +18,7 @@
         InitializeComponent()
         comandaActual = New Comanda
         comandaActual.codi = ModelComandaFitxer.getNewCode
-
+        DGVArticles.Rows.Add(30)
         ' listProveidor = New lstProveidor(Nothing)
         panelProv = New panelDesplagableProveidor(Me.Height * 0.4, "p", comandaActual.proveidor)
         panelEmpr = New panelDesplegableEmpresa(Me.Height * 0.4, "e", comandaActual.empresa)
@@ -46,7 +50,7 @@
 
         InitializeComponent()
         comandaActual = p
-        'listProveidor = New lstProveidor(Nothing)
+        DGVArticles.Rows.Add(30)
         panelProv = New panelDesplagableProveidor(Me.Height * 0.4, "p", comandaActual.proveidor)
         panelEmpr = New panelDesplegableEmpresa(Me.Height * 0.4, "e", comandaActual.empresa, comandaActual.projecte)
         panelComanda = New panelDesplegableComanda(Me.Height * 0.4, "c", comandaActual)
@@ -73,22 +77,36 @@
         panelComanda.setAccio()
 
     End Sub
-    Private Sub setLanguage()
-        mnuAfegir.Text = IDIOMA.getString("afegir")
-        mnuEliminar.Text = IDIOMA.getString("eliminar")
-        mnuCopiar.Text = IDIOMA.getString("copiar")
-        mnuEngatxar.Text = IDIOMA.getString("engantxar")
-        cmdValidar.Text = IDIOMA.getString("crearComanda")
-        lblEstatComanda.Text = IDIOMA.getString("estatComanda") & ":"
-        DGVArticles.Columns(0).HeaderText = IDIOMA.getString("ref.")
-        DGVArticles.Columns(1).HeaderText = IDIOMA.getString("qnt.")
-        DGVArticles.Columns(2).HeaderText = IDIOMA.getString("uni.")
-        DGVArticles.Columns(3).HeaderText = IDIOMA.getString("descripcio")
-        DGVArticles.Columns(4).HeaderText = IDIOMA.getString("import")
-        DGVArticles.Columns(5).HeaderText = IDIOMA.getString("dte.")
-        DGVArticles.Columns(6).HeaderText = IDIOMA.getString("iva")
-        DGVArticles.Columns(7).HeaderText = IDIOMA.getString("total")
+    Private Sub pComanda_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Call setLanguage()
+        iva.Items.Clear()
+        iva.Items.AddRange(ModelTipusIva.getListStringIvaActiva)
+        unitat.Items.Clear()
+        unitat.Items.AddRange(ModelUnitat.getListString)
+        Call setProveidor(comandaActual.proveidor)
+        actualitzar = True
+        Call validateControls()
+        Call validateControlsArticles()
+        panelComanda.lblComanda.Text = comandaActual.getCodiSolicitud
     End Sub
+    Private Sub pComanda_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        Panel7.Width = Me.Width / 3 - (20)
+        Panel6.Width = Panel7.Width
+        Panel8.Width = Panel7.Width
+        Panel6.Left = Panel7.Left + Panel7.Width + 10
+        Panel8.Left = Panel6.Left + Panel6.Width + 10
+        DGVArticles.Columns(0).Width = DGVArticles.Width * 0.15
+        DGVArticles.Columns(1).Width = DGVArticles.Width * 0.05
+        DGVArticles.Columns(2).Width = DGVArticles.Width * 0.05
+        DGVArticles.Columns(3).Width = DGVArticles.Width * 0.31
+        DGVArticles.Columns(4).Width = DGVArticles.Width * 0.1
+        DGVArticles.Columns(5).Width = DGVArticles.Width * 0.05
+        DGVArticles.Columns(6).Width = DGVArticles.Width * 0.1
+        DGVArticles.Columns(7).Width = DGVArticles.Width * 0.05
+        DGVArticles.Columns(8).Width = DGVArticles.Width * 0.1
+    End Sub
+
+    '*** PROCEDIMENTS DE VALIDACIO***
     Private Sub validateControls()
         Dim errors As List(Of String), avisos As List(Of String), p As String
         comandaActual = getComanda()
@@ -113,13 +131,13 @@
         avisos = Nothing
     End Sub
     Private Sub validateControlsArticles()
-        If panelProv.proveidorActual Is Nothing Then
-            Call setPanelArticles(False)
-        Else
-            Call setPanelArticles(True)
-        End If
+        'If panelProv.proveidorActual Is Nothing Then
+        '    Call setPanelArticles(False)
+        'Else
+        '    Call setPanelArticles(True)
+        'End If
 
-        If articleComandaActual IsNot Nothing Then
+        If Not IsNothing(DGVArticles.CurrentCell) Then
             cmdModificarArticle.Enabled = True
             cmdEliminarArticle.Enabled = True
         Else
@@ -127,14 +145,111 @@
             cmdEliminarArticle.Enabled = False
         End If
     End Sub
+    Private Sub validarKeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
+        Dim columna As Integer = DGVArticles.CurrentCell.ColumnIndex
+        If columna = 1 Or columna = 4 Or columna = 5 Then
+            ' Obtener caracter  
+            Dim caracter As Char = e.KeyChar
+            e.KeyChar = VALIDAR.DecimalNegatiu(e.KeyChar, sender.text, sender.selectionstart, sender.text.length, 10, 3)
+        End If
+    End Sub
+
+    '*** SETS***
+    Private Sub setLanguage()
+        mnuAfegir.Text = IDIOMA.getString("afegir")
+        mnuEliminar.Text = IDIOMA.getString("eliminar")
+        mnuCopiar.Text = IDIOMA.getString("copiar")
+        mnuEngatxar.Text = IDIOMA.getString("engantxar")
+        cmdValidar.Text = IDIOMA.getString("crearComanda")
+
+        lblEstatComanda.Text = IDIOMA.getString("estatComanda") & ":"
+        DGVArticles.Columns(0).HeaderText = IDIOMA.getString("ref.")
+        DGVArticles.Columns(1).HeaderText = IDIOMA.getString("qnt.")
+        DGVArticles.Columns(2).HeaderText = IDIOMA.getString("uni.")
+        DGVArticles.Columns(3).HeaderText = IDIOMA.getString("descripcio")
+        DGVArticles.Columns(4).HeaderText = IDIOMA.getString("base")
+        DGVArticles.Columns(5).HeaderText = IDIOMA.getString("dte.")
+        DGVArticles.Columns(6).HeaderText = IDIOMA.getString("totalBase")
+        DGVArticles.Columns(6).DefaultCellStyle.ForeColor = Color.Gray
+        DGVArticles.Columns(7).HeaderText = IDIOMA.getString("iva")
+        DGVArticles.Columns(8).HeaderText = IDIOMA.getString("total")
+        DGVArticles.Columns(8).DefaultCellStyle.ForeColor = Color.Gray
+    End Sub
     Private Sub setPanelArticles(activar As Boolean)
-        cmdAfegirArticle.Enabled = activar
         cmdCercadorArticle.Enabled = activar
         cmdEliminarArticle.Enabled = activar
         cmdModificarArticle.Enabled = activar
         txtFiltrarArticle.Enabled = activar
         DGVArticles.Enabled = activar
     End Sub
+    Private Sub setEmpresa()
+        If actualitzar Then Call validateControls()
+    End Sub
+    Private Sub setProjecte()
+        If actualitzar Then
+            Call validateControls()
+            panelComanda.lblComanda.Text = comandaActual.getCodiSolicitud
+        End If
+    End Sub
+    Private Sub setComanda()
+        If actualitzar Then Call validateControls()
+    End Sub
+    Private Sub setProveidor(p As Proveidor)
+        comandaActual.proveidor = p
+        If Not IsNothing(comandaActual.proveidor) Then Call setTipusPagament(p.tipusPagament)
+        If actualitzar Then Call validateControls()
+    End Sub
+    Private Sub setTipusPagament(t As TipusPagament)
+        comandaActual.tipusPagament = t
+        panelComanda.listCondicionsPagament.cb.SelectedItem = t
+        If actualitzar Then Call validateControls()
+    End Sub
+    Private Sub setTotal(r As Integer)
+        DGVArticles.Rows(r).Cells(6).Value = Math.Round((DGVArticles.Rows(r).Cells(1).Value * DGVArticles.Rows(r).Cells(4).Value) - (DGVArticles.Rows(r).Cells(1).Value * DGVArticles.Rows(r).Cells(4).Value) * (DGVArticles.Rows(r).Cells(5).Value / 100), 2)
+        DGVArticles.Rows(r).Cells(8).Value = Math.Round(DGVArticles.Rows(r).Cells(6).Value + (DGVArticles.Rows(r).Cells(6).Value * ModelTipusIva.getValor(DGVArticles.Rows(r).Cells(7).Value)), 2)
+    End Sub
+    Private Sub setTotals()
+        Dim r As DataGridViewRow, base As Double = 0, iva As Double = 0
+        For Each r In DGVArticles.Rows
+            base = base + r.Cells(6).Value
+            iva = iva + r.Cells(6).Value * (ModelTipusIva.getValor(r.Cells(7).Value))
+        Next
+        lblTotalBI.Text = IDIOMA.getString("totalBase") & ": " & Format(base, "#,##0.00;-#,##0.00")
+        lblTotalIva.Text = IDIOMA.getString("totalIva") & ": " & Format(iva, "#,##0.00;-#,##0.00")
+        lblTotal.Text = IDIOMA.getString("total") & ": " & Format(base + iva, "#,##0.00;-#,##0.00")
+        r = Nothing
+    End Sub
+    Private Sub setAccio()
+        Dim mida As Decimal
+        mida = Panel7.Height
+        If mida < Panel6.Height Then mida = Panel6.Height
+        If mida < Panel8.Height Then mida = Panel8.Height
+        panelArticle.Top = Panel6.Top + mida + 2
+        panelArticle.Height = Me.Height - Panel1.Height - mida - 2
+    End Sub
+    Private Sub setArticle()
+        Dim r As Integer
+        If DGVArticles.CurrentCell Is Nothing Then
+            DGVArticles.Rows.Add()
+            DGVArticles.Rows.Add()
+            r = DGVArticles.CurrentCell.RowIndex
+
+        Else
+            r = DGVArticles.CurrentCell.RowIndex
+        End If
+        actualitzar = False
+        DGVArticles.Rows(r).Cells(0).Value = articleComandaActual.article.codi
+        DGVArticles.Rows(r).Cells(1).Value = articleComandaActual.quantitat
+        DGVArticles.Rows(r).Cells(2).Value = articleComandaActual.article.unitat.codi
+        DGVArticles.Rows(r).Cells(3).Value = articleComandaActual.nom
+        DGVArticles.Rows(r).Cells(4).Value = articleComandaActual.preu.base
+        DGVArticles.Rows(r).Cells(5).Value = articleComandaActual.preu.descompte
+        DGVArticles.Rows(r).Cells(7).Value = articleComandaActual.article.iva.nom
+        DGVArticles.Refresh()
+        actualitzar = True
+    End Sub
+
+    '*** GETS***
     Private Function getComanda() As Comanda
         Dim c As Comanda
         c = New Comanda()
@@ -160,115 +275,150 @@
         c.tipusPagament = panelComanda.tipuspagament
         Return c
     End Function
-    Private Function getArticles() As List(Of articleComanda)
-
+    Private Function getArticle(r As Integer) As articleComanda
+        Dim ac As articleComanda
+        ac = New articleComanda(-1, comandaActual.id, r, DGVArticles.Rows(r).Cells(3).Value)
+        ac.article = ModelArticle.getObject(Convert.ToString(DGVArticles.Rows(r).Cells(0).Value))
+        ac.quantitat = DGVArticles.Rows(r).Cells(1).Value
+        ac.unitat = ModelUnitat.getObject(Convert.ToString(DGVArticles.Rows(r).Cells(2).Value))
+        ac.preu.base = DGVArticles.Rows(r).Cells(4).Value
+        ac.preu.descompte = DGVArticles.Rows(r).Cells(5).Value
+        ac.tIva = ModelTipusIva.getObjectByToString(Convert.ToString(DGVArticles.Rows(r).Cells(7).Value))
+        Return ac
     End Function
-    Private Sub setAccio()
-        Dim mida As Decimal
-        mida = Panel7.Height
-        If mida < Panel6.Height Then mida = Panel6.Height
-        If mida < Panel8.Height Then mida = Panel8.Height
-        panelArticle.Top = Panel6.Top + mida + 2
-    End Sub
-    Private Sub setProveidor(p As Proveidor)
-        comandaActual.proveidor = p
-        If Not IsNothing(comandaActual.proveidor) Then Call setTipusPagament(p.tipusPagament)
-        If actualitzar Then Call validateControls()
-    End Sub
-    Private Sub setEmpresa()
-        If actualitzar Then Call validateControls()
-    End Sub
-    Private Sub setProjecte()
-        If actualitzar Then Call validateControls()
-        panelComanda.lblComanda.Text = comandaActual.getCodiSolicitud
-    End Sub
-    Private Sub setComanda()
-        If actualitzar Then Call validateControls()
-    End Sub
-    Private Sub setTipusPagament(t As TipusPagament)
-        comandaActual.tipusPagament = t
-        panelComanda.listCondicionsPagament.cb.SelectedItem = t
-        If actualitzar Then Call validateControls()
-    End Sub
+    Private Function getArticles() As List(Of articleComanda)
+        Dim a As articleComanda, llista As List(Of articleComanda), i As Integer, r As DataGridViewRow
+        llista = New List(Of articleComanda)
+        For i = 0 To DGVArticles.Rows.Count - 1
+            r = DGVArticles.Rows(i)
+            If r.Cells("codi").Value <> "" Or r.Cells("descripcio").Value <> "" Then ' O be la referencia o la descripcio
+                a = New articleComanda
+                a.codi = r.Cells("codi").Value
+                a.preu.descompte = r.Cells("descompte").Value
+                a.idComanda = comandaActual.id
+                If r.Cells("iva").Value <> "" Then a.tIva = ModelTipusIva.getObjectByToString(r.Cells("iva").Value)
+                a.pos = i
+                a.preu.base = r.Cells("import").Value
+                a.quantitat = r.Cells("quantitat").Value
+                If r.Cells("unitat").Value <> "" Then a.unitat = ModelUnitat.getObject(r.Cells("unitat").Value)
+                a.nom = r.Cells("descripcio").Value
+                llista.Add(a)
+            End If
+        Next
+        Return llista
+    End Function
 
-    Private Sub mnuEliminar_Click(sender As Object, e As EventArgs) Handles mnuEliminar.Click
+    '*** ELEMENTS DE MENU ***'
+    Private Function copyRow() As List(Of DataGridViewRow)
+        Dim r As DataGridViewRow
+        copyRow = New List(Of DataGridViewRow)
+        For Each r In DGVArticles.SelectedRows
+            copyRow.Add(r)
+        Next
+        r = Nothing
+    End Function
+    Private Sub RowPaste()
+        Dim r As DataGridViewRow, i As Integer, r1 As DataGridViewRow
+        actualitzar = False
+        i = DGVArticles.CurrentCell.RowIndex
+        For Each r In filesCopiades
+            r1 = DGVArticles.Rows(i)
+            r1.Cells(0).Value = r.Cells(0).Value
+            r1.Cells(1).Value = r.Cells(1).Value
+            r1.Cells(2).Value = r.Cells(2).Value
+            r1.Cells(3).Value = r.Cells(3).Value
+            r1.Cells(4).Value = r.Cells(4).Value
+            r1.Cells(5).Value = r.Cells(5).Value
+            r1.Cells(6).Value = r.Cells(6).Value
+            r1.Cells(7).Value = r.Cells(7).Value
+            r1.Cells(8).Value = r.Cells(8).Value
+            i = i + 1
+            If DGVArticles.Rows.Count <= i Then DGVArticles.Rows.Add()
+        Next
+        actualitzar = True
+        Call setTotals()
+    End Sub
+    Private Sub removeItemsSelected()
         For Each row As DataGridViewRow In DGVArticles.SelectedRows
             DGVArticles.Rows.Remove(row)
         Next
+        Call setTotals()
     End Sub
-    Private Sub pComanda_Load(sender As Object, e As EventArgs) Handles Me.Load
-        DGVArticles.ContextMenuStrip = Me.mnuContextual
-        Call setLanguage()
-        c7.Items.Clear()
-        c7.Items.AddRange(ModelTipusIva.getListStringIvaActiva)
-        Call setProveidor(comandaActual.proveidor)
-        actualitzar = True
-        Call validateControls()
-        Call validateControlsArticles()
-        panelComanda.lblComanda.Text = comandaActual.getCodiSolicitud
-    End Sub
-    Private Sub setClipBoard(t As String)
-        Dim x As Integer, y As Integer, text As String = ""
-        x = DGVArticles.CurrentCell.RowIndex
-        y = DGVArticles.CurrentCell.ColumnIndex
-        DGVArticles.Rows(x).Cells(y).Value = t
+    Private Sub afegirFila(i As Integer)
 
+        DGVArticles.Rows.AddCopies(i, DGVArticles.SelectedRows.Count)
+    End Sub
+    Private Sub mnuEliminar_Click(sender As Object, e As EventArgs) Handles mnuEliminar.Click
+        Call removeItemsSelected()
+    End Sub
+    Private Sub mnuContextual_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles mnuContextual.Opening
+        mnuContextual.Visible = False
+    End Sub
+    Private Sub mnuAfegir_Click(sender As Object, e As EventArgs) Handles mnuAfegir.Click
+        If DGVArticles.SelectedRows.Count > 0 Then Call afegirFila(DGVArticles.CurrentCell.RowIndex)
+    End Sub
+    Private Sub mnuCopiar_Click(sender As Object, e As EventArgs) Handles mnuCopiar.Click
+        Call copyRow()
     End Sub
     Private Sub mnuEngatxar_Click(sender As Object, e As EventArgs) Handles mnuEngatxar.Click
-        Call setClipBoard(My.Computer.Clipboard.GetText)
+        Call RowPaste()
     End Sub
-    Private Sub dataGridView1_EditingControlShowing(
-        ByVal sender As Object,
-        ByVal e As DataGridViewEditingControlShowingEventArgs) _
-            Handles DGVArticles.EditingControlShowing
-        If DGVArticles.CurrentCell.ColumnIndex <> 6 Then
+
+    '*** EVENTS DATAGRIDVIEW   ***
+    Private Sub dataGridView1_EditingControlShowing(ByVal sender As Object, ByVal e As DataGridViewEditingControlShowingEventArgs) Handles DGVArticles.EditingControlShowing
+        If DGVArticles.CurrentCell.ColumnIndex <> 7 And DGVArticles.CurrentCell.ColumnIndex <> 2 Then
             Dim validar As TextBox = CType(e.Control, TextBox)
             ' agregar el controlador de eventos para el KeyPress  
             AddHandler validar.KeyPress, AddressOf validarKeyPress
         End If
     End Sub
-    Private Sub validarKeyPress(
-        ByVal sender As Object,
-        ByVal e As System.Windows.Forms.KeyPressEventArgs)
-        ' obtener indice de la columna  
-        Dim columna As Integer = DGVArticles.CurrentCell.ColumnIndex
-
-        ' comprobar si la celda en edición corresponde a la columna 1 o 3  
-        If columna = 1 Or columna = 4 Or columna = 5 Then
-            ' Obtener caracter  
-            Dim caracter As Char = e.KeyChar
-            e.KeyChar = VALIDAR.DecimalNegatiu(e.KeyChar, sender.text, sender.selectionstart, sender.text.length, 10, 3)
-        End If
-    End Sub
-    Private Sub DGVArticles_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGVArticles.CellContentClick
-        If actualitzar Then Call validateControlsArticles()
-    End Sub
     Private Sub DGVArticles_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles DGVArticles.CellValueChanged
         If actualitzar Then
             Dim columna As Integer = DGVArticles.CurrentCell.ColumnIndex
-            If columna = 1 Or columna = 4 Or columna = 5 Then
-                DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(7).Value = DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(1).Value * DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(4).Value - DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(4).Value * (DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(5).Value / 100)
-            Else
-
-            End If
-            If actualitzar Then Call validateControlsArticles()
-        End If
-    End Sub
-    Private Sub DGVArticles_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DGVArticles.CellEndEdit
-        Dim a As article
-        If actualitzar Then
-            If DGVArticles.CurrentCell.ColumnIndex = 0 Then
-                If Not IsNothing(DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(0).Value) Then
-                    a = ModelArticle.getObject(DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(0).Value)
-                    If Not IsNothing(a) Then
-                        articleComandaActual = New articleComanda
-                        articleComandaActual.article = a
-                        Call setArticle()
+            If Not IsNothing(DGVArticles.CurrentCell) Then
+                If columna = 1 Or columna = 4 Or columna = 5 Or columna = 7 Then
+                    Call setTotal(DGVArticles.CurrentCell.RowIndex)
+                    Call setTotals()
+                ElseIf columna = 0 And actualitzar Then
+                    If DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(0).Value <> "" Then
+                        Dim a As article
+                        a = ModelArticle.getObject(Strings.UCase(DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(0).Value))
+                        If Not IsNothing(a) Then
+                            a.preusProveidors = ModelarticlePreu.getObjects(a.id)
+                            articleComandaActual = New articleComanda
+                            articleComandaActual.article = a
+                            articleComandaActual.quantitat = 1
+                            articleComandaActual.nom = a.nom
+                            If Not IsNothing(panelProv.proveidorActual) Then
+                                articleComandaActual.preu = a.getUltimPreu(panelProv.proveidorActual.id)
+                            Else
+                                articleComandaActual.preu = a.getUltimPreu(-1)
+                            End If
+                            actualitzar = False
+                            Call setArticle()
+                            Call setTotal(DGVArticles.CurrentCell.RowIndex)
+                            Call setTotals()
+                            actualitzar = True
+                        End If
+                        a = Nothing
                     End If
                 End If
+                Call validateControlsArticles()
             End If
         End If
     End Sub
+    Private Sub DGVArticles_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DGVArticles.RowHeaderMouseClick
+        If e.Button = MouseButtons.Right Then
+            mnuContextual.Top = e.X
+            mnuContextual.Left = e.Y
+            mnuContextual.Visible = True
+        End If
+    End Sub
+    Private Sub DGVArticles_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGVArticles.CellDoubleClick
+        Call modificarArticleComanda()
+    End Sub
+
+    'EVENTS  BUTTON
     Private Sub cmdCercador_Click(sender As Object, e As EventArgs) Handles cmdCercadorArticle.Click
         Dim a As article
         a = DArticles.getArticle(True, txtFiltrarArticle.Text)
@@ -279,36 +429,10 @@
         End If
         Call validateControlsArticles()
     End Sub
-    Private Sub setArticle()
-        Dim r As Integer
-        If DGVArticles.CurrentCell Is Nothing Then
-            DGVArticles.Rows.Add()
-            DGVArticles.Rows.Add()
-            r = DGVArticles.CurrentCell.RowIndex
+    Private Sub cmdAfegir_Click(sender As Object, e As EventArgs)
+        Dim ac As articleComanda
 
-        Else
-            r = DGVArticles.CurrentCell.RowIndex
-        End If
-        DGVArticles.Rows(r).Cells(0).Value = articleComandaActual.article.codi
-        DGVArticles.Rows(r).Cells(1).Value = articleComandaActual.quantitat
-        DGVArticles.Rows(r).Cells(2).Value = articleComandaActual.unitat.codi
-        DGVArticles.Rows(r).Cells(3).Value = articleComandaActual.nom
-        DGVArticles.Rows(r).Cells(4).Value = articleComandaActual.preu.base
-        DGVArticles.Rows(r).Cells(5).Value = articleComandaActual.preu.descompte
-        DGVArticles.Rows(r).Cells(6).Value = articleComandaActual.article.iva.nom
-        DGVArticles.Refresh()
-
-    End Sub
-    Private Sub mnuContextual_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles mnuContextual.Opening
-        mnuContextual.Visible = False
-    End Sub
-    Private Sub mnuAfegir_Click(sender As Object, e As EventArgs) Handles mnuAfegir.Click
-        DGVArticles.Rows.Add()
-    End Sub
-    Private Sub cmdAfegir_Click(sender As Object, e As EventArgs) Handles cmdAfegirArticle.Click
-        Dim ac As articleComanda, d As DArticleComanda
-        d = New DArticleComanda
-        ac = d.getNewArticle(comandaActual.proveidor)
+        ac = DArticleComanda.getNewArticle(comandaActual.proveidor, comandaActual.id)
         If ac IsNot Nothing Then
             articleComandaActual = ac
             Call setArticle()
@@ -317,81 +441,66 @@
         ac = Nothing
     End Sub
     Private Sub cmdModificar_Click(sender As Object, e As EventArgs) Handles cmdModificarArticle.Click
+        Call modificarArticleComanda()
+    End Sub
+    Private Sub modificarArticleComanda()
         Dim ac As articleComanda
-        ac = DArticleComanda.getArticle(articleComandaActual, comandaActual.proveidor)
-        If ac IsNot Nothing Then
-            articleComandaActual = ac
-            Call setArticle()
+        If Not IsNothing(DGVArticles.CurrentCell) Then
+            ac = DArticleComanda.getArticle(getArticle(DGVArticles.CurrentCell.RowIndex), comandaActual.proveidor)
+            If ac IsNot Nothing Then
+                articleComandaActual = ac
+                Call setArticle()
+                Call setTotal(DGVArticles.CurrentCell.RowIndex)
+                Call setTotals()
+            End If
+            Call validateControlsArticles()
         End If
-        Call validateControlsArticles()
         ac = Nothing
     End Sub
-    Private Sub pComanda_Resize(sender As Object, e As EventArgs) Handles Me.Resize
-        Panel7.Width = Me.Width / 3 - (20)
-        Panel6.Width = Panel7.Width
-        Panel8.Width = Panel7.Width
-        Panel6.Left = Panel7.Left + Panel7.Width + 10
-        Panel8.Left = Panel6.Left + Panel6.Width + 10
-        DGVArticles.Columns(0).Width = DGVArticles.Width * 0.15
-        DGVArticles.Columns(1).Width = DGVArticles.Width * 0.05
-        DGVArticles.Columns(2).Width = DGVArticles.Width * 0.05
-        DGVArticles.Columns(3).Width = DGVArticles.Width * 0.4
-        DGVArticles.Columns(4).Width = DGVArticles.Width * 0.1
-        DGVArticles.Columns(5).Width = DGVArticles.Width * 0.05
-        DGVArticles.Columns(6).Width = DGVArticles.Width * 0.05
-        DGVArticles.Columns(7).Width = DGVArticles.Width * 0.15
+
+    Private Sub cmdCopiarArticle_Click(sender As Object, e As EventArgs) Handles cmdCopiarArticle.Click
+        filesCopiades = copyRow()
+    End Sub
+    Private Sub cmdEngantxarArticle_Click(sender As Object, e As EventArgs) Handles cmdEngantxarArticle.Click
+        Call RowPaste()
+    End Sub
+    Private Sub cmdAfegirFila_Click(sender As Object, e As EventArgs) Handles cmdAfegirFila.Click
+        If DGVArticles.SelectedRows.Count > 0 Then Call afegirFila(DGVArticles.CurrentCell.RowIndex)
+    End Sub
+    Private Sub cmdTreureFila_Click(sender As Object, e As EventArgs) Handles cmdTreureFila.Click
+        For Each row As DataGridViewRow In DGVArticles.SelectedRows
+            DGVArticles.Rows.Remove(row)
+        Next
     End Sub
     Private Sub cmdValidar_Click(sender As Object, e As EventArgs) Handles cmdValidar.Click
-        If validarComanda() Then
 
-        End If
     End Sub
-    Private Sub DGVArticles_CellValuePushed(sender As Object, e As DataGridViewCellValueEventArgs) Handles DGVArticles.CellValuePushed
-        Dim columna As Integer = DGVArticles.CurrentCell.ColumnIndex
-        If columna = 0 Then
-            If Len(DGVArticles.Rows(DGVArticles.CurrentCell.RowIndex).Cells(0).Value) > 1 Then
-                ' todo cal refer
-            End If
-        End If
-    End Sub
-    'todo ja no cal
-    Private Function validarComanda() As Boolean
-        Dim isEmpresa As Boolean, isProjecte As Boolean, isContacte As Boolean, isMagatzem As Boolean, isProveidor As Boolean, isContacteProveidor As Boolean
-        Dim avisos As String = "", errors As String = ""
-        If IsNothing(panelEmpr.empresaActual) Then
-            isEmpresa = True
-        Else
-            If IsNothing(panelEmpr.projecteActual) Then isProjecte = True
-            If IsNothing(panelEmpr.contacteActual) Then isContacte = True
-            If IsNothing(panelEmpr.llocActual) Then isMagatzem = True
-        End If
-        If IsNothing(panelProv.proveidorActual) Then isProveidor = True
-        If IsNothing(panelProv.contacteActual) Then isContacteProveidor = True
-        If isEmpresa Or isProjecte Or isContacte Or isMagatzem Or isProveidor Or isContacteProveidor Then
-            If isEmpresa Then
-                errors = IDIOMA.getString("noEmpresaComanda") & vbCrLf
-            ElseIf isProjecte Then
-                errors = IDIOMA.getString("noProjecteComanda") & vbCrLf
-            Else
-                If isMagatzem Then avisos = IDIOMA.getString("noMagatzemComanda") & vbCrLf
-                If isContacte Then avisos = avisos & IDIOMA.getString("noContacteComanda") & vbCrLf
 
-            End If
-
-            If isProveidor Then
-                errors = errors & IDIOMA.getString("noProveidorComanda")
-            Else
-                If isContacteProveidor Then avisos = avisos & IDIOMA.getString("noContacteProveidorComanda")
-            End If
-            Call DAvisosErrors.setText(IDIOMA.getString("revisarAnomalies"), avisos, errors)
-            Return False
-        Else
-            Return True
-        End If
-    End Function
-    'todo cal seguir
+    'todo cal implementar
     Private Sub cmdGuardar_Click(sender As Object, e As EventArgs) Handles cmdGuardar.Click
-        Call ModelComandaFitxer.saveEditComanda(getComanda)
+        Dim c As Comanda
+        c = getComanda()
+        c.articles = getArticles()
+        Call ModelComandaFitxer.saveEditComanda(c)
+        c = Nothing
     End Sub
 
+
+    '*** EVENTS  TEXTBOX
+    Private Sub txtFiltrarArticle_KeyDown(sender As Object, e As KeyEventArgs) Handles txtFiltrarArticle.KeyDown
+        If e.KeyCode = 13 Then
+            Dim a As article
+            a = DArticles.getArticle(True, txtFiltrarArticle.Text)
+            If a IsNot Nothing Then
+                articleComandaActual = New articleComanda(-1, comandaActual.id, DGVArticles.Rows.Count, a.nom)
+                articleComandaActual.article = a
+                Call setArticle()
+            End If
+            Call validateControlsArticles()
+        End If
+    End Sub
+
+    Private Sub cmdEliminarArticle_Click(sender As Object, e As EventArgs) Handles cmdEliminarArticle.Click
+        Call removeItemsSelected()
+    End Sub
 End Class

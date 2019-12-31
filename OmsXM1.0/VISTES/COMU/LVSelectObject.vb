@@ -108,6 +108,7 @@
         If lstData.SelectedItems.Count > 0 Then
             idActual = Val(lstData.SelectedItems(0).Text)
             Call modificar(idActual)
+
         End If
     End Sub
 End Class

@@ -1145,6 +1145,12 @@
     <Compile Include="VISTES\VISTAGENERAL\frmIniComanda.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="VISTES\VISTAGENERAL\frmTestComanda.Designer.vb">
+      <DependentUpon>frmTestComanda.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\VISTAGENERAL\frmTestComanda.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="LANG\Lang.resx">
@@ -1477,6 +1483,9 @@
     <EmbeddedResource Include="VISTES\VISTAGENERAL\frmIniComanda.resx">
       <DependentUpon>frmIniComanda.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\VISTAGENERAL\frmTestComanda.resx">
+      <DependentUpon>frmTestComanda.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -1668,6 +1677,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\error.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Seleccionar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\afegirFila.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\engantxar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\copiar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\treureFila.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

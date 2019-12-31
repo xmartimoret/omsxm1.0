@@ -91,6 +91,7 @@ Public Class ModelAuxiliar
         'If p Is Nothing Then p = New Object
         Return p
     End Function
+
     Public Function getCodi(id As Integer) As String
         Dim p As Object
         If Not isUpdated() Then objects = getRemoteObjects()

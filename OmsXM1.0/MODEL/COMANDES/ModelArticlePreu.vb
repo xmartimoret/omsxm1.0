@@ -21,7 +21,7 @@ Module ModelarticlePreu
             getDataList.columns.Add(COLUMN.GENERICA("total", 100, HorizontalAlignment.Center))
 
             For Each a In articlepreus
-                getDataList.rows.Add(New ListViewItem(New String() {a.id, ModelProveidor.getNom(a.idProveidor), ModelArticle.getNom(a.idArticle), ModelArticle.getCodiUnitat(a.idArticle), a.data, a.base, a.descompte, a.preu}))
+                getDataList.rows.Add(New ListViewItem(New String() {a.id, ModelProveidor.getNom(a.idProveidor), ModelArticle.getNom(a.idArticle), ModelArticle.getCodiUnitat(a.idArticle), a.data, a.base, a.descompte, a.base - a.descompte}))
             Next
         End If
         a = Nothing

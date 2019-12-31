@@ -22,7 +22,7 @@ Module ModelarticleComanda
             getDataList.columns.Add(COLUMN.GENERICA("iva", 100, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.GENERICA("total", 100, HorizontalAlignment.Center))
             For Each a In ArticlesComanda
-                getDataList.rows.Add(New ListViewItem(New String() {a.id, a.codi, a.quantitat, a.unitat.codi, a.nom, a.preu.preu, a.preu.descompte, a.tIva.codi, a.total}))
+                getDataList.rows.Add(New ListViewItem(New String() {a.id, a.codi, a.quantitat, a.unitat.codi, a.nom, a.preu.base, a.preu.descompte, a.tIva.codi, a.total}))
             Next
         End If
         a = Nothing

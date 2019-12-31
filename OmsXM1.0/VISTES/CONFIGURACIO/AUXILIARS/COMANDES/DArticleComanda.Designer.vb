@@ -43,8 +43,8 @@ Partial Class DArticleComanda
         Me.lblCodi = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cmdCercador = New System.Windows.Forms.Button()
-        Me.cmdCercador1 = New System.Windows.Forms.Button()
         Me.cmdCercadorPreus = New System.Windows.Forms.Button()
+        Me.lblInfoPreu = New System.Windows.Forms.Label()
         Me.TableLayoutPanel2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -52,7 +52,7 @@ Partial Class DArticleComanda
         '
         Me.cmdGuardar.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.cmdGuardar.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.cmdGuardar.Location = New System.Drawing.Point(48, 3)
+        Me.cmdGuardar.Location = New System.Drawing.Point(27, 3)
         Me.cmdGuardar.Name = "cmdGuardar"
         Me.cmdGuardar.Size = New System.Drawing.Size(133, 30)
         Me.cmdGuardar.TabIndex = 4
@@ -66,11 +66,11 @@ Partial Class DArticleComanda
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.cmdGuardar, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.cmdCancelar, 1, 0)
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(26, 405)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(50, 251)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 1
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(459, 36)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(376, 36)
         Me.TableLayoutPanel2.TabIndex = 90
         '
         'cmdCancelar
@@ -78,7 +78,7 @@ Partial Class DArticleComanda
         Me.cmdCancelar.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.cmdCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdCancelar.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.cmdCancelar.Location = New System.Drawing.Point(270, 3)
+        Me.cmdCancelar.Location = New System.Drawing.Point(208, 3)
         Me.cmdCancelar.Name = "cmdCancelar"
         Me.cmdCancelar.Size = New System.Drawing.Size(148, 30)
         Me.cmdCancelar.TabIndex = 5
@@ -88,7 +88,7 @@ Partial Class DArticleComanda
         '
         Me.lblTotal.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTotal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lblTotal.Location = New System.Drawing.Point(92, 370)
+        Me.lblTotal.Location = New System.Drawing.Point(92, 223)
         Me.lblTotal.Name = "lblTotal"
         Me.lblTotal.Size = New System.Drawing.Size(128, 20)
         Me.lblTotal.TabIndex = 89
@@ -98,7 +98,7 @@ Partial Class DArticleComanda
         'lblCaptionTotal
         '
         Me.lblCaptionTotal.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCaptionTotal.Location = New System.Drawing.Point(12, 371)
+        Me.lblCaptionTotal.Location = New System.Drawing.Point(12, 224)
         Me.lblCaptionTotal.Name = "lblCaptionTotal"
         Me.lblCaptionTotal.Size = New System.Drawing.Size(71, 20)
         Me.lblCaptionTotal.TabIndex = 88
@@ -108,7 +108,7 @@ Partial Class DArticleComanda
         'lblIva
         '
         Me.lblIva.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblIva.Location = New System.Drawing.Point(12, 332)
+        Me.lblIva.Location = New System.Drawing.Point(12, 185)
         Me.lblIva.Name = "lblIva"
         Me.lblIva.Size = New System.Drawing.Size(71, 20)
         Me.lblIva.TabIndex = 87
@@ -117,7 +117,7 @@ Partial Class DArticleComanda
         '
         'panelTipusIva
         '
-        Me.panelTipusIva.Location = New System.Drawing.Point(92, 327)
+        Me.panelTipusIva.Location = New System.Drawing.Point(92, 180)
         Me.panelTipusIva.Name = "panelTipusIva"
         Me.panelTipusIva.Size = New System.Drawing.Size(177, 30)
         Me.panelTipusIva.TabIndex = 86
@@ -125,7 +125,7 @@ Partial Class DArticleComanda
         'lblDescompte
         '
         Me.lblDescompte.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDescompte.Location = New System.Drawing.Point(12, 294)
+        Me.lblDescompte.Location = New System.Drawing.Point(12, 147)
         Me.lblDescompte.Name = "lblDescompte"
         Me.lblDescompte.Size = New System.Drawing.Size(71, 20)
         Me.lblDescompte.TabIndex = 85
@@ -136,16 +136,15 @@ Partial Class DArticleComanda
         '
         Me.txtDescompte.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.txtDescompte.ForeColor = System.Drawing.Color.Blue
-        Me.txtDescompte.Location = New System.Drawing.Point(92, 291)
-        Me.txtDescompte.Multiline = True
+        Me.txtDescompte.Location = New System.Drawing.Point(92, 144)
         Me.txtDescompte.Name = "txtDescompte"
-        Me.txtDescompte.Size = New System.Drawing.Size(59, 24)
+        Me.txtDescompte.Size = New System.Drawing.Size(59, 26)
         Me.txtDescompte.TabIndex = 84
         '
         'lblPreu
         '
         Me.lblPreu.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPreu.Location = New System.Drawing.Point(12, 264)
+        Me.lblPreu.Location = New System.Drawing.Point(12, 117)
         Me.lblPreu.Name = "lblPreu"
         Me.lblPreu.Size = New System.Drawing.Size(71, 20)
         Me.lblPreu.TabIndex = 83
@@ -156,10 +155,9 @@ Partial Class DArticleComanda
         '
         Me.txtPreu.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.txtPreu.ForeColor = System.Drawing.Color.Blue
-        Me.txtPreu.Location = New System.Drawing.Point(92, 261)
-        Me.txtPreu.Multiline = True
+        Me.txtPreu.Location = New System.Drawing.Point(92, 114)
         Me.txtPreu.Name = "txtPreu"
-        Me.txtPreu.Size = New System.Drawing.Size(128, 24)
+        Me.txtPreu.Size = New System.Drawing.Size(128, 26)
         Me.txtPreu.TabIndex = 82
         '
         'lblDescripcio
@@ -179,16 +177,15 @@ Partial Class DArticleComanda
         Me.txtDescripcio.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.txtDescripcio.ForeColor = System.Drawing.Color.Blue
         Me.txtDescripcio.Location = New System.Drawing.Point(92, 80)
-        Me.txtDescripcio.Multiline = True
         Me.txtDescripcio.Name = "txtDescripcio"
-        Me.txtDescripcio.Size = New System.Drawing.Size(352, 175)
+        Me.txtDescripcio.Size = New System.Drawing.Size(334, 26)
         Me.txtDescripcio.TabIndex = 80
         '
         'lblUnitat
         '
         Me.lblUnitat.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblUnitat.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblUnitat.Location = New System.Drawing.Point(231, 48)
+        Me.lblUnitat.Location = New System.Drawing.Point(172, 48)
         Me.lblUnitat.Name = "lblUnitat"
         Me.lblUnitat.Size = New System.Drawing.Size(71, 20)
         Me.lblUnitat.TabIndex = 79
@@ -198,9 +195,9 @@ Partial Class DArticleComanda
         'panelUnitats
         '
         Me.panelUnitats.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.panelUnitats.Location = New System.Drawing.Point(308, 44)
+        Me.panelUnitats.Location = New System.Drawing.Point(249, 44)
         Me.panelUnitats.Name = "panelUnitats"
-        Me.panelUnitats.Size = New System.Drawing.Size(136, 30)
+        Me.panelUnitats.Size = New System.Drawing.Size(177, 30)
         Me.panelUnitats.TabIndex = 78
         '
         'txtQuantitat
@@ -232,7 +229,7 @@ Partial Class DArticleComanda
         Me.txtCodi.ForeColor = System.Drawing.Color.Blue
         Me.txtCodi.Location = New System.Drawing.Point(92, 12)
         Me.txtCodi.Name = "txtCodi"
-        Me.txtCodi.Size = New System.Drawing.Size(352, 26)
+        Me.txtCodi.Size = New System.Drawing.Size(157, 26)
         Me.txtCodi.TabIndex = 74
         '
         'lblCodi
@@ -249,7 +246,7 @@ Partial Class DArticleComanda
         '
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(157, 294)
+        Me.Label1.Location = New System.Drawing.Point(157, 147)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(63, 20)
         Me.Label1.TabIndex = 91
@@ -260,39 +257,38 @@ Partial Class DArticleComanda
         '
         Me.cmdCercador.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.cmdCercador.Image = Global.OmsXM.My.Resources.Resources.BotoCercar
-        Me.cmdCercador.Location = New System.Drawing.Point(450, 10)
+        Me.cmdCercador.Location = New System.Drawing.Point(255, 11)
         Me.cmdCercador.Name = "cmdCercador"
         Me.cmdCercador.Size = New System.Drawing.Size(26, 28)
         Me.cmdCercador.TabIndex = 92
         Me.cmdCercador.UseVisualStyleBackColor = True
         '
-        'cmdCercador1
-        '
-        Me.cmdCercador1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdCercador1.Image = Global.OmsXM.My.Resources.Resources.BotoCercar
-        Me.cmdCercador1.Location = New System.Drawing.Point(450, 80)
-        Me.cmdCercador1.Name = "cmdCercador1"
-        Me.cmdCercador1.Size = New System.Drawing.Size(26, 28)
-        Me.cmdCercador1.TabIndex = 93
-        Me.cmdCercador1.UseVisualStyleBackColor = True
-        '
         'cmdCercadorPreus
         '
         Me.cmdCercadorPreus.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.cmdCercadorPreus.Image = Global.OmsXM.My.Resources.Resources.BotoCercar
-        Me.cmdCercadorPreus.Location = New System.Drawing.Point(226, 260)
+        Me.cmdCercadorPreus.Location = New System.Drawing.Point(226, 113)
         Me.cmdCercadorPreus.Name = "cmdCercadorPreus"
         Me.cmdCercadorPreus.Size = New System.Drawing.Size(26, 28)
         Me.cmdCercadorPreus.TabIndex = 94
         Me.cmdCercadorPreus.UseVisualStyleBackColor = True
         '
+        'lblInfoPreu
+        '
+        Me.lblInfoPreu.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblInfoPreu.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lblInfoPreu.Location = New System.Drawing.Point(258, 114)
+        Me.lblInfoPreu.Name = "lblInfoPreu"
+        Me.lblInfoPreu.Size = New System.Drawing.Size(168, 54)
+        Me.lblInfoPreu.TabIndex = 95
+        '
         'DArticleComanda
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(497, 453)
+        Me.ClientSize = New System.Drawing.Size(438, 299)
+        Me.Controls.Add(Me.lblInfoPreu)
         Me.Controls.Add(Me.cmdCercadorPreus)
-        Me.Controls.Add(Me.cmdCercador1)
         Me.Controls.Add(Me.cmdCercador)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TableLayoutPanel2)
@@ -346,6 +342,6 @@ Partial Class DArticleComanda
     Friend WithEvents lblCodi As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents cmdCercador As Button
-    Friend WithEvents cmdCercador1 As Button
     Friend WithEvents cmdCercadorPreus As Button
+    Friend WithEvents lblInfoPreu As Label
 End Class

@@ -31,6 +31,7 @@
         ' Handle the ENTER key as if it were a RIGHT ARROW key.   
         If e.KeyCode = Keys.Enter Then
             Return Me.ProcessTabKey(e.KeyData)
+
         End If
 
         Return MyBase.ProcessDataGridViewKey(e)

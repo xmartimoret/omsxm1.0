@@ -43,17 +43,19 @@
 
     Public ReadOnly Property base As Double
         Get
-            Return preu.preu * quantitat
+            Return (preu.base - descompte) * quantitat
         End Get
     End Property
     Public ReadOnly Property descompte As Double
         Get
-            Return ((preu.descompte / 100) * (base))
+            Return ((preu.descompte / 100) * (preu.base))
         End Get
     End Property
     Public ReadOnly Property iva As Double
         Get
-            Return (base - descompte) * (tIva.impost / 100)
+            If Not IsNothing(tIva) Then Return (base - descompte) * (tIva.impost / 100)
+            Return 0
+
         End Get
     End Property
     Public ReadOnly Property total As Double
@@ -81,9 +83,7 @@
         End Get
         Set(value As article)
             _article = value
-            _unitat = value.unitat
-            nom = value.nom
-            codi = value.codi
+
         End Set
     End Property
     ' nota ens cal tenir una referencia generica * i pot haver-hi dos o mes proveidors amb el mateix article. llavors a l'escollir 

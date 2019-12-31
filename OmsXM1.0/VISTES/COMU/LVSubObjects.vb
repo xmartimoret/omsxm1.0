@@ -18,7 +18,6 @@
         tTip1.SetToolTip(cmdAfegir, IDIOMA.getString("cmdAfegir"))
         tTip1.SetToolTip(cmdModificar, IDIOMA.getString("cmdModificar"))
         tTip1.SetToolTip(cmdEliminar, IDIOMA.getString("cmdEliminar"))
-        tTip1.SetToolTip(cmdActualitzar, IDIOMA.getString("cmdActualitzar"))
         tTip1.SetToolTip(cmdImprimir, IDIOMA.getString("cmdImprimir"))
     End Sub
     Private Sub validateControls()

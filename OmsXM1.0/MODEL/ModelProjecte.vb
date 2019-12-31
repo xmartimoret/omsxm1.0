@@ -105,7 +105,7 @@ Module ModelProjecte
         getDataList = New DataList
         If projectes.Count > 0 Then
             getDataList.columns.Add(COLUMN.ID)
-            getDataList.columns.Add(COLUMN.ID)
+            getDataList.columns.Add((COLUMN.GENERICA("idEmpresa", 0, HorizontalAlignment.Center)))
             getDataList.columns.Add(COLUMN.EMPRESA)
             getDataList.columns.Add(COLUMN.CODI)
             getDataList.columns.Add(COLUMN.NOM)

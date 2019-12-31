@@ -31,4 +31,5 @@ Public Class dArticlePreus
         Me.DialogResult = DialogResult.Cancel
         Me.Hide()
     End Sub
+
 End Class

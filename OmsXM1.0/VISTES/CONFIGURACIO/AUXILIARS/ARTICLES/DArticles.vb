@@ -36,7 +36,4 @@ Public Class DArticles
 
     End Sub
 
-    Private Sub DArticles_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
 End Class
