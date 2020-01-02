@@ -129,4 +129,10 @@ Public Class frmIniComanda
     Private Sub frmIniComanda_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
+
+    Private Sub mnuVeureComandaEdicio_Click(sender As Object, e As EventArgs) Handles mnuVeureComandaEdicio.Click
+        Dim p As SelectSolicitudComandes
+        p = New SelectSolicitudComandes(1, True, False)
+        Call setTab(IDIOMA.getString("solicitudsComanda"), p)
+    End Sub
 End Class

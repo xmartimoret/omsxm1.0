@@ -15,4 +15,8 @@
     Private Sub pArticles_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call setLlocEntrega()
     End Sub
+
+    Private Sub panelData_Paint(sender As Object, e As PaintEventArgs) Handles panelData.Paint
+
+    End Sub
 End Class

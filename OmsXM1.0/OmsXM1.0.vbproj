@@ -242,7 +242,7 @@
     <Compile Include="MODEL\COMANDES\ModelArticleComanda.vb" />
     <Compile Include="MODEL\COMANDES\ModelArticlePreu.vb" />
     <Compile Include="MODEL\COMANDES\ModelComanda.vb" />
-    <Compile Include="MODEL\COMANDES\ModelComandaFitxer.vb" />
+    <Compile Include="MODEL\COMANDES\ModelComandaSolicitud.vb" />
     <Compile Include="MODEL\COMANDES\ModelLlocEntrega.vb" />
     <Compile Include="MODEL\COMANDES\ModelProjecteContacte.vb" />
     <Compile Include="MODEL\COMANDES\ModelProjecteEntrega.vb" />
@@ -507,6 +507,9 @@
       <DependentUpon>panelDesplegableEmpresa.vb</DependentUpon>
     </Compile>
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\panelDesplegableEmpresa.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\SelectSolicitudComandes.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\DContacte.Designer.vb">

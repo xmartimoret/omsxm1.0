@@ -328,6 +328,7 @@ Module DBCONNECT
     Public Function getTaulaEstimacions() As String
         getTaulaEstimacions = TAULA_ESTIMACIONS
     End Function
+
     Public Function getRutaDBActual() As String
         getRutaDBActual = ""
         If CONFIG_FILE.getTag(CONFIG_FILE.TAG.ES_LOCAL) Then
@@ -377,7 +378,7 @@ Module DBCONNECT
     End Function
     Public Function isUpdated(dateUpdate As DateTime, t As String) As Boolean
         If DateAdd(DateInterval.Minute, 1, dateUpdate) < Now() Then
-            If getDateModified(CONFIG.setDbf(t)) > dateUpdate Then
+            If getDateModified(t) > dateUpdate Then
                 Return False
             End If
         End If

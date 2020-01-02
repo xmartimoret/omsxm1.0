@@ -1,6 +1,8 @@
 ﻿
-Module ModelComandaFitxer
-    Private Const TIPUS_FITXER As String = "xmm"
+Module ModelComandaSolicitud
+    Private Const TIPUS_FITXER As String = ".xmm"
+    Private dateUpdate As Date
+
     Private Enum comandaTxt
         empresa = 1
         projecte
@@ -36,7 +38,7 @@ Module ModelComandaFitxer
     Private Function getRemoteObjects() As List(Of Comanda)
         Dim ruta As String, c As Comanda, f As String, fila() As String, a As articleComanda, comandes As List(Of Comanda)
         ruta = CONFIG.setSeparator(CONFIG.getRutaComandesEnEdicio)
-        f = Dir(ruta & "*." & TIPUS_FITXER, FileAttribute.Normal)
+        f = Dir(ruta & "*" & TIPUS_FITXER, FileAttribute.Normal)
         comandes = New List(Of Comanda)
         codis = New List(Of String)
         Do While f <> ""
@@ -91,17 +93,41 @@ Module ModelComandaFitxer
             End If
             f = Dir()
         Loop
+        dateUpdate = Now
         Return comandes
     End Function
     Public Function getObjects() As List(Of Comanda)
-        If IsNothing(objects) Then objects = getRemoteObjects()
+        If Not isUpdated() Then objects = getRemoteObjects()
         Return objects
     End Function
-    Public Function saveEditComanda(p As Comanda) As Boolean
+    Public Function getObjects(Optional filtre As String = "") As List(Of Comanda)
+        Dim a As Comanda, altres As String = ""
+        If Not isUpdated() Then objects = getRemoteObjects()
+        getObjects = New List(Of Comanda)
+        For Each a In objects
+            If a.proveidor IsNot Nothing Then altres = a.proveidor.nom
+            If a.projecte IsNot Nothing Then altres = altres & a.projecte.nom
+            If a.empresa IsNot Nothing Then altres = altres & a.empresa.nom
+            If altres <> "" Then
+                If a.isFilter(filtre, altres) Then
+                    getObjects.Add(a)
+                End If
+            Else
+                If a.isFilter(filtre) Then
+                    getObjects.Add(a)
+                End If
+            End If
+        Next
+    End Function
+    Public Function getObject(id As Integer) As Comanda
+        If IsNothing(objects) Then objects = getRemoteObjects()
+        Return objects.Find(Function(x) x.id = id)
+    End Function
+    Public Function save(p As Comanda) As Boolean
         Dim ruta As String, a As articleComanda, i As Integer
         ruta = CONFIG.setSeparator(CONFIG.getRutaComandesEnEdicio)
         If CONFIG.folderExist(ruta) Then
-            Using fitxer As New IO.StreamWriter(ruta & p.codi & "." & TIPUS_FITXER)
+            Using fitxer As New IO.StreamWriter(ruta & p.codi & TIPUS_FITXER)
                 If Not IsNothing(p.empresa) Then fitxer.WriteLine(comandaTxt.empresa & ";" & p.empresa.id)
                 If Not IsNothing(p.projecte) Then fitxer.WriteLine(comandaTxt.projecte & ";" & p.projecte.id)
                 If Not IsNothing(p.magatzem) Then fitxer.WriteLine(comandaTxt.magatzem & ";" & p.magatzem.id)
@@ -111,16 +137,16 @@ Module ModelComandaFitxer
                 fitxer.WriteLine(comandaTxt.directorProjecte)
                 If Not IsNothing(p.proveidor) Then fitxer.WriteLine(comandaTxt.proveidor & ";" & p.proveidor.id)
                 If Not IsNothing(p.contacteProveidor) Then fitxer.WriteLine(comandaTxt.departementProveidor & ";" & p.contacteProveidor.id)
-                fitxer.WriteLine(comandaTxt.ncomanda)
-                fitxer.WriteLine(comandaTxt.datacomanda)
-                fitxer.WriteLine(comandaTxt.ports)
-                fitxer.WriteLine(comandaTxt.dataEntrega)
-                fitxer.WriteLine(comandaTxt.dataMuntatge)
-                fitxer.WriteLine(comandaTxt.retencio)
-                fitxer.WriteLine(comandaTxt.intAval)
-                fitxer.WriteLine(comandaTxt.nOferta)
-                fitxer.WriteLine(comandaTxt.tipusPagament)
-                fitxer.WriteLine(comandaTxt.dadesComanda)
+                fitxer.WriteLine(comandaTxt.ncomanda & ";" & p.id)
+                fitxer.WriteLine(comandaTxt.datacomanda & ";" & p.data)
+                fitxer.WriteLine(comandaTxt.ports & ";" & p.ports)
+                fitxer.WriteLine(comandaTxt.dataEntrega & ";" & p.dataEntrega)
+                fitxer.WriteLine(comandaTxt.dataMuntatge & ";" & p.dataMuntatge)
+                fitxer.WriteLine(comandaTxt.retencio & ";" & p.retencio)
+                fitxer.WriteLine(comandaTxt.intAval & ";" & p.interAval)
+                fitxer.WriteLine(comandaTxt.nOferta & ";" & p.nOferta)
+                If Not IsNothing(p.tipusPagament) Then fitxer.WriteLine(comandaTxt.tipusPagament & ";" & p.tipusPagament.id)
+                fitxer.WriteLine(comandaTxt.dadesComanda & ";" & p.dadesBancaries)
                 i = 1
                 If Not IsNothing(p.articles) Then
                     For Each a In p.articles
@@ -145,19 +171,21 @@ Module ModelComandaFitxer
         Return False
         a = Nothing
     End Function
-    Public Function removeComanda(c As Comanda, f As String) As Boolean
-        Dim ruta As String, result As Boolean = False
+    Public Function remove(c As Comanda) As Boolean
+        Dim ruta As String, result As Boolean = False, f As String
+        f = c.codi & TIPUS_FITXER
         ruta = CONFIG.setSeparator(CONFIG.getRutaComandesEnEdicio)
         If CONFIG.folderExist(ruta) Then
             If CONFIG.fileExist(ruta & f) Then
                 Call Kill(ruta & f)
-                result = removeObject(c)
+                result = removeComanda(c)
                 Call removeCodi(f)
             End If
         End If
+        dateUpdate = Now
         Return result
     End Function
-    Private Function removeObject(c As Comanda) As Boolean
+    Private Function removeComanda(c As Comanda) As Boolean
         Dim t As Comanda, result As Boolean
         result = False
         For Each t In objects
@@ -190,5 +218,32 @@ Module ModelComandaFitxer
         Else
             Return temp + 1
         End If
+    End Function
+    Private Function isUpdated() As Boolean
+        If Not objects Is Nothing Then
+            If getDateUpdated() > dateUpdate Then
+                isUpdated = False
+            Else
+                isUpdated = True
+            End If
+        Else
+            Return False
+        End If
+        If isUpdated Then dateUpdate = Now
+    End Function
+    Private Function getDateUpdated() As DateTime
+        Dim ruta As String, f As String, d As DateTime
+        ruta = CONFIG.setSeparator(CONFIG.getRutaComandesEnEdicio)
+        f = Dir(ruta & "*" & TIPUS_FITXER, FileAttribute.Normal)
+        Do While f <> ""
+            If CONFIG.fileExist(ruta & f) Then
+                d = CONFIG.getDateFileModified(ruta & f)
+                If d > dateUpdate Then
+                    Return d
+                End If
+            End If
+            f = Dir()
+        Loop
+        Return dateUpdate
     End Function
 End Module

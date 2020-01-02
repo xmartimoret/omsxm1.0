@@ -182,7 +182,8 @@ Partial Class frmIniComanda
         '
         Me.panelTabs.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.panelTabs.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.panelTabs.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.panelTabs.ForeColor = System.Drawing.Color.Coral
         Me.panelTabs.Location = New System.Drawing.Point(1, 30)
         Me.panelTabs.Name = "panelTabs"
         Me.panelTabs.Size = New System.Drawing.Size(660, 32)

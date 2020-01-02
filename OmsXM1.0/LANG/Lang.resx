@@ -3408,4 +3408,11 @@
     <value>TOTAL IVA</value>
     <comment>pComanda</comment>
   </data>
+  <data name="missatgeEliminarSolicitudComanda" xml:space="preserve">
+    <value>- VOLS ELIMINAR LA SOLICITUD DE COMANDA? </value>
+    <comment>missatges</comment>
+  </data>
+  <data name="solicitudsComanda" xml:space="preserve">
+    <value>F56</value>
+  </data>
 </root>

@@ -436,4 +436,17 @@
         End If
         Return False
     End Function
+    Public Function CONFIRM_REMOVE_SOLICITUD_COMANDA(Optional m As String = "") As Boolean
+        If m = "" Then
+            If MsgBox(IDIOMA.getString("missatgeEliminarSolicitudComanda"), MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+                Return True
+            End If
+        Else
+            If MsgBox(IDIOMA.getString("missatgeEliminarSolicitudComanda") & " (" & m & ")?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+                Return True
+            End If
+        End If
+        Return False
+    End Function
+
 End Module

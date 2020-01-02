@@ -1,6 +1,5 @@
 ﻿'TODO CAL PREVEURE QUAN ES MOSTRIN COMANDES EXISTENTS, ES A DIR QUE NO SIGUIN SOLICITUTS
 Class pComanda
-    Private Const SOLICITUD_COMANDA As String = "NOVA"
     Private panelProv As panelDesplagableProveidor
     ' Private listProveidor As lstProveidor
     Private comandaActual As Comanda
@@ -17,7 +16,8 @@ Class pComanda
         ' This call is required by the designer.
         InitializeComponent()
         comandaActual = New Comanda
-        comandaActual.codi = ModelComandaFitxer.getNewCode
+        comandaActual.codi = ModelComandaSolicitud.getNewCode
+        comandaActual.id = Val(ModelComandaSolicitud.getNewCode)
         DGVArticles.Rows.Add(30)
         ' listProveidor = New lstProveidor(Nothing)
         panelProv = New panelDesplagableProveidor(Me.Height * 0.4, "p", comandaActual.proveidor)
@@ -253,6 +253,7 @@ Class pComanda
     Private Function getComanda() As Comanda
         Dim c As Comanda
         c = New Comanda()
+        c.id = comandaActual.id
         c.codi = comandaActual.codi
         c.contacte = panelEmpr.contacteActual
         c.contacteProveidor = panelProv.contacteActual
@@ -262,7 +263,6 @@ Class pComanda
         c.dataMuntatge = panelComanda.dataMuntatgeActual
         c.director = panelEmpr.txtDirector.Text
         c.empresa = panelEmpr.empresaActual
-        c.id = -1
         c.interAval = panelComanda.intAval
         c.magatzem = panelEmpr.llocActual
         c.nOferta = panelComanda.oferta
@@ -481,7 +481,7 @@ Class pComanda
         Dim c As Comanda
         c = getComanda()
         c.articles = getArticles()
-        Call ModelComandaFitxer.saveEditComanda(c)
+        Call ModelComandaSolicitud.save(c)
         c = Nothing
     End Sub
 
