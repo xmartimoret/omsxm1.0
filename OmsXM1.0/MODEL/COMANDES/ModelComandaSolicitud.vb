@@ -43,51 +43,57 @@ Module ModelComandaSolicitud
         codis = New List(Of String)
         Do While f <> ""
             If CONFIG.fileExist(ruta & f) Then
-                c = New Comanda
+                c = New Comanda()
                 codis.Add(f)
                 Using fitxer As New IO.StreamReader(ruta & f)
-                    fila = Split(fitxer.ReadLine(), ";")
-                    If UBound(fila) > 0 Then
 
-                        Select Case fila(0)
-                            Case comandaTxt.empresa : If IsNumeric(fila(1)) Then c.empresa = ModelEmpresa.getObject(CInt(fila(1)))
-                            Case comandaTxt.projecte : If IsNumeric(fila(1)) Then c.projecte = ModelProjecte.getObject(CInt(fila(1)))
-                            Case comandaTxt.magatzem : If IsNumeric(fila(1)) Then c.magatzem = ModelLlocEntrega.getObject(CInt(fila(1)))
-                            Case comandaTxt.contacteProjecte : If IsNumeric(fila(1)) Then c.contacte = ModelContacte.getObject(CInt(fila(1)))
-                            Case comandaTxt.responsableProjecte : c.responsable = fila(1)
-                            Case comandaTxt.directorProjecte : c.director = fila(1)
-                            Case comandaTxt.proveidor : If IsNumeric(fila(1)) Then c.proveidor = ModelProveidor.getObject(CInt(fila(1)))
-                            Case comandaTxt.departementProveidor : If IsNumeric(fila(1)) Then c.contacteProveidor = ModelProveidorContacte.getObject(CInt(fila(1)))
-                            Case comandaTxt.ncomanda : c.codi = fila(1)
-                            Case comandaTxt.datacomanda : If IsDate(fila(1)) Then c.data = CDate(fila(1))
-                            Case comandaTxt.ports : c.ports = fila(1)
-                            Case comandaTxt.dataEntrega : If IsDate(fila(1)) Then c.dataEntrega = CDate(fila(1))
-                            Case comandaTxt.dataMuntatge : If IsDate(fila(1)) Then c.dataMuntatge = CDate(fila(1))
-                            Case comandaTxt.retencio : c.retencio = fila(1)
-                            Case comandaTxt.intAval : c.interAval = fila(1)
-                            Case comandaTxt.nOferta : c.nOferta = fila(1)
-                            Case comandaTxt.tipusPagament : If IsNumeric(fila(1)) Then c.tipusPagament = ModelTipusPagament.getAuxiliar.getObject(CInt(fila(1)))
-                            Case comandaTxt.dadesComanda : c.dadesBancaries = fila(1)
+                    Do
+                        fila = Split(fitxer.ReadLine(), ";")
+                        If UBound(fila) > 0 Then
+                            Select Case fila(0)
+                                Case comandaTxt.empresa : If IsNumeric(fila(1)) Then c.empresa = ModelEmpresa.getObject(CInt(fila(1)))
+                                Case comandaTxt.projecte : If IsNumeric(fila(1)) Then c.projecte = ModelProjecte.getObject(CInt(fila(1)))
+                                Case comandaTxt.magatzem : If IsNumeric(fila(1)) Then c.magatzem = ModelLlocEntrega.getObject(CInt(fila(1)))
+                                Case comandaTxt.contacteProjecte : If IsNumeric(fila(1)) Then c.contacte = ModelContacte.getObject(CInt(fila(1)))
+                                Case comandaTxt.responsableProjecte : c.responsable = fila(1)
+                                Case comandaTxt.directorProjecte : c.director = fila(1)
+                                Case comandaTxt.proveidor : If IsNumeric(fila(1)) Then c.proveidor = ModelProveidor.getObject(CInt(fila(1)))
+                                Case comandaTxt.departementProveidor : If IsNumeric(fila(1)) Then c.contacteProveidor = ModelProveidorContacte.getObject(CInt(fila(1)))
+                                Case comandaTxt.ncomanda
+                                    c.codi = fila(1)
+                                    If IsNumeric(c.codi) Then c.id = CInt(c.codi)
+                                Case comandaTxt.datacomanda : If IsDate(fila(1)) Then c.data = CDate(fila(1))
+                                Case comandaTxt.ports : c.ports = fila(1)
+                                Case comandaTxt.dataEntrega : If IsDate(fila(1)) Then c.dataEntrega = CDate(fila(1))
+                                Case comandaTxt.dataMuntatge : If IsDate(fila(1)) Then c.dataMuntatge = CDate(fila(1))
+                                Case comandaTxt.retencio : c.retencio = fila(1)
+                                Case comandaTxt.intAval : c.interAval = fila(1)
+                                Case comandaTxt.nOferta : c.nOferta = fila(1)
+                                Case comandaTxt.tipusPagament : If IsNumeric(fila(1)) Then c.tipusPagament = ModelTipusPagament.getAuxiliar.getObject(CInt(fila(1)))
+                                Case comandaTxt.dadesComanda : c.dadesBancaries = fila(1)
 
-                            Case comandaTxt.article
-                                If fila(1) = "iniciArticle" Then
-                                    a = New articleComanda
-                                Else
-                                    'nomes pot ser inici o final
-                                    If Not IsNothing(a) Then c.articles.Add(a)
-                                End If
-                            Case comandaTxt.articleId
-                                If IsNumeric(fila(1)) Then a.article = ModelArticle.getObject(CInt(fila(1)))
-                                If IsNothing(a) Then a = New articleComanda
-                            Case comandaTxt.refArticle : a.article.codi = fila(1)
-                            Case comandaTxt.quantitatArticle : If IsNumeric(fila(1)) Then a.quantitat = fila(1)
-                            Case comandaTxt.unitatArticle : If IsNumeric(fila(1)) Then a.article.unitat = ModelUnitat.getAuxiliar.getObject(CInt(fila(1)))
-                            Case comandaTxt.descripcioArticle : a.article.nom = fila(1)
-                            Case comandaTxt.importArticle : If IsNumeric(fila(1)) Then a.preu.base = fila(1)
-                            Case comandaTxt.descompteArticle : If IsNumeric(fila(1)) Then a.preu.descompte = fila(1)
-                            Case comandaTxt.ivaArticle : If IsNumeric(fila(1)) Then a.article.iva = ModelTipusIva.getAuxiliar.getObject(CInt(fila(1)))
-                        End Select
-                    End If
+                                Case comandaTxt.article
+                                    If fila(1) = "iniciArticle" Then
+                                        a = New articleComanda
+                                    Else
+                                        'nomes pot ser inici o final
+                                        If Not IsNothing(a) Then c.articles.Add(a)
+                                    End If
+                                Case comandaTxt.articleId
+                                    If IsNumeric(fila(1)) Then a.article = ModelArticle.getObject(CInt(fila(1)))
+                                    If IsNothing(a) Then a = New articleComanda
+                                Case comandaTxt.refArticle : a.codi = fila(1)
+                                Case comandaTxt.pos : a.pos = fila(1)
+                                Case comandaTxt.quantitatArticle : If IsNumeric(fila(1)) Then a.quantitat = fila(1)
+                                Case comandaTxt.unitatArticle : If IsNumeric(fila(1)) Then a.unitat = ModelUnitat.getAuxiliar.getObject(CInt(fila(1)))
+                                Case comandaTxt.descripcioArticle : a.nom = fila(1)
+                                Case comandaTxt.importArticle : If IsNumeric(fila(1)) Then a.preu.base = fila(1)
+                                Case comandaTxt.descompteArticle : If IsNumeric(fila(1)) Then a.preu.descompte = fila(1)
+                                Case comandaTxt.ivaArticle : If IsNumeric(fila(1)) Then a.tIva = ModelTipusIva.getAuxiliar.getObject(CInt(fila(1)))
+                            End Select
+                        End If
+
+                    Loop While Not fitxer.EndOfStream
                 End Using
                 comandes.Add(c)
             End If
@@ -128,6 +134,7 @@ Module ModelComandaSolicitud
         ruta = CONFIG.setSeparator(CONFIG.getRutaComandesEnEdicio)
         If CONFIG.folderExist(ruta) Then
             Using fitxer As New IO.StreamWriter(ruta & p.codi & TIPUS_FITXER)
+
                 If Not IsNothing(p.empresa) Then fitxer.WriteLine(comandaTxt.empresa & ";" & p.empresa.id)
                 If Not IsNothing(p.projecte) Then fitxer.WriteLine(comandaTxt.projecte & ";" & p.projecte.id)
                 If Not IsNothing(p.magatzem) Then fitxer.WriteLine(comandaTxt.magatzem & ";" & p.magatzem.id)
@@ -137,7 +144,7 @@ Module ModelComandaSolicitud
                 fitxer.WriteLine(comandaTxt.directorProjecte)
                 If Not IsNothing(p.proveidor) Then fitxer.WriteLine(comandaTxt.proveidor & ";" & p.proveidor.id)
                 If Not IsNothing(p.contacteProveidor) Then fitxer.WriteLine(comandaTxt.departementProveidor & ";" & p.contacteProveidor.id)
-                fitxer.WriteLine(comandaTxt.ncomanda & ";" & p.id)
+                fitxer.WriteLine(comandaTxt.ncomanda & ";" & p.codi)
                 fitxer.WriteLine(comandaTxt.datacomanda & ";" & p.data)
                 fitxer.WriteLine(comandaTxt.ports & ";" & p.ports)
                 fitxer.WriteLine(comandaTxt.dataEntrega & ";" & p.dataEntrega)
@@ -151,14 +158,15 @@ Module ModelComandaSolicitud
                 If Not IsNothing(p.articles) Then
                     For Each a In p.articles
                         fitxer.WriteLine(comandaTxt.article & ";iniciArticle")
+                        fitxer.WriteLine(comandaTxt.pos & ";" & a.pos)
                         fitxer.WriteLine(comandaTxt.articleId & ";" & a.id)
                         fitxer.WriteLine(comandaTxt.refArticle & ";" & a.codi)
                         fitxer.WriteLine(comandaTxt.quantitatArticle & ";" & a.quantitat)
-                        If Not IsNothing(a.article.unitat) Then fitxer.WriteLine(comandaTxt.unitatArticle & ";" & a.article.unitat.id)
+                        If Not IsNothing(a.article.unitat) Then fitxer.WriteLine(comandaTxt.unitatArticle & ";" & a.unitat.id)
                         fitxer.WriteLine(comandaTxt.descripcioArticle & ";" & a.nom)
                         If Not IsNothing(a.preu) Then fitxer.WriteLine(comandaTxt.importArticle & ";" & a.preu.base)
                         If Not IsNothing(a.preu) Then fitxer.WriteLine(comandaTxt.descompteArticle & ";" & a.preu.descompte)
-                        If Not IsNothing(a.iva) Then fitxer.WriteLine(comandaTxt.ivaArticle & ";" & a.article.iva.id)
+                        If Not IsNothing(a.tIva) Then fitxer.WriteLine(comandaTxt.ivaArticle & ";" & a.tIva.id)
                         fitxer.WriteLine(comandaTxt.article & ";finalArticle")
                         i = i + 1
                     Next

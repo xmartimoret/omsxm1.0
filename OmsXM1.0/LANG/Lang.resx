@@ -3415,4 +3415,8 @@
   <data name="solicitudsComanda" xml:space="preserve">
     <value>F56</value>
   </data>
+  <data name="proveidorTeAvisos" xml:space="preserve">
+    <value>EL PROVEIDOR ACTUAL TÉ AVISOS ACTIUS</value>
+    <comment>panalProveidor</comment>
+  </data>
 </root>

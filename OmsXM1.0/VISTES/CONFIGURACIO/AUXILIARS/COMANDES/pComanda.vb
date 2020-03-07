@@ -51,8 +51,8 @@ Class pComanda
         InitializeComponent()
         comandaActual = p
         DGVArticles.Rows.Add(30)
-        panelProv = New panelDesplagableProveidor(Me.Height * 0.4, "p", comandaActual.proveidor)
-        panelEmpr = New panelDesplegableEmpresa(Me.Height * 0.4, "e", comandaActual.empresa, comandaActual.projecte)
+        panelProv = New panelDesplagableProveidor(Me.Height * 0.4, "p", comandaActual.proveidor, comandaActual.contacteProveidor)
+        panelEmpr = New panelDesplegableEmpresa(Me.Height * 0.4, "e", comandaActual.empresa, comandaActual.projecte, comandaActual.magatzem, comandaActual.contacte)
         panelComanda = New panelDesplegableComanda(Me.Height * 0.4, "c", comandaActual)
         AddHandler panelProv.accioMostrar, AddressOf setAccio
         AddHandler panelEmpr.accioMostrar, AddressOf setAccio
@@ -84,10 +84,11 @@ Class pComanda
         unitat.Items.Clear()
         unitat.Items.AddRange(ModelUnitat.getListString)
         Call setProveidor(comandaActual.proveidor)
+        Call setComanda()
         actualitzar = True
         Call validateControls()
         Call validateControlsArticles()
-        panelComanda.lblComanda.Text = comandaActual.getCodiSolicitud
+
     End Sub
     Private Sub pComanda_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         Panel7.Width = Me.Width / 3 - (20)
@@ -192,7 +193,20 @@ Class pComanda
         End If
     End Sub
     Private Sub setComanda()
-        If actualitzar Then Call validateControls()
+        actualitzar = False
+        panelComanda.dataActual = comandaActual.data
+        panelComanda.dataEntregaActual = comandaActual.dataEntrega
+        panelComanda.dataMuntatgeActual = comandaActual.dataMuntatge
+        panelComanda.dadesBancaries = comandaActual.dadesBancaries
+        panelComanda.tipuspagament = comandaActual.tipusPagament
+        panelComanda.oferta = comandaActual.nOferta
+        panelComanda.intAval = comandaActual.interAval
+        Call setArticles(comandaActual.articles)
+        actualitzar = True
+        If actualitzar Then
+            Call validateControls()
+        End If
+
     End Sub
     Private Sub setProveidor(p As Proveidor)
         comandaActual.proveidor = p
@@ -227,7 +241,7 @@ Class pComanda
         panelArticle.Top = Panel6.Top + mida + 2
         panelArticle.Height = Me.Height - Panel1.Height - mida - 2
     End Sub
-    Private Sub setArticle()
+    Private Sub setNewArticle(a As articleComanda)
         Dim r As Integer
         If DGVArticles.CurrentCell Is Nothing Then
             DGVArticles.Rows.Add()
@@ -238,14 +252,36 @@ Class pComanda
             r = DGVArticles.CurrentCell.RowIndex
         End If
         actualitzar = False
-        DGVArticles.Rows(r).Cells(0).Value = articleComandaActual.article.codi
-        DGVArticles.Rows(r).Cells(1).Value = articleComandaActual.quantitat
-        DGVArticles.Rows(r).Cells(2).Value = articleComandaActual.article.unitat.codi
-        DGVArticles.Rows(r).Cells(3).Value = articleComandaActual.nom
-        DGVArticles.Rows(r).Cells(4).Value = articleComandaActual.preu.base
-        DGVArticles.Rows(r).Cells(5).Value = articleComandaActual.preu.descompte
-        DGVArticles.Rows(r).Cells(7).Value = articleComandaActual.article.iva.nom
+        If Not IsNothing(a.article) Then
+            DGVArticles.Rows(r).Cells(0).Value = a.article.codi
+            DGVArticles.Rows(r).Cells(2).Value = a.article.unitat.codi
+            DGVArticles.Rows(r).Cells(7).Value = a.article.iva.nom
+        End If
+
+        DGVArticles.Rows(r).Cells(1).Value = a.quantitat
+        DGVArticles.Rows(r).Cells(3).Value = a.nom
+
+        DGVArticles.Rows(r).Cells(4).Value = a.preu.base
+        DGVArticles.Rows(r).Cells(5).Value = a.preu.descompte
+
         DGVArticles.Refresh()
+        actualitzar = True
+    End Sub
+    Private Sub setArticles(articles As List(Of articleComanda))
+        Dim r As Integer, a As articleComanda
+        actualitzar = False
+        For Each a In articles
+            r = a.pos
+            DGVArticles.Rows(r).Cells(0).Value = a.codi
+            If a.quantitat <> 0 Then DGVArticles.Rows(r).Cells(1).Value = a.quantitat
+            If Not IsNothing(a.unitat) Then DGVArticles.Rows(r).Cells(2).Value = a.unitat.codi
+            DGVArticles.Rows(r).Cells(3).Value = a.nom
+            If a.preu.base <> 0 Then DGVArticles.Rows(r).Cells(4).Value = a.preu.base
+            If a.preu.descompte <> 0 Then DGVArticles.Rows(r).Cells(5).Value = a.preu.descompte
+            If Not IsNothing(a.tIva) Then DGVArticles.Rows(r).Cells(7).Value = a.tIva.nom
+            Call setTotal(r)
+        Next
+        Call setTotals()
         actualitzar = True
     End Sub
 
@@ -255,6 +291,7 @@ Class pComanda
         c = New Comanda()
         c.id = comandaActual.id
         c.codi = comandaActual.codi
+        c.estat = comandaActual.estat
         c.contacte = panelEmpr.contacteActual
         c.contacteProveidor = panelProv.contacteActual
         c.dadesBancaries = panelComanda.txtDadesBancaries.Text
@@ -277,7 +314,7 @@ Class pComanda
     End Function
     Private Function getArticle(r As Integer) As articleComanda
         Dim ac As articleComanda
-        ac = New articleComanda(-1, comandaActual.id, r, DGVArticles.Rows(r).Cells(3).Value)
+        ac = New articleComanda(-1, comandaActual.id, DGVArticles.Rows(r).Cells(0).Value, r, DGVArticles.Rows(r).Cells(3).Value)
         ac.article = ModelArticle.getObject(Convert.ToString(DGVArticles.Rows(r).Cells(0).Value))
         ac.quantitat = DGVArticles.Rows(r).Cells(1).Value
         ac.unitat = ModelUnitat.getObject(Convert.ToString(DGVArticles.Rows(r).Cells(2).Value))
@@ -395,7 +432,7 @@ Class pComanda
                                 articleComandaActual.preu = a.getUltimPreu(-1)
                             End If
                             actualitzar = False
-                            Call setArticle()
+                            Call setNewArticle(articleComandaActual)
                             Call setTotal(DGVArticles.CurrentCell.RowIndex)
                             Call setTotals()
                             actualitzar = True
@@ -423,9 +460,9 @@ Class pComanda
         Dim a As article
         a = DArticles.getArticle(True, txtFiltrarArticle.Text)
         If a IsNot Nothing Then
-            articleComandaActual = New articleComanda(-1, comandaActual.id, DGVArticles.Rows.Count, a.nom)
+            articleComandaActual = New articleComanda(-1, comandaActual.id, DGVArticles.Rows.Count, a.codi, a.nom)
             articleComandaActual.article = a
-            Call setArticle()
+            Call setNewArticle(articleComandaActual)
         End If
         Call validateControlsArticles()
     End Sub
@@ -435,7 +472,7 @@ Class pComanda
         ac = DArticleComanda.getNewArticle(comandaActual.proveidor, comandaActual.id)
         If ac IsNot Nothing Then
             articleComandaActual = ac
-            Call setArticle()
+            Call setNewArticle(articleComandaActual)
         End If
         Call validateControlsArticles()
         ac = Nothing
@@ -449,7 +486,7 @@ Class pComanda
             ac = DArticleComanda.getArticle(getArticle(DGVArticles.CurrentCell.RowIndex), comandaActual.proveidor)
             If ac IsNot Nothing Then
                 articleComandaActual = ac
-                Call setArticle()
+                Call setNewArticle(articleComandaActual)
                 Call setTotal(DGVArticles.CurrentCell.RowIndex)
                 Call setTotals()
             End If
@@ -473,7 +510,36 @@ Class pComanda
         Next
     End Sub
     Private Sub cmdValidar_Click(sender As Object, e As EventArgs) Handles cmdValidar.Click
+        Dim c As Comanda, id As Integer, a As articleComanda
+        c = getComanda()
+        c.articles = getArticles()
+        If c.estat = 0 Then ' es una solicitud
+            c.id = -1
+            c.estat = 1
+        End If
+        ' TODO
+        ' un cop guardada ens cal:
+        ' retornar el codi 
+        ' passar-la de solicitud  a comanda (canviar l'etiqueta).
+        ' ens caldrà renovar les solicituds en cas que estigui oberta la pestanya.  caldrà fer una cerca. des del panel principal.
+        For Each a In c.articles
 
+        Next
+
+        id = ModelComanda.save(c)
+        If id > -1 Then
+
+            '  MsgBox(Me.Parent.Text) no funciona. ens cal trobar l'etiqueta
+            ' ens cal cercar si hi ha codi , preguntar si vols guardar l'article. 
+
+
+
+
+
+            MISSATGES.DATA_UPDATED()
+        End If
+
+        c = Nothing
     End Sub
 
     'todo cal implementar
@@ -482,6 +548,7 @@ Class pComanda
         c = getComanda()
         c.articles = getArticles()
         Call ModelComandaSolicitud.save(c)
+        MISSATGES.DATA_UPDATED()
         c = Nothing
     End Sub
 
@@ -492,9 +559,9 @@ Class pComanda
             Dim a As article
             a = DArticles.getArticle(True, txtFiltrarArticle.Text)
             If a IsNot Nothing Then
-                articleComandaActual = New articleComanda(-1, comandaActual.id, DGVArticles.Rows.Count, a.nom)
+                articleComandaActual = New articleComanda(-1, comandaActual.id, DGVArticles.Rows.Count, a.codi, a.nom)
                 articleComandaActual.article = a
-                Call setArticle()
+                Call setNewArticle(articleComandaActual)
             End If
             Call validateControlsArticles()
         End If
@@ -503,4 +570,9 @@ Class pComanda
     Private Sub cmdEliminarArticle_Click(sender As Object, e As EventArgs) Handles cmdEliminarArticle.Click
         Call removeItemsSelected()
     End Sub
+
+    Private Sub DGVArticles_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
+
+    End Sub
+
 End Class

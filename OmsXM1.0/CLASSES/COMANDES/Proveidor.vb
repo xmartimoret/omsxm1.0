@@ -16,6 +16,7 @@
     Public Property iban3 As String
     Public Property email As String
     Public Property contactes As List(Of ProveidorCont)
+    Public Property anotacions As List(Of proveidorAnotacio)
     Public Property idContacteActual As Integer
     Public Sub New()
         actiu = True
@@ -88,6 +89,27 @@
             If Not provincia.Equals(p.provincia) Then Return False
         End If
         Return True
+    End Function
+    Public Function isAnotacioActiva() As Boolean
+        Dim a As proveidorAnotacio
+        For Each a In anotacions
+            If a.estat Then Return True
+        Next
+        Return False
+    End Function
+    Public Function getAnotacions() As String
+        Dim a As proveidorAnotacio
+        getAnotacions = ""
+        For Each a In anotacions
+            getAnotacions = getAnotacions & a.nom & vbCrLf
+        Next
+    End Function
+    Public Function getAnotacionsActives() As String
+        Dim a As proveidorAnotacio
+        getAnotacionsActives = ""
+        For Each a In anotacions
+            If a.estat Then getAnotacionsActives = getAnotacionsActives & a.notes & vbCrLf
+        Next
     End Function
     Public Overrides Function ToString() As String
         Return nom

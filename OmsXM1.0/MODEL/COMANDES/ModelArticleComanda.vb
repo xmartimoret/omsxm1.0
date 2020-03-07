@@ -49,6 +49,13 @@ Module ModelarticleComanda
         End If
         Return obj.id
     End Function
+    Public Sub saveComanda(ac As List(Of articleComanda))
+        Dim a As articleComanda
+        For Each a In ac
+            Call save(a)
+        Next
+        a = Nothing
+    End Sub
     Public Function remove(obj As articleComanda) As Boolean
         Dim result As Boolean
         result = dbArticleComanda.remove(obj)

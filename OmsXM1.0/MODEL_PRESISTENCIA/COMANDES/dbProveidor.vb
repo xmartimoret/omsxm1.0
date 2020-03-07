@@ -171,6 +171,7 @@ Module dbProveidor
             pr.iban3 = CONFIG.validarNull(sdr(IBAN3))
             pr.email = CONFIG.validarNull(sdr(EMAIL))
             pr.contactes = ModelProveidorContacte.getObjects(pr.id)
+            pr.anotacions = ModelProveidorAnotacio.getObjects(pr.id)
             getObjectsSQL.Add(pr)
         End While
         sdr.Close()
@@ -323,6 +324,7 @@ Module dbProveidor
             p.iban3 = (CONFIG.validarNull(rc(IBAN3).Value))
             p.email = (CONFIG.validarNull(rc(EMAIL).Value))
             p.contactes = ModelProveidorContacte.getObjects(rc(ID).Value)
+            p.anotacions = ModelProveidorAnotacio.getObjects(rc(ID).Value)
             getObjectsDBF.Add(p)
             rc.MoveNext()
         End While

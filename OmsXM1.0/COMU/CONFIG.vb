@@ -39,6 +39,7 @@ Module CONFIG
     Private Const RUTA_DADES_MACROS_LLIBRE_MAJOR As String = "LLIBRE_MAJOR"
     Private Const RUTA_DADES_MACROS_LLIBRE_MAJOR_SUBCOMPTES As String = "SUBCOMPTES"
     Private Const RUTA_DIRECTORI_FITXERS_TRANSITORIES As String = "FITXERS_TRANSITORIA_PROJECTES"
+    Private Const NOM_FITXER_CODI_COMANDES As String = "codiComandes.txt"
     Public Function fileExist(path As String) As Boolean
         Return System.IO.File.Exists(path)
     End Function
@@ -189,6 +190,14 @@ Module CONFIG
             rutaDb = rutaDb & "COMANDES\"
             If Not folderExist(rutaDb) Then Call MkDir(rutaDb)
             Return rutaDb
+        End If
+        Return Nothing
+    End Function
+    Public Function getRutaCodiComandes() As String
+        Dim rutaDb As String
+        rutaDb = setSeparator(getRutaBDRemote())
+        If folderExist(rutaDb) Then
+            Return rutaDb & NOM_FITXER_CODI_COMANDES
         End If
         Return Nothing
     End Function

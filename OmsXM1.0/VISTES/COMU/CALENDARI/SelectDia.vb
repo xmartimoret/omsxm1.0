@@ -14,7 +14,9 @@
         titolCalendari = t
         dataInferior = DateSerial(2000, 1, 1)
         dataSuperior = DateSerial(2100, 12, 31)
-        If Year(d) > 1999 Then txtData.Text = Format(d, "dd-MM-yy")
+        If Year(d) > 1999 Then
+            If Year(d) > 1999 Then txtData.Text = Format(d, "dd-MM-yy")
+        End If
     End Sub
     Public Sub New(d As Date, dInferior As Date, dSuperior As Date, Optional t As String = "")
         InitializeComponent()

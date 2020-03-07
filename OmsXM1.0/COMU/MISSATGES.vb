@@ -2,6 +2,9 @@
     Private Function ABORT() As String
         Return IDIOMA.getString("abort")
     End Function
+    Private Function AVIS() As String
+        Return IDIOMA.getString("avis")
+    End Function
     Private Function REALITZADA() As String
         Return IDIOMA.getString("realitzada")
     End Function
@@ -448,5 +451,7 @@
         End If
         Return False
     End Function
-
+    Public Sub ANOTACIONS_PROVEIDOR(p As String, a As String)
+        Call MsgBox(IDIOMA.getString("proveidorTeAvisos") & ": " & vbCrLf & a, MsgBoxStyle.Exclamation, AVIS() & "-" & p)
+    End Sub
 End Module

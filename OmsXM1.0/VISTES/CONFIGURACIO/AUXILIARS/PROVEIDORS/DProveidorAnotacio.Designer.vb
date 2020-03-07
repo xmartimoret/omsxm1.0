@@ -34,6 +34,8 @@ Partial Class DProveidorAnotacio
         'xecActiu
         '
         Me.xecActiu.AutoSize = True
+        Me.xecActiu.Checked = True
+        Me.xecActiu.CheckState = System.Windows.Forms.CheckState.Checked
         Me.xecActiu.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.xecActiu.ForeColor = System.Drawing.Color.Black
         Me.xecActiu.Location = New System.Drawing.Point(155, 83)

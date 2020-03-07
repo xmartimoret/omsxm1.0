@@ -4,11 +4,9 @@
     Public Property pos As Integer
     Public Property quantitat As Decimal
     Public Property unitat As Unitat
-    Private Property _article As article 'referencia, descripcio, preu, descompte, iva
+    Private Property _article As article
     Public Property preu As ArticlePreu
     Public Property tIva As TipusIva
-
-
     Public Sub New()
         _article = New article
         _preu = New ArticlePreu
@@ -16,9 +14,9 @@
         _unitat = New Unitat
         _tIva = New TipusIva
     End Sub
-    Public Sub New(pId As Integer, pIdComanda As Integer, pPos As Integer, pNom As String)
+    Public Sub New(pId As Integer, pIdComanda As Integer, pPos As Integer, pCodi As String, pNom As String)
         Me.id = pId
-
+        Me.codi = pCodi
         Me.nom = pNom
         _idComanda = pIdComanda
         _pos = pPos
@@ -28,8 +26,9 @@
         _unitat = New Unitat
         _tIva = New TipusIva
     End Sub
-    Public Sub New(pId As Integer, pIdComanda As Integer, pPos As Integer, pNom As String, pArticle As article, pQuantitat As Double, pUnitat As Unitat, pPreu As ArticlePreu, pTIva As TipusIva)
+    Public Sub New(pId As Integer, pIdComanda As Integer, pPos As Integer, pCodi As String, pNom As String, pArticle As article, pQuantitat As Double, pUnitat As Unitat, pPreu As ArticlePreu, pTIva As TipusIva)
         Me.id = pId
+        Me.codi = pCodi
         Me.nom = pNom
         _idComanda = pIdComanda
         _pos = pPos

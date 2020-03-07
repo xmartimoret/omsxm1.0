@@ -43,7 +43,11 @@
     End Function
 
     Public Overrides Function modificar(id As Integer) As Integer
+        'AGAFAR LA ID I OBRIR UNA NOVA FINESTRA.
+        ' CALDRA COMPROVAR SI JA ESTÀ OBERTA. AMB F56 (NUMERO) 
+
         ' el mateix que afegir, cal veure com
+        Call frmIniComanda.modificarSolicitudComanda(ModelComandaSolicitud.getObject(id))
         'Return save(DComanda.getComanda(ModelComanda.getObject(id)))
     End Function
 

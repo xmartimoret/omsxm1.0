@@ -57,16 +57,6 @@ Partial Class pComanda
         Me.cmdEliminarArticle = New System.Windows.Forms.Button()
         Me.cmdModificarArticle = New System.Windows.Forms.Button()
         Me.DGVArticles = New OmsXM.dgvExtended()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.lblComptadorEstat = New OmsXM.LBLRED()
-        Me.lblEstatComanda = New OmsXM.LBLRED()
-        Me.cbEstat = New System.Windows.Forms.ComboBox()
-        Me.cmdModificar = New System.Windows.Forms.Button()
-        Me.cmdNovaComanda = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.cmdEliminarComanda = New System.Windows.Forms.Button()
-        Me.cmdValidar = New System.Windows.Forms.Button()
-        Me.cmdGuardar = New System.Windows.Forms.Button()
         Me.codi = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.quantitat = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.unitat = New System.Windows.Forms.DataGridViewComboBoxColumn()
@@ -76,6 +66,14 @@ Partial Class pComanda
         Me.base = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.iva = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.total = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cmdGuardar = New System.Windows.Forms.Button()
+        Me.cmdValidar = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.cbEstat = New System.Windows.Forms.ComboBox()
+        Me.lblEstatComanda = New OmsXM.LBLRED()
+        Me.lblComptadorEstat = New OmsXM.LBLRED()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.cmdEnviarComanda = New System.Windows.Forms.Button()
         Me.mnuContextual.SuspendLayout()
         Me.panelArticle.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -315,6 +313,7 @@ Partial Class pComanda
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DGVArticles.BackgroundColor = System.Drawing.SystemColors.Control
+        Me.DGVArticles.CausesValidation = False
         Me.DGVArticles.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke
@@ -331,129 +330,11 @@ Partial Class pComanda
         DataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Blue
         DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DGVArticles.DefaultCellStyle = DataGridViewCellStyle9
-        Me.DGVArticles.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke
         Me.DGVArticles.EnableHeadersVisualStyles = False
         Me.DGVArticles.Location = New System.Drawing.Point(5, 45)
         Me.DGVArticles.Name = "DGVArticles"
         Me.DGVArticles.Size = New System.Drawing.Size(1239, 387)
         Me.DGVArticles.TabIndex = 70
-        '
-        'Panel1
-        '
-        Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel1.BackColor = System.Drawing.Color.LightGray
-        Me.Panel1.Controls.Add(Me.lblComptadorEstat)
-        Me.Panel1.Controls.Add(Me.lblEstatComanda)
-        Me.Panel1.Controls.Add(Me.cbEstat)
-        Me.Panel1.Controls.Add(Me.cmdModificar)
-        Me.Panel1.Controls.Add(Me.cmdNovaComanda)
-        Me.Panel1.Controls.Add(Me.Button3)
-        Me.Panel1.Controls.Add(Me.cmdEliminarComanda)
-        Me.Panel1.Controls.Add(Me.cmdValidar)
-        Me.Panel1.Controls.Add(Me.cmdGuardar)
-        Me.Panel1.Location = New System.Drawing.Point(3, 3)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1261, 32)
-        Me.Panel1.TabIndex = 73
-        '
-        'lblComptadorEstat
-        '
-        Me.lblComptadorEstat.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblComptadorEstat.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblComptadorEstat.ForeColor = System.Drawing.Color.Black
-        Me.lblComptadorEstat.Location = New System.Drawing.Point(1110, 3)
-        Me.lblComptadorEstat.Name = "lblComptadorEstat"
-        Me.lblComptadorEstat.Size = New System.Drawing.Size(148, 23)
-        Me.lblComptadorEstat.TabIndex = 74
-        Me.lblComptadorEstat.Text = "Cercador"
-        Me.lblComptadorEstat.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'lblEstatComanda
-        '
-        Me.lblEstatComanda.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEstatComanda.ForeColor = System.Drawing.Color.Red
-        Me.lblEstatComanda.Location = New System.Drawing.Point(349, 3)
-        Me.lblEstatComanda.Name = "lblEstatComanda"
-        Me.lblEstatComanda.Size = New System.Drawing.Size(140, 23)
-        Me.lblEstatComanda.TabIndex = 73
-        Me.lblEstatComanda.Text = "Cercador"
-        Me.lblEstatComanda.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'cbEstat
-        '
-        Me.cbEstat.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cbEstat.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbEstat.ForeColor = System.Drawing.Color.Red
-        Me.cbEstat.FormattingEnabled = True
-        Me.cbEstat.Location = New System.Drawing.Point(495, 4)
-        Me.cbEstat.Name = "cbEstat"
-        Me.cbEstat.Size = New System.Drawing.Size(609, 24)
-        Me.cbEstat.TabIndex = 37
-        '
-        'cmdModificar
-        '
-        Me.cmdModificar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdModificar.Image = Global.OmsXM.My.Resources.Resources.BotoModificar
-        Me.cmdModificar.Location = New System.Drawing.Point(31, 1)
-        Me.cmdModificar.Name = "cmdModificar"
-        Me.cmdModificar.Size = New System.Drawing.Size(27, 28)
-        Me.cmdModificar.TabIndex = 36
-        Me.cmdModificar.UseVisualStyleBackColor = True
-        '
-        'cmdNovaComanda
-        '
-        Me.cmdNovaComanda.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdNovaComanda.Image = Global.OmsXM.My.Resources.Resources.BotoNou
-        Me.cmdNovaComanda.Location = New System.Drawing.Point(3, 1)
-        Me.cmdNovaComanda.Name = "cmdNovaComanda"
-        Me.cmdNovaComanda.Size = New System.Drawing.Size(26, 28)
-        Me.cmdNovaComanda.TabIndex = 32
-        Me.cmdNovaComanda.UseVisualStyleBackColor = True
-        '
-        'Button3
-        '
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button3.Image = Global.OmsXM.My.Resources.Resources.botoImprimir
-        Me.Button3.Location = New System.Drawing.Point(140, 1)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(26, 28)
-        Me.Button3.TabIndex = 31
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'cmdEliminarComanda
-        '
-        Me.cmdEliminarComanda.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdEliminarComanda.Image = Global.OmsXM.My.Resources.Resources.BotoBorrar
-        Me.cmdEliminarComanda.Location = New System.Drawing.Point(62, 1)
-        Me.cmdEliminarComanda.Name = "cmdEliminarComanda"
-        Me.cmdEliminarComanda.Size = New System.Drawing.Size(26, 28)
-        Me.cmdEliminarComanda.TabIndex = 30
-        Me.cmdEliminarComanda.UseVisualStyleBackColor = True
-        '
-        'cmdValidar
-        '
-        Me.cmdValidar.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.cmdValidar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdValidar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.cmdValidar.Location = New System.Drawing.Point(202, 1)
-        Me.cmdValidar.Name = "cmdValidar"
-        Me.cmdValidar.Size = New System.Drawing.Size(141, 28)
-        Me.cmdValidar.TabIndex = 29
-        Me.cmdValidar.Text = "CREAR COMANDA"
-        Me.cmdValidar.UseVisualStyleBackColor = False
-        '
-        'cmdGuardar
-        '
-        Me.cmdGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdGuardar.Image = Global.OmsXM.My.Resources.Resources.BotoGuardar
-        Me.cmdGuardar.Location = New System.Drawing.Point(94, 3)
-        Me.cmdGuardar.Name = "cmdGuardar"
-        Me.cmdGuardar.Size = New System.Drawing.Size(26, 28)
-        Me.cmdGuardar.TabIndex = 28
-        Me.cmdGuardar.Text = "                                                  "
-        Me.cmdGuardar.UseVisualStyleBackColor = True
         '
         'codi
         '
@@ -462,6 +343,7 @@ Partial Class pComanda
         Me.codi.DefaultCellStyle = DataGridViewCellStyle2
         Me.codi.Frozen = True
         Me.codi.HeaderText = "Referència"
+        Me.codi.MaxInputLength = 30
         Me.codi.MinimumWidth = 30
         Me.codi.Name = "codi"
         Me.codi.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
@@ -490,7 +372,7 @@ Partial Class pComanda
         DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.descripcio.DefaultCellStyle = DataGridViewCellStyle4
         Me.descripcio.HeaderText = "DESCRIPCIO"
-        Me.descripcio.MaxInputLength = 50
+        Me.descripcio.MaxInputLength = 200
         Me.descripcio.Name = "descripcio"
         Me.descripcio.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.descripcio.Width = 300
@@ -521,6 +403,7 @@ Partial Class pComanda
         DataGridViewCellStyle7.NullValue = "0"
         Me.base.DefaultCellStyle = DataGridViewCellStyle7
         Me.base.HeaderText = "TOTAL BASE"
+        Me.base.MaxInputLength = 20
         Me.base.Name = "base"
         Me.base.ReadOnly = True
         '
@@ -540,8 +423,108 @@ Partial Class pComanda
         DataGridViewCellStyle8.NullValue = "0"
         Me.total.DefaultCellStyle = DataGridViewCellStyle8
         Me.total.HeaderText = "TOTAL"
+        Me.total.MaxInputLength = 20
         Me.total.Name = "total"
         Me.total.ReadOnly = True
+        '
+        'cmdGuardar
+        '
+        Me.cmdGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdGuardar.Image = Global.OmsXM.My.Resources.Resources.BotoGuardar
+        Me.cmdGuardar.Location = New System.Drawing.Point(9, 2)
+        Me.cmdGuardar.Name = "cmdGuardar"
+        Me.cmdGuardar.Size = New System.Drawing.Size(26, 28)
+        Me.cmdGuardar.TabIndex = 28
+        Me.cmdGuardar.Text = "                                                  "
+        Me.cmdGuardar.UseVisualStyleBackColor = True
+        '
+        'cmdValidar
+        '
+        Me.cmdValidar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdValidar.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.cmdValidar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdValidar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.cmdValidar.Location = New System.Drawing.Point(954, 1)
+        Me.cmdValidar.Name = "cmdValidar"
+        Me.cmdValidar.Size = New System.Drawing.Size(141, 28)
+        Me.cmdValidar.TabIndex = 29
+        Me.cmdValidar.Text = " VALIDAR"
+        Me.cmdValidar.UseVisualStyleBackColor = False
+        '
+        'Button3
+        '
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button3.Image = Global.OmsXM.My.Resources.Resources.botoImprimir
+        Me.Button3.Location = New System.Drawing.Point(53, 2)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(26, 28)
+        Me.Button3.TabIndex = 31
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'cbEstat
+        '
+        Me.cbEstat.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbEstat.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbEstat.ForeColor = System.Drawing.Color.Red
+        Me.cbEstat.FormattingEnabled = True
+        Me.cbEstat.Location = New System.Drawing.Point(234, 2)
+        Me.cbEstat.Name = "cbEstat"
+        Me.cbEstat.Size = New System.Drawing.Size(337, 24)
+        Me.cbEstat.TabIndex = 37
+        '
+        'lblEstatComanda
+        '
+        Me.lblEstatComanda.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEstatComanda.ForeColor = System.Drawing.Color.Red
+        Me.lblEstatComanda.Location = New System.Drawing.Point(118, 6)
+        Me.lblEstatComanda.Name = "lblEstatComanda"
+        Me.lblEstatComanda.Size = New System.Drawing.Size(110, 23)
+        Me.lblEstatComanda.TabIndex = 73
+        Me.lblEstatComanda.Text = "Cercador"
+        Me.lblEstatComanda.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'lblComptadorEstat
+        '
+        Me.lblComptadorEstat.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblComptadorEstat.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblComptadorEstat.ForeColor = System.Drawing.Color.Black
+        Me.lblComptadorEstat.Location = New System.Drawing.Point(577, 6)
+        Me.lblComptadorEstat.Name = "lblComptadorEstat"
+        Me.lblComptadorEstat.Size = New System.Drawing.Size(148, 23)
+        Me.lblComptadorEstat.TabIndex = 74
+        Me.lblComptadorEstat.Text = "Cercador"
+        Me.lblComptadorEstat.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Panel1
+        '
+        Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel1.BackColor = System.Drawing.Color.LightGray
+        Me.Panel1.Controls.Add(Me.cmdEnviarComanda)
+        Me.Panel1.Controls.Add(Me.lblComptadorEstat)
+        Me.Panel1.Controls.Add(Me.lblEstatComanda)
+        Me.Panel1.Controls.Add(Me.cbEstat)
+        Me.Panel1.Controls.Add(Me.Button3)
+        Me.Panel1.Controls.Add(Me.cmdValidar)
+        Me.Panel1.Controls.Add(Me.cmdGuardar)
+        Me.Panel1.Location = New System.Drawing.Point(3, 3)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(1261, 32)
+        Me.Panel1.TabIndex = 73
+        '
+        'cmdEnviarComanda
+        '
+        Me.cmdEnviarComanda.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdEnviarComanda.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.cmdEnviarComanda.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdEnviarComanda.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.cmdEnviarComanda.Location = New System.Drawing.Point(1117, 2)
+        Me.cmdEnviarComanda.Name = "cmdEnviarComanda"
+        Me.cmdEnviarComanda.Size = New System.Drawing.Size(141, 28)
+        Me.cmdEnviarComanda.TabIndex = 75
+        Me.cmdEnviarComanda.Text = "ENVIAR A PROVEIDOR"
+        Me.cmdEnviarComanda.UseVisualStyleBackColor = False
         '
         'pComanda
         '
@@ -589,16 +572,6 @@ Partial Class pComanda
     Friend WithEvents cmdModificarArticle As Button
     Friend WithEvents txtFiltrarArticle As TXT
     Friend WithEvents lblCercador As LBLRED
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents Button3 As Button
-    Friend WithEvents cmdEliminarComanda As Button
-    Friend WithEvents cmdValidar As Button
-    Friend WithEvents cmdGuardar As Button
-    Friend WithEvents cmdNovaComanda As Button
-    Friend WithEvents cmdModificar As Button
-    Friend WithEvents lblComptadorEstat As LBLRED
-    Friend WithEvents lblEstatComanda As LBLRED
-    Friend WithEvents cbEstat As ComboBox
     Friend WithEvents lblTotalIva As LBLRED
     Friend WithEvents lblTotal As LBLRED
     Friend WithEvents lblTotalBI As LBLRED
@@ -615,4 +588,12 @@ Partial Class pComanda
     Friend WithEvents base As DataGridViewTextBoxColumn
     Friend WithEvents iva As DataGridViewComboBoxColumn
     Friend WithEvents total As DataGridViewTextBoxColumn
+    Friend WithEvents cmdGuardar As Button
+    Friend WithEvents cmdValidar As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents cbEstat As ComboBox
+    Friend WithEvents lblEstatComanda As LBLRED
+    Friend WithEvents lblComptadorEstat As LBLRED
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents cmdEnviarComanda As Button
 End Class

@@ -85,7 +85,7 @@ Public Class frmIniComanda
             If i > -1 Then
                 Call activateTab(i)
             Else
-                Call setTab(IDIOMA.getString("mnuComandes"), New pComanda(c))
+                Call setTab(c.getCodiSolicitud, New pComanda(c))
             End If
         End If
         c = Nothing
@@ -93,19 +93,22 @@ Public Class frmIniComanda
 
     Private Sub setTab(titol As String, c As UserControl)
         Dim t As tabControl, i As Integer, posLeft As Integer
-        i = 1
-        posLeft = 4
-        For Each t In tabs
-            i = i + 1
-            posLeft = t.Left + t.Width + 4
-        Next
-        t = New tabControl(i, titol, c)
-        tabs.Add(t)
-        panelTabs.Controls.Add(t)
-        t.Left = posLeft
-        t.Top = 4
-        AddHandler t.close, AddressOf closetab
-        AddHandler t.isActivate, AddressOf activateTab
+        i = getIdTab(titol)
+        If i = -1 Then
+            i = 1
+            posLeft = 4
+            For Each t In tabs
+                i = i + 1
+                posLeft = t.Left + t.Width + 4
+            Next
+            t = New tabControl(i, titol, c)
+            tabs.Add(t)
+            panelTabs.Controls.Add(t)
+            t.Left = posLeft
+            t.Top = 4
+            AddHandler t.close, AddressOf closetab
+            AddHandler t.isActivate, AddressOf activateTab
+        End If
         Call activateTab(i)
     End Sub
 
@@ -126,13 +129,13 @@ Public Class frmIniComanda
         Return -1
     End Function
 
-    Private Sub frmIniComanda_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
 
     Private Sub mnuVeureComandaEdicio_Click(sender As Object, e As EventArgs) Handles mnuVeureComandaEdicio.Click
         Dim p As SelectSolicitudComandes
         p = New SelectSolicitudComandes(1, True, False)
         Call setTab(IDIOMA.getString("solicitudsComanda"), p)
+    End Sub
+    Friend Sub modificarSolicitudComanda(c As Comanda)
+        Call setTab(c.getCodiSolicitud, New pComanda(c))
     End Sub
 End Class

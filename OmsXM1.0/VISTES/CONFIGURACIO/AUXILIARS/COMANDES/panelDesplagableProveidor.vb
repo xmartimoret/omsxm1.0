@@ -30,7 +30,17 @@
         AddHandler listProveidors.selectObject, AddressOf setProveidor
         If proveidorActual IsNot Nothing  Then Call setProveidor 
     End Sub
-
+    Public Sub New(pHeight As Integer, pTecla As String, pProveidor As Proveidor, pContacte As ProveidorCont)
+        InitializeComponent()
+        llargadaPanel = pHeight
+        proveidorActual = pProveidor
+        lblTitol.Text = IDIOMA.getString("proveidor")
+        Button1.Text = "&" & pTecla
+        contacteActual = pContacte
+        listProveidors = New lstProveidor(proveidorActual)
+        AddHandler listProveidors.selectObject, AddressOf setProveidor
+        If proveidorActual IsNot Nothing Then Call setProveidor()
+    End Sub
     Friend Sub setAccio()
         If lblAccio.Text = " - " Then
             lblAccio.Text = " + "
@@ -71,12 +81,14 @@
     Private Sub setProveidor()
         actualitzar = False
         proveidorActual = listProveidors.obj
+
         If Not IsNothing(proveidorActual) Then
+            If proveidorActual.isAnotacioActiva Then
+                Call MISSATGES.ANOTACIONS_PROVEIDOR(proveidorActual.nom, proveidorActual.getAnotacionsActives)
+            End If
             Me.lblDireccio.Text = proveidorActual.toTarget
-            If proveidorActual.contactes.Count > 0 Then
+            If contacteActual Is Nothing And proveidorActual.contactes.Count > 0 Then
                 contacteActual = proveidorActual.contactes.Item(0)
-            Else
-                contacteActual = Nothing
             End If
             listContactes = New lstContactesProveidor(contacteActual, proveidorActual.id)
             AddHandler listContactes.selectObject, AddressOf setContacte

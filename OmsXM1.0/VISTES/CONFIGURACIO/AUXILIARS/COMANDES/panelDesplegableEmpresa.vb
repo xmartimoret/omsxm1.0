@@ -14,18 +14,29 @@
     Private elements As List(Of Control)
     Public Sub New()
         InitializeComponent()
+        empresaActual = New Empresa
+        projecteActual = New Projecte
+        llocActual = New LlocEntrega
+        contacteActual = New Contacte
         elements = getControls()
         Call setAccio()
     End Sub
     Public Sub New(pHeight As Integer, pTecla As String)
         InitializeComponent()
         empresaActual = New Empresa
+        projecteActual = New Projecte
+        llocActual = New LlocEntrega
+        contacteActual = New Contacte
         elements = getControls()
         llargadaPanel = pHeight
         Button1.Text = "&" & pTecla
     End Sub
     Public Sub New(pHeight As Integer, pTecla As String, pEmpresa As Empresa)
         InitializeComponent()
+        empresaActual = New Empresa
+        projecteActual = New Projecte
+        llocActual = New LlocEntrega
+        contacteActual = New Contacte
         elements = getControls()
         llargadaPanel = pHeight
         empresaActual = pEmpresa
@@ -36,9 +47,20 @@
         llargadaPanel = pHeight
         empresaActual = pEmpresa
         projecteActual = pProjecte
+        llocActual = New LlocEntrega
+        contacteActual = New Contacte
         Button1.Text = "&" & pTecla
     End Sub
+    Public Sub New(pHeight As Integer, pTecla As String, pEmpresa As Empresa, pProjecte As Projecte, pMagatzem As LlocEntrega, pContacte As Contacte)
+        InitializeComponent()
+        llargadaPanel = pHeight
+        empresaActual = pEmpresa
+        projecteActual = pProjecte
 
+        Button1.Text = "&" & pTecla
+        llocActual = pMagatzem
+        contacteActual = pContacte
+    End Sub
     Private Sub setLanguage()
         Me.lblContacte.Text = IDIOMA.getString("contacte") & ":"
         Me.lblEmpresa.Text = IDIOMA.getString("empresa") & ":"
@@ -76,16 +98,10 @@
     Private Sub setProjecte()
         projecteActual.magatzems = ModelProjecteEntrega.getObjects(projecteActual.id)
         projecteActual.contactes = ModelProjecteContacte.getObjects(projecteActual.id)
-        If projecteActual.magatzems.Count > 0 Then
-            listLLocsEntrega = New lstLlocsEntrega(ModelLlocEntrega.getObject(projecteActual.magatzems.Item(0).idEntrega))
-        Else
-            listLLocsEntrega = New lstLlocsEntrega(ModelLlocEntrega.getObject(Nothing))
-        End If
-        If projecteActual.contactes.Count > 0 Then
-            listContactes = New lstContactes(ModelContacte.getObject(projecteActual.contactes.Item(0).idContacte))
-        Else
-            listContactes = New lstContactes(ModelContacte.getObject(Nothing))
-        End If
+        If llocActual.id = -1 And projecteActual.magatzems.Count > 0 Then llocActual = ModelLlocEntrega.getObject(projecteActual.magatzems.Item(0).idEntrega)
+        listLLocsEntrega = New lstLlocsEntrega(llocActual)
+        If contacteActual.id = -1 And projecteActual.contactes.Count > 0 Then contacteActual = ModelContacte.getObject(projecteActual.contactes.Item(0).idContacte)
+        listContactes = New lstContactes(contacteActual)
         AddHandler listContactes.selectObject, AddressOf setContacte
         Me.panelMagatzem.Controls.Clear()
         listLLocsEntrega.Dock = DockStyle.Fill
@@ -280,6 +296,10 @@
     End Sub
 
     Private Sub lblEmpresa_Click(sender As Object, e As EventArgs) Handles lblEmpresa.Click
+
+    End Sub
+
+    Private Sub panelData_Paint(sender As Object, e As PaintEventArgs) Handles panelData.Paint
 
     End Sub
 End Class
