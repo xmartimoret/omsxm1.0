@@ -15,7 +15,9 @@
         dataInferior = DateSerial(2000, 1, 1)
         dataSuperior = DateSerial(2100, 12, 31)
         If Year(d) > 1999 Then
-            If Year(d) > 1999 Then txtData.Text = Format(d, "dd-MM-yy")
+            txtData.Text = Format(d, "dd-MM-yy")
+        Else
+            txtData.Text = ""
         End If
     End Sub
     Public Sub New(d As Date, dInferior As Date, dSuperior As Date, Optional t As String = "")
@@ -23,7 +25,11 @@
         dataInferior = dInferior
         dataSuperior = dSuperior
         titolCalendari = t
-        If Year(d) > 1999 Then txtData.Text = Format(d, "dd-MM-yy")
+        If Year(d) > 1999 Then
+            txtData.Text = Format(d, "dd-MM-yy")
+        Else
+            txtData.Text = ""
+        End If
     End Sub
     Private Sub cmdData_Click(sender As Object, e As EventArgs) Handles cmdData.Click, txtData.DoubleClick
         Dim temp As Date
@@ -61,4 +67,6 @@
             Me.txtData.Text = value
         End Set
     End Property
+
+
 End Class

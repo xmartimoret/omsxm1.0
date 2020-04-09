@@ -48,18 +48,27 @@ Public Class DProveidor
         Me.cmdGuardar.Text = IDIOMA.getString("cmdGuardar")
         Me.xecActiu.Text = IDIOMA.getString("actiu")
         Me.lblEmail.Text = IDIOMA.getString("email")
+        Me.lblErrCodiComptable.Text = IDIOMA.getString("campObligatori")
+        Me.lblCodiComptable.Text = IDIOMA.getString("codiComptable")
+        Me.xecNoValidar.Text = IDIOMA.getString("noValidarDocument")
         If proveidorActual.id > -1 Then
             Me.Text = IDIOMA.getString("modificarProveidor")
         Else
+
             Me.Text = IDIOMA.getString("afegirProveidor")
         End If
     End Sub
     Private Sub validateControls()
         Me.lblErrCif.Visible = False
         Me.lblErrNom.Visible = False
+        Me.lblErrCodiComptable.Visible = False
         Me.cmdGuardar.Enabled = True
         If Me.txtCif.Text.Length = 0 Then
             Me.lblErrCif.Visible = True
+            Me.cmdGuardar.Enabled = False
+        End If
+        If Me.txtCodiComptable.Text.Length = 0 Then
+            Me.lblErrCodiComptable.Visible = True
             Me.cmdGuardar.Enabled = False
         End If
         If Me.txtNomFiscal.Text.Length = 0 Then
@@ -90,6 +99,8 @@ Public Class DProveidor
         Me.txtEmail.Text = proveidorActual.email
         Me.lblId.Text = proveidorActual.id
         Me.txtCif.Text = proveidorActual.codi
+        Me.txtCodiComptable.Text = proveidorActual.codiComptable
+
         Me.txtCodiPostal.Text = proveidorActual.codiPostal
         Me.txtDireccio.Text = proveidorActual.direccio
         Me.txtIban1.Text = proveidorActual.iban1
@@ -113,6 +124,7 @@ Public Class DProveidor
     Private Function getData() As Proveidor
         getData = proveidorActual.copy
         getData.codi = Me.txtCif.Text
+        getData.codiComptable = Me.txtCodiComptable.Text
         getData.codiPostal = Me.txtCodiPostal.Text
         getData.direccio = Me.txtDireccio.Text
         getData.iban1 = Me.txtIban1.Text
@@ -132,8 +144,16 @@ Public Class DProveidor
     End Function
 
     Private Sub cmdGuardar_Click(sender As Object, e As EventArgs) Handles cmdGuardar.Click
-        Me.DialogResult = DialogResult.OK
-        Me.Hide()
+        If Not xecNoValidar.Checked And Not VALIDAR.esDocumentCorrecte(txtCif.Text) Then
+            Call ERRORS.ERR_CIF_INCORRECTE()
+            txtCif.Select()
+        ElseIf ModelProveidor.existCodi(proveidorActual.id, txtCif.Text) Then
+            Call ERRORS.ERR_CIF_EXIST()
+            txtCif.Select()
+        Else
+            Me.DialogResult = DialogResult.OK
+            Me.Hide()
+        End If
     End Sub
 
     Private Sub cmdCancelar_Click(sender As Object, e As EventArgs) Handles cmdCancelar.Click
@@ -172,6 +192,7 @@ Public Class DProveidor
         End If
     End Sub
     Private Sub txt_KeyDown(sender As Object, e As KeyEventArgs) Handles txtCif.KeyDown,
+                                                                         txtCodiComptable.KeyDown,
                                                                          txtNomFiscal.KeyDown,
                                                                          txtNomComercial.KeyDown,
                                                                          txtDireccio.KeyDown,
@@ -197,6 +218,7 @@ Public Class DProveidor
     Private Function getControls() As List(Of String)
         getControls = New List(Of String)
         getControls.Add(txtCif.Name)
+        getControls.Add(txtCodiComptable.Name)
         getControls.Add(txtNomFiscal.Name)
         getControls.Add(txtNomComercial.Name)
         getControls.Add(txtDireccio.Name)
@@ -219,5 +241,9 @@ Public Class DProveidor
         tPagaments = Nothing
 
         MyBase.Finalize()
+    End Sub
+
+    Private Sub txtCodiComptable_TextChanged(sender As Object, e As EventArgs) Handles txtCodiComptable.TextChanged
+        Call validateControls()
     End Sub
 End Class

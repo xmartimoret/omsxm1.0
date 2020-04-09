@@ -90,6 +90,7 @@
             If contacteActual Is Nothing And proveidorActual.contactes.Count > 0 Then
                 contacteActual = proveidorActual.contactes.Item(0)
             End If
+            If contacteActual Is Nothing Then contacteActual = New ProveidorCont
             listContactes = New lstContactesProveidor(contacteActual, proveidorActual.id)
             AddHandler listContactes.selectObject, AddressOf setContacte
             Me.PanelContacte.Controls.Clear()

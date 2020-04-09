@@ -307,5 +307,102 @@ Module VALIDAR
             End If
         Next i
     End Function
+    Private Function esCIfCorrecte(ByVal valor As String) As Boolean
+        Dim strLetra As String, strNumero As String, strDigit As String
+        Dim strDigitAux As String
+        Dim auxNum As Integer
+        Dim i As Integer
+        Dim suma As Integer
+        Dim letras As String
 
+        letras = "ABCDEFGJHKLMPQSWXY"
+
+        valor = UCase(valor)
+
+        If Len(valor) < 9 Then
+            esCIfCorrecte = False
+        ElseIf Not IsNumeric(Mid(valor, 2, 7)) Then
+            esCIfCorrecte = False
+        Else
+            strLetra = Mid(valor, 1, 1)     ' letra del CIF
+            strNumero = Mid(valor, 2, 7)    ' Codigo de Control
+            strDigit = Mid(valor, 9)        ' CIF menos primera y ultima posiciones
+            If InStr(letras, strLetra) = 0 Then ' comprobamos la letra del CIF (1ª posicion)
+                esCIfCorrecte = False
+            Else
+                For i = 1 To 7
+                    If i Mod 2 = 0 Then
+                        suma = suma + CInt(Mid(strNumero, i, 1))
+                    Else
+                        auxNum = CInt(Mid(strNumero, i, 1)) * 2
+                        suma = suma + (auxNum \ 10) + (auxNum Mod 10)
+                    End If
+                Next
+
+                suma = (10 - (suma Mod 10)) Mod 10
+
+                Select Case strLetra
+                    Case "K", "P", "Q", "S"
+                        suma = suma + 64
+                        strDigitAux = Chr(suma)
+                    Case "X"
+                        strDigitAux = Mid(getNif(strNumero), 8, 1)
+                    Case Else
+                        strDigitAux = CStr(suma)
+                End Select
+
+                If strDigit = strDigitAux Then
+                    esCIfCorrecte = True
+                Else
+                    esCIfCorrecte = False
+                End If
+
+            End If
+        End If
+
+    End Function
+    Private Function getNif(ByVal dni As String) As String
+        Const cCADENA As String = "TRWAGMYFPDXBNJZSQVHLCKE"
+
+        Dim a, b, c, nif As Long, i As Integer
+        Dim sb As String
+        dni = Trim(dni)
+        If Len(dni) = 0 Then
+            getNif = ""
+        Else
+
+            For i = 1 To Len(dni)
+                If IsNumeric(Mid(dni, i, 1)) Then
+                    sb = sb & Mid(dni, i, 1)
+                End If
+            Next
+            dni = sb
+            a = 0
+            nif = CLng(Val(dni))
+            Do
+                b = CLng(Val(nif / 24))
+                c = nif - (24 * b)
+                a = a + c
+                nif = b
+            Loop While b <> 0
+            b = CInt(Int(a / 23))
+            c = a - (23 * b)
+            getNif = dni & Mid(cCADENA, CInt(c + 1), 1)
+        End If
+    End Function
+    Public Function esDocumentCorrecte(ByVal valor As String) As Boolean
+        Dim aux As String
+        esDocumentCorrecte = False
+        valor = UCase(valor)
+        aux = Left(valor, Len(valor) - 1)
+        If Len(aux) >= 7 And IsNumeric(aux) Then
+            aux = getNif(aux)
+            If valor = aux Then
+                esDocumentCorrecte = True
+            End If
+        End If
+        If esDocumentCorrecte = False Then
+            esDocumentCorrecte = esCIfCorrecte(valor)
+        End If
+    End Function
 End Module

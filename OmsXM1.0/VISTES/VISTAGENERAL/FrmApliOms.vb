@@ -599,7 +599,7 @@
     Private Sub ComandesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ComandesToolStripMenuItem.Click
         Dim p As pComanda
         panelData.Controls.Clear()
-        p = New pComanda()
+        p = New pComanda(0)
         Call setPanel(p)
     End Sub
 

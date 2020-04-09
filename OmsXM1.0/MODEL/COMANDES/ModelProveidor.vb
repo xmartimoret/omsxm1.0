@@ -27,6 +27,7 @@ Module ModelProveidor
         If provincies.Count > 0 Then
             getDataList.columns.Add(COLUMN.ID)
             getDataList.columns.Add(COLUMN.GENERICA("cif", 100, HorizontalAlignment.Center))
+            getDataList.columns.Add(COLUMN.GENERICA("codiComptable", 100, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.NOM)
             getDataList.columns.Add(COLUMN.GENERICA("poblacio", 150, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.GENERICA("provincia", 150, HorizontalAlignment.Center))
@@ -35,9 +36,9 @@ Module ModelProveidor
             For Each c In provincies
                 If c.provincia Is Nothing Then c.provincia = New Provincia
                 If c.actiu Then
-                    getDataList.rows.Add(New ListViewItem(New String() {c.id, c.codi, c.nom, c.poblacio, c.provincia.nom, c.email, IDIOMA.getString("actiu")}))
+                    getDataList.rows.Add(New ListViewItem(New String() {c.id, c.codi, c.codiComptable, c.nom, c.poblacio, c.provincia.nom, c.email, IDIOMA.getString("actiu")}))
                 Else
-                    getDataList.rows.Add(New ListViewItem(New String() {c.id, c.codi, c.nom, c.poblacio, c.provincia.nom, c.email, IDIOMA.getString("bloquejat")}))
+                    getDataList.rows.Add(New ListViewItem(New String() {c.id, c.codi, c.codiComptable, c.nom, c.poblacio, c.provincia.nom, c.email, IDIOMA.getString("bloquejat")}))
                 End If
             Next
         End If
@@ -61,6 +62,10 @@ Module ModelProveidor
     Public Function existCodi(obj As Proveidor) As Integer
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Exists(Function(x) x.id <> obj.id And x.codi = obj.codi)
+    End Function
+    Public Function existCodi(id As Integer, codi As String) As Boolean
+        If Not isUpdated() Then objects = getRemoteObjects()
+        Return objects.Exists(Function(x) x.id <> id And x.codi = codi)
     End Function
     Public Function save(obj As Proveidor) As Integer
         If obj.id = -1 Then

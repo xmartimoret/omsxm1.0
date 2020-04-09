@@ -241,5 +241,11 @@ Module ERRORS
     Public Sub ERR_CONFIG_MAN()
         Call MsgBox(IDIOMA.getString("errConfigMan") & vbCrLf & IDIOMA.getString("errRevisarConfiguracioSistema"), vbCritical, IDIOMA.getString("abort"))
     End Sub
-
+    Public Sub ERR_CIF_INCORRECTE()
+        Call MsgBox(IDIOMA.getString("errCifIncorrecte"), vbCritical, IDIOMA.getString("abort"))
+    End Sub
+    'ERR_CIF_EXIST
+    Public Sub ERR_CIF_EXIST()
+        Call MsgBox(IDIOMA.getString("errCifExist"), vbCritical, IDIOMA.getString("abort"))
+    End Sub
 End Module

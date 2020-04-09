@@ -15,15 +15,17 @@
     Public Property iban2 As String
     Public Property iban3 As String
     Public Property email As String
+    Public Property codiComptable As String
     Public Property contactes As List(Of ProveidorCont)
     Public Property anotacions As List(Of proveidorAnotacio)
     Public Property idContacteActual As Integer
     Public Sub New()
-        actiu = True
-        pais = New Pais
-        provincia = New Provincia
-        tipusPagament = New TipusPagament
-        contactes = New List(Of ProveidorCont)
+        _actiu = True
+        _pais = New Pais
+        _provincia = New Provincia
+        _tipusPagament = New TipusPagament
+        _contactes = New List(Of ProveidorCont)
+        _anotacions = New List(Of proveidorAnotacio)
     End Sub
     Public Sub New(pId As Integer, pCif As String, pNom As String, pNomFiscal As String, pDireccio As String, pPoblacio As String)
         Me.id = pId
@@ -33,11 +35,11 @@
         _nomFiscal = pNomFiscal
         _direccio = pDireccio
         _poblacio = pPoblacio
-        pais = New Pais
-        provincia = New Provincia
-        tipusPagament = New TipusPagament
-        contactes = New List(Of ProveidorCont)
-        actiu = True
+        _pais = New Pais
+        _provincia = New Provincia
+        _tipusPagament = New TipusPagament
+        _contactes = New List(Of ProveidorCont)
+        _actiu = True
     End Sub
     Public Sub New(pId As Integer, pCif As String, pNom As String, pNomFiscal As String, pDireccio As String, pPoblacio As String, pPais As Pais, pProvincia As Provincia, pTipusPagament As TipusPagament)
         Me.id = pId
@@ -50,8 +52,8 @@
         _pais = pPais
         _provincia = pProvincia
         _tipusPagament = pTipusPagament
-        contactes = New List(Of ProveidorCont)
-        actiu = True
+        _contactes = New List(Of ProveidorCont)
+        _actiu = True
     End Sub
     Public ReadOnly Property contacteActual As ProveidorCont
         Get
@@ -79,6 +81,7 @@
         copy.email = _email
         copy.contactes = _contactes
         copy.idContacteActual = _idContacteActual
+        copy.codiComptable = _codiComptable
     End Function
     Public Function equalsComanda(p As Proveidor) As Boolean
         If p IsNot Nothing Then
@@ -123,10 +126,11 @@
         Return texte
     End Function
     Protected Overrides Sub Finalize()
-        pais = Nothing
-        provincia = Nothing
-        tipusPagament = Nothing
-        contactes = Nothing
+        _pais = Nothing
+        _provincia = Nothing
+        _tipusPagament = Nothing
+        _contactes = Nothing
+        _anotacions = Nothing
         MyBase.Finalize()
     End Sub
 End Class

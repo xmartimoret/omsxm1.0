@@ -509,6 +509,10 @@
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\panelDesplegableEmpresa.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\SelectComandasEdicio.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\SelectComandesValidacio.vb" />
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\SelectSolicitudComandes.vb">
       <SubType>UserControl</SubType>
     </Compile>

@@ -2379,7 +2379,7 @@
     <comment>missatge</comment>
   </data>
   <data name="usuariAdministrador" xml:space="preserve">
-    <value>USUSARI ADMIN</value>
+    <value>USUARI ADMIN</value>
     <comment>frmApliOms</comment>
   </data>
   <data name="usuariExplotacions" xml:space="preserve">
@@ -2392,7 +2392,7 @@
   </data>
   <data name="usuariSuperAdministrador" xml:space="preserve">
     <value>USUARI SUPER ADMIN</value>
-    <comment>frmApliOms</comment>
+    <comment>DPro</comment>
   </data>
   <data name="validarAccio" xml:space="preserve">
     <value>VALIDAR ACCIÓ</value>
@@ -3413,10 +3413,98 @@
     <comment>missatges</comment>
   </data>
   <data name="solicitudsComanda" xml:space="preserve">
-    <value>F56</value>
+    <value>F56 - SOLICITUTS DE COMANDA</value>
+    <comment>frminici</comment>
   </data>
   <data name="proveidorTeAvisos" xml:space="preserve">
     <value>EL PROVEIDOR ACTUAL TÉ AVISOS ACTIUS</value>
     <comment>panalProveidor</comment>
+  </data>
+  <data name="codiComptable" xml:space="preserve">
+    <value>CODI COMPTABLE</value>
+    <comment>DProveidor</comment>
+  </data>
+  <data name="comanda" xml:space="preserve">
+    <value>COMANDA</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="comandaCreada" xml:space="preserve">
+    <value>COMANDA CREADA</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="comandaEditar" xml:space="preserve">
+    <value>COMANDA EN EDICIO</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="comandaEnviada" xml:space="preserve">
+    <value>COMANDA ENVIADA</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="comandaValidar" xml:space="preserve">
+    <value>COMANDA EN VALIDACIO</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="copiarComanda" xml:space="preserve">
+    <value>COPIAR COMANDA</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="enviarComanda" xml:space="preserve">
+    <value>ENVIAR A PROVEIDOR</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="errCifExist" xml:space="preserve">
+    <value>EL DOCUMENT (CIF/NIF) JA EXISTEIX.!!!</value>
+    <comment>DProveidor</comment>
+  </data>
+  <data name="errCifIncorrecte" xml:space="preserve">
+    <value>CIF/NIF INCORRECTE.!!!</value>
+    <comment>DProveidor</comment>
+  </data>
+  <data name="mnuContactesCentre" xml:space="preserve">
+    <value>CONTACTES CENTRE</value>
+    <comment>frmIniComanda</comment>
+  </data>
+  <data name="mnuImportarSolicituts" xml:space="preserve">
+    <value>IMPORTAR SOLICITUTS</value>
+    <comment>frmIniComanda</comment>
+  </data>
+  <data name="mnuLlocsEntrega" xml:space="preserve">
+    <value>LLOCS ENTREGA</value>
+    <comment>frmIniComanda</comment>
+  </data>
+  <data name="mnuNouF56" xml:space="preserve">
+    <value>NOU F56</value>
+    <comment>frmIniComanda</comment>
+  </data>
+  <data name="mnuSolicituts" xml:space="preserve">
+    <value>F56- SOLICITUTS</value>
+    <comment>frmIniComanda</comment>
+  </data>
+  <data name="mnuVeureSolicituts" xml:space="preserve">
+    <value>VEURE SOLICITUTS EN EDICIO</value>
+    <comment>frmIniComanda</comment>
+  </data>
+  <data name="noValidarDocument" xml:space="preserve">
+    <value>No validar document</value>
+    <comment>DProveidor</comment>
+  </data>
+  <data name="solicitutF56" xml:space="preserve">
+    <value>F56. SOLICITUD COMANDA</value>
+    <comment>pcomanda</comment>
+  </data>
+  <data name="solicitutGuardada" xml:space="preserve">
+    <value>GUARDADA</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="validarComanda" xml:space="preserve">
+    <value>VALIDAR COMANDA</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="volsCrearComanda" xml:space="preserve">
+    <value>- VOLS CREAR  LA COMANDA DE </value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="missatgeEliminarComanda" xml:space="preserve">
+    <value>- VOLS ELIMINAR LA COMANDA ACTUAL</value>
   </data>
 </root>

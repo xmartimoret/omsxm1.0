@@ -13,7 +13,7 @@ Module ModelComandaSolicitud
         proveidor
         departementProveidor
         ncomanda
-        datacomanda
+        datacomanda = 10
         ports
         dataEntrega
         dataMuntatge
@@ -23,8 +23,8 @@ Module ModelComandaSolicitud
         tipusPagament
         dadesComanda
         article
-        pos
         articleId
+        pos = 21
         refArticle
         quantitatArticle
         unitatArticle
@@ -51,17 +51,21 @@ Module ModelComandaSolicitud
                         fila = Split(fitxer.ReadLine(), ";")
                         If UBound(fila) > 0 Then
                             Select Case fila(0)
-                                Case comandaTxt.empresa : If IsNumeric(fila(1)) Then c.empresa = ModelEmpresa.getObject(CInt(fila(1)))
-                                Case comandaTxt.projecte : If IsNumeric(fila(1)) Then c.projecte = ModelProjecte.getObject(CInt(fila(1)))
-                                Case comandaTxt.magatzem : If IsNumeric(fila(1)) Then c.magatzem = ModelLlocEntrega.getObject(CInt(fila(1)))
-                                Case comandaTxt.contacteProjecte : If IsNumeric(fila(1)) Then c.contacte = ModelContacte.getObject(CInt(fila(1)))
+                                Case comandaTxt.empresa
+                                    If isNumericPositiu(fila(1)) Then c.empresa = ModelEmpresa.getObject(CInt(fila(1))) Else c.empresa = New Empresa
+                                Case comandaTxt.projecte : If CONFIG.isNumericPositiu(fila(1)) Then c.projecte = ModelProjecte.getObject(CInt(fila(1))) Else c.projecte = New Projecte
+                                Case comandaTxt.magatzem : If CONFIG.isNumericPositiu(fila(1)) Then c.magatzem = ModelLlocEntrega.getObject(CInt(fila(1))) Else c.magatzem = New LlocEntrega
+                                Case comandaTxt.contacteProjecte : If CONFIG.isNumericPositiu(fila(1)) Then c.contacte = ModelContacte.getObject(CInt(fila(1))) Else c.contacte = New Contacte
                                 Case comandaTxt.responsableProjecte : c.responsable = fila(1)
                                 Case comandaTxt.directorProjecte : c.director = fila(1)
-                                Case comandaTxt.proveidor : If IsNumeric(fila(1)) Then c.proveidor = ModelProveidor.getObject(CInt(fila(1)))
-                                Case comandaTxt.departementProveidor : If IsNumeric(fila(1)) Then c.contacteProveidor = ModelProveidorContacte.getObject(CInt(fila(1)))
+                                Case comandaTxt.proveidor : If CONFIG.isNumericPositiu(fila(1)) Then c.proveidor = ModelProveidor.getObject(CInt(fila(1))) Else c.proveidor = New Proveidor
+                                Case comandaTxt.departementProveidor : If CONFIG.isNumericPositiu(fila(1)) Then c.contacteProveidor = ModelProveidorContacte.getObject(CInt(fila(1))) Else c.contacteProveidor = New ProveidorCont
                                 Case comandaTxt.ncomanda
                                     c.codi = fila(1)
-                                    If IsNumeric(c.codi) Then c.id = CInt(c.codi)
+                                    If IsNumeric(c.codi) Then
+                                        c.id = CInt(c.codi)
+                                        c.idSolicitut = c.id
+                                    End If
                                 Case comandaTxt.datacomanda : If IsDate(fila(1)) Then c.data = CDate(fila(1))
                                 Case comandaTxt.ports : c.ports = fila(1)
                                 Case comandaTxt.dataEntrega : If IsDate(fila(1)) Then c.dataEntrega = CDate(fila(1))
@@ -69,7 +73,7 @@ Module ModelComandaSolicitud
                                 Case comandaTxt.retencio : c.retencio = fila(1)
                                 Case comandaTxt.intAval : c.interAval = fila(1)
                                 Case comandaTxt.nOferta : c.nOferta = fila(1)
-                                Case comandaTxt.tipusPagament : If IsNumeric(fila(1)) Then c.tipusPagament = ModelTipusPagament.getAuxiliar.getObject(CInt(fila(1)))
+                                Case comandaTxt.tipusPagament : If IsNumeric(fila(1)) Then c.tipusPagament = ModelTipusPagament.getAuxiliar.getObject(CInt(fila(1))) Else c.tipusPagament = New TipusPagament
                                 Case comandaTxt.dadesComanda : c.dadesBancaries = fila(1)
 
                                 Case comandaTxt.article
@@ -80,21 +84,21 @@ Module ModelComandaSolicitud
                                         If Not IsNothing(a) Then c.articles.Add(a)
                                     End If
                                 Case comandaTxt.articleId
-                                    If IsNumeric(fila(1)) Then a.article = ModelArticle.getObject(CInt(fila(1)))
                                     If IsNothing(a) Then a = New articleComanda
                                 Case comandaTxt.refArticle : a.codi = fila(1)
                                 Case comandaTxt.pos : a.pos = fila(1)
-                                Case comandaTxt.quantitatArticle : If IsNumeric(fila(1)) Then a.quantitat = fila(1)
-                                Case comandaTxt.unitatArticle : If IsNumeric(fila(1)) Then a.unitat = ModelUnitat.getAuxiliar.getObject(CInt(fila(1)))
+                                Case comandaTxt.quantitatArticle : If CONFIG.isNumericPositiu(fila(1)) Then a.quantitat = fila(1) Else a.quantitat = 0
+                                Case comandaTxt.unitatArticle : If CONFIG.isNumericPositiu(fila(1)) Then a.unitat = ModelUnitat.getAuxiliar.getObject(CInt(fila(1))) Else a.unitat = New Unitat
                                 Case comandaTxt.descripcioArticle : a.nom = fila(1)
-                                Case comandaTxt.importArticle : If IsNumeric(fila(1)) Then a.preu.base = fila(1)
-                                Case comandaTxt.descompteArticle : If IsNumeric(fila(1)) Then a.preu.descompte = fila(1)
-                                Case comandaTxt.ivaArticle : If IsNumeric(fila(1)) Then a.tIva = ModelTipusIva.getAuxiliar.getObject(CInt(fila(1)))
+                                Case comandaTxt.importArticle : If CONFIG.isNumericPositiu(fila(1)) Then a.preu = fila(1)
+                                Case comandaTxt.descompteArticle : If CONFIG.isNumericPositiu(fila(1)) Then a.tpcDescompte = fila(1)
+                                Case comandaTxt.ivaArticle : If CONFIG.isNumericPositiu(fila(1)) Then a.tIva = ModelTipusIva.getAuxiliar.getObject(CInt(fila(1))) Else a.tIva = New TipusIva
                             End Select
                         End If
 
                     Loop While Not fitxer.EndOfStream
                 End Using
+                c.nomFitxerSolicitut = f
                 comandes.Add(c)
             End If
             f = Dir()
@@ -106,14 +110,15 @@ Module ModelComandaSolicitud
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects
     End Function
-    Public Function getObjects(Optional filtre As String = "") As List(Of Comanda)
+    Public Function getObjects(filtre As String) As List(Of Comanda)
         Dim a As Comanda, altres As String = ""
         If Not isUpdated() Then objects = getRemoteObjects()
         getObjects = New List(Of Comanda)
         For Each a In objects
-            If a.proveidor IsNot Nothing Then altres = a.proveidor.nom
-            If a.projecte IsNot Nothing Then altres = altres & a.projecte.nom
-            If a.empresa IsNot Nothing Then altres = altres & a.empresa.nom
+            If a.proveidor IsNot Nothing Then altres = a.proveidor.nom & a.proveidor.codi
+            If a.projecte IsNot Nothing Then altres = altres & a.projecte.nom & a.projecte.codi
+            If a.empresa IsNot Nothing Then altres = altres & a.empresa.nom & a.empresa.codi
+
             If altres <> "" Then
                 If a.isFilter(filtre, altres) Then
                     getObjects.Add(a)
@@ -133,8 +138,8 @@ Module ModelComandaSolicitud
         Dim ruta As String, a As articleComanda, i As Integer
         ruta = CONFIG.setSeparator(CONFIG.getRutaComandesEnEdicio)
         If CONFIG.folderExist(ruta) Then
-            Using fitxer As New IO.StreamWriter(ruta & p.codi & TIPUS_FITXER)
-
+            If p.nomFitxerSolicitut = "" Then p.nomFitxerSolicitut = p.codi & TIPUS_FITXER
+            Using fitxer As New IO.StreamWriter(ruta & p.nomFitxerSolicitut)
                 If Not IsNothing(p.empresa) Then fitxer.WriteLine(comandaTxt.empresa & ";" & p.empresa.id)
                 If Not IsNothing(p.projecte) Then fitxer.WriteLine(comandaTxt.projecte & ";" & p.projecte.id)
                 If Not IsNothing(p.magatzem) Then fitxer.WriteLine(comandaTxt.magatzem & ";" & p.magatzem.id)
@@ -162,10 +167,10 @@ Module ModelComandaSolicitud
                         fitxer.WriteLine(comandaTxt.articleId & ";" & a.id)
                         fitxer.WriteLine(comandaTxt.refArticle & ";" & a.codi)
                         fitxer.WriteLine(comandaTxt.quantitatArticle & ";" & a.quantitat)
-                        If Not IsNothing(a.article.unitat) Then fitxer.WriteLine(comandaTxt.unitatArticle & ";" & a.unitat.id)
+                        If Not IsNothing(a.unitat) Then fitxer.WriteLine(comandaTxt.unitatArticle & ";" & a.unitat.id)
                         fitxer.WriteLine(comandaTxt.descripcioArticle & ";" & a.nom)
-                        If Not IsNothing(a.preu) Then fitxer.WriteLine(comandaTxt.importArticle & ";" & a.preu.base)
-                        If Not IsNothing(a.preu) Then fitxer.WriteLine(comandaTxt.descompteArticle & ";" & a.preu.descompte)
+                        If Not IsNothing(a.preu) Then fitxer.WriteLine(comandaTxt.importArticle & ";" & a.preu)
+                        If Not IsNothing(a.preu) Then fitxer.WriteLine(comandaTxt.descompteArticle & ";" & a.tpcDescompte)
                         If Not IsNothing(a.tIva) Then fitxer.WriteLine(comandaTxt.ivaArticle & ";" & a.tIva.id)
                         fitxer.WriteLine(comandaTxt.article & ";finalArticle")
                         i = i + 1
@@ -180,14 +185,13 @@ Module ModelComandaSolicitud
         a = Nothing
     End Function
     Public Function remove(c As Comanda) As Boolean
-        Dim ruta As String, result As Boolean = False, f As String
-        f = c.codi & TIPUS_FITXER
+        Dim ruta As String, result As Boolean = False
         ruta = CONFIG.setSeparator(CONFIG.getRutaComandesEnEdicio)
         If CONFIG.folderExist(ruta) Then
-            If CONFIG.fileExist(ruta & f) Then
-                Call Kill(ruta & f)
+            If CONFIG.fileExist(ruta & c.nomFitxerSolicitut) Then
+                Call Kill(ruta & c.nomFitxerSolicitut)
                 result = removeComanda(c)
-                Call removeCodi(f)
+                Call removeCodi(c.nomFitxerSolicitut)
             End If
         End If
         dateUpdate = Now
@@ -197,7 +201,7 @@ Module ModelComandaSolicitud
         Dim t As Comanda, result As Boolean
         result = False
         For Each t In objects
-            If t.codi = c.codi Then
+            If t.id = c.idSolicitut Then
                 objects.Remove(t)
                 result = True
                 Exit For

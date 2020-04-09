@@ -45,14 +45,14 @@ Module ModelComanda
         End If
         a = Nothing
     End Function
-    Public Function getObject(id As Integer, anyo As Integer) As Comanda
-        If Not isUpdated(anyo) Then objects = getRemoteObjects(anyo)
+    Public Function getObject(id As Integer) As Comanda
+        'If Not isUpdated(ANYO) Then objects = getRemoteObjects(ANYO)
         Return objects.Find(Function(x) x.id = id)
     End Function
 
-    Public Function getCodi(id As Integer, anyo As Integer) As String
+    Public Function getCodi(id As Integer) As String
         Dim c As Comanda
-        If Not isUpdated(anyo) Then objects = getRemoteObjects(anyo)
+        'If Not isUpdated(ANYO) Then objects = getRemoteObjects(ANYO)
         c = objects.Find(Function(x) x.id = id)
         If c IsNot Nothing Then Return c.codi
         Return Nothing
@@ -70,10 +70,10 @@ Module ModelComanda
         Next
         Return id
     End Function
-    Public Function getNom(id As Integer, anyo As Integer) As String
+    Public Function getNom(id As Integer) As String
         Dim a As Comanda
         getNom = ""
-        If Not isUpdated(anyo) Then objects = getRemoteObjects(anyo)
+        'If Not isUpdated(ANYO) Then objects = getRemoteObjects(ANYO)
         a = objects.Find(Function(x) x.id = id)
         If a IsNot Nothing Then getNom = a.nom
         a = Nothing
@@ -97,10 +97,10 @@ Module ModelComanda
             obj.id = dbComanda.update(obj)
         End If
         If obj.id > -1 Then
-            Call ModelarticleComanda.saveComanda(obj.articles)
             dateUpdate = Now()
             objects.Remove(obj)
             objects.Add(obj)
+            If Not ModelarticleComanda.saveComanda(obj.articles) Then Return -1
         End If
         Return obj.id
     End Function
@@ -120,7 +120,7 @@ Module ModelComanda
 
     Private Function getRemoteObjects(anyo As Integer) As List(Of Comanda)
         dateUpdate = Now()
-        Return dbComanda.getObjects
+        Return dbComanda.getObjects(anyo)
     End Function
     ''' <summary>
     ''' Comprova si s'ha actualitzat la BBDD

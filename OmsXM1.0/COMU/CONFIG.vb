@@ -591,4 +591,12 @@ Module CONFIG
         If Strings.Right(p, 1) <> "\" Then Return p & "\"
         Return p
     End Function
+    Public Function isNumericPositiu(p As String) As Boolean
+        If IsNumeric(p) Then
+            If Val(p) > 0 Then
+                Return True
+            End If
+        End If
+        Return False
+    End Function
 End Module

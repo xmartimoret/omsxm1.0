@@ -4,10 +4,12 @@ Imports System.Windows.Forms
 
 Public Class frmIniComanda
     Private tabs As List(Of tabControl)
+    Private refrescarSolicitudsComanda As Boolean
     Public Sub New()
 
         ' This call is required by the designer.
         InitializeComponent()
+
         tabs = New List(Of tabControl)
         Call setLanguage()
         If Not DBCONNECT.setConnectServer Then
@@ -21,11 +23,13 @@ Public Class frmIniComanda
         Me.mnuArticles.Text = IDIOMA.getString("articles")
         Me.mnuAxiliars.Text = IDIOMA.getString("mnuAxiliars")
         Me.mnuCentres.Text = IDIOMA.getString("centres")
+        Me.mnuLlocsEntrega.Text = IDIOMA.getString("mnuLlocsEntrega")
+        Me.mnuContactesCentre.Text = IDIOMA.getString("mnuContactesCentre")
         Me.mnuComandes.Text = IDIOMA.getString("mnuComandes")
         Me.mnuConfig.Text = IDIOMA.getString("mnuConfig_Caption")
         Me.mnuFabricants.Text = IDIOMA.getString("fabricants")
         Me.mnuFamilies.Text = IDIOMA.getString("families")
-        Me.mnuImportarComandes.Text = IDIOMA.getString("mnuImportarComandes")
+
         Me.mnuInformes.Text = IDIOMA.getString("mnuInformes")
         Me.mnuNovaComanda.Text = IDIOMA.getString("mnuNovaComanda")
         Me.mnuPaisos.Text = IDIOMA.getString("paisos")
@@ -34,7 +38,10 @@ Public Class frmIniComanda
         Me.mnuTipusIva.Text = IDIOMA.getString("tipusIva")
         Me.mnuTipusPagament.Text = IDIOMA.getString("tipusPagament")
         Me.mnuUnitats.Text = IDIOMA.getString("unitats")
-
+        Me.mnuSolicituts.Text = IDIOMA.getString("mnuSolicituts")
+        Me.mnuNovaSolicitut.Text = IDIOMA.getString("mnuNouF56")
+        Me.mnuVeureSolicituts.Text = IDIOMA.getString("mnuVeureSolicituts")
+        Me.mnuImportarSolicituts.Text = IDIOMA.getString("mnuImportarSolicituts")
     End Sub
 
     Private Sub setTabs()
@@ -70,6 +77,13 @@ Public Class frmIniComanda
                 t.panel.Hide()
             Else
                 t.activate()
+                If t.nom = IDIOMA.getString("solicitudsComanda") Then
+                    If refrescarSolicitudsComanda Then
+                        t.panel = New SelectSolicitudComandes(1, True, False)
+                        t.panel.Dock = DockStyle.Fill
+                        refrescarSolicitudsComanda = False
+                    End If
+                End If
                 Me.pData.Controls.Clear()
                 Me.pData.Controls.Add(t.panel)
                 t.panel.Show()
@@ -78,19 +92,29 @@ Public Class frmIniComanda
     End Sub
 
     Private Sub mnuNovaComanda_Click(sender As Object, e As EventArgs) Handles mnuNovaComanda.Click
-        Dim i As Integer, c As Comanda
+        Dim i As Integer, c As Comanda, panelComanda As pComanda
         c = DNovaComanda.getComanda
         If c IsNot Nothing Then
             i = getIdTab(IDIOMA.getString("mnuComandes"))
             If i > -1 Then
                 Call activateTab(i)
             Else
-                Call setTab(c.getCodiSolicitud, New pComanda(c))
+                panelComanda = New pComanda(c, 1)
+                Call setTab(c.getCodiSolicitud, panelComanda)
+                'AddHandler panelComanda.AddItem, AddressOf RefreshComanda
             End If
         End If
+
+
         c = Nothing
     End Sub
-
+    Private Sub RemoveSelectComanda(c As Comanda, tipusComanda As Integer)
+        If ModelComandaSolicitud.remove(c) Then refrescarSolicitudsComanda = True
+    End Sub
+    Private Sub RefreshComanda()
+        '1. Ens cal cercar si existeix el selectComandes. i si es una solicitud de comanda. 
+        refrescarSolicitudsComanda = True
+    End Sub
     Private Sub setTab(titol As String, c As UserControl)
         Dim t As tabControl, i As Integer, posLeft As Integer
         i = getIdTab(titol)
@@ -131,11 +155,96 @@ Public Class frmIniComanda
 
 
     Private Sub mnuVeureComandaEdicio_Click(sender As Object, e As EventArgs) Handles mnuVeureComandaEdicio.Click
+
+    End Sub
+    Friend Sub modificarComanda(c As Comanda, tipusComanda As Integer)
+        Dim panelComanda As pComanda
+        panelComanda = New pComanda(c, tipusComanda)
+        If tipusComanda = 0 Then
+            Call setTab(c.getCodiSolicitud, panelComanda)
+        Else
+            Call setTab(c.getCodiString, panelComanda)
+        End If
+        AddHandler panelComanda.removeItem, AddressOf RemoveSelectComanda
+    End Sub
+    Private Sub mnuArticles_Click(sender As Object, e As EventArgs) Handles mnuArticles.Click
+        Dim p As pArticlesPreus
+        p = New pArticlesPreus()
+        Call setTab(IDIOMA.getString("articles"), p)
+
+    End Sub
+
+    Private Sub mnuTipusPagament_Click(sender As Object, e As EventArgs) Handles mnuTipusPagament.Click
+        Dim p As DAuxiliars
+        p = New DAuxiliars
+        p.setTipusPagament()
+        p = Nothing
+    End Sub
+    Private Sub mnuPaisos_Click(sender As Object, e As EventArgs) Handles mnuPaisos.Click
+        Dim p As DAuxiliars
+        p = New DAuxiliars
+        p.setPaisos()
+        p = Nothing
+    End Sub
+
+    Private Sub mnuProvincies_Click(sender As Object, e As EventArgs) Handles mnuProvincies.Click
+        Dim p As DAuxiliars
+        p = New DAuxiliars
+        p.setProvincies()
+        p = Nothing
+    End Sub
+    Private Sub mnuTipusIva_Click(sender As Object, e As EventArgs) Handles mnuTipusIva.Click
+        Dim p As DAuxiliars
+        p = New DAuxiliars
+        p.setTipusIva()
+        p = Nothing
+    End Sub
+
+    Private Sub mnuUnitats_Click(sender As Object, e As EventArgs) Handles mnuUnitats.Click
+        Dim p As DAuxiliars
+        p = New DAuxiliars
+        p.setUnitats()
+        p = Nothing
+    End Sub
+
+
+    Private Sub mnuFamilies_Click(sender As Object, e As EventArgs) Handles mnuFamilies.Click
+        Dim p As DAuxiliars
+        p = New DAuxiliars
+        p.setFamilies()
+        p = Nothing
+    End Sub
+
+    Private Sub mnuFabricants_Click(sender As Object, e As EventArgs) Handles mnuFabricants.Click
+        Dim p As DAuxiliars
+        p = New DAuxiliars
+        p.setFabricants()
+        p = Nothing
+    End Sub
+
+    Private Sub mnuNovaSolicitut_Click(sender As Object, e As EventArgs) Handles mnuNovaSolicitut.Click
+        Dim i As Integer, c As Comanda, panelComanda As pComanda
+        c = DNovaComanda.getComanda
+        If c IsNot Nothing Then
+            i = getIdTab(IDIOMA.getString("mnuComandes"))
+            If i > -1 Then
+                Call activateTab(i)
+            Else
+                panelComanda = New pComanda(c, 0)
+                Call setTab(c.getCodiSolicitud, panelComanda)
+                'AddHandler panelComanda.AddItem, AddressOf RefreshComanda
+            End If
+        End If
+
+        c = Nothing
+    End Sub
+
+    Private Sub mnuVeureSolicituts_Click(sender As Object, e As EventArgs) Handles mnuVeureSolicituts.Click
         Dim p As SelectSolicitudComandes
         p = New SelectSolicitudComandes(1, True, False)
+
         Call setTab(IDIOMA.getString("solicitudsComanda"), p)
     End Sub
-    Friend Sub modificarSolicitudComanda(c As Comanda)
-        Call setTab(c.getCodiSolicitud, New pComanda(c))
-    End Sub
+
+
 End Class

@@ -34,9 +34,10 @@ Partial Class SelectDia
         Me.cmdData.Cursor = System.Windows.Forms.Cursors.Hand
         Me.cmdData.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.cmdData.Image = CType(resources.GetObject("cmdData.Image"), System.Drawing.Image)
-        Me.cmdData.Location = New System.Drawing.Point(95, 0)
+        Me.cmdData.Location = New System.Drawing.Point(127, 0)
+        Me.cmdData.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmdData.Name = "cmdData"
-        Me.cmdData.Size = New System.Drawing.Size(21, 23)
+        Me.cmdData.Size = New System.Drawing.Size(28, 28)
         Me.cmdData.TabIndex = 0
         Me.cmdData.TabStop = False
         Me.cmdData.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -50,19 +51,21 @@ Partial Class SelectDia
         Me.txtData.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtData.ForeColor = System.Drawing.Color.Blue
         Me.txtData.Location = New System.Drawing.Point(0, 0)
+        Me.txtData.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtData.Name = "txtData"
-        Me.txtData.Size = New System.Drawing.Size(93, 23)
+        Me.txtData.Size = New System.Drawing.Size(123, 27)
         Me.txtData.TabIndex = 1
         Me.txtData.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'SelectDia
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.txtData)
         Me.Controls.Add(Me.cmdData)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "SelectDia"
-        Me.Size = New System.Drawing.Size(116, 24)
+        Me.Size = New System.Drawing.Size(155, 30)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

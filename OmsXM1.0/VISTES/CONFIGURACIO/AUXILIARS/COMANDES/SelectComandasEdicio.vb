@@ -1,6 +1,6 @@
-﻿Public Class SelectSolicitudComandes
+﻿Public Class SelectComandasEdicio
     Inherits LVObjects
-    Friend Property solicitudsComanda As List(Of Comanda)
+    Friend Property comandes As List(Of Comanda)
     Friend Event selectObject(p As Comanda)
 
     Public Sub New(pAccio As Integer, pMultiselect As Boolean, parentForm As Boolean, Optional pTitol As String = "", Optional pOrdre As Integer = 0)
@@ -9,7 +9,7 @@
         Me.isForm = parentForm
         Me.titol = pTitol
         Me.orderColumn = 1
-        solicitudsComanda = New List(Of Comanda)
+        comandes = New List(Of Comanda)
     End Sub
     Public Sub New(pAccio As Integer, pMultiselect As Boolean, parentForm As Boolean, pFiltre As String, Optional pTitol As String = "", Optional pOrdre As Integer = 0)
         Me.accio = pAccio
@@ -18,7 +18,7 @@
         Me.titol = pTitol
         Me.txtFiltrar.Text = pFiltre
         Me.orderColumn = 1
-        solicitudsComanda = New List(Of Comanda)
+        comandes = New List(Of Comanda)
     End Sub
     Public Overrides Function afegir(id As Integer) As Integer
         'aqui cal obrir la finestra per crear una nova comanda
@@ -31,35 +31,30 @@
         Dim d As Comanda
         d = ModelComandaSolicitud.getObject(id)
         If d IsNot Nothing Then
-            If MISSATGES.CONFIRM_REMOVE_SOLICITUD_COMANDA(d.ToString) Then
-                Return ModelComandaSolicitud.remove(d)
+            If MISSATGES.CONFIRM_REMOVE_COMANDA(d.ToString) Then
+                Return ModelComanda.remove(d)
             End If
         End If
         Return False
     End Function
 
     Public Overrides Function filtrar(txt As String) As DataList
-        Return ModelComanda.getDataList(ModelComandaSolicitud.getObjects(txt))
+        Return ModelComanda.getDataList(ModelComanda.getObjects(txt))
     End Function
 
     Public Overrides Function modificar(id As Integer) As Integer
-        'AGAFAR LA ID I OBRIR UNA NOVA FINESTRA.
-        ' CALDRA COMPROVAR SI JA ESTÀ OBERTA. AMB F56 (NUMERO) 
-
-        ' el mateix que afegir, cal veure com
-        Call frmIniComanda.modificarComanda(ModelComandaSolicitud.getObject(id), 0)
-        'Return save(DComanda.getComanda(ModelComanda.getObject(id)))
+        Call frmIniComanda.modificarComanda(ModelComanda.getObject(id), 1)
     End Function
 
     Public Overrides Function seleccionar(ids As List(Of Integer)) As Boolean
         Dim i As Integer, j As Integer
-        solicitudsComanda = New List(Of Comanda)
+        comandes = New List(Of Comanda)
         j = 0
         If ids.Count >= 0 Then
             For Each i In ids
-                solicitudsComanda.Add(ModelComandaSolicitud.getObject(i))
+                comandes.Add(ModelComandaSolicitud.getObject(i))
             Next
-            RaiseEvent selectObject(solicitudsComanda.Item(0))
+            RaiseEvent selectObject(comandes.Item(0))
             Return True
         End If
         Return False
@@ -81,12 +76,13 @@
     End Function
     Protected Overrides Sub Finalize()
         MyBase.Finalize()
-        solicitudsComanda = Nothing
+        comandes = Nothing
     End Sub
 
-    Public Overrides Function filtrar(idParent As Integer, txt As String) As DataList
-        Return Nothing
-    End Function
-End Class
+        Public Overrides Function filtrar(idParent As Integer, txt As String) As DataList
+            Return Nothing
+        End Function
+    End Class
+
 
 

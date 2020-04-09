@@ -1,6 +1,8 @@
 ﻿Public Class Comanda
     Inherits Base
     Private Const delimitador As String = ";"
+    Friend Property serie As String
+    Friend Property idSolicitut As Integer
     Friend Property empresa As Empresa
     Friend Property proveidor As Proveidor
     Friend Property contacteProveidor As ProveidorCont
@@ -20,7 +22,7 @@
     Friend Property responsable As String
     Friend Property director As String
     Friend Property estat As Integer
-
+    Friend Property nomFitxerSolicitut As String
     Public Sub New()
         _estat = 0
         _articles = New List(Of articleComanda)
@@ -31,6 +33,7 @@
         _contacte = New Contacte
         _magatzem = New LlocEntrega
         _tipusPagament = New TipusPagament
+        _data = Now
     End Sub
     Public Sub New(pId As Integer, pCodi As String)
         Me.id = pId
@@ -43,6 +46,7 @@
         _contacte = New Contacte
         _magatzem = New LlocEntrega
         _tipusPagament = New TipusPagament
+        _data = Now
     End Sub
     Public Sub New(pId As Integer, pCodi As String, pProveidor As Proveidor, pEmpresa As Empresa, pProjecte As Projecte)
         Me.id = pId
@@ -55,6 +59,7 @@
         _contacte = New Contacte
         _magatzem = New LlocEntrega
         _tipusPagament = New TipusPagament
+        _data = Now
     End Sub
     Public Sub New(pId As Integer, pCodi As String, pProveidor As Proveidor, pEmpresa As Empresa, pProjecte As Projecte, pResponsable As String, pDirector As String)
         Me.id = pId
@@ -69,6 +74,7 @@
         _contacte = New Contacte
         _magatzem = New LlocEntrega
         _tipusPagament = New TipusPagament
+        _data = Now
     End Sub
     Public Function copy() As Comanda
         copy = New Comanda
@@ -92,6 +98,8 @@
         copy.ports = _ports
         copy.responsable = _responsable
         copy.director = _director
+        copy.nomFitxerSolicitut = _nomFitxerSolicitut
+        copy.serie = _serie
     End Function
     Public Function base() As Double
         Dim a As articleComanda, suma As Double
@@ -173,12 +181,15 @@
     Public Function getCodiString() As String
         Return Strings.Right(Year(data), 4) & "-" & Strings.Right(_projecte.codi, 4) & "-" & codi
     End Function
+    Public Function getCodiString(P As String) As String
+        Return Strings.Right(Year(data), 4) & "-" & Strings.Right(_projecte.codi, 4) & "-" & P
+    End Function
 
-    Public Function ToStringCodi(codiProjecte As String) As String
+    Public Function ToStringCodi() As String
         If _empresa.id < 10 Then
-            Return Right(getAnyo, 2) & "-0" & _empresa.id & "-" & getStringCodi() & "-" & Right(codiProjecte, 4)
+            Return Right(getAnyo, 2) & "-0" & _empresa.id & "-" & getStringCodi() & "-" & Right(_projecte.codi, 4)
         Else
-            Return Right(getAnyo, 2) & "-" & _empresa.id & "-" & getStringCodi() & "-" & Right(codiProjecte, 4)
+            Return Right(getAnyo, 2) & "-" & _empresa.id & "-" & getStringCodi() & "-" & Right(_projecte.codi, 4)
         End If
     End Function
     Private Function getStringCodi() As String
@@ -193,8 +204,6 @@
         End If
         Return Nothing
     End Function
-
-
     Protected Overrides Sub Finalize()
         _articles = Nothing
         _empresa = Nothing

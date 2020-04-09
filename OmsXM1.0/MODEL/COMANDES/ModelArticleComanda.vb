@@ -22,7 +22,7 @@ Module ModelarticleComanda
             getDataList.columns.Add(COLUMN.GENERICA("iva", 100, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.GENERICA("total", 100, HorizontalAlignment.Center))
             For Each a In ArticlesComanda
-                getDataList.rows.Add(New ListViewItem(New String() {a.id, a.codi, a.quantitat, a.unitat.codi, a.nom, a.preu.base, a.preu.descompte, a.tIva.codi, a.total}))
+                getDataList.rows.Add(New ListViewItem(New String() {a.id, a.codi, a.quantitat, a.unitat.codi, a.nom, a.preu, a.preu, a.tIva.codi, a.total}))
             Next
         End If
         a = Nothing
@@ -37,6 +37,7 @@ Module ModelarticleComanda
     End Function
 
     Public Function save(obj As articleComanda) As Integer
+        If Not isUpdated() Then objects = getRemoteObjects()
         If obj.id = -1 Then
             obj.id = dbArticleComanda.insert(obj)
         Else
@@ -46,16 +47,17 @@ Module ModelarticleComanda
             dateUpdate = Now()
             objects.Remove(obj)
             objects.Add(obj)
+
         End If
         Return obj.id
     End Function
-    Public Sub saveComanda(ac As List(Of articleComanda))
+    Public Function saveComanda(ac As List(Of articleComanda)) As Boolean
         Dim a As articleComanda
         For Each a In ac
-            Call save(a)
+            If save(a) = -1 Then Return False
         Next
-        a = Nothing
-    End Sub
+        Return True
+    End Function
     Public Function remove(obj As articleComanda) As Boolean
         Dim result As Boolean
         result = dbArticleComanda.remove(obj)

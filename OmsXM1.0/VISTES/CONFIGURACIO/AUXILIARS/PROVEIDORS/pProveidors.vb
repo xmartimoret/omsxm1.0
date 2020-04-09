@@ -25,5 +25,7 @@
         SplitContainer1.Panel2.Controls.Add(anotacions)
     End Sub
 
+    Private Sub SplitData_Panel1_Paint(sender As Object, e As PaintEventArgs) Handles SplitData.Panel1.Paint
 
+    End Sub
 End Class

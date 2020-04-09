@@ -25,6 +25,7 @@
     Public MustOverride Function seleccionar(ids As List(Of Integer)) As Boolean
     Public MustOverride Function afegir(id As Integer) As Integer
     Public MustOverride Function modificar(id As Integer) As Integer
+
     Public MustOverride Function eliminar(id As Integer) As Boolean
     Public MustOverride Function filtrar(txt As String) As DataList
     Public MustOverride Function filtrar(idParent As Integer, txt As String) As DataList
@@ -196,11 +197,11 @@
                 End If
                 RaiseEvent doubleClick()
             Else
-                Try
-                    If modificar(idActual) Then Call setData() : Call setSelected()
-                Catch ex As Exception
-                    MsgBox(ex.Message, MsgBoxStyle.Critical, IDIOMA.getString("abort"))
-                End Try
+                'Try
+                If modificar(idActual) Then Call setData() : Call setSelected()
+                'Catch ex As Exception
+                '    MsgBox(ex.Message, MsgBoxStyle.Critical, IDIOMA.getString("abort"))
+                'End Try
 
             End If
         End If
@@ -323,6 +324,7 @@
     Private Sub mnuSortir_Click(sender As Object, e As EventArgs) Handles mnuSortir.Click
         If cmdCancelar.Enabled Then Call cmdCancelar_Click(sender, e)
     End Sub
+
 
 
 

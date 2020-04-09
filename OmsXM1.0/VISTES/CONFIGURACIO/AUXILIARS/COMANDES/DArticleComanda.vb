@@ -84,17 +84,17 @@ Public Class DArticleComanda
         Me.txtCodi.Text = articleComandaActual.codi
         listUnitats.obj = articleComandaActual.unitat
         listIva.obj = articleComandaActual.tIva
-        Me.txtDescompte.Text = articleComandaActual.preu.descompte
+        Me.txtDescompte.Text = articleComandaActual.tpcDescompte
         Me.txtDescripcio.Text = articleComandaActual.nom
-        Me.txtPreu.Text = articleComandaActual.preu.base
-        Call setInfoPreu(articleComandaActual.preu)
+        Me.txtPreu.Text = articleComandaActual.preu
+        'Call setInfoPreu(articleComandaActual.preu)
         actualitzar = True
     End Sub
     Private Sub setTotal()
         Me.lblTotal.Text = Format(Val(txtQuantitat.Text) * Val(txtPreu.Text) - (Val(txtQuantitat.Text) * Val(txtPreu.Text)) * (Val(txtDescompte.Text) / 100), "#,##0.00")
     End Sub
     Private Sub setInfoPreu(ap As ArticlePreu)
-        lblInfoPreu.Text = ap.data & vbCrLf & ModelProveidor.getNom(ap.idProveidor)
+        lblInfoPreu.Text = ap.base & vbCrLf & ModelProveidor.getNom(ap.idProveidor)
     End Sub
     Private Function getData() As articleComanda
         If IsNothing(articleComandaActual) Then
@@ -104,10 +104,9 @@ Public Class DArticleComanda
         End If
         getData.codi = Me.txtCodi.Text
         getData.quantitat = Me.txtQuantitat.Text
-        getData.preu.descompte = Me.txtDescompte.Text
+        getData.tpcDescompte = Me.txtDescompte.Text
         getData.nom = Me.txtDescripcio.Text
-        getData.preu.base = Me.txtPreu.Text
-        getData.preu.descompte = Me.txtDescompte.Text
+        getData.preu = Me.txtPreu.Text
     End Function
 
     Private Sub cmdGuardar_Click(sender As Object, e As EventArgs) Handles cmdGuardar.Click
@@ -133,9 +132,10 @@ Public Class DArticleComanda
     End Sub
 
     Private Sub cmdCercadorPreus_Click(sender As Object, e As EventArgs) Handles cmdCercadorPreus.Click
-        Dim ap As ArticlePreu
-        If Not IsNothing(articleComandaActual.article) Then
-            ap = dArticlePreus.getPreuArticle(articleComandaActual.article.id)
+        Dim ap As ArticlePreu, a As article
+        a = ModelArticle.getObject(Me.lblCodi.Text)
+        If Not IsNothing(a) Then
+            ap = dArticlePreus.getPreuArticle(a.id)
             If ap IsNot Nothing Then
                 preuArticleActual = ap
                 Call setInfoPreu(ap)
@@ -148,21 +148,24 @@ Public Class DArticleComanda
     End Sub
 
     Private Function getArticle(filtre As String) As articleComanda
-        Dim a As article, ac As articleComanda
+        Dim a As article, ac As articleComanda, ap As ArticlePreu
         a = DArticles.getArticle(True, txtCodi.Text)
         If a IsNot Nothing Then
             a.preusProveidors = ModelarticlePreu.getObjects(a.id)
-            ac = New articleComanda(-1, idComandaActual, 0, a.nom)
+            ac = New articleComanda(-1, idComandaActual, 0, a.codi, a.nom)
             ac.codi = a.codi
             ac.unitat = a.unitat
             ac.nom = a.nom
             ac.tIva = a.iva
-            ac.article = a
-            ac.preu = a.getUltimPreu(proveidorActual.id)
+            ap = a.getUltimPreu(proveidorActual.id)
+            If ap IsNot Nothing Then
+                ac.preu = ap.base
+                ac.tpcDescompte = ap.descompte
+            End If
             a = Nothing
-            Return ac
-        End If
-        Return Nothing
+                Return ac
+            End If
+            Return Nothing
     End Function
 
     Private Sub cmdCercador_Click(sender As Object, e As EventArgs) Handles cmdCercador.Click

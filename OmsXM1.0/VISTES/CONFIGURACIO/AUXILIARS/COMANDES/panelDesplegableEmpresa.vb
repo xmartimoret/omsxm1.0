@@ -98,9 +98,11 @@
     Private Sub setProjecte()
         projecteActual.magatzems = ModelProjecteEntrega.getObjects(projecteActual.id)
         projecteActual.contactes = ModelProjecteContacte.getObjects(projecteActual.id)
-        If llocActual.id = -1 And projecteActual.magatzems.Count > 0 Then llocActual = ModelLlocEntrega.getObject(projecteActual.magatzems.Item(0).idEntrega)
+        If llocActual IsNot Nothing Then If llocActual.id = -1 And projecteActual.magatzems.Count > 0 Then llocActual = ModelLlocEntrega.getObject(projecteActual.magatzems.Item(0).idEntrega)
+        If llocActual Is Nothing Then llocActual = New LlocEntrega
+
         listLLocsEntrega = New lstLlocsEntrega(llocActual)
-        If contacteActual.id = -1 And projecteActual.contactes.Count > 0 Then contacteActual = ModelContacte.getObject(projecteActual.contactes.Item(0).idContacte)
+        If contacteActual IsNot Nothing Then If contacteActual.id = -1 And projecteActual.contactes.Count > 0 Then contacteActual = ModelContacte.getObject(projecteActual.contactes.Item(0).idContacte)
         listContactes = New lstContactes(contacteActual)
         AddHandler listContactes.selectObject, AddressOf setContacte
         Me.panelMagatzem.Controls.Clear()
@@ -295,11 +297,5 @@
         contacteActual = Nothing
     End Sub
 
-    Private Sub lblEmpresa_Click(sender As Object, e As EventArgs) Handles lblEmpresa.Click
 
-    End Sub
-
-    Private Sub panelData_Paint(sender As Object, e As PaintEventArgs) Handles panelData.Paint
-
-    End Sub
 End Class

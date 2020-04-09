@@ -17,6 +17,8 @@ Module dbProveidor
     Private Const IBAN2 As String = "iban2"
     Private Const IBAN3 As String = "iban3"
     Private Const EMAIL As String = "email"
+    Private Const CODI_COMPTABLE As String = "ccompta"
+
     Public Function update(obj As Proveidor) As Integer
         If IS_SQLSERVER Then Return updateSQL(obj)
         Return updateDBF(obj)
@@ -51,7 +53,8 @@ Module dbProveidor
                                           IBAN2 & " =@iban2, " &
                                           IBAN3 & " =@iban3, " &
                                           EMAIL & " =@email, " &
-                                          ACTIU & " =@actiu " &
+                                          ACTIU & " =@actiu, " &
+                                          CODI_COMPTABLE & "=@codiComptable " &
                                 " WHERE " & ID & "=@id", DBCONNECT.getConnection)
 
 
@@ -77,6 +80,7 @@ Module dbProveidor
         sc.Parameters.Add("@iban3", SqlDbType.VarChar).Value = obj.iban3
         sc.Parameters.Add("@email", SqlDbType.VarChar).Value = obj.email
         sc.Parameters.Add("@actiu", SqlDbType.Bit).Value = obj.actiu
+        sc.Parameters.Add("@codiComptable", SqlDbType.VarChar).Value = obj.codiComptable
         i = sc.ExecuteNonQuery
         sc = Nothing
         If i >= 1 Then
@@ -98,8 +102,8 @@ Module dbProveidor
                             " (" & ID & ", " & CIF & ", " & NOM_FISCAL & ", " & NOM & ", " & DIRECCIO & ", " _
                             & POBLACIO & ", " & CODI_POSTAL & ", " _
                             & DATA_ALTA & ", " & ID_PAIS & ", " & ID_PROVINCIA & ", " & ID_TIPUS_PAGAMENT & ", " _
-                            & IBAN1 & ", " & IBAN2 & ", " & IBAN3 & ", " & EMAIL & "," & ACTIU & ")" &
-                            " VALUES(@id,@cif,@nomFiscal,@nom,@direccio,@poblacio,@codiPostal,@dataAlta,@idPais,@idProvincia,@idTipusPagament,@iban1,@iban2,@iban3,@email,@actiu)", DBCONNECT.getConnection)
+                            & IBAN1 & ", " & IBAN2 & ", " & IBAN3 & ", " & EMAIL & "," & ACTIU & "," & CODI_COMPTABLE & ")" &
+                            " VALUES(@id,@cif,@nomFiscal,@nom,@direccio,@poblacio,@codiPostal,@dataAlta,@idPais,@idProvincia,@idTipusPagament,@iban1,@iban2,@iban3,@email,@actiu,@codiComptable)", DBCONNECT.getConnection)
 
         sc.Parameters.Add("@id", SqlDbType.Int).Value = obj.id
         sc.Parameters.Add("@nom", SqlDbType.VarChar).Value = obj.nom
@@ -123,6 +127,7 @@ Module dbProveidor
         sc.Parameters.Add("@iban3", SqlDbType.VarChar).Value = obj.iban3
         sc.Parameters.Add("@email", SqlDbType.VarChar).Value = obj.email
         sc.Parameters.Add("@actiu", SqlDbType.Bit).Value = obj.actiu
+        sc.Parameters.Add("@codiComptable", SqlDbType.VarChar).Value = obj.codiComptable
         i = sc.ExecuteNonQuery
 
         sc = Nothing
@@ -172,6 +177,7 @@ Module dbProveidor
             pr.email = CONFIG.validarNull(sdr(EMAIL))
             pr.contactes = ModelProveidorContacte.getObjects(pr.id)
             pr.anotacions = ModelProveidorAnotacio.getObjects(pr.id)
+            pr.codiComptable = CONFIG.validarNull(sdr(CODI_COMPTABLE))
             getObjectsSQL.Add(pr)
         End While
         sdr.Close()
@@ -200,7 +206,8 @@ Module dbProveidor
                                           IBAN2 & " =?, " &
                                           IBAN3 & " =?, " &
                                           EMAIL & " =?, " &
-                                          ACTIU & " =? " &
+                                          ACTIU & " =?, " &
+                                          CODI_COMPTABLE & " =? " &
                                 " WHERE " & ID & "=?"
             .Parameters.Append(ADOPARAM.ToString(obj.nom))
             .Parameters.Append(ADOPARAM.ToString(obj.codi))
@@ -216,6 +223,7 @@ Module dbProveidor
             .Parameters.Append(ADOPARAM.ToString(obj.iban3))
             .Parameters.Append(ADOPARAM.ToString(obj.email))
             .Parameters.Append(ADOPARAM.toBool(obj.actiu))
+            .Parameters.Append(ADOPARAM.ToString(obj.codiComptable))
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
         End With
         Try
@@ -245,8 +253,8 @@ Module dbProveidor
                             " (" & ID & ", " & CIF & ", " & NOM_FISCAL & ", " & NOM & ", " & DIRECCIO & ", " _
                             & POBLACIO & ", " & CODI_POSTAL & ", " _
                             & DATA_ALTA & ", " & ID_PAIS & ", " & ID_PROVINCIA & ", " & ID_TIPUS_PAGAMENT & ", " _
-                            & IBAN1 & ", " & IBAN2 & ", " & IBAN3 & ", " & EMAIL & "," & ACTIU & ")" &
-                            " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+                            & IBAN1 & ", " & IBAN2 & ", " & IBAN3 & ", " & EMAIL & "," & ACTIU & "," & CODI_COMPTABLE & ")" &
+                            " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
             .Parameters.Append(ADOPARAM.ToString(obj.codi))
@@ -264,7 +272,7 @@ Module dbProveidor
             .Parameters.Append(ADOPARAM.ToString(obj.iban3))
             .Parameters.Append(ADOPARAM.ToString(obj.email))
             .Parameters.Append(ADOPARAM.toBool(obj.actiu))
-
+            .Parameters.Append(ADOPARAM.ToString(obj.codiComptable))
         End With
         Try
             sc.Execute()
@@ -325,6 +333,7 @@ Module dbProveidor
             p.email = (CONFIG.validarNull(rc(EMAIL).Value))
             p.contactes = ModelProveidorContacte.getObjects(rc(ID).Value)
             p.anotacions = ModelProveidorAnotacio.getObjects(rc(ID).Value)
+            p.codiComptable = CONFIG.validarNull(rc(CODI_COMPTABLE).Value)
             getObjectsDBF.Add(p)
             rc.MoveNext()
         End While

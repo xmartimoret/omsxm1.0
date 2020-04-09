@@ -451,7 +451,35 @@
         End If
         Return False
     End Function
+    Public Function CONFIRM_REMOVE_COMANDA(Optional m As String = "") As Boolean
+        If m = "" Then
+            If MsgBox(IDIOMA.getString("missatgeEliminarComanda") & "?.", MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+                Return True
+            End If
+        Else
+            If MsgBox(IDIOMA.getString("missatgeEliminarComanda") & " (" & m & ")?.", MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+                Return True
+            End If
+        End If
+        Return False
+    End Function
     Public Sub ANOTACIONS_PROVEIDOR(p As String, a As String)
         Call MsgBox(IDIOMA.getString("proveidorTeAvisos") & ": " & vbCrLf & a, MsgBoxStyle.Exclamation, AVIS() & "-" & p)
     End Sub
+    Public Sub SOLICITUT_GUARDADA(p As String)
+        Call MsgBox(IDIOMA.getString("solicitutF56") & ": " & p & ". " & IDIOMA.getString("solicitutGuardada") & ".", MsgBoxStyle.Exclamation, REALITZADA)
+    End Sub
+    Public Sub COMANDA_GUARDADA(p As String)
+        Call MsgBox(IDIOMA.getString("comanda") & ": " & p & ". " & IDIOMA.getString("solicitutGuardada") & ".", MsgBoxStyle.Exclamation, REALITZADA)
+    End Sub
+    Public Function CONFIRM_CREAR_COMANDA(empresa As String) As Boolean
+        If MsgBox(IDIOMA.getString("volsCrearComanda") & " " & empresa & "? ", MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+            Return True
+        End If
+        Return False
+    End Function
+    Public Sub COMANDA_CREADA(p As String)
+        Call MsgBox(IDIOMA.getString("comandaCreada") & ": " & p & ". ", MsgBoxStyle.Exclamation, REALITZADA)
+    End Sub
+
 End Module

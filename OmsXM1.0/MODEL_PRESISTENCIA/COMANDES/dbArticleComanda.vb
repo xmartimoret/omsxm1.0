@@ -6,7 +6,8 @@ Module dbArticleComanda
     Private Const ID_COMANDA As String = "iDCOM"
     Private Const POSICIO_FILA As String = "POS"
     Private Const ID_ARTICLE As String = "IDART"
-    Private Const ID_PREU_ARTICLE As String = "IDARTP"
+    Private Const PREU As String = "PREU"
+    Private Const DESCOMPTE As String = "DCTE"
     Private Const ID_TIPUS_IVA As String = "IDIVA"
     Private Const ID_UNITAT As String = "IDUNITAT"
     Private Const QUANTITAT As String = "QUANTI"
@@ -39,8 +40,8 @@ Module dbArticleComanda
         sc = New SqlCommand("UPDATE " & getTable() & " " &
                                 " SET " & ID_COMANDA & "=@idComanda," &
                                           POSICIO_FILA & "=@posFila," &
-                                          ID_ARTICLE & "=@idArticle," &
-                                          ID_PREU_ARTICLE & "=@idPreuArticle," &
+                                          PREU & "=@preu," &
+                                          DESCOMPTE & "=@descompte," &
                                           ID_TIPUS_IVA & " =@idTipusIva, " &
                                           ID_UNITAT & " =@idUnitat, " &
                                           QUANTITAT & " =@quantitat, " &
@@ -50,8 +51,8 @@ Module dbArticleComanda
         sc.Parameters.Add("@id", SqlDbType.Int).Value = obj.id
         sc.Parameters.Add("@idComanda", SqlDbType.Int).Value = obj.id
         sc.Parameters.Add("@posfila", SqlDbType.Int).Value = obj.pos
-        sc.Parameters.Add("@idArticle", SqlDbType.Int).Value = obj.article.id
-        sc.Parameters.Add("@idPreuArticle", SqlDbType.Int).Value = obj.preu.id
+        sc.Parameters.Add("@preu", SqlDbType.Decimal).Value = obj.preu
+        sc.Parameters.Add("@descompte", SqlDbType.Decimal).Value = obj.tpcDescompte
         sc.Parameters.Add("@idTipusIva", SqlDbType.Int).Value = obj.tIva.id
         sc.Parameters.Add("@idUnitat", SqlDbType.Int).Value = obj.unitat.id
         sc.Parameters.Add("@quantitat", SqlDbType.Int).Value = obj.quantitat
@@ -76,14 +77,14 @@ Module dbArticleComanda
         obj.id = DBCONNECT.getMaxId(getTable) + 1
 
         sc = New SqlCommand(" INSERT INTO " & getTable() & " " &
-                            " (" & ID & ", " & ID_COMANDA & ", " & POSICIO_FILA & ", " & ID_ARTICLE & ", " & ID_PREU_ARTICLE & ", " & ID_TIPUS_IVA & ", " & ID_UNITAT & ", " & QUANTITAT & ", " & NOM & "," & CODI & ")" &
-                            " VALUES(@id,@idComanda,@posFila,@idArticle,@preuArticle,@tipusIva,@idUnitat,@quantitat,@nom,@codi)", DBCONNECT.getConnection)
+                            " (" & ID & ", " & ID_COMANDA & ", " & POSICIO_FILA & ", " & PREU & ", " & ", " & DESCOMPTE & ", " & ID_TIPUS_IVA & ", " & ID_UNITAT & ", " & QUANTITAT & ", " & NOM & "," & CODI & ")" &
+                            " VALUES(@id,@idComanda,@posFila,@preuArticle,@descompte,@tipusIva,@idUnitat,@quantitat,@nom,@codi)", DBCONNECT.getConnection)
         sc.Parameters.Add("@id", SqlDbType.Int).Value = obj.id
         sc.Parameters.Add("@idComanda", SqlDbType.Int).Value = obj.id
         sc.Parameters.Add("@posfila", SqlDbType.Int).Value = obj.pos
-        sc.Parameters.Add("@idArticle", SqlDbType.Int).Value = obj.article.id
-        sc.Parameters.Add("@idPreuArticle", SqlDbType.Int).Value = obj.preu.id
-        sc.Parameters.Add("@idTipusIva", SqlDbType.Int).Value = obj.tIva.id
+        sc.Parameters.Add("@preuArticle", SqlDbType.Decimal).Value = obj.preu
+        sc.Parameters.Add("@descompte", SqlDbType.Decimal).Value = obj.tpcDescompte
+        sc.Parameters.Add("@tipusIva", SqlDbType.Int).Value = obj.tIva.id
         sc.Parameters.Add("@idUnitat", SqlDbType.Int).Value = obj.unitat.id
         sc.Parameters.Add("@quantitat", SqlDbType.Int).Value = obj.quantitat
         sc.Parameters.Add("@nom", SqlDbType.Int).Value = obj.nom
@@ -125,8 +126,8 @@ Module dbArticleComanda
         While sdr.Read()
             a = New articleComanda(sdr(ID), sdr(ID_COMANDA),
                                sdr(POSICIO_FILA), CONFIG.validarNull(Trim(sdr(CODI))), CONFIG.validarNull(Trim(sdr(NOM))))
-            a.article = ModelArticle.getObject(sdr(ID_ARTICLE))
-            a.preu = ModelarticlePreu.getObject(sdr(ID_PREU_ARTICLE))
+            a.preu = sdr(PREU)
+            a.tpcDescompte = sdr(DESCOMPTE)
             a.quantitat = sdr(QUANTITAT)
             a.tIva = ModelTipusIva.getAuxiliar.getObject(sdr(ID_TIPUS_IVA))
             a.unitat = ModelUnitat.getAuxiliar.getObject(sdr(ID_UNITAT))
@@ -145,8 +146,8 @@ Module dbArticleComanda
             .CommandText = "UPDATE " & getTable() & " " &
                                  " SET " & ID_COMANDA & "=?," &
                                           POSICIO_FILA & "=?," &
-                                          ID_ARTICLE & "=?," &
-                                          ID_PREU_ARTICLE & "=?," &
+                                          PREU & "=?," &
+                                          DESCOMPTE & "=?," &
                                           ID_TIPUS_IVA & " =?, " &
                                           ID_UNITAT & " =?, " &
                                           QUANTITAT & " =?, " &
@@ -155,8 +156,8 @@ Module dbArticleComanda
                                           " WHERE " & ID & "=?"
             .Parameters.Append(ADOPARAM.ToInt(obj.idComanda))
             .Parameters.Append(ADOPARAM.ToInt(obj.pos))
-            .Parameters.Append(ADOPARAM.ToInt(obj.article.id))
-            .Parameters.Append(ADOPARAM.ToInt(obj.preu.id))
+            .Parameters.Append(ADOPARAM.ToSingle(obj.preu))
+            .Parameters.Append(ADOPARAM.ToSingle(obj.tpcDescompte))
             .Parameters.Append(ADOPARAM.ToInt(obj.tIva.id))
             .Parameters.Append(ADOPARAM.ToInt(obj.unitat.id))
             .Parameters.Append(ADOPARAM.ToSingle(obj.quantitat))
@@ -188,13 +189,13 @@ Module dbArticleComanda
         With sc
             .ActiveConnection = DBCONNECT.getConnectionDbf
             .CommandText = " INSERT INTO " & getTable() & " " &
-                           " (" & ID & ", " & ID_COMANDA & ", " & POSICIO_FILA & ", " & ID_ARTICLE & ", " & ID_PREU_ARTICLE & ", " & ID_TIPUS_IVA & ", " & ID_UNITAT & ", " & QUANTITAT & ", " & NOM & "," & CODI & ")" &
+                           " (" & ID & ", " & ID_COMANDA & ", " & POSICIO_FILA & ", " & PREU & ", " & DESCOMPTE & ", " & ID_TIPUS_IVA & ", " & ID_UNITAT & ", " & QUANTITAT & ", " & NOM & "," & CODI & ")" &
                             " VALUES(?,?,?,?,?,?,?,?,?,?)"
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
             .Parameters.Append(ADOPARAM.ToInt(obj.idComanda))
             .Parameters.Append(ADOPARAM.ToInt(obj.pos))
-            .Parameters.Append(ADOPARAM.ToInt(obj.article.id))
-            .Parameters.Append(ADOPARAM.ToInt(obj.preu.id))
+            .Parameters.Append(ADOPARAM.ToSingle(obj.preu))
+            .Parameters.Append(ADOPARAM.ToSingle(obj.tpcDescompte))
             .Parameters.Append(ADOPARAM.ToInt(obj.tIva.id))
             .Parameters.Append(ADOPARAM.ToInt(obj.unitat.id))
             .Parameters.Append(ADOPARAM.ToSingle(obj.quantitat))
@@ -245,10 +246,10 @@ Module dbArticleComanda
         rc.Open("Select * FROM " & getTable(), DBCONNECT.getConnectionDbf)
         While Not rc.EOF
             a = New articleComanda(rc(ID).Value, rc(ID_COMANDA).Value,
-                               rc(POSICIO_FILA).Value, rc(CODI).Value,
-                               CONFIG.validarNull(Trim(rc(NOM).Value)))
-            If rc(ID_ARTICLE).Value > 0 Then a.article = ModelArticle.getObject(rc(ID_ARTICLE).Value)
-            a.preu = ModelarticlePreu.getObject(rc(ID_PREU_ARTICLE).Value)
+                               rc(POSICIO_FILA).Value, Trim(CONFIG.validarNull(rc(CODI).Value)),
+                               Trim(CONFIG.validarNull(rc(NOM).Value)))
+            a.preu = rc(PREU).Value
+            a.tpcDescompte = rc(DESCOMPTE).Value
             a.quantitat = rc(QUANTITAT).Value
             a.tIva = ModelTipusIva.getAuxiliar.getObject(rc(ID_TIPUS_IVA).Value)
             a.unitat = ModelUnitat.getAuxiliar.getObject(rc(ID_UNITAT).Value)

@@ -2,6 +2,7 @@
 Imports System.Data.SqlClient
 Module dbComanda
     Private Const ID As String = "ID"
+    Private Const SERIE As String = "SERIE"
     Private Const CODI As String = "NUM"
     Private Const ID_EMPRESA As String = "IDEMP"
     Private Const ID_PROVEIDOR As String = "IDPROV"
@@ -41,8 +42,8 @@ Module dbComanda
         If IS_SQLSERVER Then Return removeSQL(obj)
         Return removeDBF(obj)
     End Function
-    Public Function getObjects() As List(Of Comanda)
-        If IS_SQLSERVER Then Return getObjectsSQL()
+    Public Function getObjects(anyo As Integer) As List(Of Comanda)
+        If IS_SQLSERVER() Then Return getObjectsSQL(anyo)
         Return getObjectsDBF()
     End Function
 
@@ -160,10 +161,10 @@ Module dbComanda
     ''' Obté tots els centres del sistema 
     ''' </summary>
     ''' <returns>una llista de centres</returns>
-    Private Function getObjectsSQL() As List(Of Comanda)
+    Private Function getObjectsSQL(anyo As Integer) As List(Of Comanda)
         Dim sc As SqlCommand, sdr As SqlDataReader, c As Comanda
         getObjectsSQL = New List(Of Comanda)
-        sc = New SqlCommand("Select * FROM " & getTable(), getConnection)
+        sc = New SqlCommand("Select * FROM " & getTable() & " WHERE YEAR", getConnection)
         sdr = sc.ExecuteReader
         While sdr.Read()
             c = New Comanda(sdr(ID), CONFIG.validarNull(Trim(sdr(CODI))), ModelProveidor.getObject(sdr(ID_PROVEIDOR)), ModelEmpresa.getObject(sdr(ID_EMPRESA)), ModelProjecte.getObject(sdr(ID_PROJECTE)))
