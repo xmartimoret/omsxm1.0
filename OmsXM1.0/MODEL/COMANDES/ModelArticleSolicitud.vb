@@ -1,6 +1,6 @@
-﻿'estic aqui
-Option Explicit On
-Module ModelarticleComanda
+﻿Option Explicit On
+Module ModelArticleSolicitud
+
     Private objects As List(Of articleComanda)
     Private dateUpdate As DateTime
     Public Function getObjects(idComanda As Integer) As List(Of articleComanda)
@@ -39,9 +39,9 @@ Module ModelarticleComanda
     Public Function save(obj As articleComanda) As Integer
         If Not isUpdated() Then objects = getRemoteObjects()
         If obj.id = -1 Then
-            obj.id = dbArticleComanda.insert(obj)
+            obj.id = dbArticleSolicitud.insert(obj)
         Else
-            obj.id = dbArticleComanda.update(obj)
+            obj.id = dbArticleSolicitud.update(obj)
         End If
         If obj.id > -1 Then
             dateUpdate = Now()
@@ -51,7 +51,7 @@ Module ModelarticleComanda
         End If
         Return obj.id
     End Function
-    Public Function saveComanda(ac As List(Of articleComanda)) As Boolean
+    Public Function save(ac As List(Of articleComanda)) As Boolean
         Dim a As articleComanda
         For Each a In ac
             If save(a) = -1 Then Return False
@@ -60,21 +60,22 @@ Module ModelarticleComanda
     End Function
     Public Function remove(obj As articleComanda) As Boolean
         Dim result As Boolean
-        result = dbArticleComanda.remove(obj)
+        result = dbArticleSolicitud.remove(obj)
         If result Then
             dateUpdate = Now()
             objects.Remove(obj)
         End If
         Return result
     End Function
-    Public Function remove(obj As Comanda) As Boolean
+    Public Function remove(obj As SolicitudComanda) As Boolean
         Dim result As Boolean
-        result = dbArticleComanda.remove(obj)
+        result = dbArticleSolicitud.remove(obj)
         If result Then
             dateUpdate = Now()
             For Each a As articleComanda In objects
                 result = result * objects.Remove(a)
             Next
+
         End If
         Return result
     End Function
@@ -92,12 +93,12 @@ Module ModelarticleComanda
     ''' <returns>Cert  en cas afirmatiu, fals en cas contrari</returns>
     Private Function isUpdated() As Boolean
         If Not objects Is Nothing Then
-            isUpdated = DBCONNECT.isUpdated(dateUpdate, DBCONNECT.getTaulaArticleComanda)
+            isUpdated = DBCONNECT.isUpdated(dateUpdate, DBCONNECT.getTaulaArticleSolicitud)
         Else
             Return False
         End If
         If isUpdated Then dateUpdate = Now
     End Function
+
+
 End Module
-
-

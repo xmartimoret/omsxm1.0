@@ -88,7 +88,7 @@ Partial Class frmIniComanda
         '
         Me.mnuAxiliars.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuTipusPagament, Me.mnuProvincies, Me.mnuPaisos, Me.mnuTipusIva, Me.mnuUnitats, Me.mnuFamilies})
         Me.mnuAxiliars.Name = "mnuAxiliars"
-        Me.mnuAxiliars.Size = New System.Drawing.Size(224, 26)
+        Me.mnuAxiliars.Size = New System.Drawing.Size(200, 26)
         Me.mnuAxiliars.Text = "auxiliars"
         '
         'mnuTipusPagament
@@ -130,52 +130,52 @@ Partial Class frmIniComanda
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(221, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(197, 6)
         '
         'mnuCentres
         '
         Me.mnuCentres.Name = "mnuCentres"
-        Me.mnuCentres.Size = New System.Drawing.Size(224, 26)
+        Me.mnuCentres.Size = New System.Drawing.Size(200, 26)
         Me.mnuCentres.Text = "centrres"
         '
         'mnuLlocsEntrega
         '
         Me.mnuLlocsEntrega.Name = "mnuLlocsEntrega"
-        Me.mnuLlocsEntrega.Size = New System.Drawing.Size(224, 26)
+        Me.mnuLlocsEntrega.Size = New System.Drawing.Size(200, 26)
         Me.mnuLlocsEntrega.Text = "llocsEntrega"
         '
         'mnuContactesCentre
         '
         Me.mnuContactesCentre.Name = "mnuContactesCentre"
-        Me.mnuContactesCentre.Size = New System.Drawing.Size(224, 26)
+        Me.mnuContactesCentre.Size = New System.Drawing.Size(200, 26)
         Me.mnuContactesCentre.Text = "ContactesCentre"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(221, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(197, 6)
         '
         'mnuProveidors
         '
         Me.mnuProveidors.Name = "mnuProveidors"
-        Me.mnuProveidors.Size = New System.Drawing.Size(224, 26)
+        Me.mnuProveidors.Size = New System.Drawing.Size(200, 26)
         Me.mnuProveidors.Text = "proveidors"
         '
         'mnuFabricants
         '
         Me.mnuFabricants.Name = "mnuFabricants"
-        Me.mnuFabricants.Size = New System.Drawing.Size(224, 26)
+        Me.mnuFabricants.Size = New System.Drawing.Size(200, 26)
         Me.mnuFabricants.Text = "fabricants"
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(221, 6)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(197, 6)
         '
         'mnuArticles
         '
         Me.mnuArticles.Name = "mnuArticles"
-        Me.mnuArticles.Size = New System.Drawing.Size(224, 26)
+        Me.mnuArticles.Size = New System.Drawing.Size(200, 26)
         Me.mnuArticles.Text = "articles"
         '
         'mnuSolicituts
@@ -188,19 +188,19 @@ Partial Class frmIniComanda
         'mnuNovaSolicitut
         '
         Me.mnuNovaSolicitut.Name = "mnuNovaSolicitut"
-        Me.mnuNovaSolicitut.Size = New System.Drawing.Size(224, 26)
+        Me.mnuNovaSolicitut.Size = New System.Drawing.Size(214, 26)
         Me.mnuNovaSolicitut.Text = "Nova Solicitud"
         '
         'mnuImportarSolicituts
         '
         Me.mnuImportarSolicituts.Name = "mnuImportarSolicituts"
-        Me.mnuImportarSolicituts.Size = New System.Drawing.Size(224, 26)
+        Me.mnuImportarSolicituts.Size = New System.Drawing.Size(214, 26)
         Me.mnuImportarSolicituts.Text = "importar Solicituts"
         '
         'mnuVeureSolicituts
         '
         Me.mnuVeureSolicituts.Name = "mnuVeureSolicituts"
-        Me.mnuVeureSolicituts.Size = New System.Drawing.Size(224, 26)
+        Me.mnuVeureSolicituts.Size = New System.Drawing.Size(214, 26)
         Me.mnuVeureSolicituts.Text = "Veure Solicituts"
         '
         'mnuComandes

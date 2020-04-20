@@ -91,7 +91,18 @@ Public Class ModelAuxiliar
         'If p Is Nothing Then p = New Object
         Return p
     End Function
-
+    Public Function getObjectAprox(id As String) As Object
+        If id <> "" Then
+            If Not isUpdated() Then objects = getRemoteObjects()
+            For Each p As Object In objects
+                If Strings.InStr(1, p.codi, id, CompareMethod.Text) > 0 Then Return p
+                If Strings.InStr(1, id, p.codi, CompareMethod.Text) > 0 Then Return p
+                If Strings.InStr(1, p.nom, id, CompareMethod.Text) > 0 Then Return p
+                If Strings.InStr(1, id, p.nom, CompareMethod.Text) > 0 Then Return p
+            Next
+        End If
+        Return Nothing
+    End Function
     Public Function getCodi(id As Integer) As String
         Dim p As Object
         If Not isUpdated() Then objects = getRemoteObjects()

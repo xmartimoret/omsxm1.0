@@ -33,6 +33,7 @@ Module ModelProveidorContacte
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Find(Function(x) x.id = id)
     End Function
+
     Public Function exist(obj As ProveidorCont) As Boolean
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Exists(Function(x) x.id <> obj.id And x.departament = obj.departament And x.nom = obj.nom)

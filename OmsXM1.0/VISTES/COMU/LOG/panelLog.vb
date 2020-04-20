@@ -10,4 +10,5 @@
         Me.Controls.Add(sLogs)
         sLogs.Show()
     End Sub
+
 End Class

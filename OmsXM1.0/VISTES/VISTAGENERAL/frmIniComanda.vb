@@ -153,10 +153,6 @@ Public Class frmIniComanda
         Return -1
     End Function
 
-
-    Private Sub mnuVeureComandaEdicio_Click(sender As Object, e As EventArgs) Handles mnuVeureComandaEdicio.Click
-
-    End Sub
     Friend Sub modificarComanda(c As Comanda, tipusComanda As Integer)
         Dim panelComanda As pComanda
         panelComanda = New pComanda(c, tipusComanda)
@@ -165,6 +161,14 @@ Public Class frmIniComanda
         Else
             Call setTab(c.getCodiString, panelComanda)
         End If
+        AddHandler panelComanda.removeItem, AddressOf RemoveSelectComanda
+    End Sub
+    Friend Sub modificarSolicitut(c As SolicitudComanda, tipusComanda As Integer)
+        Dim panelComanda As pComanda
+        panelComanda = New pComanda(c, tipusComanda)
+
+        Call setTab(c.getCodiString, panelComanda)
+
         AddHandler panelComanda.removeItem, AddressOf RemoveSelectComanda
     End Sub
     Private Sub mnuArticles_Click(sender As Object, e As EventArgs) Handles mnuArticles.Click
@@ -244,6 +248,15 @@ Public Class frmIniComanda
         p = New SelectSolicitudComandes(1, True, False)
 
         Call setTab(IDIOMA.getString("solicitudsComanda"), p)
+    End Sub
+    Friend Sub setLog(l As Log)
+        Dim p As panelLog
+        p = New panelLog(l)
+        Call setTab(IDIOMA.getString(l.titol), p)
+    End Sub
+
+    Private Sub mnuImportarSolicituts_Click(sender As Object, e As EventArgs) Handles mnuImportarSolicituts.Click
+        Call ModulImportSolicituds.importFitxers()
     End Sub
 
 

@@ -39,9 +39,10 @@ Partial Class dLogs
         Me.cmdVeure.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.cmdVeure.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmdVeure.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.cmdVeure.Location = New System.Drawing.Point(27, 435)
+        Me.cmdVeure.Location = New System.Drawing.Point(36, 535)
+        Me.cmdVeure.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmdVeure.Name = "cmdVeure"
-        Me.cmdVeure.Size = New System.Drawing.Size(129, 30)
+        Me.cmdVeure.Size = New System.Drawing.Size(172, 37)
         Me.cmdVeure.TabIndex = 0
         Me.cmdVeure.Text = "Boto1"
         Me.cmdVeure.UseVisualStyleBackColor = False
@@ -56,9 +57,10 @@ Partial Class dLogs
         Me.cmdTancar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.cmdTancar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmdTancar.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.cmdTancar.Location = New System.Drawing.Point(546, 435)
+        Me.cmdTancar.Location = New System.Drawing.Point(728, 535)
+        Me.cmdTancar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmdTancar.Name = "cmdTancar"
-        Me.cmdTancar.Size = New System.Drawing.Size(121, 30)
+        Me.cmdTancar.Size = New System.Drawing.Size(161, 37)
         Me.cmdTancar.TabIndex = 1
         Me.cmdTancar.Text = "Boto2"
         Me.cmdTancar.UseVisualStyleBackColor = False
@@ -68,18 +70,20 @@ Partial Class dLogs
         Me.PanelAvisos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PanelAvisos.Location = New System.Drawing.Point(3, 3)
+        Me.PanelAvisos.Location = New System.Drawing.Point(4, 4)
+        Me.PanelAvisos.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.PanelAvisos.Name = "PanelAvisos"
-        Me.PanelAvisos.Size = New System.Drawing.Size(676, 198)
+        Me.PanelAvisos.Size = New System.Drawing.Size(901, 244)
         Me.PanelAvisos.TabIndex = 2
         '
         'PanelErrors
         '
         Me.PanelErrors.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PanelErrors.Location = New System.Drawing.Point(3, 207)
+        Me.PanelErrors.Location = New System.Drawing.Point(4, 255)
+        Me.PanelErrors.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.PanelErrors.Name = "PanelErrors"
-        Me.PanelErrors.Size = New System.Drawing.Size(676, 202)
+        Me.PanelErrors.Size = New System.Drawing.Size(901, 249)
         Me.PanelErrors.TabIndex = 3
         '
         'cmdImprimir
@@ -92,24 +96,26 @@ Partial Class dLogs
         Me.cmdImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.cmdImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmdImprimir.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.cmdImprimir.Location = New System.Drawing.Point(285, 415)
+        Me.cmdImprimir.Location = New System.Drawing.Point(380, 511)
+        Me.cmdImprimir.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmdImprimir.Name = "cmdImprimir"
-        Me.cmdImprimir.Size = New System.Drawing.Size(121, 30)
+        Me.cmdImprimir.Size = New System.Drawing.Size(161, 37)
         Me.cmdImprimir.TabIndex = 4
         Me.cmdImprimir.Text = "Boto2"
         Me.cmdImprimir.UseVisualStyleBackColor = False
         '
         'dLogs
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(679, 477)
+        Me.ClientSize = New System.Drawing.Size(905, 587)
         Me.Controls.Add(Me.cmdImprimir)
         Me.Controls.Add(Me.PanelErrors)
         Me.Controls.Add(Me.PanelAvisos)
         Me.Controls.Add(Me.cmdTancar)
         Me.Controls.Add(Me.cmdVeure)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "dLogs"

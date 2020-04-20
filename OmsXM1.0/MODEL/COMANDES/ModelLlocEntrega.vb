@@ -51,6 +51,21 @@ Module ModelLlocEntrega
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Find(Function(x) x.id = id)
     End Function
+
+    Public Function getObjectByName(p As String) As LlocEntrega
+        If Not isUpdated() Then objects = getRemoteObjects()
+        For Each ll As LlocEntrega In objects
+            If Strings.InStr(1, ll.nom, p, CompareMethod.Text) > 0 Then
+                Return ll
+            End If
+        Next
+        For Each ll In objects
+            If Strings.InStr(1, p, ll.nom, CompareMethod.Text) > 0 Then
+                Return ll
+            End If
+        Next
+        Return Nothing
+    End Function
     Public Function exist(obj As LlocEntrega) As Boolean
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Exists(Function(x) x.id <> obj.id And StrComp(x.nom, obj.nom, CompareMethod.Text) = 0)

@@ -297,5 +297,4 @@
         contacteActual = Nothing
     End Sub
 
-
 End Class

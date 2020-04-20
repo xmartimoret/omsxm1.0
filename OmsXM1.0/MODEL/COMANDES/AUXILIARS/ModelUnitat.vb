@@ -23,6 +23,8 @@ Module ModelUnitat
         p = getAuxiliar.getObjects.Find(Function(x) x.codi = id)
         Return p
     End Function
+
+
     Public Sub resetIndex()
         auxiliar = Nothing
     End Sub

@@ -1,7 +1,8 @@
-﻿Public Class SelectSolicitudComandes
+﻿Public Class SelectFitxersSolicitut
     Inherits LVObjects
     Friend Property solicitudsComanda As List(Of Comanda)
     Friend Event selectObject(p As Comanda)
+
     Public Sub New(pAccio As Integer, pMultiselect As Boolean, parentForm As Boolean, Optional pTitol As String = "", Optional pOrdre As Integer = 0)
         Me.accio = pAccio
         Me.multiselect = pMultiselect
@@ -27,7 +28,7 @@
         ' Return save(DComanda.getComanda(New Comanda))
     End Function
     Public Overrides Function eliminar(id As Integer) As Boolean
-        Dim d As SolicitudComanda
+        Dim d As Comanda
         d = ModelComandaSolicitud.getObject(id)
         If d IsNot Nothing Then
             If MISSATGES.CONFIRM_REMOVE_SOLICITUD_COMANDA(d.ToString) Then
@@ -38,7 +39,7 @@
     End Function
 
     Public Overrides Function filtrar(txt As String) As DataList
-        Return ModelComandaSolicitud.getDataList(ModelComandaSolicitud.getObjects(txt))
+        Return ModelComanda.getDataList(ModelComandaSolicitud.getObjects(txt))
     End Function
 
     Public Overrides Function modificar(id As Integer) As Integer
@@ -87,5 +88,3 @@
         Return Nothing
     End Function
 End Class
-
-

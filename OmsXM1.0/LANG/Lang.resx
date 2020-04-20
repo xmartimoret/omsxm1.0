@@ -3507,4 +3507,27 @@
   <data name="missatgeEliminarComanda" xml:space="preserve">
     <value>- VOLS ELIMINAR LA COMANDA ACTUAL</value>
   </data>
+  <data name="borraFitxerDades" xml:space="preserve">
+    <value>BORRA FITXER DADES</value>
+    <comment>modelIMportSolicituts</comment>
+  </data>
+  <data name="descripcioLogImportSolicituts" xml:space="preserve">
+    <value>Importa les sol·licituts de comandes dels diferents usuaris del sistema.</value>
+    <comment>modelIMportSolicituts</comment>
+  </data>
+  <data name="guardaSolicitut" xml:space="preserve">
+    <value>GUARDA SOL·LICITUT COMANDA</value>
+    <comment>modelIMportSolicituts</comment>
+  </data>
+  <data name="okImport" xml:space="preserve">
+    <value>OK. IMPORT. </value>
+  </data>
+  <data name="serie" xml:space="preserve">
+    <value>SERIE</value>
+    <comment>COMU</comment>
+  </data>
+  <data name="titolLogImportSolicituts" xml:space="preserve">
+    <value>IMPORT SOLICITUTS DE COMANDA</value>
+    <comment>modelImportSolicituts</comment>
+  </data>
 </root>

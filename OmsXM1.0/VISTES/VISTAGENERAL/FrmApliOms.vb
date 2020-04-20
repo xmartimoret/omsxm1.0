@@ -494,7 +494,7 @@
         Call ModulImportZamora.execute()
     End Sub
 
-    Private Sub ProvaGBToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProvaGBToolStripMenuItem.Click
+    Private Sub ProvaGBToolStripMenuItem_Click(sender As Object, e As EventArgs)
         Dim p As DSubGrupGB, sggb As SubGrupGB
         p = New DSubGrupGB
         sggb = p.getsubgrup(New SubGrupGB(1, "p", "prova", ""))

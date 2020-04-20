@@ -193,11 +193,15 @@ Module CONFIG
         End If
         Return Nothing
     End Function
-    Public Function getRutaCodiComandes() As String
+    Public Function getRutaComandesImportades() As String
         Dim rutaDb As String
         rutaDb = setSeparator(getRutaBDRemote())
         If folderExist(rutaDb) Then
-            Return rutaDb & NOM_FITXER_CODI_COMANDES
+            rutaDb = rutaDb & "COMANDES\"
+            If Not folderExist(rutaDb) Then Call MkDir(rutaDb)
+            rutaDb = rutaDb & "IMPORTADES\"
+            If Not folderExist(rutaDb) Then Call MkDir(rutaDb)
+            Return rutaDb
         End If
         Return Nothing
     End Function
@@ -599,4 +603,10 @@ Module CONFIG
         End If
         Return False
     End Function
+    Public Sub setPanel(p As Panel, obj As Object)
+        p.Controls.Clear()
+        obj.Dock = DockStyle.Fill
+        p.Controls.Add(obj)
+        obj.Show()
+    End Sub
 End Module

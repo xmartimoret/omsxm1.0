@@ -48,12 +48,24 @@ Module ModelProveidor
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Find(Function(x) x.id = id)
     End Function
+    Public Function getObject(p As String) As Proveidor
+        If Not isUpdated() Then objects = getRemoteObjects()
+        Return objects.Find(Function(x) x.codi = p)
+    End Function
     Public Function getNom(id As Integer) As String
         Dim p As Proveidor
         If Not isUpdated() Then objects = getRemoteObjects()
         p = objects.FindLast(Function(x) x.id = id)
         If p IsNot Nothing Then Return p.nom
         Return ""
+    End Function
+    Public Function getObjectByStrings(id As Integer, nom As String) As Proveidor
+        Dim p As Proveidor
+        If Not isUpdated() Then objects = getRemoteObjects()
+        p = objects.Find(Function(x) x.id = id)
+        If IsNothing(p) Then p = objects.Find(Function(x) InStr(1, nom, x.nom, CompareMethod.Text) > 0)
+        If IsNothing(p) Then p = objects.Find(Function(x) InStr(1, x.nom, nom, CompareMethod.Text) > 0)
+        Return p
     End Function
     Public Function exist(obj As Proveidor) As Boolean
         If Not isUpdated() Then objects = getRemoteObjects()

@@ -6,6 +6,8 @@ Module DBCONNECT
     Private cnDbfActual As ADODB.Connection
     Private Const PROC_DATA_ACTUALITZACIO As String = "GET_DATE_UPDATED"
     Private Const DATABASE As String = "ApliOmsSacedeXM"
+    Private Const TAULA_ARTICLE_SOLICITUD As String = "SCART"
+    Private Const TAULA_SOLICITUD_COMANDA As String = "SCOMANDA"
     Private Const TAULA_DEPARTAMENT_COMANDA As String = "DEPCOM"
     Private Const TAULA_UNITAT As String = "UNITAT"
     Private Const TAULA_FAMILIA As String = "FAMILIA"
@@ -172,6 +174,12 @@ Module DBCONNECT
         cnActual = Nothing
 
     End Sub
+    Public Function getTaulaArticleSolicitud() As String
+        Return TAULA_ARTICLE_SOLICITUD
+    End Function
+    Public Function GetTaulaSolicitudComanda() As String
+        Return TAULA_SOLICITUD_COMANDA
+    End Function
     Public Function getTaulaArticleComanda() As String
         Return TAULA_ARTICLE_COMANDA
     End Function

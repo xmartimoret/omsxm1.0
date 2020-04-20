@@ -124,6 +124,9 @@
   <data name="BotoNou" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BotoNou.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="validar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\validar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Fons_Login" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Fons_Login.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -142,11 +145,11 @@
   <data name="BotoSortir" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BotoSortir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="eliminar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\eliminar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="treureFila" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\treureFila.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="copiar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\copiar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="afegirFila" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\afegirFila.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="botoImprimir" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\botoImprimir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -178,11 +181,11 @@
   <data name="control_double_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\control_double_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="afegir" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\afegir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="BotoFletxaDalt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BotoFletxaDalt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="engantxar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\engantxar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="control_left_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\control_left_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -208,14 +211,14 @@
   <data name="afegir1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\afegir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="engantxar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\engantxar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="descendent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\descendent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="13830060-actualizar-el-icono" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\13830060-actualizar-el-icono.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Fons" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Fons.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="copiar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\copiar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BotoCercar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BotoCercar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -238,28 +241,34 @@
   <data name="botoCrear" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\botoCrear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Fons" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Fons.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ImatgeError64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImatgeError64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="descendent" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\descendent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="eliminar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\eliminar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BotoModificar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BotoModificar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Err" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Err.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="BotoFletxaBaix" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BotoFletxaBaix.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="afegirFila" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\afegirFila.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BotoNouPetit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BotoNouPetit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="afegir" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\afegir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="pdf" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pdf.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="treureFila" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\treureFila.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ok.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

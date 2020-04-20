@@ -21,7 +21,7 @@ Class pComanda
     Friend Event removeItem(c As Comanda, tipusComanda As Integer)
     Friend Event addComanda(c As Comanda, tipusComanda As Integer)
     Private tipusComanda As Integer
-    Public Sub New(pTipusComanda As Integer)
+    Public Sub New(s As SolicitudComanda, pTipusComanda As Integer)
         actualitzar = False
         tipusComanda = pTipusComanda
         '      proveidorActual = New Proveidor
@@ -271,7 +271,7 @@ Class pComanda
         If Not IsNothing(ac) Then
             r.Cells(C_CODI).Value = ac.codi
             r.Cells(C_UNITAT).Value = ac.unitat.codi
-            r.Cells(C_IVA).Value = ac.tIva.codi
+            r.Cells(C_IVA).Value = ac.tIva.nom
             r.Cells(C_QUANTITAT).Value = ac.quantitat
             r.Cells(C_DESCRIPCIO).Value = ac.nom
             r.Cells(C_IMPORT).Value = ac.preu
@@ -400,7 +400,7 @@ Class pComanda
         If DGVArticles.SelectedRows.Count > 0 Then Call AfegirFila(DGVArticles.CurrentCell.RowIndex)
     End Sub
     Private Sub MnuCopiar_Click(sender As Object, e As EventArgs) Handles mnuCopiar.Click
-        Call copyRow()
+        filesCopiades = copyRow()
     End Sub
     Private Sub MnuEngatxar_Click(sender As Object, e As EventArgs) Handles mnuEngatxar.Click
         Call RowPaste()
@@ -451,8 +451,8 @@ Class pComanda
     End Sub
     Private Sub DGVArticles_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DGVArticles.RowHeaderMouseClick
         If e.Button = MouseButtons.Right Then
-            mnuContextual.Top = e.X
-            mnuContextual.Left = e.Y
+            mnuContextual.Top = e.Y
+            mnuContextual.Left = e.X
             mnuContextual.Visible = True
         End If
     End Sub
@@ -552,6 +552,7 @@ Class pComanda
     Private Sub cmdGuardar_Click(sender As Object, e As EventArgs) Handles cmdGuardar.Click
         Dim c As Comanda
         c = getComanda()
+        c.articles = getArticles()
         Select Case tipusComanda
             Case 0
                 Call ModelComandaSolicitud.save(c)
@@ -606,5 +607,15 @@ Class pComanda
 
 
 
+    End Sub
+
+    Private Sub DGVArticles_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGVArticles.CellContentClick
+
+    End Sub
+
+    Private Sub pComanda_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        If (e.KeyCode = Keys.C + e.KeyCode = Keys.ControlKey) AndAlso (Me.DGVArticles.Focused) Then
+            MsgBox("ok")
+        End If
     End Sub
 End Class

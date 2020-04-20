@@ -1,6 +1,7 @@
 ﻿Option Explicit On
 Imports System.Data.SqlClient
-Module dbArticleComanda
+Module dbArticleSolicitud
+
     Private Const ID As String = "ID"
     Private Const CODI As String = "CODI"
     Private Const ID_COMANDA As String = "iDCOM"
@@ -20,38 +21,38 @@ Module dbArticleComanda
     ''' <param name="obj"> centre</param>
     ''' <returns>identificador del centre.</returns>
     Public Function update(obj As articleComanda) As Integer
-        If IS_SQLSERVER Then Return updateSQL(obj)
+        If IS_SQLSERVER() Then Return updateSQL(obj)
         Return updateDBF(obj)
     End Function
     Public Function insert(obj As articleComanda) As Integer
-        If IS_SQLSERVER Then Return insertSQL(obj)
+        If IS_SQLSERVER() Then Return insertSQL(obj)
         Return insertDBF(obj)
     End Function
     Public Function remove(obj As articleComanda) As Boolean
-        If IS_SQLSERVER Then Return removeSQL(obj)
+        If IS_SQLSERVER() Then Return removeSQL(obj)
         Return removeDBF(obj)
     End Function
-    Public Function remove(obj As Comanda) As Boolean
+    Public Function remove(obj As SolicitudComanda) As Boolean
         If IS_SQLSERVER() Then Return removeSQL(obj)
         Return removeDBF(obj)
     End Function
     Public Function getObjects() As List(Of articleComanda)
-        If IS_SQLSERVER Then Return getObjectsSQL()
+        If IS_SQLSERVER() Then Return getObjectsSQL()
         Return getObjectsDBF()
     End Function
     Private Function updateSQL(obj As articleComanda) As Integer
         Dim sc As SqlCommand, i As Integer
         sc = New SqlCommand("UPDATE " & getTable() & " " &
-                                " SET " & ID_COMANDA & "=@idComanda," &
-                                          POSICIO_FILA & "=@posFila," &
-                                          PREU & "=@preu," &
-                                          DESCOMPTE & "=@descompte," &
-                                          ID_TIPUS_IVA & " =@idTipusIva, " &
-                                          ID_UNITAT & " =@idUnitat, " &
-                                          QUANTITAT & " =@quantitat, " &
-                                          NOM & " =@nom, " &
-                                          CODI & " =@codi " &
-                                          " WHERE " & ID & "=@id", DBCONNECT.getConnection)
+                            " SET " & ID_COMANDA & "=@idComanda," &
+                                      POSICIO_FILA & "=@posFila," &
+                                      PREU & "=@preu," &
+                                      DESCOMPTE & "=@descompte," &
+                                      ID_TIPUS_IVA & " =@idTipusIva, " &
+                                      ID_UNITAT & " =@idUnitat, " &
+                                      QUANTITAT & " =@quantitat, " &
+                                      NOM & " =@nom, " &
+                                      CODI & " =@codi " &
+                                      " WHERE " & ID & "=@id", DBCONNECT.getConnection)
         sc.Parameters.Add("@id", SqlDbType.Int).Value = obj.id
         sc.Parameters.Add("@idComanda", SqlDbType.Int).Value = obj.id
         sc.Parameters.Add("@posfila", SqlDbType.Int).Value = obj.pos
@@ -81,8 +82,8 @@ Module dbArticleComanda
         obj.id = DBCONNECT.getMaxId(getTable) + 1
 
         sc = New SqlCommand(" INSERT INTO " & getTable() & " " &
-                            " (" & ID & ", " & ID_COMANDA & ", " & POSICIO_FILA & ", " & PREU & ", " & ", " & DESCOMPTE & ", " & ID_TIPUS_IVA & ", " & ID_UNITAT & ", " & QUANTITAT & ", " & NOM & "," & CODI & ")" &
-                            " VALUES(@id,@idComanda,@posFila,@preuArticle,@descompte,@tipusIva,@idUnitat,@quantitat,@nom,@codi)", DBCONNECT.getConnection)
+                        " (" & ID & ", " & ID_COMANDA & ", " & POSICIO_FILA & ", " & PREU & ", " & ", " & DESCOMPTE & ", " & ID_TIPUS_IVA & ", " & ID_UNITAT & ", " & QUANTITAT & ", " & NOM & "," & CODI & ")" &
+                        " VALUES(@id,@idComanda,@posFila,@preuArticle,@descompte,@tipusIva,@idUnitat,@quantitat,@nom,@codi)", DBCONNECT.getConnection)
         sc.Parameters.Add("@id", SqlDbType.Int).Value = obj.id
         sc.Parameters.Add("@idComanda", SqlDbType.Int).Value = obj.id
         sc.Parameters.Add("@posfila", SqlDbType.Int).Value = obj.pos
@@ -118,7 +119,7 @@ Module dbArticleComanda
         End If
         Return False
     End Function
-    Private Function removeSQL(obj As Comanda) As Boolean
+    Private Function removeSQL(obj As SolicitudComanda) As Boolean
         Dim sc As SqlCommand, i As Integer
         sc = New SqlCommand("DELETE FROM " & getTable() & " WHERE " & ID_COMANDA & "=@id", DBCONNECT.getConnection)
         sc.Parameters.Add("@id", SqlDbType.Int).Value = obj.id
@@ -140,7 +141,7 @@ Module dbArticleComanda
         sdr = sc.ExecuteReader
         While sdr.Read()
             a = New articleComanda(sdr(ID), sdr(ID_COMANDA),
-                               sdr(POSICIO_FILA), CONFIG.validarNull(Trim(sdr(CODI))), CONFIG.validarNull(Trim(sdr(NOM))))
+                           sdr(POSICIO_FILA), CONFIG.validarNull(Trim(sdr(CODI))), CONFIG.validarNull(Trim(sdr(NOM))))
             a.preu = sdr(PREU)
             a.tpcDescompte = sdr(DESCOMPTE)
             a.quantitat = sdr(QUANTITAT)
@@ -159,16 +160,16 @@ Module dbArticleComanda
         With sc
             .ActiveConnection = DBCONNECT.getConnectionDbf
             .CommandText = "UPDATE " & getTable() & " " &
-                                 " SET " & ID_COMANDA & "=?," &
-                                          POSICIO_FILA & "=?," &
-                                          PREU & "=?," &
-                                          DESCOMPTE & "=?," &
-                                          ID_TIPUS_IVA & " =?, " &
-                                          ID_UNITAT & " =?, " &
-                                          QUANTITAT & " =?, " &
-                                          NOM & " =?, " &
-                                          CODI & " =? " &
-                                          " WHERE " & ID & "=?"
+                             " SET " & ID_COMANDA & "=?," &
+                                      POSICIO_FILA & "=?," &
+                                      PREU & "=?," &
+                                      DESCOMPTE & "=?," &
+                                      ID_TIPUS_IVA & " =?, " &
+                                      ID_UNITAT & " =?, " &
+                                      QUANTITAT & " =?, " &
+                                      NOM & " =?, " &
+                                      CODI & " =? " &
+                                      " WHERE " & ID & "=?"
             .Parameters.Append(ADOPARAM.ToInt(obj.idComanda))
             .Parameters.Append(ADOPARAM.ToInt(obj.pos))
             .Parameters.Append(ADOPARAM.ToSingle(obj.preu))
@@ -204,8 +205,8 @@ Module dbArticleComanda
         With sc
             .ActiveConnection = DBCONNECT.getConnectionDbf
             .CommandText = " INSERT INTO " & getTable() & " " &
-                           " (" & ID & ", " & ID_COMANDA & ", " & POSICIO_FILA & ", " & PREU & ", " & DESCOMPTE & ", " & ID_TIPUS_IVA & ", " & ID_UNITAT & ", " & QUANTITAT & ", " & NOM & "," & CODI & ")" &
-                            " VALUES(?,?,?,?,?,?,?,?,?,?)"
+                       " (" & ID & ", " & ID_COMANDA & ", " & POSICIO_FILA & ", " & PREU & ", " & DESCOMPTE & ", " & ID_TIPUS_IVA & ", " & ID_UNITAT & ", " & QUANTITAT & ", " & NOM & "," & CODI & ")" &
+                        " VALUES(?,?,?,?,?,?,?,?,?,?)"
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
             .Parameters.Append(ADOPARAM.ToInt(obj.idComanda))
             .Parameters.Append(ADOPARAM.ToInt(obj.pos))
@@ -250,7 +251,7 @@ Module dbArticleComanda
             sc = Nothing
         End Try
     End Function
-    Private Function removeDBF(obj As Comanda) As Boolean
+    Private Function removeDBF(obj As SolicitudComanda) As Boolean
         Dim sc As ADODB.Command
         sc = New ADODB.Command
         With sc
@@ -279,8 +280,8 @@ Module dbArticleComanda
         rc.Open("Select * FROM " & getTable(), DBCONNECT.getConnectionDbf)
         While Not rc.EOF
             a = New articleComanda(rc(ID).Value, rc(ID_COMANDA).Value,
-                               rc(POSICIO_FILA).Value, Trim(CONFIG.validarNull(rc(CODI).Value)),
-                               Trim(CONFIG.validarNull(rc(NOM).Value)))
+                           rc(POSICIO_FILA).Value, Trim(CONFIG.validarNull(rc(CODI).Value)),
+                           Trim(CONFIG.validarNull(rc(NOM).Value)))
             a.preu = rc(PREU).Value
             a.tpcDescompte = rc(DESCOMPTE).Value
             a.quantitat = rc(QUANTITAT).Value
@@ -293,6 +294,9 @@ Module dbArticleComanda
         rc = Nothing
     End Function
     Private Function getTable() As String
-        Return DBCONNECT.getTaulaArticleCOMANDA
+        Return DBCONNECT.getTaulaArticleSolicitud
     End Function
 End Module
+
+
+

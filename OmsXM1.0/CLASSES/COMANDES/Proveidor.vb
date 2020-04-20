@@ -60,6 +60,27 @@
             Return _contactes.Find(Function(x) x.id = idContacteActual)
         End Get
     End Property
+    Public Function getContacte(p As String) As ProveidorCont
+        Dim ps() As String
+        If p <> "" Then
+            ps = Split(p, " - ")
+            For Each pc As ProveidorCont In _contactes
+                If UBound(ps) > 0 Then
+                    If StrComp(ps(0), pc.departament, CompareMethod.Text) = 0 And StrComp(ps(1), pc.nom, CompareMethod.Text) = 0 Then
+                        Return pc
+                    End If
+                End If
+                If StrComp(ps(0), pc.nom, CompareMethod.Text) = 0 Then
+                    Return pc
+                End If
+                If StrComp(ps(0), pc.departament, CompareMethod.Text) = 0 Then
+                    Return pc
+                End If
+            Next
+        End If
+        Return Nothing
+    End Function
+
     Public Function copy() As Proveidor
         copy = New Proveidor
         copy.id = Me.id

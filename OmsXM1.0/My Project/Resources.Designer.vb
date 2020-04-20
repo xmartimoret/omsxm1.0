@@ -453,6 +453,16 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property Err() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Err", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property Fons() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Fons", resourceCulture)
@@ -503,6 +513,16 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property Ok() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Ok", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property pdf() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("pdf", resourceCulture)
@@ -536,6 +556,16 @@ Namespace My.Resources
         Friend ReadOnly Property validar() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("validar", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property validar1() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("validar1", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
