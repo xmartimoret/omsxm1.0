@@ -57,7 +57,7 @@ Module ModelComanda
         If c IsNot Nothing Then Return c.codi
         Return Nothing
     End Function
-    Private Function getLastCodiEmpresa(idEmpresa As Integer, anyo As Integer) As Integer
+    Friend Function getLastCodiEmpresa(idEmpresa As Integer, anyo As Integer) As Integer
         Dim c As Comanda, id As Integer
         If Not isUpdated(anyo) Then objects = getRemoteObjects(anyo)
         id = 1

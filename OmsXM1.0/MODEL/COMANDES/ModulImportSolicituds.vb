@@ -1,8 +1,8 @@
 ﻿Option Explicit On
 Module ModulImportSolicituds
+    Private objects As List(Of CodiDescripcio)
     Private Const TIPUS_FITXER As String = ".xmm"
-    Private dateUpdate As Date
-    Private objects As List(Of SolicitudComanda)
+
     Private Const EMPRESA As String = "empresa"
     Private Const PROJECTE As String = "projecte"
     Private Const DEPARTAMENT As String = "departament"
@@ -46,12 +46,12 @@ Module ModulImportSolicituds
     Private logActual As Log
 
     Private Function getSolicitudComanda(f As String) As SolicitudComanda
-        Dim c As SolicitudComanda, a As articleComanda, fila() As String
+        Dim c As SolicitudComanda, a As ArticleSolicitut, fila() As String
         If CONFIG.fileExist(f) Then
             c = New SolicitudComanda
 
             Using fitxer As New IO.StreamReader(f)
-                logActual.entrades.Add(ModelLog.getEntradaLog(tipusEntradaLog.MIS_LOG, IDIOMA.getString("importDadesDe"), f))
+                If Not logActual Is Nothing Then logActual.entrades.Add(ModelLog.getEntradaLog(tipusEntradaLog.MIS_LOG, IDIOMA.getString("importDadesDe"), f))
                 Do
                     fila = Split(fitxer.ReadLine(), ";")
                     If UBound(fila) > 0 Then
@@ -60,7 +60,7 @@ Module ModulImportSolicituds
                             Case PROJECTE : c.codiProjecte = fila(1)
                             Case DEPARTAMENT : c.departament = fila(1)
                             Case LLOC_ENTREGA : c.llocEntrega = fila(1)
-                            Case DIRECCIO_ENTREGA = c.direccioEntrega = fila(1)
+                            Case DIRECCIO_ENTREGA : c.direccioEntrega = fila(1)
                             Case CONTACTE_ENTREGA : c.contacteEntrega = fila(1)
                             Case TELEFON_ENTREGA : c.telefonEntrega = fila(1)
                             Case PROVEIDOR : c.proveidor = fila(1)
@@ -86,17 +86,17 @@ Module ModulImportSolicituds
                             Case OFERTA3 : c.oferta3 = fila(1)
                             Case COMPARATIU : c.comparatiu = fila(1)
                             Case ALTRES_DOCUMENTACIO : c.altresDocumentacio = fila(1)
-                            Case INICI_ARTICLE : a = New articleComanda
+                            Case INICI_ARTICLE : a = New ArticleSolicitut
                             Case REFERENCIA : a.codi = fila(1)
                             Case POS_ARTICLE : a.pos = fila(1)
                             Case QUANTITAT : If CONFIG.isNumericPositiu(fila(1)) Then a.quantitat = fila(1) Else a.quantitat = 0
-                            Case UNITAT : a.unitat = ModelUnitat.getAuxiliar.getObjectAprox(fila(1))
+                            Case UNITAT : a.unitat = CONFIG.validarNull(fila(1))
                             Case DESCRIPCIO : a.nom = fila(1)
                             Case PREU_UNITARI : If IsNumeric(fila(1)) Then a.preu = fila(1)
                             Case DESCOMPTE : If IsNumeric(fila(1)) Then a.tpcDescompte = fila(1)
                             Case FI_ARTICLE : If Not IsNothing(a) Then c.articles.Add(a)
                         End Select
-                        logActual.entrades.Add(ModelLog.getEntradaLog(tipusEntradaLog.MIS_LOG, fila(0), fila(1)))
+                        If Not logActual Is Nothing Then logActual.entrades.Add(ModelLog.getEntradaLog(tipusEntradaLog.MIS_LOG, fila(0), fila(1)))
                     End If
                 Loop While Not fitxer.EndOfStream
             End Using
@@ -104,36 +104,106 @@ Module ModulImportSolicituds
         End If
         Return Nothing
     End Function
-    Public Sub importFitxers()
-        Dim ruta As String, f As String, sc As SolicitudComanda
+    Public Function getObjects() As List(Of CodiDescripcio)
+        Dim ruta As String, f As String, s As CodiDescripcio, i As Integer
         ruta = CONFIG.getRutaComandesEnEdicio
+        getObjects = New List(Of CodiDescripcio)
+        i = 1
+        If CONFIG.folderExist(ruta) Then
+            f = Dir(CONFIG.setSeparator(ruta) & "*.xmm", FileAttribute.Normal)
+            Do While f <> ""
+                s = New CodiDescripcio
+                s.codi = i
+                s.descripcio = CONFIG.setSeparator(ruta) & f
+                i = i + 1
+                getObjects.Add(s)
+                f = Dir()
+            Loop
+        End If
+        s = Nothing
+    End Function
+    Public Function getFitxer(id As Integer) As String
+        Dim f As CodiDescripcio
+        If objects Is Nothing Then objects = getObjects()
+
+        For Each f In objects
+            If f.codi = id Then
+                Return f.descripcio
+            End If
+        Next
+        Return Nothing
+    End Function
+    Public Function getObject(id As Integer) As CodiDescripcio
+        Dim f As CodiDescripcio
+        If objects Is Nothing Then objects = getObjects()
+        For Each f In objects
+            If f.codi = id Then
+                Return f
+            End If
+        Next
+        Return Nothing
+    End Function
+    Public Function getDataList(fitxers As List(Of CodiDescripcio)) As DataList
+        Dim f As CodiDescripcio, s As SolicitudComanda
+        getDataList = New DataList
+        getDataList.columns.Add(COLUMN.ID)
+        getDataList.columns.Add(COLUMN.EMPRESA)
+        getDataList.columns.Add(COLUMN.GENERICA("projecte", 150, HorizontalAlignment.Center))
+        getDataList.columns.Add(COLUMN.GENERICA("proveidor", 150, HorizontalAlignment.Center))
+        getDataList.columns.Add(COLUMN.GENERICA("fitxer", 200, HorizontalAlignment.Center))
+        getDataList.columns.Add(COLUMN.GENERICA("dataModificacio", 100, HorizontalAlignment.Center))
+        For Each f In fitxers
+            s = getSolicitudComanda(f.descripcio)
+            If s Is Nothing Then
+                s = New SolicitudComanda
+            End If
+            getDataList.rows.Add(New ListViewItem(New String() {f.codi, s.empresa, s.codiProjecte, s.proveidor, f.descripcio, CONFIG.getDateFileModified(f.descripcio)}))
+        Next
+        s = Nothing
+    End Function
+
+    Public Sub importFitxers(fitxers As List(Of CodiDescripcio))
+        Dim f As CodiDescripcio, sc As SolicitudComanda
+
         logActual = New Log()
         logActual.titol = IDIOMA.getString("titolLogImportSolicituts")
         logActual.descripcio = IDIOMA.getString("descripcioLogImportSolicituts")
 
-        If CONFIG.folderExist(ruta) Then
-            f = Dir(CONFIG.setSeparator(ruta) & "*.xmm", FileAttribute.Normal)
-            Do While f <> ""
-                sc = getSolicitudComanda(CONFIG.setSeparator(ruta) & f)
-                If Not IsNothing(sc) Then
-                    logActual.entrades.Add(ModelLog.getEntradaLog(tipusEntradaLog.AVIS_log, IDIOMA.getString("guardaSolicitut"), f))
-                    sc.id = ModelComandaSolicitud.save(sc)
-                    If sc.id > -1 Then
-                        logActual.entrades.Add(ModelLog.getEntradaLog(tipusEntradaLog.AVIS_log, IDIOMA.getString("borraFitxerDades"), f))
-                        Call setFitxer(ruta, f)
-                    End If
+
+        For Each f In fitxers
+            sc = getSolicitudComanda(f.descripcio)
+
+            If Not IsNothing(sc) Then
+                logActual.entrades.Add(ModelLog.getEntradaLog(tipusEntradaLog.AVIS_log, IDIOMA.getString("guardaSolicitut"), f.descripcio))
+                sc.id = ModelComandaSolicitud.save(sc)
+                If sc.id > -1 Then
+                    logActual.entrades.Add(ModelLog.getEntradaLog(tipusEntradaLog.AVIS_log, IDIOMA.getString("borraFitxerDades"), f.descripcio))
+                    Call setFitxer(f.descripcio)
                 End If
-                f = Dir()
-            Loop
-        End If
+            End If
+        Next
+
         Call frmIniComanda.setLog(logActual)
         logActual = Nothing
     End Sub
-    Private Function setFitxer(ruta As String, f As String) As Boolean
-        If CONFIG.fileExist(CONFIG.setSeparator(ruta) & f) Then
-            Call FileCopy(CONFIG.setSeparator(ruta) & f, CONFIG.getRutaComandesImportades & f)
-            Call Kill(CONFIG.setSeparator(ruta) & f)
+    Public Function remove(f As String) As Boolean
+        Try
+            If CONFIG.fileExist(f) Then
+                Call Kill(f)
+                Return True
+            End If
+        Catch ex As Exception
+            Return False
+        End Try
+        Return False
+    End Function
+
+    Private Function setFitxer(f As String) As Boolean
+        If CONFIG.fileExist(f) Then
+            Call FileCopy(f, CONFIG.setSeparator(CONFIG.getRutaComandesImportades) & CONFIG.getFitxer(f))
+            Call Kill(f)
         End If
         Return False
     End Function
+
 End Module

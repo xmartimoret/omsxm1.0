@@ -1,14 +1,14 @@
 ﻿Public Class SelectSolicitudComandes
     Inherits LVObjects
-    Friend Property solicitudsComanda As List(Of Comanda)
-    Friend Event selectObject(p As Comanda)
+    Friend Property solicitudsComanda As List(Of SolicitudComanda)
+    Friend Event selectObject(p As SolicitudComanda)
     Public Sub New(pAccio As Integer, pMultiselect As Boolean, parentForm As Boolean, Optional pTitol As String = "", Optional pOrdre As Integer = 0)
         Me.accio = pAccio
         Me.multiselect = pMultiselect
         Me.isForm = parentForm
         Me.titol = pTitol
         Me.orderColumn = 1
-        solicitudsComanda = New List(Of Comanda)
+        solicitudsComanda = New List(Of SolicitudComanda)
     End Sub
     Public Sub New(pAccio As Integer, pMultiselect As Boolean, parentForm As Boolean, pFiltre As String, Optional pTitol As String = "", Optional pOrdre As Integer = 0)
         Me.accio = pAccio
@@ -17,7 +17,7 @@
         Me.titol = pTitol
         Me.txtFiltrar.Text = pFiltre
         Me.orderColumn = 1
-        solicitudsComanda = New List(Of Comanda)
+        solicitudsComanda = New List(Of SolicitudComanda)
     End Sub
     Public Overrides Function afegir(id As Integer) As Integer
         'aqui cal obrir la finestra per crear una nova comanda
@@ -46,13 +46,13 @@
         ' CALDRA COMPROVAR SI JA ESTÀ OBERTA. AMB F56 (NUMERO) 
 
         ' el mateix que afegir, cal veure com
-        Call frmIniComanda.modificarComanda(ModelComandaSolicitud.getObject(id), 0)
+        Call frmIniComanda.modificarSolicitut(ModelComandaSolicitud.getObject(id), 0)
         'Return save(DComanda.getComanda(ModelComanda.getObject(id)))
     End Function
 
     Public Overrides Function seleccionar(ids As List(Of Integer)) As Boolean
         Dim i As Integer, j As Integer
-        solicitudsComanda = New List(Of Comanda)
+        solicitudsComanda = New List(Of SolicitudComanda)
         j = 0
         If ids.Count >= 0 Then
             For Each i In ids
@@ -63,12 +63,12 @@
         End If
         Return False
     End Function
-    Private Function save(obj As Comanda) As Integer
+    Private Function save(obj As SolicitudComanda) As Integer
         If Not obj Is Nothing Then
-            If Not ModelComanda.exist(obj) Then
-                If Not ModelComanda.existCodi(obj) Then
+            If Not ModelComandaSolicitud.exist(obj) Then
+                If Not ModelComandaSolicitud.existCodi(obj) Then
                     RaiseEvent selectObject(obj)
-                    Return ModelComanda.save(obj)
+                    Return ModelComandaSolicitud.save(obj)
                 Else
                     Throw New ExcepcioSql(ExcepcioSql.ERR_EXIST_CODI_REGISTRE)
                 End If

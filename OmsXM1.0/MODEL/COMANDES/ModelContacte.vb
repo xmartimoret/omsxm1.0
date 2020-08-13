@@ -55,6 +55,10 @@ Module ModelContacte
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Find(Function(x) x.id = id)
     End Function
+    Public Function getObject(p As String) As Contacte
+        If Not isUpdated() Then objects = getRemoteObjects()
+        Return objects.Find(Function(x) InStr(1, p, x.telefon, CompareMethod.Text) > 1)
+    End Function
     Public Function exist(obj As Contacte) As Boolean
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Exists(Function(x) x.id <> obj.id And StrComp(x.nom, obj.nom, CompareMethod.Text) = 0 And StrComp(x.cognom1, obj.cognom1, CompareMethod.Text) = 0 And StrComp(x.cognom2, obj.cognom2, CompareMethod.Text) = 0)

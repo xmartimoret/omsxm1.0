@@ -339,7 +339,7 @@ Module dbComanda
             c = New Comanda(rc(ID).Value, CONFIG.validarNull(Trim(rc(CODI).Value)), ModelProveidor.getObject(CInt(rc(ID_PROVEIDOR).Value)), ModelEmpresa.getObject(CInt(rc(ID_EMPRESA).Value)), ModelProjecte.getObject(CInt(rc(ID_PROJECTE).Value)))
             'TODO CAL IMPLEMENTAR ARTICLES COMANDA 
             'c.articles = modela
-            c.contacte = ModelContacte.getObject(rc(ID_CONTACTE_PROJECTE).Value)
+            c.contacte = ModelContacte.getObject(CInt(rc(ID_CONTACTE_PROJECTE).Value))
             c.contacteProveidor = ModelProveidorContacte.getObject(rc(ID_CONTACTE_PROVEIDOR).Value)
             c.dadesBancaries = Trim(CONFIG.validarNull(rc(DADES_BANCARIES).Value))
             c.data = Trim(CONFIG.validarNull(rc(DATA_COMANDA).Value))

@@ -114,33 +114,33 @@ Partial Class pComanda
         Me.mnuContextual.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.mnuContextual.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAfegir, Me.mnuEliminar, Me.ToolStripSeparator1, Me.mnuCopiar, Me.mnuEngatxar})
         Me.mnuContextual.Name = "mnuContextual"
-        Me.mnuContextual.Size = New System.Drawing.Size(149, 114)
+        Me.mnuContextual.Size = New System.Drawing.Size(132, 114)
         '
         'mnuAfegir
         '
         Me.mnuAfegir.Image = Global.OmsXM.My.Resources.Resources.afegirFila
         Me.mnuAfegir.Name = "mnuAfegir"
-        Me.mnuAfegir.Size = New System.Drawing.Size(148, 26)
+        Me.mnuAfegir.Size = New System.Drawing.Size(131, 26)
         Me.mnuAfegir.Text = "Afegir"
         '
         'mnuEliminar
         '
         Me.mnuEliminar.Image = Global.OmsXM.My.Resources.Resources.treureFila
         Me.mnuEliminar.Name = "mnuEliminar"
-        Me.mnuEliminar.Size = New System.Drawing.Size(148, 26)
+        Me.mnuEliminar.Size = New System.Drawing.Size(131, 26)
         Me.mnuEliminar.Text = "eliminar"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(145, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(128, 6)
         '
         'mnuCopiar
         '
         Me.mnuCopiar.Image = Global.OmsXM.My.Resources.Resources.copiar
         Me.mnuCopiar.Name = "mnuCopiar"
         Me.mnuCopiar.ShortcutKeyDisplayString = ""
-        Me.mnuCopiar.Size = New System.Drawing.Size(148, 26)
+        Me.mnuCopiar.Size = New System.Drawing.Size(131, 26)
         Me.mnuCopiar.Text = "copiar"
         Me.mnuCopiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
@@ -148,7 +148,7 @@ Partial Class pComanda
         '
         Me.mnuEngatxar.Image = Global.OmsXM.My.Resources.Resources.engantxar
         Me.mnuEngatxar.Name = "mnuEngatxar"
-        Me.mnuEngatxar.Size = New System.Drawing.Size(148, 26)
+        Me.mnuEngatxar.Size = New System.Drawing.Size(131, 26)
         Me.mnuEngatxar.Text = "Engantxar"
         '
         'panelArticle
@@ -277,7 +277,7 @@ Partial Class pComanda
         Me.txtFiltrarArticle.Location = New System.Drawing.Point(1264, 1)
         Me.txtFiltrarArticle.Margin = New System.Windows.Forms.Padding(4)
         Me.txtFiltrarArticle.Name = "txtFiltrarArticle"
-        Me.txtFiltrarArticle.Size = New System.Drawing.Size(331, 30)
+        Me.txtFiltrarArticle.Size = New System.Drawing.Size(331, 26)
         Me.txtFiltrarArticle.TabIndex = 35
         '
         'lblCercador
@@ -517,7 +517,7 @@ Partial Class pComanda
         Me.cbEstat.Location = New System.Drawing.Point(805, 6)
         Me.cbEstat.Margin = New System.Windows.Forms.Padding(4)
         Me.cbEstat.Name = "cbEstat"
-        Me.cbEstat.Size = New System.Drawing.Size(448, 28)
+        Me.cbEstat.Size = New System.Drawing.Size(448, 24)
         Me.cbEstat.TabIndex = 37
         '
         'Panel1

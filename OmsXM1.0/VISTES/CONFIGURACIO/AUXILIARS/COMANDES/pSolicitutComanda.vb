@@ -4,6 +4,9 @@
     Private listContactesproveidor As lstContactesProveidor
     Private listLlocsEntrega As lstLlocsEntrega
     Private listContactesEntrega As lstContactes
+    Private panelDataComanda As SelectDia
+    Private panelDataEntregaEquips As SelectDia
+    Private PanelDataMuntatgeEquips As SelectDia
     Private contacteProveidorActual As ProveidorCont
     Private proveidorActual As Proveidor
     Private empresaActual As Empresa
@@ -11,15 +14,16 @@
     Private llocEntregaActual As LlocEntrega
     Private contacteActual As Contacte
     Private actualitzar As Boolean
+    Friend Event removeItem(c As SolicitudComanda)
     Public Sub New(pSolicitut As SolicitudComanda)
         InitializeComponent()
         solicitudActual = pSolicitut
-
-
-
+        Call inicialitzarObjects()
+        Call setLanguage()
         Call setEmpreses()
         Call setProveidors()
         Call setContactesProveidor()
+        Call setComanda()
 
     End Sub
     Private Sub inicialitzarObjects()
@@ -28,6 +32,43 @@
         proveidorActual = ModelProveidor.getObjectByStrings(solicitudActual.idProveidor, solicitudActual.proveidor)
         contacteProveidorActual = proveidorActual.getContacte(solicitudActual.contacteProveidor)
         llocEntregaActual = ModelLlocEntrega.getObjectByName(solicitudActual.llocEntrega)
+        contacteActual = ModelContacte.getObject(solicitudActual.telefonEntrega)
+    End Sub
+    Private Sub setLanguage()
+        Me.lblAlcancePedido.Text = IDIOMA.getString("disposicioSolicitutComanda")
+        Me.lblAltres.Text = IDIOMA.getString("altres")
+        Me.lblComparatiu.Text = IDIOMA.getString("comparatiu")
+        Me.lblContacte.Text = IDIOMA.getString("Contacte")
+        Me.lblContacteProveidorTitol.Text = IDIOMA.getString("contacte")
+        Me.lblDataComanda.Text = IDIOMA.getString("dataSolicitut")
+        Me.lblEmpresa.Text = IDIOMA.getString("empresa")
+        Me.lblEntrega.Text = IDIOMA.getString("llocEntrega")
+        Me.lblEntregaEquips.Text = IDIOMA.getString("dataEntregaEquips")
+        Me.lblEntregaMuntatge.Text = IDIOMA.getString("dataMuntatge")
+        Me.lblMagatzem.Text = IDIOMA.getString("magatzem")
+        Me.lblOferta1.Text = IDIOMA.getString("oferta") & " 1"
+        Me.lblOferta2.Text = IDIOMA.getString("oferta") & " 2"
+        Me.lblOferta3.Text = IDIOMA.getString("oferta") & " 3"
+        Me.lblProjecte.Text = IDIOMA.getString("projecte")
+        Me.lblProveidor.Text = IDIOMA.getString("proveidor")
+        Me.lblTitolSolicitud.Text = IDIOMA.getString("solicitutComanda")
+        Me.lblTotalCaption.Text = IDIOMA.getString("total")
+        Me.xecAltres.Text = IDIOMA.getString("altres")
+        Me.xecEmbalatge.Text = IDIOMA.getString("embalatge")
+        Me.xecMuntatgeObra.Text = IDIOMA.getString("muntatgeObra")
+        Me.xecPostaMarxa.Text = IDIOMA.getString("postaServei")
+        Me.xecPostaPunt.Text = IDIOMA.getString("postaPunt")
+
+        Me.xecProvesObra.Text = IDIOMA.getString("provesObra")
+        Me.xecProvesTaller.Text = IDIOMA.getString("provesTaller")
+        Me.xecSuministre.Text = IDIOMA.getString("suministre")
+        Me.xecSupervisioMuntatge.Text = IDIOMA.getString("supervisioMuntatge")
+        Me.xecTransport.Text = IDIOMA.getString("transportSeguros")
+        Me.optExplotacions.Text = IDIOMA.getString("explotacions")
+        Me.optGeneric.Text = IDIOMA.getString("generic")
+        Me.optObres.Text = IDIOMA.getString("obres")
+
+
     End Sub
     Private Sub setEmpreses()
         actualitzar = False
@@ -41,8 +82,48 @@
         cbProjecte.Items.AddRange(ModelProjecte.getListObjects(empresaActual.id))
         If Not projecteActual Is Nothing Then cbProjecte.SelectedItem = projecteActual
     End Sub
+    Private Sub setProveidors()
+        If Not IsNothing(proveidorActual) Then
+            listProveidors = New lstProveidor(proveidorActual)
+        Else
+            listProveidors = New lstProveidor(New Proveidor)
+        End If
+        AddHandler listProveidors.selectObject, AddressOf setProveidor
+        pProveidor.Controls.Clear()
+        listProveidors.Dock = DockStyle.Fill
+        pProveidor.Controls.Add(listProveidors)
+        listProveidors.cb.Select()
+    End Sub
+    Private Sub setContactesProveidor()
+        If Not IsNothing(contacteProveidorActual) Then
+            listContactesproveidor = New lstContactesProveidor(contacteProveidorActual, proveidorActual.id)
+        Else
+            listContactesproveidor = New lstContactesProveidor(New ProveidorCont, proveidorActual.id)
+        End If
+        AddHandler listContactesproveidor.selectObject, AddressOf setContacteProveidor
+    End Sub
     Private Sub setComanda()
-
+        Me.xecAltres.Checked = solicitudActual.altresAlcans
+        Me.xecEmbalatge.Checked = solicitudActual.embalatge
+        Me.xecMuntatgeObra.Checked = solicitudActual.muntatge
+        Me.xecPostaMarxa.Checked = solicitudActual.postaServei
+        Me.xecPostaPunt.Checked = solicitudActual.postaApunt
+        Me.xecProvesObra.Checked = solicitudActual.provesObra
+        Me.xecProvesTaller.Checked = solicitudActual.provesTaller
+        Me.xecSuministre.Checked = solicitudActual.suministreMaterial
+        Me.xecSupervisioMuntatge.Checked = solicitudActual.supervisio
+        Me.xecTransport.Checked = solicitudActual.transport
+        panelDataComanda = New SelectDia(solicitudActual.dataComanda, IDIOMA.getString("escollirData"))
+        panelDataEntregaEquips = New SelectDia(solicitudActual.dataEntrega, IDIOMA.getString("escollirData"))
+        PanelDataMuntatgeEquips = New SelectDia(solicitudActual.dataFinalitzacio, IDIOMA.getString("escollirData"))
+        Call CONFIG.setPanel(Me.panelData, panelDataComanda)
+        Call CONFIG.setPanel(Me.panelDataEquips, panelDataEntregaEquips)
+        Call CONFIG.setPanel(Me.panelDataMuntatge, PanelDataMuntatgeEquips)
+        Me.txtOferta1.Text = solicitudActual.oferta1
+        Me.txtOferta2.Text = solicitudActual.oferta2
+        Me.txtOferta3.Text = solicitudActual.oferta3
+        Me.txtComparatiu.Text = solicitudActual.comparatiu
+        Me.txtAltres.Text = solicitudActual.altresDocumentacio
     End Sub
     Private Sub validateControlsEmpresa()
         Dim pAvis As avis
@@ -89,28 +170,7 @@
         Call CONFIG.setPanel(pAvisProjecte, pAvis)
     End Sub
 
-    Private Sub setProveidors()
-        If Not IsNothing(proveidorActual) Then
-            listProveidors = New lstProveidor(proveidorActual)
-        Else
-            listProveidors = New lstProveidor(New Proveidor)
-        End If
-        AddHandler listProveidors.selectObject, AddressOf setProveidor
-    End Sub
-    Private Sub setContactesProveidor()
-        If Not IsNothing(contacteProveidorActual) Then
-            listContactesproveidor = New lstContactesProveidor(contacteProveidorActual, proveidorActual.id)
-        Else
-            listContactesproveidor = New lstContactesProveidor(New ProveidorCont, proveidorActual.id)
-        End If
-        AddHandler listContactesproveidor.selectObject, AddressOf setContacteProveidor
-    End Sub
-    Private Sub setLlocEntregues()
 
-    End Sub
-    Private Sub setContactesEntrega()
-
-    End Sub
     Private Sub setProveidor()
         actualitzar = False
         proveidorActual = listProveidors.obj
@@ -195,9 +255,7 @@
             lblDireccio.Text = ""
         End If
     End Sub
-    Private Sub pSolicitutComanda_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-    End Sub
 
     Private Sub cbEmpresa_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbEmpresa.SelectedIndexChanged
         If cbEmpresa.SelectedIndex > -1 Then
@@ -217,5 +275,9 @@
                 Call setEmpresa()
             End If
         End If
+    End Sub
+
+    Private Sub pSolicitutComanda_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class

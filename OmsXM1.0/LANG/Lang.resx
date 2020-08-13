@@ -3530,4 +3530,77 @@
     <value>IMPORT SOLICITUTS DE COMANDA</value>
     <comment>modelImportSolicituts</comment>
   </data>
+  <data name="comparatiu" xml:space="preserve">
+    <value>Comparatiu</value>
+  </data>
+  <data name="dataEntregaEquips" xml:space="preserve">
+    <value>Data Entrega Equips</value>
+  </data>
+  <data name="dataSolicitut" xml:space="preserve">
+    <value>Data Sol·licitut</value>
+  </data>
+  <data name="disposicioSolicitutComanda" xml:space="preserve">
+    <value>Disposició Sol·lictut de Comanda</value>
+  </data>
+  <data name="embalatge" xml:space="preserve">
+    <value>Embalatge</value>
+  </data>
+  <data name="escollirData" xml:space="preserve">
+    <value>ESCOLLIR DATA</value>
+  </data>
+  <data name="llocEntrega" xml:space="preserve">
+    <value>Lloc Entrega</value>
+  </data>
+  <data name="muntatgeObra" xml:space="preserve">
+    <value>Muntatge en Obra</value>
+  </data>
+  <data name="oferta" xml:space="preserve">
+    <value>Oferta</value>
+  </data>
+  <data name="postaPunt" xml:space="preserve">
+    <value>Posta a Punt</value>
+  </data>
+  <data name="postaServei" xml:space="preserve">
+    <value>Posta en servei</value>
+  </data>
+  <data name="provesObra" xml:space="preserve">
+    <value>Proves en Obra</value>
+  </data>
+  <data name="provesTaller" xml:space="preserve">
+    <value>Proves en Taller</value>
+  </data>
+  <data name="solicitutComanda" xml:space="preserve">
+    <value>SOL·LICITUT DE COMANDA (F-56)</value>
+  </data>
+  <data name="suministre" xml:space="preserve">
+    <value>Suministre</value>
+  </data>
+  <data name="supervisioMuntatge" xml:space="preserve">
+    <value>Supervisió Muntatge</value>
+  </data>
+  <data name="transportSeguros" xml:space="preserve">
+    <value>Transport i assegurances</value>
+  </data>
+  <data name="fitxer" xml:space="preserve">
+    <value>FITXER</value>
+  </data>
+  <data name="fitxersF56" xml:space="preserve">
+    <value>FITXERS F56</value>
+  </data>
+  <data name="registres" xml:space="preserve">
+    <value>Registres</value>
+    <comment>comu</comment>
+  </data>
+  <data name="String4" xml:space="preserve">
+    <value>IMPORTAR</value>
+  </data>
+  <data name="explotacions" xml:space="preserve">
+    <value>EXPLOTACIONS</value>
+  </data>
+  <data name="generic" xml:space="preserve">
+    <value>GENERIC</value>
+  </data>
+  <data name="obres" xml:space="preserve">
+    <value>OBRES</value>
+  </data>
 </root>

@@ -24,7 +24,7 @@ Public Class DNovaComanda
         Me.ShowDialog()
         If Me.DialogResult = DialogResult.OK Then
             getComanda = New Comanda(-1, "", listProveidors.obj, empresaActual, projecteActual)
-            getComanda.codi = ModelComandaSolicitud.getNewCode
+            getComanda.codi = -1
         Else
             getComanda = Nothing
         End If

@@ -28,6 +28,8 @@ Partial Class panelDesplegableComanda
         Me.Button1 = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.panelData = New System.Windows.Forms.Panel()
+        Me.txtSerie = New OmsXM.TXT()
+        Me.lblSerie = New System.Windows.Forms.Label()
         Me.txtInterAval = New OmsXM.TXT()
         Me.lblInterAval = New System.Windows.Forms.Label()
         Me.txtDadesBancaries = New OmsXM.TXT()
@@ -48,8 +50,6 @@ Partial Class panelDesplegableComanda
         Me.lblData = New System.Windows.Forms.Label()
         Me.lblAccio = New OmsXM.LBLBLUE()
         Me.lblComanda = New OmsXM.LBLRIGHT()
-        Me.txtSerie = New OmsXM.TXT()
-        Me.lblSerie = New System.Windows.Forms.Label()
         Me.panelTipTool.SuspendLayout()
         Me.panelData.SuspendLayout()
         Me.SuspendLayout()
@@ -121,6 +121,30 @@ Partial Class panelDesplegableComanda
         Me.panelData.Name = "panelData"
         Me.panelData.Size = New System.Drawing.Size(555, 259)
         Me.panelData.TabIndex = 83
+        '
+        'txtSerie
+        '
+        Me.txtSerie.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtSerie.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.txtSerie.ForeColor = System.Drawing.Color.Blue
+        Me.txtSerie.Location = New System.Drawing.Point(155, 6)
+        Me.txtSerie.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtSerie.Name = "txtSerie"
+        Me.txtSerie.Size = New System.Drawing.Size(137, 30)
+        Me.txtSerie.TabIndex = 0
+        '
+        'lblSerie
+        '
+        Me.lblSerie.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblSerie.Font = New System.Drawing.Font("Tahoma", 8.0!)
+        Me.lblSerie.Location = New System.Drawing.Point(7, 3)
+        Me.lblSerie.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblSerie.Name = "lblSerie"
+        Me.lblSerie.Size = New System.Drawing.Size(140, 31)
+        Me.lblSerie.TabIndex = 120
+        Me.lblSerie.Text = "Label5"
+        Me.lblSerie.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'txtInterAval
         '
@@ -346,30 +370,6 @@ Partial Class panelDesplegableComanda
         Me.lblComanda.TabIndex = 80
         Me.lblComanda.Text = "Lblright1"
         Me.lblComanda.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'txtSerie
-        '
-        Me.txtSerie.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtSerie.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.txtSerie.ForeColor = System.Drawing.Color.Blue
-        Me.txtSerie.Location = New System.Drawing.Point(155, 6)
-        Me.txtSerie.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtSerie.Name = "txtSerie"
-        Me.txtSerie.Size = New System.Drawing.Size(137, 30)
-        Me.txtSerie.TabIndex = 0
-        '
-        'lblSerie
-        '
-        Me.lblSerie.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblSerie.Font = New System.Drawing.Font("Tahoma", 8.0!)
-        Me.lblSerie.Location = New System.Drawing.Point(7, 3)
-        Me.lblSerie.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.lblSerie.Name = "lblSerie"
-        Me.lblSerie.Size = New System.Drawing.Size(140, 31)
-        Me.lblSerie.TabIndex = 120
-        Me.lblSerie.Text = "Label5"
-        Me.lblSerie.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'panelDesplegableComanda
         '

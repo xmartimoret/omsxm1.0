@@ -171,13 +171,7 @@
         End If
         Return llista
     End Function
-    Public Function getCodiSolicitud() As String
-        If IsNothing(_projecte) Then
-            Return "F56-0000-" & codi
-        Else
-            Return "F56-" & Strings.Right(_projecte.codi, 4) & "-" & codi
-        End If
-    End Function
+
     Public Function getCodiString() As String
         Return Strings.Right(Year(data), 4) & "-" & Strings.Right(_projecte.codi, 4) & "-" & codi
     End Function
@@ -186,11 +180,24 @@
     End Function
 
     Public Function ToStringCodi() As String
-        If _empresa.id < 10 Then
-            Return Right(getAnyo, 2) & "-0" & _empresa.id & "-" & getStringCodi() & "-" & Right(_projecte.codi, 4)
+        Dim idEmpresa As String, idProjecte As String
+
+        If empresa Is Nothing Then
+            idEmpresa = "00"
         Else
-            Return Right(getAnyo, 2) & "-" & _empresa.id & "-" & getStringCodi() & "-" & Right(_projecte.codi, 4)
+            If _empresa.id < 10 Then
+                idEmpresa = "0" & _empresa.id
+            Else
+                idEmpresa = _empresa.id
+            End If
         End If
+        If _projecte Is Nothing Then
+            idProjecte = "0000"
+        Else
+            idProjecte = Right(_projecte.codi, 4)
+        End If
+        Return Right(getAnyo, 2) & idEmpresa & "-" & getStringCodi() & "-" & idProjecte
+
     End Function
     Private Function getStringCodi() As String
         If Val(Me.codi) < 10 Then

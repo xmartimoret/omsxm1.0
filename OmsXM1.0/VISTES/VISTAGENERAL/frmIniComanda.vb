@@ -100,8 +100,8 @@ Public Class frmIniComanda
                 Call activateTab(i)
             Else
                 panelComanda = New pComanda(c, 1)
-                Call setTab(c.getCodiSolicitud, panelComanda)
-                'AddHandler panelComanda.AddItem, AddressOf RefreshComanda
+                Call setTab(c.ToStringCodi, panelComanda)
+                'TODO cal veure posar l'event de nova comanda. per tal de refrescar les comandes en ediciñó                'AddHandler panelComanda.AddItem, AddressOf RefreshComanda
             End If
         End If
 
@@ -109,6 +109,9 @@ Public Class frmIniComanda
         c = Nothing
     End Sub
     Private Sub RemoveSelectComanda(c As Comanda, tipusComanda As Integer)
+        If ModelComanda.remove(c) Then refrescarSolicitudsComanda = True
+    End Sub
+    Private Sub RemoveSelectSolicitud(c As SolicitudComanda)
         If ModelComandaSolicitud.remove(c) Then refrescarSolicitudsComanda = True
     End Sub
     Private Sub RefreshComanda()
@@ -157,19 +160,19 @@ Public Class frmIniComanda
         Dim panelComanda As pComanda
         panelComanda = New pComanda(c, tipusComanda)
         If tipusComanda = 0 Then
-            Call setTab(c.getCodiSolicitud, panelComanda)
+            Call setTab(c.ToStringCodi, panelComanda)
         Else
-            Call setTab(c.getCodiString, panelComanda)
+            Call setTab(c.ToStringCodi, panelComanda)
         End If
         AddHandler panelComanda.removeItem, AddressOf RemoveSelectComanda
     End Sub
     Friend Sub modificarSolicitut(c As SolicitudComanda, tipusComanda As Integer)
-        Dim panelComanda As pComanda
-        panelComanda = New pComanda(c, tipusComanda)
+        Dim panelComanda As pSolicitutComanda
+        panelComanda = New pSolicitutComanda(c)
 
-        Call setTab(c.getCodiString, panelComanda)
+        Call setTab(c.toStringCodi, panelComanda)
 
-        AddHandler panelComanda.removeItem, AddressOf RemoveSelectComanda
+        AddHandler panelComanda.removeItem, AddressOf RemoveSelectSolicitud
     End Sub
     Private Sub mnuArticles_Click(sender As Object, e As EventArgs) Handles mnuArticles.Click
         Dim p As pArticlesPreus
@@ -227,15 +230,15 @@ Public Class frmIniComanda
     End Sub
 
     Private Sub mnuNovaSolicitut_Click(sender As Object, e As EventArgs) Handles mnuNovaSolicitut.Click
-        Dim i As Integer, c As Comanda, panelComanda As pComanda
-        c = DNovaComanda.getComanda
+        Dim i As Integer, c As SolicitudComanda, panelComanda As pSolicitutComanda
+        panelComanda = New pSolicitutComanda(New SolicitudComanda)
         If c IsNot Nothing Then
             i = getIdTab(IDIOMA.getString("mnuComandes"))
             If i > -1 Then
                 Call activateTab(i)
             Else
-                panelComanda = New pComanda(c, 0)
-                Call setTab(c.getCodiSolicitud, panelComanda)
+                panelComanda = New pSolicitutComanda(c)
+                Call setTab(c.ToStringCodi, panelComanda)
                 'AddHandler panelComanda.AddItem, AddressOf RefreshComanda
             End If
         End If
@@ -252,12 +255,23 @@ Public Class frmIniComanda
     Friend Sub setLog(l As Log)
         Dim p As panelLog
         p = New panelLog(l)
-        Call setTab(IDIOMA.getString(l.titol), p)
+        Call setTab(l.titol, p)
     End Sub
 
     Private Sub mnuImportarSolicituts_Click(sender As Object, e As EventArgs) Handles mnuImportarSolicituts.Click
-        Call ModulImportSolicituds.importFitxers()
+        Dim p As SelectFitxersSolicitut
+        p = New SelectFitxersSolicitut(0, True, False)
+        Call setTab(IDIOMA.getString("fitxersF56"), p)
+        AddHandler p.selectObject, AddressOf setFitxers
+    End Sub
+    Private Sub setFitxers(fitxers As List(Of CodiDescripcio))
+        Call ModulImportSolicituds.importFitxers(fitxers)
+        'Call mnuImportarSolicituts_Click(Nothing, Nothing)
+
+
     End Sub
 
+    Private Sub pData_Paint(sender As Object, e As PaintEventArgs) Handles pData.Paint
 
+    End Sub
 End Class

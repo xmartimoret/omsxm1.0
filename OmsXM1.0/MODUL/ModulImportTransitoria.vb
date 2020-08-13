@@ -13,7 +13,8 @@ Module ModulImportTransitoria
         Dim apliExcel As Application
         Dim dades(,) As String, fActual As Integer
         apliExcel = EXCEL.getMacros
-        mesos = DMesosEmpresa.getMesos(CONFIG_FILE.getTag(TAG.ANY_TRANSITORIA), IDIOMA.getString("importDataTransitoria"))
+        'CONFIG_FILE.getTag(TAG.ANY_TRANSITORIA)
+        mesos = DMesosEmpresa.getMesos(2019, IDIOMA.getString("importDataTransitoria"))
         If mesos IsNot Nothing Then
             For Each m In mesos.mesos
                 If ModelEstatMes.getEstatTransitoria(mesos.idEmpresa, mesos.any, m) Then

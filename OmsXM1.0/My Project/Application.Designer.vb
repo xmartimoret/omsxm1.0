@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.OmsXM.frmIniComanda
+            Me.MainForm = Global.OmsXM.FrmApliOms
         End Sub
     End Class
 End Namespace

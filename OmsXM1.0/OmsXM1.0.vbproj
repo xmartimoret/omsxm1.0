@@ -151,6 +151,7 @@
     <Compile Include="CLASSES\COMANDES\Article.vb" />
     <Compile Include="CLASSES\COMANDES\ArticleComanda.vb" />
     <Compile Include="CLASSES\COMANDES\ArticlePreu.vb" />
+    <Compile Include="CLASSES\COMANDES\ArticleSolicitut.vb" />
     <Compile Include="CLASSES\COMANDES\Comanda.vb" />
     <Compile Include="CLASSES\COMANDES\Contacte.vb" />
     <Compile Include="CLASSES\COMANDES\Fabricant.vb" />
@@ -243,7 +244,7 @@
     <Compile Include="MODEL\COMANDES\ModelArticle.vb" />
     <Compile Include="MODEL\COMANDES\ModelArticleComanda.vb" />
     <Compile Include="MODEL\COMANDES\ModelArticlePreu.vb" />
-    <Compile Include="MODEL\COMANDES\ModelArticleSolicitud.vb" />
+    <Compile Include="MODEL\COMANDES\ModelArticleSolicitut.vb" />
     <Compile Include="MODEL\COMANDES\ModelComanda.vb" />
     <Compile Include="MODEL\COMANDES\ModelComandaSolicitud.vb" />
     <Compile Include="MODEL\COMANDES\ModelLlocEntrega.vb" />
@@ -258,7 +259,7 @@
     <Compile Include="MODEL\COMANDES\AUXILIARS\ModelAuxiliar.vb" />
     <Compile Include="MODEL\COMANDES\ModulImportSolicituds.vb" />
     <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbArticleComanda.vb" />
-    <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbArticleSolicitud.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbArticleSolicitut.vb" />
     <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbComanda.vb" />
     <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbSolicitudComanda.vb" />
     <Compile Include="VISTES\COMU\AVIS\avis.Designer.vb">
@@ -422,6 +423,12 @@
     <Compile Include="VISTES\COMU\lstProveidor.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="VISTES\COMU\LVObjectsImport.Designer.vb">
+      <DependentUpon>LVObjectsImport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\LVObjectsImport.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="VISTES\COMU\LVSelectObject.Designer.vb">
       <DependentUpon>LVSelectObject.vb</DependentUpon>
     </Compile>
@@ -453,12 +460,6 @@
       <DependentUpon>DArticleComanda.vb</DependentUpon>
     </Compile>
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DArticleComanda.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\Dialog1.Designer.vb">
-      <DependentUpon>Dialog1.vb</DependentUpon>
-    </Compile>
-    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\Dialog1.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DNovaComanda.Designer.vb">
@@ -1225,6 +1226,9 @@
     <EmbeddedResource Include="VISTES\COMU\lstProveidor.resx">
       <DependentUpon>lstProveidor.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\LVObjectsImport.resx">
+      <DependentUpon>LVObjectsImport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VISTES\COMU\LVSelectObject.resx">
       <DependentUpon>LVSelectObject.vb</DependentUpon>
     </EmbeddedResource>
@@ -1239,9 +1243,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DArticleComanda.resx">
       <DependentUpon>DArticleComanda.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\Dialog1.resx">
-      <DependentUpon>Dialog1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DNovaComanda.resx">
       <DependentUpon>DNovaComanda.vb</DependentUpon>

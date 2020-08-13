@@ -7,6 +7,7 @@
     Public Property preu As Double
     Public Property tpcDescompte As Double
     Public Property tIva As TipusIva
+
     Public Sub New()
         _quantitat = 0
         _unitat = New Unitat
@@ -22,7 +23,7 @@
         _unitat = New Unitat
         _tIva = New TipusIva
     End Sub
-    Public Sub New(pId As Integer, pIdComanda As Integer, pPos As Integer, pCodi As String, pNom As String, pQuantitat As Double, pUnitat As Unitat, pPreu As Double, pTIva As TipusIva)
+    Public Sub New(pId As Integer, pIdComanda As Integer, pPos As Integer, pCodi As String, pNom As String, pQuantitat As Double, pUnitat As Unitat, pIva As TipusIva, pPreu As Double)
         Me.id = pId
         Me.codi = pCodi
         Me.nom = pNom
@@ -32,7 +33,7 @@
         _preu = pPreu
         _quantitat = pQuantitat
         _unitat = pUnitat
-        _tIva = pTIva
+        _tIva = pIva
     End Sub
 
 
@@ -48,11 +49,12 @@
     End Property
     Public ReadOnly Property iva As Double
         Get
-            If Not IsNothing(tIva) Then Return (base - descompte) * (tIva.impost / 100)
-            Return 0
-
+            Return base * (_tIva.impost / 100)
         End Get
     End Property
+
+
+
     Public ReadOnly Property total As Double
         Get
             Return base - descompte + iva

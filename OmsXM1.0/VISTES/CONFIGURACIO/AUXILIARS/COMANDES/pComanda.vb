@@ -21,42 +21,7 @@ Class pComanda
     Friend Event removeItem(c As Comanda, tipusComanda As Integer)
     Friend Event addComanda(c As Comanda, tipusComanda As Integer)
     Private tipusComanda As Integer
-    Public Sub New(s As SolicitudComanda, pTipusComanda As Integer)
-        actualitzar = False
-        tipusComanda = pTipusComanda
-        '      proveidorActual = New Proveidor
-        ' This call is required by the designer.
-        InitializeComponent()
-        comandaActual = New Comanda
-        comandaActual.codi = ModelComandaSolicitud.getNewCode
-        comandaActual.id = Val(ModelComandaSolicitud.getNewCode)
-        DGVArticles.Rows.Add(30)
-        ' listProveidor = New lstProveidor(Nothing)
-        panelProv = New panelDesplagableProveidor(Me.Height * 0.4, "p", comandaActual.proveidor)
-        panelEmpr = New panelDesplegableEmpresa(Me.Height * 0.4, "e", comandaActual.empresa)
-        panelComanda = New panelDesplegableComanda(Me.Height * 0.4, "c", comandaActual)
-        AddHandler panelProv.accioMostrar, AddressOf setAccio
-        AddHandler panelEmpr.accioMostrar, AddressOf setAccio
-        AddHandler panelComanda.accioMostrar, AddressOf setAccio
-        AddHandler panelComanda.selectObject, AddressOf setEmpresa
-        AddHandler panelProv.selectObject, AddressOf setProveidor
-        AddHandler panelEmpr.selectObject, AddressOf setEmpresa
-        AddHandler panelEmpr.selectProjecte, AddressOf setProjecte
-        ' Add any initialization after the InitializeComponent() call.
-        Panel6.Controls.Clear()
-        Panel7.Controls.Clear()
-        Panel8.Controls.Clear()
-        panelProv.Dock = DockStyle.Fill
-        panelEmpr.Dock = DockStyle.Fill
-        panelComanda.Dock = DockStyle.Fill
-        Panel6.Controls.Add(panelProv)
-        Panel7.Controls.Add(panelEmpr)
-        Panel8.Controls.Add(panelComanda)
-        panelProv.setAccio()
-        panelEmpr.setAccio()
-        panelComanda.setAccio()
 
-    End Sub
     Public Sub New(p As Comanda, pTipusComanda As Boolean)
         actualitzar = False
         tipusComanda = pTipusComanda
@@ -204,7 +169,7 @@ Class pComanda
     Private Sub setProjecte()
         If actualitzar Then
             Call validateControls()
-            panelComanda.lblComanda.Text = comandaActual.getCodiSolicitud
+            panelComanda.lblComanda.Text = comandaActual.ToStringCodi
         End If
     End Sub
     Private Sub setComanda()
@@ -545,7 +510,6 @@ Class pComanda
             c.estat = 1
         End If
 
-
     End Sub
 
 
@@ -555,8 +519,8 @@ Class pComanda
         c.articles = getArticles()
         Select Case tipusComanda
             Case 0
-                Call ModelComandaSolicitud.save(c)
-                Call MISSATGES.SOLICITUT_GUARDADA(c.getCodiSolicitud)
+                Call ModelComanda.save(c)
+                Call MISSATGES.COMANDA_GUARDADA(c.getCodiString)
             Case Else
                 Call ModelComanda.save(c)
                 Call MISSATGES.COMANDA_GUARDADA(c.getCodiString)
@@ -609,13 +573,11 @@ Class pComanda
 
     End Sub
 
-    Private Sub DGVArticles_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGVArticles.CellContentClick
-
-    End Sub
 
     Private Sub pComanda_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         If (e.KeyCode = Keys.C + e.KeyCode = Keys.ControlKey) AndAlso (Me.DGVArticles.Focused) Then
             MsgBox("ok")
         End If
     End Sub
+
 End Class

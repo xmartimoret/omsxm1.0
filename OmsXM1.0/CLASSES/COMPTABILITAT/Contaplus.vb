@@ -34,7 +34,8 @@ Public Class Contaplus : Implements IComparable
         Return _id
     End Function
     Public Overrides Function Equals(obj As Object) As Boolean
-        If obj Is Nothing OrElse obj.GetType Is Me.GetType Then Return False
+        If obj Is Nothing OrElse obj.GetType IsNot Me.GetType Then Return False
+
         Return obj.id = _id
     End Function
     Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo

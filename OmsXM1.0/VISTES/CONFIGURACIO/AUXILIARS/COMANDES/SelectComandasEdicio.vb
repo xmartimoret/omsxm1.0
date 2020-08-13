@@ -29,7 +29,7 @@
     End Function
     Public Overrides Function eliminar(id As Integer) As Boolean
         Dim d As Comanda
-        d = ModelComandaSolicitud.getObject(id)
+        d = ModelComanda.getObject(id)
         If d IsNot Nothing Then
             If MISSATGES.CONFIRM_REMOVE_COMANDA(d.ToString) Then
                 Return ModelComanda.remove(d)
@@ -52,7 +52,7 @@
         j = 0
         If ids.Count >= 0 Then
             For Each i In ids
-                comandes.Add(ModelComandaSolicitud.getObject(i))
+                comandes.Add(ModelComanda.getObject(i))
             Next
             RaiseEvent selectObject(comandes.Item(0))
             Return True

@@ -42,10 +42,10 @@ Module ModelComandaSolicitud
             getDataList.columns.Add(COLUMN.GENERICA("projecte", 150, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.GENERICA("proveidor", 150, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.GENERICA("base", 100, HorizontalAlignment.Center))
-            getDataList.columns.Add(COLUMN.GENERICA("iva", 100, HorizontalAlignment.Center))
+
             getDataList.columns.Add(COLUMN.GENERICA("total", 100, HorizontalAlignment.Center))
             For Each a In comandes
-                getDataList.rows.Add(New ListViewItem(New String() {a.id, a.codi, a.dataComanda, a.empresa, a.codiProjecte, a.proveidor, a.base, a.iva, a.total}))
+                getDataList.rows.Add(New ListViewItem(New String() {a.id, a.codi, a.dataComanda, a.empresa, a.codiProjecte, a.proveidor, a.base, a.total}))
             Next
         End If
         a = Nothing
@@ -82,19 +82,20 @@ Module ModelComandaSolicitud
         End Function
 
 
-        Public Function exist(obj As Comanda) As Boolean
+    Public Function exist(obj As SolicitudComanda) As Boolean
         If Not isUpdated() Then objects = getRemoteObjects(0)
         Return objects.Exists(Function(x) x.id <> obj.id And x.codi = obj.codi)
-        End Function
-        Public Function existCodi(obj As Comanda) As Integer
+    End Function
+    Public Function existCodi(obj As SolicitudComanda) As Integer
         If Not isUpdated() Then objects = getRemoteObjects(0)
         Return objects.Exists(Function(x) x.id <> obj.id And x.codi = obj.codi)
-        End Function
+    End Function
     Public Function save(obj As SolicitudComanda) As Integer
         If obj.id = -1 Then
             obj.codi = getLastCodi() + 1
-            obj.id = dbSolicitudComanda.insert(obj)
             If obj.serie = "" Then obj.serie = Year(obj.dataComanda)
+            obj.id = dbSolicitudComanda.insert(obj)
+
         Else
             obj.id = dbSolicitudComanda.update(obj)
         End If
@@ -102,7 +103,7 @@ Module ModelComandaSolicitud
             dateUpdate = Now()
             objects.Remove(obj)
             objects.Add(obj)
-            If Not ModelArticleSolicitud.save(obj.articles) Then Return -1
+            If Not ModelArticleSolicitut.save(obj.articles, obj.id) Then Return -1
         End If
         Return obj.id
     End Function
@@ -110,7 +111,7 @@ Module ModelComandaSolicitud
         Dim result As Boolean
         result = dbSolicitudComanda.remove(obj)
         If result Then
-            result = ModelArticleSolicitud.remove(obj)
+            result = ModelArticleSolicitut.remove(obj)
             dateUpdate = Now()
             objects.Remove(obj)
         End If

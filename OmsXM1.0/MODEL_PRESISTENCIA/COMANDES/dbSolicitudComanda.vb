@@ -33,7 +33,7 @@ Module dbSolicitudComanda
     Private Const OFERTA1 As String = "OF1"
     Private Const OFERTA2 As String = "OF2"
     Private Const OFERTA3 As String = "OF3"
-    Private Const COMPARATIU As String = "COMP"
+    Private Const COMPARATIU As String = "COMPAR"
     Private Const FORMA_PAGAMENT As String = "FPAG"
     Private Const VALTRES As String = "ALTRA"
     Private Const ESTAT As String = "ESTAT"
@@ -416,25 +416,31 @@ Module dbSolicitudComanda
         obj.id = DBCONNECT.getMaxIdDBF(getTable) + 1
         With sc
             .ActiveConnection = DBCONNECT.getConnectionDbf
+
             .CommandText = (" INSERT INTO " & getTable() & " " &
-                     " ( " & ID & "," & DATA_COMANDA & "," & ID_PROVEIDOR & "," & ESTAT & "," & CODI & "," & NOM & "," & SERIE & "," & EMPRESA & "," & CODI_PROJECTE & "," & DEPARTAMENT & "," & PROVEIDOR & "," & CONTACTE_PROVEIDOR & "," & TELEFON_PROVEIDOR & "," & EMAIL_PROVEIDOR & "," & SUMINISTRE_MATERIAL & "," & EMBALATGE & "," & TRANSPORT & "," & MUNTATGE & "," & SUPERVISIO & "," & POSTA_PUNT & "," & PROVES_TALLER & "," & PROVES_OBRA & "," & POSTA_SERVEI & "," & ALTRES_ALCANS & "," & LLOC_ENTREGA & "," & DIRECCIO_ENTREGA & "," & CONTACTE_ENTREGA & "," & TELEFON_ENTREGA & "," & DATA_ENTREGA & "," & DATA_FINALITZACIO & "," & OFERTA1 & "," & OFERTA2 & "," & OFERTA3 & "," & COMPARATIU & "," & FORMA_PAGAMENT & "," & VALTRES & ")" &
+                     " (" & ID & "," & DATA_COMANDA & "," & ID_PROVEIDOR & "," & ESTAT & "," & CODI & "," & NOM & "," & SERIE & "," & EMPRESA & ", " & CODI_PROJECTE & ", " & DEPARTAMENT & ", " & PROVEIDOR & ", " & CONTACTE_PROVEIDOR & ", " & TELEFON_PROVEIDOR & ", " & EMAIL_PROVEIDOR & ", " & SUMINISTRE_MATERIAL & ", " & EMBALATGE & ", " & TRANSPORT & ", " & MUNTATGE & ", " & SUPERVISIO & ", " & POSTA_PUNT & ", " & PROVES_TALLER & ", " & PROVES_OBRA & ", " & POSTA_SERVEI & ", " & ALTRES_ALCANS & ", " & LLOC_ENTREGA & ", " & DIRECCIO_ENTREGA & ", " & CONTACTE_ENTREGA & ", " & TELEFON_ENTREGA & ", " & DATA_ENTREGA & ", " & DATA_FINALITZACIO & "," & OFERTA1 & ", " & OFERTA2 & ", " & OFERTA3 & ", " & COMPARATIU & ", " & FORMA_PAGAMENT & ", " & VALTRES & ")" &
                     " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
+
+
+
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
             .Parameters.Append(ADOPARAM.ToDate(obj.dataComanda))
             .Parameters.Append(ADOPARAM.ToInt(obj.idProveidor))
             .Parameters.Append(ADOPARAM.ToInt(obj.estat))
-            .Parameters.Append(ADOPARAM.ToInt(obj.codi))
-            .Parameters.Append(ADOPARAM.ToString(obj.nom))
+            .Parameters.Append(ADOPARAM.ToInt(CInt(obj.codi)))
+            .Parameters.Append(ADOPARAM.ToString(Strings.Right(obj.nom, 250))) '6
             .Parameters.Append(ADOPARAM.ToString(obj.serie))
+
             .Parameters.Append(ADOPARAM.ToString(obj.empresa))
             .Parameters.Append(ADOPARAM.ToString(obj.codiProjecte))
             .Parameters.Append(ADOPARAM.ToString(obj.departament))
             .Parameters.Append(ADOPARAM.ToString(obj.proveidor))
             .Parameters.Append(ADOPARAM.ToString(obj.contacteProveidor))
             .Parameters.Append(ADOPARAM.ToString(obj.telefonProveidor))
-            .Parameters.Append(ADOPARAM.ToString(obj.emailProveidor))
-            .Parameters.Append(ADOPARAM.toBool(obj.suministreMaterial))
+            .Parameters.Append(ADOPARAM.ToString(obj.emailProveidor)) '14
+            .Parameters.Append(ADOPARAM.toBool(obj.suministreMaterial)) '15
             .Parameters.Append(ADOPARAM.toBool(obj.embalatge))
+
             .Parameters.Append(ADOPARAM.toBool(obj.transport))
             .Parameters.Append(ADOPARAM.toBool(obj.muntatge))
             .Parameters.Append(ADOPARAM.toBool(obj.supervisio))
@@ -442,19 +448,23 @@ Module dbSolicitudComanda
             .Parameters.Append(ADOPARAM.toBool(obj.provesTaller))
             .Parameters.Append(ADOPARAM.toBool(obj.provesObra))
             .Parameters.Append(ADOPARAM.toBool(obj.postaServei))
-            .Parameters.Append(ADOPARAM.toBool(obj.altresAlcans))
+            .Parameters.Append(ADOPARAM.toBool(obj.altresAlcans)) '24
+
             .Parameters.Append(ADOPARAM.ToString(obj.llocEntrega))
+
             .Parameters.Append(ADOPARAM.ToString(obj.direccioEntrega))
             .Parameters.Append(ADOPARAM.ToString(obj.contacteEntrega))
             .Parameters.Append(ADOPARAM.ToString(obj.telefonEntrega))
             .Parameters.Append(ADOPARAM.ToDate(obj.dataEntrega))
-            .Parameters.Append(ADOPARAM.ToDate(obj.dataFinalitzacio))
+            .Parameters.Append(ADOPARAM.ToDate(obj.dataFinalitzacio)) '30
+
             .Parameters.Append(ADOPARAM.ToString(obj.oferta1))
             .Parameters.Append(ADOPARAM.ToString(obj.oferta2))
             .Parameters.Append(ADOPARAM.ToString(obj.oferta3))
+
             .Parameters.Append(ADOPARAM.ToString(obj.comparatiu))
             .Parameters.Append(ADOPARAM.ToString(obj.formaPagament))
-            .Parameters.Append(ADOPARAM.ToString(obj.altresDocumentacio))
+            .Parameters.Append(ADOPARAM.ToString(obj.altresDocumentacio)) '36
 
         End With
         Try
@@ -498,7 +508,7 @@ Module dbSolicitudComanda
         Dim rc As ADODB.Recordset, c As SolicitudComanda
         rc = New ADODB.Recordset
         getObjectsDBF = New List(Of SolicitudComanda)
-        rc.Open("Select * FROM " & getTable() & "WHERE " & ESTAT & "=" & p, DBCONNECT.getConnectionDbf)
+        rc.Open("Select * FROM " & getTable() & " WHERE " & ESTAT & "=" & p, DBCONNECT.getConnectionDbf)
         While Not rc.EOF
             c = New SolicitudComanda(rc(ID).Value, rc(CODI).Value, Trim(CONFIG.validarNull(rc(NOM).Value)), rc(ESTAT).Value)
             c.altresAlcans = rc(ALTRES_ALCANS).Value
@@ -506,7 +516,7 @@ Module dbSolicitudComanda
             c.codiProjecte = Trim(CONFIG.validarNull(rc(CODI_PROJECTE).Value))
             c.comparatiu = Trim(CONFIG.validarNull(rc(COMPARATIU).Value))
             c.contacteEntrega = Trim(CONFIG.validarNull(rc(CONTACTE_ENTREGA).Value))
-            c.dataFinalitzacio = Trim(CONFIG.validarNull(rc(DATA_FINALITZACIO).Value))
+            c.dataFinalitzacio = rc(DATA_FINALITZACIO).Value
             c.departament = Trim(CONFIG.validarNull(rc(DEPARTAMENT).Value))
             c.direccioEntrega = Trim(CONFIG.validarNull(rc(DIRECCIO_ENTREGA).Value))
             c.emailProveidor = CONFIG.validarNull(Trim(rc(EMAIL_PROVEIDOR).Value))
@@ -542,7 +552,7 @@ Module dbSolicitudComanda
         Dim rc As ADODB.Recordset, c As SolicitudComanda
         rc = New ADODB.Recordset
         getObjectsDBF = New List(Of SolicitudComanda)
-        rc.Open("Select * FROM " & getTable() & "WHERE " & SERIE & "='" & p & "'", DBCONNECT.getConnectionDbf)
+        rc.Open("Select * FROM " & getTable(), DBCONNECT.getConnectionDbf)
         While Not rc.EOF
             c = New SolicitudComanda(rc(ID).Value, rc(CODI).Value, Trim(CONFIG.validarNull(rc(NOM).Value)), rc(ESTAT).Value)
             c.altresAlcans = rc(ALTRES_ALCANS).Value
@@ -587,3 +597,61 @@ Module dbSolicitudComanda
     End Function
 
 End Module
+'Private Function insertDBF(obj As SolicitudComanda) As Integer
+'    Dim sc As ADODB.Command
+'    sc = New ADODB.Command
+'    obj.id = DBCONNECT.getMaxIdDBF(getTable) + 1
+'    With sc
+'        .ActiveConnection = DBCONNECT.getConnectionDbf
+'        .CommandText = (" INSERT INTO " & getTable() & " " &
+'                     " (" & ID() & "," & DATA_COMANDA & "," & ID_PROVEIDOR & "," & ESTAT() & "," & CODI() & "," & NOM() & "," & SERIE & "," & Empresa & "," & CODI_PROJECTE & "," & Departament & "," & Proveidor & "," & CONTACTE_PROVEIDOR & "," & TELEFON_PROVEIDOR & "," & EMAIL_PROVEIDOR & "," & SUMINISTRE_MATERIAL & "," & EMBALATGE & "," & TRANSPORT & "," & MUNTATGE & "," & SUPERVISIO & "," & POSTA_PUNT & "," & PROVES_TALLER & "," & PROVES_OBRA & "," & POSTA_SERVEI & "," & ALTRES_ALCANS & "," & LLOC_ENTREGA & "," & DIRECCIO_ENTREGA & "," & CONTACTE_ENTREGA & "," & TELEFON_ENTREGA & "," & DATA_ENTREGA & "," & DATA_FINALITZACIO & "," & OFERTA1 & "," & OFERTA2 & "," & OFERTA3 & "," & COMPARATIU & "," & FORMA_PAGAMENT & "," & VALTRES & ")" &
+'                    " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
+'        .Parameters.Append(ADOPARAM.ToInt(obj.id))
+'        .Parameters.Append(ADOPARAM.ToDate(obj.dataComanda))
+'        .Parameters.Append(ADOPARAM.ToInt(obj.idProveidor))
+'        .Parameters.Append(ADOPARAM.ToInt(obj.estat))
+'        .Parameters.Append(ADOPARAM.ToInt(CInt(obj.codi)))
+'        .Parameters.Append(ADOPARAM.ToString(obj.nom))
+'        .Parameters.Append(ADOPARAM.ToString(obj.serie))
+
+'        .Parameters.Append(ADOPARAM.ToString(obj.empresa))
+'        .Parameters.Append(ADOPARAM.ToString(obj.codiProjecte))
+'        .Parameters.Append(ADOPARAM.ToString(obj.departament))
+'        .Parameters.Append(ADOPARAM.ToString(obj.proveidor))
+'        .Parameters.Append(ADOPARAM.ToString(obj.contacteProveidor))
+'        .Parameters.Append(ADOPARAM.ToString(obj.telefonProveidor))
+'        .Parameters.Append(ADOPARAM.ToString(obj.emailProveidor))
+'        .Parameters.Append(ADOPARAM.toBool(obj.suministreMaterial))
+'        .Parameters.Append(ADOPARAM.toBool(obj.embalatge))
+'        .Parameters.Append(ADOPARAM.toBool(obj.transport))
+'        .Parameters.Append(ADOPARAM.toBool(obj.muntatge))
+'        .Parameters.Append(ADOPARAM.toBool(obj.supervisio))
+'        .Parameters.Append(ADOPARAM.toBool(obj.postaApunt))
+'        .Parameters.Append(ADOPARAM.toBool(obj.provesTaller))
+'        .Parameters.Append(ADOPARAM.toBool(obj.provesObra))
+'        .Parameters.Append(ADOPARAM.toBool(obj.postaServei))
+'        .Parameters.Append(ADOPARAM.toBool(obj.altresAlcans))
+'        .Parameters.Append(ADOPARAM.ToString(obj.llocEntrega))
+'        .Parameters.Append(ADOPARAM.ToString(obj.direccioEntrega))
+'        .Parameters.Append(ADOPARAM.ToString(obj.contacteEntrega))
+'        .Parameters.Append(ADOPARAM.ToString(obj.telefonEntrega))
+'        .Parameters.Append(ADOPARAM.ToDate(obj.dataEntrega))
+'        .Parameters.Append(ADOPARAM.ToDate(obj.dataFinalitzacio))
+'        .Parameters.Append(ADOPARAM.ToString(obj.oferta1))
+'        .Parameters.Append(ADOPARAM.ToString(obj.oferta2))
+'        .Parameters.Append(ADOPARAM.ToString(obj.oferta3))
+'        .Parameters.Append(ADOPARAM.ToString(obj.comparatiu))
+'        .Parameters.Append(ADOPARAM.ToString(obj.formaPagament))
+'        .Parameters.Append(ADOPARAM.ToString(obj.altresDocumentacio))
+
+'    End With
+'    Try
+'        sc.Execute()
+'        Return obj.id
+'    Catch ex As Exception
+'        Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
+'        Return -1
+'    Finally
+'        sc = Nothing
+'    End Try
+'End Function

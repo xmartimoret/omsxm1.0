@@ -1,4 +1,4 @@
-﻿Public MustInherit Class LVObjects
+﻿Public MustInherit Class LVObjectsImport
     Private dades As DataList
     Private idsActual As List(Of Integer)
     Private idActual As Integer = -1
@@ -11,7 +11,7 @@
     Friend Property idParent As Integer = 0
     Friend Property columnsSize As Integer()
     Private objects As List(Of Object)
-    Friend Event doubleClick()
+
 
     Public Sub New()
         InitializeComponent()
@@ -24,18 +24,14 @@
 
     Public MustOverride Function seleccionar(ids As List(Of Integer)) As Boolean
     Public MustOverride Function afegir(id As Integer) As Integer
-    Public MustOverride Function modificar(id As Integer) As Integer
-
     Public MustOverride Function eliminar(id As Integer) As Boolean
     Public MustOverride Function filtrar(txt As String) As DataList
     Public MustOverride Function filtrar(idParent As Integer, txt As String) As DataList
     Private Sub setLanguage()
         Me.lblFiltrar.Text = IDIOMA.getString("filtrarPer")
         tTip1.SetToolTip(cmdAfegir, IDIOMA.getString("cmdAfegir"))
-        tTip1.SetToolTip(cmdCancelar, IDIOMA.getString("cmdSortir"))
-        tTip1.SetToolTip(cmdModificar, IDIOMA.getString("cmdModificar"))
         tTip1.SetToolTip(cmdEliminar, IDIOMA.getString("cmdEliminar"))
-        tTip1.SetToolTip(cmdSeleccionar, IDIOMA.getString("cmdSeleccionar"))
+        tTip1.SetToolTip(cmdSeleccionar, IDIOMA.getString("cmdImportar"))
         tTip1.SetToolTip(cmdImprimir, IDIOMA.getString("cmdImprimir"))
     End Sub
     Private Sub validateControls()
@@ -50,15 +46,14 @@
             Me.cmdAfegir.Enabled = True
 
         End If
-        Me.cmdModificar.Visible = True
+
         Me.cmdEliminar.Visible = True
         Me.cmdImprimir.Visible = True
         If idsActual.Count > 0 Or idActual > 0 Then
-            Me.cmdModificar.Enabled = True
             Me.cmdEliminar.Enabled = True
             Me.cmdImprimir.Enabled = True
         Else
-            Me.cmdModificar.Enabled = False
+
             Me.cmdEliminar.Enabled = False
             Me.cmdImprimir.Enabled = False
         End If
@@ -125,24 +120,15 @@
     End Sub
     Private Sub cmdSeleccionar_Click(sender As Object, e As EventArgs) Handles cmdSeleccionar.Click
         If seleccionar(idsActual) Then
-            If isForm Then
-                Me.Parent.Parent.Dispose()
-            Else
-                Me.Parent.Dispose()
-            End If
-            RaiseEvent doubleClick()
+            'If isForm Then
+            '    Me.Parent.Parent.Dispose()
+            'Else
+            '    Me.Dispose()
+            'End If
+            Call filtrar(txtFiltrar.Text)
         End If
     End Sub
-    Private Sub cmdModificar_Click(sender As Object, e As EventArgs) Handles cmdModificar.Click
-        Dim id As Integer
-        id = modificar(idActual)
-        If id > 0 Then
-            idActual = id
-            Call setData()
-            Call setSelected()
-        End If
-        Call validateControls()
-    End Sub
+
     Private Sub cmdEliminar_Click(sender As Object, e As EventArgs) Handles cmdEliminar.Click
         Try
             If eliminar(idActual) Then
@@ -161,6 +147,8 @@
 
     Private Sub lstData_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstData.SelectedIndexChanged
         Dim i As Integer, ids As List(Of Integer)
+        'estic aqui 
+
         If lstData.SelectedItems.Count > 0 Then
             If lstData.MultiSelect Then
                 idsActual = New List(Of Integer)
@@ -169,14 +157,13 @@
                         idsActual.Add(Val(lstData.Items(i).Text))
                     End If
                 Next
-                Call seleccionar(idsActual)
+
                 idActual = Val(lstData.SelectedItems(0).Text)
             Else
                 ids = New List(Of Integer)
                 idActual = Val(lstData.SelectedItems(0).Text)
                 ids.Add(idActual)
-                Call seleccionar(ids)
-                'Call setSelected()
+
             End If
         Else
             idsActual = New List(Of Integer)
@@ -185,28 +172,7 @@
         ids = Nothing
         Call validateControls()
     End Sub
-    Private Sub lstData_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles lstData.MouseDoubleClick
-        If lstData.SelectedItems.Count > 0 Then
-            idActual = Val(lstData.SelectedItems(0).Text)
-            If accio = 0 Then
-                Call seleccionar(idsActual)
-                If isForm Then
-                    Me.Parent.Parent.Dispose()
-                Else
-                    Me.Parent.Dispose()
-                End If
-                RaiseEvent doubleClick()
-            Else
-                'Try
-                If modificar(idActual) Then Call setData() : Call setSelected()
-                'Catch ex As Exception
-                '    MsgBox(ex.Message, MsgBoxStyle.Critical, IDIOMA.getString("abort"))
-                'End Try
 
-            End If
-        End If
-        Call validateControls()
-    End Sub
 
     Private Sub lstData_ColumnClick(sender As Object, e As ColumnClickEventArgs) Handles lstData.ColumnClick
         Call ordenar(e.Column)
@@ -253,13 +219,7 @@
         ' Sort.
         lstData.Sort()
     End Sub
-    Private Sub cmdCancelar_Click(sender As Object, e As EventArgs) Handles cmdCancelar.Click
-        If isForm Then
-            Me.Parent.Parent.Dispose()
-        Else
-            Me.Dispose()
-        End If
-    End Sub
+
 
     Private Sub xecTots_CheckedChanged(sender As Object, e As EventArgs) Handles xecTots.CheckedChanged
         If multiselect Then
@@ -295,12 +255,7 @@
                 idActual = Val(lstData.SelectedItems(0).Text)
                 If accio = 0 Then
                     Call seleccionar(idsActual)
-                Else
-                    Try
-                        If modificar(idActual) Then Call setData() : Call setSelected()
-                    Catch ex As Exception
-                        MsgBox(ex.Message, MsgBoxStyle.Critical, IDIOMA.getString("abort"))
-                    End Try
+
 
                 End If
             End If
@@ -313,30 +268,13 @@
         If cmdAfegir.Enabled Then Call cmdAfegir_Click(sender, e)
     End Sub
 
-    Private Sub mnoModificar_Click(sender As Object, e As EventArgs) Handles mnoModificar.Click
-        If cmdModificar.Enabled Then Call cmdModificar_Click(sender, e)
-    End Sub
 
     Private Sub mnuEliminar_Click(sender As Object, e As EventArgs) Handles mnuEliminar.Click
         If cmdEliminar.Enabled Then Call cmdEliminar_Click(sender, e)
     End Sub
 
-    Private Sub mnuSortir_Click(sender As Object, e As EventArgs) Handles mnuSortir.Click
-        If cmdCancelar.Enabled Then Call cmdCancelar_Click(sender, e)
-    End Sub
-
-
-
-
-
-    'Private Sub lstData_ColumnWidthChanged(sender As Object, e As ColumnWidthChangedEventArgs) Handles lstData.ColumnWidthChanged
-    '    Dim i As Integer
-    '    ReDim _columnsSize(lstData.Columns.Count)
-    '    For i = 0 To lstData.Columns.Count - 1
-    '        _columnsSize(i) = CInt(lstData.Columns(i).Width)
-    '    Next
-    'End Sub
 End Class
+
 
 
 

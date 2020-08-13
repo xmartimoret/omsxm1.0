@@ -19,10 +19,10 @@ Module ModelarticleComanda
             getDataList.columns.Add(COLUMN.GENERICA("descripcio", 80, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.GENERICA("import", 80, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.GENERICA("descompte", 80, HorizontalAlignment.Center))
-            getDataList.columns.Add(COLUMN.GENERICA("iva", 100, HorizontalAlignment.Center))
+            getDataList.columns.Add(COLUMN.GENERICA("iva", 80, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.GENERICA("total", 100, HorizontalAlignment.Center))
             For Each a In ArticlesComanda
-                getDataList.rows.Add(New ListViewItem(New String() {a.id, a.codi, a.quantitat, a.unitat.codi, a.nom, a.preu, a.preu, a.tIva.codi, a.total}))
+                getDataList.rows.Add(New ListViewItem(New String() {a.id, a.codi, a.quantitat, a.unitat.codi, a.nom, a.preu, a.tpcDescompte, a.tIva.codi, a.total}))
             Next
         End If
         a = Nothing
@@ -35,7 +35,6 @@ Module ModelarticleComanda
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Exists(Function(x) x.id <> obj.id And x.idComanda = obj.idComanda And x.codi = obj.codi)
     End Function
-
     Public Function save(obj As articleComanda) As Integer
         If Not isUpdated() Then objects = getRemoteObjects()
         If obj.id = -1 Then
