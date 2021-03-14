@@ -7,6 +7,7 @@
     Friend Property codiProjecte As String = ""
     Friend Property proveidor As String = ""
     Friend Property idProveidor As Integer
+    Friend Property idContacteProveidor As Integer
     Friend Property contacteProveidor As String = ""
     Friend Property telefonProveidor As String = ""
     Friend Property emailProveidor As String = ""
@@ -74,6 +75,17 @@
             suma = suma + a.total
         Next
         Return suma
+    End Function
+    Public Function getAnyo() As Integer
+        Return Year(dataComanda)
+    End Function
+    Public Function getTotalFiles() As Integer
+        Dim n As Integer = 0, a As ArticleSolicitut
+        For Each a In _articles
+            If a.pos > n Then n = a.pos
+        Next
+        a = Nothing
+        Return n
     End Function
     Public Function toStringCodi() As String
         If _codiProjecte = "" Then

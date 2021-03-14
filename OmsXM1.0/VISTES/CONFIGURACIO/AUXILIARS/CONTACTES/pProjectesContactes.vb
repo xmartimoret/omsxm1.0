@@ -1,10 +1,10 @@
 ﻿Public Class pProjectesContactes
     Private Sub setLanguage()
-        Me.cmdCancelar.Text = IDIOMA.getString("cmdCancelar")
+
     End Sub
     Private Sub pProjectesContactes_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim p As SelectProjecte
-        p = New SelectProjecte(IDIOMA.getString("projectes"), 1)
+        p = New SelectProjecte(IDIOMA.getString("projectesEntreguesContactes"), 1)
         SContainer.Panel1.Controls.Clear()
         p.Dock = DockStyle.Fill
         SContainer.Panel1.Controls.Add(p)
@@ -34,8 +34,6 @@
         entregues.Show()
         Me.SplitContainer1.Panel1.Controls.Add(entregues)
     End Sub
-    Private Sub cmdCancelar_Click(sender As Object, e As EventArgs) Handles cmdCancelar.Click
-        Me.Dispose()
-    End Sub
+
 
 End Class

@@ -185,5 +185,8 @@ Public MustInherit Class LVSubObjects1
         Next
     End Sub
 
+    Private Sub lblTitol_Click(sender As Object, e As EventArgs) Handles lblTitol.Click
+
+    End Sub
 End Class
 

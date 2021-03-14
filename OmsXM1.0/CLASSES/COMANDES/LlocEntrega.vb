@@ -7,6 +7,7 @@ Public Class LlocEntrega
     Public Property provincia As Provincia
     Public Property pais As Pais
     Public Property estat As Boolean
+    Public Property predeterminat As Boolean
     Public Property projectes As List(Of Projecte)
     Public Sub New()
         _pais = New Pais

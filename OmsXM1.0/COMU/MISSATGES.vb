@@ -270,7 +270,7 @@
     Public Sub NEW_USER(p As Integer)
         If p = 0 Then
             MsgBox(IDIOMA.getString("usuariActual") & ": " & IDIOMA.getString("usuariExplotacions"), vbInformation, REALITZADA)
-        ElseIf p = 1
+        ElseIf p = 1 Then
             MsgBox(IDIOMA.getString("usuariActual") & ": " & IDIOMA.getString("usuariAdministrador"), vbInformation, REALITZADA)
         Else
             MsgBox(IDIOMA.getString("usuariActual") & ": " & IDIOMA.getString("usuariSuperAdministrador"), vbInformation, REALITZADA)
@@ -481,5 +481,11 @@
     Public Sub COMANDA_CREADA(p As String)
         Call MsgBox(IDIOMA.getString("comandaCreada") & ": " & p & ". ", MsgBoxStyle.Exclamation, REALITZADA)
     End Sub
-
+    Public Function CONFIRM_EDITAR_COMANDA(empresa As String) As Boolean
+        If MsgBox(IDIOMA.getString("volsf56Comanda") & " " & empresa & "? ", MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+            Return True
+        End If
+        Return False
+    End Function
 End Module
+

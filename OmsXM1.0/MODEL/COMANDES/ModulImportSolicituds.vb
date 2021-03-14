@@ -8,6 +8,7 @@ Module ModulImportSolicituds
     Private Const DEPARTAMENT As String = "departament"
     Private Const ID_PROVEIDOR As String = "idProveidor"
     Private Const PROVEIDOR As String = "proveidor"
+    Private Const ID_CONTACTE_PROVEIDOR As String = "idContacteProveidor"
     Private Const CONTACTE_PROVEIDOR As String = "contacteProveidor"
     Private Const TELEFON_PROEVEIDOR As String = "telefonProveidor"
     Private Const EMAIL_PROVEIDOR As String = "emailProveidor"
@@ -50,7 +51,7 @@ Module ModulImportSolicituds
         If CONFIG.fileExist(f) Then
             c = New SolicitudComanda
 
-            Using fitxer As New IO.StreamReader(f)
+            Using fitxer As New IO.StreamReader(f) ' obre el fitxer 
                 If Not logActual Is Nothing Then logActual.entrades.Add(ModelLog.getEntradaLog(tipusEntradaLog.MIS_LOG, IDIOMA.getString("importDadesDe"), f))
                 Do
                     fila = Split(fitxer.ReadLine(), ";")
@@ -63,21 +64,22 @@ Module ModulImportSolicituds
                             Case DIRECCIO_ENTREGA : c.direccioEntrega = fila(1)
                             Case CONTACTE_ENTREGA : c.contacteEntrega = fila(1)
                             Case TELEFON_ENTREGA : c.telefonEntrega = fila(1)
+                            Case ID_CONTACTE_PROVEIDOR : c.idContacteProveidor = fila(1)
                             Case PROVEIDOR : c.proveidor = fila(1)
                             Case ID_PROVEIDOR : c.idProveidor = fila(1)
                             Case CONTACTE_PROVEIDOR : c.contacteProveidor = fila(1)
                             Case TELEFON_PROEVEIDOR : c.telefonProveidor = fila(1)
                             Case EMAIL_PROVEIDOR : c.emailProveidor = fila(1)
-                            Case SUMINISTRE_MATERIAL : c.suministreMaterial = CBool(fila(1))
-                            Case EMBALATGE : c.embalatge = CBool(fila(1))
-                            Case TRANSPORT : c.transport = CBool(fila(1))
-                            Case MUNTATGE : c.muntatge = CBool(fila(1))
-                            Case SUPERVISIO : c.supervisio = CBool(fila(1))
-                            Case POSTAPUNT : c.postaApunt = CBool(fila(1))
-                            Case PROVES_TALLER : c.provesTaller = CBool(fila(1))
-                            Case PROVES_OBRA : c.provesObra = CBool(fila(1))
-                            Case POSTA_SERVEI : c.postaServei = CBool(fila(1))
-                            Case ALTRES_ALCANS : c.altresAlcans = CBool(fila(1))
+                            Case SUMINISTRE_MATERIAL : c.suministreMaterial = CONFIG.validarBoolean(fila(1))
+                            Case EMBALATGE : c.embalatge = CONFIG.validarBoolean(fila(1))
+                            Case TRANSPORT : c.transport = CONFIG.validarBoolean(fila(1))
+                            Case MUNTATGE : c.muntatge = CONFIG.validarBoolean(fila(1))
+                            Case SUPERVISIO : c.supervisio = CONFIG.validarBoolean(fila(1))
+                            Case POSTAPUNT : c.postaApunt = CONFIG.validarBoolean(fila(1))
+                            Case PROVES_TALLER : c.provesTaller = CONFIG.validarBoolean(fila(1))
+                            Case PROVES_OBRA : c.provesObra = CONFIG.validarBoolean(fila(1))
+                            Case POSTA_SERVEI : c.postaServei = CONFIG.validarBoolean(fila(1))
+                            Case ALTRES_ALCANS : c.altresAlcans = CONFIG.validarBoolean(fila(1))
                             Case DATA_ENTREGA : If IsDate(fila(1)) Then c.dataEntrega = CDate(fila(1))
                             Case DATA_FINALITZACIO : If IsDate(fila(1)) Then c.dataFinalitzacio = CDate(fila(1))
                             Case FORMA_PAGAMENT : c.formaPagament = fila(1)
@@ -162,30 +164,43 @@ Module ModulImportSolicituds
         s = Nothing
     End Function
 
-    Public Sub importFitxers(fitxers As List(Of CodiDescripcio))
-        Dim f As CodiDescripcio, sc As SolicitudComanda
+    'Public sub importFitxers(fitxers As List(Of CodiDescripcio))
+    '    Dim f As CodiDescripcio, sc As SolicitudComanda
+    '    logActual = New Log()
+    '    logActual.titol = IDIOMA.getString("titolLogImportSolicituts")
+    '    logActual.descripcio = IDIOMA.getString("descripcioLogImportSolicituts")
+    '    For Each f In fitxers
+    '        sc = getSolicitudComanda(f.descripcio)
+    '        If Not IsNothing(sc) Then
+    '            logActual.entrades.Add(ModelLog.getEntradaLog(tipusEntradaLog.AVIS_log, IDIOMA.getString("guardaSolicitut"), f.descripcio))
+    '            sc.id = ModelComandaSolicitud.save(sc)
+    '            If sc.id > -1 Then
+    '                logActual.entrades.Add(ModelLog.getEntradaLog(tipusEntradaLog.AVIS_log, IDIOMA.getString("borraFitxerDades"), f.descripcio))
+    '                Call setFitxer(f.descripcio)
+    '            End If
+    '        End If
+    '    Next
 
-        logActual = New Log()
-        logActual.titol = IDIOMA.getString("titolLogImportSolicituts")
-        logActual.descripcio = IDIOMA.getString("descripcioLogImportSolicituts")
-
-
+    '    Call frmIniComanda.setLog(logActual)
+    '    logActual = Nothing
+    'End Function
+    Public Function importFitxers(fitxers As List(Of CodiDescripcio)) As List(Of SolicitudComanda)
+        Dim f As CodiDescripcio, sc As SolicitudComanda, objects As List(Of SolicitudComanda)
+        objects = New List(Of SolicitudComanda)
         For Each f In fitxers
             sc = getSolicitudComanda(f.descripcio)
-
             If Not IsNothing(sc) Then
-                logActual.entrades.Add(ModelLog.getEntradaLog(tipusEntradaLog.AVIS_log, IDIOMA.getString("guardaSolicitut"), f.descripcio))
                 sc.id = ModelComandaSolicitud.save(sc)
                 If sc.id > -1 Then
-                    logActual.entrades.Add(ModelLog.getEntradaLog(tipusEntradaLog.AVIS_log, IDIOMA.getString("borraFitxerDades"), f.descripcio))
                     Call setFitxer(f.descripcio)
+                    objects.Add(sc)
                 End If
             End If
         Next
-
-        Call frmIniComanda.setLog(logActual)
-        logActual = Nothing
-    End Sub
+        f = Nothing
+        sc = Nothing
+        Return objects
+    End Function
     Public Function remove(f As String) As Boolean
         Try
             If CONFIG.fileExist(f) Then

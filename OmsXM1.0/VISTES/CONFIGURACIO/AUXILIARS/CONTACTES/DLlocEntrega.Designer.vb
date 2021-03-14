@@ -41,6 +41,7 @@ Partial Class DLlocEntrega
         Me.lblIdCaption = New System.Windows.Forms.Label()
         Me.txtNom = New System.Windows.Forms.TextBox()
         Me.xecActiu = New OmsXM.XEC()
+        Me.xecPredeterminat = New OmsXM.XEC()
         Me.SuspendLayout()
         '
         'pPais
@@ -48,14 +49,14 @@ Partial Class DLlocEntrega
         Me.pPais.Location = New System.Drawing.Point(462, 214)
         Me.pPais.Name = "pPais"
         Me.pPais.Size = New System.Drawing.Size(232, 29)
-        Me.pPais.TabIndex = 126
+        Me.pPais.TabIndex = 6
         '
         'pProvincia
         '
         Me.pProvincia.Location = New System.Drawing.Point(154, 214)
         Me.pProvincia.Name = "pProvincia"
         Me.pProvincia.Size = New System.Drawing.Size(232, 29)
-        Me.pProvincia.TabIndex = 125
+        Me.pProvincia.TabIndex = 5
         '
         'lblNotes
         '
@@ -75,7 +76,7 @@ Partial Class DLlocEntrega
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
         Me.txtNotes.Size = New System.Drawing.Size(540, 82)
-        Me.txtNotes.TabIndex = 130
+        Me.txtNotes.TabIndex = 9
         '
         'cmdCancelar
         '
@@ -85,7 +86,7 @@ Partial Class DLlocEntrega
         Me.cmdCancelar.Location = New System.Drawing.Point(546, 377)
         Me.cmdCancelar.Name = "cmdCancelar"
         Me.cmdCancelar.Size = New System.Drawing.Size(148, 31)
-        Me.cmdCancelar.TabIndex = 132
+        Me.cmdCancelar.TabIndex = 11
         Me.cmdCancelar.Text = "Cancel"
         '
         'cmdGuardar
@@ -95,7 +96,7 @@ Partial Class DLlocEntrega
         Me.cmdGuardar.Location = New System.Drawing.Point(155, 377)
         Me.cmdGuardar.Name = "cmdGuardar"
         Me.cmdGuardar.Size = New System.Drawing.Size(133, 31)
-        Me.cmdGuardar.TabIndex = 131
+        Me.cmdGuardar.TabIndex = 10
         Me.cmdGuardar.Text = "OK"
         '
         'lblPais
@@ -125,7 +126,7 @@ Partial Class DLlocEntrega
         Me.txtCodiPostal.Location = New System.Drawing.Point(553, 185)
         Me.txtCodiPostal.Name = "txtCodiPostal"
         Me.txtCodiPostal.Size = New System.Drawing.Size(141, 26)
-        Me.txtCodiPostal.TabIndex = 124
+        Me.txtCodiPostal.TabIndex = 4
         '
         'lblCodiPostal
         '
@@ -144,7 +145,7 @@ Partial Class DLlocEntrega
         Me.txtPoblacio.Location = New System.Drawing.Point(154, 182)
         Me.txtPoblacio.Name = "txtPoblacio"
         Me.txtPoblacio.Size = New System.Drawing.Size(232, 26)
-        Me.txtPoblacio.TabIndex = 123
+        Me.txtPoblacio.TabIndex = 3
         '
         'lblPoblacio
         '
@@ -174,7 +175,7 @@ Partial Class DLlocEntrega
         Me.txtDireccio.Multiline = True
         Me.txtDireccio.Name = "txtDireccio"
         Me.txtDireccio.Size = New System.Drawing.Size(539, 107)
-        Me.txtDireccio.TabIndex = 122
+        Me.txtDireccio.TabIndex = 2
         '
         'lblNom
         '
@@ -214,7 +215,7 @@ Partial Class DLlocEntrega
         Me.txtNom.Location = New System.Drawing.Point(155, 33)
         Me.txtNom.Name = "txtNom"
         Me.txtNom.Size = New System.Drawing.Size(539, 26)
-        Me.txtNom.TabIndex = 119
+        Me.txtNom.TabIndex = 1
         '
         'xecActiu
         '
@@ -224,15 +225,29 @@ Partial Class DLlocEntrega
         Me.xecActiu.Location = New System.Drawing.Point(154, 252)
         Me.xecActiu.Name = "xecActiu"
         Me.xecActiu.Size = New System.Drawing.Size(59, 22)
-        Me.xecActiu.TabIndex = 129
+        Me.xecActiu.TabIndex = 7
         Me.xecActiu.Text = "Xec1"
         Me.xecActiu.UseVisualStyleBackColor = True
+        '
+        'xecPredeterminat
+        '
+        Me.xecPredeterminat.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.xecPredeterminat.AutoSize = True
+        Me.xecPredeterminat.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.xecPredeterminat.ForeColor = System.Drawing.Color.Black
+        Me.xecPredeterminat.Location = New System.Drawing.Point(550, 249)
+        Me.xecPredeterminat.Name = "xecPredeterminat"
+        Me.xecPredeterminat.Size = New System.Drawing.Size(141, 22)
+        Me.xecPredeterminat.TabIndex = 8
+        Me.xecPredeterminat.Text = "xecPredeterminat"
+        Me.xecPredeterminat.UseVisualStyleBackColor = True
         '
         'DLlocEntrega
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(709, 420)
+        Me.Controls.Add(Me.xecPredeterminat)
         Me.Controls.Add(Me.pPais)
         Me.Controls.Add(Me.pProvincia)
         Me.Controls.Add(Me.xecActiu)
@@ -283,4 +298,5 @@ Partial Class DLlocEntrega
     Friend WithEvents lblId As Label
     Friend WithEvents lblIdCaption As Label
     Friend WithEvents txtNom As TextBox
+    Friend WithEvents xecPredeterminat As XEC
 End Class

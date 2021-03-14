@@ -3,10 +3,10 @@
     Private textToolTip As String
     Private listLLocsEntrega As lstLlocsEntrega
     Private listContactes As lstContactes
-    Friend empresaActual As Empresa
-    Friend projecteActual As Projecte
-    Friend llocActual As LlocEntrega
-    Friend contacteActual As Contacte
+    Private empresaActual As Empresa
+    Private projecteActual As Projecte
+    Private llocActual As LlocEntrega
+    Private contacteActual As Contacte
     Friend Event accioMostrar()
     Friend Event selectObject()
     Friend Event selectProjecte()
@@ -56,11 +56,42 @@
         llargadaPanel = pHeight
         empresaActual = pEmpresa
         projecteActual = pProjecte
-
         Button1.Text = "&" & pTecla
         llocActual = pMagatzem
         contacteActual = pContacte
     End Sub
+    Public Sub New(pHeight As Integer, pTecla As String, pEmpresa As Empresa, pProjecte As Projecte, pMagatzem As LlocEntrega, pContacte As Contacte, pResponsable As String, pDirector As String)
+        InitializeComponent()
+        llargadaPanel = pHeight
+        empresaActual = pEmpresa
+        projecteActual = pProjecte
+        Button1.Text = "&" & pTecla
+        llocActual = pMagatzem
+        contacteActual = pContacte
+        Me.txtDirector.Text = pDirector
+        Me.txtResponsable.Text = pResponsable
+    End Sub
+    Public ReadOnly Property empresa As Empresa
+        Get
+            Return empresaActual
+        End Get
+    End Property
+    Public ReadOnly Property projecte As Projecte
+        Get
+            Return projecteActual
+        End Get
+    End Property
+
+    Public ReadOnly Property contacteProjecte As Contacte
+        Get
+            Return contacteActual
+        End Get
+    End Property
+    Public ReadOnly Property magatzem As LlocEntrega
+        Get
+            Return llocActual
+        End Get
+    End Property
     Private Sub setLanguage()
         Me.lblContacte.Text = IDIOMA.getString("contacte") & ":"
         Me.lblEmpresa.Text = IDIOMA.getString("empresa") & ":"
@@ -96,15 +127,29 @@
         Call validateControls()
     End Sub
     Private Sub setProjecte()
+        Dim pll As projecteEntrega, pc As ProjecteContacte
         projecteActual.magatzems = ModelProjecteEntrega.getObjects(projecteActual.id)
         projecteActual.contactes = ModelProjecteContacte.getObjects(projecteActual.id)
-        If llocActual IsNot Nothing Then If llocActual.id = -1 And projecteActual.magatzems.Count > 0 Then llocActual = ModelLlocEntrega.getObject(projecteActual.magatzems.Item(0).idEntrega)
-        If llocActual Is Nothing Then llocActual = New LlocEntrega
 
+        If llocActual IsNot Nothing Then
+            If llocActual.id = -1 Then
+                pll = projecteActual.getMagatzemPredeterminat
+                If Not IsNothing(pll) Then llocActual = ModelLlocEntrega.getObject(pll.idEntrega)
+            End If
+        End If
+        If llocActual Is Nothing Then llocActual = New LlocEntrega
         listLLocsEntrega = New lstLlocsEntrega(llocActual)
-        If contacteActual IsNot Nothing Then If contacteActual.id = -1 And projecteActual.contactes.Count > 0 Then contacteActual = ModelContacte.getObject(projecteActual.contactes.Item(0).idContacte)
+
+        If contacteActual IsNot Nothing Then
+            If contacteActual.id = -1 And projecteActual.contactes.Count > 0 Then
+                pc = projecteActual.getContactePredeterminat
+                If Not IsNothing(pc) Then contacteActual = ModelContacte.getObject(pc.idContacte)
+            End If
+        End If
+        If contacteActual Is Nothing Then contacteActual = New Contacte
         listContactes = New lstContactes(contacteActual)
         AddHandler listContactes.selectObject, AddressOf setContacte
+
         Me.panelMagatzem.Controls.Clear()
         listLLocsEntrega.Dock = DockStyle.Fill
         Me.panelMagatzem.Controls.Add(listLLocsEntrega)
@@ -114,8 +159,8 @@
         listContactes.Dock = DockStyle.Fill
         Me.PanelContacte.Controls.Add(listContactes)
         Call setContacte()
-        txtResponsable.Text = projecteActual.responsable
-        txtDirector.Text = projecteActual.director
+        If txtResponsable.Text = "" Then txtResponsable.Text = projecteActual.responsable
+        If txtDirector.Text = "" Then txtDirector.Text = projecteActual.director
         Call validateControls()
         RaiseEvent selectProjecte()
     End Sub
@@ -124,6 +169,7 @@
         If Not IsNothing(listLLocsEntrega.obj) Then
             lblDireccio.Text = llocActual.toTarget
         Else
+            llocActual = New LlocEntrega
             lblDireccio.Text = ""
         End If
         RaiseEvent selectObject()
@@ -133,6 +179,7 @@
         If Not IsNothing(listContactes.obj) Then
             lblTelEmail.Text = contacteActual.toTarget
         Else
+            contacteActual = New Contacte
             lblTelEmail.Text = ""
         End If
         RaiseEvent selectObject()
@@ -196,6 +243,7 @@
         Else
             empresaActual = Nothing
             Call setEmpresa()
+            cbProjecte.SelectedIndex = -1
             If lblAccio.Text = " - " Then
                 Call setAccio()
             End If
@@ -222,24 +270,16 @@
             listLLocsEntrega = Nothing
             Me.PanelContacte.Controls.Clear()
             Me.panelMagatzem.Controls.Clear()
-            Me.lblDireccio.Text = ""
-            Me.lblContacte.Text = ""
-            Me.txtResponsable.Text = ""
-            Me.txtDirector.Text = ""
         End If
         Call validateControls()
     End Sub
     Private Sub cbProjecte_TextChanged(sender As Object, e As EventArgs) Handles cbProjecte.TextChanged
         If actualitzar Then
             If cbProjecte.Text = "" Then
-                projecteActual = Nothing
+                projecteActual = New Projecte
                 listLLocsEntrega = Nothing
                 Me.PanelContacte.Controls.Clear()
                 Me.panelMagatzem.Controls.Clear()
-                Me.lblDireccio.Text = ""
-                Me.lblContacte.Text = ""
-                Me.txtResponsable.Text = ""
-                Me.txtDirector.Text = ""
             End If
         End If
     End Sub

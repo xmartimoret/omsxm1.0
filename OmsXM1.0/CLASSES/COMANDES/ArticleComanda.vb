@@ -15,8 +15,8 @@
     End Sub
     Public Sub New(pId As Integer, pIdComanda As Integer, pPos As Integer, pCodi As String, pNom As String)
         Me.id = pId
-        Me.codi = pCodi
-        Me.nom = pNom
+        If Not IsNothing(pCodi) Then Me.codi = pCodi
+        If Not IsNothing(Me.nom) Then Me.nom = pNom
         _idComanda = pIdComanda
         _pos = pPos
         _quantitat = 0
@@ -25,8 +25,8 @@
     End Sub
     Public Sub New(pId As Integer, pIdComanda As Integer, pPos As Integer, pCodi As String, pNom As String, pQuantitat As Double, pUnitat As Unitat, pIva As TipusIva, pPreu As Double)
         Me.id = pId
-        Me.codi = pCodi
-        Me.nom = pNom
+        If Not IsNothing(pCodi) Then Me.codi = pCodi
+        If Not IsNothing(pNom) Then Me.nom = pNom
         _idComanda = pIdComanda
         _pos = pPos
         'estic esborran l'article preu i article. ens caldrà guardar el rpe
@@ -49,6 +49,7 @@
     End Property
     Public ReadOnly Property iva As Double
         Get
+            If tIva Is Nothing Then Return 0
             Return base * (_tIva.impost / 100)
         End Get
     End Property

@@ -15,6 +15,17 @@ Public Class DLlocEntrega
     End Sub
     Public Function getLlocEntrega(pLlocEntrega As LlocEntrega) As LlocEntrega
         LlocEntregaActual = pLlocEntrega
+        xecPredeterminat.Enabled = False
+        Me.ShowDialog()
+        If Me.DialogResult = DialogResult.OK Then
+            Return getData()
+        Else
+            Return Nothing
+        End If
+        Me.Dispose()
+    End Function
+    Public Function getProjectetLlocEntrega(pLlocEntrega As LlocEntrega) As LlocEntrega
+        LlocEntregaActual = pLlocEntrega
         Me.ShowDialog()
         If Me.DialogResult = DialogResult.OK Then
             Return getData()
@@ -35,6 +46,8 @@ Public Class DLlocEntrega
         Me.cmdCancelar.Text = IDIOMA.getString("cmdCancelar")
         Me.cmdGuardar.Text = IDIOMA.getString("cmdGuardar")
         Me.xecActiu.Text = IDIOMA.getString("actiu")
+        Me.xecPredeterminat.Text = IDIOMA.getString("predeterminat")
+
         If LlocEntregaActual.id > -1 Then
             Me.Text = IDIOMA.getString("modificarLlocEntrega") & " " & LlocEntregaActual.ToString
         Else
@@ -64,6 +77,7 @@ Public Class DLlocEntrega
         Me.txtPoblacio.Text = LlocEntregaActual.poblacio
         Me.txtNotes.Text = LlocEntregaActual.notes
         Me.xecActiu.Checked = LlocEntregaActual.estat
+        If xecPredeterminat.Enabled Then Me.xecPredeterminat.Checked = LlocEntregaActual.predeterminat
     End Sub
     'Private Function indexPais() As Integer
 
@@ -85,6 +99,7 @@ Public Class DLlocEntrega
         getData.provincia = provincies.obj
         getData.notes = Me.txtNotes.Text
         getData.estat = Me.xecActiu.Checked
+        getData.predeterminat = Me.xecPredeterminat.Checked
         If getData.pais Is Nothing Then getData.pais = ModelPais.getAuxiliar.getObject(0)
         If getData.provincia Is Nothing Then getData.provincia = ModelProvincia.getAuxiliar.getObject(0)
     End Function
@@ -157,6 +172,7 @@ Public Class DLlocEntrega
         getelements.Add(pProvincia)
         getelements.Add(pPais)
         getelements.Add(xecActiu)
+        getelements.Add(xecPredeterminat)
         getelements.Add(txtNotes)
         getelements.Add(cmdGuardar)
         getelements.Add(cmdCancelar)

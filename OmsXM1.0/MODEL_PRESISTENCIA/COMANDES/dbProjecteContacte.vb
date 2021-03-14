@@ -3,6 +3,7 @@ Imports System.Data.SqlClient
 Module dbProjecteContacte
     Private Const ID_PROJECTE As String = "idProj"
     Private Const ID_CONTACTE As String = "idCont"
+    Private Const PREDETERMINAT As String = "PRED"
     'ACCESSORS CENTRE
     ''' <summary>
     ''' SAVE. Guarda un centre a la base de dades. 
@@ -28,6 +29,12 @@ Module dbProjecteContacte
         Return getObjectsDBF()
     End Function
 
+    Public Function updatePredeterminat(obj As ProjecteContacte) As Boolean
+        If IS_SQLSERVER() Then Return updatePredeterminatSql(obj)
+        updatePredeterminatDBF(obj.idProjecte)
+        Return updatePredeterminatDBF(obj)
+    End Function
+
     'ACCESSORS CENTRE
     ''' <summary>
     ''' SAVE. Guarda un centre a la base de dades. 
@@ -38,10 +45,31 @@ Module dbProjecteContacte
     Private Function insertSql(obj As ProjecteContacte) As Integer
         Dim sc As SqlCommand, i As Integer
         sc = New SqlCommand(" INSERT INTO " & getTable() & " " &
-                            " (" & ID_CONTACTE & ", " & ID_PROJECTE & ")" &
-                            " VALUES(@idContacte,@idProjecte)", DBCONNECT.getConnection)
+                            " (" & ID_CONTACTE & ", " & ID_PROJECTE & ", " & PREDETERMINAT & ")" &
+                            " VALUES(@idContacte,@idProjecte,@predeterminat)", DBCONNECT.getConnection)
         sc.Parameters.Add("@idContacte", SqlDbType.Int).Value = obj.idContacte
         sc.Parameters.Add("@idProjecte", SqlDbType.Int).Value = obj.idProjecte
+        sc.Parameters.Add("@predeterminat", SqlDbType.Bit).Value = obj.predeterminat
+        i = sc.ExecuteNonQuery
+        sc = Nothing
+        If i >= 1 Then
+            Return 1
+        End If
+        Return -1
+    End Function
+    Private Function updatePredeterminatSql(obj As ProjecteContacte) As Integer
+        Dim sc As SqlCommand, i As Integer
+
+        sc = New SqlCommand(" UPDATE " & getTable() & " SET " & PREDETERMINAT & "=@predeterminat WHERE " & ID_PROJECTE & "=@idProjecte", DBCONNECT.getConnection)
+        sc.Parameters.Add("@idProjecte", SqlDbType.Int).Value = obj.idProjecte
+        sc.Parameters.Add("@predeterminat", SqlDbType.Bit).Value = False
+
+        sc = New SqlCommand(" UPDATE " & getTable() & " SET " & PREDETERMINAT & "=@predeterminat WHERE " & ID_PROJECTE & "=@idProjecte AND " & ID_CONTACTE & " =@idContacte", DBCONNECT.getConnection)
+        sc.Parameters.Add("@idContacte", SqlDbType.Int).Value = obj.idContacte
+        sc.Parameters.Add("@idProjecte", SqlDbType.Int).Value = obj.idProjecte
+        sc.Parameters.Add("@predeterminat", SqlDbType.Bit).Value = True
+
+
         i = sc.ExecuteNonQuery
         sc = Nothing
         If i >= 1 Then
@@ -87,7 +115,7 @@ Module dbProjecteContacte
         sc = New SqlCommand("SELECT * FROM " & getTable(), getConnection)
         sdr = sc.ExecuteReader
         While sdr.Read()
-            pr = New ProjecteContacte(sdr(ID_PROJECTE), sdr(ID_CONTACTE))
+            pr = New ProjecteContacte(sdr(ID_PROJECTE), sdr(ID_CONTACTE), sdr(PREDETERMINAT))
             getObjectsSql.Add(pr)
         End While
         sdr.Close()
@@ -109,11 +137,54 @@ Module dbProjecteContacte
         With sc
             .ActiveConnection = DBCONNECT.getConnectionDbf
             .CommandText = " INSERT INTO " & getTable() & " " &
-                            " (" & ID_CONTACTE & ", " & ID_PROJECTE & ")" &
-                            " VALUES(?,?)"
+                            " (" & ID_CONTACTE & ", " & ID_PROJECTE & ", " & PREDETERMINAT & ")" &
+                            " VALUES(?,?,?)"
             .Parameters.Append(ADOPARAM.ToInt(obj.idContacte))
             .Parameters.Append(ADOPARAM.ToInt(obj.idProjecte))
+            .Parameters.Append(ADOPARAM.toBool(obj.predeterminat))
 
+        End With
+        Try
+            sc.Execute()
+            Return 1
+        Catch ex As Exception
+            Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
+            Return -1
+        Finally
+            sc = Nothing
+        End Try
+    End Function
+
+    Private Function updatePredeterminatDBF(idProjecte As Integer) As Integer
+        Dim sc As ADODB.Command
+        sc = New ADODB.Command
+        With sc
+            .ActiveConnection = DBCONNECT.getConnectionDbf
+            .CommandText = " UPDATE " & getTable() & " " &
+                            " SET " & PREDETERMINAT & "=? WHERE " & ID_PROJECTE & "=?"
+            .Parameters.Append(ADOPARAM.toBool(False))
+            .Parameters.Append(ADOPARAM.ToInt(idProjecte))
+        End With
+        Try
+            sc.Execute()
+            Return 1
+        Catch ex As Exception
+            Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
+            Return -1
+        Finally
+            sc = Nothing
+        End Try
+    End Function
+    Private Function updatePredeterminatDBF(obj As ProjecteContacte) As Integer
+        Dim sc As ADODB.Command
+        sc = New ADODB.Command
+        With sc
+            .ActiveConnection = DBCONNECT.getConnectionDbf
+            .CommandText = " UPDATE " & getTable() & " " &
+                            " SET " & PREDETERMINAT & "=? WHERE " & ID_PROJECTE & "=? AND " & ID_CONTACTE & "=?"
+            .Parameters.Append(ADOPARAM.toBool(True))
+            .Parameters.Append(ADOPARAM.ToInt(obj.idProjecte))
+            .Parameters.Append(ADOPARAM.ToInt(obj.idContacte))
         End With
         Try
             sc.Execute()
@@ -178,7 +249,7 @@ Module dbProjecteContacte
         getObjectsDBF = New List(Of ProjecteContacte)
         rc.Open("SELECT * FROM " & getTable(), DBCONNECT.getConnectionDbf)
         While Not rc.EOF
-            pc = New ProjecteContacte(rc(ID_PROJECTE).Value, rc(ID_CONTACTE).Value)
+            pc = New ProjecteContacte(rc(ID_PROJECTE).Value, rc(ID_CONTACTE).Value, rc(PREDETERMINAT).Value)
             getObjectsDBF.Add(pc)
             rc.MoveNext()
         End While

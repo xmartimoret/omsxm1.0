@@ -11,6 +11,7 @@
     Public Property telefon As String
     Public Property email As String
     Public Property projectes As List(Of Projecte)
+    Public Property predeterminat As Boolean
     Public Sub New()
         _pais = New Pais
         _projectes = New List(Of Projecte)

@@ -44,9 +44,10 @@ Partial Class LVSubObjects1
         Me.Label1.BackColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.Label1.Font = New System.Drawing.Font("Arial Narrow", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(7, -5)
+        Me.Label1.Location = New System.Drawing.Point(9, -6)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(592, 2)
+        Me.Label1.Size = New System.Drawing.Size(789, 2)
         Me.Label1.TabIndex = 39
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -56,9 +57,10 @@ Partial Class LVSubObjects1
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblTitol.Font = New System.Drawing.Font("Arial Narrow", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTitol.ForeColor = System.Drawing.Color.Black
-        Me.lblTitol.Location = New System.Drawing.Point(169, 10)
+        Me.lblTitol.Location = New System.Drawing.Point(225, 12)
+        Me.lblTitol.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblTitol.Name = "lblTitol"
-        Me.lblTitol.Size = New System.Drawing.Size(419, 24)
+        Me.lblTitol.Size = New System.Drawing.Size(559, 30)
         Me.lblTitol.TabIndex = 38
         Me.lblTitol.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -67,9 +69,10 @@ Partial Class LVSubObjects1
         Me.lblCount.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblCount.Font = New System.Drawing.Font("Arial", 10.0!)
         Me.lblCount.ForeColor = System.Drawing.Color.Blue
-        Me.lblCount.Location = New System.Drawing.Point(410, 395)
+        Me.lblCount.Location = New System.Drawing.Point(547, 486)
+        Me.lblCount.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblCount.Name = "lblCount"
-        Me.lblCount.Size = New System.Drawing.Size(178, 21)
+        Me.lblCount.Size = New System.Drawing.Size(237, 26)
         Me.lblCount.TabIndex = 35
         Me.lblCount.Text = "lblCount"
         Me.lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -88,10 +91,11 @@ Partial Class LVSubObjects1
         Me.lstData.FullRowSelect = True
         Me.lstData.GridLines = True
         Me.lstData.HideSelection = False
-        Me.lstData.Location = New System.Drawing.Point(3, 63)
+        Me.lstData.Location = New System.Drawing.Point(4, 78)
+        Me.lstData.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.lstData.MultiSelect = False
         Me.lstData.Name = "lstData"
-        Me.lstData.Size = New System.Drawing.Size(585, 329)
+        Me.lstData.Size = New System.Drawing.Size(779, 404)
         Me.lstData.TabIndex = 33
         Me.lstData.UseCompatibleStateImageBehavior = False
         Me.lstData.View = System.Windows.Forms.View.Details
@@ -102,18 +106,20 @@ Partial Class LVSubObjects1
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtFiltrar.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFiltrar.ForeColor = System.Drawing.Color.Red
-        Me.txtFiltrar.Location = New System.Drawing.Point(92, 37)
+        Me.txtFiltrar.Location = New System.Drawing.Point(123, 46)
+        Me.txtFiltrar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtFiltrar.Name = "txtFiltrar"
-        Me.txtFiltrar.Size = New System.Drawing.Size(496, 22)
+        Me.txtFiltrar.Size = New System.Drawing.Size(660, 22)
         Me.txtFiltrar.TabIndex = 41
         '
         'lblFiltrar
         '
         Me.lblFiltrar.AutoSize = True
         Me.lblFiltrar.ForeColor = System.Drawing.Color.Red
-        Me.lblFiltrar.Location = New System.Drawing.Point(6, 42)
+        Me.lblFiltrar.Location = New System.Drawing.Point(8, 52)
+        Me.lblFiltrar.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblFiltrar.Name = "lblFiltrar"
-        Me.lblFiltrar.Size = New System.Drawing.Size(80, 13)
+        Me.lblFiltrar.Size = New System.Drawing.Size(98, 16)
         Me.lblFiltrar.TabIndex = 42
         Me.lblFiltrar.Text = "FILTRAR PER:"
         '
@@ -121,9 +127,10 @@ Partial Class LVSubObjects1
         '
         Me.cmdActualitzar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.cmdActualitzar.Image = Global.OmsXM.My.Resources.Resources.actualitzar
-        Me.cmdActualitzar.Location = New System.Drawing.Point(110, 5)
+        Me.cmdActualitzar.Location = New System.Drawing.Point(147, 6)
+        Me.cmdActualitzar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmdActualitzar.Name = "cmdActualitzar"
-        Me.cmdActualitzar.Size = New System.Drawing.Size(26, 28)
+        Me.cmdActualitzar.Size = New System.Drawing.Size(35, 34)
         Me.cmdActualitzar.TabIndex = 47
         Me.cmdActualitzar.UseVisualStyleBackColor = True
         '
@@ -131,9 +138,10 @@ Partial Class LVSubObjects1
         '
         Me.cmdImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.cmdImprimir.Image = Global.OmsXM.My.Resources.Resources.botoImprimir
-        Me.cmdImprimir.Location = New System.Drawing.Point(140, 6)
+        Me.cmdImprimir.Location = New System.Drawing.Point(187, 7)
+        Me.cmdImprimir.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmdImprimir.Name = "cmdImprimir"
-        Me.cmdImprimir.Size = New System.Drawing.Size(26, 28)
+        Me.cmdImprimir.Size = New System.Drawing.Size(35, 34)
         Me.cmdImprimir.TabIndex = 46
         Me.cmdImprimir.UseVisualStyleBackColor = True
         '
@@ -141,9 +149,10 @@ Partial Class LVSubObjects1
         '
         Me.cmdEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.cmdEliminar.Image = Global.OmsXM.My.Resources.Resources.BotoBorrar
-        Me.cmdEliminar.Location = New System.Drawing.Point(61, 6)
+        Me.cmdEliminar.Location = New System.Drawing.Point(81, 7)
+        Me.cmdEliminar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmdEliminar.Name = "cmdEliminar"
-        Me.cmdEliminar.Size = New System.Drawing.Size(26, 28)
+        Me.cmdEliminar.Size = New System.Drawing.Size(35, 34)
         Me.cmdEliminar.TabIndex = 45
         Me.cmdEliminar.UseVisualStyleBackColor = True
         '
@@ -151,9 +160,10 @@ Partial Class LVSubObjects1
         '
         Me.cmdModificar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.cmdModificar.Image = Global.OmsXM.My.Resources.Resources.BotoModificar
-        Me.cmdModificar.Location = New System.Drawing.Point(32, 6)
+        Me.cmdModificar.Location = New System.Drawing.Point(43, 7)
+        Me.cmdModificar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmdModificar.Name = "cmdModificar"
-        Me.cmdModificar.Size = New System.Drawing.Size(26, 28)
+        Me.cmdModificar.Size = New System.Drawing.Size(35, 34)
         Me.cmdModificar.TabIndex = 44
         Me.cmdModificar.UseVisualStyleBackColor = True
         '
@@ -161,15 +171,16 @@ Partial Class LVSubObjects1
         '
         Me.cmdAfegir.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.cmdAfegir.Image = Global.OmsXM.My.Resources.Resources.BotoNou
-        Me.cmdAfegir.Location = New System.Drawing.Point(3, 6)
+        Me.cmdAfegir.Location = New System.Drawing.Point(4, 7)
+        Me.cmdAfegir.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmdAfegir.Name = "cmdAfegir"
-        Me.cmdAfegir.Size = New System.Drawing.Size(26, 28)
+        Me.cmdAfegir.Size = New System.Drawing.Size(35, 34)
         Me.cmdAfegir.TabIndex = 43
         Me.cmdAfegir.UseVisualStyleBackColor = True
         '
         'LVSubObjects1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.cmdActualitzar)
         Me.Controls.Add(Me.cmdImprimir)
@@ -182,8 +193,9 @@ Partial Class LVSubObjects1
         Me.Controls.Add(Me.lblTitol)
         Me.Controls.Add(Me.lblCount)
         Me.Controls.Add(Me.lstData)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "LVSubObjects1"
-        Me.Size = New System.Drawing.Size(591, 416)
+        Me.Size = New System.Drawing.Size(788, 512)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

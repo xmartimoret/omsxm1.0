@@ -519,7 +519,7 @@ Module dbSolicitudComanda
             c.dataFinalitzacio = rc(DATA_FINALITZACIO).Value
             c.departament = Trim(CONFIG.validarNull(rc(DEPARTAMENT).Value))
             c.direccioEntrega = Trim(CONFIG.validarNull(rc(DIRECCIO_ENTREGA).Value))
-            c.emailProveidor = CONFIG.validarNull(Trim(rc(EMAIL_PROVEIDOR).Value))
+            c.emailProveidor = Trim(CONFIG.validarNull(rc(EMAIL_PROVEIDOR).Value))
             c.embalatge = rc(EMBALATGE).Value
             c.empresa = Trim(CONFIG.validarNull(rc(EMPRESA).Value))
             c.formaPagament = Trim(CONFIG.validarNull(rc(FORMA_PAGAMENT).Value))

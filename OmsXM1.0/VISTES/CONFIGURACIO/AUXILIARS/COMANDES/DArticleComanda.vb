@@ -30,10 +30,12 @@ Public Class DArticleComanda
         Call setData()
         Me.ShowDialog()
         If Me.DialogResult = DialogResult.OK Then
-            Return getData()
+            getNewArticle = getData()
         Else
-            Return Nothing
+            getNewArticle = Nothing
         End If
+
+        Me.Close()
     End Function
     Public Function getArticle(pArticle As articleComanda, pProveidor As Proveidor) As articleComanda
         articleComandaActual = pArticle
@@ -50,10 +52,12 @@ Public Class DArticleComanda
         Call setData()
         Me.ShowDialog()
         If Me.DialogResult = DialogResult.OK Then
-            Return getData()
+            getArticle = getData()
         Else
-            Return Nothing
+            getArticle = Nothing
         End If
+
+        Me.Close()
     End Function
     Private Sub setLanguage()
         Me.lblCaptionTotal.Text = IDIOMA.getString("total")
@@ -84,10 +88,10 @@ Public Class DArticleComanda
         Me.txtCodi.Text = articleComandaActual.codi
         listUnitats.obj = articleComandaActual.unitat
         listIva.obj = articleComandaActual.tIva
+        Me.txtQuantitat.Text = articleComandaActual.quantitat
         Me.txtDescompte.Text = articleComandaActual.tpcDescompte
         Me.txtDescripcio.Text = articleComandaActual.nom
         Me.txtPreu.Text = articleComandaActual.preu
-        'Call setInfoPreu(articleComandaActual.preu)
         actualitzar = True
     End Sub
     Private Sub setTotal()
@@ -163,16 +167,14 @@ Public Class DArticleComanda
                 ac.tpcDescompte = ap.descompte
             End If
             a = Nothing
-                Return ac
-            End If
-            Return Nothing
+            Return ac
+        End If
+        Return Nothing
     End Function
-
     Private Sub cmdCercador_Click(sender As Object, e As EventArgs) Handles cmdCercador.Click
         articleComandaActual = getArticle(txtCodi.Text)
         If articleComandaActual IsNot Nothing Then Call setData()
     End Sub
-
 
     Private Sub txtPreu_TextChanged(sender As Object, e As EventArgs) Handles txtPreu.TextChanged
         If actualitzar Then Call setTotal()
@@ -182,7 +184,8 @@ Public Class DArticleComanda
         If actualitzar Then Call setTotal()
     End Sub
 
-    Private Sub DArticleComanda_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+    Protected Overrides Sub Finalize()
+        MyBase.Finalize()
+        Me.Dispose()
     End Sub
 End Class

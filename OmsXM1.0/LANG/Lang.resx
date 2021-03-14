@@ -263,31 +263,31 @@
   </data>
   <data name="mnuConfigEmpreses_Caption" xml:space="preserve">
     <value>EMPRESES</value>
-    <comment>mnuConfig</comment>
+    <comment>menu</comment>
   </data>
   <data name="mnuConfigProjectes_Caption" xml:space="preserve">
     <value>PROJECTES</value>
-    <comment>mnuConfig</comment>
+    <comment>menu</comment>
   </data>
   <data name="mnuConfigServerConnect_Caption" xml:space="preserve">
     <value>SERVIDOR DADES (SQL_SERVER)</value>
-    <comment>mnuConfig</comment>
+    <comment>menu</comment>
   </data>
   <data name="mnuConfigServerContaplus_Caption" xml:space="preserve">
     <value>RUTA EMPRESES CONTAPLUS (CTBLD)</value>
-    <comment>mnuConfig</comment>
+    <comment>menu</comment>
   </data>
   <data name="mnuConfigServerDirectori_Caption" xml:space="preserve">
     <value>DIRECTORI SERVIDOR DADES</value>
-    <comment>mnuConfig</comment>
+    <comment>menu</comment>
   </data>
   <data name="mnuConfigServer_Caption" xml:space="preserve">
     <value>CONFIGURACIÓ SERVIDORS DADES</value>
-    <comment>mnuConfig</comment>
+    <comment>menu</comment>
   </data>
   <data name="mnuConfigSubctes_Caption" xml:space="preserve">
     <value>SUBCOMPTES</value>
-    <comment>mnuConfig</comment>
+    <comment>menu</comment>
   </data>
   <data name="mnuConfig_Caption" xml:space="preserve">
     <value>CONFIGURACIÓ</value>
@@ -2832,7 +2832,7 @@
   </data>
   <data name="mnuAxiliars" xml:space="preserve">
     <value>AUXILIARS</value>
-    <comment>Menu</comment>
+    <comment>menu</comment>
   </data>
   <data name="paisos" xml:space="preserve">
     <value>PAISOS</value>
@@ -3002,7 +3002,7 @@
   </data>
   <data name="nomFiscal" xml:space="preserve">
     <value>NOM FISCAL</value>
-    <comment>v</comment>
+    <comment>missatges</comment>
   </data>
   <data name="bloquejat" xml:space="preserve">
     <value>BLOQUEJAT</value>
@@ -3022,7 +3022,7 @@
   </data>
   <data name="missatgeEliminarContacteProveidor" xml:space="preserve">
     <value>-. VOLS ELIMINAR EL CONTACTE ACTUAL?</value>
-    <comment>v</comment>
+    <comment>missatges</comment>
   </data>
   <data name="missatgeEliminarProveidor" xml:space="preserve">
     <value>-. VOLS ELIMINAR EL PROVEIDOR ACTUAL?</value>
@@ -3602,5 +3602,121 @@
   </data>
   <data name="obres" xml:space="preserve">
     <value>OBRES</value>
+  </data>
+  <data name="mnuAplicacio" xml:space="preserve">
+    <value>APLICACIO</value>
+    <comment>menu</comment>
+  </data>
+  <data name="volsf56Comanda" xml:space="preserve">
+    <value>- VOLS PASSAR LA SOLICITUT DE COMANDA A COMANDA EN FERM DE </value>
+    <comment>pSolicitudComanda</comment>
+  </data>
+  <data name="mnuEditarSolicitutF56" xml:space="preserve">
+    <value>EDITAR/OBRIR</value>
+    <comment>frmIniComanda</comment>
+  </data>
+  <data name="mnuSolicitutComanda" xml:space="preserve">
+    <value>SOLICITUT F56</value>
+    <comment>frmIniComanda</comment>
+  </data>
+  <data name="amagarF56" xml:space="preserve">
+    <value>AMAGAR F56</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="veureF56" xml:space="preserve">
+    <value>VEURE F56</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="comandesEdicio" xml:space="preserve">
+    <value>COMANDES EN EDICIO</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="errEmpresaComanda" xml:space="preserve">
+    <value>ERR. CAL SELECCIONAR UNA EMRPESA. NO ES POT CREAR UNA COMANDA SENSE SELECCIONAR UNA EMREPSA. </value>
+    <comment>dNovaComanda</comment>
+  </data>
+  <data name="editarF56" xml:space="preserve">
+    <value>EDITAR SOLICITUTS DE COMANDA</value>
+  </data>
+  <data name="importarF56" xml:space="preserve">
+    <value>IMPORTAR SOLICITUTS DE COMANDA</value>
+  </data>
+  <data name="comandes" xml:space="preserve">
+    <value>COMANDES</value>
+    <comment>frmIni</comment>
+  </data>
+  <data name="errPdfClose" xml:space="preserve">
+    <value>ERR. NO ES POT GENERAR EL FITXER PDF. ESTÀ OBERT. !!!</value>
+    <comment>ERRORS</comment>
+  </data>
+  <data name="veureComandaEdicio" xml:space="preserve">
+    <value>VEURE COMANDES EN EDICIO</value>
+    <comment>frmIni</comment>
+  </data>
+  <data name="veureComandaEnviar" xml:space="preserve">
+    <value>VEURE COMANDES A ENVIAR</value>
+    <comment>frmIni</comment>
+  </data>
+  <data name="contactesProjecte" xml:space="preserve">
+    <value>CONTACTES-PROJECTE</value>
+    <comment>frmIniComanda</comment>
+  </data>
+  <data name="magatzemsLlocsEntrega" xml:space="preserve">
+    <value>MAGATZEMS-(LLOCS ENTREGA)</value>
+    <comment>frmIniComanda</comment>
+  </data>
+  <data name="String5" xml:space="preserve">
+    <value>CONTACTES</value>
+    <comment>frmIniComanda</comment>
+  </data>
+  <data name="predeterminat" xml:space="preserve">
+    <value>PREDETERMINAT</value>
+    <comment>comu</comment>
+  </data>
+  <data name="projectesEntreguesContactes" xml:space="preserve">
+    <value>PROJECTES--&gt; (LLOCS ENTREGA I CONTACTES)</value>
+    <comment>pProjectesContactes</comment>
+  </data>
+  <data name="alcancePedido" xml:space="preserve">
+    <value>ABAST SOL.LICITUT</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="dataEquips" xml:space="preserve">
+    <value>DATA EQUIPS</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="documentacioAportada" xml:space="preserve">
+    <value> DOCUMENTACIO APORTADA</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="magatzemLlocEntrega" xml:space="preserve">
+    <value>MAGATZEM-LLOC ENTREGA</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="oferta1" xml:space="preserve">
+    <value>OFERTA 1</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="oferta2" xml:space="preserve">
+    <value>OFERTA 2</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="oferta3" xml:space="preserve">
+    <value>OFERTA 3</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="postaApunt" xml:space="preserve">
+    <value>POSTA A PUNT</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="suministreMaterial" xml:space="preserve">
+    <value>SUBMINISTRE DE MATERIAL</value>
+  </data>
+  <data name="supervisio" xml:space="preserve">
+    <value>SUPERVISIO</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="transport" xml:space="preserve">
+    <value>TRANSPORT</value>
   </data>
 </root>

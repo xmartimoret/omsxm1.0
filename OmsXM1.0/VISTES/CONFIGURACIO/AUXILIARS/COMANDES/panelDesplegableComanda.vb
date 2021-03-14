@@ -48,16 +48,14 @@
         Me.lblOferta.Text = IDIOMA.getString("numOferta")
         Me.lblRetencio.Text = IDIOMA.getString("retencio")
         Me.lblPorts.Text = IDIOMA.getString("ports")
-        Me.lblSerie.Text = IDIOMA.getString("serie")
     End Sub
     Private Sub setData()
-        Me.lblComanda.Text = comandaActual.codi
+        Me.lblComanda.Text = comandaActual.ToStringCodi
         Me.txtPorts.Text = comandaActual.ports
         Me.txtDadesBancaries.Text = comandaActual.dadesBancaries
         Me.txtOferta.Text = comandaActual.nOferta
         Me.txtRetencio.Text = comandaActual.retencio
         Me.txtInterAval.Text = comandaActual.interAval
-        Me.txtSerie.Text = comandaActual.serie
     End Sub
     Private Sub PanelDadesComanda_Load(sender As Object, e As EventArgs) Handles Me.Load
         Call setLanguage()
@@ -242,13 +240,4 @@
             listCondicionsPagament.obj = value
         End Set
     End Property
-    Public Property serie As String
-        Get
-            Return txtSerie.Text
-        End Get
-        Set(value As String)
-            txtSerie.Text = value
-        End Set
-    End Property
-
 End Class

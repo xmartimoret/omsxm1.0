@@ -48,6 +48,7 @@ Partial Class DContacte
         Me.lblCognoms = New System.Windows.Forms.Label()
         Me.txtCognom1 = New System.Windows.Forms.TextBox()
         Me.txtCognom2 = New System.Windows.Forms.TextBox()
+        Me.xecPredeterminat = New OmsXM.XEC()
         Me.SuspendLayout()
         '
         'lblNotes
@@ -68,7 +69,7 @@ Partial Class DContacte
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
         Me.txtNotes.Size = New System.Drawing.Size(540, 82)
-        Me.txtNotes.TabIndex = 100
+        Me.txtNotes.TabIndex = 12
         '
         'cmdCancelar
         '
@@ -78,7 +79,7 @@ Partial Class DContacte
         Me.cmdCancelar.Location = New System.Drawing.Point(553, 469)
         Me.cmdCancelar.Name = "cmdCancelar"
         Me.cmdCancelar.Size = New System.Drawing.Size(148, 31)
-        Me.cmdCancelar.TabIndex = 102
+        Me.cmdCancelar.TabIndex = 14
         Me.cmdCancelar.Text = "Cancel"
         '
         'cmdGuardar
@@ -88,7 +89,7 @@ Partial Class DContacte
         Me.cmdGuardar.Location = New System.Drawing.Point(161, 469)
         Me.cmdGuardar.Name = "cmdGuardar"
         Me.cmdGuardar.Size = New System.Drawing.Size(133, 31)
-        Me.cmdGuardar.TabIndex = 101
+        Me.cmdGuardar.TabIndex = 13
         Me.cmdGuardar.Text = "OK"
         '
         'txtemail
@@ -98,7 +99,7 @@ Partial Class DContacte
         Me.txtemail.Location = New System.Drawing.Point(161, 313)
         Me.txtemail.Name = "txtemail"
         Me.txtemail.Size = New System.Drawing.Size(540, 26)
-        Me.txtemail.TabIndex = 98
+        Me.txtemail.TabIndex = 9
         '
         'lblemail
         '
@@ -117,7 +118,7 @@ Partial Class DContacte
         Me.txtTelefon1.Location = New System.Drawing.Point(161, 280)
         Me.txtTelefon1.Name = "txtTelefon1"
         Me.txtTelefon1.Size = New System.Drawing.Size(232, 26)
-        Me.txtTelefon1.TabIndex = 96
+        Me.txtTelefon1.TabIndex = 8
         '
         'lblTel1
         '
@@ -156,7 +157,7 @@ Partial Class DContacte
         Me.txtCodiPostal.Location = New System.Drawing.Point(560, 219)
         Me.txtCodiPostal.Name = "txtCodiPostal"
         Me.txtCodiPostal.Size = New System.Drawing.Size(141, 26)
-        Me.txtCodiPostal.TabIndex = 93
+        Me.txtCodiPostal.TabIndex = 5
         '
         'lblCodiPostal
         '
@@ -175,7 +176,7 @@ Partial Class DContacte
         Me.txtPoblacio.Location = New System.Drawing.Point(161, 216)
         Me.txtPoblacio.Name = "txtPoblacio"
         Me.txtPoblacio.Size = New System.Drawing.Size(232, 26)
-        Me.txtPoblacio.TabIndex = 92
+        Me.txtPoblacio.TabIndex = 4
         '
         'lblPoblacio
         '
@@ -252,7 +253,7 @@ Partial Class DContacte
         Me.pProvincia.Location = New System.Drawing.Point(161, 248)
         Me.pProvincia.Name = "pProvincia"
         Me.pProvincia.Size = New System.Drawing.Size(232, 29)
-        Me.pProvincia.TabIndex = 94
+        Me.pProvincia.TabIndex = 6
         '
         'xecActiu
         '
@@ -262,7 +263,7 @@ Partial Class DContacte
         Me.xecActiu.Location = New System.Drawing.Point(161, 345)
         Me.xecActiu.Name = "xecActiu"
         Me.xecActiu.Size = New System.Drawing.Size(59, 22)
-        Me.xecActiu.TabIndex = 99
+        Me.xecActiu.TabIndex = 10
         Me.xecActiu.Text = "Xec1"
         Me.xecActiu.UseVisualStyleBackColor = True
         '
@@ -271,7 +272,7 @@ Partial Class DContacte
         Me.pPais.Location = New System.Drawing.Point(469, 248)
         Me.pPais.Name = "pPais"
         Me.pPais.Size = New System.Drawing.Size(232, 29)
-        Me.pPais.TabIndex = 95
+        Me.pPais.TabIndex = 7
         '
         'lblCognoms
         '
@@ -301,11 +302,25 @@ Partial Class DContacte
         Me.txtCognom2.Size = New System.Drawing.Size(275, 26)
         Me.txtCognom2.TabIndex = 2
         '
+        'xecPredeterminat
+        '
+        Me.xecPredeterminat.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.xecPredeterminat.AutoSize = True
+        Me.xecPredeterminat.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.xecPredeterminat.ForeColor = System.Drawing.Color.Black
+        Me.xecPredeterminat.Location = New System.Drawing.Point(553, 345)
+        Me.xecPredeterminat.Name = "xecPredeterminat"
+        Me.xecPredeterminat.Size = New System.Drawing.Size(141, 22)
+        Me.xecPredeterminat.TabIndex = 11
+        Me.xecPredeterminat.Text = "xecPredeterminat"
+        Me.xecPredeterminat.UseVisualStyleBackColor = True
+        '
         'DContacte
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(713, 512)
+        Me.Controls.Add(Me.xecPredeterminat)
         Me.Controls.Add(Me.txtCognom2)
         Me.Controls.Add(Me.lblCognoms)
         Me.Controls.Add(Me.txtCognom1)
@@ -370,4 +385,5 @@ Partial Class DContacte
     Friend WithEvents lblCognoms As Label
     Friend WithEvents txtCognom1 As TextBox
     Friend WithEvents txtCognom2 As TextBox
+    Friend WithEvents xecPredeterminat As XEC
 End Class

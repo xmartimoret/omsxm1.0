@@ -37,6 +37,8 @@ Module ModelLlocEntrega
             objectes(i) = ll
             i = i + 1
         Next
+        objectes(i) = New LlocEntrega
+        i = i + 1
         For Each obj In temp
             If Not preferits.Exists(Function(x) x.idEntrega = obj.id) Then
                 objectes(i) = obj

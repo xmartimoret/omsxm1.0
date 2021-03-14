@@ -55,6 +55,7 @@ Module CONFIG_FILE
         ANY_BUDGET = 39
         IMPORT_BUDGET = 40
         TIPUS_SERVER = 41
+        WIDHT_SPLIT_COMANDES = 42
     End Enum
     Private Sub getValues()
         Try
@@ -71,15 +72,18 @@ Module CONFIG_FILE
         End Try
     End Sub
     Private Function getValue(key As String) As String
-        Dim result As String = ""
+        Dim result As String = "", a As Integer
         Try
             Dim config_file = ConfigurationManager.OpenExeConfiguration(Application.StartupPath & "\" & System.IO.Path.GetFileName(Application.ExecutablePath))
             'Dim config_file = ConfigurationManager.ExeConfiguration(CONFIG.getDirectoriAplicacio & "\" & System.IO.Path.GetFileName(Application.ExecutablePath))
             Dim appSettins = config_file.AppSettings
             Dim settings = config_file.AppSettings.Settings
             'result = appSettins(key)
-            result = settings(key).Value
-            If IsNothing(result) Then result = ""
+            If IsNothing(settings(key)) Then
+                result = ""
+            Else
+                result = settings(key).Value
+            End If
         Catch e As Exception
             Call setValue(key, "")
             Return ""

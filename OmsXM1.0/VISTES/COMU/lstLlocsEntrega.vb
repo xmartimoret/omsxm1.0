@@ -23,8 +23,6 @@
         actualitzar = True
         Call setData()
         Call validateControls()
-        ' Add any initialization after the InitializeComponent() call.
-
     End Sub
 
     Private Sub setData()

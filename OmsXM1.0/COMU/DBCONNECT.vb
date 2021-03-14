@@ -58,7 +58,8 @@ Module DBCONNECT
     Private Const TAULA_PROJECTE_ENTREGA As String = "PROJENT"
     Private Const TAULA_COMANDA As String = "COMANDA"
     Private Const TAULA_ARTICLE_COMANDA As String = "CART"
-
+    Private Const TAULA_COMANDA_EDICIO As String = "COMANDAE"
+    Private Const TAULA_ARTICLE_COMANDA_EDICIO As String = "CARTE"
     ' FUNCTION: CONNECT
     '   DESCRIPTION: Per crear una connexió a una base de dades DBF
     '   PARAM: Ruta del directori on estan ubicades les taules de la DBF
@@ -185,6 +186,12 @@ Module DBCONNECT
     End Function
     Public Function getTaulaComanda() As String
         Return TAULA_COMANDA
+    End Function
+    Public Function getTaulaArticleComandaEnEdicio() As String
+        Return TAULA_ARTICLE_COMANDA_EDICIO
+    End Function
+    Public Function getTaulaComandaEdicio() As String
+        Return TAULA_COMANDA_EDICIO
     End Function
     Public Function getTaulaArticle() As String
         Return TAULA_ARTICLE

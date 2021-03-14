@@ -73,6 +73,13 @@ Module ModelArticle
         If u IsNot Nothing Then getCodiUnitat = u.codi
         u = Nothing
     End Function
+    Public Function getTipusIva(codi As String) As TipusIva
+        Dim a As article
+        If Not isUpdated() Then objects = getRemoteObjects()
+        a = objects.Find(Function(x) StrComp(x.codi, codi, CompareMethod.Text) = 0)
+        If a IsNot Nothing Then Return a.iva
+        Return New TipusIva
+    End Function
     Public Function getNom(id As Integer) As String
         Dim a As article
         getNom = ""

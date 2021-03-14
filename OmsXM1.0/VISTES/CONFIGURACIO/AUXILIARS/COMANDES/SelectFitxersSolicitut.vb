@@ -41,10 +41,8 @@
         Return ModulImportSolicituds.getDataList(ModulImportSolicituds.getObjects)
     End Function
 
-
     Public Overrides Function seleccionar(ids As List(Of Integer)) As Boolean
         Dim i As Integer, j As Integer
-
         fitxers = New List(Of CodiDescripcio)
         j = 0
         If ids.Count >= 0 Then

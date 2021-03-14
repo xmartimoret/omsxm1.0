@@ -1,6 +1,6 @@
 ﻿Option Explicit On
 Imports System.Data.SqlClient
-Module dbArticleComanda
+Module dbArticleComandaEnEdicio
     Private Const ID As String = "ID"
     Private Const CODI As String = "CODI"
     Private Const ID_COMANDA As String = "iDCOM"
@@ -20,15 +20,15 @@ Module dbArticleComanda
     ''' <param name="obj"> centre</param>
     ''' <returns>identificador del centre.</returns>
     Public Function update(obj As articleComanda) As Integer
-        If IS_SQLSERVER Then Return updateSQL(obj)
+        If IS_SQLSERVER() Then Return updateSQL(obj)
         Return updateDBF(obj)
     End Function
     Public Function insert(obj As articleComanda) As Integer
-        If IS_SQLSERVER Then Return insertSQL(obj)
+        If IS_SQLSERVER() Then Return insertSQL(obj)
         Return insertDBF(obj)
     End Function
     Public Function remove(obj As articleComanda) As Boolean
-        If IS_SQLSERVER Then Return removeSQL(obj)
+        If IS_SQLSERVER() Then Return removeSQL(obj)
         Return removeDBF(obj)
     End Function
     Public Function remove(obj As Comanda) As Boolean
@@ -36,7 +36,7 @@ Module dbArticleComanda
         Return removeDBF(obj)
     End Function
     Public Function getObjects() As List(Of articleComanda)
-        If IS_SQLSERVER Then Return getObjectsSQL()
+        If IS_SQLSERVER() Then Return getObjectsSQL()
         Return getObjectsDBF()
     End Function
     Private Function updateSQL(obj As articleComanda) As Integer
@@ -293,6 +293,6 @@ Module dbArticleComanda
         rc = Nothing
     End Function
     Private Function getTable() As String
-        Return DBCONNECT.getTaulaArticleCOMANDA
+        Return DBCONNECT.getTaulaArticleComandaEnEdicio
     End Function
 End Module

@@ -124,15 +124,15 @@ Partial Class FrmApliOms
         Me.mnuBudgetExportarMan = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuBudgetExportarGB = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuBudgetExportarVoss = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.lblUsuari = New OmsXM.LBLBLUE()
-        Me.lblEstat = New OmsXM.LBLBLUE()
         Me.MnuTresoreria = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuConfigTresoreria = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuImportTresoreria = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuExportTresoreria = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuEditarTresoreria = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.lblUsuari = New OmsXM.LBLBLUE()
+        Me.lblEstat = New OmsXM.LBLBLUE()
         Me.Menu.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -211,7 +211,7 @@ Partial Class FrmApliOms
         '
         Me.MnuConfigSubctes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuConfigSubcompte, Me.MnuGrupsSubgrups, Me.MnuConfigPrefixSubcompte, Me.MnuConfigSubgrupsGB})
         Me.MnuConfigSubctes.Name = "MnuConfigSubctes"
-        Me.MnuConfigSubctes.Size = New System.Drawing.Size(131, 22)
+        Me.MnuConfigSubctes.Size = New System.Drawing.Size(180, 22)
         Me.MnuConfigSubctes.Text = "sbctes"
         '
         'MnuConfigSubcompte
@@ -242,7 +242,7 @@ Partial Class FrmApliOms
         '
         Me.MnuConfigProjectes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuConfigProjecte, Me.MnuConfigCentres, Me.MnuConfigProjectesExpram, Me.MnuConfigProjectesClient, Me.MnuConfigDepartaments})
         Me.MnuConfigProjectes.Name = "MnuConfigProjectes"
-        Me.MnuConfigProjectes.Size = New System.Drawing.Size(131, 22)
+        Me.MnuConfigProjectes.Size = New System.Drawing.Size(180, 22)
         Me.MnuConfigProjectes.Text = "projectes"
         '
         'MnuConfigProjecte
@@ -279,39 +279,39 @@ Partial Class FrmApliOms
         'MnuConfigEmpreses
         '
         Me.MnuConfigEmpreses.Name = "MnuConfigEmpreses"
-        Me.MnuConfigEmpreses.Size = New System.Drawing.Size(131, 22)
+        Me.MnuConfigEmpreses.Size = New System.Drawing.Size(180, 22)
         Me.MnuConfigEmpreses.Text = "empreses"
         '
         'MnuConfigServer
         '
-        Me.MnuConfigServer.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuConfigServerConnect, Me.MnuConfigServerDirectori, Me.MnuConfigServerContaplus})
+        Me.MnuConfigServer.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuConfigServerDirectori, Me.MnuConfigServerConnect, Me.MnuConfigServerContaplus})
         Me.MnuConfigServer.Name = "MnuConfigServer"
-        Me.MnuConfigServer.Size = New System.Drawing.Size(131, 22)
+        Me.MnuConfigServer.Size = New System.Drawing.Size(180, 22)
         Me.MnuConfigServer.Text = "server"
         '
         'MnuConfigServerConnect
         '
         Me.MnuConfigServerConnect.Name = "MnuConfigServerConnect"
-        Me.MnuConfigServerConnect.Size = New System.Drawing.Size(122, 22)
+        Me.MnuConfigServerConnect.Size = New System.Drawing.Size(180, 22)
         Me.MnuConfigServerConnect.Text = "servidor"
         '
         'MnuConfigServerDirectori
         '
         Me.MnuConfigServerDirectori.Name = "MnuConfigServerDirectori"
-        Me.MnuConfigServerDirectori.Size = New System.Drawing.Size(122, 22)
+        Me.MnuConfigServerDirectori.Size = New System.Drawing.Size(180, 22)
         Me.MnuConfigServerDirectori.Text = "Directori"
         '
         'MnuConfigServerContaplus
         '
         Me.MnuConfigServerContaplus.Name = "MnuConfigServerContaplus"
-        Me.MnuConfigServerContaplus.Size = New System.Drawing.Size(122, 22)
+        Me.MnuConfigServerContaplus.Size = New System.Drawing.Size(180, 22)
         Me.MnuConfigServerContaplus.Text = "Contaplus"
         '
         'mnuUsuaris
         '
         Me.mnuUsuaris.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuUsuariExplotacions, Me.mnuUsuariAdministrador, Me.mnuUsuariSuper})
         Me.mnuUsuaris.Name = "mnuUsuaris"
-        Me.mnuUsuaris.Size = New System.Drawing.Size(131, 22)
+        Me.mnuUsuaris.Size = New System.Drawing.Size(180, 22)
         Me.mnuUsuaris.Text = "usuari"
         '
         'mnuUsuariExplotacions
@@ -336,7 +336,7 @@ Partial Class FrmApliOms
         '
         Me.mnuConfigMan.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuConfigCentresMan, Me.mnuActualitzarPlantillaMan, Me.mnuConfigMesMan})
         Me.mnuConfigMan.Name = "mnuConfigMan"
-        Me.mnuConfigMan.Size = New System.Drawing.Size(131, 22)
+        Me.mnuConfigMan.Size = New System.Drawing.Size(180, 22)
         Me.mnuConfigMan.Text = "Config MAN"
         '
         'mnuConfigCentresMan
@@ -361,7 +361,7 @@ Partial Class FrmApliOms
         '
         Me.mnuConfigGB.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuActualitzarPlantillaGB, Me.mnuConfigMesGb})
         Me.mnuConfigGB.Name = "mnuConfigGB"
-        Me.mnuConfigGB.Size = New System.Drawing.Size(131, 22)
+        Me.mnuConfigGB.Size = New System.Drawing.Size(180, 22)
         Me.mnuConfigGB.Text = "config GB"
         '
         'mnuActualitzarPlantillaGB
@@ -380,7 +380,7 @@ Partial Class FrmApliOms
         '
         Me.mnuAxiliars.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuPaisos, Me.mnuProvincies, Me.mnuTipusPagament, Me.mnuTipusIva, Me.mnuProveidors, Me.ContactesToolStripMenuItem, Me.mnuContactesProjecte, Me.mnuUnitats, Me.mnufamilies, Me.mnuFabricants, Me.mnuArticles, Me.ComandesToolStripMenuItem, Me.ToolStripMenuItem1})
         Me.mnuAxiliars.Name = "mnuAxiliars"
-        Me.mnuAxiliars.Size = New System.Drawing.Size(131, 22)
+        Me.mnuAxiliars.Size = New System.Drawing.Size(180, 22)
         Me.mnuAxiliars.Text = "auxilliars"
         '
         'mnuPaisos
@@ -717,7 +717,7 @@ Partial Class FrmApliOms
         '
         Me.mnuBudgetConfiguracio.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuBudgetConfigFitxerVoss, Me.mnuBudgetConfigCentresFullesGb, Me.mnuBudgetConfigVossCentres, Me.mnuBudgetConfigParametres})
         Me.mnuBudgetConfiguracio.Name = "mnuBudgetConfiguracio"
-        Me.mnuBudgetConfiguracio.Size = New System.Drawing.Size(180, 22)
+        Me.mnuBudgetConfiguracio.Size = New System.Drawing.Size(155, 22)
         Me.mnuBudgetConfiguracio.Text = "mnuConfiguracio"
         '
         'mnuBudgetConfigFitxerVoss
@@ -748,7 +748,7 @@ Partial Class FrmApliOms
         '
         Me.mnuBudgetImportar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuBudgetImportarExplotacions, Me.mnuBudgetImportarObres, Me.mnuBudgetImportarHead, Me.mnuBudgetImportarCesmed, Me.mnuBudgetImportarGB})
         Me.mnuBudgetImportar.Name = "mnuBudgetImportar"
-        Me.mnuBudgetImportar.Size = New System.Drawing.Size(180, 22)
+        Me.mnuBudgetImportar.Size = New System.Drawing.Size(155, 22)
         Me.mnuBudgetImportar.Text = "mnuImportar"
         '
         'mnuBudgetImportarExplotacions
@@ -785,7 +785,7 @@ Partial Class FrmApliOms
         '
         Me.mnuBudgetExportar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuBudgetExportarMan, Me.mnuBudgetExportarGB, Me.mnuBudgetExportarVoss})
         Me.mnuBudgetExportar.Name = "mnuBudgetExportar"
-        Me.mnuBudgetExportar.Size = New System.Drawing.Size(180, 22)
+        Me.mnuBudgetExportar.Size = New System.Drawing.Size(155, 22)
         Me.mnuBudgetExportar.Text = "mnuExportar"
         '
         'mnuBudgetExportarMan
@@ -805,6 +805,38 @@ Partial Class FrmApliOms
         Me.mnuBudgetExportarVoss.Name = "mnuBudgetExportarVoss"
         Me.mnuBudgetExportarVoss.Size = New System.Drawing.Size(119, 22)
         Me.mnuBudgetExportarVoss.Text = "mnuVoss"
+        '
+        'MnuTresoreria
+        '
+        Me.MnuTresoreria.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuConfigTresoreria, Me.mnuImportTresoreria, Me.mnuExportTresoreria, Me.mnuEditarTresoreria})
+        Me.MnuTresoreria.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MnuTresoreria.Name = "MnuTresoreria"
+        Me.MnuTresoreria.Size = New System.Drawing.Size(95, 20)
+        Me.MnuTresoreria.Text = "mntresoreria"
+        '
+        'mnuConfigTresoreria
+        '
+        Me.mnuConfigTresoreria.Name = "mnuConfigTresoreria"
+        Me.mnuConfigTresoreria.Size = New System.Drawing.Size(202, 22)
+        Me.mnuConfigTresoreria.Text = "mnuConfigTresoreria"
+        '
+        'mnuImportTresoreria
+        '
+        Me.mnuImportTresoreria.Name = "mnuImportTresoreria"
+        Me.mnuImportTresoreria.Size = New System.Drawing.Size(202, 22)
+        Me.mnuImportTresoreria.Text = "mnuImportTresoreria"
+        '
+        'mnuExportTresoreria
+        '
+        Me.mnuExportTresoreria.Name = "mnuExportTresoreria"
+        Me.mnuExportTresoreria.Size = New System.Drawing.Size(202, 22)
+        Me.mnuExportTresoreria.Text = "mnuExportTresoreri"
+        '
+        'mnuEditarTresoreria
+        '
+        Me.mnuEditarTresoreria.Name = "mnuEditarTresoreria"
+        Me.mnuEditarTresoreria.Size = New System.Drawing.Size(202, 22)
+        Me.mnuEditarTresoreria.Text = "mnuEditarTresoreria"
         '
         'Panel1
         '
@@ -850,38 +882,6 @@ Partial Class FrmApliOms
         Me.lblEstat.TabIndex = 0
         Me.lblEstat.Text = "Lblblue1"
         Me.lblEstat.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'MnuTresoreria
-        '
-        Me.MnuTresoreria.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuConfigTresoreria, Me.mnuImportTresoreria, Me.mnuExportTresoreria, Me.mnuEditarTresoreria})
-        Me.MnuTresoreria.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MnuTresoreria.Name = "MnuTresoreria"
-        Me.MnuTresoreria.Size = New System.Drawing.Size(95, 20)
-        Me.MnuTresoreria.Text = "mntresoreria"
-        '
-        'mnuConfigTresoreria
-        '
-        Me.mnuConfigTresoreria.Name = "mnuConfigTresoreria"
-        Me.mnuConfigTresoreria.Size = New System.Drawing.Size(202, 22)
-        Me.mnuConfigTresoreria.Text = "mnuConfigTresoreria"
-        '
-        'mnuImportTresoreria
-        '
-        Me.mnuImportTresoreria.Name = "mnuImportTresoreria"
-        Me.mnuImportTresoreria.Size = New System.Drawing.Size(202, 22)
-        Me.mnuImportTresoreria.Text = "mnuImportTresoreria"
-        '
-        'mnuExportTresoreria
-        '
-        Me.mnuExportTresoreria.Name = "mnuExportTresoreria"
-        Me.mnuExportTresoreria.Size = New System.Drawing.Size(202, 22)
-        Me.mnuExportTresoreria.Text = "mnuExportTresoreri"
-        '
-        'mnuEditarTresoreria
-        '
-        Me.mnuEditarTresoreria.Name = "mnuEditarTresoreria"
-        Me.mnuEditarTresoreria.Size = New System.Drawing.Size(202, 22)
-        Me.mnuEditarTresoreria.Text = "mnuEditarTresoreria"
         '
         'FrmApliOms
         '

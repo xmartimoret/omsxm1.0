@@ -16,7 +16,7 @@
     Public Sub New()
         InitializeComponent()
         Me.ContextMenuStrip = mnuContextual
-
+        accio = 0
         idsActual = New List(Of Integer)
         Me.lstData.Columns.Clear()
 
@@ -267,12 +267,9 @@
     Private Sub mnoAfegir_Click(sender As Object, e As EventArgs) Handles mnoAfegir.Click
         If cmdAfegir.Enabled Then Call cmdAfegir_Click(sender, e)
     End Sub
-
-
     Private Sub mnuEliminar_Click(sender As Object, e As EventArgs) Handles mnuEliminar.Click
         If cmdEliminar.Enabled Then Call cmdEliminar_Click(sender, e)
     End Sub
-
 End Class
 
 

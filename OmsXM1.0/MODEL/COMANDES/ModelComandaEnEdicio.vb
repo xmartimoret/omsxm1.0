@@ -1,13 +1,13 @@
-﻿Option Explicit On
-Module ModelComanda
+﻿Module ModelComandaEnEdicio
     Private objects As List(Of Comanda)
     Private dateUpdate As DateTime
     Private anyActual As Integer
-    Public Function getObjects(anyo As Integer, Optional filtre As String = "") As List(Of Comanda)
+    Public Function getObjects(Optional filtre As String = "") As List(Of Comanda)
         Dim a As Comanda, altres As String = ""
-        If Not isUpdated(anyo) Then objects = getRemoteObjects(anyo)
+        If Not isUpdated() Then objects = getRemoteObjects()
         getObjects = New List(Of Comanda)
         For Each a In objects
+            a.articles = ModelArticleComandaEnEdicio.getObjects(a.id)
             If a.proveidor IsNot Nothing Then altres = a.proveidor.nom
             If a.projecte IsNot Nothing Then altres = altres & a.projecte.nom
             If a.empresa IsNot Nothing Then altres = altres & a.empresa.nom
@@ -59,7 +59,7 @@ Module ModelComanda
     End Function
     Friend Function getLastCodiEmpresa(idEmpresa As Integer, anyo As Integer) As Integer
         Dim c As Comanda, id As Integer
-        If Not isUpdated(anyo) Then objects = getRemoteObjects(anyo)
+        If Not isUpdated() Then objects = getRemoteObjects()
         id = 1
         For Each c In objects
             If idEmpresa = c.empresa.id Then
@@ -81,88 +81,102 @@ Module ModelComanda
 
 
     Public Function exist(obj As Comanda) As Boolean
-        If Not isUpdated(obj.getAnyo) Then objects = getRemoteObjects(obj.getAnyo)
+        If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Exists(Function(x) x.id <> obj.id And x.codi = obj.codi)
     End Function
     Public Function existCodi(obj As Comanda) As Integer
-        If Not isUpdated(Year(obj.data)) Then objects = getRemoteObjects(Year(obj.data))
+        If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Exists(Function(x) x.id <> obj.id And x.codi = obj.codi)
     End Function
     Public Function save(obj As Comanda) As Integer
-        If Not isUpdated(obj.getAnyo) Then objects = getRemoteObjects(obj.getAnyo)
+        Dim a As articleComanda
+        If Not isUpdated() Then objects = getRemoteObjects()
         If obj.id = -1 Then
             obj.codi = getLastCodiEmpresa(obj.empresa.id, obj.getAnyo) + 1
-            obj.id = dbComanda.insert(obj)
+            obj.id = dbComandaEnEdicio.insert(obj)
+            For Each a In obj.articles
+                a.idComanda = obj.id
+            Next
         Else
-            obj.id = dbComanda.update(obj)
+            obj.id = dbComandaEnEdicio.update(obj)
         End If
         If obj.id > -1 Then
             dateUpdate = Now()
             objects.Remove(obj)
             objects.Add(obj)
-            If Not ModelarticleComanda.saveComanda(obj.articles) Then Return -1
+            If Not ModelArticleComandaEnEdicio.saveComanda(obj) Then Return -1
         End If
         Return obj.id
     End Function
     Public Function remove(obj As Comanda) As Boolean
         Dim result As Boolean
-        result = dbComanda.remove(obj)
+        result = dbComandaEnEdicio.remove(obj)
         If result Then
             dateUpdate = Now()
             objects.Remove(obj)
         End If
         Return result
     End Function
-    Public Function getNewComandaToF56(obj As SolicitudComanda, e As Empresa, p As Projecte, contacteEntrega As Contacte) As Comanda
-        'Dim c As Comanda
-        'c = New Comanda(-1, getLastCodiEmpresa(e.id, obj.getAnyo) + 1, ModelProveidor.getObject(obj.idProveidor), e, p)
-        '' estic aqui ens cal repensar el sistema. 
-        'pot ser només cal una foto de la solicitud de comanda i tots els camps que puguin ser trobats posar-los directament al kriter i no canviar l'f56.
-
-
-        'c.contacte = ModelContacte.getObject(CInt(rc(ID_CONTACTE_PROJECTE).Value))
-        'c.contacteProveidor = ModelProveidorContacte.getObject(rc(ID_CONTACTE_PROVEIDOR).Value)
-        'c.dadesBancaries = Trim(CONFIG.validarNull(rc(DADES_BANCARIES).Value))
-        'c.data = Trim(CONFIG.validarNull(rc(DATA_COMANDA).Value))
-        'c.dataEntrega = Trim(CONFIG.validarNull(rc(DATA_ENTREGA).Value))
-        'c.dataMuntatge = Trim(CONFIG.validarNull(rc(DATA_MUNTATGE).Value))
-        'c.interAval = Trim(CONFIG.validarNull(rc(AVAL).Value))
-        'c.magatzem = ModelLlocEntrega.getObject(rc(ID_MAGATZEM).Value)
-        'c.nOferta = Trim(CONFIG.validarNull(rc(OFERTA).Value))
-        'c.notes = Trim(CONFIG.validarNull(rc(NOTES).Value))
-        'c.ports = Trim(CONFIG.validarNull(rc(PORTS).Value))
-        'c.retencio = Trim(CONFIG.validarNull(rc(RETENCIO).Value))
-        'c.tipusPagament = ModelTipusPagament.getAuxiliar.getObject(rc(ID_TIPUS_PAGAMENT).Value)
-        'c.responsable = CONFIG.validarNull(rc(RESPONSABLE).Value)
-        'c.director = CONFIG.validarNull(rc(DIRECTOR).Value)
-        'c.estat = rc(ESTAT).Value
+    Public Function getNewComandaToF56(obj As SolicitudComanda) As Comanda
+        Dim c As Comanda, e As Empresa, p As Projecte, ct As Contacte, pr As Proveidor, a As articleComanda, aF As ArticleSolicitut
+        e = ModelEmpresa.getObject(obj.empresa)
+        p = ModelProjecte.getObject(obj.codiProjecte)
+        pr = ModelProveidor.getObject(obj.idProveidor)
+        c = New Comanda(-1, -1, pr, e, p)
+        c.responsable = p.responsable
+        c.director = p.director
+        c.magatzem = ModelLlocEntrega.getObjectByName(obj.llocEntrega)
+        c.contacte = ModelContacte.getObject(obj.contacteEntrega)
+        If IsNothing(c.contacte) Then c.contacte = ModelContacte.getObjectByName(obj.contacteEntrega)
+        c.contacteProveidor = ModelProveidorContacte.getObject(obj.idContacteProveidor)
+        If IsNothing(c.contacteProveidor) Then c.contacteProveidor = pr.contacteActual()
+        c.dadesBancaries = pr.iban1
+        c.tipusPagament = pr.tipusPagament
+        c.data = Now
+        c.dataEntrega = obj.dataEntrega
+        c.dataMuntatge = obj.dataFinalitzacio
+        c.nOferta = obj.oferta1
+        c.notes = obj.notes
+        c.ports = "PAGADOS"
+        c.estat = 0
+        c.solicitutF56 = obj
+        c.idSolicitut = obj.id
+        For Each aF In obj.articles
+            a = New articleComanda
+            a.codi = aF.codi
+            a.nom = aF.nom
+            a.idComanda = -1 ' cal tenir en compte a l'hora de guardar els articles
+            a.pos = aF.pos
+            a.preu = aF.preu
+            a.tIva = ModelArticle.getTipusIva(a.codi)
+            a.tpcDescompte = aF.tpcDescompte
+            c.articles.Add(a)
+        Next
+        getNewComandaToF56 = c
+        c = Nothing
+        e = Nothing
+        p = Nothing
+        ct = Nothing
+        pr = Nothing
     End Function
     Public Sub resetIndex()
         objects = Nothing
     End Sub
 
-    Private Function getRemoteObjects(anyo As Integer) As List(Of Comanda)
+    Private Function getRemoteObjects() As List(Of Comanda)
         dateUpdate = Now()
-        Return dbComanda.getObjects(anyo)
+        Return dbComandaEnEdicio.getObjects()
     End Function
     ''' <summary>
     ''' Comprova si s'ha actualitzat la BBDD
     ''' </summary>
     ''' <returns>Cert  en cas afirmatiu, fals en cas contrari</returns>
-    Private Function isUpdated(anyo As Integer) As Boolean
+    Private Function isUpdated() As Boolean
         If Not objects Is Nothing Then
-            If anyActual <> anyo Then
-                anyActual = anyo
-                Return False
-            Else
-                isUpdated = DBCONNECT.isUpdated(dateUpdate, DBCONNECT.getTaulaComanda)
-            End If
+            isUpdated = DBCONNECT.isUpdated(dateUpdate, DBCONNECT.getTaulaComandaEdicio)
         Else
-            anyActual = anyo
             Return False
         End If
         If isUpdated Then dateUpdate = Now
     End Function
-
-
 End Module

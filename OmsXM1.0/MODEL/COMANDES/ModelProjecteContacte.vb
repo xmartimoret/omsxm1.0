@@ -7,12 +7,12 @@ Module ModelProjecteContacte
         Return objects.FindAll(Function(x) x.idProjecte = idProjecte)
     End Function
     Public Function getDataList(contactes As List(Of ProjecteContacte)) As DataList
-        Dim pc As ProjecteContacte, c As Contacte
+        Dim pc As ProjecteContacte, c As Contacte, esActiu As String, esPredeterminat As String
         getDataList = New DataList
 
         If contactes.Count > 0 Then
-            getDataList.columns.Add(COLUMN.ID)
-            getDataList.columns.Add(COLUMN.NOM)
+            getDataList.columns.Add(COLUMN.GENERICA("id", 0, HorizontalAlignment.Center))
+            getDataList.columns.Add(COLUMN.GENERICA("nom", 100, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.GENERICA("cognom", 100, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.GENERICA("cognom", 100, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.GENERICA("poblacio", 100, HorizontalAlignment.Center))
@@ -20,14 +20,21 @@ Module ModelProjecteContacte
             getDataList.columns.Add(COLUMN.GENERICA("telefon", 100, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.GENERICA("email", 150, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.ESTAT)
+            getDataList.columns.Add(COLUMN.GENERICA("predeterminat", 100, HorizontalAlignment.Center))
             For Each pc In contactes
                 c = ModelContacte.getObject(pc.idContacte)
                 If c.provincia Is Nothing Then c.provincia = New Provincia
                 If c.estat Then
-                    getDataList.rows.Add(New ListViewItem(New String() {c.id, c.nom, c.cognom1, c.cognom2, c.poblacio, c.provincia.nom, c.telefon, c.email, IDIOMA.getString("actiu")}))
+                    esActiu = IDIOMA.getString("actiu")
                 Else
-                    getDataList.rows.Add(New ListViewItem(New String() {c.id, c.nom, c.cognom1, c.cognom2, c.poblacio, c.provincia.nom, c.telefon, c.email, IDIOMA.getString("noActiu")}))
+                    esActiu = IDIOMA.getString("noActiu")
                 End If
+                If pc.predeterminat Then
+                    esPredeterminat = IDIOMA.getString("si")
+                Else
+                    esPredeterminat = IDIOMA.getString("no")
+                End If
+                getDataList.rows.Add(New ListViewItem(New String() {c.id, c.nom, c.cognom1, c.cognom2, c.poblacio, c.provincia.nom, c.telefon, c.email, esActiu, esPredeterminat}))
             Next
         End If
         c = Nothing
@@ -44,13 +51,44 @@ Module ModelProjecteContacte
         Dim id As Integer
         id = dbProjecteContacte.insert(obj)
         If id > -1 Then
+            If obj.predeterminat <> esPredeterminat(obj) Then
+                updatePredeterminat(obj)
+            End If
             dateUpdate = Now()
-            objects.Remove(obj)
-            objects.Add(obj)
+                objects.Remove(obj)
+                objects.Add(obj)
+
         End If
         Return id
     End Function
-
+    Public Function esPredeterminat(obj As ProjecteContacte) As Boolean
+        Dim temp As ProjecteContacte
+        If Not isUpdated() Then objects = getRemoteObjects()
+        temp = objects.Find(Function(x) x.idProjecte = obj.idProjecte And x.idContacte = obj.idContacte)
+        If temp Is Nothing Then Return False
+        Return temp.predeterminat
+    End Function
+    Public Function updatePredeterminat(obj As ProjecteContacte) As Boolean
+        Dim pc As ProjecteContacte, objectesProjecte As List(Of ProjecteContacte)
+        If Not isUpdated() Then objects = getRemoteObjects()
+        If dbProjecteContacte.updatePredeterminat(obj) Then
+            dateUpdate = Now()
+            objectesProjecte = getObjects(obj.idProjecte)
+            If Not IsNothing(objectesProjecte) Then
+                For Each pc In objectesProjecte
+                    If pc.Equals(obj) Then
+                        pc.predeterminat = True
+                    Else
+                        pc.predeterminat = False
+                    End If
+                Next
+                pc = Nothing
+                objectesProjecte = Nothing
+            End If
+            Return True
+        End If
+        Return False
+    End Function
     Public Function remove(obj As ProjecteContacte) As Boolean
         Dim result As Boolean
         result = dbProjecteContacte.remove(obj)

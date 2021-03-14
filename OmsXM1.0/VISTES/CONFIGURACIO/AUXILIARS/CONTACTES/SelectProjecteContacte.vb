@@ -15,7 +15,7 @@ Public Class Selectprojectecontacte
         contactes = DAuxiliars.getContactes()
         For Each c In contactes
             If Not ModelProjecteContacte.exist(id, c.id) Then
-                result = save(New ProjecteContacte(id, c.id))
+                result = save(New ProjecteContacte(id, c.id, c.predeterminat))
             End If
         Next
         Return result
@@ -33,13 +33,23 @@ Public Class Selectprojectecontacte
     End Function
 
     Public Overrides Function modificar(id As Integer) As Boolean
-        Dim c As Contacte, result As Boolean
+        Dim c As Contacte, result As Boolean, pc As ProjecteContacte
         c = ModelContacte.getObject(id)
-        c = DContacte.getContacte(c)
+        c.predeterminat = ModelProjecteContacte.esPredeterminat(New ProjecteContacte(Me.idParent, id))
+        c = DContacte.getProjecteContacte(c)
         If c IsNot Nothing Then
             If ModelContacte.save(c) Then
-                result = True
+                pc = ModelProjecteContacte.getObject(Me.idParent, id)
+                If Not IsNothing(pc) Then
+                    If ModelProjecteContacte.esPredeterminat(pc) <> c.predeterminat Then
+                        pc.predeterminat = c.predeterminat
+                        ModelProjecteContacte.updatePredeterminat(pc)
+                        pc = Nothing
+                    End If
+                End If
+                c = Nothing
             End If
+            result = True
         End If
         Return result
     End Function

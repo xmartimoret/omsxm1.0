@@ -21,13 +21,26 @@ Public Class DNovaComanda
         If cbEmpresa.Items.Count > 0 Then cbEmpresa.SelectedIndex = 0
     End Sub
     Public Function getComanda() As Comanda
+        Dim p As Proveidor, pe As projecteEntrega, pc As ProjecteContacte
         Me.ShowDialog()
         If Me.DialogResult = DialogResult.OK Then
-            getComanda = New Comanda(-1, "", listProveidors.obj, empresaActual, projecteActual)
+            p = listProveidors.obj
+            getComanda = New Comanda(-1, "", p, empresaActual, projecteActual)
+            If p IsNot Nothing Then
+                getComanda.contacteProveidor = p.contacteActual
+            End If
+            pe = projecteActual.getMagatzemPredeterminat
+            pc = projecteActual.getContactePredeterminat
+            If Not IsNothing(pe) Then getComanda.magatzem = ModelLlocEntrega.getObject(pe.idEntrega)
+            If Not IsNothing(pc) Then getComanda.contacte = ModelContacte.getObject(pc.idContacte)
             getComanda.codi = -1
+            getComanda.ports = "PAGADOS"
         Else
             getComanda = Nothing
         End If
+        p = Nothing
+        pe = Nothing
+        pc = Nothing
         Me.Dispose()
     End Function
     Private Sub setLanguage()
@@ -81,8 +94,13 @@ Public Class DNovaComanda
     End Sub
 
     Private Sub cmdGuardar_Click(sender As Object, e As EventArgs) Handles cmdGuardar.Click
-        Me.DialogResult = DialogResult.OK
-        Me.Hide()
+        If empresaActual Is Nothing Then
+            ERRORS.ERR_NO_EMPRESA_COMANDA
+        Else
+            Me.DialogResult = DialogResult.OK
+            Me.Hide()
+        End If
+
     End Sub
 
     Protected Overrides Sub Finalize()

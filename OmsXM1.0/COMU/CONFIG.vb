@@ -415,9 +415,10 @@ Module CONFIG
             validarApostrof = validarApostrof & Mid(t, i, 1)
         Next i
     End Function
-    Public Function validarBoolean(t As Boolean) As Integer
-        If t Then Return 1
-        Return 0
+    Public Function validarBoolean(t As String) As Boolean
+        If UCase(Left(t, 1)) = "V" Then Return True
+        If UCase(Left(t, 1)) = "T" Then Return True
+        Return False
     End Function
     Public Function validarNull(t) As String
         If t Is Nothing OrElse t.GetType.Name = "DBNull" Then Return ""
@@ -523,6 +524,20 @@ Module CONFIG
         If Not folderExist(ruta) Then MkDir(ruta)
         Return ruta
     End Function
+    Public Function getRutaPlantillaComanda() As String
+        Dim ruta As String
+        ruta = setFolder(DBCONNECT.getRutaDBActual)
+        ruta = ruta & setFolder("plantilles")
+        If Not folderExist(ruta) Then MkDir(ruta)
+        Return setFolder(ruta) & "PlantillaComanda.xls"
+    End Function
+    Public Function getDirectoriPDFComandes() As String
+        Dim ruta As String
+        ruta = setFolder(DBCONNECT.getRutaDBActual)
+        ruta = ruta & setFolder("comandesPDF")
+        If Not folderExist(ruta) Then MkDir(ruta)
+        Return setFolder(ruta)
+    End Function
     Public Function getRuta(ruta As String, carpeta As String) As String
         Dim r As String
         r = setFolder(ruta)
@@ -609,4 +624,5 @@ Module CONFIG
         p.Controls.Add(obj)
         obj.Show()
     End Sub
+
 End Module

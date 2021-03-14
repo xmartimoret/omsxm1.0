@@ -1,4 +1,4 @@
-﻿Public Class SelectComandasEdicio
+﻿Public Class SelectComandesEdicio
     Inherits LVObjects
     Friend Property comandes As List(Of Comanda)
     Friend Event selectObject(p As Comanda)
@@ -29,21 +29,22 @@
     End Function
     Public Overrides Function eliminar(id As Integer) As Boolean
         Dim d As Comanda
-        d = ModelComanda.getObject(id)
+        d = ModelComandaEnEdicio.getObject(id)
         If d IsNot Nothing Then
             If MISSATGES.CONFIRM_REMOVE_COMANDA(d.ToString) Then
-                Return ModelComanda.remove(d)
+                Return ModelComandaEnEdicio.remove(d)
             End If
         End If
         Return False
     End Function
 
     Public Overrides Function filtrar(txt As String) As DataList
-        Return ModelComanda.getDataList(ModelComanda.getObjects(txt))
+        Return ModelComandaEnEdicio.getDataList(ModelComandaEnEdicio.getObjects(txt))
     End Function
 
     Public Overrides Function modificar(id As Integer) As Integer
-        Call frmIniComanda.modificarComanda(ModelComanda.getObject(id), 1)
+        Call frmIniComanda.modificarComanda(ModelComandaEnEdicio.getObject(id))
+
     End Function
 
     Public Overrides Function seleccionar(ids As List(Of Integer)) As Boolean
@@ -52,7 +53,7 @@
         j = 0
         If ids.Count >= 0 Then
             For Each i In ids
-                comandes.Add(ModelComanda.getObject(i))
+                comandes.Add(ModelComandaEnEdicio.getObject(i))
             Next
             RaiseEvent selectObject(comandes.Item(0))
             Return True
@@ -61,10 +62,10 @@
     End Function
     Private Function save(obj As Comanda) As Integer
         If Not obj Is Nothing Then
-            If Not ModelComanda.exist(obj) Then
-                If Not ModelComanda.existCodi(obj) Then
+            If Not ModelComandaEnEdicio.exist(obj) Then
+                If Not ModelComandaEnEdicio.existCodi(obj) Then
                     RaiseEvent selectObject(obj)
-                    Return ModelComanda.save(obj)
+                    Return ModelComandaEnEdicio.save(obj)
                 Else
                     Throw New ExcepcioSql(ExcepcioSql.ERR_EXIST_CODI_REGISTRE)
                 End If

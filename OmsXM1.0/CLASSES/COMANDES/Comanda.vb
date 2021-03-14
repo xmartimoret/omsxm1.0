@@ -1,9 +1,9 @@
 ﻿Public Class Comanda
     Inherits Base
     Private Const delimitador As String = ";"
-    Friend Property serie As String
+
     Friend Property idSolicitut As Integer
-    Friend Property empresa As Empresa
+    Friend Property empresa
     Friend Property proveidor As Proveidor
     Friend Property contacteProveidor As ProveidorCont
     Friend Property projecte As Projecte
@@ -12,40 +12,27 @@
     Friend Property data As Date
     Friend Property dataEntrega As Date
     Friend Property dataMuntatge As Date
-    Friend Property retencio As String
-    Friend Property interAval As String
-    Friend Property nOferta As String
+    Friend Property retencio As String = ""
+    Friend Property interAval As String = ""
+    Friend Property nOferta As String = ""
     Friend Property tipusPagament As TipusPagament
-    Friend Property dadesBancaries As String
+    Friend Property dadesBancaries As String = ""
     Friend Property articles As List(Of articleComanda)
-    Friend Property ports As String
-    Friend Property responsable As String
-    Friend Property director As String
+    Friend Property ports As String = ""
+    Friend Property responsable As String = ""
+    Friend Property director As String = ""
     Friend Property estat As Integer
-    Friend Property nomFitxerSolicitut As String
+    Friend Property nomFitxerSolicitut As String = ""
+    Friend Property solicitutF56 As SolicitudComanda
     Public Sub New()
         _estat = 0
         _articles = New List(Of articleComanda)
-        _empresa = New Empresa
-        _projecte = New Projecte
-        _proveidor = New Proveidor
-        _contacteProveidor = New ProveidorCont
-        _contacte = New Contacte
-        _magatzem = New LlocEntrega
-        _tipusPagament = New TipusPagament
         _data = Now
     End Sub
     Public Sub New(pId As Integer, pCodi As String)
         Me.id = pId
         Me.codi = pCodi
         _articles = New List(Of articleComanda)
-        _empresa = New Empresa
-        _projecte = New Projecte
-        _proveidor = New Proveidor
-        _contacteProveidor = New ProveidorCont
-        _contacte = New Contacte
-        _magatzem = New LlocEntrega
-        _tipusPagament = New TipusPagament
         _data = Now
     End Sub
     Public Sub New(pId As Integer, pCodi As String, pProveidor As Proveidor, pEmpresa As Empresa, pProjecte As Projecte)
@@ -55,10 +42,6 @@
         _empresa = pEmpresa
         _projecte = pProjecte
         _articles = New List(Of articleComanda)
-        _contacteProveidor = New ProveidorCont
-        _contacte = New Contacte
-        _magatzem = New LlocEntrega
-        _tipusPagament = New TipusPagament
         _data = Now
     End Sub
     Public Sub New(pId As Integer, pCodi As String, pProveidor As Proveidor, pEmpresa As Empresa, pProjecte As Projecte, pResponsable As String, pDirector As String)
@@ -70,10 +53,6 @@
         _responsable = pResponsable
         _director = pDirector
         _articles = New List(Of articleComanda)
-        _contacteProveidor = New ProveidorCont
-        _contacte = New Contacte
-        _magatzem = New LlocEntrega
-        _tipusPagament = New TipusPagament
         _data = Now
     End Sub
     Public Function copy() As Comanda
@@ -99,7 +78,7 @@
         copy.responsable = _responsable
         copy.director = _director
         copy.nomFitxerSolicitut = _nomFitxerSolicitut
-        copy.serie = _serie
+        copy.solicitutF56 = _solicitutF56
     End Function
     Public Function base() As Double
         Dim a As articleComanda, suma As Double
@@ -135,6 +114,14 @@
             Return Year(_data)
         End If
         Return 0
+    End Function
+    Public Function getTotalFiles() As Integer
+        Dim n As Integer = 0, a As articleComanda
+        For Each a In _articles
+            If a.pos > n Then n = a.pos
+        Next
+        a = Nothing
+        Return n
     End Function
     Public Function errorsComanda() As List(Of String)
         Dim llista As List(Of String)
@@ -172,24 +159,12 @@
         Return llista
     End Function
 
-    Public Function getCodiString() As String
-        Return Strings.Right(Year(data), 4) & "-" & Strings.Right(_projecte.codi, 4) & "-" & codi
-    End Function
-    Public Function getCodiString(P As String) As String
-        Return Strings.Right(Year(data), 4) & "-" & Strings.Right(_projecte.codi, 4) & "-" & P
-    End Function
-
     Public Function ToStringCodi() As String
-        Dim idEmpresa As String, idProjecte As String
-
-        If empresa Is Nothing Then
-            idEmpresa = "00"
+        Dim idEmpresa As String, idProjecte As String = -1
+        If _empresa.id < 10 Then
+            idEmpresa = "0" & _empresa.id
         Else
-            If _empresa.id < 10 Then
-                idEmpresa = "0" & _empresa.id
-            Else
-                idEmpresa = _empresa.id
-            End If
+            idEmpresa = _empresa.id
         End If
         If _projecte Is Nothing Then
             idProjecte = "0000"
@@ -210,6 +185,14 @@
             Return Val(Me.codi)
         End If
         Return Nothing
+    End Function
+    Public Function getMaxFilesArticles() As Integer
+        Dim a As articleComanda, pos As Integer
+        pos = 0
+        For Each a In _articles
+            If pos < a.pos Then pos = a.pos
+        Next
+        Return pos
     End Function
     Protected Overrides Sub Finalize()
         _articles = Nothing

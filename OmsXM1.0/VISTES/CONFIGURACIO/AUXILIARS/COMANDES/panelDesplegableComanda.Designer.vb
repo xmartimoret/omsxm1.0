@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class panelDesplegableComanda
     Inherits System.Windows.Forms.UserControl
 
     'UserControl overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class panelDesplegableComanda
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.panelTipTool = New System.Windows.Forms.Panel()
@@ -28,8 +28,6 @@ Partial Class panelDesplegableComanda
         Me.Button1 = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.panelData = New System.Windows.Forms.Panel()
-        Me.txtSerie = New OmsXM.TXT()
-        Me.lblSerie = New System.Windows.Forms.Label()
         Me.txtInterAval = New OmsXM.TXT()
         Me.lblInterAval = New System.Windows.Forms.Label()
         Me.txtDadesBancaries = New OmsXM.TXT()
@@ -61,10 +59,9 @@ Partial Class panelDesplegableComanda
         Me.panelTipTool.BackColor = System.Drawing.Color.Transparent
         Me.panelTipTool.Controls.Add(Me.lblTitpTool)
         Me.panelTipTool.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.panelTipTool.Location = New System.Drawing.Point(12, 38)
-        Me.panelTipTool.Margin = New System.Windows.Forms.Padding(4)
+        Me.panelTipTool.Location = New System.Drawing.Point(9, 31)
         Me.panelTipTool.Name = "panelTipTool"
-        Me.panelTipTool.Size = New System.Drawing.Size(0, 36)
+        Me.panelTipTool.Size = New System.Drawing.Size(0, 29)
         Me.panelTipTool.TabIndex = 81
         '
         'lblTitpTool
@@ -73,9 +70,8 @@ Partial Class panelDesplegableComanda
         Me.lblTitpTool.Font = New System.Drawing.Font("Arial", 8.0!)
         Me.lblTitpTool.ForeColor = System.Drawing.SystemColors.ControlDark
         Me.lblTitpTool.Location = New System.Drawing.Point(0, 0)
-        Me.lblTitpTool.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblTitpTool.Name = "lblTitpTool"
-        Me.lblTitpTool.Size = New System.Drawing.Size(0, 36)
+        Me.lblTitpTool.Size = New System.Drawing.Size(0, 29)
         Me.lblTitpTool.TabIndex = 0
         Me.lblTitpTool.Text = "Lblblue1"
         '
@@ -83,8 +79,7 @@ Partial Class panelDesplegableComanda
         '
         Me.Button1.BackColor = System.Drawing.Color.Transparent
         Me.Button1.ForeColor = System.Drawing.Color.Transparent
-        Me.Button1.Location = New System.Drawing.Point(12, 12)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button1.Location = New System.Drawing.Point(9, 10)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(1, 1)
         Me.Button1.TabIndex = 84
@@ -96,8 +91,6 @@ Partial Class panelDesplegableComanda
         Me.panelData.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.panelData.BackColor = System.Drawing.SystemColors.Control
-        Me.panelData.Controls.Add(Me.txtSerie)
-        Me.panelData.Controls.Add(Me.lblSerie)
         Me.panelData.Controls.Add(Me.txtInterAval)
         Me.panelData.Controls.Add(Me.lblInterAval)
         Me.panelData.Controls.Add(Me.txtDadesBancaries)
@@ -116,45 +109,19 @@ Partial Class panelDesplegableComanda
         Me.panelData.Controls.Add(Me.lblPorts)
         Me.panelData.Controls.Add(Me.PanelDate)
         Me.panelData.Controls.Add(Me.lblData)
-        Me.panelData.Location = New System.Drawing.Point(3, 47)
-        Me.panelData.Margin = New System.Windows.Forms.Padding(4)
+        Me.panelData.Location = New System.Drawing.Point(2, 38)
         Me.panelData.Name = "panelData"
-        Me.panelData.Size = New System.Drawing.Size(555, 259)
+        Me.panelData.Size = New System.Drawing.Size(416, 210)
         Me.panelData.TabIndex = 83
-        '
-        'txtSerie
-        '
-        Me.txtSerie.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtSerie.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.txtSerie.ForeColor = System.Drawing.Color.Blue
-        Me.txtSerie.Location = New System.Drawing.Point(155, 6)
-        Me.txtSerie.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtSerie.Name = "txtSerie"
-        Me.txtSerie.Size = New System.Drawing.Size(137, 30)
-        Me.txtSerie.TabIndex = 0
-        '
-        'lblSerie
-        '
-        Me.lblSerie.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblSerie.Font = New System.Drawing.Font("Tahoma", 8.0!)
-        Me.lblSerie.Location = New System.Drawing.Point(7, 3)
-        Me.lblSerie.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.lblSerie.Name = "lblSerie"
-        Me.lblSerie.Size = New System.Drawing.Size(140, 31)
-        Me.lblSerie.TabIndex = 120
-        Me.lblSerie.Text = "Label5"
-        Me.lblSerie.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'txtInterAval
         '
         Me.txtInterAval.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtInterAval.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.txtInterAval.ForeColor = System.Drawing.Color.Blue
-        Me.txtInterAval.Location = New System.Drawing.Point(367, 109)
-        Me.txtInterAval.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtInterAval.Location = New System.Drawing.Point(275, 89)
         Me.txtInterAval.Name = "txtInterAval"
-        Me.txtInterAval.Size = New System.Drawing.Size(183, 30)
+        Me.txtInterAval.Size = New System.Drawing.Size(138, 26)
         Me.txtInterAval.TabIndex = 5
         '
         'lblInterAval
@@ -162,10 +129,9 @@ Partial Class panelDesplegableComanda
         Me.lblInterAval.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblInterAval.Font = New System.Drawing.Font("Tahoma", 8.0!)
-        Me.lblInterAval.Location = New System.Drawing.Point(300, 107)
-        Me.lblInterAval.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblInterAval.Location = New System.Drawing.Point(225, 87)
         Me.lblInterAval.Name = "lblInterAval"
-        Me.lblInterAval.Size = New System.Drawing.Size(59, 31)
+        Me.lblInterAval.Size = New System.Drawing.Size(44, 25)
         Me.lblInterAval.TabIndex = 118
         Me.lblInterAval.Text = "Label5"
         Me.lblInterAval.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -176,19 +142,17 @@ Partial Class panelDesplegableComanda
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtDadesBancaries.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.txtDadesBancaries.ForeColor = System.Drawing.Color.Blue
-        Me.txtDadesBancaries.Location = New System.Drawing.Point(155, 225)
-        Me.txtDadesBancaries.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtDadesBancaries.Location = New System.Drawing.Point(116, 183)
         Me.txtDadesBancaries.Name = "txtDadesBancaries"
-        Me.txtDadesBancaries.Size = New System.Drawing.Size(393, 30)
+        Me.txtDadesBancaries.Size = New System.Drawing.Size(296, 26)
         Me.txtDadesBancaries.TabIndex = 8
         '
         'lblDadesBancaries
         '
         Me.lblDadesBancaries.Font = New System.Drawing.Font("Tahoma", 8.0!)
-        Me.lblDadesBancaries.Location = New System.Drawing.Point(1, 230)
-        Me.lblDadesBancaries.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblDadesBancaries.Location = New System.Drawing.Point(1, 187)
         Me.lblDadesBancaries.Name = "lblDadesBancaries"
-        Me.lblDadesBancaries.Size = New System.Drawing.Size(145, 31)
+        Me.lblDadesBancaries.Size = New System.Drawing.Size(109, 25)
         Me.lblDadesBancaries.TabIndex = 116
         Me.lblDadesBancaries.Text = "Label5"
         Me.lblDadesBancaries.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -197,19 +161,17 @@ Partial Class panelDesplegableComanda
         '
         Me.panelCondicionsPagament.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.panelCondicionsPagament.Location = New System.Drawing.Point(155, 183)
-        Me.panelCondicionsPagament.Margin = New System.Windows.Forms.Padding(4)
+        Me.panelCondicionsPagament.Location = New System.Drawing.Point(116, 149)
         Me.panelCondicionsPagament.Name = "panelCondicionsPagament"
-        Me.panelCondicionsPagament.Size = New System.Drawing.Size(395, 37)
+        Me.panelCondicionsPagament.Size = New System.Drawing.Size(296, 30)
         Me.panelCondicionsPagament.TabIndex = 7
         '
         'lblCondicionsPagament
         '
         Me.lblCondicionsPagament.Font = New System.Drawing.Font("Tahoma", 8.0!)
-        Me.lblCondicionsPagament.Location = New System.Drawing.Point(1, 189)
-        Me.lblCondicionsPagament.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblCondicionsPagament.Location = New System.Drawing.Point(1, 154)
         Me.lblCondicionsPagament.Name = "lblCondicionsPagament"
-        Me.lblCondicionsPagament.Size = New System.Drawing.Size(145, 31)
+        Me.lblCondicionsPagament.Size = New System.Drawing.Size(109, 25)
         Me.lblCondicionsPagament.TabIndex = 114
         Me.lblCondicionsPagament.Text = "Label5"
         Me.lblCondicionsPagament.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -220,19 +182,17 @@ Partial Class panelDesplegableComanda
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtOferta.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.txtOferta.ForeColor = System.Drawing.Color.Blue
-        Me.txtOferta.Location = New System.Drawing.Point(155, 144)
-        Me.txtOferta.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtOferta.Location = New System.Drawing.Point(116, 117)
         Me.txtOferta.Name = "txtOferta"
-        Me.txtOferta.Size = New System.Drawing.Size(393, 30)
+        Me.txtOferta.Size = New System.Drawing.Size(296, 26)
         Me.txtOferta.TabIndex = 6
         '
         'lblOferta
         '
         Me.lblOferta.Font = New System.Drawing.Font("Tahoma", 8.0!)
-        Me.lblOferta.Location = New System.Drawing.Point(1, 149)
-        Me.lblOferta.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblOferta.Location = New System.Drawing.Point(1, 121)
         Me.lblOferta.Name = "lblOferta"
-        Me.lblOferta.Size = New System.Drawing.Size(145, 31)
+        Me.lblOferta.Size = New System.Drawing.Size(109, 25)
         Me.lblOferta.TabIndex = 112
         Me.lblOferta.Text = "Label5"
         Me.lblOferta.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -241,19 +201,17 @@ Partial Class panelDesplegableComanda
         '
         Me.txtRetencio.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.txtRetencio.ForeColor = System.Drawing.Color.Blue
-        Me.txtRetencio.Location = New System.Drawing.Point(155, 109)
-        Me.txtRetencio.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtRetencio.Location = New System.Drawing.Point(116, 89)
         Me.txtRetencio.Name = "txtRetencio"
-        Me.txtRetencio.Size = New System.Drawing.Size(136, 30)
+        Me.txtRetencio.Size = New System.Drawing.Size(103, 26)
         Me.txtRetencio.TabIndex = 4
         '
         'lblRetencio
         '
         Me.lblRetencio.Font = New System.Drawing.Font("Tahoma", 8.0!)
-        Me.lblRetencio.Location = New System.Drawing.Point(1, 113)
-        Me.lblRetencio.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblRetencio.Location = New System.Drawing.Point(1, 92)
         Me.lblRetencio.Name = "lblRetencio"
-        Me.lblRetencio.Size = New System.Drawing.Size(145, 31)
+        Me.lblRetencio.Size = New System.Drawing.Size(109, 25)
         Me.lblRetencio.TabIndex = 110
         Me.lblRetencio.Text = "Label5"
         Me.lblRetencio.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -261,10 +219,9 @@ Partial Class panelDesplegableComanda
         'panelDataMuntatge
         '
         Me.panelDataMuntatge.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.panelDataMuntatge.Location = New System.Drawing.Point(367, 76)
-        Me.panelDataMuntatge.Margin = New System.Windows.Forms.Padding(4)
+        Me.panelDataMuntatge.Location = New System.Drawing.Point(275, 62)
         Me.panelDataMuntatge.Name = "panelDataMuntatge"
-        Me.panelDataMuntatge.Size = New System.Drawing.Size(184, 31)
+        Me.panelDataMuntatge.Size = New System.Drawing.Size(138, 25)
         Me.panelDataMuntatge.TabIndex = 3
         '
         'lblEntregaMuntatge
@@ -272,72 +229,64 @@ Partial Class panelDesplegableComanda
         Me.lblEntregaMuntatge.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblEntregaMuntatge.Font = New System.Drawing.Font("Tahoma", 8.0!)
-        Me.lblEntregaMuntatge.Location = New System.Drawing.Point(300, 76)
-        Me.lblEntregaMuntatge.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblEntregaMuntatge.Location = New System.Drawing.Point(225, 62)
         Me.lblEntregaMuntatge.Name = "lblEntregaMuntatge"
-        Me.lblEntregaMuntatge.Size = New System.Drawing.Size(59, 31)
+        Me.lblEntregaMuntatge.Size = New System.Drawing.Size(44, 25)
         Me.lblEntregaMuntatge.TabIndex = 108
         Me.lblEntregaMuntatge.Text = "Label5"
         Me.lblEntregaMuntatge.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'panelDataEquips
         '
-        Me.panelDataEquips.Location = New System.Drawing.Point(155, 76)
-        Me.panelDataEquips.Margin = New System.Windows.Forms.Padding(4)
+        Me.panelDataEquips.Location = New System.Drawing.Point(116, 62)
         Me.panelDataEquips.Name = "panelDataEquips"
-        Me.panelDataEquips.Size = New System.Drawing.Size(137, 31)
+        Me.panelDataEquips.Size = New System.Drawing.Size(103, 25)
         Me.panelDataEquips.TabIndex = 2
         '
         'lblEntregaEquips
         '
         Me.lblEntregaEquips.Font = New System.Drawing.Font("Tahoma", 8.0!)
-        Me.lblEntregaEquips.Location = New System.Drawing.Point(1, 82)
-        Me.lblEntregaEquips.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblEntregaEquips.Location = New System.Drawing.Point(1, 67)
         Me.lblEntregaEquips.Name = "lblEntregaEquips"
-        Me.lblEntregaEquips.Size = New System.Drawing.Size(145, 31)
+        Me.lblEntregaEquips.Size = New System.Drawing.Size(109, 25)
         Me.lblEntregaEquips.TabIndex = 106
         Me.lblEntregaEquips.Text = "Label5"
         Me.lblEntregaEquips.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'txtPorts
         '
-        Me.txtPorts.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtPorts.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPorts.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.txtPorts.ForeColor = System.Drawing.Color.Blue
-        Me.txtPorts.Location = New System.Drawing.Point(155, 39)
-        Me.txtPorts.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtPorts.Location = New System.Drawing.Point(116, 32)
         Me.txtPorts.Name = "txtPorts"
-        Me.txtPorts.Size = New System.Drawing.Size(393, 30)
+        Me.txtPorts.Size = New System.Drawing.Size(296, 26)
         Me.txtPorts.TabIndex = 1
         '
         'lblPorts
         '
-        Me.lblPorts.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblPorts.Font = New System.Drawing.Font("Tahoma", 8.0!)
-        Me.lblPorts.Location = New System.Drawing.Point(88, 36)
-        Me.lblPorts.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblPorts.Location = New System.Drawing.Point(66, 29)
         Me.lblPorts.Name = "lblPorts"
-        Me.lblPorts.Size = New System.Drawing.Size(59, 31)
+        Me.lblPorts.Size = New System.Drawing.Size(44, 25)
         Me.lblPorts.TabIndex = 104
         Me.lblPorts.Text = "Label5"
         Me.lblPorts.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'PanelDate
         '
-        Me.PanelDate.Location = New System.Drawing.Point(367, 5)
-        Me.PanelDate.Margin = New System.Windows.Forms.Padding(4)
+        Me.PanelDate.Location = New System.Drawing.Point(116, 4)
         Me.PanelDate.Name = "PanelDate"
-        Me.PanelDate.Size = New System.Drawing.Size(181, 31)
+        Me.PanelDate.Size = New System.Drawing.Size(136, 25)
         Me.PanelDate.TabIndex = 0
         '
         'lblData
         '
         Me.lblData.Font = New System.Drawing.Font("Tahoma", 8.0!)
-        Me.lblData.Location = New System.Drawing.Point(300, 9)
-        Me.lblData.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblData.Location = New System.Drawing.Point(66, 4)
         Me.lblData.Name = "lblData"
-        Me.lblData.Size = New System.Drawing.Size(59, 31)
+        Me.lblData.Size = New System.Drawing.Size(44, 25)
         Me.lblData.TabIndex = 102
         Me.lblData.Text = "Label5"
         Me.lblData.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -349,10 +298,9 @@ Partial Class panelDesplegableComanda
         Me.lblAccio.Cursor = System.Windows.Forms.Cursors.Hand
         Me.lblAccio.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblAccio.ForeColor = System.Drawing.Color.Blue
-        Me.lblAccio.Location = New System.Drawing.Point(5, 12)
-        Me.lblAccio.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblAccio.Location = New System.Drawing.Point(4, 10)
         Me.lblAccio.Name = "lblAccio"
-        Me.lblAccio.Size = New System.Drawing.Size(13, 16)
+        Me.lblAccio.Size = New System.Drawing.Size(11, 14)
         Me.lblAccio.TabIndex = 82
         Me.lblAccio.Text = "-"
         Me.lblAccio.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -363,26 +311,24 @@ Partial Class panelDesplegableComanda
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblComanda.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblComanda.ForeColor = System.Drawing.Color.Blue
-        Me.lblComanda.Location = New System.Drawing.Point(43, 12)
-        Me.lblComanda.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblComanda.Location = New System.Drawing.Point(32, 10)
         Me.lblComanda.Name = "lblComanda"
-        Me.lblComanda.Size = New System.Drawing.Size(515, 22)
+        Me.lblComanda.Size = New System.Drawing.Size(386, 18)
         Me.lblComanda.TabIndex = 80
         Me.lblComanda.Text = "Lblright1"
         Me.lblComanda.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'panelDesplegableComanda
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.lblAccio)
         Me.Controls.Add(Me.panelTipTool)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.lblComanda)
         Me.Controls.Add(Me.panelData)
-        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "panelDesplegableComanda"
-        Me.Size = New System.Drawing.Size(561, 316)
+        Me.Size = New System.Drawing.Size(421, 257)
         Me.panelTipTool.ResumeLayout(False)
         Me.panelData.ResumeLayout(False)
         Me.panelData.PerformLayout()
@@ -416,6 +362,4 @@ Partial Class panelDesplegableComanda
     Friend WithEvents lblData As Label
     Friend WithEvents txtInterAval As TXT
     Friend WithEvents lblInterAval As Label
-    Friend WithEvents txtSerie As TXT
-    Friend WithEvents lblSerie As Label
 End Class

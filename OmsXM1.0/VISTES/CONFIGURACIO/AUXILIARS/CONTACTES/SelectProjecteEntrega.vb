@@ -15,7 +15,7 @@ Public Class SelectProjecteEntrega
         llocsEntrega = DAuxiliars.getEntregues()
         For Each c In llocsEntrega
             If Not ModelProjecteEntrega.exist(id, c.id) Then
-                result = save(New projecteEntrega(id, c.id))
+                result = save(New projecteEntrega(id, c.id, c.predeterminat))
             End If
         Next
         Return result
@@ -33,11 +33,21 @@ Public Class SelectProjecteEntrega
     End Function
 
     Public Overrides Function modificar(id As Integer) As Boolean
-        Dim c As LlocEntrega, result As Boolean
+        Dim c As LlocEntrega, result As Boolean, pe As projecteEntrega
         c = ModelLlocEntrega.getObject(id)
-        c = DLlocEntrega.getLlocEntrega(c)
+        c.predeterminat = ModelProjecteEntrega.esPredeterminat(New projecteEntrega(Me.idParent, id))
+        c = DLlocEntrega.getProjectetLlocEntrega(c)
         If c IsNot Nothing Then
             If ModelLlocEntrega.save(c) Then
+                pe = ModelProjecteEntrega.getObject(Me.idParent, id)
+                If Not IsNothing(pe) Then
+                    If ModelProjecteEntrega.esPredeterminat(pe) <> c.predeterminat Then
+                        pe.predeterminat = c.predeterminat
+                        ModelProjecteEntrega.updatePredeterminat(pe)
+                        pe = Nothing
+                    End If
+                End If
+                c = Nothing
                 result = True
             End If
         End If

@@ -45,7 +45,20 @@
         _contactes = New List(Of ProjecteContacte)
     End Sub
 
-
+    Public Function getMagatzemPredeterminat() As projecteEntrega
+        Dim ll As projecteEntrega
+        ll = _magatzems.Find(Function(x) x.predeterminat = True)
+        If Not IsNothing(ll) Then Return ll
+        If _magatzems.Count > 0 Then Return _magatzems.Item(0)
+        Return Nothing
+    End Function
+    Public Function getContactePredeterminat() As ProjecteContacte
+        Dim ll As ProjecteContacte
+        ll = _contactes.Find(Function(x) x.predeterminat = True)
+        If Not IsNothing(ll) Then Return ll
+        If _contactes.Count > 0 Then Return _contactes.Item(0)
+        Return Nothing
+    End Function
     Public ReadOnly Property copy As Projecte
         Get
             copy = New Projecte

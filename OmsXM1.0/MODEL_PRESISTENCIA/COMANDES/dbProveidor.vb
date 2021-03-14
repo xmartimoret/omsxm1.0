@@ -17,7 +17,7 @@ Module dbProveidor
     Private Const IBAN2 As String = "iban2"
     Private Const IBAN3 As String = "iban3"
     Private Const EMAIL As String = "email"
-    Private Const CODI_COMPTABLE As String = "ccompta"
+    Private Const CODI_COMPTABLE As String = "CCOMPT"
 
     Public Function update(obj As Proveidor) As Integer
         If IS_SQLSERVER Then Return updateSQL(obj)
@@ -324,6 +324,7 @@ Module dbProveidor
                                (CONFIG.validarNull(rc(NOM_FISCAL).Value)),
                                (CONFIG.validarNull(rc(DIRECCIO).Value)),
                                (CONFIG.validarNull(rc(POBLACIO).Value)))
+            p.codiComptable = (CONFIG.validarNull(rc(CODI_COMPTABLE).Value))
             p.pais = ModelPais.getAuxiliar.getObject(rc(ID_PAIS).Value)
             p.provincia = ModelProvincia.getAuxiliar.getObject(rc(ID_PROVINCIA).Value)
             p.tipusPagament = ModelTipusPagament.getAuxiliar.getObject(rc(ID_TIPUS_PAGAMENT).Value)
@@ -332,8 +333,9 @@ Module dbProveidor
             p.iban3 = (CONFIG.validarNull(rc(IBAN3).Value))
             p.email = (CONFIG.validarNull(rc(EMAIL).Value))
             p.contactes = ModelProveidorContacte.getObjects(rc(ID).Value)
-            p.anotacions = ModelProveidorAnotacio.getObjects(rc(ID).Value)
-            p.codiComptable = CONFIG.validarNull(rc(CODI_COMPTABLE).Value)
+            p.anotacions = ModelProveidorAnotacio.getObjects(
+                rc(ID).Value)
+
             getObjectsDBF.Add(p)
             rc.MoveNext()
         End While

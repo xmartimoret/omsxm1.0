@@ -16,6 +16,17 @@ Public Class DContacte
 
     Public Function getContacte(pContacte As Contacte) As Contacte
         contacteActual = pContacte
+        xecPredeterminat.Enabled = False
+        Me.ShowDialog()
+        If Me.DialogResult = DialogResult.OK Then
+            Return getData()
+        Else
+            Return Nothing
+        End If
+        Me.Dispose()
+    End Function
+    Public Function getProjecteContacte(pContacte As Contacte) As Contacte
+        contacteActual = pContacte
         Me.ShowDialog()
         If Me.DialogResult = DialogResult.OK Then
             Return getData()
@@ -39,8 +50,9 @@ Public Class DContacte
         Me.cmdGuardar.Text = IDIOMA.getString("cmdGuardar")
         Me.xecActiu.Text = IDIOMA.getString("actiu")
         Me.lblCognoms.Text = IDIOMA.getString("cognoms")
+        Me.xecPredeterminat.Text = IDIOMA.getString("predeterminat")
         If contacteActual.id > -1 Then
-            Me.Text = IDIOMA.getString("modificarContacte") & " " & contacteActual.ToString
+            Me.Text = IDIOMA.getString("modificarContacte") & " " & contacteActual.tostring
         Else
             Me.Text = IDIOMA.getString("afegirContacte")
         End If
@@ -72,6 +84,7 @@ Public Class DContacte
         Me.txtemail.Text = contacteActual.email
         Me.txtNotes.Text = contacteActual.notes
         Me.xecActiu.Checked = contacteActual.estat
+        If xecPredeterminat.Enabled Then Me.xecPredeterminat.Checked = contacteActual.predeterminat
     End Sub
     'Private Function indexPais() As Integer
 
@@ -97,6 +110,7 @@ Public Class DContacte
         getData.email = Me.txtemail.Text
         getData.notes = Me.txtNotes.Text
         getData.estat = Me.xecActiu.Checked
+        If xecPredeterminat.Enabled Then getData.predeterminat = Me.xecPredeterminat.Checked
         If getData.pais Is Nothing Then getData.pais = ModelPais.getAuxiliar.getObject(0)
         If getData.provincia Is Nothing Then getData.provincia = ModelProvincia.getAuxiliar.getObject(0)
     End Function
@@ -174,6 +188,7 @@ Public Class DContacte
         getControls.Add(txtTelefon1.Name)
         getControls.Add(txtemail.Name)
         getControls.Add(xecActiu.Name)
+        getControls.Add(xecPredeterminat.Name)
         getControls.Add(txtNotes.Name)
         getControls.Add(cmdGuardar.Name)
         getControls.Add(cmdCancelar.Name)
@@ -186,7 +201,4 @@ Public Class DContacte
         MyBase.Finalize()
     End Sub
 
-    Private Sub txtNom_TextChanged(sender As Object, e As EventArgs) Handles txtNom.TextChanged
-
-    End Sub
 End Class

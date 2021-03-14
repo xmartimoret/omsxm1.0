@@ -3,18 +3,21 @@
     Private textToolTip As String
     Private listProveidors As lstProveidor
     Private listContactes As lstContactesProveidor
-    Friend proveidorActual As Proveidor
-    Friend contacteActual As ProveidorCont
+    Private proveidorActual As Proveidor
+    Private contacteActual As ProveidorCont
     Friend Event accioMostrar()
     Friend Event selectObject(p As Proveidor)
     Private actualitzar As Boolean
     Public Sub New()
         InitializeComponent()
+        proveidorActual = New Proveidor
+        contacteActual = New ProveidorCont
         Call setAccio()
     End Sub
     Public Sub New(pHeight As Integer, pTecla As String)
         InitializeComponent()
         proveidorActual = New Proveidor
+        contacteActual = New ProveidorCont
         llargadaPanel = pHeight
         Button1.Text = "&" & pTecla
         listProveidors = New lstProveidor(proveidorActual)
@@ -24,6 +27,7 @@
         InitializeComponent()
         llargadaPanel = pHeight
         proveidorActual = pProveidor
+        contacteActual = New ProveidorCont
         lblTitol.Text = IDIOMA.getString("proveidor")
         Button1.Text = "&" & pTecla
         listProveidors = New lstProveidor(proveidorActual)
@@ -120,6 +124,16 @@
             Return IDIOMA.getString("proveidor") & ": " & proveidorActual.nom & " | " & proveidorActual.poblacio & " | " & contacteActual.toString
         End Get
     End Property
+    Friend ReadOnly Property proveidor As Proveidor
+        Get
+            Return proveidorActual
+        End Get
+    End Property
+    Friend ReadOnly Property contacte As ProveidorCont
+        Get
+            Return contacteActual
+        End Get
+    End Property
     Private Sub setContacte()
         contacteActual = listContactes.obj
         If Not IsNothing(contacteActual) Then
@@ -148,4 +162,6 @@
         listProveidors = Nothing
         listContactes = Nothing
     End Sub
+
+
 End Class

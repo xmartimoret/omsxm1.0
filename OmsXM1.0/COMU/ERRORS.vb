@@ -248,4 +248,12 @@ Module ERRORS
     Public Sub ERR_CIF_EXIST()
         Call MsgBox(IDIOMA.getString("errCifExist"), vbCritical, IDIOMA.getString("abort"))
     End Sub
+    Public Sub ERR_NO_EMPRESA_COMANDA()
+        Call MsgBox(IDIOMA.getString("errEmpresaComanda"), vbCritical, IDIOMA.getString("abort"))
+    End Sub
+    'ERR_PDF_CLOSE
+    Public Sub ERR_PDF_CLOSE(p As String)
+        Call MsgBox(IDIOMA.getString("errPdfClose") & vbCrLf & p, vbCritical, IDIOMA.getString("abort"))
+    End Sub
+
 End Module

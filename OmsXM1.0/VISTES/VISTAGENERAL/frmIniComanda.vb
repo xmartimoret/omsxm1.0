@@ -5,6 +5,9 @@ Imports System.Windows.Forms
 Public Class frmIniComanda
     Private tabs As List(Of tabControl)
     Private refrescarSolicitudsComanda As Boolean
+    Private refrescarComandaEnEdicio As Boolean
+    Private refrescarFitxersF56 As Boolean
+    Private idActual As Integer
     Public Sub New()
 
         ' This call is required by the designer.
@@ -20,6 +23,10 @@ Public Class frmIniComanda
         End If
     End Sub
     Private Sub setLanguage()
+        Me.mnuAplicacio.Text = IDIOMA.getString("mnuAplicacio")
+        Me.mnuApliServidor.Text = IDIOMA.getString("mnuConfigServer_Caption")
+        Me.mnuApliRutaDirectori.Text = IDIOMA.getString("mnuConfigServerDirectori_Caption")
+
         Me.mnuArticles.Text = IDIOMA.getString("articles")
         Me.mnuAxiliars.Text = IDIOMA.getString("mnuAxiliars")
         Me.mnuCentres.Text = IDIOMA.getString("centres")
@@ -38,10 +45,16 @@ Public Class frmIniComanda
         Me.mnuTipusIva.Text = IDIOMA.getString("tipusIva")
         Me.mnuTipusPagament.Text = IDIOMA.getString("tipusPagament")
         Me.mnuUnitats.Text = IDIOMA.getString("unitats")
-        Me.mnuSolicituts.Text = IDIOMA.getString("mnuSolicituts")
-        Me.mnuNovaSolicitut.Text = IDIOMA.getString("mnuNouF56")
-        Me.mnuVeureSolicituts.Text = IDIOMA.getString("mnuVeureSolicituts")
-        Me.mnuImportarSolicituts.Text = IDIOMA.getString("mnuImportarSolicituts")
+
+        Me.mnuSolicitutComanda.Text = IDIOMA.getString("mnuSolicitutComanda")
+        Me.mnuEditarSolicitutComanda.Text = IDIOMA.getString("mnuEditarSolicitutF56")
+        Me.mnuImportF56.Text = IDIOMA.getString("importarF56")
+        Me.mnuEditarSolicitutComanda.Text = IDIOMA.getString("editarF56")
+
+        Me.mnuComandes.Text = IDIOMA.getString("comanda")
+        Me.mnuVeureComandaEdicio.Text = IDIOMA.getString("veureComandaEdicio")
+        Me.mnuComandesEnviar.Text = IDIOMA.getString("veureComandaEnviar")
+
     End Sub
 
     Private Sub setTabs()
@@ -83,10 +96,22 @@ Public Class frmIniComanda
                         t.panel.Dock = DockStyle.Fill
                         refrescarSolicitudsComanda = False
                     End If
+                ElseIf t.nom = IDIOMA.getString("comandesEdicio") Then
+                    If refrescarComandaEnEdicio Then
+                        t.panel = New SelectComandesEdicio(1, True, False)
+                        t.panel.Dock = DockStyle.Fill
+                        refrescarComandaEnEdicio = False
+                    End If
+                ElseIf t.nom = IDIOMA.getString("fitxersF56") Then
+                    If refrescarFitxersF56 Then
+                        t.panel = New SelectFitxersSolicitut(0, True, False)
+                        t.panel.Dock = DockStyle.Fill
+                    End If
                 End If
                 Me.pData.Controls.Clear()
                 Me.pData.Controls.Add(t.panel)
                 t.panel.Show()
+                idActual = id
             End If
         Next
     End Sub
@@ -99,25 +124,19 @@ Public Class frmIniComanda
             If i > -1 Then
                 Call activateTab(i)
             Else
-                panelComanda = New pComanda(c, 1)
+                panelComanda = New pComanda(c)
                 Call setTab(c.ToStringCodi, panelComanda)
-                'TODO cal veure posar l'event de nova comanda. per tal de refrescar les comandes en ediciñó                'AddHandler panelComanda.AddItem, AddressOf RefreshComanda
             End If
         End If
-
-
         c = Nothing
     End Sub
-    Private Sub RemoveSelectComanda(c As Comanda, tipusComanda As Integer)
-        If ModelComanda.remove(c) Then refrescarSolicitudsComanda = True
+    Private Sub updatecomanda()
+        refrescarComandaEnEdicio = True
     End Sub
-    Private Sub RemoveSelectSolicitud(c As SolicitudComanda)
-        If ModelComandaSolicitud.remove(c) Then refrescarSolicitudsComanda = True
-    End Sub
-    Private Sub RefreshComanda()
-        '1. Ens cal cercar si existeix el selectComandes. i si es una solicitud de comanda. 
-        refrescarSolicitudsComanda = True
-    End Sub
+    'Private Sub RemoveSelectSolicitud(c As SolicitudComanda)
+    '    If ModelComandaSolicitud.remove(c) Then refrescarSolicitudsComanda = True
+    'End Sub
+
     Private Sub setTab(titol As String, c As UserControl)
         Dim t As tabControl, i As Integer, posLeft As Integer
         i = getIdTab(titol)
@@ -156,23 +175,17 @@ Public Class frmIniComanda
         Return -1
     End Function
 
-    Friend Sub modificarComanda(c As Comanda, tipusComanda As Integer)
+    Friend Sub modificarComanda(c As Comanda)
         Dim panelComanda As pComanda
-        panelComanda = New pComanda(c, tipusComanda)
-        If tipusComanda = 0 Then
-            Call setTab(c.ToStringCodi, panelComanda)
-        Else
-            Call setTab(c.ToStringCodi, panelComanda)
-        End If
-        AddHandler panelComanda.removeItem, AddressOf RemoveSelectComanda
+        panelComanda = New pComanda(c)
+        Call setTab(c.ToStringCodi, panelComanda)
+        AddHandler panelComanda.UpdateComanda, AddressOf updateComanda
     End Sub
     Friend Sub modificarSolicitut(c As SolicitudComanda, tipusComanda As Integer)
         Dim panelComanda As pSolicitutComanda
         panelComanda = New pSolicitutComanda(c)
-
         Call setTab(c.toStringCodi, panelComanda)
-
-        AddHandler panelComanda.removeItem, AddressOf RemoveSelectSolicitud
+        'AddHandler panelComanda.removeItem, AddressOf RemoveSelectSolicitud
     End Sub
     Private Sub mnuArticles_Click(sender As Object, e As EventArgs) Handles mnuArticles.Click
         Dim p As pArticlesPreus
@@ -229,27 +242,11 @@ Public Class frmIniComanda
         p = Nothing
     End Sub
 
-    Private Sub mnuNovaSolicitut_Click(sender As Object, e As EventArgs) Handles mnuNovaSolicitut.Click
-        Dim i As Integer, c As SolicitudComanda, panelComanda As pSolicitutComanda
-        panelComanda = New pSolicitutComanda(New SolicitudComanda)
-        If c IsNot Nothing Then
-            i = getIdTab(IDIOMA.getString("mnuComandes"))
-            If i > -1 Then
-                Call activateTab(i)
-            Else
-                panelComanda = New pSolicitutComanda(c)
-                Call setTab(c.ToStringCodi, panelComanda)
-                'AddHandler panelComanda.AddItem, AddressOf RefreshComanda
-            End If
-        End If
 
-        c = Nothing
-    End Sub
 
-    Private Sub mnuVeureSolicituts_Click(sender As Object, e As EventArgs) Handles mnuVeureSolicituts.Click
+    Private Sub mnuVeureSolicituts_Click(sender As Object, e As EventArgs) Handles mnuEditarSolicitutComanda.Click
         Dim p As SelectSolicitudComandes
         p = New SelectSolicitudComandes(1, True, False)
-
         Call setTab(IDIOMA.getString("solicitudsComanda"), p)
     End Sub
     Friend Sub setLog(l As Log)
@@ -258,20 +255,130 @@ Public Class frmIniComanda
         Call setTab(l.titol, p)
     End Sub
 
-    Private Sub mnuImportarSolicituts_Click(sender As Object, e As EventArgs) Handles mnuImportarSolicituts.Click
-        Dim p As SelectFitxersSolicitut
-        p = New SelectFitxersSolicitut(0, True, False)
-        Call setTab(IDIOMA.getString("fitxersF56"), p)
-        AddHandler p.selectObject, AddressOf setFitxers
-    End Sub
     Private Sub setFitxers(fitxers As List(Of CodiDescripcio))
         Call ModulImportSolicituds.importFitxers(fitxers)
-        'Call mnuImportarSolicituts_Click(Nothing, Nothing)
 
+        refrescarSolicitudsComanda = True
+    End Sub
+    Private Sub mnuApliServidor_Click(sender As Object, e As EventArgs) Handles mnuApliServidor.Click
+        Dim fr As New frmServer
+        fr.ShowDialog()
+        fr.Dispose()
+        fr = Nothing
+    End Sub
+
+    Private Sub mnuApliRutaDirectori_Click(sender As Object, e As EventArgs) Handles mnuApliRutaDirectori.Click
+        Dim f As New dRutaServidorDades, ruta As String
+        ruta = f.getDirectori(CONFIG_FILE.getTag(CONFIG_FILE.TAG.RUTA_SERVIDOR_DADES), IDIOMA.getString("configRutaServidorDades"))
+        f.Dispose()
+        If CONFIG.folderExist(ruta) Then
+            Call CONFIG_FILE.setTag(CONFIG_FILE.TAG.RUTA_SERVIDOR_DADES, ruta)
+        End If
+
+        f = Nothing
+    End Sub
+
+    Private Sub mnuimportSolicitut_Click(sender As Object, e As EventArgs)
+        'Dim objects As List(Of SolicitudComanda), c As Comanda, s As SolicitudComanda, p As SelectComandesEdicio, i As Integer
+        'objects = ModulImportSolicituds.importFitxers(ModulImportSolicituds.getObjects())
+        'i = 0
+        'If objects.Count > 0 Then
+        '    For Each s In objects
+        '        s.id = ModelComandaSolicitud.save(s)
+        '        If s.id > 0 Then
+        '            c = ModelComandaEnEdicio.getNewComandaToF56(s)
+        '            If Not IsNothing(c) Then
+        '                c.idSolicitut = s.id
+        '                c.id = ModelComandaEnEdicio.save(c)
+        '                i = i + 1
+        '            End If
+        '        End If
+        '    Next
+        '    If i > 0 Then
+        '        refrescarComanda = True
+        '        p = New SelectComandesEdicio(1, True, False)
+        '        Me.Visible = False
+        '        Call setTab(IDIOMA.getString("comandesEdicio"), p)
+        '        Me.Visible = True
+        '    End If
+        'End If
+        'objects = Nothing
+        's = Nothing
+        'c = Nothing
+        Dim p As SelectFitxersSolicitut
+        p = New SelectFitxersSolicitut(0, True, False)
+        refrescarFitxersF56 = False
+        Call setTab(IDIOMA.getString("fitxersF56"), p)
+        AddHandler p.selectObject, AddressOf importFitxersf56
+
+    End Sub
+    Private Sub importFitxersf56(fitxers As List(Of CodiDescripcio))
+        Dim objects As List(Of SolicitudComanda), c As Comanda, s As SolicitudComanda, p As SelectComandesEdicio, i As Integer
+        objects = ModulImportSolicituds.importFitxers(fitxers)
+        i = 0
+        If objects.Count > 0 Then
+            For Each s In objects
+                s.id = ModelComandaSolicitud.save(s)
+
+                If s.id > 0 Then
+                    c = ModelComandaEnEdicio.getNewComandaToF56(s)
+                    If Not IsNothing(c) Then
+                        c.idSolicitut = s.id
+                        c.estat = 0
+                        c.id = ModelComandaEnEdicio.save(c)
+                        i = i + 1
+                    End If
+                End If
+            Next
+            If i > 0 Then
+                refrescarComandaEnEdicio = True
+                p = New SelectComandesEdicio(1, True, False)
+                Me.Visible = False
+                Call setTab(IDIOMA.getString("comandaEdicio"), p)
+                Me.Visible = True
+            End If
+            refrescarFitxersF56 = True
+        End If
+        objects = Nothing
+        s = Nothing
+        c = Nothing
+    End Sub
+
+    Private Sub mnuVeureComandaEdicio_Click(sender As Object, e As EventArgs) Handles mnuVeureComandaEdicio.Click
+        Dim p As SelectComandesEdicio
+        p = New SelectComandesEdicio(1, True, False)
+        Me.Visible = False
+        Call setTab(IDIOMA.getString("comandesEdicio"), p)
+        Me.Visible = True
+    End Sub
+    Friend Sub activatePrevious()
+        Call closetab(idActual)
+        Call activateTab(idActual - 1)
+    End Sub
+
+    Private Sub ImportarSolicitutdDeComandaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles mnuImportF56.Click
+        Dim p As SelectFitxersSolicitut
+        p = New SelectFitxersSolicitut(0, True, False)
+        refrescarFitxersF56 = False
+        Call setTab(IDIOMA.getString("fitxersF56"), p)
+        AddHandler p.selectObject, AddressOf importFitxersf56
+    End Sub
+
+    Private Sub frmIniComanda_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
 
-    Private Sub pData_Paint(sender As Object, e As PaintEventArgs) Handles pData.Paint
+    Private Sub mnuComandes_Click(sender As Object, e As EventArgs) Handles mnuComandes.Click
 
+    End Sub
+
+    Private Sub mnuLlocsEntrega_Click(sender As Object, e As EventArgs) Handles mnuLlocsEntrega.Click
+        Dim p As SelectLlocEntrega
+        p = New SelectLlocEntrega(1, True, False, IDIOMA.getString("magatzemsLlocsEntrega"), 1)
+        Call setTab(IDIOMA.getString("magatzems"), New pLlocEntrega)
+    End Sub
+
+    Private Sub mnuContactesCentre_Click(sender As Object, e As EventArgs) Handles mnuContactesCentre.Click
+        Call setTab(IDIOMA.getString("contactesProjecte"), New pContactes)
     End Sub
 End Class

@@ -15,6 +15,13 @@
     Private contacteActual As Contacte
     Private actualitzar As Boolean
     Friend Event removeItem(c As SolicitudComanda)
+    Private Const C_CODI As String = "CODI"
+    Private Const C_QUANTITAT As String = "QUANTITAT"
+    Private Const C_UNITAT As String = "UNITAT"
+    Private Const C_DESCRIPCIO As String = "DESCRIPCIO"
+    Private Const C_IMPORT As String = "IMPORT"
+    Private Const C_TOTAL As String = "TOTAL"
+    Private Const C_DESCOMPTE As String = "DESCOMPTE"
     Public Sub New(pSolicitut As SolicitudComanda)
         InitializeComponent()
         solicitudActual = pSolicitut
@@ -102,6 +109,18 @@
         End If
         AddHandler listContactesproveidor.selectObject, AddressOf setContacteProveidor
     End Sub
+
+    Private Sub pComanda_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+
+        DGVArticles.Columns(0).Width = DGVArticles.Width * 0.15
+        DGVArticles.Columns(1).Width = DGVArticles.Width * 0.05
+        DGVArticles.Columns(2).Width = DGVArticles.Width * 0.05
+        DGVArticles.Columns(3).Width = DGVArticles.Width * 0.31
+        DGVArticles.Columns(4).Width = DGVArticles.Width * 0.1
+        DGVArticles.Columns(5).Width = DGVArticles.Width * 0.05
+        DGVArticles.Columns(6).Width = DGVArticles.Width * 0.1
+
+    End Sub
     Private Sub setComanda()
         Me.xecAltres.Checked = solicitudActual.altresAlcans
         Me.xecEmbalatge.Checked = solicitudActual.embalatge
@@ -124,6 +143,44 @@
         Me.txtOferta3.Text = solicitudActual.oferta3
         Me.txtComparatiu.Text = solicitudActual.comparatiu
         Me.txtAltres.Text = solicitudActual.altresDocumentacio
+        If InStr(1, solicitudActual.departament, "explotacio", CompareMethod.Text) > 0 Then
+            Me.optExplotacions.Checked = True
+        ElseIf InStr(1, solicitudActual.departament, "obr", CompareMethod.Text) > 0 Then
+            Me.optObres.Checked = True
+        ElseIf InStr(1, solicitudActual.departament, "gen", CompareMethod.Text) > 0 Then
+            Me.optGeneric.Checked = True
+        End If
+    End Sub
+    Private Sub setArticles(articles As List(Of articleComanda))
+        Dim r As DataGridViewRow, a As articleComanda
+        actualitzar = False
+        For Each a In articles
+            r = DGVArticles.Rows(a.pos)
+            r.Cells(C_CODI).Value = a.codi
+            If a.quantitat <> 0 Then r.Cells(C_QUANTITAT).Value = a.quantitat
+            If Not IsNothing(a.unitat) Then r.Cells(C_UNITAT).Value = a.unitat.codi
+            r.Cells(C_DESCRIPCIO).Value = a.nom
+            If a.preu <> 0 Then r.Cells(C_IMPORT).Value = a.preu
+            If a.tpcDescompte <> 0 Then r.Cells(C_DESCOMPTE).Value = a.tpcDescompte
+
+            Call setTotal(r)
+        Next
+        Call setTotals()
+        actualitzar = True
+    End Sub
+    Private Sub setTotal(r As DataGridViewRow)
+        actualitzar = False
+        r.Cells(C_TOTAL).Value = Math.Round(r.Cells(C_IMPORT).Value - (r.Cells(C_IMPORT).Value * r.Cells(C_DESCOMPTE) / 100))
+        actualitzar = True
+    End Sub
+    Private Sub setTotals()
+        Dim r As DataGridViewRow, base As Double = 0, descompte As Double = 0
+        For Each r In DGVArticles.Rows
+            base = base + r.Cells(C_IMPORT).Value
+            descompte = r.Cells(C_IMPORT).Value * r.Cells(C_DESCOMPTE).Value / 100
+        Next
+        lblTotal.Text = IDIOMA.getString("total") & ": " & Format(base - descompte, "#,##0.00;-#,##0.00")
+        r = Nothing
     End Sub
     Private Sub validateControlsEmpresa()
         Dim pAvis As avis
@@ -207,9 +264,7 @@
         End If
     End Sub
 
-    ''' set data
-    ''' 
-    ''' </summary>
+
     Private Sub setEmpresa()
         actualitzar = False
         If Not IsNothing(empresaActual) Then
@@ -232,7 +287,7 @@
         If contacteActual IsNot Nothing Then If contacteActual.id = -1 And projecteActual.contactes.Count > 0 Then contacteActual = ModelContacte.getObject(projecteActual.contactes.Item(0).idContacte)
         listContactesEntrega = New lstContactes(contacteActual)
         AddHandler listContactesEntrega.selectObject, AddressOf setContacte
-        AddHandler listLlocsEntrega.selectObject, AddressOf setLlocEntrega
+        AddHandler listLlocsEntrega.selectObject, AddressOf setLLocEntrega
         Call CONFIG.setPanel(panelMagatzem, listLlocsEntrega)
         Call CONFIG.setPanel(PanelContacte, listContactesEntrega)
         Call setLLocEntrega()
@@ -263,21 +318,47 @@
             Call setEmpresa()
         Else
             empresaActual = Nothing
+            projecteActual = Nothing
             Call setEmpresa()
+
         End If
     End Sub
+    Private Sub cbProjecte_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbProjecte.SelectedIndexChanged
+        If cbProjecte.SelectedIndex > -1 Then
+            projecteActual = cbProjecte.SelectedItem
+            Call setProjecte()
+        Else
+            projecteActual = Nothing
+            Call setProjecte()
+        End If
 
-
-    Private Sub cbEmpresa_TextChanged(sender As Object, e As EventArgs) Handles cbEmpresa.TextChanged
+    End Sub
+    Private Sub cbProjecte__TextChanged(sender As Object, e As EventArgs)
         If actualitzar Then
-            If cbEmpresa.Text = "" Then
-                empresaActual = Nothing
-                Call setEmpresa()
+            If cbProjecte.Text = "" Then
+                projecteActual = Nothing
+                Call setProjecte()
             End If
         End If
     End Sub
 
+    Private Sub DGVArticles_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
+
+    End Sub
+
     Private Sub pSolicitutComanda_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+    End Sub
+
+    Private Sub cmdGuardar_Click(sender As Object, e As EventArgs) Handles cmdGuardar.Click
+        ' hi ha d'haver-hi un getData
+        If MISSATGES.CONFIRM_EDITAR_COMANDA(empresaActual.ToString) Then
+            ' marcar com a comanda creada i copiar la comanda des de la solicitut 
+
+        End If
+    End Sub
+
+    Private Sub cbEmpresa_SelectedIndexChanged_1(sender As Object, e As EventArgs)
+        If actualitzar Then Call setProjectes()
     End Sub
 End Class

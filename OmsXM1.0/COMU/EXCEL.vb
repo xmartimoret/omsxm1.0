@@ -1,5 +1,6 @@
 ﻿Option Explicit On
 Imports XLS = Microsoft.Office.Interop.Excel
+
 Module EXCEL
     Private Declare Auto Function SetProcessWorkingSetSize Lib "kernel32.dll" (ByVal procHandle As IntPtr, ByVal min As Int32, ByVal max As Int32) As Boolean
     Private Declare Auto Function GetWindowThreadProcessId Lib "user32.dll" (ByVal hwnd As IntPtr,
@@ -142,6 +143,13 @@ Module EXCEL
                 Call p.Kill()
                 Exit For
             End If
+        Next
+    End Sub
+    Public Sub killProcessPDF()
+        Dim myProcesses() As Process, p As Process
+        myProcesses = Process.GetProcessesByName("AcroRd32")
+        For Each p In myProcesses
+            p.Kill()
         Next
     End Sub
     Private Function existProcess(nomProces As String) As Boolean
