@@ -1,6 +1,7 @@
 ﻿Public Class Pais
     Inherits Base
     Public Property abreviatura As String
+    Public Property actiu As Boolean = True
     Public Sub New()
 
     End Sub

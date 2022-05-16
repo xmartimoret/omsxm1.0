@@ -2,6 +2,7 @@
 Public Class SelectAuxiliar
     Inherits LVObjects
     Friend Property objects As List(Of Object)
+
     Private auxiliar As ModelAuxiliar
     Public Sub New(taulaAuxiliar As String, pAccio As Integer, pMultiselect As Boolean, parentForm As Boolean, Optional pTitol As String = "", Optional pOrdre As Integer = 0)
         Me.accio = pAccio
@@ -21,7 +22,9 @@ Public Class SelectAuxiliar
             Case DBCONNECT.getTaulaFamilia : Return save(DAuxiliar.getobject(New Familia))
             Case DBCONNECT.getTaulaUnitat : Return save(DAuxiliar.getobject(New Unitat))
             Case DBCONNECT.getTaulaFabricant : Return save(DAuxiliar.getobject(New Fabricant))
+            Case DBCONNECT.getTaulaResponsableCompra : Return save(DResponsableCompra.getObject(New ResponsableCompra))
         End Select
+        Return -1
     End Function
     Public Overrides Function eliminar(id As Integer) As Boolean
         Dim d As Object
@@ -35,7 +38,6 @@ Public Class SelectAuxiliar
     End Function
 
     Public Overrides Function filtrar(txt As String) As DataList
-
         Return auxiliar.getDataList(auxiliar.getObjects(txt))
     End Function
 
@@ -44,6 +46,7 @@ Public Class SelectAuxiliar
             Case DBCONNECT.getTaulaPais : Return save(DPais.getPais(auxiliar.getObject(id)))
             Case DBCONNECT.getTaulaTipusIva : Return save(DTipusIva.gettipusIva(auxiliar.getObject(id)))
             Case DBCONNECT.getTaulaTipusPagament : Return save(DTipusPagament.gettipusPagament(auxiliar.getObject(id)))
+            Case DBCONNECT.getTaulaResponsableCompra : Return save(DResponsableCompra.getObject(auxiliar.getObject(id)))
             Case Else : Return save(DAuxiliar.getobject(auxiliar.getObject(id)))
         End Select
     End Function
@@ -80,4 +83,34 @@ Public Class SelectAuxiliar
     Public Overrides Function filtrar(idParent As Integer, txt As String) As DataList
         Return Nothing
     End Function
+
+    Public Overrides Function getRow(id As Integer) As ListViewItem
+        Return auxiliar.getListViewItem(id)
+    End Function
+    Private Function getOrderedObjects() As List(Of Object)
+        Dim i As Integer, o As Object
+        getOrderedObjects = New List(Of Object)
+        For Each i In Me.getIndexs
+            o = auxiliar.getObject(i)
+            getOrderedObjects.Add(o)
+        Next
+    End Function
+
+    Public Overrides Sub imprimir(pdf As Boolean, filtre As String)
+        Select Case auxiliar.taulaActual
+            Case DBCONNECT.getTaulaPais : Call ModulInfoAuxiliar.infoPais(getOrderedObjects, pdf, filtre)
+            Case DBCONNECT.getTaulaTipusIva : Call ModulInfoAuxiliar.infoTipusIva(getOrderedObjects, pdf, filtre)
+            Case DBCONNECT.getTaulaTipusPagament : Call ModulInfoAuxiliar.infoTipusPagament(getOrderedObjects, pdf, filtre)
+            Case Else : Call ModulInfoAuxiliar.infoAuxiliar(getOrderedObjects, pdf, filtre)
+        End Select
+    End Sub
+    Public Overrides Sub actualitzar(id As List(Of Integer))
+
+    End Sub
+    Public Overrides Sub toolTipText(id As Integer)
+
+    End Sub
+    Public Overrides Sub guardarCopia(id As Integer)
+        Call ERRORS.EN_CONSTRUCCIO()
+    End Sub
 End Class

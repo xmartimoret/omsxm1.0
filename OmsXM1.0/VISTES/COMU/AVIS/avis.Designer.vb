@@ -35,8 +35,9 @@ Partial Class avis
         Me.Picture.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Picture.Location = New System.Drawing.Point(-1, -1)
+        Me.Picture.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Picture.Name = "Picture"
-        Me.Picture.Size = New System.Drawing.Size(40, 36)
+        Me.Picture.Size = New System.Drawing.Size(30, 29)
         Me.Picture.TabIndex = 0
         Me.Picture.TabStop = False
         '
@@ -47,9 +48,10 @@ Partial Class avis
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblAvis.Font = New System.Drawing.Font("Tahoma", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblAvis.ForeColor = System.Drawing.Color.Red
-        Me.lblAvis.Location = New System.Drawing.Point(42, 6)
+        Me.lblAvis.Location = New System.Drawing.Point(32, 5)
+        Me.lblAvis.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblAvis.Name = "lblAvis"
-        Me.lblAvis.Size = New System.Drawing.Size(327, 29)
+        Me.lblAvis.Size = New System.Drawing.Size(245, 24)
         Me.lblAvis.TabIndex = 1
         Me.lblAvis.Text = "texte4"
         '
@@ -62,13 +64,14 @@ Partial Class avis
         '
         'avis
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.Controls.Add(Me.lblAvis)
         Me.Controls.Add(Me.Picture)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Name = "avis"
-        Me.Size = New System.Drawing.Size(369, 36)
+        Me.Size = New System.Drawing.Size(277, 29)
         CType(Me.Picture, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

@@ -1,4 +1,4 @@
-﻿Imports ApliOms
+﻿
 
 Public Class SelectSubgrups
     Inherits LVSubObjects1

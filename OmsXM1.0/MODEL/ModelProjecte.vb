@@ -20,6 +20,14 @@ Module ModelProjecte
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.FindAll(Function(x) x.isFilter(filter, x.toStringEmpresa))
     End Function
+    Public Function getObjects() As List(Of Object)
+        Dim p As Projecte
+        If Not isUpdated() Then objects = getRemoteObjects()
+        getObjects = New List(Of Object)
+        For Each p In objects
+            getObjects.Add(p)
+        Next
+    End Function
     Public Function getObjects(idEmpresa As Integer) As List(Of Projecte)
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.FindAll(Function(x) x.idEmpresa = idEmpresa)
@@ -118,7 +126,17 @@ Module ModelProjecte
         End If
         p = Nothing
     End Function
-
+    Public Function getListViewItem(p As Projecte) As ListViewItem
+        Return New ListViewItem(New String() {p.id, p.idEmpresa, ModelEmpresa.getNom(p.idEmpresa), p.codi, p.nom, p.notes, p.responsable, p.director})
+    End Function
+    Public Function getListViewItem(id As Integer) As ListViewItem
+        Dim a As Projecte
+        a = getObject(id)
+        If a IsNot Nothing Then
+            Return getListViewItem(a)
+        End If
+        Return Nothing
+    End Function
     Public Function save(obj As Projecte) As Integer
         Dim i As Integer
         If obj.id = -1 Then
@@ -131,6 +149,7 @@ Module ModelProjecte
             dateUpdate = Now()
             objects.Remove(obj)
             objects.Add(obj)
+            If Not GOOGLE_SHEETS.save(obj) Then Call ERRORS.ERR_UPDATE_GOOGLE_SHEETS()
             Return obj.id
         End If
         Return -1
@@ -139,6 +158,7 @@ Module ModelProjecte
         If dbProjecte.remove(obj) Then
             dateUpdate = Now()
             objects.Remove(obj)
+            If Not GOOGLE_SHEETS.remove(obj) Then Call ERRORS.ERR_UPDATE_GOOGLE_SHEETS()
             Return True
         End If
         Return False

@@ -21,7 +21,7 @@ Module ModelProjecteEntrega
                 c = ModelLlocEntrega.getObject(pc.idEntrega)
                 If Not IsNothing(c) Then
                     If c.provincia Is Nothing Then c.provincia = New Provincia
-                    If c.estat Then
+                    If c.actiu Then
                         esActiu = IDIOMA.getString("actiu")
                     Else
                         esActiu = IDIOMA.getString("noActiu")

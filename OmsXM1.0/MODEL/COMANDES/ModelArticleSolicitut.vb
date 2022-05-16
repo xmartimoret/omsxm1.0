@@ -5,7 +5,7 @@ Module ModelArticleSolicitut
     Private dateUpdate As DateTime
     Public Function getObjects(idComanda As Integer) As List(Of ArticleSolicitut)
         If Not isUpdated() Then objects = getRemoteObjects()
-        getObjects = objects.FindAll(Function(x) x.idComanda = idComanda)
+        getObjects = objects.FindAll(Function(x) x.idSolicutComanda = idComanda)
     End Function
     Public Function getDataList(ArticlesComanda As List(Of ArticleSolicitut)) As DataList
         Dim a As ArticleSolicitut
@@ -32,7 +32,7 @@ Module ModelArticleSolicitut
     End Function
     Public Function exist(obj As ArticleSolicitut) As Boolean
         If Not isUpdated() Then objects = getRemoteObjects()
-        Return objects.Exists(Function(x) x.id <> obj.id And x.idComanda = obj.idComanda And x.codi = obj.codi)
+        Return objects.Exists(Function(x) x.id <> obj.id And x.idSolicutComanda = obj.idSolicutComanda And x.codi = obj.codi)
     End Function
     Public Function save(obj As ArticleSolicitut) As Integer
         If Not isUpdated() Then objects = getRemoteObjects()
@@ -50,15 +50,27 @@ Module ModelArticleSolicitut
         Return obj.id
     End Function
     Public Function save(ac As List(Of ArticleSolicitut), idSolicitut As Integer) As Boolean
-        Dim a As ArticleSolicitut
+        Dim a As ArticleSolicitut, aD As ArticleSolicitut, pos As Integer, d As String
+        If Not isUpdated() Then objects = getRemoteObjects()
         For Each a In ac
-            a.idComanda = idSolicitut
-            If save(a) = -1 Then Return False
+            a.idSolicutComanda = idSolicitut
+            pos = a.pos + 1
+            Call save(a)
+            For Each d In a.descripcio
+                aD = New ArticleSolicitut
+                aD.idSolicutComanda = idSolicitut
+                aD.pos = pos
+                aD.nom = d
+                pos = pos + 1
+                Call save(aD)
+            Next
+
         Next
-        Return True
+            Return True
     End Function
     Public Function remove(obj As ArticleSolicitut) As Boolean
         Dim result As Boolean
+        If Not isUpdated() Then objects = getRemoteObjects()
         result = dbArticleSolicitut.remove(obj)
         If result Then
             dateUpdate = Now()
@@ -68,6 +80,7 @@ Module ModelArticleSolicitut
     End Function
     Public Function remove(obj As SolicitudComanda) As Boolean
         Dim result As Boolean
+        If Not isUpdated() Then objects = getRemoteObjects()
         result = dbArticleSolicitut.remove(obj)
         If result Then
             dateUpdate = Now()

@@ -6,9 +6,13 @@ Module ModelEmpresa
     Private dateUpdate As Date
     Private Const N_Columns As Integer = 4
 
-    Public Function getObjects() As List(Of Empresa)
+    Public Function getObjects() As List(Of Object)
+        Dim e As Empresa
         If Not isUpdated() Then objects = getRemoteObjects()
-        Return objects
+        getObjects = New List(Of Object)
+        For Each e In objects
+            getObjects.Add(e)
+        Next
     End Function
     Public Function getObjects(filter As String) As List(Of Empresa)
         If Not isUpdated() Then objects = getRemoteObjects()
@@ -35,7 +39,12 @@ Module ModelEmpresa
     End Function
     Public Function getObject(codi As String) As Empresa
         If Not isUpdated() Then objects = getRemoteObjects()
-        Return objects.Find(Function(x) x.codi = codi)
+        If LCase(codi) = "rem" Then
+            Return objects.Find(Function(x) x.codi = "OMS")
+        Else
+            Return objects.Find(Function(x) x.codi = codi)
+        End If
+
     End Function
     Public Function getCodiEmpresa(id As Integer) As String
         If Not isUpdated() Then objects = getRemoteObjects()
@@ -82,10 +91,30 @@ Module ModelEmpresa
             getDataList.columns.Add(COLUMN.NOM)
             getDataList.columns.Add(COLUMN.PARTICIPACIO)
             For Each e In empreses
-                getDataList.rows.Add(New ListViewItem(New String() {e.id, e.codi, e.nom, e.participacio & "%"}))
+                If e.id = 1 Then
+                    getDataList.rows.Add(New ListViewItem(New String() {e.id, "REM", e.nom, e.participacio & "%"}))
+                Else
+                    getDataList.rows.Add(New ListViewItem(New String() {e.id, e.codi, e.nom, e.participacio & "%"}))
+                End If
             Next
         End If
         e = Nothing
+    End Function
+    Public Function getListViewItem(e As Empresa) As ListViewItem
+        If e.id = 1 Then
+            Return New ListViewItem(New String() {e.id, "REM", e.nom, e.participacio & "%"})
+        Else
+            Return New ListViewItem(New String() {e.id, e.codi, e.nom, e.participacio & "%"})
+        End If
+
+    End Function
+    Public Function getListViewItem(id As Integer) As ListViewItem
+        Dim a As Empresa
+        a = getObject(id)
+        If a IsNot Nothing Then
+            Return getListViewItem(a)
+        End If
+        Return Nothing
     End Function
     Public Function getListNomsEmpresaBYPOSID() As String()
         Dim e As Empresa, dades() As String
@@ -127,6 +156,7 @@ Module ModelEmpresa
             dateUpdate = Now()
             objects.Remove(obj)
             objects.Add(obj)
+            If Not GOOGLE_SHEETS.save(obj) Then Call ERRORS.ERR_UPDATE_GOOGLE_SHEETS()
             Return obj.id
         End If
         Return -1
@@ -139,12 +169,16 @@ Module ModelEmpresa
             objects.Remove(obj)
             Call ModelEmpresaContaplus.removeEmpresa(obj.id)
             Call ModelSeccio.removeSeccio(obj.id)
+            If Not GOOGLE_SHEETS.remove(obj) Then Call ERRORS.ERR_UPDATE_GOOGLE_SHEETS()
             Return True
         End If
         Return False
     End Function
     Public Sub resetIndex()
         objects = Nothing
+    End Sub
+    Public Sub setdata()
+        If Not isUpdated() Then objects = getRemoteObjects()
     End Sub
     Public Sub changeOrder(e1 As Empresa, e2 As Empresa)
         Dim temp As Integer
@@ -232,12 +266,11 @@ Module ModelEmpresa
     End Function
     ' todo falta definir que fem amb el mode local
     Private Function getRemoteObjects() As List(Of Empresa)
-        Dim e As Empresa, dades As List(Of Empresa)
+        Dim dades As List(Of Empresa)
         dateUpdate = Now()
+
         dades = dbEmpresa.getObjects
-        'For Each e In dades
-        '    e.empresesContaplus = ModelEmpresaContaplus.getObjects(e.id)
-        'Next
+
         Return dades
     End Function
 

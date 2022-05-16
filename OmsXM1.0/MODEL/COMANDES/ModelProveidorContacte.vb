@@ -6,6 +6,14 @@ Module ModelProveidorContacte
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.FindAll(Function(x) x.idProveidor = idProveidor And x.isFilter(filtre, x.poblacio))
     End Function
+    Public Function getObjects(estat As Boolean) As List(Of Object)
+        Dim P As ProveidorCont
+        If Not isUpdated() Then objects = getRemoteObjects()
+        getObjects = New List(Of Object)
+        For Each P In objects
+            If P.actiu Or Not estat Then getObjects.Add(P)
+        Next
+    End Function
     Public Function getDataList(provincies As List(Of ProveidorCont)) As DataList
         Dim c As ProveidorCont
         getDataList = New DataList
@@ -42,15 +50,18 @@ Module ModelProveidorContacte
     Public Function save(obj As ProveidorCont) As Integer
         If obj.id = -1 Then
             obj.id = dbProveidorCont.insert(obj)
+
         Else
             obj.id = dbProveidorCont.update(obj)
+
         End If
         If obj.id > -1 Then
             dateUpdate = Now()
             objects.Remove(obj)
             objects.Add(obj)
+            If Not GOOGLE_SHEETS.save(obj) Then Call ERRORS.ERR_UPDATE_GOOGLE_SHEETS
         End If
-        Return obj.id
+            Return obj.id
     End Function
     Public Function remove(obj As ProveidorCont) As Boolean
         Dim result As Boolean
@@ -58,6 +69,7 @@ Module ModelProveidorContacte
         If result Then
             dateUpdate = Now()
             objects.Remove(obj)
+            If Not GOOGLE_SHEETS.remove(obj) Then Call ERRORS.ERR_UPDATE_GOOGLE_SHEETS()
         End If
         Return result
     End Function

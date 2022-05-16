@@ -19,6 +19,17 @@ Module ModelPrefixSubcompte
         End If
         s = Nothing
     End Function
+    Public Function getListViewItem(s As PrefixSubcte) As ListViewItem
+        Return New ListViewItem(New String() {s.id, s.prefix, s.codiSubcompte & " - " & s.descripcioSubcompte})
+    End Function
+    Public Function getListViewItem(id As Integer) As ListViewItem
+        Dim a As PrefixSubcte
+        a = getObject(id)
+        If a IsNot Nothing Then
+            Return getListViewItem(a)
+        End If
+        Return Nothing
+    End Function
     Public Function getObject(id As Integer) As PrefixSubcte
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Find(Function(x) x.id = id)

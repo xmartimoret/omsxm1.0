@@ -7,7 +7,7 @@
     Public Property codiPostal As String
     Public Property dataAlta As String
     Public Property dataBaixa As String
-    Public Property actiu As Boolean
+    Public Property actiu As Boolean = True
     Public Property pais As Pais
     Public Property provincia As Provincia
     Public Property tipusPagament As TipusPagament
@@ -138,6 +138,14 @@
     Public Overrides Function ToString() As String
         Return nom
     End Function
+    Public Function toStringComanda()
+        Dim texte As String = ""
+        texte = "  " & _direccio & " " & _codiPostal
+        If Not IsNothing(_poblacio) Then texte = texte & "   " & _poblacio
+        If Not IsNothing(_provincia) Then texte = texte & vbCrLf & _provincia.nom
+        If Not IsNothing(_pais) Then texte = texte & "-(" & _pais.nom & ")"
+        Return texte
+    End Function
     Public Function toTarget() As String
         Dim texte As String
         texte = _direccio & vbCrLf & _codiPostal
@@ -145,6 +153,14 @@
         If Not IsNothing(_provincia) Then texte = texte & vbCrLf & _provincia.nom
         If Not IsNothing(_pais) Then texte = texte & "-(" & _pais.nom & ")"
         Return texte
+    End Function
+    Public Function getCorreoComanda() As String
+        Dim c As ProveidorCont
+        If _email <> "" Then Return _email
+        For Each c In contactes
+            If c.email <> "" Then Return c.email
+        Next
+        Return ""
     End Function
     Protected Overrides Sub Finalize()
         _pais = Nothing

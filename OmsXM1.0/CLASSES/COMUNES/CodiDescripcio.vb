@@ -13,4 +13,7 @@
         _codi = pCodi
         _descripcio = pDescripcio
     End Sub
+    Public Overrides Function toString() As String
+        Return descripcio
+    End Function
 End Class

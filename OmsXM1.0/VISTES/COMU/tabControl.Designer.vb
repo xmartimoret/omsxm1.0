@@ -35,7 +35,7 @@ Partial Class tabControl
         Me.lblTitol.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTitol.Location = New System.Drawing.Point(3, 3)
         Me.lblTitol.Name = "lblTitol"
-        Me.lblTitol.Size = New System.Drawing.Size(125, 22)
+        Me.lblTitol.Size = New System.Drawing.Size(177, 22)
         Me.lblTitol.TabIndex = 4
         Me.lblTitol.Text = "PROVEIDORS"
         Me.lblTitol.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -44,10 +44,11 @@ Partial Class tabControl
         '
         Me.cmdCancelar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdCancelar.Location = New System.Drawing.Point(128, 3)
+        Me.cmdCancelar.Location = New System.Drawing.Point(180, 3)
         Me.cmdCancelar.Name = "cmdCancelar"
         Me.cmdCancelar.Size = New System.Drawing.Size(32, 22)
         Me.cmdCancelar.TabIndex = 3
+        Me.cmdCancelar.TabStop = False
         Me.cmdCancelar.Text = "X"
         Me.cmdCancelar.UseVisualStyleBackColor = True
         '
@@ -60,7 +61,7 @@ Partial Class tabControl
         Me.Controls.Add(Me.lblTitol)
         Me.Controls.Add(Me.cmdCancelar)
         Me.Name = "tabControl"
-        Me.Size = New System.Drawing.Size(163, 28)
+        Me.Size = New System.Drawing.Size(215, 28)
         Me.ResumeLayout(False)
 
     End Sub

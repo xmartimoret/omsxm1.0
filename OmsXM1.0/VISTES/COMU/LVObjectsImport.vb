@@ -29,10 +29,10 @@
     Public MustOverride Function filtrar(idParent As Integer, txt As String) As DataList
     Private Sub setLanguage()
         Me.lblFiltrar.Text = IDIOMA.getString("filtrarPer")
-        tTip1.SetToolTip(cmdAfegir, IDIOMA.getString("cmdAfegir"))
+
         tTip1.SetToolTip(cmdEliminar, IDIOMA.getString("cmdEliminar"))
         tTip1.SetToolTip(cmdSeleccionar, IDIOMA.getString("cmdImportar"))
-        tTip1.SetToolTip(cmdImprimir, IDIOMA.getString("cmdImprimir"))
+        tTip1.SetToolTip(cmdActualitzar, IDIOMA.getString("cmdActualitzarToolTip"))
     End Sub
     Private Sub validateControls()
         If accio = 0 Then
@@ -43,19 +43,19 @@
             End If
         ElseIf accio = 1 Then
             Me.cmdSeleccionar.Enabled = False
-            Me.cmdAfegir.Enabled = True
+
 
         End If
 
         Me.cmdEliminar.Visible = True
-        Me.cmdImprimir.Visible = True
+
         If idsActual.Count > 0 Or idActual > 0 Then
             Me.cmdEliminar.Enabled = True
-            Me.cmdImprimir.Enabled = True
+
         Else
 
             Me.cmdEliminar.Enabled = False
-            Me.cmdImprimir.Enabled = False
+
         End If
         If multiselect Then
             If isSelected() Then
@@ -103,7 +103,7 @@
         Call setData()
         Call validateControls()
     End Sub
-    Private Sub cmdAfegir_Click(sender As Object, e As EventArgs) Handles cmdAfegir.Click
+    Private Sub cmdAfegir_Click(sender As Object, e As EventArgs)
         Dim id As Integer
         Try
             id = afegir(idActual)
@@ -120,11 +120,6 @@
     End Sub
     Private Sub cmdSeleccionar_Click(sender As Object, e As EventArgs) Handles cmdSeleccionar.Click
         If seleccionar(idsActual) Then
-            'If isForm Then
-            '    Me.Parent.Parent.Dispose()
-            'Else
-            '    Me.Dispose()
-            'End If
             Call filtrar(txtFiltrar.Text)
         End If
     End Sub
@@ -214,6 +209,7 @@
         End If
 
         ' Create a comparer.
+
         lstData.ListViewItemSorter = New _
             ListViewComparer(e, sort_order)
         ' Sort.
@@ -264,11 +260,22 @@
     End Sub
 
 
-    Private Sub mnoAfegir_Click(sender As Object, e As EventArgs) Handles mnoAfegir.Click
-        If cmdAfegir.Enabled Then Call cmdAfegir_Click(sender, e)
+    Private Sub mnoAfegir_Click(sender As Object, e As EventArgs)
+
     End Sub
     Private Sub mnuEliminar_Click(sender As Object, e As EventArgs) Handles mnuEliminar.Click
         If cmdEliminar.Enabled Then Call cmdEliminar_Click(sender, e)
+    End Sub
+
+    Private Sub lstData_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles lstData.MouseDoubleClick
+        If seleccionar(idsActual) Then
+            Call filtrar(txtFiltrar.Text)
+        End If
+    End Sub
+
+    Private Sub cmdActualitzar_Click(sender As Object, e As EventArgs) Handles cmdActualitzar.Click
+        Call setData()
+        Call validateControls()
     End Sub
 End Class
 

@@ -56,6 +56,19 @@ Public Class ModelAuxiliar
                             getDataList.rows.Add(New ListViewItem(New String() {c.id, c.codi, c.nom, c.dies, c.diaPagament, IDIOMA.getString("no")}))
                         End If
                     Next
+                Case DBCONNECT.getTaulaResponsableCompra
+                    getDataList.columns.Add(COLUMN.ID)
+                    getDataList.columns.Add(COLUMN.CODI)
+                    getDataList.columns.Add(COLUMN.NOM)
+                    getDataList.columns.Add(COLUMN.GENERICA("email", 140, HorizontalAlignment.Left))
+                    getDataList.columns.Add(COLUMN.GENERICA("actiu", 50, HorizontalAlignment.Center))
+                    For Each c In objects
+                        If c.actiu Then
+                            getDataList.rows.Add(New ListViewItem(New String() {c.id, c.codi, c.nom, c.notes, IDIOMA.getString("si")}))
+                        Else
+                            getDataList.rows.Add(New ListViewItem(New String() {c.id, c.codi, c.nom, c.notes, IDIOMA.getString("no")}))
+                        End If
+                    Next
                 Case Else
                     getDataList.columns.Add(COLUMN.ID)
                     getDataList.columns.Add(COLUMN.CODI)
@@ -69,9 +82,41 @@ Public Class ModelAuxiliar
         End If
         c = Nothing
     End Function
+    Public Function getListViewItem(c As Object) As ListViewItem
+        Select Case taulaActual
+            Case DBCONNECT.getTaulaPais
+                Return New ListViewItem(New String() {c.id, c.codi, c.abreviatura, c.nom})
+            Case DBCONNECT.getTaulaTipusIva
+                If c.actiu Then
+                    Return New ListViewItem(New String() {c.id, c.codi, c.nom, c.impost, c.rEquivalencia, IDIOMA.getString("si")})
+                Else
+                    Return New ListViewItem(New String() {c.id, c.codi, c.nom, c.impost, c.rEquivalencia, IDIOMA.getString("no")})
+                End If
+            Case DBCONNECT.getTaulaTipusPagament
+                If c.actiu Then
+                    Return (New ListViewItem(New String() {c.id, c.codi, c.nom, c.dies, c.diaPagament, IDIOMA.getString("si")}))
+                Else
+                    Return (New ListViewItem(New String() {c.id, c.codi, c.nom, c.dies, c.diaPagament, IDIOMA.getString("no")}))
+                End If
+            Case DBCONNECT.getTaulaResponsableCompra
+                If c.actiu Then
+                    Return (New ListViewItem(New String() {c.id, c.codi, c.nom, c.notes, IDIOMA.getString("si")}))
+                Else
+                    Return (New ListViewItem(New String() {c.id, c.codi, c.nom, c.notes, IDIOMA.getString("no")}))
+                End If
+            Case Else
+                Return (New ListViewItem(New String() {c.id, c.codi, c.nom}))
+        End Select
 
-
-
+    End Function
+    Public Function getListViewItem(id As Integer) As ListViewItem
+        Dim a As Object
+        a = getObject(id)
+        If a IsNot Nothing Then
+            Return getListViewItem(a)
+        End If
+        Return Nothing
+    End Function
     Public Function getListObjects() As Object()
         Dim obj As Object, i As Integer = 0, objectes() As Object
         If Not isUpdated() Then objects = getRemoteObjects() : Call ordenar()
@@ -84,16 +129,41 @@ Public Class ModelAuxiliar
         objectes = Nothing
         obj = Nothing
     End Function
+    Public Function getListObjectsActives() As Object()
+        Dim obj As Object, i As Integer = 0, objectes() As Object, temp() As Object
+        If Not isUpdated() Then objects = getRemoteObjects() : Call ordenar()
+        ReDim objectes(objects.Count - 1)
+        For Each obj In objects
+            If obj.actiu Then
+                objectes(i) = obj
+                i = i + 1
+            End If
+        Next
+        If i > 0 Then
+            ReDim temp(i - 1)
+            For i = 0 To UBound(temp)
+                temp(i) = objectes(i)
+            Next
+        Else
+            ReDim temp(0)
+            temp(0) = New Object
+        End If
+        getListObjectsActives = temp
+        objectes = Nothing
+        temp = Nothing
+        obj = Nothing
+    End Function
     Public Function getObject(id As Integer) As Object
         Dim p As Object
         If Not isUpdated() Then objects = getRemoteObjects()
         p = objects.Find(Function(x) x.id = id)
-        'If p Is Nothing Then p = New Object
+        If p Is Nothing Then p = objects.Find(Function(x) x.id = 0)
         Return p
     End Function
     Public Function getObjectAprox(id As String) As Object
         If id <> "" Then
             If Not isUpdated() Then objects = getRemoteObjects()
+
             For Each p As Object In objects
                 If Strings.InStr(1, p.codi, id, CompareMethod.Text) > 0 Then Return p
                 If Strings.InStr(1, id, p.codi, CompareMethod.Text) > 0 Then Return p
@@ -125,7 +195,7 @@ Public Class ModelAuxiliar
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Exists(Function(x) x.id <> obj.id And x.codi = obj.codi)
     End Function
-    Public Function save(obj As Object) As Integer
+    Public Overridable Function save(obj As Object) As Integer
         If obj.id = -1 Then
             obj.id = dbAuxiliars.insert(obj)
         Else
@@ -139,7 +209,7 @@ Public Class ModelAuxiliar
         End If
         Return obj.id
     End Function
-    Public Function remove(obj As Object) As Boolean
+    Public Overridable Function remove(obj As Object) As Boolean
         Dim result As Boolean
         result = dbAuxiliars.remove(obj)
         If result Then

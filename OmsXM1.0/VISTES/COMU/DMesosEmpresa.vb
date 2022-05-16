@@ -20,9 +20,6 @@ Public Class DMesosEmpresa
         End If
         Me.Close()
     End Function
-
-
-
     Private Sub setLanguage()
         Me.cmdGuardar.Text = IDIOMA.getString("cmdGuardar")
         Me.cmdCancelar.Text = IDIOMA.getString("cmdCancelar")

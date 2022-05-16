@@ -13,6 +13,7 @@
 
         ' Add any initialization after the InitializeComponent() call.
     End Sub
+
     Private Sub setData()
         cb.Items.Clear()
         cb.Items.AddRange(CONFIG.getListObjects(ModelProveidorContacte.getObjects(idProveidor)))
@@ -22,6 +23,11 @@
                 cb.SelectedIndex = 0
             End If
         End If
+    End Sub
+    Public Sub setObjects(estat As Boolean)
+        Me.cb.Enabled = estat
+        Me.cmdAfegir.Enabled = estat
+        Me.cmdModificar.Enabled = estat
     End Sub
     Private Sub validateControls()
         If obj Is Nothing Then

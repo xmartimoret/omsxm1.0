@@ -12,7 +12,7 @@
         Return IDIOMA.getString("confirmar")
     End Function
     Public Sub ERR_SERVER_DATA()
-        Call MsgBox(IDIOMA.getString("missatge_errserverdata"), MsgBoxStyle.Critical, ABORT)
+        Call MsgBox(IDIOMA.getString("errServerMyDoc"), MsgBoxStyle.Critical, ABORT)
     End Sub
     Public Sub ERR_SAVE_FILE_CONFIG(missatge As String)
         Call MsgBox(missatge, MsgBoxStyle.Critical, ABORT)
@@ -463,6 +463,12 @@
         End If
         Return False
     End Function
+    Public Function CONFIRM_PENDENT_REMOVE_COMANDA()
+        If MsgBox(IDIOMA.getString("missatgePendentEliminarComanda") & "?.", MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+            Return True
+        End If
+        Return False
+    End Function
     Public Sub ANOTACIONS_PROVEIDOR(p As String, a As String)
         Call MsgBox(IDIOMA.getString("proveidorTeAvisos") & ": " & vbCrLf & a, MsgBoxStyle.Exclamation, AVIS() & "-" & p)
     End Sub
@@ -483,6 +489,105 @@
     End Sub
     Public Function CONFIRM_EDITAR_COMANDA(empresa As String) As Boolean
         If MsgBox(IDIOMA.getString("volsf56Comanda") & " " & empresa & "? ", MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+            Return True
+        End If
+        Return False
+    End Function
+
+    Public Function CONFIRM_REMOVE_CODI_COMANDA() As Boolean
+        If MsgBox(IDIOMA.getString("volsSerieComanda") & "? ", MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+            Return True
+        End If
+        Return False
+    End Function
+    Public Function CONFIRM_VALIDAR_COMANDA_AVISOS(p As List(Of String)) As Boolean
+        Dim texte As String, t As String
+        texte = IDIOMA.getString("volsValidarComandaAvisos") & "?." & vbCrLf
+        For Each t In p
+            texte = texte & " " & t & vbCrLf
+        Next
+        If MsgBox(texte, MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+            Return True
+        End If
+        Return False
+    End Function
+    Public Function CONFIRM_VALIDAR_COMANDA(p As String)
+        If MsgBox(IDIOMA.getString("volsValidarComanda") & "? " & vbCrLf & vbInformation & " " & p, MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+            Return True
+        End If
+        Return False
+    End Function
+    Public Function CONFIRM_TORNAR_COMANDA_EDICIO()
+        If MsgBox(IDIOMA.getString("volsTornarEdicioComanda") & "? ", MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+            Return True
+        End If
+        Return False
+    End Function
+    Public Function CONFIRM_SAVE_COMANDA() As Boolean
+        If MsgBox(IDIOMA.getString("volsguardarComandaActual") & "? ", MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+            Return True
+        End If
+        Return False
+    End Function
+    Public Function CONFIRM_ADD_ARTICLE(ac As articleComanda) As Boolean
+        If MsgBox(IDIOMA.getString("lArticle") & "  " & ac.ToString & ". ...  " & IDIOMA.getString("noestaDonatDAlta") & vbCrLf & IDIOMA.getString("volsDonarloDAlta") & "?. ", MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+    Public Function CONFIRM_SEND_COMANDA()
+        If MsgBox(IDIOMA.getString("passarComandaEnviada"), MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+    Public Function CONFIRM_SEND_COMANDES()
+        If MsgBox(IDIOMA.getString("passarComandaEnviades"), MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+    Public Function CONFIRM_SEND_EDICIO()
+        If MsgBox(IDIOMA.getString("passarComandaEdicio"), MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+    Public Function CONFIRM_COPY_COMANDA() As Boolean
+        If MsgBox(IDIOMA.getString("copiarNovaComanda"), MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+    Public Function CONFIRM_NO_REMOVE_DOWN_OBJECT(p As String) As Boolean
+        If MsgBox("-. " & p & " " & IDIOMA.getString("noEsPotEliminarCulpaComanda") & vbCrLf & IDIOMA.getString("volsDonarloDBaixa"), MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+    Public Function CONFIRM_NO_REMOVE_DOWN_OBJECT_CONTACTE(p As String) As Boolean
+        If MsgBox("-. " & p & " " & IDIOMA.getString("noEsPotEliminarCulpaProjecte") & vbCrLf & IDIOMA.getString("volsDonarloDBaixa"), MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+    'CONFIRM_ENVIAR_VALIDAR
+    Public Function CONFIRM_ENVIAR_VALIDAR(c As Comanda) As Boolean
+        If MsgBox("-. " & IDIOMA.getString("laComandaExteixMydoc") & " (" & c.getCodi & ") " & vbCrLf & IDIOMA.getString("volsenviarValidar"), MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+    Public Function CONFIRM_EDITAR_COMANDA_ELIMINADA() As Boolean
+        If MsgBox(IDIOMA.getString("volsTornarEditarComanda"), MsgBoxStyle.Question + MsgBoxStyle.YesNo, CONFIRMAR) = vbYes Then
             Return True
         End If
         Return False

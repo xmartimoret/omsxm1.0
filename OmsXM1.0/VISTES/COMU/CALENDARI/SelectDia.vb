@@ -31,6 +31,10 @@
             txtData.Text = ""
         End If
     End Sub
+    Friend Sub setObjects(estat As Boolean)
+        Me.cmdData.Enabled = estat
+        Me.txtData.Enabled = estat
+    End Sub
     Private Sub cmdData_Click(sender As Object, e As EventArgs) Handles cmdData.Click, txtData.DoubleClick
         Dim temp As Date
         If IsDate(txtData.Text) Then temp = CDate(txtData.Text)
@@ -40,6 +44,7 @@
         End If
         temp = Nothing
     End Sub
+
     Private Sub txtData_TextChanged(sender As Object, e As EventArgs) Handles txtData.TextChanged
         If IsDate(txtData.Text) Then RaiseEvent selectObject(CDate(txtData.Text))
     End Sub

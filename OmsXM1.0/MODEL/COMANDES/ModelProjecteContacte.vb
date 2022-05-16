@@ -6,6 +6,7 @@ Module ModelProjecteContacte
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.FindAll(Function(x) x.idProjecte = idProjecte)
     End Function
+
     Public Function getDataList(contactes As List(Of ProjecteContacte)) As DataList
         Dim pc As ProjecteContacte, c As Contacte, esActiu As String, esPredeterminat As String
         getDataList = New DataList
@@ -23,18 +24,20 @@ Module ModelProjecteContacte
             getDataList.columns.Add(COLUMN.GENERICA("predeterminat", 100, HorizontalAlignment.Center))
             For Each pc In contactes
                 c = ModelContacte.getObject(pc.idContacte)
-                If c.provincia Is Nothing Then c.provincia = New Provincia
-                If c.estat Then
-                    esActiu = IDIOMA.getString("actiu")
-                Else
-                    esActiu = IDIOMA.getString("noActiu")
+                If Not IsNothing(c) Then
+                    If c.provincia Is Nothing Then c.provincia = New Provincia
+                    If c.estat Then
+                        esActiu = IDIOMA.getString("actiu")
+                    Else
+                        esActiu = IDIOMA.getString("noActiu")
+                    End If
+                    If pc.predeterminat Then
+                        esPredeterminat = IDIOMA.getString("si")
+                    Else
+                        esPredeterminat = IDIOMA.getString("no")
+                    End If
+                    getDataList.rows.Add(New ListViewItem(New String() {c.id, c.nom, c.cognom1, c.cognom2, c.poblacio, c.provincia.nom, c.telefon, c.email, esActiu, esPredeterminat}))
                 End If
-                If pc.predeterminat Then
-                    esPredeterminat = IDIOMA.getString("si")
-                Else
-                    esPredeterminat = IDIOMA.getString("no")
-                End If
-                getDataList.rows.Add(New ListViewItem(New String() {c.id, c.nom, c.cognom1, c.cognom2, c.poblacio, c.provincia.nom, c.telefon, c.email, esActiu, esPredeterminat}))
             Next
         End If
         c = Nothing
@@ -46,6 +49,10 @@ Module ModelProjecteContacte
     Public Function exist(idProjecte As Integer, idContacte As Integer) As Boolean
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Exists(Function(x) x.idProjecte = idProjecte And x.idContacte = idContacte)
+    End Function
+    Public Function existContacte(idContacte As Integer) As Boolean
+        If Not isUpdated() Then objects = getRemoteObjects()
+        Return objects.Exists(Function(x) x.idContacte = idContacte)
     End Function
     Public Function save(obj As ProjecteContacte) As Integer
         Dim id As Integer

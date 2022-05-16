@@ -16,7 +16,7 @@ Public Class DContacte
 
     Public Function getContacte(pContacte As Contacte) As Contacte
         contacteActual = pContacte
-        xecPredeterminat.Enabled = False
+        xecPredeterminat.Enabled = True
         Me.ShowDialog()
         If Me.DialogResult = DialogResult.OK Then
             Return getData()

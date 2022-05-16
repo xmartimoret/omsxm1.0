@@ -2,7 +2,7 @@
     Public Function ID() As ColumnHeader
         ID = New ColumnHeader("id")
         ID.Text = IDIOMA.getString("id").ToString
-        ID.Width = 100
+        ID.Width = 0
     End Function
     Public Function ORDRE() As ColumnHeader
         ORDRE = New ColumnHeader("ordre")

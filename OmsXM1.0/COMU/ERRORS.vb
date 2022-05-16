@@ -255,5 +255,30 @@ Module ERRORS
     Public Sub ERR_PDF_CLOSE(p As String)
         Call MsgBox(IDIOMA.getString("errPdfClose") & vbCrLf & p, vbCritical, IDIOMA.getString("abort"))
     End Sub
-
+    Public Sub ERR_ACTUALITZACIO_CODI_COMANDA()
+        Call MsgBox(IDIOMA.getString("errActualitzacioCodiComanda"), vbCritical, IDIOMA.getString("abort"))
+    End Sub
+    Public Sub ERR_NO_VALIDAR_COMANDA(P As List(Of String))
+        Dim texte As String, t As String
+        texte = IDIOMA.getString("noEsPotCrearComanda") & vbCrLf
+        For Each t In P
+            texte = vbCritical & " " & t & vbCrLf
+        Next
+        Call MsgBox(texte, vbOK, IDIOMA.getString("abort"))
+    End Sub
+    Public Sub NO_SHOW_COMANDA_VALIDACIO()
+        Call MsgBox(IDIOMA.getString("errMostrarComandaValidacio"), vbCritical, IDIOMA.getString("abort"))
+    End Sub
+    Public Sub ERR_NO_FILE_COMANDA()
+        Call MsgBox(IDIOMA.getString("errPdfComanda"), vbCritical, IDIOMA.getString("abort"))
+    End Sub
+    Public Sub ERR_EXIST_NAME_CONTACTE()
+        Call MsgBox(IDIOMA.getString("errNomContacte"), vbCritical, IDIOMA.getString("abort"))
+    End Sub
+    Public Sub ERR_UPDATE_GOOGLE_SHEETS()
+        Call MsgBox(IDIOMA.getString("errActualtizarGoogleSheets"), vbCritical, IDIOMA.getString("abort"))
+    End Sub
+    Public Sub EN_CONSTRUCCIO()
+        Call MsgBox(IDIOMA.getString("enConstruccio"), vbCritical, IDIOMA.getString("abort"))
+    End Sub
 End Module

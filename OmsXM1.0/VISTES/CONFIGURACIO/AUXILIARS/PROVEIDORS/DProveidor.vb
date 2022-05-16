@@ -246,4 +246,16 @@ Public Class DProveidor
     Private Sub txtCodiComptable_TextChanged(sender As Object, e As EventArgs) Handles txtCodiComptable.TextChanged
         Call validateControls()
     End Sub
+
+    Private Sub txtIban1_TextChanged(sender As Object, e As EventArgs) Handles txtIban1.TextChanged
+
+    End Sub
+
+    Private Sub cmdImprimirExcel_Click(sender As Object, e As EventArgs) Handles cmdImprimirExcel.Click
+        Call modulInfoProveidor.execute(getData, False)
+    End Sub
+
+    Private Sub cmdImprimirPDF_Click(sender As Object, e As EventArgs) Handles cmdImprimirPDF.Click
+        Call modulInfoProveidor.execute(getData, True)
+    End Sub
 End Class

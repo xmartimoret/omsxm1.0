@@ -33,6 +33,7 @@
     End Sub
     Private Sub getArticle(a As article)
         articleActual = a
+        RaiseEvent selectArticles(articleActual)
     End Sub
     Private Sub getArticles()
         RaiseEvent selectArticles(articleActual)

@@ -1,5 +1,6 @@
 ﻿Public Class Provincia
     Inherits Base
+    Public Property actiu As Boolean = True
     Public Sub New()
 
     End Sub

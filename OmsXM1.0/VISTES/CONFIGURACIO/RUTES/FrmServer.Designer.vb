@@ -23,42 +23,132 @@ Partial Class frmServer
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.txtClau = New System.Windows.Forms.TextBox()
-        Me.lblClau = New System.Windows.Forms.Label()
-        Me.txtUsuari = New System.Windows.Forms.TextBox()
-        Me.lblUsuari = New System.Windows.Forms.Label()
-        Me.txtServer = New System.Windows.Forms.TextBox()
-        Me.lblData = New System.Windows.Forms.Label()
         Me.cmdCancel = New System.Windows.Forms.Button()
         Me.cmdSave = New System.Windows.Forms.Button()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.optSql = New System.Windows.Forms.RadioButton()
-        Me.lblEscollir = New System.Windows.Forms.Label()
-        Me.optDBF = New System.Windows.Forms.RadioButton()
-        Me.PanelRuta = New System.Windows.Forms.Panel()
         Me.gbSql = New System.Windows.Forms.GroupBox()
+        Me.lblTaulaPedidos = New System.Windows.Forms.Label()
+        Me.txtTaulaPedidos = New System.Windows.Forms.TextBox()
+        Me.txtServer = New System.Windows.Forms.TextBox()
+        Me.lblData = New System.Windows.Forms.Label()
+        Me.lblUsuari = New System.Windows.Forms.Label()
+        Me.lblClau = New System.Windows.Forms.Label()
+        Me.txtUsuari = New System.Windows.Forms.TextBox()
+        Me.txtClau = New System.Windows.Forms.TextBox()
+        Me.PanelRuta = New System.Windows.Forms.Panel()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbSql.SuspendLayout()
         Me.SuspendLayout()
         '
-        'txtClau
+        'cmdCancel
         '
-        Me.txtClau.BackColor = System.Drawing.Color.White
-        Me.txtClau.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtClau.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.txtClau.ForeColor = System.Drawing.Color.Blue
-        Me.txtClau.Location = New System.Drawing.Point(143, 84)
-        Me.txtClau.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtClau.Name = "txtClau"
-        Me.txtClau.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtClau.Size = New System.Drawing.Size(118, 26)
-        Me.txtClau.TabIndex = 10
+        Me.cmdCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.cmdCancel.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.cmdCancel.Location = New System.Drawing.Point(262, 350)
+        Me.cmdCancel.Margin = New System.Windows.Forms.Padding(4)
+        Me.cmdCancel.Name = "cmdCancel"
+        Me.cmdCancel.Size = New System.Drawing.Size(109, 39)
+        Me.cmdCancel.TabIndex = 13
+        Me.cmdCancel.Text = "Button2"
+        Me.cmdCancel.UseVisualStyleBackColor = True
+        '
+        'cmdSave
+        '
+        Me.cmdSave.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.cmdSave.Location = New System.Drawing.Point(12, 350)
+        Me.cmdSave.Margin = New System.Windows.Forms.Padding(4)
+        Me.cmdSave.Name = "cmdSave"
+        Me.cmdSave.Size = New System.Drawing.Size(109, 39)
+        Me.cmdSave.TabIndex = 12
+        Me.cmdSave.Text = "Button1"
+        Me.cmdSave.UseVisualStyleBackColor = True
+        '
+        'ErrorProvider1
+        '
+        Me.ErrorProvider1.ContainerControl = Me
+        '
+        'gbSql
+        '
+        Me.gbSql.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.gbSql.Controls.Add(Me.lblTaulaPedidos)
+        Me.gbSql.Controls.Add(Me.txtTaulaPedidos)
+        Me.gbSql.Controls.Add(Me.txtServer)
+        Me.gbSql.Controls.Add(Me.lblData)
+        Me.gbSql.Controls.Add(Me.lblUsuari)
+        Me.gbSql.Controls.Add(Me.lblClau)
+        Me.gbSql.Controls.Add(Me.txtUsuari)
+        Me.gbSql.Controls.Add(Me.txtClau)
+        Me.gbSql.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.gbSql.Location = New System.Drawing.Point(12, 12)
+        Me.gbSql.Name = "gbSql"
+        Me.gbSql.Size = New System.Drawing.Size(359, 178)
+        Me.gbSql.TabIndex = 21
+        Me.gbSql.TabStop = False
+        Me.gbSql.Text = "GroupBox1"
+        '
+        'lblTaulaPedidos
+        '
+        Me.lblTaulaPedidos.AutoSize = True
+        Me.lblTaulaPedidos.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.lblTaulaPedidos.Location = New System.Drawing.Point(11, 129)
+        Me.lblTaulaPedidos.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblTaulaPedidos.Name = "lblTaulaPedidos"
+        Me.lblTaulaPedidos.Size = New System.Drawing.Size(104, 18)
+        Me.lblTaulaPedidos.TabIndex = 17
+        Me.lblTaulaPedidos.Text = "Servidor dades"
+        '
+        'txtTaulaPedidos
+        '
+        Me.txtTaulaPedidos.BackColor = System.Drawing.Color.White
+        Me.txtTaulaPedidos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtTaulaPedidos.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.txtTaulaPedidos.ForeColor = System.Drawing.Color.Blue
+        Me.txtTaulaPedidos.Location = New System.Drawing.Point(14, 152)
+        Me.txtTaulaPedidos.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtTaulaPedidos.Name = "txtTaulaPedidos"
+        Me.txtTaulaPedidos.Size = New System.Drawing.Size(229, 26)
+        Me.txtTaulaPedidos.TabIndex = 11
+        '
+        'txtServer
+        '
+        Me.txtServer.BackColor = System.Drawing.Color.White
+        Me.txtServer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtServer.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.txtServer.ForeColor = System.Drawing.Color.Blue
+        Me.txtServer.Location = New System.Drawing.Point(14, 49)
+        Me.txtServer.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtServer.Name = "txtServer"
+        Me.txtServer.Size = New System.Drawing.Size(321, 26)
+        Me.txtServer.TabIndex = 8
+        Me.txtServer.Text = "ASDFSA"
+        '
+        'lblData
+        '
+        Me.lblData.AutoSize = True
+        Me.lblData.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.lblData.Location = New System.Drawing.Point(11, 79)
+        Me.lblData.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblData.Name = "lblData"
+        Me.lblData.Size = New System.Drawing.Size(104, 18)
+        Me.lblData.TabIndex = 11
+        Me.lblData.Text = "Servidor dades"
+        '
+        'lblUsuari
+        '
+        Me.lblUsuari.AutoSize = True
+        Me.lblUsuari.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.lblUsuari.Location = New System.Drawing.Point(11, 27)
+        Me.lblUsuari.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblUsuari.Name = "lblUsuari"
+        Me.lblUsuari.Size = New System.Drawing.Size(104, 18)
+        Me.lblUsuari.TabIndex = 14
+        Me.lblUsuari.Text = "Servidor dades"
         '
         'lblClau
         '
         Me.lblClau.AutoSize = True
         Me.lblClau.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.lblClau.Location = New System.Drawing.Point(140, 62)
+        Me.lblClau.Location = New System.Drawing.Point(120, 77)
         Me.lblClau.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblClau.Name = "lblClau"
         Me.lblClau.Size = New System.Drawing.Size(104, 18)
@@ -71,144 +161,43 @@ Partial Class frmServer
         Me.txtUsuari.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtUsuari.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.txtUsuari.ForeColor = System.Drawing.Color.Blue
-        Me.txtUsuari.Location = New System.Drawing.Point(12, 84)
+        Me.txtUsuari.Location = New System.Drawing.Point(14, 99)
         Me.txtUsuari.Margin = New System.Windows.Forms.Padding(4)
         Me.txtUsuari.Name = "txtUsuari"
         Me.txtUsuari.Size = New System.Drawing.Size(87, 26)
         Me.txtUsuari.TabIndex = 9
         Me.txtUsuari.Text = "ASDFSA"
         '
-        'lblUsuari
+        'txtClau
         '
-        Me.lblUsuari.AutoSize = True
-        Me.lblUsuari.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.lblUsuari.Location = New System.Drawing.Point(9, 62)
-        Me.lblUsuari.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.lblUsuari.Name = "lblUsuari"
-        Me.lblUsuari.Size = New System.Drawing.Size(104, 18)
-        Me.lblUsuari.TabIndex = 14
-        Me.lblUsuari.Text = "Servidor dades"
-        '
-        'txtServer
-        '
-        Me.txtServer.BackColor = System.Drawing.Color.White
-        Me.txtServer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtServer.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.txtServer.ForeColor = System.Drawing.Color.Blue
-        Me.txtServer.Location = New System.Drawing.Point(12, 34)
-        Me.txtServer.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtServer.Name = "txtServer"
-        Me.txtServer.Size = New System.Drawing.Size(321, 26)
-        Me.txtServer.TabIndex = 8
-        Me.txtServer.Text = "ASDFSA"
-        '
-        'lblData
-        '
-        Me.lblData.AutoSize = True
-        Me.lblData.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.lblData.Location = New System.Drawing.Point(9, 12)
-        Me.lblData.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.lblData.Name = "lblData"
-        Me.lblData.Size = New System.Drawing.Size(104, 18)
-        Me.lblData.TabIndex = 11
-        Me.lblData.Text = "Servidor dades"
-        '
-        'cmdCancel
-        '
-        Me.cmdCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.cmdCancel.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.cmdCancel.Location = New System.Drawing.Point(320, 380)
-        Me.cmdCancel.Margin = New System.Windows.Forms.Padding(4)
-        Me.cmdCancel.Name = "cmdCancel"
-        Me.cmdCancel.Size = New System.Drawing.Size(109, 41)
-        Me.cmdCancel.TabIndex = 13
-        Me.cmdCancel.Text = "Button2"
-        Me.cmdCancel.UseVisualStyleBackColor = True
-        '
-        'cmdSave
-        '
-        Me.cmdSave.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.cmdSave.Location = New System.Drawing.Point(22, 380)
-        Me.cmdSave.Margin = New System.Windows.Forms.Padding(4)
-        Me.cmdSave.Name = "cmdSave"
-        Me.cmdSave.Size = New System.Drawing.Size(109, 41)
-        Me.cmdSave.TabIndex = 12
-        Me.cmdSave.Text = "Button1"
-        Me.cmdSave.UseVisualStyleBackColor = True
-        '
-        'ErrorProvider1
-        '
-        Me.ErrorProvider1.ContainerControl = Me
-        '
-        'optSql
-        '
-        Me.optSql.AutoSize = True
-        Me.optSql.Location = New System.Drawing.Point(28, 27)
-        Me.optSql.Name = "optSql"
-        Me.optSql.Size = New System.Drawing.Size(90, 17)
-        Me.optSql.TabIndex = 16
-        Me.optSql.TabStop = True
-        Me.optSql.Text = "RadioButton1"
-        Me.optSql.UseVisualStyleBackColor = True
-        '
-        'lblEscollir
-        '
-        Me.lblEscollir.AutoSize = True
-        Me.lblEscollir.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.lblEscollir.Location = New System.Drawing.Point(3, 6)
-        Me.lblEscollir.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.lblEscollir.Name = "lblEscollir"
-        Me.lblEscollir.Size = New System.Drawing.Size(104, 18)
-        Me.lblEscollir.TabIndex = 17
-        Me.lblEscollir.Text = "Servidor dades"
-        '
-        'optDBF
-        '
-        Me.optDBF.AutoSize = True
-        Me.optDBF.Location = New System.Drawing.Point(153, 27)
-        Me.optDBF.Name = "optDBF"
-        Me.optDBF.Size = New System.Drawing.Size(90, 17)
-        Me.optDBF.TabIndex = 18
-        Me.optDBF.TabStop = True
-        Me.optDBF.Text = "RadioButton2"
-        Me.optDBF.UseVisualStyleBackColor = True
+        Me.txtClau.BackColor = System.Drawing.Color.White
+        Me.txtClau.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtClau.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.txtClau.ForeColor = System.Drawing.Color.Blue
+        Me.txtClau.Location = New System.Drawing.Point(123, 99)
+        Me.txtClau.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtClau.Name = "txtClau"
+        Me.txtClau.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.txtClau.Size = New System.Drawing.Size(118, 26)
+        Me.txtClau.TabIndex = 10
         '
         'PanelRuta
         '
-        Me.PanelRuta.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.PanelRuta.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.PanelRuta.Location = New System.Drawing.Point(22, 219)
+        Me.PanelRuta.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PanelRuta.Location = New System.Drawing.Point(15, 197)
         Me.PanelRuta.Name = "PanelRuta"
-        Me.PanelRuta.Size = New System.Drawing.Size(407, 140)
-        Me.PanelRuta.TabIndex = 19
-        '
-        'gbSql
-        '
-        Me.gbSql.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.gbSql.Controls.Add(Me.txtServer)
-        Me.gbSql.Controls.Add(Me.lblData)
-        Me.gbSql.Controls.Add(Me.lblUsuari)
-        Me.gbSql.Controls.Add(Me.lblClau)
-        Me.gbSql.Controls.Add(Me.txtUsuari)
-        Me.gbSql.Controls.Add(Me.txtClau)
-        Me.gbSql.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.gbSql.Location = New System.Drawing.Point(22, 50)
-        Me.gbSql.Name = "gbSql"
-        Me.gbSql.Size = New System.Drawing.Size(407, 156)
-        Me.gbSql.TabIndex = 20
-        Me.gbSql.TabStop = False
-        Me.gbSql.Text = "GroupBox1"
+        Me.PanelRuta.Size = New System.Drawing.Size(358, 138)
+        Me.PanelRuta.TabIndex = 22
         '
         'frmServer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(441, 428)
-        Me.Controls.Add(Me.gbSql)
+        Me.ClientSize = New System.Drawing.Size(385, 406)
         Me.Controls.Add(Me.PanelRuta)
-        Me.Controls.Add(Me.optDBF)
-        Me.Controls.Add(Me.lblEscollir)
-        Me.Controls.Add(Me.optSql)
+        Me.Controls.Add(Me.gbSql)
         Me.Controls.Add(Me.cmdCancel)
         Me.Controls.Add(Me.cmdSave)
         Me.Name = "frmServer"
@@ -217,22 +206,19 @@ Partial Class frmServer
         Me.gbSql.ResumeLayout(False)
         Me.gbSql.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents txtClau As TextBox
-    Friend WithEvents lblClau As Label
-    Friend WithEvents txtUsuari As TextBox
-    Friend WithEvents lblUsuari As Label
-    Friend WithEvents txtServer As TextBox
-    Friend WithEvents lblData As Label
     Friend WithEvents cmdCancel As Button
     Friend WithEvents cmdSave As Button
     Friend WithEvents ErrorProvider1 As ErrorProvider
-    Friend WithEvents optDBF As RadioButton
-    Friend WithEvents lblEscollir As Label
-    Friend WithEvents optSql As RadioButton
-    Friend WithEvents PanelRuta As Panel
     Friend WithEvents gbSql As GroupBox
+    Friend WithEvents txtServer As TextBox
+    Friend WithEvents lblData As Label
+    Friend WithEvents lblUsuari As Label
+    Friend WithEvents lblClau As Label
+    Friend WithEvents txtUsuari As TextBox
+    Friend WithEvents txtClau As TextBox
+    Friend WithEvents PanelRuta As Panel
+    Friend WithEvents lblTaulaPedidos As Label
+    Friend WithEvents txtTaulaPedidos As TextBox
 End Class

@@ -26,7 +26,7 @@
             panelArticles = New SelectArticles(0, True, True, filtre, IDIOMA.getString("articles"), 1)
             AddHandler panelArticles.doubleClick, AddressOf getArticles
         Else
-            panelArticles = New SelectArticles(1, False, True, IDIOMA.getString("articles"), 1)
+            panelArticles = New SelectArticles(1, False, False, IDIOMA.getString("articles"), 1)
         End If
         AddHandler panelArticles.selectObject, AddressOf getArticle
         Me.SplitContainer1.Panel1.Controls.Clear()
@@ -58,13 +58,9 @@
     End Sub
     Private Sub getArticlePreu(a As ArticlePreu)
         articlePreuActual = a
-        Me.Dispose()
     End Sub
-
     Protected Overrides Sub Finalize()
-
         MyBase.Finalize()
-
     End Sub
 
 End Class

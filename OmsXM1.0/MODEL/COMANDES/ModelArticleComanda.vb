@@ -7,6 +7,10 @@ Module ModelarticleComanda
         If Not isUpdated() Then objects = getRemoteObjects()
         getObjects = objects.FindAll(Function(x) x.idComanda = idComanda)
     End Function
+    Public Function getObjects(codiArticle As String) As List(Of articleComanda)
+        If Not isUpdated() Then objects = getRemoteObjects()
+        getObjects = objects.FindAll(Function(x) StrComp(Trim(codiArticle), Trim(x.codi), CompareMethod.Text) = 0)
+    End Function
     Public Function getDataList(ArticlesComanda As List(Of articleComanda)) As DataList
         Dim a As articleComanda
         getDataList = New DataList
@@ -35,25 +39,20 @@ Module ModelarticleComanda
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Exists(Function(x) x.id <> obj.id And x.idComanda = obj.idComanda And x.codi = obj.codi)
     End Function
-    Public Function save(obj As articleComanda) As Integer
+    Public Function insert(obj As articleComanda) As Integer
         If Not isUpdated() Then objects = getRemoteObjects()
-        If obj.id = -1 Then
-            obj.id = dbArticleComanda.insert(obj)
-        Else
-            obj.id = dbArticleComanda.update(obj)
-        End If
+        obj.id = dbArticleComanda.insert(obj)
         If obj.id > -1 Then
             dateUpdate = Now()
-            objects.Remove(obj)
             objects.Add(obj)
-
         End If
         Return obj.id
     End Function
-    Public Function saveComanda(ac As List(Of articleComanda)) As Boolean
+    Public Function insertComanda(ac As List(Of articleComanda), idComanda As Integer) As Boolean
         Dim a As articleComanda
         For Each a In ac
-            If save(a) = -1 Then Return False
+            If idComanda > 0 Then a.idComanda = idComanda
+            If insert(a) = -1 Then Return False
         Next
         Return True
     End Function

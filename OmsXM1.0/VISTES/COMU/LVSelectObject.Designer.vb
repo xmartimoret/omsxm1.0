@@ -35,10 +35,9 @@ Partial Class LVSelectObject
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblTitol.Font = New System.Drawing.Font("Arial Narrow", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTitol.ForeColor = System.Drawing.Color.Black
-        Me.lblTitol.Location = New System.Drawing.Point(-1, 7)
-        Me.lblTitol.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblTitol.Location = New System.Drawing.Point(-1, 6)
         Me.lblTitol.Name = "lblTitol"
-        Me.lblTitol.Size = New System.Drawing.Size(456, 30)
+        Me.lblTitol.Size = New System.Drawing.Size(342, 24)
         Me.lblTitol.TabIndex = 25
         Me.lblTitol.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -47,10 +46,9 @@ Partial Class LVSelectObject
         Me.lblCount.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblCount.Font = New System.Drawing.Font("Arial", 10.0!)
         Me.lblCount.ForeColor = System.Drawing.Color.Blue
-        Me.lblCount.Location = New System.Drawing.Point(-357, 369)
-        Me.lblCount.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblCount.Location = New System.Drawing.Point(-268, 300)
         Me.lblCount.Name = "lblCount"
-        Me.lblCount.Size = New System.Drawing.Size(812, 26)
+        Me.lblCount.Size = New System.Drawing.Size(609, 21)
         Me.lblCount.TabIndex = 24
         Me.lblCount.Text = "lblCount"
         Me.lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -61,20 +59,18 @@ Partial Class LVSelectObject
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtFiltrar.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFiltrar.ForeColor = System.Drawing.Color.Red
-        Me.txtFiltrar.Location = New System.Drawing.Point(113, 41)
-        Me.txtFiltrar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtFiltrar.Location = New System.Drawing.Point(85, 33)
         Me.txtFiltrar.Name = "txtFiltrar"
-        Me.txtFiltrar.Size = New System.Drawing.Size(340, 22)
+        Me.txtFiltrar.Size = New System.Drawing.Size(256, 22)
         Me.txtFiltrar.TabIndex = 21
         '
         'lblFiltrar
         '
         Me.lblFiltrar.AutoSize = True
         Me.lblFiltrar.ForeColor = System.Drawing.Color.Red
-        Me.lblFiltrar.Location = New System.Drawing.Point(-1, 47)
-        Me.lblFiltrar.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblFiltrar.Location = New System.Drawing.Point(-1, 38)
         Me.lblFiltrar.Name = "lblFiltrar"
-        Me.lblFiltrar.Size = New System.Drawing.Size(98, 16)
+        Me.lblFiltrar.Size = New System.Drawing.Size(80, 13)
         Me.lblFiltrar.TabIndex = 23
         Me.lblFiltrar.Text = "FILTRAR PER:"
         '
@@ -91,27 +87,25 @@ Partial Class LVSelectObject
         Me.lstData.FullRowSelect = True
         Me.lstData.GridLines = True
         Me.lstData.HideSelection = False
-        Me.lstData.Location = New System.Drawing.Point(4, 75)
-        Me.lstData.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lstData.Location = New System.Drawing.Point(3, 61)
         Me.lstData.MultiSelect = False
         Me.lstData.Name = "lstData"
-        Me.lstData.Size = New System.Drawing.Size(450, 290)
+        Me.lstData.Size = New System.Drawing.Size(338, 236)
         Me.lstData.TabIndex = 22
         Me.lstData.UseCompatibleStateImageBehavior = False
         Me.lstData.View = System.Windows.Forms.View.Details
         '
         'LVSelectObject
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.lblTitol)
         Me.Controls.Add(Me.lblCount)
         Me.Controls.Add(Me.txtFiltrar)
         Me.Controls.Add(Me.lblFiltrar)
         Me.Controls.Add(Me.lstData)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "LVSelectObject"
-        Me.Size = New System.Drawing.Size(459, 395)
+        Me.Size = New System.Drawing.Size(344, 321)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

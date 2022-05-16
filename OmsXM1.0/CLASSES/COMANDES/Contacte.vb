@@ -12,6 +12,7 @@
     Public Property email As String
     Public Property projectes As List(Of Projecte)
     Public Property predeterminat As Boolean
+    Public Property actiu As Boolean = True
     Public Sub New()
         _pais = New Pais
         _projectes = New List(Of Projecte)
@@ -62,8 +63,38 @@
         End If
         Return True
     End Function
+    Public Function isFilter(textFiltre As String, Optional opcionalP1 As String = "", Optional opcionalP2 As String = "") As Boolean
+        Dim filtres() As String, f As String
+        isFilter = False
+        If Len(textFiltre) = 0 Then
+            isFilter = True
+        Else
+            filtres = Split(textFiltre, "+")
+            If UBound(filtres) = 0 Then filtres = Split(textFiltre, " ")
+            If UBound(filtres) = 0 Then filtres = Split(textFiltre, "*")
+            For Each f In filtres
+                If InStr(1, Me.nom, f, vbTextCompare) > 0 Or
+               InStr(1, Me.cognom1, f, vbTextCompare) > 0 Or
+               InStr(1, Me.cognom2, f, vbTextCompare) > 0 Or
+               (opcionalP1 <> "" And InStr(1, opcionalP1, f, vbTextCompare) > 0) Or
+               (opcionalP2 <> "" And InStr(1, opcionalP2, f, vbTextCompare) > 0) Then
+                    isFilter = True
+                Else
+                    isFilter = False
+                    Exit For
+                End If
+            Next
+        End If
+    End Function
     Public Overrides Function tostring() As String
-        Return Me.nom & " " & _cognom1 & " " & _cognom2
+        If _cognom1 = "" Then
+            Return Me.nom
+        ElseIf _cognom2 = "" Then
+            Return Me.nom & " " & _cognom1
+        Else
+            Return Me.nom & " " & _cognom1 & " " & _cognom2
+        End If
+
     End Function
     Public Function toTarget() As String
         Return _telefon & "-" & _email

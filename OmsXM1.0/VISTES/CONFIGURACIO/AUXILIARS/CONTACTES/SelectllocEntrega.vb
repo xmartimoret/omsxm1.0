@@ -1,7 +1,8 @@
 ﻿Option Explicit On
 Public Class SelectLlocEntrega
     Inherits LVObjects
-    Friend Property LlocEntregas As List(Of LlocEntrega)
+    Friend Property LlocEntregues As List(Of LlocEntrega)
+    Private Property llocsActuals As List(Of LlocEntrega)
     Friend Event selectObject(p As LlocEntrega)
     Public Sub New(pAccio As Integer, pMultiselect As Boolean, parentForm As Boolean, Optional pTitol As String = "", Optional pOrdre As Integer = 0)
         Me.accio = pAccio
@@ -9,7 +10,7 @@ Public Class SelectLlocEntrega
         Me.isForm = parentForm
         Me.titol = pTitol
         Me.orderColumn = 1
-        LlocEntregas = New List(Of LlocEntrega)
+        LlocEntregues = New List(Of LlocEntrega)
     End Sub
     Public Overrides Function afegir(id As Integer) As Integer
         Return save(DLlocEntrega.getLlocEntrega(New LlocEntrega))
@@ -18,7 +19,17 @@ Public Class SelectLlocEntrega
         Dim d As LlocEntrega
         d = ModelLlocEntrega.getObject(id)
         If d IsNot Nothing Then
-            If MISSATGES.CONFIRM_REMOVE_LLOC_ENTREGA(d.ToString) Then
+            If ModelComanda.existObject(id, New LlocEntrega) Then
+                If MISSATGES.CONFIRM_NO_REMOVE_DOWN_OBJECT(UCase(IDIOMA.getString("llocEntrega"))) Then
+                    d.actiu = False
+                    Call ModelLlocEntrega.save(d)
+                End If
+            ElseIf ModelComandaenedicio.existObject(id, New LlocEntrega) Then
+                If MISSATGES.CONFIRM_NO_REMOVE_DOWN_OBJECT(UCase(IDIOMA.getString("llocEntrega"))) Then
+                    d.actiu = False
+                    Call ModelLlocEntrega.save(d)
+                End If
+            ElseIf MISSATGES.CONFIRM_REMOVE_LLOC_ENTREGA(d.toString) Then
                 Return ModelLlocEntrega.remove(d)
             End If
         End If
@@ -26,7 +37,8 @@ Public Class SelectLlocEntrega
     End Function
 
     Public Overrides Function filtrar(txt As String) As DataList
-        Return ModelLlocEntrega.getDataList(ModelLlocEntrega.getObjects(txt))
+        llocsActuals = ModelLlocEntrega.getObjects(txt)
+        Return ModelLlocEntrega.getDataList(llocsActuals)
     End Function
 
     Public Overrides Function modificar(id As Integer) As Integer
@@ -35,13 +47,13 @@ Public Class SelectLlocEntrega
 
     Public Overrides Function seleccionar(ids As List(Of Integer)) As Boolean
         Dim i As Integer, j As Integer
-        LlocEntregas = New List(Of LlocEntrega)
+        LlocEntregues = New List(Of LlocEntrega)
         j = 0
         If ids.Count >= 0 Then
             For Each i In ids
-                LlocEntregas.Add(ModelLlocEntrega.getObject(i))
+                LlocEntregues.Add(ModelLlocEntrega.getObject(i))
             Next
-            RaiseEvent selectObject(LlocEntregas.Item(0))
+            RaiseEvent selectObject(LlocEntregues.Item(0))
             Return True
         End If
         Return False
@@ -59,11 +71,27 @@ Public Class SelectLlocEntrega
     End Function
     Protected Overrides Sub Finalize()
         MyBase.Finalize()
-        LlocEntregas = Nothing
+        LlocEntregues = Nothing
     End Sub
 
     Public Overrides Function filtrar(idParent As Integer, txt As String) As DataList
         Return Nothing
     End Function
+
+    Public Overrides Function getRow(id As Integer) As ListViewItem
+        Return ModelLlocEntrega.getListViewItem(id)
+    End Function
+    Public Overrides Sub imprimir(pdf As Boolean, filtre As String)
+        Call modulInfoLlocEntrega.execute(llocsActuals, pdf, filtre)
+    End Sub
+    Public Overrides Sub actualitzar(id As List(Of Integer))
+
+    End Sub
+    Public Overrides Sub toolTipText(id As Integer)
+
+    End Sub
+    Public Overrides Sub guardarCopia(id As Integer)
+        Call ERRORS.EN_CONSTRUCCIO()
+    End Sub
 End Class
 

@@ -42,6 +42,8 @@ Partial Class DArticle
         Me.lblNotes = New System.Windows.Forms.Label()
         Me.txtNotes = New System.Windows.Forms.TextBox()
         Me.pFamilia = New System.Windows.Forms.Panel()
+        Me.cmdImprimirExcel = New System.Windows.Forms.Button()
+        Me.cmdImprimirPDF = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'cmdCancelar
@@ -233,11 +235,33 @@ Partial Class DArticle
         Me.pFamilia.Size = New System.Drawing.Size(349, 29)
         Me.pFamilia.TabIndex = 2
         '
+        'cmdImprimirExcel
+        '
+        Me.cmdImprimirExcel.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdImprimirExcel.Image = Global.OmsXM.My.Resources.Resources.excel
+        Me.cmdImprimirExcel.Location = New System.Drawing.Point(662, 4)
+        Me.cmdImprimirExcel.Name = "cmdImprimirExcel"
+        Me.cmdImprimirExcel.Size = New System.Drawing.Size(26, 28)
+        Me.cmdImprimirExcel.TabIndex = 98
+        Me.cmdImprimirExcel.UseVisualStyleBackColor = True
+        '
+        'cmdImprimirPDF
+        '
+        Me.cmdImprimirPDF.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdImprimirPDF.Image = Global.OmsXM.My.Resources.Resources.pdf
+        Me.cmdImprimirPDF.Location = New System.Drawing.Point(688, 4)
+        Me.cmdImprimirPDF.Name = "cmdImprimirPDF"
+        Me.cmdImprimirPDF.Size = New System.Drawing.Size(32, 28)
+        Me.cmdImprimirPDF.TabIndex = 97
+        Me.cmdImprimirPDF.UseVisualStyleBackColor = True
+        '
         'DArticle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(732, 341)
+        Me.Controls.Add(Me.cmdImprimirExcel)
+        Me.Controls.Add(Me.cmdImprimirPDF)
         Me.Controls.Add(Me.pFamilia)
         Me.Controls.Add(Me.lblNotes)
         Me.Controls.Add(Me.lblIva)
@@ -289,4 +313,6 @@ Partial Class DArticle
     Friend WithEvents lblNotes As Label
     Friend WithEvents txtNotes As TextBox
     Friend WithEvents pFamilia As Panel
+    Friend WithEvents cmdImprimirExcel As Button
+    Friend WithEvents cmdImprimirPDF As Button
 End Class

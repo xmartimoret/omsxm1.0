@@ -4,7 +4,7 @@ Public Class SelectProveidorAnotacio
     Inherits LVSubObjects
     Friend Property anotacions As List(Of proveidorAnotacio)
     Friend Property nomProveidor As String
-
+    Friend Event updateObject()
     Public Sub New(pIdProveidor As Integer, pNomProveidor As String, Optional pTitol As String = "", Optional pOrdre As Integer = 0)
         Me.idParent = pIdProveidor
         _nomProveidor = pNomProveidor
@@ -32,8 +32,11 @@ Public Class SelectProveidorAnotacio
 
 
     Private Function save(obj As proveidorAnotacio) As Integer
+        Dim i As Integer
         If Not obj Is Nothing Then
-            Return ModelProveidorAnotacio.save(obj)
+            i = ModelProveidorAnotacio.save(obj)
+            If i > 0 Then RaiseEvent updateObject()
+            Return i
         End If
         Return False
     End Function

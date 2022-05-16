@@ -2,7 +2,7 @@
     Inherits Base
     Public Property impost As Integer
     Public Property rEquivalencia As Double
-    Public Property actiu As Boolean
+    Public Property actiu As Boolean = True
     Public Sub New()
 
     End Sub

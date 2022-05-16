@@ -18,4 +18,7 @@ Public Class avis
         End If
     End Sub
 
+    Private Sub lblAvis_Click(sender As Object, e As EventArgs) Handles lblAvis.Click
+
+    End Sub
 End Class

@@ -18,7 +18,23 @@ Public Class SelectContactes
         Dim d As Contacte
         d = ModelContacte.getObject(id)
         If d IsNot Nothing Then
-            If MISSATGES.CONFIRM_REMOVE_CONTACTE(d.ToString) Then
+            If ModelComanda.existObject(id, New Contacte) Then
+                If MISSATGES.CONFIRM_NO_REMOVE_DOWN_OBJECT(UCase(IDIOMA.getString("elContacte"))) Then
+                    d.actiu = False
+                    Call ModelContacte.save(d)
+                End If
+            ElseIf ModelComandaEnEdicio.existObject(id, New CONTACTE) Then
+                If MISSATGES.CONFIRM_NO_REMOVE_DOWN_OBJECT(UCase(IDIOMA.getString("elContacte"))) Then
+                    d.actiu = False
+                    Call ModelContacte.save(d)
+                End If
+
+            ElseIf ModelProjecteContacte.existContacte(id) Then
+                If MISSATGES.CONFIRM_NO_REMOVE_DOWN_OBJECT_CONTACTE(UCase(IDIOMA.getString("elContacte"))) Then
+                    d.actiu = False
+                    Call ModelContacte.save(d)
+                End If
+            ElseIf MISSATGES.CONFIRM_REMOVE_CONTACTE(d.tostring) Then
                 Return ModelContacte.remove(d)
             End If
         End If
@@ -52,7 +68,7 @@ Public Class SelectContactes
                 RaiseEvent selectObject(obj)
                 Return ModelContacte.save(obj)
             Else
-                Throw New ExcepcioSql(ExcepcioSql.ERR_EXIST_NOM_REGISTRE)
+                ERRORS.ERR_EXIST_NAME_CONTACTE
             End If
         End If
         Return False
@@ -65,5 +81,30 @@ Public Class SelectContactes
     Public Overrides Function filtrar(idParent As Integer, txt As String) As DataList
         Return Nothing
     End Function
+
+    Public Overrides Function getRow(id As Integer) As ListViewItem
+        Return ModelContacte.getListViewItem(id)
+    End Function
+    Public Overrides Sub imprimir(pdf As Boolean, filtre As String)
+        'Dim tPrint As TipusImpressio
+        'tPrint = DPrint.getTipusImpresio
+        'If tPrint IsNot Nothing Then
+        '    If tPrint.isRegistreActual Then
+        '        Call ERRORS.ERR_FITXER_OBERT()
+        '    Else
+        '        Call modulInfoProveidor.execute(proveidorsActuals, tPrint.rutaInforme, Not tPrint.isExcel)
+        '    End If
+
+        'End If
+
+    End Sub
+    Public Overrides Sub actualitzar(id As List(Of Integer))
+    End Sub
+    Public Overrides Sub toolTipText(id As Integer)
+
+    End Sub
+    Public Overrides Sub guardarCopia(id As Integer)
+        Call ERRORS.EN_CONSTRUCCIO()
+    End Sub
 End Class
 

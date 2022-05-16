@@ -4,20 +4,27 @@
     Private actualitzar As Boolean
     Friend Event selectObject()
 
+
     Public Sub New(pObj As Object)
-        ' This call is required by the designer.        
         obj = pObj
         InitializeComponent()
         actualitzar = True
         Call setData()
+
         Call validateControls()
         ' Add any initialization after the InitializeComponent() call.
     End Sub
     Private Sub setData()
         cb.Items.Clear()
-        cb.Items.AddRange(CONFIG.getListObjects(ModelProveidor.getObjects))
+        cb.Items.AddRange(CONFIG.getListObjects(ModelProveidor.getObjectsActius))
         cb.SelectedItem = obj
         cmdAfegir.Select()
+    End Sub
+    Public Sub setObjects(estat As Boolean)
+        If estat = False Then cmdAfegir.Select()
+        Me.cb.Enabled = estat
+        Me.cmdAfegir.Enabled = estat
+        Me.cmdModificar.Enabled = estat
 
     End Sub
     Private Sub validateControls()

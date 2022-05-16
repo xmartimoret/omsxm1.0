@@ -6,6 +6,11 @@ Module DBCONNECT
     Private cnDbfActual As ADODB.Connection
     Private Const PROC_DATA_ACTUALITZACIO As String = "GET_DATE_UPDATED"
     Private Const DATABASE As String = "ApliOmsSacedeXM"
+    Private Const DATABASE_MYDOC As String = "MYDB"
+    Private Const TAULA_DOCUMENTACIO As String = "DOCUM"
+    Private Const TAULA_UPDATE_DRIVE As String = "UDRIVE"
+    Private Const TAULA_RESPONSABLE_COMPRA As String = "RCOMPRA"
+    Private Const TAULA_CODI_COMANDA As String = "CODCOM"
     Private Const TAULA_ARTICLE_SOLICITUD As String = "SCART"
     Private Const TAULA_SOLICITUD_COMANDA As String = "SCOMANDA"
     Private Const TAULA_DEPARTAMENT_COMANDA As String = "DEPCOM"
@@ -85,52 +90,36 @@ Module DBCONNECT
         Return False
     End Function
     Public Function getConnectionDbf() As ADODB.Connection
-        Dim sqlString As String, ruta As String  ', avis As frmAvis
+        Dim sqlString As String, ruta As String
         If cnDbfActual Is Nothing OrElse cnDbfActual.State = 0 Then
-            ' avis = New frmAvis
-            'avis.setData(IDIOMA.getString("db.connectServer.Missatge"), CONFIG_FILE.getTag(CONFIG_FILE.TAG.SERVER_DATA), "")
             ruta = getRutaDBActual()
             sqlString = "Provider=" & PROVIDER_ & ";Data Source=" & ruta & ";Extended Properties=dBASE IV;"
-            'sqlString = "Data Source= " & CONFIG_FILE.get  Tag(CONFIG_FILE.TAG.SERVER_DATA) & ";" &
-            ' "database=" & DATABASE & "; MultipleActiveResultSets=True; user ID= " & CONFIG_FILE.getTag(CONFIG_FILE.TAG.SERVER_USUARI) & "; password = " & CONFIG_FILE.getTag(CONFIG_FILE.TAG.SERVER_PASSWORD)
-
             cnDbfActual = New ADODB.Connection()
             Try
                 cnDbfActual.Open(getStringConnectionDBF(ruta))
-
             Catch ex As Exception
-                'avis.Close()
-                'avis = Nothing
                 Call ERRORS.ERR_EXCEPTION_SQL(ExcepcioSql.ERR_CONNECT_DB)
             End Try
         End If
-        'avis = Nothing
         sqlString = Nothing
         Return cnDbfActual
     End Function
     Public Function getConnection() As SqlConnection
         Dim sqlString As String
         If cnActual Is Nothing OrElse cnActual.State = 0 Then
-            ' avis = New frmAvis
-            'avis.setData(IDIOMA.getString("db.connectServer.Missatge"), CONFIG_FILE.getTag(CONFIG_FILE.TAG.SERVER_DATA), "")
-
             sqlString = "Data Source= " & CONFIG_FILE.getTag(CONFIG_FILE.TAG.SERVER_DATA) & ";" &
              "database=" & DATABASE & "; MultipleActiveResultSets=True; user ID= " & CONFIG_FILE.getTag(CONFIG_FILE.TAG.SERVER_USUARI) & "; password = " & CONFIG_FILE.getTag(CONFIG_FILE.TAG.SERVER_PASSWORD)
-
             cnActual = New SqlConnection(sqlString)
             Try
                 cnActual.Open()
-
             Catch ex As Exception
-                'avis.Close()
-                'avis = Nothing
                 Call ERRORS.ERR_EXCEPTION_SQL(ExcepcioSql.ERR_CONNECT_DB)
             End Try
         End If
-        'avis = Nothing
         sqlString = Nothing
         Return cnActual
     End Function
+
     Public Function existServer(servidor As String, usuari As String, clau As String) As Boolean
         Dim sqlString As String, cn As SqlConnection
         sqlString = "Data Source= " & servidor & ";" &
@@ -173,8 +162,16 @@ Module DBCONNECT
     Public Sub close()
         If cnActual IsNot Nothing Then If cnActual.State = 1 Then cnActual.Close()
         cnActual = Nothing
-
     End Sub
+    Public Function getTaulaDocumentacio() As String
+        Return TAULA_DOCUMENTACIO
+    End Function
+    Public Function getTaulaUpdateDrive() As String
+        Return TAULA_UPDATE_DRIVE
+    End Function
+    Public Function getTaulaResponsableCompra() As String
+        Return TAULA_RESPONSABLE_COMPRA
+    End Function
     Public Function getTaulaArticleSolicitud() As String
         Return TAULA_ARTICLE_SOLICITUD
     End Function
@@ -189,6 +186,9 @@ Module DBCONNECT
     End Function
     Public Function getTaulaArticleComandaEnEdicio() As String
         Return TAULA_ARTICLE_COMANDA_EDICIO
+    End Function
+    Public Function getTaulaCodiComanda() As String
+        Return TAULA_CODI_COMANDA
     End Function
     Public Function getTaulaComandaEdicio() As String
         Return TAULA_COMANDA_EDICIO
@@ -346,12 +346,28 @@ Module DBCONNECT
 
     Public Function getRutaDBActual() As String
         getRutaDBActual = ""
-        If CONFIG_FILE.getTag(CONFIG_FILE.TAG.ES_LOCAL) Then
-            If CONFIG.folderExist(CONFIG.getDirectoriBDLocal) Then getRutaDBActual = CONFIG.getDirectoriBDLocal
-        Else
-            getRutaDBActual = CONFIG_FILE.getTag(TAG.RUTA_SERVIDOR_DADES)
-        End If
+        'If CONFIG_FILE.getTag(CONFIG_FILE.TAG.ES_LOCAL) Then
+        '    If CONFIG.folderExist(CONFIG.getDirectoriBDLocal) Then getRutaDBActual = CONFIG.getDirectoriBDLocal
+        'Else
+        getRutaDBActual = CONFIG_FILE.getTag(TAG.RUTA_SERVIDOR_DADES)
+        'End If
     End Function
+    Public Function getConnectioMyDoc() As SqlConnection
+        Dim sqlString As String
+        If cnActual Is Nothing OrElse cnActual.State = 0 Then
+            sqlString = "Data Source= " & CONFIG_FILE.getTag(CONFIG_FILE.TAG.SERVER_DATA) & ";" &
+             "database=" & DATABASE_MYDOC & "; MultipleActiveResultSets=True; user ID= " & CONFIG_FILE.getTag(CONFIG_FILE.TAG.SERVER_USUARI) & "; password = " & CONFIG_FILE.getTag(CONFIG_FILE.TAG.SERVER_PASSWORD)
+            cnActual = New SqlConnection(sqlString)
+            Try
+                cnActual.Open()
+            Catch ex As Exception
+                Call ERRORS.ERR_EXCEPTION_SQL(ExcepcioSql.ERR_CONNECT_DB)
+            End Try
+        End If
+        sqlString = Nothing
+        Return cnActual
+    End Function
+
     Public Function getMaxId(t As String) As Long
         Dim sc As SqlCommand, sdr As SqlDataReader
         getMaxId = 0

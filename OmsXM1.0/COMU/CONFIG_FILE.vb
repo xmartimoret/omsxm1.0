@@ -56,6 +56,14 @@ Module CONFIG_FILE
         IMPORT_BUDGET = 40
         TIPUS_SERVER = 41
         WIDHT_SPLIT_COMANDES = 42
+        RUTA_FITXERS_SOLICITUT = 43
+        RUTA_FITXERS_COMANDA = 44
+        RUTA_IMPRESSIO_INFORMES = 45
+        FIRMA_CORREU = 46
+        RUTA_FITXERS_OFERTES = 47
+        CORREU_PREDETERMINAT = 48
+        RUTA_FITXERS_MYDOC = 49
+        TAULA_COMANDES_MYDOC = 50
     End Enum
     Private Sub getValues()
         Try
@@ -127,4 +135,30 @@ Module CONFIG_FILE
     Public Sub setTag(tag As TAG, value As String, Optional empresa As String = "")
         Call setValue(tag & empresa, value)
     End Sub
+    Public Function getRutafitxersMydoc() As String
+        Dim p As String
+        p = getTag(TAG.RUTA_FITXERS_MYDOC)
+        If p = "" Then
+            Return "\\serveroms\workspace\PedidosPendientes"
+        End If
+        Return p
+    End Function
+
+    Public Function getTaulaComandesMydoc() As String
+        Dim p As String
+        p = getTag(TAG.TAULA_COMANDES_MYDOC)
+        If p = "" Then
+            Return "TBL_00011"
+        End If
+        Return p
+    End Function
+    Public Function getRutaImportF56() As String
+        Dim p As String
+        p = getTag(TAG.RUTA_FITXERS_SOLICITUT)
+        If p = "" Then
+            Return "C:\APLIXM_OMS_SACEDE\COMANDES"
+        End If
+        Return p
+    End Function
+
 End Module

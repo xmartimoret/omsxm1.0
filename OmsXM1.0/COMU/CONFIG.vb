@@ -20,8 +20,24 @@ Module CONFIG
         man = 2
         VOSS = 3
     End Enum
+
+    Private Const NOM_FITXER_SIGNATURA_CORREU As String = "signEmail.txt"
+    Private Const PLANTILLA_RESUM_SUBCOMPTE_COMPRES As String = "plantillaSubcomptesCompres.xlsx"
+    Private Const PLANTILLA_COMANDES As String = "plantillaComandes.xlsx"
+    Private Const PLANTILLA As String = "plantilles"
+    Private Const PLANTILLA_INFO_ARTICLES_COMANDES As String = "plantillaArticlesComandes.xlsx"
+    Private Const PLANTILLA_F56 As String = "plantillaF56.xls"
+    Private Const PLANTILLA_INFO_ARTICLES As String = "plantillaArticles.xlsx"
+    Private Const PLANTILLA_INFO_ARTICLE As String = "plantillaArticle.xlsx"
+    Private Const PLANTILLA_INFO_AUXILIAR As String = "plantillaAuxiliar.xlsx"
+    Private Const PLANTILLA_INFO_TIPUS_IVA As String = "plantillaTipusIva.xlsx"
+    Private Const PLANTILLA_INFO_TIPUS_PAGAMENT As String = "plantillaTipusPagament.xlsx"
+    Private Const PLANTILLA_INFO_PAIS As String = "plantillaPais.xlsx"
+    Private Const PLANTILLA_INFO_LLOC_ENTREGA As String = "plantillaLlocEntrega.xlsx"
+    Private Const PLANTILLA_INFO_LLOCS_ENTREGA As String = "plantillaLlocsEntrega.xlsx"
+    Private Const PLANTILLA_INFO_PROVEIDOR As String = "plantillaProveidor.xlsx"
+    Private Const PLANTILLA_INFO_PROVEIDORS As String = "plantillaProveidors.xlsx"
     Private Const PLANTILLA_LLIBRE_MAJOR As String = "plantillaLlibreMajor.xls"
-    Private Const PLANTILLA_LLIBRE_PROVEIDORS As String = "Resum Proveidors.xlsx"
     Private Const RUTA_APLICACIO As String = "C:\APLIXM_OMS_SACEDE"
     Private Const RUTA_EXPORTACIO_DBF As String = "EXPORT_DBF"
     Private Const RUTA_EXPORTACIO_DEPARTAMENTS As String = "EXPORT_PROJECTES_DEPARTAMENT"
@@ -40,6 +56,7 @@ Module CONFIG
     Private Const RUTA_DADES_MACROS_LLIBRE_MAJOR_SUBCOMPTES As String = "SUBCOMPTES"
     Private Const RUTA_DIRECTORI_FITXERS_TRANSITORIES As String = "FITXERS_TRANSITORIA_PROJECTES"
     Private Const NOM_FITXER_CODI_COMANDES As String = "codiComandes.txt"
+    Private Const TEMP As String = "TEMP"
     Public Function fileExist(path As String) As Boolean
         Return System.IO.File.Exists(path)
     End Function
@@ -54,13 +71,100 @@ Module CONFIG
             End If
         End If
     End Function
-
+    Public Function getRutaPlantilles() As String
+        Dim ruta As String
+        ruta = setFolder(DBCONNECT.getRutaDBActual)
+        ruta = ruta & setFolder(PLANTILLA)
+        Return ruta
+    End Function
 
     Public Function getPlantillaLlibreMajor() As String
         getPlantillaLlibreMajor = PLANTILLA_LLIBRE_MAJOR
     End Function
     Public Function getPlantillaProveidors() As String
-        getPlantillaProveidors = PLANTILLA_LLIBRE_PROVEIDORS
+        getPlantillaProveidors = PLANTILLA_INFO_PROVEIDORS
+    End Function
+
+    Public Function getPlantillaLlocsEntrega() As String
+        getPlantillaLlocsEntrega = PLANTILLA_INFO_LLOCS_ENTREGA
+    End Function
+    Public Function getPlantillaLlocEntrega() As String
+        getPlantillaLlocEntrega = PLANTILLA_INFO_LLOC_ENTREGA
+    End Function
+    Public Function getPlantillaProveidor() As String
+        getPlantillaProveidor = PLANTILLA_INFO_PROVEIDOR
+    End Function
+    Public Function getRutaPlantillaProveidors() As String
+        Return setFolder(getRutaPlantilles) & getPlantillaProveidors()
+    End Function
+    Public Function getPlantillaTipusPagament() As String
+        Return PLANTILLA_INFO_TIPUS_PAGAMENT
+    End Function
+    Public Function getPlantillaPais() As String
+        Return PLANTILLA_INFO_PAIS
+    End Function
+    Public Function getPlantillaTipusIva() As String
+        Return PLANTILLA_INFO_TIPUS_IVA
+    End Function
+    Public Function getPlantillaAuxiliar() As String
+        Return PLANTILLA_INFO_AUXILIAR
+    End Function
+    Public Function getPlantillaArticles() As String
+        Return PLANTILLA_INFO_ARTICLES
+    End Function
+    Public Function getPlantillaArticlescOMANDES() As String
+        Return PLANTILLA_INFO_ARTICLES_COMANDES
+    End Function
+    Public Function getPlantillaArticle() As String
+        Return PLANTILLA_INFO_ARTICLE
+    End Function
+    Public Function getPlantillaF56() As String
+        Return PLANTILLA_F56
+    End Function
+    Public Function getRutaPlantillaProveidor() As String
+        Return setFolder(getRutaPlantilles) & getPlantillaProveidor()
+    End Function
+    Public Function getPlantillaResumCompres()
+        Return PLANTILLA_RESUM_SUBCOMPTE_COMPRES
+    End Function
+    Public Function getRutaPlantillaResumSubcompteCompres() As String
+        Return setFolder(getRutaPlantilles) & getPlantillaResumCompres()
+    End Function
+    Public Function getPlantillaComandes() As String
+        Return PLANTILLA_COMANDES
+    End Function
+    Public Function getRutaPlantillaComandes() As String
+        Return setFolder(getRutaPlantilles) & getPlantillaComandes()
+    End Function
+    Public Function getRutaPlantillaLlocsEntrega() As String
+        Return setFolder(getRutaPlantilles) & getPlantillaLlocsEntrega()
+    End Function
+    Public Function getRutaPlantillaLlocEntrega() As String
+        Return setFolder(getRutaPlantilles) & getPlantillaLlocEntrega()
+    End Function
+    Public Function getRutaPlantillaPais() As String
+        Return setFolder(getRutaPlantilles) & getPlantillaPais()
+    End Function
+    Public Function getRutaPlantillaTipusIva() As String
+        Return setFolder(getRutaPlantilles) & getPlantillaTipusIva()
+    End Function
+    Public Function getRutaPlantillaTipusPagament() As String
+        Return setFolder(getRutaPlantilles) & getPlantillaTipusPagament()
+    End Function
+    Public Function getRutaPlantillaAuxiliar() As String
+        Return setFolder(getRutaPlantilles) & getPlantillaAuxiliar()
+    End Function
+    Public Function getRutaPlantillaArticles() As String
+        Return setFolder(getRutaPlantilles) & getPlantillaArticles()
+    End Function
+    Public Function getRutaPlantillaArticlesComandes() As String
+        Return setFolder(getRutaPlantilles) & getPlantillaArticlescOMANDES()
+    End Function
+    Public Function getRutaPlantillaArticle() As String
+        Return setFolder(getRutaPlantilles) & getPlantillaArticle()
+    End Function
+    Public Function getRutaPlantillaf56() As String
+        Return setFolder(getRutaPlantilles) & getPlantillaF56()
     End Function
     Public Function getDirectori(ruta As String) As String
         Dim i As Integer
@@ -125,6 +229,7 @@ Module CONFIG
     '            Call ERROR.ERR_RUTA_SERVIDOR_LOCAL
     '    Else
     '            taules = CONFIG.existTaulesDades(ruta)
+
     '            If taules <> "" Then
     '                Call ERROR.ERR_TAULES(taules, True)
     '            existConnectDB = False
@@ -183,22 +288,11 @@ Module CONFIG
         If Right(getRutaBDRemote, 1) <> "\" Then getRutaBDRemote = getRutaBDRemote & "\"
         getRutaBDRemote = getRutaBDRemote & nomTaula
     End Function
-    Public Function getRutaComandesEnEdicio() As String
-        Dim rutaDb As String
-        rutaDb = setseparator(getRutaBDRemote())
-        If folderExist(rutaDb) Then
-            rutaDb = rutaDb & "COMANDES\"
-            If Not folderExist(rutaDb) Then Call MkDir(rutaDb)
-            Return rutaDb
-        End If
-        Return Nothing
-    End Function
+
     Public Function getRutaComandesImportades() As String
         Dim rutaDb As String
-        rutaDb = setSeparator(getRutaBDRemote())
+        rutaDb = setSeparator(CONFIG_FILE.getTag(TAG.RUTA_FITXERS_SOLICITUT))
         If folderExist(rutaDb) Then
-            rutaDb = rutaDb & "COMANDES\"
-            If Not folderExist(rutaDb) Then Call MkDir(rutaDb)
             rutaDb = rutaDb & "IMPORTADES\"
             If Not folderExist(rutaDb) Then Call MkDir(rutaDb)
             Return rutaDb
@@ -206,6 +300,7 @@ Module CONFIG
         Return Nothing
     End Function
     Public Function getDirectoriAssentaments() As String
+
         getDirectoriAssentaments = setFolder(getDirectoriAplicacio())
         getDirectoriAssentaments = getDirectoriAssentaments & "assentaments"
     End Function
@@ -271,9 +366,17 @@ Module CONFIG
         If Not folderExist(getDirectoriFitxersTransitories) Then Call MkDir(getDirectoriFitxersTransitories)
     End Function
     Public Function getDirectoriPredeterminatFitxersEstadistiques() As String
+
         getDirectoriPredeterminatFitxersEstadistiques = setFolder(CONFIG.getDirectoriAplicacio)
         getDirectoriPredeterminatFitxersEstadistiques = getDirectoriPredeterminatFitxersEstadistiques & RUTA_FITXERS_ESTADISTIQUES
         If Not folderExist(getDirectoriPredeterminatFitxersEstadistiques) Then Call MkDir(getDirectoriPredeterminatFitxersEstadistiques)
+    End Function
+    Public Function getDirectoriPredeterminatInformes() As String
+        Dim ruta As String
+        ruta = setFolder(CONFIG.getDirectoriAplicacio)
+        ruta = ruta & "INFORMES\"
+        If Not folderExist(ruta) Then Call MkDir(ruta)
+        Return ruta
     End Function
     Public Function getEspais(texte As String, espais As Integer, esquerra As Boolean)
         Dim i As Integer
@@ -424,6 +527,10 @@ Module CONFIG
         If t Is Nothing OrElse t.GetType.Name = "DBNull" Then Return ""
         Return Trim(t)
     End Function
+    Public Function validarNullDate(t) As Date
+        If t Is Nothing OrElse t.GetType.Name = "DBNull" Then Return DateSerial(0, 0, 0)
+        Return Trim(t)
+    End Function
     Public Function setFolder(ruta As String) As String
         If Right(ruta, 1) <> "\" Then Return ruta & "\"
         Return ruta
@@ -437,6 +544,7 @@ Module CONFIG
     Public Sub resetDades()
         Dim dAvis As frmAvis
         dAvis = New frmAvis(IDIOMA.getString("resetDades"), IDIOMA.getString("resetIndex"), "-")
+        Call DBCONNECT.close()
         Call ModelEmpresa.resetIndex()
         Call ModelSeccio.resetIndex()
         Call ModelCentre.resetIndex()
@@ -477,11 +585,12 @@ Module CONFIG
         Call ModelUnitat.resetIndex()
         Call ModelTipusIva.resetIndex()
         Call ModelTipusPagament.resetIndex()
-
-
-        Call dAvis.setData(IDIOMA.getString("resetDades"), IDIOMA.getString("actualitzaWorkBooks"), "-")
+        Call ModelDocumentacio.resetIndex()
+        Call ModelComanda.resetIndex()
+        Call ModelComandaEnEdicio.resetIndex()
+        Call dAvis.setData(IDIOMA.getString("resetDades"), IDIOMA.getString("actualitzaWorkBooks"))
         Call CONFIG.actualtizarWorkooks(True, True, True)
-        Call DBCONNECT.close()
+
         Call CONFIG_PARAM_SERVER.resetIndex()
         Call dAvis.tancar()
         dAvis = Nothing
@@ -524,17 +633,50 @@ Module CONFIG
         If Not folderExist(ruta) Then MkDir(ruta)
         Return ruta
     End Function
-    Public Function getRutaPlantillaComanda() As String
+    Public Function getRutaPlantillaComanda(idEmpresa As Integer) As String
         Dim ruta As String
         ruta = setFolder(DBCONNECT.getRutaDBActual)
         ruta = ruta & setFolder("plantilles")
         If Not folderExist(ruta) Then MkDir(ruta)
-        Return setFolder(ruta) & "PlantillaComanda.xls"
+        ruta = ruta & setFolder("comanda")
+        If Not folderExist(ruta) Then MkDir(ruta)
+        Select Case idEmpresa
+            Case 1 : Return setFolder(ruta) & "01-Comanda.xlsx"
+            Case 2 : Return setFolder(ruta) & "02-Comanda.xlsx"
+            Case 8 : Return setFolder(ruta) & "08-Comanda.xlsx"
+            Case 10 : Return setFolder(ruta) & "10-Comanda.xlsx"
+            Case 11 : Return setFolder(ruta) & "11-Comanda.xlsx"
+            Case Else : Return setFolder(ruta) & "01-Comanda.xlsx"
+        End Select
     End Function
+    Public Function getDirectoriPDFComandesEnValidacio() As String
+        Dim ruta As String
+        ruta = setFolder(DBCONNECT.getRutaDBActual)
+        ruta = ruta & setFolder("comandesPDF")
+        If Not folderExist(ruta) Then MkDir(ruta)
+        ruta = ruta & setFolder("enValidacio")
+        If Not folderExist(ruta) Then MkDir(ruta)
+        Return setFolder(ruta)
+
+    End Function
+    Public Function getDirectoriPDFComandesEnviades(idEmpresa As String) As String
+        Dim ruta As String
+        ruta = setFolder(DBCONNECT.getRutaDBActual)
+        ruta = ruta & setFolder("comandesPDF")
+        If Not folderExist(ruta) Then MkDir(ruta)
+        ruta = ruta & setFolder("enviades")
+        If Not folderExist(ruta) Then MkDir(ruta)
+        ruta = ruta & setFolder(getDosDigits(idEmpresa))
+        If Not folderExist(ruta) Then MkDir(ruta)
+        Return setFolder(ruta)
+    End Function
+
     Public Function getDirectoriPDFComandes() As String
         Dim ruta As String
         ruta = setFolder(DBCONNECT.getRutaDBActual)
         ruta = ruta & setFolder("comandesPDF")
+        If Not folderExist(ruta) Then MkDir(ruta)
+        ruta = ruta & setFolder("enEdicio")
         If Not folderExist(ruta) Then MkDir(ruta)
         Return setFolder(ruta)
     End Function
@@ -565,6 +707,13 @@ Module CONFIG
             Return "0" & p
         End If
         Return p
+    End Function
+    Public Function getNumStringDigits(p As Integer, digits As Integer) As String
+        Dim i As Integer
+        getNumStringDigits = p
+        For i = CStr(p).Length To digits
+            getNumStringDigits = "0" & getNumStringDigits
+        Next
     End Function
     Public Function getListObjects(pObjectes As List(Of Object)) As Object()
         Dim obj As Object, i As Integer = 0, objectes() As Object
@@ -624,5 +773,62 @@ Module CONFIG
         p.Controls.Add(obj)
         obj.Show()
     End Sub
+    Public Function getDirectoriServidorMYDOC() As String
+        getDirectoriServidorMYDOC = setFolder(CONFIG_FILE.getTag(TAG.RUTA_SERVIDOR_DADES))
+    End Function
 
+    Public Function getDirectoriServidorF56() As String
+        getDirectoriServidorF56 = getDirectoriServidorMYDOC() & "F56\"
+        If Not CONFIG.folderExist(getDirectoriServidorOfertes) Then MkDir(getDirectoriServidorOfertes)
+    End Function
+    Public Function getDirectoriServidorOfertes() As String
+        getDirectoriServidorOfertes = getDirectoriServidorMYDOC() & "OFERTES\"
+        If Not CONFIG.folderExist(getDirectoriServidorOfertes) Then MkDir(getDirectoriServidorOfertes)
+    End Function
+    Public Function getfitxerComandaEnValidacio(p As String) As String
+        Dim ruta As String, f As String
+        ruta = setSeparator(CONFIG.getDirectoriPDFComandesEnValidacio)
+        If folderExist(ruta) Then
+            f = Dir(ruta & "*.pdf", FileAttribute.Archive)
+            Do While f <> ""
+                If InStr(1, f, p, CompareMethod.Text) > 0 Then
+                    Return ruta & f
+                End If
+                f = Dir()
+            Loop
+        End If
+        Return ""
+    End Function
+    'Public Function encoding(p As String) As String
+    '    Dim bytes As Byte() = System.Text.Encoding.UTF8.GetBytes(p)
+    '    Return System.Text.Encoding.UTF8.GetString(bytes)
+    'End Function
+    Public Function getRutaEmpresaComandesPDF(nomEmpresa As String) As String
+        Dim ruta As String
+        ruta = setFolder(CONFIG_FILE.getTag(TAG.RUTA_FITXERS_COMANDA))
+        If Not CONFIG.folderExist(ruta) Then MkDir(ruta)
+        ruta = ruta & setFolder(nomEmpresa)
+        If Not CONFIG.folderExist(ruta) Then MkDir(ruta)
+        getRutaEmpresaComandesPDF = ruta
+    End Function
+    Public Function getRutaEmpresaComandesPDF(nomEmpresa As String, a As Integer) As String
+        Dim ruta As String
+        ruta = setFolder(CONFIG_FILE.getTag(TAG.RUTA_FITXERS_COMANDA))
+        If Not CONFIG.folderExist(ruta) Then MkDir(ruta)
+        ruta = ruta & setFolder(nomEmpresa)
+        If Not CONFIG.folderExist(ruta) Then MkDir(ruta)
+        ruta = ruta & setFolder(a)
+        If Not CONFIG.folderExist(ruta) Then MkDir(ruta)
+        getRutaEmpresaComandesPDF = ruta
+    End Function
+    Public Function getDirectoritemporal()
+        Dim ruta As String
+        ruta = setFolder(getDirectoriAplicacio())
+        ruta = ruta & TEMP
+        If Not folderExist(ruta) Then Call MkDir(ruta)
+        Return ruta
+    End Function
+    Public Function getRutaFitxerSignaturaCorreu() As String
+        Return setFolder(DBCONNECT.getRutaDBActual) & NOM_FITXER_SIGNATURA_CORREU
+    End Function
 End Module

@@ -30,6 +30,17 @@ Module ModelYSheet
         End If
         obj = Nothing
     End Function
+    Public Function getListViewItem(obj As YSheet) As ListViewItem
+        Return New ListViewItem(New String() {obj.id, obj.codi, obj.nom})
+    End Function
+    Public Function getListViewItem(id As Integer) As ListViewItem
+        Dim a As YSheet
+        a = getObject(id)
+        If a IsNot Nothing Then
+            Return getListViewItem(a)
+        End If
+        Return Nothing
+    End Function
     Public Function exist(Y As YSheet) As Boolean
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Exists(Function(x) (UCase(Trim(x.codi)) = UCase(Trim(Y.codi)) Or UCase(Trim(x.nom)) = UCase(Trim(Y.nom))) And x.id <> Y.id)

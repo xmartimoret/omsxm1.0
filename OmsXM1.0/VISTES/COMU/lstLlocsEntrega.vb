@@ -11,6 +11,7 @@
         InitializeComponent()
         actualitzar = True
         Call setData()
+
         Call validateControls()
         ' Add any initialization after the InitializeComponent() call.
     End Sub
@@ -22,18 +23,24 @@
         InitializeComponent()
         actualitzar = True
         Call setData()
+
         Call validateControls()
     End Sub
 
     Private Sub setData()
         cb.Items.Clear()
         If idProjecte = -1 Then
-            cb.Items.AddRange(CONFIG.getListObjects(ModelLlocEntrega.getObjects()))
+            cb.Items.AddRange(CONFIG.getListObjects(ModelLlocEntrega.getObjectsActius()))
         Else
             cb.Items.AddRange(ModelLlocEntrega.getListObjects(ModelProjecteEntrega.getObjects(idProjecte)))
         End If
         cb.SelectedItem = obj
         cmdAfegir.Select()
+    End Sub
+    Public Sub setObjects(estat As Boolean)
+        Me.cb.Enabled = estat
+        Me.cmdAfegir.Enabled = estat
+        Me.cmdModificar.Enabled = estat
     End Sub
     Private Sub validateControls()
         If obj Is Nothing Then

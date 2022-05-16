@@ -1,11 +1,13 @@
 ﻿Imports System.Windows.Forms
 Public Class DAuxiliar
     Private objectActual As Object
+    Private NumCaracters As Integer
     Public Sub New()
         InitializeComponent()
     End Sub
-    Public Function getobject(pobject As Object, Optional titol As String = "") As Object
+    Public Function getobject(pobject As Object, Optional titol As String = "", Optional pCaractersCodi As Integer = 3) As Object
         objectActual = pobject
+        NumCaracters = pCaractersCodi
         If objectActual Is Nothing Then
             If titol = "" Then
                 Me.Text = IDIOMA.getString("dobjectAfegirobject")
@@ -19,7 +21,7 @@ Public Class DAuxiliar
                 Me.Text = titol
             End If
         End If
-            Call setLanguage()
+        Call setLanguage()
         Call setData()
         Me.ShowDialog()
         If Me.DialogResult = System.Windows.Forms.DialogResult.OK Then
@@ -85,6 +87,6 @@ Public Class DAuxiliar
         Call validateControls()
     End Sub
     Private Sub txtCodi_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCodi.KeyPress
-        e.KeyChar = VALIDAR.AlfaNumeric(e.KeyChar, sender.Text.Length, 3)
+        e.KeyChar = VALIDAR.AlfaNumeric(e.KeyChar, sender.Text.Length, NumCaracters)
     End Sub
 End Class

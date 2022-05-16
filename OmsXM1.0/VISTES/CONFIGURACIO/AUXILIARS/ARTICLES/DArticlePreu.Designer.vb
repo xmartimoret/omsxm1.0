@@ -43,7 +43,7 @@ Partial Class DArticlePreu
         'cData
         '
         Me.cData.dataActual = New Date(CType(0, Long))
-        Me.cData.Location = New System.Drawing.Point(154, 137)
+        Me.cData.Location = New System.Drawing.Point(122, 137)
         Me.cData.Name = "cData"
         Me.cData.Size = New System.Drawing.Size(116, 24)
         Me.cData.TabIndex = 0
@@ -53,7 +53,7 @@ Partial Class DArticlePreu
         Me.lblProveidor.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblProveidor.Location = New System.Drawing.Point(4, 106)
         Me.lblProveidor.Name = "lblProveidor"
-        Me.lblProveidor.Size = New System.Drawing.Size(141, 23)
+        Me.lblProveidor.Size = New System.Drawing.Size(112, 23)
         Me.lblProveidor.TabIndex = 97
         Me.lblProveidor.Text = "Label1"
         Me.lblProveidor.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -63,23 +63,23 @@ Partial Class DArticlePreu
         Me.lblArticleCaption.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblArticleCaption.Location = New System.Drawing.Point(4, 31)
         Me.lblArticleCaption.Name = "lblArticleCaption"
-        Me.lblArticleCaption.Size = New System.Drawing.Size(141, 23)
+        Me.lblArticleCaption.Size = New System.Drawing.Size(112, 23)
         Me.lblArticleCaption.TabIndex = 98
         Me.lblArticleCaption.Text = "Label1"
         Me.lblArticleCaption.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'pProveidor
         '
-        Me.pProveidor.Location = New System.Drawing.Point(154, 102)
+        Me.pProveidor.Location = New System.Drawing.Point(122, 102)
         Me.pProveidor.Name = "pProveidor"
-        Me.pProveidor.Size = New System.Drawing.Size(199, 29)
+        Me.pProveidor.Size = New System.Drawing.Size(360, 29)
         Me.pProveidor.TabIndex = 96
         '
         'lblId
         '
         Me.lblId.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblId.ForeColor = System.Drawing.Color.Blue
-        Me.lblId.Location = New System.Drawing.Point(151, 5)
+        Me.lblId.Location = New System.Drawing.Point(119, 5)
         Me.lblId.Name = "lblId"
         Me.lblId.Size = New System.Drawing.Size(156, 23)
         Me.lblId.TabIndex = 100
@@ -91,7 +91,7 @@ Partial Class DArticlePreu
         Me.lblIdCaption.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblIdCaption.Location = New System.Drawing.Point(4, 4)
         Me.lblIdCaption.Name = "lblIdCaption"
-        Me.lblIdCaption.Size = New System.Drawing.Size(141, 23)
+        Me.lblIdCaption.Size = New System.Drawing.Size(112, 23)
         Me.lblIdCaption.TabIndex = 99
         Me.lblIdCaption.Text = "Label1"
         Me.lblIdCaption.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -101,7 +101,7 @@ Partial Class DArticlePreu
         Me.lblData.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblData.Location = New System.Drawing.Point(4, 138)
         Me.lblData.Name = "lblData"
-        Me.lblData.Size = New System.Drawing.Size(141, 23)
+        Me.lblData.Size = New System.Drawing.Size(112, 23)
         Me.lblData.TabIndex = 101
         Me.lblData.Text = "Label1"
         Me.lblData.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -111,7 +111,7 @@ Partial Class DArticlePreu
         Me.lblBase.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblBase.Location = New System.Drawing.Point(4, 167)
         Me.lblBase.Name = "lblBase"
-        Me.lblBase.Size = New System.Drawing.Size(141, 23)
+        Me.lblBase.Size = New System.Drawing.Size(112, 23)
         Me.lblBase.TabIndex = 103
         Me.lblBase.Text = "Label1"
         Me.lblBase.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -120,7 +120,7 @@ Partial Class DArticlePreu
         '
         Me.txtBase.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.txtBase.ForeColor = System.Drawing.Color.Blue
-        Me.txtBase.Location = New System.Drawing.Point(154, 167)
+        Me.txtBase.Location = New System.Drawing.Point(122, 167)
         Me.txtBase.Name = "txtBase"
         Me.txtBase.Size = New System.Drawing.Size(116, 26)
         Me.txtBase.TabIndex = 102
@@ -130,7 +130,7 @@ Partial Class DArticlePreu
         Me.lblDescompte.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDescompte.Location = New System.Drawing.Point(4, 199)
         Me.lblDescompte.Name = "lblDescompte"
-        Me.lblDescompte.Size = New System.Drawing.Size(141, 23)
+        Me.lblDescompte.Size = New System.Drawing.Size(112, 23)
         Me.lblDescompte.TabIndex = 105
         Me.lblDescompte.Text = "Label1"
         Me.lblDescompte.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -139,7 +139,7 @@ Partial Class DArticlePreu
         '
         Me.txtDescompte.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.txtDescompte.ForeColor = System.Drawing.Color.Blue
-        Me.txtDescompte.Location = New System.Drawing.Point(154, 199)
+        Me.txtDescompte.Location = New System.Drawing.Point(122, 199)
         Me.txtDescompte.Name = "txtDescompte"
         Me.txtDescompte.Size = New System.Drawing.Size(68, 26)
         Me.txtDescompte.TabIndex = 104
@@ -159,7 +159,7 @@ Partial Class DArticlePreu
         Me.cmdCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmdCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdCancelar.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.cmdCancelar.Location = New System.Drawing.Point(218, 243)
+        Me.cmdCancelar.Location = New System.Drawing.Point(375, 243)
         Me.cmdCancelar.Name = "cmdCancelar"
         Me.cmdCancelar.Size = New System.Drawing.Size(148, 31)
         Me.cmdCancelar.TabIndex = 107
@@ -169,7 +169,7 @@ Partial Class DArticlePreu
         '
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Blue
-        Me.Label1.Location = New System.Drawing.Point(276, 134)
+        Me.Label1.Location = New System.Drawing.Point(244, 134)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(19, 23)
         Me.Label1.TabIndex = 108
@@ -180,7 +180,7 @@ Partial Class DArticlePreu
         '
         Me.Label2.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Blue
-        Me.Label2.Location = New System.Drawing.Point(228, 202)
+        Me.Label2.Location = New System.Drawing.Point(196, 202)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(19, 23)
         Me.Label2.TabIndex = 109
@@ -191,7 +191,7 @@ Partial Class DArticlePreu
         '
         Me.lblArticle.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblArticle.ForeColor = System.Drawing.Color.Blue
-        Me.lblArticle.Location = New System.Drawing.Point(151, 31)
+        Me.lblArticle.Location = New System.Drawing.Point(119, 31)
         Me.lblArticle.Name = "lblArticle"
         Me.lblArticle.Size = New System.Drawing.Size(215, 53)
         Me.lblArticle.TabIndex = 110
@@ -201,7 +201,7 @@ Partial Class DArticlePreu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(378, 299)
+        Me.ClientSize = New System.Drawing.Size(535, 299)
         Me.Controls.Add(Me.lblArticle)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)

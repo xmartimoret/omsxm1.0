@@ -25,6 +25,17 @@ Module ModelDepartament
         End If
         d = Nothing
     End Function
+    Public Function getListViewItem(d As Departament) As ListViewItem
+        Return New ListViewItem(New String() {d.id, d.codi, d.nom})
+    End Function
+    Public Function getListViewItem(id As Integer) As ListViewItem
+        Dim a As Departament
+        a = getObject(id)
+        If a IsNot Nothing Then
+            Return getListViewItem(a)
+        End If
+        Return Nothing
+    End Function
     Public Function getObject(id As Integer) As Departament
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Find(Function(x) x.id = id)

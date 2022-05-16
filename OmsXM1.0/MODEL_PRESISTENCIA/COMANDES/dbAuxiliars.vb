@@ -10,6 +10,7 @@ Module dbAuxiliars
     Private Const ACTIU As String = "Actiu"
     Private Const DIES As String = "DIES"
     Private Const DIA_PAGAMENT As String = "diaPaga"
+    Private Const EMAIL As String = "EMAIL"
     Private tipus As String
     Public Function update(obj) As Integer
         tipus = obj.GetType.Name
@@ -20,8 +21,8 @@ Module dbAuxiliars
                 Return updateDBF(toTipusPagament(obj))
             Case "pais" : If IS_SQLSERVER Then Return updateSql(toPais(obj))
                 Return updateDbf(toPais(obj))
-            'Case "article" : Return dbArticle.update(obj)
-            'Case "proveidor" : Return dbProveidor.update(obj)
+            Case "responsablecompra" : If IS_SQLSERVER() Then Return updateSQL(toResponsableCompra(obj))
+                Return updateDBF(toResponsableCompra(obj))
             Case Else : If IS_SQLSERVER Then Return updateSQL(obj)
                 Return updateDBF(obj)
         End Select
@@ -35,8 +36,10 @@ Module dbAuxiliars
                 Return insertDBF(toTipusPagament(obj))
             Case "pais" : If IS_SQLSERVER Then Return insertSql(toPais(obj))
                 Return insertDbf(toPais(obj))
-            'Case "article" : Return dbArticle.insert(obj)
-            'Case "proveidor" : Return dbProveidor.insert(obj)
+            Case "responsbleCompra" : If IS_SQLSERVER() Then Return insertSQL(toResponsableCompra(obj))
+                Return insertDBF(toResponsableCompra(obj))
+                'Case "article" : Return dbArticle.insert(obj)
+                'Case "proveidor" : Return dbProveidor.insert(obj)
             Case Else : If IS_SQLSERVER Then Return insertSQL(obj)
                 Return insertDBF(obj)
         End Select
@@ -126,6 +129,24 @@ Module dbAuxiliars
         End If
         Return -1
     End Function
+    Private Function insertSql(obj As ResponsableCompra) As Integer
+        Dim sc As SqlCommand, i As Integer
+        obj.id = DBCONNECT.getMaxId(getTable) + 1
+
+        sc = New SqlCommand(" INSERT INTO " & getTable() & " " &
+                            " (" & ID & ", " & EMAIL & ", " & CODI & ", " & NOM & ")" &
+                            " VALUES(@id,@notes,@codi,@nom)", DBCONNECT.getConnection)
+        sc.Parameters.Add("@id", SqlDbType.Int).Value = obj.id
+        sc.Parameters.Add("@notes", SqlDbType.VarChar).Value = obj.notes
+        sc.Parameters.Add("@codi", SqlDbType.VarChar).Value = obj.codi
+        sc.Parameters.Add("@nom", SqlDbType.VarChar).Value = obj.nom
+        i = sc.ExecuteNonQuery
+        sc = Nothing
+        If i >= 1 Then
+            Return obj.id
+        End If
+        Return -1
+    End Function
 
     Private Function updateSQL(obj As Object) As Integer
         Dim sc As SqlCommand, i As Integer
@@ -194,7 +215,22 @@ Module dbAuxiliars
         End If
         Return -1
     End Function
-
+    Private Function updateSql(obj As ResponsableCompra) As Integer
+        Dim sc As SqlCommand, i As Integer
+        sc = New SqlCommand("UPDATE " & getTable() & " " &
+                                " SET " & EMAIL & "=@notes," & CODI & "=@codi," & NOM & " =@nom " &
+                                " WHERE " & ID & "=@id", DBCONNECT.getConnection)
+        sc.Parameters.Add("@id", SqlDbType.Int).Value = obj.id
+        sc.Parameters.Add("@notes", SqlDbType.VarChar).Value = obj.notes
+        sc.Parameters.Add("@codi", SqlDbType.VarChar).Value = obj.codi
+        sc.Parameters.Add("@nom", SqlDbType.VarChar).Value = obj.nom
+        i = sc.ExecuteNonQuery
+        sc = Nothing
+        If i >= 1 Then
+            Return obj.id
+        End If
+        Return -1
+    End Function
     Private Function removeSQL(obj As Object) As Boolean
         Dim sc As SqlCommand, i As Integer
         sc = New SqlCommand("DELETE FROM " & getTable() & " WHERE " & ID & "=@ID", DBCONNECT.getConnection)
@@ -220,18 +256,7 @@ Module dbAuxiliars
                 Case DBCONNECT.getTaulaTipusIva : dades.Add(New TipusIva(sdr(ID), Trim(sdr(NOM)), Trim(sdr(CODI)), Trim(sdr(NOM)), Trim(sdr(IMPOST)), Trim(sdr(REQUIVALENCIA)), Trim(sdr(ACTIU))))
                 Case DBCONNECT.getTaulaPais : dades.Add(New Pais(sdr(ID), Trim(sdr(ABREVIATURA)), Trim(sdr(CODI)), Trim(sdr(NOM))))
                 Case DBCONNECT.getTaulaTipusPagament : dades.Add(New TipusPagament(sdr(ID), Trim(sdr(NOM)), Trim(sdr(CODI)), Trim(sdr(NOM)), Trim(sdr(DIES)), Trim(sdr(DIA_PAGAMENT)), Trim(sdr(ACTIU))))
-                    'Case DBCONNECT.getTaulaArticle
-                    '    Dim a As article
-                    '    For Each a In dbArticle.getObjects
-                    '        getObjectsDBF.Add(a)
-                    '    Next
-                    '    a = Nothing
-                    'Case DBCONNECT.getTaulaProveidor
-                    '    Dim a As Proveidor
-                    '    For Each a In dbProveidor.getObjects
-                    '        getObjectsDBF.Add(a)
-                    '    Next
-                    '    a = Nothing
+                Case DBCONNECT.getTaulaResponsableCompra : dades.Add(New ResponsableCompra(sdr(ID), Trim(sdr(CODI)), Trim(sdr(NOM)), Trim(sdr(EMAIL)), Trim(sdr(ACTIU))))
             End Select
         End While
         sdr.Close()
@@ -252,6 +277,32 @@ Module dbAuxiliars
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
             .Parameters.Append(ADOPARAM.ToString(obj.codi))
             .Parameters.Append(ADOPARAM.ToString(obj.nom))
+
+        End With
+        Try
+            sc.Execute()
+            Return obj.id
+        Catch ex As Exception
+            Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
+            Return -1
+        Finally
+            sc = Nothing
+        End Try
+    End Function
+    Private Function insertDBF(obj As ResponsableCompra) As Integer
+        Dim sc As ADODB.Command
+        sc = New ADODB.Command
+        obj.id = DBCONNECT.getMaxIdDBF(getTable) + 1
+        With sc
+            .ActiveConnection = DBCONNECT.getConnectionDbf
+            .CommandText = " INSERT INTO " & getTable() & " " &
+                            " (" & ID & ", " & CODI & ", " & NOM & ", " & EMAIL & ", " & ACTIU & ")" &
+                            " VALUES(?,?,?,?,?)"
+            .Parameters.Append(ADOPARAM.ToInt(obj.id))
+            .Parameters.Append(ADOPARAM.ToString(obj.codi))
+            .Parameters.Append(ADOPARAM.ToString(obj.nom))
+            .Parameters.Append(ADOPARAM.ToString(obj.notes))
+            .Parameters.Append(ADOPARAM.toBool(obj.actiu))
         End With
         Try
             sc.Execute()
@@ -271,7 +322,7 @@ Module dbAuxiliars
         With sc
             sc.ActiveConnection = DBCONNECT.getConnectionDbf
             sc.CommandText = " INSERT INTO " & getTable() & " " &
-                            " (" & ID & ", " & ABREVIATURA & ", " & CODI & ", " & NOM & ")" &
+                            " (" & ID & ", " & ABREVIATURA & ", " & CODI & ", " & NOM & ", " & EMAIL & ", " & ACTIU & ")" &
                             " VALUES(?,?,?,?)"
             sc.Parameters.Append(ADOPARAM.ToInt(obj.id, ""))
             sc.Parameters.Append(ADOPARAM.ToString(obj.abreviatura, ""))
@@ -439,7 +490,30 @@ Module dbAuxiliars
             sc = Nothing
         End Try
     End Function
-
+    Private Function updateDBF(obj As ResponsableCompra) As Integer
+        Dim sc As ADODB.Command
+        sc = New ADODB.Command
+        With sc
+            .ActiveConnection = DBCONNECT.getConnectionDbf
+            .CommandText = "UPDATE " & getTable() & " " &
+                            " SET " & CODI & "=?," & NOM & " =?, " & EMAIL & " =?, " & ACTIU & " =? " &
+                             " WHERE " & ID & "=?"
+            .Parameters.Append(ADOPARAM.ToString(obj.codi))
+            .Parameters.Append(ADOPARAM.ToString(obj.nom))
+            .Parameters.Append(ADOPARAM.ToString(obj.notes))
+            .Parameters.Append(ADOPARAM.toBool(obj.actiu))
+            .Parameters.Append(ADOPARAM.ToInt(obj.id))
+        End With
+        Try
+            sc.Execute()
+            Return obj.id
+        Catch ex As Exception
+            Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
+            Return -1
+        Finally
+            sc = Nothing
+        End Try
+    End Function
     Private Function removeDBF(obj As Object) As Boolean
         Dim sc As ADODB.Command
         sc = New ADODB.Command
@@ -472,18 +546,9 @@ Module dbAuxiliars
                 Case DBCONNECT.getTaulaPais : getObjectsDBF.Add(New Pais(rc(ID).Value, Trim(CONFIG.validarNull(rc(ABREVIATURA).Value)), Trim(CONFIG.validarNull(rc(CODI).Value)), Trim(CONFIG.validarNull(rc(NOM).Value))))
                 Case DBCONNECT.getTaulaTipusIva : getObjectsDBF.Add(New TipusIva(rc(ID).Value, rc(IMPOST).Value, Trim(CONFIG.validarNull(rc(CODI).Value)), Trim(CONFIG.validarNull(rc(NOM).Value)), Trim(rc(IMPOST).Value), Trim(rc(REQUIVALENCIA).Value), Trim(rc(ACTIU).Value)))
                 Case DBCONNECT.getTaulaTipusPagament : getObjectsDBF.Add(New TipusPagament(rc(ID).Value, Trim(rc(NOM).Value), Trim(rc(CODI).Value), Trim(CONFIG.validarNull(rc(NOM).Value)), Trim(rc(DIES).Value), Trim(rc(DIA_PAGAMENT).Value), Trim(rc(ACTIU).Value)))
-                    'Case DBCONNECT.getTaulaArticle
-                    '    Dim a As article
-                    '    For Each a In dbArticle.getObjects
-                    '        getObjectsDBF.Add(a)
-                    '    Next
-                    '    a = Nothing
-                    'Case DBCONNECT.getTaulaProveidor
-                    '    Dim proveidors As List(Of Proveidor), p As Proveidor
-                    '    proveidors = ModelProveidor.getObjects
-                    '    For Each p In proveidors
-                    '        getObjectsDBF.AddRange(p)
-                    '    Next
+                Case DBCONNECT.getTaulaResponsableCompra : getObjectsDBF.Add(New ResponsableCompra(rc(ID).Value, Trim(rc(CODI).Value), Trim(CONFIG.validarNull(rc(NOM).Value)), Trim(CONFIG.validarNull(rc(EMAIL).Value)), rc(ACTIU).Value))
+
+
             End Select
             rc.MoveNext()
         End While
@@ -497,6 +562,7 @@ Module dbAuxiliars
             Case "tipusiva" : Return DBCONNECT.getTaulaTipusIva
             Case "tipuspagament" : Return DBCONNECT.getTaulaTipusPagament
             Case "provincia" : Return DBCONNECT.getTaulaProvincia
+            Case "responsablecompra" : Return DBCONNECT.getTaulaResponsableCompra
             Case Else : Return tipus
         End Select
 
@@ -559,5 +625,13 @@ Module dbAuxiliars
         toTipusIva.notes = obj.notes
         toTipusIva.nom = obj.nom
         toTipusIva.actiu = obj.actiu
+    End Function
+    Private Function toResponsableCompra(obj As Object) As ResponsableCompra
+        toResponsableCompra = New ResponsableCompra
+        toResponsableCompra.id = obj.id
+        toResponsableCompra.codi = obj.codi
+        toResponsableCompra.notes = obj.notes
+        toResponsableCompra.nom = obj.nom
+        toResponsableCompra.actiu = obj.actiu
     End Function
 End Module

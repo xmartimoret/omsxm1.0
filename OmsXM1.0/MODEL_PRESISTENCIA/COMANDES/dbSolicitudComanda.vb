@@ -33,10 +33,15 @@ Module dbSolicitudComanda
     Private Const OFERTA1 As String = "OF1"
     Private Const OFERTA2 As String = "OF2"
     Private Const OFERTA3 As String = "OF3"
+    Private Const FITXER_OF1 As String = "FO1"
+    Private Const FITXER_OF2 As String = "FO2"
+    Private Const FITXER_OF3 As String = "FO3"
+    Private Const FITXER_OF4 As String = "FO4"
     Private Const COMPARATIU As String = "COMPAR"
     Private Const FORMA_PAGAMENT As String = "FPAG"
     Private Const VALTRES As String = "ALTRA"
     Private Const ESTAT As String = "ESTAT"
+    Private Const RESPONSABLE_COMPRA As String = "RESPC"
 
     'ACCESSORS CENTRE
     ''' <summary>
@@ -68,7 +73,7 @@ Module dbSolicitudComanda
     Private Function updateSQL(obj As SolicitudComanda) As Integer
         Dim sc As SqlCommand, i As Integer
         sc = New SqlCommand("UPDATE " & getTable() & " " &
-                        " SET " & CODI & " =@codi, " &
+                        " SET " &
                                 NOM & " =@nom, " &
                                 SERIE & " =@serie, " &
                                 EMPRESA & " =@empresa, " &
@@ -102,10 +107,10 @@ Module dbSolicitudComanda
                                 VALTRES & " =@valtres, " &
                                 ID_PROVEIDOR & " =@idProveidor, " &
                                 DATA_COMANDA & " =@dataComanda, " &
-                                ESTAT & " =@estat " &
+                                ESTAT & " =@estat, " &
+                                RESPONSABLE_COMPRA & " =@responsableCompra " &
                                 " WHERE " & ID & "=@id", DBCONNECT.getConnection)
         sc.Parameters.Add("@id", SqlDbType.Int).Value = obj.id
-        sc.Parameters.Add("@codi", SqlDbType.Int).Value = obj.codi
         sc.Parameters.Add("@nom", SqlDbType.Char).Value = obj.NOM
         sc.Parameters.Add("@serie", SqlDbType.Char).Value = obj.serie
         sc.Parameters.Add("@empresa", SqlDbType.Char).Value = obj.empresa
@@ -140,6 +145,7 @@ Module dbSolicitudComanda
         sc.Parameters.Add("@idProveidor", SqlDbType.Int).Value = obj.idProveidor
         sc.Parameters.Add("@dataComanda", SqlDbType.Int).Value = obj.dataComanda
         sc.Parameters.Add("@estat", SqlDbType.Int).Value = obj.estat
+        sc.Parameters.Add("@responsableCompra", SqlDbType.Char).Value = obj.responsableCompra
 
         i = sc.ExecuteNonQuery
         sc = Nothing
@@ -159,13 +165,12 @@ Module dbSolicitudComanda
         Dim sc As SqlCommand, i As Integer
         obj.id = DBCONNECT.getMaxId(getTable) + 1
         sc = New SqlCommand(" INSERT INTO " & getTable() & " " &
-                    " ( " & ID & "," & DATA_COMANDA & "," & ESTAT & "," & ID_PROVEIDOR & "," & CODI & "," & NOM & "," & SERIE & "," & EMPRESA & "," & CODI_PROJECTE & "," & DEPARTAMENT & "," & PROVEIDOR & "," & CONTACTE_PROVEIDOR & "," & TELEFON_PROVEIDOR & "," & EMAIL_PROVEIDOR & "," & SUMINISTRE_MATERIAL & "," & EMBALATGE & "," & TRANSPORT & "," & MUNTATGE & "," & SUPERVISIO & "," & POSTA_PUNT & "," & PROVES_TALLER & "," & PROVES_OBRA & "," & POSTA_SERVEI & "," & ALTRES_ALCANS & "," & LLOC_ENTREGA & "," & DIRECCIO_ENTREGA & "," & CONTACTE_ENTREGA & "," & TELEFON_ENTREGA & "," & DATA_ENTREGA & "," & DATA_FINALITZACIO & "," & OFERTA1 & "," & OFERTA2 & "," & OFERTA3 & "," & COMPARATIU & "," & FORMA_PAGAMENT & "," & VALTRES & ")" &
-              " VALUES(@id,@estat,@dataComanda,@idProveidor,@codi,@nom,@serie,@empresa,@codi_projecte,@departament,@proveidor,@contacte_proveidor,@telefon_proveidor,@email_proveidor,@suministre_material,@embalatge,@transport,@muntatge,@supervisio,@posta_punt,@proves_taller,@proves_obra,@posta_servei,@altres_alcans,@lloc_entrega,@direccio_entrega,@contacte_entrega,@telefon_entrega,@data_entrega,@data_finalitzacio,@oferta1,@oferta2,@oferta3,@comparatiu,@forma_pagament,@valtres)", DBCONNECT.getConnection)
+                    " ( " & ID & "," & DATA_COMANDA & "," & ESTAT & "," & ID_PROVEIDOR & "," & NOM & "," & SERIE & "," & EMPRESA & "," & CODI_PROJECTE & "," & DEPARTAMENT & "," & PROVEIDOR & "," & CONTACTE_PROVEIDOR & "," & TELEFON_PROVEIDOR & "," & EMAIL_PROVEIDOR & "," & SUMINISTRE_MATERIAL & "," & EMBALATGE & "," & TRANSPORT & "," & MUNTATGE & "," & SUPERVISIO & "," & POSTA_PUNT & "," & PROVES_TALLER & "," & PROVES_OBRA & "," & POSTA_SERVEI & "," & ALTRES_ALCANS & "," & LLOC_ENTREGA & "," & DIRECCIO_ENTREGA & "," & CONTACTE_ENTREGA & "," & TELEFON_ENTREGA & "," & DATA_ENTREGA & "," & DATA_FINALITZACIO & "," & OFERTA1 & "," & OFERTA2 & "," & OFERTA3 & "," & COMPARATIU & "," & FORMA_PAGAMENT & "," & VALTRES & "," & RESPONSABLE_COMPRA & ")" &
+              " VALUES(@id,@estat,@dataComanda,@idProveidor,@nom,@serie,@empresa,@codi_projecte,@departament,@proveidor,@contacte_proveidor,@telefon_proveidor,@email_proveidor,@suministre_material,@embalatge,@transport,@muntatge,@supervisio,@posta_punt,@proves_taller,@proves_obra,@posta_servei,@altres_alcans,@lloc_entrega,@direccio_entrega,@contacte_entrega,@telefon_entrega,@data_entrega,@data_finalitzacio,@oferta1,@oferta2,@oferta3,@comparatiu,@forma_pagament,@valtres,@responsableCompra)", DBCONNECT.getConnection)
         sc.Parameters.Add("@id", SqlDbType.Int).Value = obj.id
         sc.Parameters.Add("@dataComanda", SqlDbType.Int).Value = obj.dataComanda
         sc.Parameters.Add("@estat", SqlDbType.Int).Value = obj.estat
         sc.Parameters.Add("@idProveidor", SqlDbType.Int).Value = obj.idProveidor
-        sc.Parameters.Add("@codi", SqlDbType.Int).Value = obj.codi
         sc.Parameters.Add("@nom", SqlDbType.Char).Value = obj.nom
         sc.Parameters.Add("@serie", SqlDbType.Char).Value = obj.serie
         sc.Parameters.Add("@empresa", SqlDbType.Char).Value = obj.empresa
@@ -197,6 +202,7 @@ Module dbSolicitudComanda
         sc.Parameters.Add("@comparatiu", SqlDbType.Char).Value = obj.comparatiu
         sc.Parameters.Add("@forma_pagament", SqlDbType.Char).Value = obj.formaPagament
         sc.Parameters.Add("@valtres", SqlDbType.Char).Value = obj.altresDocumentacio
+        sc.Parameters.Add("@responsableCompra", SqlDbType.Char).Value = obj.responsableCompra
         i = sc.ExecuteNonQuery
         sc = Nothing
         If i >= 1 Then
@@ -230,7 +236,7 @@ Module dbSolicitudComanda
         sc = New SqlCommand("Select * FROM " & getTable() & " where " & ESTAT & "=" & p, getConnection)
         sdr = sc.ExecuteReader
         While sdr.Read()
-            c = New SolicitudComanda(sdr(ID), sdr(CODI), sdr(NOM), sdr(ESTAT))
+            c = New SolicitudComanda(sdr(ID), sdr(NOM), sdr(ESTAT))
             c.altresAlcans = sdr(ALTRES_ALCANS)
             c.altresDocumentacio = sdr(VALTRES)
             c.codiProjecte = sdr(CODI_PROJECTE)
@@ -261,6 +267,7 @@ Module dbSolicitudComanda
             c.transport = sdr(TRANSPORT)
             c.idProveidor = sdr(ID_PROVEIDOR)
             c.dataComanda = sdr(DATA_COMANDA)
+            c.responsableCompra = sdr(RESPONSABLE_COMPRA)
             getObjectsSQL.Add(c)
         End While
         sdr.Close()
@@ -274,7 +281,7 @@ Module dbSolicitudComanda
         sc = New SqlCommand("Select * FROM " & getTable() & " where " & SERIE & "='" & p & "'", getConnection)
         sdr = sc.ExecuteReader
         While sdr.Read()
-            c = New SolicitudComanda(sdr(ID), sdr(CODI), sdr(NOM), sdr(ESTAT))
+            c = New SolicitudComanda(sdr(ID), sdr(NOM), sdr(ESTAT))
             c.altresAlcans = sdr(ALTRES_ALCANS)
             c.altresDocumentacio = sdr(VALTRES)
             c.codiProjecte = sdr(CODI_PROJECTE)
@@ -305,6 +312,7 @@ Module dbSolicitudComanda
             c.transport = sdr(TRANSPORT)
             c.idProveidor = sdr(ID_PROVEIDOR)
             c.dataComanda = sdr(DATA_COMANDA)
+            c.responsableCompra = sdr(RESPONSABLE_COMPRA)
             getObjectsSQL.Add(c)
         End While
         sdr.Close()
@@ -319,7 +327,7 @@ Module dbSolicitudComanda
         With sc
             .ActiveConnection = DBCONNECT.getConnectionDbf
             .CommandText = "UPDATE " & getTable() & " " &
-                        " SET " & CODI & " =?, " &
+                        " SET " &
                                 NOM & " =?, " &
                                 SERIE & " =?, " &
                                 EMPRESA & " =?, " &
@@ -349,14 +357,19 @@ Module dbSolicitudComanda
                                 OFERTA2 & " =?, " &
                                 OFERTA3 & " =?, " &
                                 COMPARATIU & " =?, " &
+                                FITXER_OF1 & " =?, " &
+                                FITXER_OF2 & " =?, " &
+                                FITXER_OF3 & " =?, " &
+                                FITXER_OF4 & " =?, " &
                                 FORMA_PAGAMENT & " =?, " &
                                 VALTRES & " =?, " &
                                 ID_PROVEIDOR & " =?, " &
                                 DATA_COMANDA & " =?, " &
-                                ESTAT & " =? " &
+                                ESTAT & " =?, " &
+                                RESPONSABLE_COMPRA & " =? " &
             " WHERE " & ID & "=?"
-            .Parameters.Append(ADOPARAM.ToInt(obj.codi))
-            .Parameters.Append(ADOPARAM.ToString(obj.nom))
+
+            .Parameters.Append(ADOPARAM.ToString(Left(obj.nom, 249)))
             .Parameters.Append(ADOPARAM.ToString(obj.serie))
             .Parameters.Append(ADOPARAM.ToString(obj.empresa))
             .Parameters.Append(ADOPARAM.ToString(obj.codiProjecte))
@@ -381,15 +394,20 @@ Module dbSolicitudComanda
             .Parameters.Append(ADOPARAM.ToString(obj.telefonEntrega))
             .Parameters.Append(ADOPARAM.ToDate(obj.dataEntrega))
             .Parameters.Append(ADOPARAM.ToDate(obj.dataFinalitzacio))
-            .Parameters.Append(ADOPARAM.ToString(obj.oferta1))
-            .Parameters.Append(ADOPARAM.ToString(obj.oferta2))
-            .Parameters.Append(ADOPARAM.ToString(obj.oferta3))
-            .Parameters.Append(ADOPARAM.ToString(obj.comparatiu))
+            .Parameters.Append(ADOPARAM.ToString(Left(obj.oferta1, 249)))
+            .Parameters.Append(ADOPARAM.ToString(Left(obj.oferta2, 249)))
+            .Parameters.Append(ADOPARAM.ToString(Left(obj.oferta3, 249)))
+            .Parameters.Append(ADOPARAM.ToString(Left(obj.comparatiu, 249)))
+            .Parameters.Append(ADOPARAM.ToString(Right(obj.fitxerOferta1, 249)))
+            .Parameters.Append(ADOPARAM.ToString(Right(obj.fitxerOferta2, 249)))
+            .Parameters.Append(ADOPARAM.ToString(Right(obj.fitxerOferta3, 249)))
+            .Parameters.Append(ADOPARAM.ToString(Right(obj.fitxerComparatiu, 249)))
             .Parameters.Append(ADOPARAM.ToString(obj.formaPagament))
             .Parameters.Append(ADOPARAM.ToString(obj.altresDocumentacio))
             .Parameters.Append(ADOPARAM.ToInt(obj.idProveidor))
             .Parameters.Append(ADOPARAM.ToDate(obj.dataComanda))
             .Parameters.Append(ADOPARAM.ToInt(obj.estat))
+            .Parameters.Append(ADOPARAM.ToString(obj.responsableCompra))
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
 
         End With
@@ -418,8 +436,8 @@ Module dbSolicitudComanda
             .ActiveConnection = DBCONNECT.getConnectionDbf
 
             .CommandText = (" INSERT INTO " & getTable() & " " &
-                     " (" & ID & "," & DATA_COMANDA & "," & ID_PROVEIDOR & "," & ESTAT & "," & CODI & "," & NOM & "," & SERIE & "," & EMPRESA & ", " & CODI_PROJECTE & ", " & DEPARTAMENT & ", " & PROVEIDOR & ", " & CONTACTE_PROVEIDOR & ", " & TELEFON_PROVEIDOR & ", " & EMAIL_PROVEIDOR & ", " & SUMINISTRE_MATERIAL & ", " & EMBALATGE & ", " & TRANSPORT & ", " & MUNTATGE & ", " & SUPERVISIO & ", " & POSTA_PUNT & ", " & PROVES_TALLER & ", " & PROVES_OBRA & ", " & POSTA_SERVEI & ", " & ALTRES_ALCANS & ", " & LLOC_ENTREGA & ", " & DIRECCIO_ENTREGA & ", " & CONTACTE_ENTREGA & ", " & TELEFON_ENTREGA & ", " & DATA_ENTREGA & ", " & DATA_FINALITZACIO & "," & OFERTA1 & ", " & OFERTA2 & ", " & OFERTA3 & ", " & COMPARATIU & ", " & FORMA_PAGAMENT & ", " & VALTRES & ")" &
-                    " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
+                     " (" & ID & "," & DATA_COMANDA & "," & ID_PROVEIDOR & "," & ESTAT & "," & CODI & "," & NOM & "," & SERIE & "," & EMPRESA & ", " & CODI_PROJECTE & ", " & DEPARTAMENT & ", " & PROVEIDOR & ", " & CONTACTE_PROVEIDOR & ", " & TELEFON_PROVEIDOR & ", " & EMAIL_PROVEIDOR & ", " & SUMINISTRE_MATERIAL & ", " & EMBALATGE & ", " & TRANSPORT & ", " & MUNTATGE & ", " & SUPERVISIO & ", " & POSTA_PUNT & ", " & PROVES_TALLER & ", " & PROVES_OBRA & ", " & POSTA_SERVEI & ", " & ALTRES_ALCANS & ", " & LLOC_ENTREGA & ", " & DIRECCIO_ENTREGA & ", " & CONTACTE_ENTREGA & ", " & TELEFON_ENTREGA & ", " & DATA_ENTREGA & ", " & DATA_FINALITZACIO & "," & OFERTA1 & ", " & OFERTA2 & ", " & OFERTA3 & ", " & COMPARATIU & ", " & FITXER_OF1 & ", " & FITXER_OF2 & ", " & FITXER_OF3 & ", " & FITXER_OF4 & ", " & FORMA_PAGAMENT & ", " & VALTRES & ", " & RESPONSABLE_COMPRA & ")" &
+                    " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
 
 
 
@@ -427,7 +445,7 @@ Module dbSolicitudComanda
             .Parameters.Append(ADOPARAM.ToDate(obj.dataComanda))
             .Parameters.Append(ADOPARAM.ToInt(obj.idProveidor))
             .Parameters.Append(ADOPARAM.ToInt(obj.estat))
-            .Parameters.Append(ADOPARAM.ToInt(CInt(obj.codi)))
+            .Parameters.Append(ADOPARAM.ToInt(obj.id))
             .Parameters.Append(ADOPARAM.ToString(Strings.Right(obj.nom, 250))) '6
             .Parameters.Append(ADOPARAM.ToString(obj.serie))
 
@@ -458,13 +476,17 @@ Module dbSolicitudComanda
             .Parameters.Append(ADOPARAM.ToDate(obj.dataEntrega))
             .Parameters.Append(ADOPARAM.ToDate(obj.dataFinalitzacio)) '30
 
-            .Parameters.Append(ADOPARAM.ToString(obj.oferta1))
-            .Parameters.Append(ADOPARAM.ToString(obj.oferta2))
-            .Parameters.Append(ADOPARAM.ToString(obj.oferta3))
-
-            .Parameters.Append(ADOPARAM.ToString(obj.comparatiu))
+            .Parameters.Append(ADOPARAM.ToString(Left(obj.oferta1, 249)))
+            .Parameters.Append(ADOPARAM.ToString(Left(obj.oferta2, 249)))
+            .Parameters.Append(ADOPARAM.ToString(Left(obj.oferta3, 249)))
+            .Parameters.Append(ADOPARAM.ToString(Right(obj.fitxerOferta1, 249)))
+            .Parameters.Append(ADOPARAM.ToString(Right(obj.fitxerOferta2, 249)))
+            .Parameters.Append(ADOPARAM.ToString(Right(obj.fitxerOferta3, 249)))
+            .Parameters.Append(ADOPARAM.ToString(Right(obj.fitxerComparatiu, 249)))
+            .Parameters.Append(ADOPARAM.ToString(Left(obj.comparatiu, 249)))
             .Parameters.Append(ADOPARAM.ToString(obj.formaPagament))
             .Parameters.Append(ADOPARAM.ToString(obj.altresDocumentacio)) '36
+            .Parameters.Append(ADOPARAM.ToString(obj.responsableCompra)) '37
 
         End With
         Try
@@ -510,7 +532,7 @@ Module dbSolicitudComanda
         getObjectsDBF = New List(Of SolicitudComanda)
         rc.Open("Select * FROM " & getTable() & " WHERE " & ESTAT & "=" & p, DBCONNECT.getConnectionDbf)
         While Not rc.EOF
-            c = New SolicitudComanda(rc(ID).Value, rc(CODI).Value, Trim(CONFIG.validarNull(rc(NOM).Value)), rc(ESTAT).Value)
+            c = New SolicitudComanda(rc(ID).Value, Trim(CONFIG.validarNull(rc(NOM).Value)), rc(ESTAT).Value)
             c.altresAlcans = rc(ALTRES_ALCANS).Value
             c.altresDocumentacio = Trim(CONFIG.validarNull(rc(VALTRES).Value))
             c.codiProjecte = Trim(CONFIG.validarNull(rc(CODI_PROJECTE).Value))
@@ -528,9 +550,13 @@ Module dbSolicitudComanda
             c.oferta1 = Trim(CONFIG.validarNull(rc(OFERTA1).Value))
             c.oferta2 = Trim(CONFIG.validarNull(rc(OFERTA2).Value))
             c.oferta3 = Trim(CONFIG.validarNull(rc(OFERTA3).Value))
+            c.fitxerOferta1 = Trim(CONFIG.validarNull(rc(FITXER_OF1).Value))
+            c.fitxerOferta2 = Trim(CONFIG.validarNull(rc(FITXER_OF2).Value))
+            c.fitxerOferta3 = Trim(CONFIG.validarNull(rc(FITXER_OF3).Value))
+            c.fitxerComparatiu = Trim(CONFIG.validarNull(rc(FITXER_OF4).Value))
             c.postaApunt = rc(POSTA_PUNT).Value
             c.postaServei = rc(POSTA_SERVEI).Value
-            c.proveidor = rc(PROVEIDOR).Value
+            c.proveidor = Trim(CONFIG.validarNull(rc(PROVEIDOR).Value))
             c.provesObra = rc(PROVES_OBRA).Value
             c.provesTaller = rc(PROVES_TALLER).Value
             c.serie = Trim(CONFIG.validarNull(rc(SERIE).Value))
@@ -541,6 +567,7 @@ Module dbSolicitudComanda
             c.transport = rc(TRANSPORT).Value
             c.idProveidor = rc(ID_PROVEIDOR).Value
             c.dataComanda = rc(DATA_COMANDA).Value
+            c.responsableCompra = Trim(CONFIG.validarNull(rc(RESPONSABLE_COMPRA).Value))
             getObjectsDBF.Add(c)
             rc.MoveNext()
         End While
@@ -554,7 +581,7 @@ Module dbSolicitudComanda
         getObjectsDBF = New List(Of SolicitudComanda)
         rc.Open("Select * FROM " & getTable(), DBCONNECT.getConnectionDbf)
         While Not rc.EOF
-            c = New SolicitudComanda(rc(ID).Value, rc(CODI).Value, Trim(CONFIG.validarNull(rc(NOM).Value)), rc(ESTAT).Value)
+            c = New SolicitudComanda(rc(ID).Value, Trim(CONFIG.validarNull(rc(NOM).Value)), rc(ESTAT).Value)
             c.altresAlcans = rc(ALTRES_ALCANS).Value
             c.altresDocumentacio = Trim(CONFIG.validarNull(rc(VALTRES).Value))
             c.codiProjecte = Trim(CONFIG.validarNull(rc(CODI_PROJECTE).Value))
@@ -572,6 +599,11 @@ Module dbSolicitudComanda
             c.oferta1 = Trim(CONFIG.validarNull(rc(OFERTA1).Value))
             c.oferta2 = Trim(CONFIG.validarNull(rc(OFERTA2).Value))
             c.oferta3 = Trim(CONFIG.validarNull(rc(OFERTA3).Value))
+            c.fitxerOferta1 = Trim(CONFIG.validarNull(rc(FITXER_OF1).Value))
+            c.fitxerOferta2 = Trim(CONFIG.validarNull(rc(FITXER_OF2).Value))
+            c.fitxerOferta3 = Trim(CONFIG.validarNull(rc(FITXER_OF3).Value))
+            c.fitxerComparatiu = Trim(CONFIG.validarNull(rc(FITXER_OF4).Value))
+            c.pdfSolicitut = Trim(CONFIG.validarNull(rc(NOM).Value))
             c.postaApunt = rc(POSTA_PUNT).Value
             c.postaServei = rc(POSTA_SERVEI).Value
             c.proveidor = rc(PROVEIDOR).Value
@@ -585,6 +617,7 @@ Module dbSolicitudComanda
             c.transport = rc(TRANSPORT).Value
             c.idProveidor = rc(ID_PROVEIDOR).Value
             c.dataComanda = rc(DATA_COMANDA).Value
+            c.responsableCompra = Trim(CONFIG.validarNull(rc(RESPONSABLE_COMPRA).Value))
             getObjectsDBF.Add(c)
             rc.MoveNext()
         End While
@@ -597,61 +630,3 @@ Module dbSolicitudComanda
     End Function
 
 End Module
-'Private Function insertDBF(obj As SolicitudComanda) As Integer
-'    Dim sc As ADODB.Command
-'    sc = New ADODB.Command
-'    obj.id = DBCONNECT.getMaxIdDBF(getTable) + 1
-'    With sc
-'        .ActiveConnection = DBCONNECT.getConnectionDbf
-'        .CommandText = (" INSERT INTO " & getTable() & " " &
-'                     " (" & ID() & "," & DATA_COMANDA & "," & ID_PROVEIDOR & "," & ESTAT() & "," & CODI() & "," & NOM() & "," & SERIE & "," & Empresa & "," & CODI_PROJECTE & "," & Departament & "," & Proveidor & "," & CONTACTE_PROVEIDOR & "," & TELEFON_PROVEIDOR & "," & EMAIL_PROVEIDOR & "," & SUMINISTRE_MATERIAL & "," & EMBALATGE & "," & TRANSPORT & "," & MUNTATGE & "," & SUPERVISIO & "," & POSTA_PUNT & "," & PROVES_TALLER & "," & PROVES_OBRA & "," & POSTA_SERVEI & "," & ALTRES_ALCANS & "," & LLOC_ENTREGA & "," & DIRECCIO_ENTREGA & "," & CONTACTE_ENTREGA & "," & TELEFON_ENTREGA & "," & DATA_ENTREGA & "," & DATA_FINALITZACIO & "," & OFERTA1 & "," & OFERTA2 & "," & OFERTA3 & "," & COMPARATIU & "," & FORMA_PAGAMENT & "," & VALTRES & ")" &
-'                    " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
-'        .Parameters.Append(ADOPARAM.ToInt(obj.id))
-'        .Parameters.Append(ADOPARAM.ToDate(obj.dataComanda))
-'        .Parameters.Append(ADOPARAM.ToInt(obj.idProveidor))
-'        .Parameters.Append(ADOPARAM.ToInt(obj.estat))
-'        .Parameters.Append(ADOPARAM.ToInt(CInt(obj.codi)))
-'        .Parameters.Append(ADOPARAM.ToString(obj.nom))
-'        .Parameters.Append(ADOPARAM.ToString(obj.serie))
-
-'        .Parameters.Append(ADOPARAM.ToString(obj.empresa))
-'        .Parameters.Append(ADOPARAM.ToString(obj.codiProjecte))
-'        .Parameters.Append(ADOPARAM.ToString(obj.departament))
-'        .Parameters.Append(ADOPARAM.ToString(obj.proveidor))
-'        .Parameters.Append(ADOPARAM.ToString(obj.contacteProveidor))
-'        .Parameters.Append(ADOPARAM.ToString(obj.telefonProveidor))
-'        .Parameters.Append(ADOPARAM.ToString(obj.emailProveidor))
-'        .Parameters.Append(ADOPARAM.toBool(obj.suministreMaterial))
-'        .Parameters.Append(ADOPARAM.toBool(obj.embalatge))
-'        .Parameters.Append(ADOPARAM.toBool(obj.transport))
-'        .Parameters.Append(ADOPARAM.toBool(obj.muntatge))
-'        .Parameters.Append(ADOPARAM.toBool(obj.supervisio))
-'        .Parameters.Append(ADOPARAM.toBool(obj.postaApunt))
-'        .Parameters.Append(ADOPARAM.toBool(obj.provesTaller))
-'        .Parameters.Append(ADOPARAM.toBool(obj.provesObra))
-'        .Parameters.Append(ADOPARAM.toBool(obj.postaServei))
-'        .Parameters.Append(ADOPARAM.toBool(obj.altresAlcans))
-'        .Parameters.Append(ADOPARAM.ToString(obj.llocEntrega))
-'        .Parameters.Append(ADOPARAM.ToString(obj.direccioEntrega))
-'        .Parameters.Append(ADOPARAM.ToString(obj.contacteEntrega))
-'        .Parameters.Append(ADOPARAM.ToString(obj.telefonEntrega))
-'        .Parameters.Append(ADOPARAM.ToDate(obj.dataEntrega))
-'        .Parameters.Append(ADOPARAM.ToDate(obj.dataFinalitzacio))
-'        .Parameters.Append(ADOPARAM.ToString(obj.oferta1))
-'        .Parameters.Append(ADOPARAM.ToString(obj.oferta2))
-'        .Parameters.Append(ADOPARAM.ToString(obj.oferta3))
-'        .Parameters.Append(ADOPARAM.ToString(obj.comparatiu))
-'        .Parameters.Append(ADOPARAM.ToString(obj.formaPagament))
-'        .Parameters.Append(ADOPARAM.ToString(obj.altresDocumentacio))
-
-'    End With
-'    Try
-'        sc.Execute()
-'        Return obj.id
-'    Catch ex As Exception
-'        Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
-'        Return -1
-'    Finally
-'        sc = Nothing
-'    End Try
-'End Function

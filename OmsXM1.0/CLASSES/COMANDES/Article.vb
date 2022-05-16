@@ -5,6 +5,7 @@
     Public Property fabricant As Fabricant
     Public Property iva As TipusIva
     Public Property preusProveidors As List(Of ArticlePreu)
+    Public Property actiu As Boolean = True
     Public Sub New()
         _familia = New Familia
         _unitat = New Unitat

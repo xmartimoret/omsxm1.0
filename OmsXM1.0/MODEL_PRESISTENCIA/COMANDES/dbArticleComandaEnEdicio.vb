@@ -171,12 +171,12 @@ Module dbArticleComandaEnEdicio
                                           " WHERE " & ID & "=?"
             .Parameters.Append(ADOPARAM.ToInt(obj.idComanda))
             .Parameters.Append(ADOPARAM.ToInt(obj.pos))
-            .Parameters.Append(ADOPARAM.ToSingle(obj.preu))
-            .Parameters.Append(ADOPARAM.ToSingle(obj.tpcDescompte))
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.preu * 1000, 0)))
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.tpcDescompte) * 1000, 0))
             .Parameters.Append(ADOPARAM.ToInt(obj.tIva.id))
             .Parameters.Append(ADOPARAM.ToInt(obj.unitat.id))
-            .Parameters.Append(ADOPARAM.ToSingle(obj.quantitat))
-            .Parameters.Append(ADOPARAM.ToString(obj.nom))
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.quantitat * 100, 0)))
+            .Parameters.Append(ADOPARAM.ToString(Left(obj.nom, 249)))
             .Parameters.Append(ADOPARAM.ToString(obj.codi))
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
         End With
@@ -209,12 +209,20 @@ Module dbArticleComandaEnEdicio
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
             .Parameters.Append(ADOPARAM.ToInt(obj.idComanda))
             .Parameters.Append(ADOPARAM.ToInt(obj.pos))
-            .Parameters.Append(ADOPARAM.ToSingle(obj.preu))
-            .Parameters.Append(ADOPARAM.ToSingle(obj.tpcDescompte))
-            .Parameters.Append(ADOPARAM.ToInt(obj.tIva.id))
-            .Parameters.Append(ADOPARAM.ToInt(obj.unitat.id))
-            .Parameters.Append(ADOPARAM.ToSingle(obj.quantitat))
-            .Parameters.Append(ADOPARAM.ToString(obj.nom))
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.preu * 1000, 0)))
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.tpcDescompte * 100, 0)))
+            If obj.tIva Is Nothing Then
+                .Parameters.Append(ADOPARAM.ToInt(-1))
+            Else
+                .Parameters.Append(ADOPARAM.ToInt(obj.tIva.id))
+            End If
+            If obj.unitat Is Nothing Then
+                .Parameters.Append(ADOPARAM.ToInt(-1))
+            Else
+                .Parameters.Append(ADOPARAM.ToInt(obj.unitat.id))
+            End If
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.quantitat * 100, 0)))
+            .Parameters.Append(ADOPARAM.ToString(Left(obj.nom, 249)))
             .Parameters.Append(ADOPARAM.ToString(obj.codi))
         End With
         Try
@@ -281,9 +289,9 @@ Module dbArticleComandaEnEdicio
             a = New articleComanda(rc(ID).Value, rc(ID_COMANDA).Value,
                                rc(POSICIO_FILA).Value, Trim(CONFIG.validarNull(rc(CODI).Value)),
                                Trim(CONFIG.validarNull(rc(NOM).Value)))
-            a.preu = rc(PREU).Value
-            a.tpcDescompte = rc(DESCOMPTE).Value
-            a.quantitat = rc(QUANTITAT).Value
+            a.preu = Math.Round(rc(PREU).Value / 1000, 3)
+            a.tpcDescompte = Math.Round(rc(DESCOMPTE).Value / 100, 2)
+            a.quantitat = Math.Round(rc(QUANTITAT).Value / 100, 2)
             a.tIva = ModelTipusIva.getAuxiliar.getObject(rc(ID_TIPUS_IVA).Value)
             a.unitat = ModelUnitat.getAuxiliar.getObject(rc(ID_UNITAT).Value)
             getObjectsDBF.Add(a)

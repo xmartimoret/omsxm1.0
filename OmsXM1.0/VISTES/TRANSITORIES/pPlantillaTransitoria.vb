@@ -1,7 +1,7 @@
 ﻿Public Class pPlantillaTransitoria
     Private subcompteActual As Subcompte
     Private ySheetActual As YSheet
-    Private update As Boolean
+    Private updated As Boolean
     Public Sub New()
         InitializeComponent()
     End Sub
@@ -28,10 +28,10 @@
 
     End Sub
     Private Sub setEmpreses()
-        update = False
+        updated = False
         cbEmpresa.Items.Clear()
         cbEmpresa.Items.AddRange(ModelEmpresa.getListObjects)
-        update = True
+        updated = True
     End Sub
     Private Sub getEmpresa()
         Dim e As Empresa
@@ -96,7 +96,7 @@
     End Sub
 
     Private Sub cbEmpresa_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbEmpresa.SelectedIndexChanged
-        If update Then
+        If updated Then
             If cbEmpresa.SelectedIndex > -1 Then
                 Call modelPlantillaTransitoria.setEmpresa(cbEmpresa.SelectedItem)
             End If
@@ -105,7 +105,7 @@
     End Sub
 
     Private Sub txtAny_TextChanged(sender As Object, e As EventArgs) Handles txtAny.TextChanged
-        If update Then
+        If updated Then
             If IsNumeric(txtAny.Text) Then Call modelPlantillaTransitoria.setAny(txtAny.Text)
             Call validateControls()
         End If

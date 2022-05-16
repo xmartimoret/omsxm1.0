@@ -6,12 +6,14 @@ Public Class DNovaComanda
     Private empresaActual As Empresa
     Private listProveidors As lstProveidor
     Private projecteActual As Projecte
-    Private proveidorActual As Proveidor
+    Private responsableActual As ResponsableCompra
+
     Public Sub New()
         InitializeComponent()
         actualitzar = False
         Call setLanguage()
         cbEmpresa.Items.AddRange(ModelEmpresa.getListObjects)
+        cbResponsable.Items.AddRange(ModelResponsableCompra.getAuxiliar.getListObjects)
         Me.pProveidor.Controls.Clear()
         listProveidors = New lstProveidor(New Proveidor)
         listProveidors.Dock = DockStyle.Fill
@@ -29,10 +31,15 @@ Public Class DNovaComanda
             If p IsNot Nothing Then
                 getComanda.contacteProveidor = p.contacteActual
             End If
-            pe = projecteActual.getMagatzemPredeterminat
-            pc = projecteActual.getContactePredeterminat
-            If Not IsNothing(pe) Then getComanda.magatzem = ModelLlocEntrega.getObject(pe.idEntrega)
-            If Not IsNothing(pc) Then getComanda.contacte = ModelContacte.getObject(pc.idContacte)
+            If Not IsNothing(projecteActual) Then
+                pe = projecteActual.getMagatzemPredeterminat
+                pc = projecteActual.getContactePredeterminat
+                If Not IsNothing(pe) Then getComanda.magatzem = ModelLlocEntrega.getObject(pe.idEntrega)
+                If Not IsNothing(pc) Then getComanda.contacte = ModelContacte.getObject(pc.idContacte)
+            End If
+            If Not IsNothing(responsableActual) Then
+                getComanda.responsableCompra = responsableActual
+            End If
             getComanda.codi = -1
             getComanda.ports = "PAGADOS"
         Else
@@ -50,6 +57,7 @@ Public Class DNovaComanda
         Me.cmdGuardar.Text = IDIOMA.getString("cmdAcceptar")
         Me.cmdCancelar.Text = IDIOMA.getString("cmdCancelar")
         Me.Text = IDIOMA.getString("crearNovaComanda")
+        Me.lblResponsable.Text = IDIOMA.getString("respCompra")
     End Sub
     Private Sub validateControls()
         If IsNothing(empresaActual) Then
@@ -85,7 +93,16 @@ Public Class DNovaComanda
         End If
 
     End Sub
-
+    Private Sub cbResponsable_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbResponsable.SelectedIndexChanged
+        If actualitzar Then
+            If cbResponsable.SelectedIndex > -1 Then
+                responsableActual = cbResponsable.SelectedItem
+            Else
+                responsableActual = Nothing
+            End If
+            Call validateControls()
+        End If
+    End Sub
     Private Sub cbProjecte_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbProjecte.SelectedIndexChanged
         If actualitzar Then
             projecteActual = cbProjecte.SelectedItem
@@ -104,10 +121,16 @@ Public Class DNovaComanda
     End Sub
 
     Protected Overrides Sub Finalize()
+
         MyBase.Finalize()
         empresaActual = Nothing
         listProveidors = Nothing
         projecteActual = Nothing
-        proveidorActual = Nothing
+
+        responsableActual = Nothing
+    End Sub
+
+    Private Sub DNovaComanda_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class

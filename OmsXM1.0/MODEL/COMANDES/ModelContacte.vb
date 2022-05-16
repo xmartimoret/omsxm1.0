@@ -6,19 +6,27 @@ Module ModelContacte
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.FindAll(Function(x) x.isFilter(filtre, x.poblacio))
     End Function
+    Public Function getObjects(estat As Boolean) As List(Of Object)
+        Dim ll As Contacte
+        If Not isUpdated() Then objects = getRemoteObjects()
+        getObjects = New List(Of Object)
+        For Each ll In objects
+            If ll.actiu Or Not estat Then getObjects.Add(ll)
+        Next
+    End Function
     Public Function getDataList(contactes As List(Of Contacte)) As DataList
         Dim c As Contacte
         getDataList = New DataList
         contactes.Sort()
         If contactes.Count > 0 Then
             getDataList.columns.Add(COLUMN.ID)
-            getDataList.columns.Add(COLUMN.NOM)
-            getDataList.columns.Add(COLUMN.GENERICA("cognom", 100, HorizontalAlignment.Center))
-            getDataList.columns.Add(COLUMN.GENERICA("cognom", 100, HorizontalAlignment.Center))
-            getDataList.columns.Add(COLUMN.GENERICA("poblacio", 100, HorizontalAlignment.Center))
-            getDataList.columns.Add(COLUMN.GENERICA("provincia", 100, HorizontalAlignment.Center))
+            getDataList.columns.Add(COLUMN.GENERICA("nom", 180, HorizontalAlignment.Left))
+            getDataList.columns.Add(COLUMN.GENERICA("cognom", 180, HorizontalAlignment.Left))
+            getDataList.columns.Add(COLUMN.GENERICA("cognom", 180, HorizontalAlignment.Left))
+            getDataList.columns.Add(COLUMN.GENERICA("poblacio", 180, HorizontalAlignment.Center))
+            getDataList.columns.Add(COLUMN.GENERICA("provincia", 180, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.GENERICA("telefon", 100, HorizontalAlignment.Center))
-            getDataList.columns.Add(COLUMN.GENERICA("email", 150, HorizontalAlignment.Center))
+            getDataList.columns.Add(COLUMN.GENERICA("email", 250, HorizontalAlignment.Left))
             getDataList.columns.Add(COLUMN.ESTAT)
             For Each c In contactes
                 If c.provincia Is Nothing Then c.provincia = New Provincia
@@ -30,6 +38,28 @@ Module ModelContacte
             Next
         End If
         c = Nothing
+    End Function
+    Public Function getListViewItem(c As Contacte) As ListViewItem
+        If c.estat Then
+            Return New ListViewItem(New String() {c.id, c.nom, c.cognom1, c.cognom2, c.poblacio, c.provincia.nom, c.telefon, c.email, IDIOMA.getString("actiu")})
+
+        Else
+            Return New ListViewItem(New String() {c.id, c.nom, c.cognom1, c.cognom2, c.poblacio, c.provincia.nom, c.telefon, c.email, IDIOMA.getString("noActiu")})
+        End If
+
+    End Function
+    Public Function getListViewItem(id As Integer) As ListViewItem
+        Dim c As Contacte
+        c = getObject(id)
+        If c IsNot Nothing Then
+            If c.estat Then
+                Return New ListViewItem(New String() {c.id, c.nom, c.cognom1, c.cognom2, c.poblacio, c.provincia.nom, c.telefon, c.email, IDIOMA.getString("actiu")})
+
+            Else
+                Return New ListViewItem(New String() {c.id, c.nom, c.cognom1, c.cognom2, c.poblacio, c.provincia.nom, c.telefon, c.email, IDIOMA.getString("noActiu")})
+            End If
+        End If
+        Return Nothing
     End Function
     Public Function getListObjects(preferits As List(Of ProjecteContacte)) As Object()
         Dim obj As Contacte, i As Integer = 0, objectes() As Object, temp As List(Of Contacte)
@@ -72,7 +102,7 @@ Module ModelContacte
                 Return c
             End If
         Next
-
+        Return Nothing
     End Function
     Public Function exist(obj As Contacte) As Boolean
         If Not isUpdated() Then objects = getRemoteObjects()
@@ -82,13 +112,16 @@ Module ModelContacte
     Public Function save(obj As Contacte) As Integer
         If obj.id = -1 Then
             obj.id = dbContacte.insert(obj)
+
         Else
             obj.id = dbContacte.update(obj)
+
         End If
         If obj.id > -1 Then
             dateUpdate = Now()
             objects.Remove(obj)
             objects.Add(obj)
+            If Not GOOGLE_SHEETS.SAVE(obj) Then Call ERRORS.ERR_UPDATE_GOOGLE_SHEETS()
         End If
         Return obj.id
     End Function
@@ -98,6 +131,7 @@ Module ModelContacte
         If result Then
             dateUpdate = Now()
             objects.Remove(obj)
+            If Not GOOGLE_SHEETS.remove(obj) Then Call ERRORS.ERR_UPDATE_GOOGLE_SHEETS()
         End If
         Return result
     End Function

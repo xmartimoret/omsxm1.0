@@ -2,7 +2,7 @@
     Inherits Base
     Public Property dies As Integer
     Public Property diaPagament As Integer
-    Public Property actiu As Boolean
+    Public Property actiu As Boolean = True
     Public Sub New()
     End Sub
     Public Sub New(pId As Integer, pCodi As String, pNom As String)

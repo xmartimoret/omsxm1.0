@@ -17,6 +17,12 @@ Public Class DArticle
 
     Public Function getArticle(pArticle As article) As article
         articleActual = pArticle
+        If pArticle.id = -1 Then
+            Me.Text = IDIOMA.getString("nouArticle")
+        Else
+            Me.Text = pArticle.ToString
+        End If
+
         Me.ShowDialog()
         If Me.DialogResult = DialogResult.OK Then
             getArticle = getData()
@@ -179,5 +185,11 @@ Public Class DArticle
         End If
     End Sub
 
+    Private Sub cmdImprimirPDF_Click(sender As Object, e As EventArgs) Handles cmdImprimirPDF.Click
+        Call modulInfoArticle.execute(articleActual, True)
+    End Sub
 
+    Private Sub cmdImprimirExcel_Click(sender As Object, e As EventArgs) Handles cmdImprimirExcel.Click
+        Call modulInfoArticle.execute(articleActual, False)
+    End Sub
 End Class

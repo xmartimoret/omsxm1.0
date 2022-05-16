@@ -5,6 +5,7 @@
     Private listContactes As lstContactesProveidor
     Private proveidorActual As Proveidor
     Private contacteActual As ProveidorCont
+
     Friend Event accioMostrar()
     Friend Event selectObject(p As Proveidor)
     Private actualitzar As Boolean
@@ -35,7 +36,9 @@
         If proveidorActual IsNot Nothing  Then Call setProveidor 
     End Sub
     Public Sub New(pHeight As Integer, pTecla As String, pProveidor As Proveidor, pContacte As ProveidorCont)
+
         InitializeComponent()
+
         llargadaPanel = pHeight
         proveidorActual = pProveidor
         lblTitol.Text = IDIOMA.getString("proveidor")
@@ -63,6 +66,10 @@
         End If
         listProveidors.cb.Select()
         RaiseEvent accioMostrar()
+    End Sub
+    Friend Sub setObjects(estat As Boolean)
+        If Not IsNothing(listProveidors) Then listProveidors.setObjects(estat)
+        If Not IsNothing(listContactes) Then listContactes.setObjects(estat)
     End Sub
     Private Sub lblAccio_Click(sender As Object, e As EventArgs) Handles lblAccio.Click
         Call setAccio()
@@ -119,6 +126,7 @@
         End If
         RaiseEvent selectObject(proveidorActual)
     End Sub
+
     Private ReadOnly Property etiqueta As String
         Get
             Return IDIOMA.getString("proveidor") & ": " & proveidorActual.nom & " | " & proveidorActual.poblacio & " | " & contacteActual.toString
@@ -162,6 +170,5 @@
         listProveidors = Nothing
         listContactes = Nothing
     End Sub
-
 
 End Class

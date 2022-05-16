@@ -76,7 +76,7 @@ Public Class DLlocEntrega
         Me.txtNom.Text = LlocEntregaActual.nom
         Me.txtPoblacio.Text = LlocEntregaActual.poblacio
         Me.txtNotes.Text = LlocEntregaActual.notes
-        Me.xecActiu.Checked = LlocEntregaActual.estat
+        Me.xecActiu.Checked = LlocEntregaActual.actiu
         If xecPredeterminat.Enabled Then Me.xecPredeterminat.Checked = LlocEntregaActual.predeterminat
     End Sub
     'Private Function indexPais() As Integer
@@ -98,7 +98,7 @@ Public Class DLlocEntrega
         getData.pais = paisos.obj
         getData.provincia = provincies.obj
         getData.notes = Me.txtNotes.Text
-        getData.estat = Me.xecActiu.Checked
+        getData.actiu = Me.xecActiu.Checked
         getData.predeterminat = Me.xecPredeterminat.Checked
         If getData.pais Is Nothing Then getData.pais = ModelPais.getAuxiliar.getObject(0)
         If getData.provincia Is Nothing Then getData.provincia = ModelProvincia.getAuxiliar.getObject(0)
@@ -183,5 +183,11 @@ Public Class DLlocEntrega
         provincies = Nothing
         paisos = Nothing
         MyBase.Finalize()
+    End Sub
+    Private Sub cmdImprimirPDF_Click(sender As Object, e As EventArgs) Handles cmdImprimirPDF.Click
+        Call modulInfoLlocEntrega.execute(getData, True)
+    End Sub
+    Private Sub cmdImprimirExcel_Click(sender As Object, e As EventArgs) Handles cmdImprimirExcel.Click
+        Call modulInfoLlocEntrega.execute(getData, False)
     End Sub
 End Class

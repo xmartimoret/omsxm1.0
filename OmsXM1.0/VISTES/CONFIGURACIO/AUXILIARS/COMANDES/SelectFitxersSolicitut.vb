@@ -27,29 +27,32 @@
         ' Return save(DComanda.getComanda(New Comanda))
     End Function
     Public Overrides Function eliminar(id As Integer) As Boolean
-        Dim d As SolicitudComanda
-        d = ModelComandaSolicitud.getObject(id)
-        If d IsNot Nothing Then
-            If MISSATGES.CONFIRM_REMOVE_SOLICITUD_COMANDA(d.ToString) Then
-                Return ModelComandaSolicitud.remove(d)
+        Dim ruta As String
+        ruta = ModulImportSolicituds.getFitxer(id)
+        If CONFIG.fileExist(ruta) Then
+            If MISSATGES.CONFIRM_REMOVE_SOLICITUD_COMANDA(ruta) Then
+                Return ModulImportSolicituds.remove(ruta)
             End If
         End If
         Return False
     End Function
 
     Public Overrides Function filtrar(txt As String) As DataList
-        Return ModulImportSolicituds.getDataList(ModulImportSolicituds.getObjects)
+        Return ModulImportSolicituds.getDataList(ModulImportSolicituds.getObjects, txt)
     End Function
 
     Public Overrides Function seleccionar(ids As List(Of Integer)) As Boolean
         Dim i As Integer, j As Integer
         fitxers = New List(Of CodiDescripcio)
         j = 0
+        Call ModulImportSolicituds.reset()
         If ids.Count >= 0 Then
             For Each i In ids
                 fitxers.Add(ModulImportSolicituds.getObject(i))
             Next
             RaiseEvent selectObject(fitxers)
+
+
             Return True
         End If
         Return False

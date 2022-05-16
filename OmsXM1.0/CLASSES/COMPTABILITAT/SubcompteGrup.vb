@@ -17,8 +17,13 @@ Public Class SubcompteGrup : Implements IComparable
     Public Property assentaments As List(Of Assentament)
     Public Property transitories As List(Of Transitoria)
     Public Property valorsBudget As List(Of ValorMes)
+    Public Property valorDeure As Double
+    Public Property valorHaver As Double
+    Public Property valorSaldo As Double
+    Public Property subcomptesProveidor As List(Of Subcompte)
     Private _toStringSubcompte As String = ""
     Private _ordre As String
+
     Public Sub New()
         _valors = New List(Of ValorMes)
         _assentaments = New List(Of Assentament)
@@ -178,6 +183,26 @@ Public Class SubcompteGrup : Implements IComparable
             e = Nothing
         End Get
     End Property
+    Public Function saldoAssentaments(p As String, Optional contra As String = "-1") As Double
+        Dim e As EnterLlarg, a As Assentament
+        e = New EnterLlarg
+        For Each a In _assentaments
+            If contra = -1 Then
+                If Left(a.subcompteAssentament, Len(p)) = p Then e.valorLong = a.saldo
+            Else
+                If a.contrapartida <> "" Then
+                    If Left(a.contrapartida, Len(contra)) = contra Then
+                        If Left(a.subcompteAssentament, Len(p)) = p Then
+                            e.valorLong = a.saldo
+                        End If
+                    End If
+                End If
+            End If
+        Next a
+        saldoAssentaments = e.valordecimal
+        e = Nothing
+    End Function
+
     Public ReadOnly Property numAssentaments(mes As Integer) As Integer
         Get
             Dim a As Assentament

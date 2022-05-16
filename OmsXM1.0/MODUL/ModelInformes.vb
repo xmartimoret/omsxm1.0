@@ -16,7 +16,7 @@ Module ModelInformes
         xls(2, 8) = Format(Now, "dd-MM-yy")
         xls(3, 6) = "APLI: Aplioms"
         i = 4
-        empreses = ModelEmpresa.getObjects
+        empreses = ModelEmpresa.getObjects("")
         For Each e In empreses
             For Each s In e.seccions
                 xls(i, 1) = "(" & e.codi & ") " & e.nom & ". " & s.ordre & ": " & s.ToString

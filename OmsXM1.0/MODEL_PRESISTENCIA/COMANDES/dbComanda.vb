@@ -2,6 +2,7 @@
 Imports System.Data.SqlClient
 Module dbComanda
     Private Const ID As String = "ID"
+    Private Const ID_MYDOC As String = "IDMYDOC"
     Private Const SERIE As String = "SERIE"
     Private Const CODI As String = "NUM"
     Private Const ID_EMPRESA As String = "IDEMP"
@@ -13,8 +14,9 @@ Module dbComanda
     Private Const DATA_COMANDA As String = "DATAC"
     Private Const DATA_MUNTATGE As String = "DATAM"
     Private Const DATA_ENTREGA As String = "DATAE"
-    Private Const RETENCIO As String = "RET"
-    Private Const AVAL As String = "AVAL"
+    Private Const INICI_COMANDA As String = "INICI"
+    Private Const INICI_MUNTATGE As String = "EQUIP"
+    Private Const ENTREGA As String = "ENTREGA"
     Private Const OFERTA As String = "OFERTA"
     Private Const ID_TIPUS_PAGAMENT As String = "IDPAGO"
     Private Const DADES_BANCARIES As String = "BANC"
@@ -23,6 +25,10 @@ Module dbComanda
     Private Const RESPONSABLE As String = "RESPON"
     Private Const DIRECTOR As String = "DIRECTO"
     Private Const ESTAT As String = "ESTAT"
+    Private Const IDSOLICITUT As String = "IDSOL"
+    Private Const RESPONSABLE_COMPRA As String = "RESPC"
+    Private Const BASE_COMANDA As String = "BASE"
+    Private Const IVA_COMANDA As String = "IVA"
     'ACCESSORS CENTRE
     ''' <summary>
     ''' SAVE. Guarda un centre a la base de dades. 
@@ -30,26 +36,38 @@ Module dbComanda
     ''' </summary>
     ''' <param name="obj"> centre</param>
     ''' <returns>identificador del centre.</returns>
-    Public Function update(obj As Comanda) As Integer
-        If IS_SQLSERVER Then Return updateSQL(obj)
-        Return updateDBF(obj)
+    Public Function update(obj As Comanda, estat As Integer) As Integer
+        If IS_SQLSERVER() Then Return updateSQL(obj, estat)
+        Return updateDBF(obj, estat)
     End Function
-    Public Function insert(obj As Comanda) As Integer
-        If IS_SQLSERVER Then Return insertSQL(obj)
-        Return insertDBF(obj)
+    Public Function update(idComanda As Integer, estat As Integer, idMydoc As Long) As Integer
+        If IS_SQLSERVER() Then Return updateSQL(idComanda, estat, idMydoc)
+        Return updateDBF(idComanda, estat, idMydoc)
     End Function
-    Public Function remove(obj As Comanda) As Boolean
-        If IS_SQLSERVER Then Return removeSQL(obj)
-        Return removeDBF(obj)
+    Public Function updateEstat(idComanda As Integer, estat As Integer) As Integer
+        If IS_SQLSERVER() Then Return updateEstatSQL(idComanda, estat)
+        Return updateEstatDBF(idComanda, estat)
     End Function
-    Public Function getObjects(anyo As Integer) As List(Of Comanda)
-        If IS_SQLSERVER() Then Return getObjectsSQL(anyo)
-        Return getObjectsDBF()
+    Public Function insert(obj As Comanda, estat As Integer) As Integer
+        If IS_SQLSERVER() Then Return insertSQL(obj, estat)
+        Return insertDBF(obj, estat)
+    End Function
+    Public Function remove(obj As Comanda, estat As Integer) As Boolean
+        If IS_SQLSERVER() Then Return removeSQL(obj, estat)
+        Return removeDBF(obj, estat)
+    End Function
+    Public Function getObjects(anyo As Integer, estat As Integer) As List(Of Comanda)
+        If IS_SQLSERVER() Then Return getObjectsSQL(anyo, estat)
+        Return getObjectsDBF(anyo, estat)
+    End Function
+    Public Function exist(id As Integer, p As Object, estat As Integer) As Boolean
+        If IS_SQLSERVER() Then Return existSQL(id, p, estat)
+        Return existDBF(id, p, estat)
     End Function
 
-    Private Function updateSQL(obj As Comanda) As Integer
+    Private Function updateSQL(obj As Comanda, e As Integer) As Integer
         Dim sc As SqlCommand, i As Integer
-        sc = New SqlCommand("UPDATE " & getTable() & " " &
+        sc = New SqlCommand("UPDATE " & getTable(e) & " " &
                             " SET " & CODI & "=@codi," &
                                       ID_EMPRESA & " =@idEmpresa, " &
                                       ID_PROVEIDOR & " =@idProveidor, " &
@@ -60,8 +78,9 @@ Module dbComanda
                                       DATA_COMANDA & " =@dataComanda, " &
                                       DATA_MUNTATGE & " =@dataMuntatge, " &
                                       DATA_ENTREGA & " =@dataentrega, " &
-                                      RETENCIO & " =@retencio, " &
-                                      AVAL & " =@aval, " &
+                                      INICI_COMANDA & " =@iniciComanda, " &
+                                      INICI_MUNTATGE & " =@iniciMuntatge, " &
+                                      ENTREGA & " =@entrega, " &
                                       OFERTA & " =@oferta, " &
                                       ID_TIPUS_PAGAMENT & " =@idTipusPagament, " &
                                       DADES_BANCARIES & " =@dadesBancaries, " &
@@ -69,10 +88,13 @@ Module dbComanda
                                       NOTES & " =@notes, " &
                                       RESPONSABLE & " =@responsable, " &
                                       DIRECTOR & " =@director, " &
-                                      ESTAT & " =@estat " &
+                                      ESTAT & " =@estat, " &
+                                      IDSOLICITUT & " =@idSolicitut, " &
+                                      RESPONSABLE_COMPRA & " =@responsableCompra " &
                                       " WHERE " & ID & "=@id", DBCONNECT.getConnection)
         sc.Parameters.Add("@id", SqlDbType.Int).Value = obj.id
         sc.Parameters.Add("@codi", SqlDbType.VarChar).Value = obj.codi
+
         sc.Parameters.Add("@idempresa", SqlDbType.SmallInt).Value = obj.empresa.id
         sc.Parameters.Add("@idProveidor", SqlDbType.SmallInt).Value = obj.proveidor.id
         sc.Parameters.Add("@IdContacteProveidor", SqlDbType.SmallInt).Value = obj.contacteProveidor.id
@@ -82,8 +104,9 @@ Module dbComanda
         sc.Parameters.Add("@dataComanda", SqlDbType.Date).Value = obj.data
         sc.Parameters.Add("@dataMuntatge", SqlDbType.Date).Value = obj.dataMuntatge
         sc.Parameters.Add("@dataentrega", SqlDbType.Date).Value = obj.dataEntrega
-        sc.Parameters.Add("@retencio", SqlDbType.VarChar).Value = obj.retencio
-        sc.Parameters.Add("@aval", SqlDbType.VarChar).Value = obj.interAval
+        sc.Parameters.Add("@iniciComanda", SqlDbType.SmallInt).Value = obj.inici
+        sc.Parameters.Add("@iniciMuntatge", SqlDbType.SmallInt).Value = obj.entregaEquips
+        sc.Parameters.Add("@entrega", SqlDbType.SmallInt).Value = obj.entrega
         sc.Parameters.Add("@oferta", SqlDbType.VarChar).Value = obj.nOferta
         sc.Parameters.Add("@idTipusPagament", SqlDbType.SmallInt).Value = obj.tipusPagament.id
         sc.Parameters.Add("@dadesBancaries", SqlDbType.VarChar).Value = obj.dadesBancaries
@@ -92,10 +115,40 @@ Module dbComanda
         sc.Parameters.Add("@responsable", SqlDbType.VarChar).Value = obj.responsable
         sc.Parameters.Add("@director", SqlDbType.VarChar).Value = obj.director
         sc.Parameters.Add("@estat", SqlDbType.Int).Value = obj.estat
+        sc.Parameters.Add("@idSolitut", SqlDbType.Int).Value = obj.idSolicitut
+        sc.Parameters.Add("@responsableCompra", SqlDbType.Int).Value = obj.responsableCompra.id
         i = sc.ExecuteNonQuery
         sc = Nothing
         If i >= 1 Then
             Return obj.id
+        End If
+        Return -1
+    End Function
+    Private Function updateSQL(idComanda As Integer, e As Integer, idMydoc As Long) As Integer
+        Dim sc As SqlCommand, i As Integer
+        sc = New SqlCommand("UPDATE " & getTable(e) & " " &
+                            " SET " & ID_MYDOC & "=@idMydoc " &
+                                      " WHERE " & ID & "=@id", DBCONNECT.getConnection)
+        sc.Parameters.Add("@id", SqlDbType.Int).Value = idComanda
+        sc.Parameters.Add("@idMydoc", SqlDbType.Int).Value = idMydoc
+        i = sc.ExecuteNonQuery
+        sc = Nothing
+        If i >= 1 Then
+            Return idComanda
+        End If
+        Return -1
+    End Function
+    Private Function updateEstatSQL(idComanda As Integer, e As Integer) As Integer
+        Dim sc As SqlCommand, i As Integer
+        sc = New SqlCommand("UPDATE " & getTable(e) & " " &
+                            " SET " & ESTAT & "=@estat " &
+                                      " WHERE " & ID & "=@id", DBCONNECT.getConnection)
+        sc.Parameters.Add("@id", SqlDbType.Int).Value = idComanda
+        sc.Parameters.Add("@estat", SqlDbType.Int).Value = e
+        i = sc.ExecuteNonQuery
+        sc = Nothing
+        If i >= 1 Then
+            Return idComanda
         End If
         Return -1
     End Function
@@ -106,14 +159,15 @@ Module dbComanda
     ''' </summary>
     ''' <param name="obj"> centre</param>
     ''' <returns>identificador del centre.</returns>
-    Private Function insertSQL(obj As Comanda) As Integer
+    Private Function insertSQL(obj As Comanda, e As Integer) As Integer
         Dim sc As SqlCommand, i As Integer
-        obj.id = DBCONNECT.getMaxId(getTable) + 1
-        sc = New SqlCommand(" INSERT INTO " & getTable() & " " &
-                        " (" & ID & ", " & CODI & ", " & ID_EMPRESA & ", " & ID_PROVEIDOR & ", " & ID_CONTACTE_PROVEIDOR & ", " & ID_PROJECTE & ", " & ID_CONTACTE_PROJECTE & ", " & ID_MAGATZEM & "," &
-                         DATA_COMANDA & "," & DATA_MUNTATGE & "," & DATA_ENTREGA & "," & RETENCIO & "," & AVAL & "," & OFERTA & "," & ID_TIPUS_PAGAMENT & "," & DADES_BANCARIES & "," & PORTS & "," & NOTES & "," & RESPONSABLE & "," & DIRECTOR & "," & ESTAT & ")" &
-                        " VALUES(@id,@codi,@idEmpresa,@idProveidor,@idContacteProveidor,@idProjecte,@idContacteProjecte,@idMagatzem,@dataComanda,@dataMuntatge,@dataEntrega,@retencio,@aval,@oferta,@idtipusPagament,@dadesBancaries,@ports,@notes,@responsable,@director,@estat)", DBCONNECT.getConnection)
+        obj.id = DBCONNECT.getMaxId(getTable(e)) + 1
+        sc = New SqlCommand(" INSERT INTO " & getTable(e) & " " &
+                        " (" & ID & ", " & ID_MYDOC & ", " & CODI & ", " & ID_EMPRESA & ", " & ID_PROVEIDOR & ", " & ID_CONTACTE_PROVEIDOR & ", " & ID_PROJECTE & ", " & ID_CONTACTE_PROJECTE & ", " & ID_MAGATZEM & "," &
+                         DATA_COMANDA & "," & DATA_MUNTATGE & "," & DATA_ENTREGA & "," & INICI_COMANDA & "," & INICI_MUNTATGE & "," & ENTREGA & "," & OFERTA & "," & ID_TIPUS_PAGAMENT & "," & DADES_BANCARIES & "," & PORTS & "," & NOTES & "," & RESPONSABLE & "," & DIRECTOR & "," & ESTAT & "," & RESPONSABLE_COMPRA & "," & IDSOLICITUT & ")" &
+                        " VALUES(@id,@idMydoc,@codi,@idEmpresa,@idProveidor,@idContacteProveidor,@idProjecte,@idContacteProjecte,@idMagatzem,@dataComanda,@dataMuntatge,@dataEntrega,@iniciComanda,@iniciMuntatge,entrega,@oferta,@idtipusPagament,@dadesBancaries,@ports,@notes,@responsable,@director,@estat,@responsableCompra,@idSolicitut)", DBCONNECT.getConnection)
         sc.Parameters.Add("@id", SqlDbType.Int).Value = obj.id
+        sc.Parameters.Add("@idMydoc", SqlDbType.Int).Value = obj.id
         sc.Parameters.Add("@codi", SqlDbType.VarChar).Value = obj.codi
         sc.Parameters.Add("@idempresa", SqlDbType.SmallInt).Value = obj.empresa.id
         sc.Parameters.Add("@idProveidor", SqlDbType.SmallInt).Value = obj.proveidor.id
@@ -124,8 +178,9 @@ Module dbComanda
         sc.Parameters.Add("@dataComanda", SqlDbType.Date).Value = obj.data
         sc.Parameters.Add("@dataMuntatge", SqlDbType.Date).Value = obj.dataMuntatge
         sc.Parameters.Add("@dataentrega", SqlDbType.Date).Value = obj.dataEntrega
-        sc.Parameters.Add("@retencio", SqlDbType.VarChar).Value = obj.retencio
-        sc.Parameters.Add("@aval", SqlDbType.VarChar).Value = obj.interAval
+        sc.Parameters.Add("@iniciComanda", SqlDbType.SmallInt).Value = obj.inici
+        sc.Parameters.Add("@iniciMuntatge", SqlDbType.SmallInt).Value = obj.entregaEquips
+        sc.Parameters.Add("@entrega", SqlDbType.SmallInt).Value = obj.entrega
         sc.Parameters.Add("@oferta", SqlDbType.VarChar).Value = obj.nOferta
         sc.Parameters.Add("@idTipusPagament", SqlDbType.SmallInt).Value = obj.tipusPagament.id
         sc.Parameters.Add("@dadesBancaries", SqlDbType.VarChar).Value = obj.dadesBancaries
@@ -134,6 +189,8 @@ Module dbComanda
         sc.Parameters.Add("@responsable", SqlDbType.VarChar).Value = obj.responsable
         sc.Parameters.Add("@director", SqlDbType.VarChar).Value = obj.director
         sc.Parameters.Add("@estat", SqlDbType.Int).Value = obj.estat
+        sc.Parameters.Add("@idSolicitut", SqlDbType.Int).Value = obj.idSolicitut
+        sc.Parameters.Add("@responsableCompra", SqlDbType.Int).Value = obj.responsableCompra.id
         i = sc.ExecuteNonQuery
         sc = Nothing
         If i >= 1 Then
@@ -146,9 +203,9 @@ Module dbComanda
     ''' </summary>
     ''' <param name="obj"></param>
     ''' <returns></returns>
-    Private Function removeSQL(obj As Comanda) As Boolean
+    Private Function removeSQL(obj As Comanda, e As Integer) As Boolean
         Dim sc As SqlCommand, i As Integer
-        sc = New SqlCommand("DELETE FROM " & getTable() & " WHERE " & ID & "=@id", DBCONNECT.getConnection)
+        sc = New SqlCommand("DELETE FROM " & getTable(e) & " WHERE " & ID & "=@id", DBCONNECT.getConnection)
         sc.Parameters.Add("@id", SqlDbType.Int).Value = obj.id
         i = sc.ExecuteNonQuery
         sc = Nothing
@@ -161,31 +218,35 @@ Module dbComanda
     ''' Obté tots els centres del sistema 
     ''' </summary>
     ''' <returns>una llista de centres</returns>
-    Private Function getObjectsSQL(anyo As Integer) As List(Of Comanda)
+    Private Function getObjectsSQL(a As Integer, e As Integer) As List(Of Comanda)
         Dim sc As SqlCommand, sdr As SqlDataReader, c As Comanda
         getObjectsSQL = New List(Of Comanda)
-        sc = New SqlCommand("Select * FROM " & getTable() & " WHERE YEAR", getConnection)
+        sc = New SqlCommand("Select * FROM " & getTable(e) & " WHERE YEAR(DATAC)=" & a, getConnection)
         sdr = sc.ExecuteReader
         While sdr.Read()
             c = New Comanda(sdr(ID), CONFIG.validarNull(Trim(sdr(CODI))), ModelProveidor.getObject(sdr(ID_PROVEIDOR)), ModelEmpresa.getObject(sdr(ID_EMPRESA)), ModelProjecte.getObject(sdr(ID_PROJECTE)))
             'TODO CAL IMPLEMENTAR ARTICLES COMANDA 
             'c.articles = modela
+
             c.contacte = ModelContacte.getObject(sdr(ID_CONTACTE_PROJECTE))
             c.contacteProveidor = ModelProveidorContacte.getObject(sdr(ID_CONTACTE_PROVEIDOR))
             c.dadesBancaries = CONFIG.validarNull(Trim(sdr(DADES_BANCARIES)))
             c.data = CONFIG.validarNull(Trim(sdr(DATA_COMANDA)))
             c.dataEntrega = CONFIG.validarNull(Trim(sdr(DATA_ENTREGA)))
             c.dataMuntatge = CONFIG.validarNull(Trim(sdr(DATA_MUNTATGE)))
-            c.interAval = CONFIG.validarNull(Trim(sdr(AVAL)))
+            c.inici = sdr(INICI_COMANDA)
+            c.entregaEquips = sdr(INICI_MUNTATGE)
             c.magatzem = ModelLlocEntrega.getObject(sdr(ID_MAGATZEM))
-            c.nOferta = CONFIG.validarNull(Trim(sdr(OFERTA)))
-            c.notes = CONFIG.validarNull(Trim(sdr(NOTES)))
-            c.ports = CONFIG.validarNull(Trim(sdr(PORTS)))
-            c.retencio = CONFIG.validarNull(Trim(sdr(RETENCIO)))
+            c.nOferta = Trim(CONFIG.validarNull(sdr(OFERTA)))
+            c.notes = Trim(CONFIG.validarNull(sdr(NOTES)))
+            c.ports = Trim(CONFIG.validarNull(sdr(PORTS)))
+            c.entrega = sdr(ENTREGA)
             c.tipusPagament = ModelTipusPagament.getAuxiliar.getObject(sdr(ID_TIPUS_PAGAMENT))
             c.responsable = CONFIG.validarNull(sdr(RESPONSABLE))
             c.director = CONFIG.validarNull(sdr(DIRECTOR))
             c.estat = sdr(ESTAT)
+            c.idSolicitut = sdr(IDSOLICITUT)
+            c.responsableCompra = ModelResponsableCompra.getAuxiliar.getObject(sdr(RESPONSABLE_COMPRA))
             getObjectsSQL.Add(c)
         End While
         sdr.Close()
@@ -193,15 +254,28 @@ Module dbComanda
         sdr = Nothing
         sc = Nothing
     End Function
-
-    Private Function updateDBF(obj As Comanda) As Integer
+    Private Function existsQL(id As Integer, p As Object, e As Integer) As Boolean
+        Dim sc As SqlCommand, sdr As SqlDataReader, camp As String
+        camp = getCamp(p)
+        existsQL = False
+        If camp <> "" Then
+            sc = New SqlCommand("Select TOP 1 * FROM " & getTable(e) & " WHERE " & camp & "=" & id, getConnection)
+            sdr = sc.ExecuteReader
+            If sdr.Read() Then existsQL = True
+            sdr.Close()
+            sdr = Nothing
+            sc = Nothing
+        End If
+    End Function
+    Private Function updateDBF(obj As Comanda, e As Integer) As Integer
         Dim sc As ADODB.Command
         sc = New ADODB.Command
         With sc
             .ActiveConnection = DBCONNECT.getConnectionDbf
-            .CommandText = "UPDATE " & getTable() & " " &
+            .CommandText = "UPDATE " & getTable(e) & " " &
                             " SET " & CODI & "=?," &
                                       ID_EMPRESA & " =?, " &
+                                      SERIE & "=?," &
                                       ID_PROVEIDOR & " =?, " &
                                       ID_CONTACTE_PROVEIDOR & " =?, " &
                                       ID_PROJECTE & " =?, " &
@@ -210,8 +284,9 @@ Module dbComanda
                                       DATA_COMANDA & " =?, " &
                                       DATA_MUNTATGE & " =?, " &
                                       DATA_ENTREGA & " =?, " &
-                                      RETENCIO & " =?, " &
-                                      AVAL & " =?, " &
+                                      INICI_COMANDA & " =?, " &
+                                      INICI_MUNTATGE & " =?, " &
+                                      ENTREGA & " =?, " &
                                       OFERTA & " =?, " &
                                       ID_TIPUS_PAGAMENT & " =?, " &
                                       DADES_BANCARIES & " =?, " &
@@ -219,33 +294,87 @@ Module dbComanda
                                       NOTES & " =?, " &
                                       RESPONSABLE & " =?, " &
                                       DIRECTOR & " =?, " &
-                                      ESTAT & " =? " &
+                                      ESTAT & " =?, " &
+                                      IDSOLICITUT & " =?, " &
+                                      RESPONSABLE_COMPRA & " =?, " &
+                                      BASE_COMANDA & " =?, " &
+                                      IVA_COMANDA & " =? " &
                                       " WHERE " & ID & "=?"
             .Parameters.Append(ADOPARAM.ToString(obj.codi))
-            .Parameters.Append(ADOPARAM.ToInt(obj.empresa.id))
-            .Parameters.Append(ADOPARAM.ToInt(obj.proveidor.id))
-            .Parameters.Append(ADOPARAM.ToInt(obj.contacteProveidor.id))
-            .Parameters.Append(ADOPARAM.ToInt(obj.projecte.id))
-            .Parameters.Append(ADOPARAM.ToInt(obj.contacte.id))
-            .Parameters.Append(ADOPARAM.ToInt(obj.magatzem.id))
+            .Parameters.Append(ADOPARAM.ToInt(getInt(obj.empresa)))
+            .Parameters.Append(ADOPARAM.ToString(getStr(obj.serie)))
+            .Parameters.Append(ADOPARAM.ToInt(getInt(obj.proveidor)))
+            .Parameters.Append(ADOPARAM.ToInt(getInt(obj.contacteProveidor)))
+            .Parameters.Append(ADOPARAM.ToInt(getInt(obj.projecte)))
+            .Parameters.Append(ADOPARAM.ToInt(getInt(obj.contacte)))
+            .Parameters.Append(ADOPARAM.ToInt(getInt(obj.magatzem)))
             .Parameters.Append(ADOPARAM.ToDate(obj.data))
             .Parameters.Append(ADOPARAM.ToDate(obj.dataMuntatge))
             .Parameters.Append(ADOPARAM.ToDate(obj.dataEntrega))
-            .Parameters.Append(ADOPARAM.ToString(obj.retencio))
-            .Parameters.Append(ADOPARAM.ToString(obj.interAval))
-            .Parameters.Append(ADOPARAM.ToString(obj.nOferta))
-            .Parameters.Append(ADOPARAM.ToInt(obj.tipusPagament.id))
-            .Parameters.Append(ADOPARAM.ToString(obj.dadesBancaries))
-            .Parameters.Append(ADOPARAM.ToString(obj.ports))
-            .Parameters.Append(ADOPARAM.ToString(obj.notes))
-            .Parameters.Append(ADOPARAM.ToString(obj.responsable))
-            .Parameters.Append(ADOPARAM.ToString(obj.director))
+            .Parameters.Append(ADOPARAM.ToInt(getStr(obj.inici)))
+            .Parameters.Append(ADOPARAM.ToInt(getStr(obj.entregaEquips)))
+            .Parameters.Append(ADOPARAM.ToInt(getStr(obj.entrega)))
+            .Parameters.Append(ADOPARAM.ToString(getStr(obj.nOferta)))
+            .Parameters.Append(ADOPARAM.ToInt(getInt(obj.tipusPagament)))
+            .Parameters.Append(ADOPARAM.ToString(getStr(obj.dadesBancaries)))
+            .Parameters.Append(ADOPARAM.ToString(getStr(obj.ports)))
+            .Parameters.Append(ADOPARAM.ToString(getStr(obj.notes)))
+            .Parameters.Append(ADOPARAM.ToString(getStr(obj.responsable)))
+            .Parameters.Append(ADOPARAM.ToString(getStr(obj.director)))
             .Parameters.Append(ADOPARAM.ToInt(obj.estat))
+            .Parameters.Append(ADOPARAM.ToInt(obj.idSolicitut))
+            .Parameters.Append(ADOPARAM.ToInt(obj.responsableCompra.id))
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.baseComanda) * 1000, 0))
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.ivaComanda) * 1000, 0))
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
         End With
         Try
             sc.Execute()
             Return obj.id
+        Catch ex As Exception
+            Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
+            Return -1
+        Finally
+            sc = Nothing
+        End Try
+    End Function
+    Private Function updateDBF(idComanda As Integer, e As Integer, idMyDoc As Integer) As Integer
+        Dim sc As ADODB.Command
+        sc = New ADODB.Command
+        With sc
+            .ActiveConnection = DBCONNECT.getConnectionDbf
+            .CommandText = "UPDATE " & getTable(e) & " " &
+                            " SET " & ID_MYDOC & "=?" & " " &
+                                      " WHERE " & ID & "=?"
+
+            .Parameters.Append(ADOPARAM.ToInt(idMyDoc))
+            .Parameters.Append(ADOPARAM.ToInt(idComanda))
+        End With
+        Try
+            sc.Execute()
+            Return idComanda
+        Catch ex As Exception
+            Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
+            Return -1
+        Finally
+            sc = Nothing
+        End Try
+    End Function
+    Private Function updateEstatDBF(idComanda As Integer, e As Integer) As Integer
+        Dim sc As ADODB.Command
+        sc = New ADODB.Command
+        With sc
+            .ActiveConnection = DBCONNECT.getConnectionDbf
+            .CommandText = "UPDATE " & getTable(e) & " " &
+                            " SET " & ESTAT & "=?" & " " &
+                                      " WHERE " & ID & "=?"
+
+            .Parameters.Append(ADOPARAM.ToInt(e))
+            .Parameters.Append(ADOPARAM.ToInt(idComanda))
+        End With
+        Try
+            sc.Execute()
+            Return idComanda
         Catch ex As Exception
             Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
             Return -1
@@ -260,38 +389,44 @@ Module dbComanda
     ''' </summary>
     ''' <param name="obj"> centre</param>
     ''' <returns>identificador del centre.</returns>
-    Private Function insertDBF(obj As Comanda) As Integer
+    Private Function insertDBF(obj As Comanda, e As Integer) As Integer
         Dim sc As ADODB.Command
         sc = New ADODB.Command
-        obj.id = DBCONNECT.getMaxIdDBF(getTable) + 1
+        obj.id = DBCONNECT.getMaxIdDBF(getTable(e)) + 1
         With sc
             .ActiveConnection = DBCONNECT.getConnectionDbf
-            .CommandText = (" INSERT INTO " & getTable() & " " &
-                        " (" & ID & ", " & CODI & ", " & ID_EMPRESA & ", " & ID_PROVEIDOR & ", " & ID_CONTACTE_PROVEIDOR & ", " & ID_PROJECTE & ", " & ID_CONTACTE_PROJECTE & ", " & ID_MAGATZEM & "," &
-                         DATA_COMANDA & "," & DATA_MUNTATGE & "," & DATA_ENTREGA & "," & RETENCIO & "," & AVAL & "," & OFERTA & "," & ID_TIPUS_PAGAMENT & "," & DADES_BANCARIES & "," & PORTS & "," & NOTES & "," & RESPONSABLE & "," & DIRECTOR & "," & ESTAT & ")" &
-                        " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
+            .CommandText = (" INSERT INTO " & getTable(e) & " " &
+                        " (" & ID & ",  " & CODI & ", " & ID_EMPRESA & ", " & SERIE & "," & ID_PROVEIDOR & ", " & ID_CONTACTE_PROVEIDOR & ", " & ID_PROJECTE & ", " & ID_CONTACTE_PROJECTE & ", " & ID_MAGATZEM & "," &
+                         DATA_COMANDA & "," & DATA_MUNTATGE & "," & DATA_ENTREGA & "," & INICI_COMANDA & "," & INICI_MUNTATGE & "," & ENTREGA & "," & OFERTA & "," & ID_TIPUS_PAGAMENT & "," & DADES_BANCARIES & "," & PORTS & "," & NOTES & "," & RESPONSABLE & "," & DIRECTOR & "," & ESTAT & "," & IDSOLICITUT & "," & RESPONSABLE_COMPRA & "," & BASE_COMANDA & "," & IVA_COMANDA & ")" &
+                        " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
 
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
             .Parameters.Append(ADOPARAM.ToString(obj.codi))
-            .Parameters.Append(ADOPARAM.ToInt(obj.empresa.id))
-            .Parameters.Append(ADOPARAM.ToInt(obj.proveidor.id))
-            .Parameters.Append(ADOPARAM.ToInt(obj.contacteProveidor.id))
-            .Parameters.Append(ADOPARAM.ToInt(obj.projecte.id))
-            .Parameters.Append(ADOPARAM.ToInt(obj.contacte.id))
-            .Parameters.Append(ADOPARAM.ToInt(obj.magatzem.id))
+            .Parameters.Append(ADOPARAM.ToInt(getInt(obj.empresa)))
+            .Parameters.Append(ADOPARAM.ToString(getStr(obj.serie)))
+            .Parameters.Append(ADOPARAM.ToInt(getInt(obj.proveidor)))
+            .Parameters.Append(ADOPARAM.ToInt(getInt(obj.contacteProveidor)))
+            .Parameters.Append(ADOPARAM.ToInt(getInt(obj.projecte)))
+            .Parameters.Append(ADOPARAM.ToInt(getInt(obj.contacte)))
+            .Parameters.Append(ADOPARAM.ToInt(getInt(obj.magatzem)))
             .Parameters.Append(ADOPARAM.ToDate(obj.data))
             .Parameters.Append(ADOPARAM.ToDate(obj.dataMuntatge))
             .Parameters.Append(ADOPARAM.ToDate(obj.dataEntrega))
-            .Parameters.Append(ADOPARAM.ToString(obj.retencio))
-            .Parameters.Append(ADOPARAM.ToString(obj.interAval))
-            .Parameters.Append(ADOPARAM.ToString(obj.nOferta))
-            .Parameters.Append(ADOPARAM.ToInt(obj.tipusPagament.id))
-            .Parameters.Append(ADOPARAM.ToString(obj.dadesBancaries))
-            .Parameters.Append(ADOPARAM.ToString(obj.ports))
-            .Parameters.Append(ADOPARAM.ToString(obj.notes))
-            .Parameters.Append(ADOPARAM.ToString(obj.responsable))
-            .Parameters.Append(ADOPARAM.ToString(obj.director))
+            .Parameters.Append(ADOPARAM.ToInt(getStr(obj.inici)))
+            .Parameters.Append(ADOPARAM.ToInt(getStr(obj.entregaEquips)))
+            .Parameters.Append(ADOPARAM.ToInt(getStr(obj.entrega)))
+            .Parameters.Append(ADOPARAM.ToString(getStr(obj.nOferta)))
+            .Parameters.Append(ADOPARAM.ToInt(getInt(obj.tipusPagament)))
+            .Parameters.Append(ADOPARAM.ToString(getStr(obj.dadesBancaries)))
+            .Parameters.Append(ADOPARAM.ToString(getStr(obj.ports)))
+            .Parameters.Append(ADOPARAM.ToString(getStr(obj.notes)))
+            .Parameters.Append(ADOPARAM.ToString(getStr(obj.responsable)))
+            .Parameters.Append(ADOPARAM.ToString(getStr(obj.director)))
             .Parameters.Append(ADOPARAM.ToInt(obj.estat))
+            .Parameters.Append(ADOPARAM.ToInt(obj.idSolicitut))
+            .Parameters.Append(ADOPARAM.ToInt(obj.responsableCompra.id))
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.baseComanda) * 1000, 0))
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.ivaComanda) * 1000, 0))
         End With
         Try
             sc.Execute()
@@ -308,12 +443,12 @@ Module dbComanda
     ''' </summary>
     ''' <param name="obj"></param>
     ''' <returns></returns>
-    Private Function removeDBF(obj As Comanda) As Boolean
+    Private Function removeDBF(obj As Comanda, e As Integer) As Boolean
         Dim sc As ADODB.Command
         sc = New ADODB.Command
         With sc
             sc.ActiveConnection = DBCONNECT.getConnectionDbf
-            sc.CommandText = " DELETE FROM " & getTable() & " WHERE " & ID & "=?"
+            sc.CommandText = " DELETE FROM " & getTable(e) & " WHERE " & ID & "=?"
             sc.Parameters.Append(ADOPARAM.ToInt(obj.id, ""))
         End With
         Try
@@ -330,31 +465,61 @@ Module dbComanda
     ''' Obté tots els centres del sistema 
     ''' </summary>
     ''' <returns>una llista de centres</returns>
-    Private Function getObjectsDBF() As List(Of Comanda)
+    Private Function getObjectsDBF(a As Integer, e As Integer) As List(Of Comanda)
         Dim rc As ADODB.Recordset, c As Comanda
         rc = New ADODB.Recordset
+        Call ModelPedidosMydoc.resetIndex()
         getObjectsDBF = New List(Of Comanda)
-        rc.Open("Select * FROM " & getTable(), DBCONNECT.getConnectionDbf)
+        If a > 2000 Then
+            rc.Open("Select * FROM " & getTable(e) & " where year(DATAC)=" & a, DBCONNECT.getConnectionDbf)
+        Else
+            rc.Open("Select * FROM " & getTable(e), DBCONNECT.getConnectionDbf)
+        End If
+
         While Not rc.EOF
             c = New Comanda(rc(ID).Value, CONFIG.validarNull(Trim(rc(CODI).Value)), ModelProveidor.getObject(CInt(rc(ID_PROVEIDOR).Value)), ModelEmpresa.getObject(CInt(rc(ID_EMPRESA).Value)), ModelProjecte.getObject(CInt(rc(ID_PROJECTE).Value)))
-            'TODO CAL IMPLEMENTAR ARTICLES COMANDA 
-            'c.articles = modela
+            If rc(ID_MYDOC).Value Is Nothing OrElse rc(ID_MYDOC).Value.GetType.Name = "DBNull" Then
+                'If rc(ID_MYDOC).Value <= 0 Then
+                c.docMyDoc = New PedidoMD
+                c.comentaris = New List(Of ComentariMD)
+            Else
+                c.docMyDoc = ModelPedidosMydoc.getObject(rc(ID_MYDOC).Value)
+                c.idMydoc = rc(ID_MYDOC).Value
+                If rc(ID_MYDOC).Value > 10000 Then
+                    c.comentaris = ModelComentarisMydoc.getObjects(rc(ID_MYDOC).Value)
+                End If
+            End If
             c.contacte = ModelContacte.getObject(CInt(rc(ID_CONTACTE_PROJECTE).Value))
             c.contacteProveidor = ModelProveidorContacte.getObject(rc(ID_CONTACTE_PROVEIDOR).Value)
-            c.dadesBancaries = Trim(CONFIG.validarNull(rc(DADES_BANCARIES).Value))
-            c.data = Trim(CONFIG.validarNull(rc(DATA_COMANDA).Value))
-            c.dataEntrega = Trim(CONFIG.validarNull(rc(DATA_ENTREGA).Value))
-            c.dataMuntatge = Trim(CONFIG.validarNull(rc(DATA_MUNTATGE).Value))
-            c.interAval = Trim(CONFIG.validarNull(rc(AVAL).Value))
+            c.dadesBancaries = CONFIG.validarNull(rc(DADES_BANCARIES).Value)
+            c.data = CONFIG.validarNullDate(rc(DATA_COMANDA).Value)
+            c.dataEntrega = CONFIG.validarNullDate(rc(DATA_ENTREGA).Value)
+            c.dataMuntatge = CONFIG.validarNullDate(rc(DATA_MUNTATGE).Value)
+            c.inici = rc(INICI_COMANDA).Value
             c.magatzem = ModelLlocEntrega.getObject(rc(ID_MAGATZEM).Value)
-            c.nOferta = Trim(CONFIG.validarNull(rc(OFERTA).Value))
-            c.notes = Trim(CONFIG.validarNull(rc(NOTES).Value))
-            c.ports = Trim(CONFIG.validarNull(rc(PORTS).Value))
-            c.retencio = Trim(CONFIG.validarNull(rc(RETENCIO).Value))
+            c.nOferta = CONFIG.validarNull(rc(OFERTA).Value)
+            c.notes = CONFIG.validarNull(rc(NOTES).Value)
+            c.ports = CONFIG.validarNull(rc(PORTS).Value)
+            c.entrega = rc(ENTREGA).Value
+            c.entregaEquips = rc(INICI_MUNTATGE).Value
             c.tipusPagament = ModelTipusPagament.getAuxiliar.getObject(rc(ID_TIPUS_PAGAMENT).Value)
             c.responsable = CONFIG.validarNull(rc(RESPONSABLE).Value)
             c.director = CONFIG.validarNull(rc(DIRECTOR).Value)
             c.estat = rc(ESTAT).Value
+            c.serie = CONFIG.validarNull(rc(SERIE).Value)
+            c.idSolicitut = rc(IDSOLICITUT).Value
+            '220516 desactivat xmarti pq tarda molt a carregar-se. Sobretot al carregar tots els articles/solicitut. caldria fer un array de llistes i anar-les carregant a poc a poc.
+            'c.solicitutF56 = ModelComandaSolicitud.getObject(c.idSolicitut)
+            c.responsableCompra = ModelResponsableCompra.getAuxiliar.getObject(rc(RESPONSABLE_COMPRA).Value)
+            c.baseComanda = Math.Round(rc(BASE_COMANDA).Value / 1000, 3)
+            c.ivaComanda = Math.Round(rc(IVA_COMANDA).Value / 1000, 3)
+            If e = 2 Then
+                c.documentacio = ModelDocumentacio.getObjectsComanda(c.id, c.getAnyo)
+                c.articles = ModelarticleComanda.getObjects(c.id)
+            Else
+                c.documentacio = ModelDocumentacio.getObjectsComandaEdicio(c.id, c.getAnyo)
+                c.articles = ModelArticleComandaEnEdicio.getObjects(c.id)
+            End If
             getObjectsDBF.Add(c)
             rc.MoveNext()
         End While
@@ -362,9 +527,52 @@ Module dbComanda
         rc = Nothing
         getObjectsDBF.Sort()
     End Function
-    Private Function getTable() As String
-        Return DBCONNECT.getTaulacomanda
+    ''' <summary>
+    ''' Obté tots els centres del sistema 
+    ''' </summary>
+    ''' <returns>una llista de centres</returns>
+    Private Function existDBF(id As Integer, p As Object, e As Integer) As Boolean
+        Dim rc As ADODB.Recordset, camp As String
+        camp = getCamp(p)
+        existDBF = False
+        If camp <> "" Then
+            rc = New ADODB.Recordset
+            rc.Open("Select top 1 * FROM " & getTable(e) & " where " & camp & "=" & id, DBCONNECT.getConnectionDbf)
+            If Not rc.EOF Then existDBF = True
+            If rc.State = 1 Then rc.Close()
+            rc = Nothing
+        End If
+    End Function
+    Private Function getInt(p As Object) As Integer
+        If IsNothing(p) Then Return -1
+        Return p.id
+    End Function
+    Private Function getLong(p As Object) As Long
+        If IsNothing(p) Then Return -1
+        Return p.id
+    End Function
+    Private Function getStr(p As String) As String
+        If IsNothing(p) Then Return ""
+        Return p
+    End Function
+
+    Private Function getTable(estat As Integer) As String
+        If estat = 2 Then
+            Return DBCONNECT.getTaulaComanda
+        Else
+            Return DBCONNECT.getTaulaComandaEdicio
+        End If
+
+    End Function
+    Private Function getCamp(p As Object) As String
+        Select Case p.GetType.Name
+            Case "Proveidor" : Return ID_PROVEIDOR
+            Case "ProveidorCont" : Return ID_CONTACTE_PROVEIDOR
+            Case "Contacte" : Return ID_CONTACTE_PROJECTE
+            Case "LlocEntrega" : Return ID_MAGATZEM
+            Case "Projecte" : Return ID_PROJECTE
+            Case "Empresa" : Return ID_EMPRESA
+        End Select
+        Return ""
     End Function
 End Module
-
-

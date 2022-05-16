@@ -150,14 +150,19 @@ Module dbEmpresa
         End Try
     End Function
     Private Function getObjectsDBF() As List(Of Empresa)
-        Dim rc As ADODB.Recordset
+        Dim rc As ADODB.Recordset, p As frmAvis, i As Integer
         rc = New ADODB.Recordset
         getObjectsDBF = New List(Of Empresa)
+        p = New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("carregantDades"), IDIOMA.getString("empreses"))
         rc.Open("SELECT * FROM " & getTable(), DBCONNECT.getConnectionDbf)
+        i = 1
         While Not rc.EOF
             getObjectsDBF.Add(New Empresa(rc(ID).Value, Trim(rc(CODI).Value), Trim(rc(ORDRE).Value), Trim(CONFIG.validarNull(rc(CIF).Value)), Trim(CONFIG.validarNull(rc(NOM).Value)), rc(PARTICIPACIO).Value, ModelEmpresaContaplus.getObjects(rc(ID).Value), ModelSeccio.getObjects(rc(ID).Value)))
+            p.setData(rc(CODI).Value & " - " & rc(NOM).Value, 0)
             rc.MoveNext()
+            i = i + 1
         End While
+        p.tancar()
         If rc.State = 1 Then rc.Close()
         rc = Nothing
         getObjectsDBF.Sort()

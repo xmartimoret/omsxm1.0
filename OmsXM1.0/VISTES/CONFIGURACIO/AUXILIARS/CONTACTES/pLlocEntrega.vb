@@ -2,7 +2,7 @@
     Private panelLlocEntrega As SelectLlocEntrega
     Private LlocEntregaActual As LlocEntrega
     Private Sub setLlocEntrega()
-        panelLlocEntrega = New SelectLlocEntrega(1, False, True, IDIOMA.getString("magatzems"), 1)
+        panelLlocEntrega = New SelectLlocEntrega(1, True, True, IDIOMA.getString("magatzems"), 1)
         AddHandler panelLlocEntrega.selectObject, AddressOf getLlocEntrega
         Me.panelData.Controls.Clear()
         panelLlocEntrega.Dock = DockStyle.Fill

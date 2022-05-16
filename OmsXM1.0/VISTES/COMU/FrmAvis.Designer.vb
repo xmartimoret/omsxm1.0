@@ -25,15 +25,16 @@ Partial Class frmAvis
         Me.lblComptador = New System.Windows.Forms.Label()
         Me.lblMissatge = New System.Windows.Forms.Label()
         Me.lblTitol = New System.Windows.Forms.Label()
+        Me.pgBar = New System.Windows.Forms.ProgressBar()
         Me.SuspendLayout()
         '
         'lblComptador
         '
-        Me.lblComptador.Font = New System.Drawing.Font("Tahoma", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblComptador.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblComptador.ForeColor = System.Drawing.Color.Blue
-        Me.lblComptador.Location = New System.Drawing.Point(17, 149)
+        Me.lblComptador.Location = New System.Drawing.Point(397, 156)
         Me.lblComptador.Name = "lblComptador"
-        Me.lblComptador.Size = New System.Drawing.Size(432, 30)
+        Me.lblComptador.Size = New System.Drawing.Size(71, 23)
         Me.lblComptador.TabIndex = 5
         Me.lblComptador.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
@@ -55,12 +56,22 @@ Partial Class frmAvis
         Me.lblTitol.TabIndex = 3
         Me.lblTitol.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         '
+        'pgBar
+        '
+        Me.pgBar.Location = New System.Drawing.Point(12, 156)
+        Me.pgBar.Name = "pgBar"
+        Me.pgBar.Size = New System.Drawing.Size(379, 23)
+        Me.pgBar.Step = 1
+        Me.pgBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous
+        Me.pgBar.TabIndex = 6
+        '
         'frmAvis
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(472, 200)
         Me.ControlBox = False
+        Me.Controls.Add(Me.pgBar)
         Me.Controls.Add(Me.lblComptador)
         Me.Controls.Add(Me.lblMissatge)
         Me.Controls.Add(Me.lblTitol)
@@ -74,4 +85,5 @@ Partial Class frmAvis
     Friend WithEvents lblComptador As Label
     Friend WithEvents lblMissatge As Label
     Friend WithEvents lblTitol As Label
+    Friend WithEvents pgBar As ProgressBar
 End Class

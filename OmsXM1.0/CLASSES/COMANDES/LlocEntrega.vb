@@ -6,14 +6,14 @@ Public Class LlocEntrega
     Public Property poblacio As String
     Public Property provincia As Provincia
     Public Property pais As Pais
-    Public Property estat As Boolean
+    Public Property actiu As Boolean = True
     Public Property predeterminat As Boolean
     Public Property projectes As List(Of Projecte)
     Public Sub New()
         _pais = New Pais
         _provincia = New Provincia
         _projectes = New List(Of Projecte)
-        estat = True
+
     End Sub
 
     Public Sub New(pId As String, pNom As String)
@@ -21,7 +21,7 @@ Public Class LlocEntrega
         Me.nom = pNom
         pais = New Pais
         provincia = New Provincia
-        estat = True
+
     End Sub
     Public Function copy() As LlocEntrega
         copy = New LlocEntrega
@@ -33,7 +33,7 @@ Public Class LlocEntrega
         copy.pais = _pais
         copy.provincia = _provincia
         copy.codiPostal = _codiPostal
-        copy.estat = _estat
+
     End Function
     Public Function equalsComanda(p As LlocEntrega) As Boolean
         If p IsNot Nothing Then
@@ -44,7 +44,9 @@ Public Class LlocEntrega
         End If
         Return True
     End Function
-
+    Public Overrides Function toString() As String
+        Return Me.nom
+    End Function
     Public Function toTarget() As String
         Dim texte As String
         texte = _direccio & vbCrLf & _codiPostal

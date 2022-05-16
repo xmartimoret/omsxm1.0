@@ -135,7 +135,7 @@ Module dbArticlePreu
             .Parameters.Append(ADOPARAM.ToInt(obj.idArticle))
             .Parameters.Append(ADOPARAM.ToInt(obj.idProveidor))
             .Parameters.Append(ADOPARAM.ToDate(obj.data))
-            .Parameters.Append(ADOPARAM.ToSingle(obj.base))
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.base * 1000, 0)))
             .Parameters.Append(ADOPARAM.ToInt(obj.descompte))
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
         End With
@@ -169,7 +169,7 @@ Module dbArticlePreu
             .Parameters.Append(ADOPARAM.ToInt(obj.idArticle))
             .Parameters.Append(ADOPARAM.ToInt(obj.idProveidor))
             .Parameters.Append(ADOPARAM.ToDate(obj.data))
-            .Parameters.Append(ADOPARAM.ToSingle(obj.base))
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.base * 1000, 0)))
             .Parameters.Append(ADOPARAM.ToInt(obj.descompte))
 
         End With
@@ -211,22 +211,29 @@ Module dbArticlePreu
     ''' </summary>
     ''' <returns>una llista de centres</returns>
     Private Function getObjectsDBF() As List(Of ArticlePreu)
-        Dim rc As ADODB.Recordset, a As ArticlePreu
+        Dim rc As ADODB.Recordset, a As ArticlePreu, av As frmAvis, i As Long, max As Long
         rc = New ADODB.Recordset
         getObjectsDBF = New List(Of ArticlePreu)
-        rc.Open("Select * FROM " & getTable(), DBCONNECT.getConnectionDbf)
-        While Not rc.EOF
-            a = New ArticlePreu(rc(ID).Value,
+        rc.Open("Select count(id)  FROM " & getTable(), DBCONNECT.getConnectionDbf)
+        If Not rc.EOF Then
+            max = rc(0).Value
+            av = New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("carregantDades"), IDIOMA.getString("preuArticles"), max)
+            rc.Close()
+            rc.Open("Select * FROM " & getTable(), DBCONNECT.getConnectionDbf)
+            While Not rc.EOF
+                a = New ArticlePreu(rc(ID).Value,
                                rc(ID_ARTICLE).Value,
                                rc(ID_PROVEIDOR).Value,
                                CONFIG.validarNull(rc(DATA).Value),
-                               rc(IMPORT_BASE).Value,
-                               rc(DESCOMPTE).Value)
-            getObjectsDBF.Add(a)
-            rc.MoveNext()
-        End While
+                               Math.Round(rc(IMPORT_BASE).Value / 1000, 3),
+                                rc(DESCOMPTE).Value)
+                getObjectsDBF.Add(a)
+                rc.MoveNext()
+            End While
+            av.tancar()
+        End If
         If rc.State = 1 Then rc.Close()
-        rc = Nothing
+            rc = Nothing
     End Function
     Private Function getTable() As String
         Return DBCONNECT.getTaulaArticlePreu

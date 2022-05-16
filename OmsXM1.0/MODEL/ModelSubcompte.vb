@@ -40,6 +40,17 @@ Module ModelSubcompte
         End If
         s = Nothing
     End Function
+    Public Function getListViewItem(s As Subcompte) As ListViewItem
+        Return New ListViewItem(New String() {s.id, s.codi, s.nom})
+    End Function
+    Public Function getListViewItem(id As Integer) As ListViewItem
+        Dim a As Subcompte
+        a = getObject(id)
+        If a IsNot Nothing Then
+            Return getListViewItem(a)
+        End If
+        Return Nothing
+    End Function
     Public Function exist(obj As Subcompte) As Boolean
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Exists(Function(x) x.id <> obj.id And x.codi = obj.codi)

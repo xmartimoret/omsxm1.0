@@ -44,6 +44,29 @@ Module ModelArticle
         End If
         a = Nothing
     End Function
+    Public Function getListViewItem(a As article) As ListViewItem
+        Return New ListViewItem(New String() {a.id, a.codi, a.nom, a.familia.nom, a.fabricant.nom, a.unitat.codi, a.iva.impost})
+    End Function
+    Public Function getListViewItem(id As Integer) As ListViewItem
+        Dim a As article
+        a = getObject(id)
+        If a IsNot Nothing Then
+            Return New ListViewItem(New String() {a.id, a.codi, a.nom, a.familia.nom, a.fabricant.nom, a.unitat.codi, a.iva.impost})
+        End If
+        Return Nothing
+    End Function
+    Public Function getListObjects() As Object()
+        Dim obj As article, i As Integer = 0, objectes() As Object, temp As List(Of article)
+        temp = getObjects()
+        ReDim objectes(temp.Count - 1)
+        For Each obj In temp
+            objectes(i) = obj
+            i = i + 1
+        Next
+        getListObjects = objectes
+        objectes = Nothing
+        obj = Nothing
+    End Function
     Public Function getListStringCodi() As String()
         Dim ll As List(Of article), o() As String, i As Integer
         ll = getObjects()
@@ -108,6 +131,10 @@ Module ModelArticle
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Exists(Function(x) x.id <> obj.id And x.nom = obj.nom)
     End Function
+    Public Function exist(codi As String) As Boolean
+        If Not isUpdated() Then objects = getRemoteObjects()
+        Return objects.Exists(Function(x) x.codi = codi)
+    End Function
     Public Function existCodi(obj As article) As Integer
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Exists(Function(x) x.id <> obj.id And x.codi = obj.codi)
@@ -138,7 +165,9 @@ Module ModelArticle
     Public Sub resetIndex()
         objects = Nothing
     End Sub
-
+    Public Sub setdata()
+        If Not isUpdated() Then objects = getRemoteObjects()
+    End Sub
     Private Function getRemoteObjects() As List(Of article)
         dateUpdate = Now()
         Return dbArticle.getObjects

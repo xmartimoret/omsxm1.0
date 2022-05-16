@@ -11,10 +11,10 @@
     <AssemblyName>OmsXM1.0</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\xavier\Documents\Visual Studio 2015\Publish\OmsXM1.0\</PublishUrl>
+    <PublishUrl>ntz\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -24,7 +24,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>41</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -125,15 +125,86 @@
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'nova|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\nova\</OutputPath>
+    <DocumentationFile>OmsXM1.0.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'nova|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\nova\</OutputPath>
+    <DocumentationFile>OmsXM1.0.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'nova|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\nova\</OutputPath>
+    <DocumentationFile>OmsXM1.0.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Google.Apis, Version=1.54.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.54.0\lib\net45\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.54.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.54.0\lib\net45\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.54.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.54.0\lib\net45\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.54.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.54.0\lib\net45\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Docs.v1, Version=1.54.0.2379, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Docs.v1.1.54.0.2379\lib\net45\Google.Apis.Docs.v1.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Drive.v3, Version=1.54.0.2397, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Drive.v3.1.54.0.2397\lib\net45\Google.Apis.Drive.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.PeopleService.v1, Version=1.54.0.2413, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.PeopleService.v1.1.54.0.2413\lib\net45\Google.Apis.PeopleService.v1.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.54.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.54.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Sheets.v4, Version=1.54.0.2371, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Sheets.v4.1.54.0.2371\lib\net45\Google.Apis.Sheets.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -152,6 +223,14 @@
     <Compile Include="CLASSES\COMANDES\ArticleComanda.vb" />
     <Compile Include="CLASSES\COMANDES\ArticlePreu.vb" />
     <Compile Include="CLASSES\COMANDES\ArticleSolicitut.vb" />
+    <Compile Include="CLASSES\COMANDES\doc.vb" />
+    <Compile Include="CLASSES\COMANDES\MYDOC\ComentariMD.vb" />
+    <Compile Include="CLASSES\COMANDES\MYDOC\EventsMD.vb" />
+    <Compile Include="CLASSES\COMANDES\GoogleSheet.vb" />
+    <Compile Include="CLASSES\COMANDES\MYDOC\PedidoMD.vb" />
+    <Compile Include="CLASSES\COMANDES\MYDOC\Tasca.vb" />
+    <Compile Include="CLASSES\COMANDES\ResponsableCompra.vb" />
+    <Compile Include="CLASSES\COMANDES\CodiComanda.vb" />
     <Compile Include="CLASSES\COMANDES\Comanda.vb" />
     <Compile Include="CLASSES\COMANDES\Contacte.vb" />
     <Compile Include="CLASSES\COMANDES\Fabricant.vb" />
@@ -168,6 +247,7 @@
     <Compile Include="CLASSES\COMANDES\TipusIva.vb" />
     <Compile Include="CLASSES\COMANDES\TipusPagament.vb" />
     <Compile Include="CLASSES\COMANDES\Unitat.vb" />
+    <Compile Include="CLASSES\COMANDES\UpdateDrive.vb" />
     <Compile Include="CLASSES\COMPTABILITAT\Assentament.vb" />
     <Compile Include="CLASSES\COMPTABILITAT\AssentamentTransitoria.vb" />
     <Compile Include="CLASSES\COMPTABILITAT\Centre.vb" />
@@ -188,6 +268,7 @@
     <Compile Include="CLASSES\COMUNES\EnterLlarg.vb" />
     <Compile Include="CLASSES\COMUNES\ListViewComparer.vb" />
     <Compile Include="CLASSES\COMUNES\Mes.vb" />
+    <Compile Include="CLASSES\COMUNES\TipusImpressio.vb" />
     <Compile Include="CLASSES\COMUNES\ToolsXM.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -221,7 +302,6 @@
     <Compile Include="CLASSES\COMPTABILITAT\Tresoreria.vb" />
     <Compile Include="CLASSES\COMPTABILITAT\YSheet.vb" />
     <Compile Include="COMU\ADOPARAM.vb" />
-    <Compile Include="COMU\CODIFICACIO.vb" />
     <Compile Include="COMU\COLUMN.vb" />
     <Compile Include="COMU\CONFIG.vb" />
     <Compile Include="COMU\CONFIG_FILE.vb" />
@@ -232,16 +312,19 @@
     <Compile Include="COMU\EXCEPCIONS\ExcepcioConfig.vb" />
     <Compile Include="COMU\EXCEPCIONS\ExcepcioSql.vb" />
     <Compile Include="COMU\FILE_IN_OUT.vb" />
+    <Compile Include="COMU\GOOGLE_SHEETS.vb" />
     <Compile Include="COMU\Idioma.vb" />
     <Compile Include="COMU\MISSATGES.vb" />
-    <Compile Include="COMU\EMAIL.vb" />
     <Compile Include="COMU\PDF.vb" />
     <Compile Include="COMU\VALIDAR.vb" />
     <Compile Include="LANG\Lang.Designer.vb" />
+    <Compile Include="MODEL\COMANDES\AUXILIARS\ModelCodiComanda.vb" />
     <Compile Include="MODEL\COMANDES\AUXILIARS\ModelFabricant.vb" />
     <Compile Include="MODEL\COMANDES\AUXILIARS\ModelFamilia.vb" />
     <Compile Include="MODEL\COMANDES\AUXILIARS\ModelPais.vb" />
+    <Compile Include="MODEL\COMANDES\AUXILIARS\ModelResponsableCompra.vb" />
     <Compile Include="MODEL\COMANDES\AUXILIARS\ModelUnitat.vb" />
+    <Compile Include="MODEL\COMANDES\AUXILIARS\ModelUpdateDrive.vb" />
     <Compile Include="MODEL\COMANDES\ModelArticle.vb" />
     <Compile Include="MODEL\COMANDES\ModelArticleComanda.vb" />
     <Compile Include="MODEL\COMANDES\ModelArticleComandaEnEdicio.vb" />
@@ -250,6 +333,7 @@
     <Compile Include="MODEL\COMANDES\ModelComanda.vb" />
     <Compile Include="MODEL\COMANDES\ModelComandaEnEdicio.vb" />
     <Compile Include="MODEL\COMANDES\ModelComandaSolicitud.vb" />
+    <Compile Include="MODEL\COMANDES\ModelDocumentacio.vb" />
     <Compile Include="MODEL\COMANDES\ModelLlocEntrega.vb" />
     <Compile Include="MODEL\COMANDES\ModelProjecteContacte.vb" />
     <Compile Include="MODEL\COMANDES\ModelProjecteEntrega.vb" />
@@ -261,12 +345,28 @@
     <Compile Include="MODEL\COMANDES\AUXILIARS\ModelTipusPagament.vb" />
     <Compile Include="MODEL\COMANDES\AUXILIARS\ModelAuxiliar.vb" />
     <Compile Include="MODEL\COMANDES\ModulImportSolicituds.vb" />
+    <Compile Include="MODEL\COMANDES\MYDOC\ModelComentarisMydoc.vb" />
+    <Compile Include="MODEL\COMANDES\MYDOC\ModelEventsMydoc.vb" />
+    <Compile Include="MODEL\COMANDES\MYDOC\ModelPedidosMydoc.vb" />
+    <Compile Include="MODEL\COMANDES\MYDOC\ModelTasca.vb" />
+    <Compile Include="MODEL\COMPTABILITAT\ModulInformeSubcomptesCompra.vb" />
     <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbArticleComanda.vb" />
     <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbArticleComandaEnEdicio.vb" />
     <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbArticleSolicitut.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbCodiComanda.vb" />
     <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbComanda.vb" />
-    <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbComandaEnEdicio.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbDocumentacio.vb" />
     <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbSolicitudComanda.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbUpdateDrive.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\COMANDES\MYDOC\dbComentarisMD.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\COMANDES\MYDOC\dbEventsMD.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\COMANDES\MYDOC\dbPedidosMD.vb" />
+    <Compile Include="MODUL\INFORMES\modulF56.vb" />
+    <Compile Include="MODUL\INFORMES\modulInfoArticle.vb" />
+    <Compile Include="MODUL\INFORMES\ModulInfoAuxiliar.vb" />
+    <Compile Include="MODUL\INFORMES\modulInfoLlocEntrega.vb" />
+    <Compile Include="MODUL\INFORMES\modulInfoProveidor.vb" />
+    <Compile Include="MODUL\ModulEnviarCorreo.vb" />
     <Compile Include="MODUL\ModulExportarComanda.vb" />
     <Compile Include="VISTES\COMU\AVIS\avis.Designer.vb">
       <DependentUpon>avis.vb</DependentUpon>
@@ -274,11 +374,29 @@
     <Compile Include="VISTES\COMU\AVIS\avis.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="VISTES\COMU\AVIS\dActualitzar.Designer.vb">
+      <DependentUpon>dActualitzar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\AVIS\dActualitzar.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="VISTES\COMU\DAvisosErrors.Designer.vb">
       <DependentUpon>DAvisosErrors.vb</DependentUpon>
     </Compile>
     <Compile Include="VISTES\COMU\DAvisosErrors.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\DPrint.Designer.vb">
+      <DependentUpon>DPrint.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\DPrint.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\lstBoxFilter.Designer.vb">
+      <DependentUpon>lstBoxFilter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\lstBoxFilter.vb">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="VISTES\COMU\lstContactes.Designer.vb">
       <DependentUpon>lstContactes.vb</DependentUpon>
@@ -430,6 +548,12 @@
     <Compile Include="VISTES\COMU\lstProveidor.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="VISTES\COMU\LVObjectsCopiar.Designer.vb">
+      <DependentUpon>LVObjectsCopiar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\LVObjectsCopiar.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="VISTES\COMU\LVObjectsImport.Designer.vb">
       <DependentUpon>LVObjectsImport.vb</DependentUpon>
     </Compile>
@@ -440,6 +564,12 @@
       <DependentUpon>LVSelectObject.vb</DependentUpon>
     </Compile>
     <Compile Include="VISTES\COMU\LVSelectObject.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\COMU\pConfigCorreu.Designer.vb">
+      <DependentUpon>pConfigCorreu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\COMU\pConfigCorreu.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\DArticlePreus.Designer.vb">
@@ -454,6 +584,7 @@
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\DArticles.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\SelectComandesArticle.vb" />
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\SelectPreus.vb">
       <SubType>UserControl</SubType>
     </Compile>
@@ -469,11 +600,47 @@
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DArticleComanda.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DCodiComanda.Designer.vb">
+      <DependentUpon>DCodiComanda.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DCodiComanda.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DImportF56Avisos.Designer.vb">
+      <DependentUpon>DImportF56Avisos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DImportF56Avisos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DNovaComanda.Designer.vb">
       <DependentUpon>DNovaComanda.vb</DependentUpon>
     </Compile>
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DNovaComanda.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DNumMydoc.Designer.vb">
+      <DependentUpon>DNumMydoc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DNumMydoc.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\panelPDF.Designer.vb">
+      <DependentUpon>panelPDF.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\panelPDF.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\pArticlesComandes.Designer.vb">
+      <DependentUpon>pArticlesComandes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\pArticlesComandes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\SelectArticlesComandes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\SelectCodiComanda.vb">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\panelDesplagableProveidor.Designer.vb">
       <DependentUpon>panelDesplagableProveidor.vb</DependentUpon>
@@ -541,7 +708,16 @@
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\pSolicitutComanda.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\SelectComandes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\SelectComandesEdicio.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\SelectComandesEnEliminacio.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\SelectComandesEnValidacio.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\SelectFitxersSolicitut.vb">
@@ -554,6 +730,18 @@
       <DependentUpon>pSolicitutF56.vb</DependentUpon>
     </Compile>
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\pSolicitutF56.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\pFiltreComandes.Designer.vb">
+      <DependentUpon>pFiltreComandes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\pFiltreComandes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\pCercarComandes.Designer.vb">
+      <DependentUpon>pCercarComandes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\pCercarComandes.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\DContacte.Designer.vb">
@@ -742,6 +930,12 @@
     <Compile Include="VISTES\COMU\SelectFiles.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\DResponsableCompra.Designer.vb">
+      <DependentUpon>DResponsableCompra.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\DResponsableCompra.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\DTipusIva.Designer.vb">
       <DependentUpon>DTipusIva.vb</DependentUpon>
     </Compile>
@@ -778,10 +972,13 @@
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\pProveidors.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\SelectContacteProveidor.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\SelectProveidor.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\SelectContacteProveidor.vb">
+    <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\SelectContacteProveidorSub.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="VISTES\CONFIGURACIO\AUXILIARS\PROVEIDORS\SelectProveidorAnotacio.vb">
@@ -1206,8 +1403,17 @@
     <EmbeddedResource Include="VISTES\COMU\AVIS\avis.resx">
       <DependentUpon>avis.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\AVIS\dActualitzar.resx">
+      <DependentUpon>dActualitzar.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VISTES\COMU\DAvisosErrors.resx">
       <DependentUpon>DAvisosErrors.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\DPrint.resx">
+      <DependentUpon>DPrint.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\lstBoxFilter.resx">
+      <DependentUpon>lstBoxFilter.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VISTES\COMU\lstContactes.resx">
       <DependentUpon>lstContactes.vb</DependentUpon>
@@ -1239,11 +1445,20 @@
     <EmbeddedResource Include="VISTES\COMU\lstProveidor.resx">
       <DependentUpon>lstProveidor.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\LVObjectsCopiar.resx">
+      <DependentUpon>LVObjectsCopiar.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VISTES\COMU\LVObjectsImport.resx">
       <DependentUpon>LVObjectsImport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VISTES\COMU\LVSelectObject.resx">
       <DependentUpon>LVSelectObject.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\LVSubObjects1.resx">
+      <DependentUpon>LVSubObjects1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\COMU\pConfigCorreu.resx">
+      <DependentUpon>pConfigCorreu.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\ARTICLES\DArticlePreus.resx">
       <DependentUpon>DArticlePreus.vb</DependentUpon>
@@ -1257,8 +1472,17 @@
     <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DArticleComanda.resx">
       <DependentUpon>DArticleComanda.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DCodiComanda.resx">
+      <DependentUpon>DCodiComanda.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DImportF56Avisos.resx">
+      <DependentUpon>DImportF56Avisos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DNovaComanda.resx">
       <DependentUpon>DNovaComanda.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\DNumMydoc.resx">
+      <DependentUpon>DNumMydoc.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\panelDesplagableProveidor.resx">
       <DependentUpon>panelDesplagableProveidor.vb</DependentUpon>
@@ -1281,6 +1505,12 @@
     <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\panelDesplegableComanda.resx">
       <DependentUpon>panelDesplegableComanda.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\panelPDF.resx">
+      <DependentUpon>panelPDF.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\pArticlesComandes.resx">
+      <DependentUpon>pArticlesComandes.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\pComanda.resx">
       <DependentUpon>pComanda.vb</DependentUpon>
     </EmbeddedResource>
@@ -1292,6 +1522,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\pSolicitutF56.resx">
       <DependentUpon>pSolicitutF56.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\pFiltreComandes.resx">
+      <DependentUpon>pFiltreComandes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\COMANDES\pCercarComandes.resx">
+      <DependentUpon>pCercarComandes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\CONTACTES\DContacte.resx">
       <DependentUpon>DContacte.vb</DependentUpon>
@@ -1365,17 +1601,14 @@
     <EmbeddedResource Include="VISTES\COMU\LVSubObjects.resx">
       <DependentUpon>LVSubObjects.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VISTES\COMU\LVSubObjects1.resx">
-      <DependentUpon>LVSubObjects1.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="VISTES\COMU\LVSubObjects2.resx">
       <DependentUpon>LVSubObjects2.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VISTES\COMU\LVSubObjectsSelect.resx">
-      <DependentUpon>LVSubObjectsSelect.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="VISTES\COMU\SelectFiles.resx">
       <DependentUpon>SelectFiles.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\DResponsableCompra.resx">
+      <DependentUpon>DResponsableCompra.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VISTES\CONFIGURACIO\AUXILIARS\DTipusIva.resx">
       <DependentUpon>DTipusIva.vb</DependentUpon>
@@ -1551,6 +1784,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="ClassDiagram1.cd" />
+    <None Include="credentials.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -1563,6 +1799,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <COMReference Include="AcrobatAccessLib">
+      <Guid>{C523F390-9C83-11D3-9094-00104BD0D535}</Guid>
+      <VersionMajor>3</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
     <COMReference Include="AcroPDFLib">
       <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
       <VersionMajor>1</VersionMajor>
@@ -1589,6 +1834,14 @@
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AxAcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
     </COMReference>
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
@@ -1645,6 +1898,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="OmsXM1.0_TemporaryKey.pfx" />
+    <None Include="packages.config" />
     <None Include="Resources\descarga.png" />
   </ItemGroup>
   <ItemGroup>
@@ -1785,6 +2039,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Ok.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\excel.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\actualitzant.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\descarrega.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

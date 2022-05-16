@@ -1,4 +1,4 @@
-﻿Imports ApliOms
+﻿
 
 Public MustInherit Class LVSubObjects1
     Private dades As DataList

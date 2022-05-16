@@ -1,4 +1,4 @@
-﻿Imports ApliOms
+﻿
 
 Public Class SelectGrup
     Inherits LVObjects
@@ -73,4 +73,20 @@ Public Class SelectGrup
     Public Overrides Function filtrar(idParent As Integer, txt As String) As DataList
         Return Nothing
     End Function
+
+    Public Overrides Function getRow(id As Integer) As ListViewItem
+        Return ModelGrup.getListViewItem(id)
+    End Function
+    Public Overrides Sub imprimir(pdf As Boolean, filtre As String)
+        Call ERRORS.EN_CONSTRUCCIO()
+    End Sub
+    Public Overrides Sub actualitzar(id As List(Of Integer))
+
+    End Sub
+    Public Overrides Sub toolTipText(id As Integer)
+
+    End Sub
+    Public Overrides Sub guardarCopia(id As Integer)
+        Call ERRORS.EN_CONSTRUCCIO()
+    End Sub
 End Class

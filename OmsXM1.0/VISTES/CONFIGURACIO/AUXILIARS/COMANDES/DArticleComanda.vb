@@ -111,6 +111,8 @@ Public Class DArticleComanda
         getData.tpcDescompte = Me.txtDescompte.Text
         getData.nom = Me.txtDescripcio.Text
         getData.preu = Me.txtPreu.Text
+        getData.tIva = Me.listIva.obj
+        getData.unitat = Me.listUnitats.obj
     End Function
 
     Private Sub cmdGuardar_Click(sender As Object, e As EventArgs) Handles cmdGuardar.Click
@@ -187,5 +189,9 @@ Public Class DArticleComanda
     Protected Overrides Sub Finalize()
         MyBase.Finalize()
         Me.Dispose()
+    End Sub
+
+    Private Sub DArticleComanda_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class

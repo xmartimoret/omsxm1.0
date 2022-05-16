@@ -227,26 +227,38 @@ Module dbArticle
     ''' </summary>
     ''' <returns>una llista de centres</returns>
     Private Function getObjectsDBF() As List(Of article)
-        Dim rc As ADODB.Recordset, a As article
+        Dim rc As ADODB.Recordset, a As article, av As frmAvis, i As Long, max As Long
         rc = New ADODB.Recordset
+
         getObjectsDBF = New List(Of article)
-        rc.Open("Select * FROM " & getTable(), DBCONNECT.getConnectionDbf)
-        While Not rc.EOF
-            a = New article(rc(ID).Value,
-                               CONFIG.validarNull(Trim(rc(CODI).Value)),
-                               Trim(CONFIG.validarNull(rc(NOM).Value)),
-                               Trim(CONFIG.validarNull(rc(NOTES).Value)))
-            a.familia = ModelFamilia.getAuxiliar.getObject(rc(ID_FAMILIA).Value)
-            a.unitat = ModelUnitat.getAuxiliar.getObject(rc(ID_UNITAT).Value)
-            a.fabricant = ModelFabricant.getAuxiliar.getObject(rc(ID_FABRICANT).Value)
-            a.iva = ModelTipusIva.getAuxiliar.getObject(rc(ID_IVA).Value)
-            getObjectsDBF.Add(a)
-            rc.MoveNext()
-        End While
+        rc.Open("Select count(id)  FROM " & getTable(), DBCONNECT.getConnectionDbf)
+        If Not rc.EOF Then
+            max = rc(0).Value
+            av = New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("carregantDades"), IDIOMA.getString("articles"), max)
+            rc.Close()
+            rc.Open("Select * FROM " & getTable(), DBCONNECT.getConnectionDbf)
+            i = 1
+            While Not rc.EOF
+                a = New article(rc(ID).Value,
+                                   CONFIG.validarNull(Trim(rc(CODI).Value)),
+                                   Trim(CONFIG.validarNull(rc(NOM).Value)),
+                                   Trim(CONFIG.validarNull(rc(NOTES).Value)))
+                a.familia = ModelFamilia.getAuxiliar.getObject(rc(ID_FAMILIA).Value)
+                a.unitat = ModelUnitat.getAuxiliar.getObject(rc(ID_UNITAT).Value)
+                a.fabricant = ModelFabricant.getAuxiliar.getObject(rc(ID_FABRICANT).Value)
+                a.iva = ModelTipusIva.getAuxiliar.getObject(rc(ID_IVA).Value)
+                getObjectsDBF.Add(a)
+                av.setData(a.nom, i)
+                rc.MoveNext()
+                i = i + 1
+            End While
+        End If
         If rc.State = 1 Then rc.Close()
         rc = Nothing
+        av.tancar()
         getObjectsDBF.Sort()
     End Function
+
     Private Function getTable() As String
         Return DBCONNECT.getTaulaArticle
     End Function

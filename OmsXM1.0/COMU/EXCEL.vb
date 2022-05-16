@@ -74,7 +74,7 @@ Module EXCEL
                 Exit For
             End If
         Next ws
-        Call resetObject(ws)
+        'Call resetObject(ws)
     End Function
     Public Function getWorkSheetByName(wb As XLS.Workbook, nom As String) As XLS.Worksheet
         Dim ws As XLS.Worksheet

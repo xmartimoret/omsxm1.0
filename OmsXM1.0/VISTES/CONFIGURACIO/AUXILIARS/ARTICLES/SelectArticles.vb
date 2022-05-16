@@ -79,4 +79,29 @@
     Public Overrides Function filtrar(idParent As Integer, txt As String) As DataList
         Return Nothing
     End Function
+
+    Public Overrides Function getRow(id As Integer) As ListViewItem
+        Return ModelArticle.getListViewItem(id)
+    End Function
+    Private Function getOrderedObjects() As List(Of article)
+        Dim i As Integer, o As article
+        getOrderedObjects = New List(Of article)
+        For Each i In Me.getIndexs
+            o = ModelArticle.getObject(i)
+            getOrderedObjects.Add(o)
+        Next
+    End Function
+    Public Overrides Sub imprimir(pdf As Boolean, filtre As String)
+        Call modulInfoArticle.execute(getOrderedObjects, pdf.ToString, filtre)
+    End Sub
+
+    Public Overrides Sub actualitzar(id As List(Of Integer))
+
+    End Sub
+    Public Overrides Sub toolTipText(id As Integer)
+
+    End Sub
+    Public Overrides Sub guardarCopia(id As Integer)
+        Call ERRORS.EN_CONSTRUCCIO()
+    End Sub
 End Class

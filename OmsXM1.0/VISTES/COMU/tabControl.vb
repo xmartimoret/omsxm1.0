@@ -38,4 +38,5 @@
         Call activate()
         RaiseEvent isActivate(id)
     End Sub
+
 End Class

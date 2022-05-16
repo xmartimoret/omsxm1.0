@@ -7,11 +7,14 @@
     Private projecteActual As Projecte
     Private llocActual As LlocEntrega
     Private contacteActual As Contacte
+    Private responsableActual As ResponsableCompra
     Friend Event accioMostrar()
     Friend Event selectObject()
     Friend Event selectProjecte()
+    Friend Event selectResponsable()
     Private actualitzar As Boolean
     Private elements As List(Of Control)
+
     Public Sub New()
         InitializeComponent()
         empresaActual = New Empresa
@@ -40,6 +43,7 @@
         elements = getControls()
         llargadaPanel = pHeight
         empresaActual = pEmpresa
+        responsableactual = New ResponsableCompra
         Button1.Text = "&" & pTecla
     End Sub
     Public Sub New(pHeight As Integer, pTecla As String, pEmpresa As Empresa, pProjecte As Projecte)
@@ -49,6 +53,7 @@
         projecteActual = pProjecte
         llocActual = New LlocEntrega
         contacteActual = New Contacte
+        responsableactual = New ResponsableCompra
         Button1.Text = "&" & pTecla
     End Sub
     Public Sub New(pHeight As Integer, pTecla As String, pEmpresa As Empresa, pProjecte As Projecte, pMagatzem As LlocEntrega, pContacte As Contacte)
@@ -59,17 +64,19 @@
         Button1.Text = "&" & pTecla
         llocActual = pMagatzem
         contacteActual = pContacte
+        responsableActual = New ResponsableCompra
     End Sub
-    Public Sub New(pHeight As Integer, pTecla As String, pEmpresa As Empresa, pProjecte As Projecte, pMagatzem As LlocEntrega, pContacte As Contacte, pResponsable As String, pDirector As String)
+    Public Sub New(pHeight As Integer, pTecla As String, pEmpresa As Empresa, pProjecte As Projecte, pMagatzem As LlocEntrega, pContacte As Contacte, pResponsable As ResponsableCompra)
         InitializeComponent()
         llargadaPanel = pHeight
         empresaActual = pEmpresa
         projecteActual = pProjecte
+
         Button1.Text = "&" & pTecla
         llocActual = pMagatzem
         contacteActual = pContacte
-        Me.txtDirector.Text = pDirector
-        Me.txtResponsable.Text = pResponsable
+        responsableactual = pResponsable
+
     End Sub
     Public ReadOnly Property empresa As Empresa
         Get
@@ -92,24 +99,27 @@
             Return llocActual
         End Get
     End Property
+    Public ReadOnly Property responsable As ResponsableCompra
+        Get
+            Return responsableActual
+        End Get
+    End Property
     Private Sub setLanguage()
         Me.lblContacte.Text = IDIOMA.getString("contacte") & ":"
         Me.lblEmpresa.Text = IDIOMA.getString("empresa") & ":"
         Me.lblProjecte.Text = IDIOMA.getString("projecte") & ":"
         Me.lblContacte.Text = IDIOMA.getString("contacte") & ":"
         Me.lblMagatzem.Text = IDIOMA.getString("magatzem") & ":"
-        Me.lblResponsables.Text = IDIOMA.getString("responsables") & ":"
+        Me.lblResponsables.Text = IDIOMA.getString("respCompra") & ":"
     End Sub
     Private Sub validateControls()
         If cbEmpresa.SelectedIndex = -1 Then
             cbProjecte.Enabled = False
             lblDireccio.Text = ""
-            txtDirector.Enabled = False
-            txtResponsable.Enabled = False
+            cbResponsable.Enabled = False
         Else
             cbProjecte.Enabled = True
-            txtDirector.Enabled = True
-            txtResponsable.Enabled = True
+            cbResponsable.Enabled = True
         End If
     End Sub
     Private Sub setEmpresa()
@@ -159,8 +169,6 @@
         listContactes.Dock = DockStyle.Fill
         Me.PanelContacte.Controls.Add(listContactes)
         Call setContacte()
-        If txtResponsable.Text = "" Then txtResponsable.Text = projecteActual.responsable
-        If txtDirector.Text = "" Then txtDirector.Text = projecteActual.director
         Call validateControls()
         RaiseEvent selectProjecte()
     End Sub
@@ -184,6 +192,7 @@
         End If
         RaiseEvent selectObject()
     End Sub
+
     Private ReadOnly Property etiqueta As String
         Get
             Return IDIOMA.getString("projecte") & ": " & projecteActual.nom & " | " & llocActual.nom & " | " & contacteActual.nom
@@ -195,7 +204,14 @@
     Private Function getDadesContacte() As Contacte
         getDadesContacte = contacteActual.copy
     End Function
-
+    Public Sub setObjects(estat As Boolean)
+        Me.cbEmpresa.Enabled = estat
+        If Not estat Then Me.cbEmpresa.BackColor = Color.White
+        Me.cbResponsable.Enabled = estat
+        Me.cbProjecte.Enabled = estat
+        If Not IsNothing(listLLocsEntrega) Then listLLocsEntrega.setObjects(estat)
+        If Not IsNothing(listContactes) Then listContactes.setObjects(estat)
+    End Sub
     Friend Sub setAccio()
         If lblAccio.Text = " - " Then
             lblAccio.Text = " + "
@@ -234,21 +250,23 @@
     End Sub
 
     Private Sub cbEmpresa_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbEmpresa.SelectedIndexChanged
+
         If cbEmpresa.SelectedIndex > -1 Then
-            empresaActual = cbEmpresa.SelectedItem
-            Call setEmpresa()
-            If lblAccio.Text = " + " Then
-                Call setAccio()
+                empresaActual = cbEmpresa.SelectedItem
+                Call setEmpresa()
+                If lblAccio.Text = " + " Then
+                    Call setAccio()
+                End If
+            Else
+                empresaActual = Nothing
+                Call setEmpresa()
+                cbProjecte.SelectedIndex = -1
+                If lblAccio.Text = " - " Then
+                    Call setAccio()
+                End If
             End If
-        Else
-            empresaActual = Nothing
-            Call setEmpresa()
-            cbProjecte.SelectedIndex = -1
-            If lblAccio.Text = " - " Then
-                Call setAccio()
-            End If
-        End If
-        Call validateControls()
+            Call validateControls()
+
     End Sub
     Private Sub cbEmpresa_TextChanged(sender As Object, e As EventArgs) Handles cbEmpresa.TextChanged
         If actualitzar Then
@@ -259,19 +277,22 @@
                     Call setAccio()
                 End If
             End If
+
         End If
     End Sub
     Private Sub cbProjecte_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbProjecte.SelectedIndexChanged
+
         If cbProjecte.SelectedIndex > -1 Then
-            projecteActual = cbProjecte.SelectedItem
-            Call setProjecte()
-        Else
-            projecteActual = Nothing
-            listLLocsEntrega = Nothing
-            Me.PanelContacte.Controls.Clear()
-            Me.panelMagatzem.Controls.Clear()
-        End If
-        Call validateControls()
+                projecteActual = cbProjecte.SelectedItem
+                Call setProjecte()
+            Else
+                projecteActual = Nothing
+                listLLocsEntrega = Nothing
+                Me.PanelContacte.Controls.Clear()
+                Me.panelMagatzem.Controls.Clear()
+            End If
+            Call validateControls()
+
     End Sub
     Private Sub cbProjecte_TextChanged(sender As Object, e As EventArgs) Handles cbProjecte.TextChanged
         If actualitzar Then
@@ -286,17 +307,17 @@
     Private Sub panelDesplegableEmpresa_Load(sender As Object, e As EventArgs) Handles Me.Load
         actualitzar = False
         cbEmpresa.Items.AddRange(ModelEmpresa.getListObjects)
+        cbResponsable.Items.AddRange(ModelResponsableCompra.getAuxiliar.getListObjects)
         actualitzar = True
         If empresaActual IsNot Nothing Then Me.cbEmpresa.SelectedItem = empresaActual
+        If responsableActual IsNot Nothing Then Me.cbResponsable.SelectedItem = responsableActual
         Call setLanguage()
         Call setAccio()
         Call validateControls()
     End Sub
 
     Private Sub txt_KeyDown(sender As Object, e As KeyEventArgs) Handles panelMagatzem.KeyDown,
-                                                                         PanelContacte.KeyDown,
-                                                                         txtDirector.KeyDown,
-                                                                         txtResponsable.KeyDown
+                                                                         PanelContacte.KeyDown
         If e.KeyValue = Keys.Enter Or e.KeyValue = Keys.Down Then
             e.Handled = False
             Call SendKeys.Send("{tab}")
@@ -309,8 +330,7 @@
     Private Function getControls() As List(Of Control)
         getControls = New List(Of Control)
         getControls.Add(panelMagatzem)
-        getControls.Add(txtResponsable)
-        getControls.Add(txtDirector)
+        getControls.Add(cbResponsable)
     End Function
     Private Sub getTab(sender As Object, p As Integer)
         Dim i As Integer
@@ -337,4 +357,15 @@
         contacteActual = Nothing
     End Sub
 
+    Private Sub cbResponsable_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbResponsable.SelectedIndexChanged
+        If actualitzar Then
+            If cbResponsable.SelectedIndex > -1 Then
+            responsableActual = cbResponsable.SelectedItem
+        Else
+            responsableActual = Nothing
+        End If
+            RaiseEvent selectResponsable()
+        End If
+        Call validateControls()
+    End Sub
 End Class

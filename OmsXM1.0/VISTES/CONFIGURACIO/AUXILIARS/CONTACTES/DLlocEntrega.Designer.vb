@@ -42,18 +42,20 @@ Partial Class DLlocEntrega
         Me.txtNom = New System.Windows.Forms.TextBox()
         Me.xecActiu = New OmsXM.XEC()
         Me.xecPredeterminat = New OmsXM.XEC()
+        Me.cmdImprimirExcel = New System.Windows.Forms.Button()
+        Me.cmdImprimirPDF = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'pPais
         '
-        Me.pPais.Location = New System.Drawing.Point(462, 214)
+        Me.pPais.Location = New System.Drawing.Point(464, 229)
         Me.pPais.Name = "pPais"
         Me.pPais.Size = New System.Drawing.Size(232, 29)
         Me.pPais.TabIndex = 6
         '
         'pProvincia
         '
-        Me.pProvincia.Location = New System.Drawing.Point(154, 214)
+        Me.pProvincia.Location = New System.Drawing.Point(156, 229)
         Me.pProvincia.Name = "pProvincia"
         Me.pProvincia.Size = New System.Drawing.Size(232, 29)
         Me.pProvincia.TabIndex = 5
@@ -61,7 +63,7 @@ Partial Class DLlocEntrega
         'lblNotes
         '
         Me.lblNotes.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNotes.Location = New System.Drawing.Point(4, 280)
+        Me.lblNotes.Location = New System.Drawing.Point(6, 295)
         Me.lblNotes.Name = "lblNotes"
         Me.lblNotes.Size = New System.Drawing.Size(141, 40)
         Me.lblNotes.TabIndex = 143
@@ -72,7 +74,7 @@ Partial Class DLlocEntrega
         '
         Me.txtNotes.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.txtNotes.ForeColor = System.Drawing.Color.Blue
-        Me.txtNotes.Location = New System.Drawing.Point(155, 280)
+        Me.txtNotes.Location = New System.Drawing.Point(157, 295)
         Me.txtNotes.Multiline = True
         Me.txtNotes.Name = "txtNotes"
         Me.txtNotes.Size = New System.Drawing.Size(540, 82)
@@ -83,7 +85,7 @@ Partial Class DLlocEntrega
         Me.cmdCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmdCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdCancelar.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.cmdCancelar.Location = New System.Drawing.Point(546, 377)
+        Me.cmdCancelar.Location = New System.Drawing.Point(548, 388)
         Me.cmdCancelar.Name = "cmdCancelar"
         Me.cmdCancelar.Size = New System.Drawing.Size(148, 31)
         Me.cmdCancelar.TabIndex = 11
@@ -93,7 +95,7 @@ Partial Class DLlocEntrega
         '
         Me.cmdGuardar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cmdGuardar.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.cmdGuardar.Location = New System.Drawing.Point(155, 377)
+        Me.cmdGuardar.Location = New System.Drawing.Point(157, 388)
         Me.cmdGuardar.Name = "cmdGuardar"
         Me.cmdGuardar.Size = New System.Drawing.Size(133, 31)
         Me.cmdGuardar.TabIndex = 10
@@ -102,7 +104,7 @@ Partial Class DLlocEntrega
         'lblPais
         '
         Me.lblPais.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPais.Location = New System.Drawing.Point(398, 220)
+        Me.lblPais.Location = New System.Drawing.Point(400, 235)
         Me.lblPais.Name = "lblPais"
         Me.lblPais.Size = New System.Drawing.Size(58, 23)
         Me.lblPais.TabIndex = 140
@@ -112,7 +114,7 @@ Partial Class DLlocEntrega
         'lblProvincia
         '
         Me.lblProvincia.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblProvincia.Location = New System.Drawing.Point(7, 216)
+        Me.lblProvincia.Location = New System.Drawing.Point(9, 231)
         Me.lblProvincia.Name = "lblProvincia"
         Me.lblProvincia.Size = New System.Drawing.Size(141, 23)
         Me.lblProvincia.TabIndex = 139
@@ -123,7 +125,7 @@ Partial Class DLlocEntrega
         '
         Me.txtCodiPostal.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.txtCodiPostal.ForeColor = System.Drawing.Color.Blue
-        Me.txtCodiPostal.Location = New System.Drawing.Point(553, 185)
+        Me.txtCodiPostal.Location = New System.Drawing.Point(555, 200)
         Me.txtCodiPostal.Name = "txtCodiPostal"
         Me.txtCodiPostal.Size = New System.Drawing.Size(141, 26)
         Me.txtCodiPostal.TabIndex = 4
@@ -131,7 +133,7 @@ Partial Class DLlocEntrega
         'lblCodiPostal
         '
         Me.lblCodiPostal.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCodiPostal.Location = New System.Drawing.Point(476, 188)
+        Me.lblCodiPostal.Location = New System.Drawing.Point(478, 203)
         Me.lblCodiPostal.Name = "lblCodiPostal"
         Me.lblCodiPostal.Size = New System.Drawing.Size(71, 23)
         Me.lblCodiPostal.TabIndex = 138
@@ -142,7 +144,7 @@ Partial Class DLlocEntrega
         '
         Me.txtPoblacio.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.txtPoblacio.ForeColor = System.Drawing.Color.Blue
-        Me.txtPoblacio.Location = New System.Drawing.Point(154, 182)
+        Me.txtPoblacio.Location = New System.Drawing.Point(156, 197)
         Me.txtPoblacio.Name = "txtPoblacio"
         Me.txtPoblacio.Size = New System.Drawing.Size(232, 26)
         Me.txtPoblacio.TabIndex = 3
@@ -150,7 +152,7 @@ Partial Class DLlocEntrega
         'lblPoblacio
         '
         Me.lblPoblacio.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPoblacio.Location = New System.Drawing.Point(4, 182)
+        Me.lblPoblacio.Location = New System.Drawing.Point(6, 197)
         Me.lblPoblacio.Name = "lblPoblacio"
         Me.lblPoblacio.Size = New System.Drawing.Size(141, 23)
         Me.lblPoblacio.TabIndex = 137
@@ -160,7 +162,7 @@ Partial Class DLlocEntrega
         'lblDireccio
         '
         Me.lblDireccio.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDireccio.Location = New System.Drawing.Point(5, 63)
+        Me.lblDireccio.Location = New System.Drawing.Point(7, 78)
         Me.lblDireccio.Name = "lblDireccio"
         Me.lblDireccio.Size = New System.Drawing.Size(141, 40)
         Me.lblDireccio.TabIndex = 136
@@ -171,7 +173,7 @@ Partial Class DLlocEntrega
         '
         Me.txtDireccio.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.txtDireccio.ForeColor = System.Drawing.Color.Blue
-        Me.txtDireccio.Location = New System.Drawing.Point(155, 63)
+        Me.txtDireccio.Location = New System.Drawing.Point(157, 78)
         Me.txtDireccio.Multiline = True
         Me.txtDireccio.Name = "txtDireccio"
         Me.txtDireccio.Size = New System.Drawing.Size(539, 107)
@@ -180,7 +182,7 @@ Partial Class DLlocEntrega
         'lblNom
         '
         Me.lblNom.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNom.Location = New System.Drawing.Point(5, 25)
+        Me.lblNom.Location = New System.Drawing.Point(7, 40)
         Me.lblNom.Name = "lblNom"
         Me.lblNom.Size = New System.Drawing.Size(141, 40)
         Me.lblNom.TabIndex = 135
@@ -191,7 +193,7 @@ Partial Class DLlocEntrega
         '
         Me.lblId.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblId.ForeColor = System.Drawing.Color.Blue
-        Me.lblId.Location = New System.Drawing.Point(152, 7)
+        Me.lblId.Location = New System.Drawing.Point(154, 10)
         Me.lblId.Name = "lblId"
         Me.lblId.Size = New System.Drawing.Size(156, 23)
         Me.lblId.TabIndex = 134
@@ -201,7 +203,7 @@ Partial Class DLlocEntrega
         'lblIdCaption
         '
         Me.lblIdCaption.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblIdCaption.Location = New System.Drawing.Point(5, 6)
+        Me.lblIdCaption.Location = New System.Drawing.Point(7, 9)
         Me.lblIdCaption.Name = "lblIdCaption"
         Me.lblIdCaption.Size = New System.Drawing.Size(141, 23)
         Me.lblIdCaption.TabIndex = 133
@@ -212,7 +214,7 @@ Partial Class DLlocEntrega
         '
         Me.txtNom.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.txtNom.ForeColor = System.Drawing.Color.Blue
-        Me.txtNom.Location = New System.Drawing.Point(155, 33)
+        Me.txtNom.Location = New System.Drawing.Point(157, 48)
         Me.txtNom.Name = "txtNom"
         Me.txtNom.Size = New System.Drawing.Size(539, 26)
         Me.txtNom.TabIndex = 1
@@ -222,7 +224,7 @@ Partial Class DLlocEntrega
         Me.xecActiu.AutoSize = True
         Me.xecActiu.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.xecActiu.ForeColor = System.Drawing.Color.Black
-        Me.xecActiu.Location = New System.Drawing.Point(154, 252)
+        Me.xecActiu.Location = New System.Drawing.Point(156, 267)
         Me.xecActiu.Name = "xecActiu"
         Me.xecActiu.Size = New System.Drawing.Size(59, 22)
         Me.xecActiu.TabIndex = 7
@@ -235,18 +237,40 @@ Partial Class DLlocEntrega
         Me.xecPredeterminat.AutoSize = True
         Me.xecPredeterminat.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.xecPredeterminat.ForeColor = System.Drawing.Color.Black
-        Me.xecPredeterminat.Location = New System.Drawing.Point(550, 249)
+        Me.xecPredeterminat.Location = New System.Drawing.Point(552, 264)
         Me.xecPredeterminat.Name = "xecPredeterminat"
         Me.xecPredeterminat.Size = New System.Drawing.Size(141, 22)
         Me.xecPredeterminat.TabIndex = 8
         Me.xecPredeterminat.Text = "xecPredeterminat"
         Me.xecPredeterminat.UseVisualStyleBackColor = True
         '
+        'cmdImprimirExcel
+        '
+        Me.cmdImprimirExcel.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdImprimirExcel.Image = Global.OmsXM.My.Resources.Resources.excel
+        Me.cmdImprimirExcel.Location = New System.Drawing.Point(631, 5)
+        Me.cmdImprimirExcel.Name = "cmdImprimirExcel"
+        Me.cmdImprimirExcel.Size = New System.Drawing.Size(26, 28)
+        Me.cmdImprimirExcel.TabIndex = 145
+        Me.cmdImprimirExcel.UseVisualStyleBackColor = True
+        '
+        'cmdImprimirPDF
+        '
+        Me.cmdImprimirPDF.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdImprimirPDF.Image = Global.OmsXM.My.Resources.Resources.pdf
+        Me.cmdImprimirPDF.Location = New System.Drawing.Point(663, 5)
+        Me.cmdImprimirPDF.Name = "cmdImprimirPDF"
+        Me.cmdImprimirPDF.Size = New System.Drawing.Size(32, 28)
+        Me.cmdImprimirPDF.TabIndex = 144
+        Me.cmdImprimirPDF.UseVisualStyleBackColor = True
+        '
         'DLlocEntrega
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(709, 420)
+        Me.ClientSize = New System.Drawing.Size(709, 431)
+        Me.Controls.Add(Me.cmdImprimirExcel)
+        Me.Controls.Add(Me.cmdImprimirPDF)
         Me.Controls.Add(Me.xecPredeterminat)
         Me.Controls.Add(Me.pPais)
         Me.Controls.Add(Me.pProvincia)
@@ -299,4 +323,6 @@ Partial Class DLlocEntrega
     Friend WithEvents lblIdCaption As Label
     Friend WithEvents txtNom As TextBox
     Friend WithEvents xecPredeterminat As XEC
+    Friend WithEvents cmdImprimirExcel As Button
+    Friend WithEvents cmdImprimirPDF As Button
 End Class

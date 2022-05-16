@@ -83,7 +83,7 @@ Public Class dBorrarDades
     Private Sub setEmpreses()
         Dim empreses As List(Of Empresa)
         actualitzar = False
-        empreses = ModelEmpresa.getObjects
+        empreses = ModelEmpresa.getObjects("")
         cbEmpresa.Items.Clear()
         If empreses.Count > 0 Then cbEmpresa.Items.AddRange(ModelEmpresa.getListObjects(empreses))
         Call validateControls()

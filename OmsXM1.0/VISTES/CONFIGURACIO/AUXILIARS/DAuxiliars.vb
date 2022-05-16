@@ -1,5 +1,6 @@
 ﻿Imports System.Windows.Forms
 Public Class DAuxiliars
+    Private ObjectActual As Object
     Public Function getPaisos() As List(Of Object)
         Dim p As SelectAuxiliar
         p = New SelectAuxiliar(DBCONNECT.getTaulaPais, 0, True, True, IDIOMA.getString("paisos"), 1)
@@ -177,6 +178,36 @@ Public Class DAuxiliars
         getProveidors = p.proveidors
         Me.Dispose()
     End Function
+    Public Function getProveidor() As Proveidor
+        Dim p As SelectProveidor
+        p = New SelectProveidor(0, False, True, IDIOMA.getString("proveidors"), 1)
+        Me.Text = IDIOMA.getString("selectProveidor")
+        p.Dock = DockStyle.Fill
+        PData.Controls.Clear()
+        PData.Controls.Add(p)
+        AddHandler p.selectObject, AddressOf setObject
+        p.Show()
+        Me.ShowDialog()
+        If TypeName(ObjectActual) = "Proveidor" Then getProveidor = ObjectActual
+        Me.Dispose()
+    End Function
+    Public Function getContacteProveidor(pProveidor As Proveidor) As ProveidorCont
+        Dim p As SelectContacteProveidor
+        p = New SelectContacteProveidor(pProveidor.id, pProveidor.nom)
+        getContacteProveidor = Nothing
+        Me.Text = IDIOMA.getString("selectContacteProveidor")
+        p.Dock = DockStyle.Fill
+        PData.Controls.Clear()
+        PData.Controls.Add(p)
+        AddHandler p.selectObject, AddressOf setObject
+        p.Show()
+        Me.ShowDialog()
+        If TypeName(ObjectActual) = "ProveidorCont" Then getContacteProveidor = ObjectActual
+        Me.Dispose()
+    End Function
+    Private Sub setObject(p As Object)
+        ObjectActual = p
+    End Sub
     Public Sub setProveidors()
         Dim tp As SelectProveidor
         tp = New SelectProveidor(1, True, True, IDIOMA.getString("proveidors"), 1)
@@ -200,6 +231,19 @@ Public Class DAuxiliars
         getContactes = p.contactes
         Me.Dispose()
     End Function
+    Public Function getContacte() As Contacte
+        Dim p As SelectContactes
+        p = New SelectContactes(0, False, True, IDIOMA.getString("contactes"), 1)
+        Me.Text = IDIOMA.getString("selectContactes")
+        p.Dock = DockStyle.Fill
+        PData.Controls.Clear()
+        PData.Controls.Add(p)
+        AddHandler p.selectObject, AddressOf setObject
+        p.Show()
+        Me.ShowDialog()
+        If TypeName(ObjectActual) = "Contacte" Then getContacte = ObjectActual
+        Me.Dispose()
+    End Function
     Public Sub setContactes()
         Dim tp As SelectContactes
         tp = New SelectContactes(1, True, True, IDIOMA.getString("contactes"), 1)
@@ -220,7 +264,20 @@ Public Class DAuxiliars
         PData.Controls.Add(p)
         p.Show()
         Me.ShowDialog()
-        getEntregues = p.LlocEntregas()
+        getEntregues = p.LlocEntregues()
+        Me.Dispose()
+    End Function
+    Public Function getEntrega() As LlocEntrega
+        Dim p As SelectContactes
+        p = New SelectContactes(0, False, True, IDIOMA.getString("contactes"), 1)
+        Me.Text = IDIOMA.getString("selectContactes")
+        p.Dock = DockStyle.Fill
+        PData.Controls.Clear()
+        PData.Controls.Add(p)
+        AddHandler p.selectObject, AddressOf setObject
+        p.Show()
+        Me.ShowDialog()
+        If TypeName(ObjectActual) = "LlocEntrega" Then getEntrega = ObjectActual
         Me.Dispose()
     End Function
     Public Sub setEntregues()
@@ -234,5 +291,42 @@ Public Class DAuxiliars
         Me.ShowDialog()
         Me.Dispose()
     End Sub
+    Public Sub setCodisComanda()
+        Dim tp As SelectCodiComanda
+        tp = New SelectCodiComanda(1, False, True, IDIOMA.getString("codisComandaModificar"), 1)
+        Me.Text = IDIOMA.getString("codisComanda")
+        tp.Dock = DockStyle.Fill
+        PData.Controls.Clear()
+        PData.Controls.Add(tp)
+        tp.Show()
+        Me.ShowDialog()
+        Me.Dispose()
+    End Sub
+    Public Function getResponsablesCompra() As List(Of Object)
+        Dim tp As SelectAuxiliar
+        tp = New SelectAuxiliar(DBCONNECT.getTaulaResponsableCompra, 0, False, True, IDIOMA.getString("responsableCompra"), 2)
+        Me.Text = IDIOMA.getString("selectResponsable")
+        tp.Dock = DockStyle.Fill
+        PData.Controls.Clear()
+        PData.Controls.Add(tp)
+        tp.Show()
+        Me.ShowDialog()
+        getResponsablesCompra = tp.objects
+        Me.Dispose()
+    End Function
+    Public Sub setResponsableCompra()
+        Dim tp As SelectAuxiliar
+        tp = New SelectAuxiliar(DBCONNECT.getTaulaResponsableCompra, 1, True, True, IDIOMA.getString("responsableCompra"), 1)
+        Me.Text = IDIOMA.getString("responsableCompra")
+        tp.Dock = DockStyle.Fill
+        PData.Controls.Clear()
+        PData.Controls.Add(tp)
+        tp.Show()
+        Me.ShowDialog()
+        Me.Dispose()
+    End Sub
 
+    Private Sub PData_Paint(sender As Object, e As PaintEventArgs) Handles PData.Paint
+
+    End Sub
 End Class

@@ -6,6 +6,38 @@ Module ModelarticlePreu
         If Not isUpdated() Then objects = getRemoteObjects()
         getObjects = objects.FindAll(Function(x) x.idArticle = idArticle)
     End Function
+    Public Function getObjects(idArticle As Integer, idProveidor As Integer) As List(Of ArticlePreu)
+        Dim ap As ArticlePreu
+        If Not isUpdated() Then objects = getRemoteObjects()
+        getObjects = New List(Of ArticlePreu)
+        For Each ap In objects
+            If ap.idProveidor = idProveidor Then
+                If ap.idArticle = idArticle Then
+                    getObjects.Add(ap)
+                End If
+            End If
+        Next
+        ap = Nothing
+    End Function
+    Public Function getLastObject(idArticle As Integer, idProveidor As Integer) As ArticlePreu
+        Dim tempObjects As List(Of ArticlePreu), ap As ArticlePreu, exist As Boolean, temp As ArticlePreu
+        If Not isUpdated() Then objects = getRemoteObjects()
+        tempObjects = getObjects(idArticle, idProveidor)
+        temp = New ArticlePreu
+        For Each ap In tempObjects
+            If ap.data >= temp.data Then
+                temp = ap
+                exist = True
+            End If
+        Next
+        tempObjects = Nothing
+        ap = Nothing
+        If exist Then
+            Return temp
+        Else
+            Return Nothing
+        End If
+    End Function
     Public Function getDataList(articlepreus As List(Of ArticlePreu)) As DataList
         Dim a As ArticlePreu
         getDataList = New DataList
@@ -34,8 +66,22 @@ Module ModelarticlePreu
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Exists(Function(x) x.id <> obj.id And x.nom = obj.nom)
     End Function
-
+    Public Function exist(idArticle As Integer, idProveidor As Integer, preu As Double, descompte As Double)
+        Dim ap As ArticlePreu
+        If Not isUpdated() Then objects = getRemoteObjects()
+        For Each ap In objects
+            If ap.idArticle = idArticle Then
+                If ap.idProveidor = idProveidor Then
+                    If preu = ap.base And descompte = ap.descompte Then
+                        Return True
+                    End If
+                End If
+            End If
+        Next
+        Return False
+    End Function
     Public Function save(obj As ArticlePreu) As Integer
+        If Not isUpdated() Then objects = getRemoteObjects()
         If obj.id = -1 Then
             obj.id = dbArticlePreu.insert(obj)
         Else

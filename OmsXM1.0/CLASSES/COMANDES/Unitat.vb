@@ -1,5 +1,6 @@
 ﻿Public Class Unitat
     Inherits Base
+    Public Property actiu As Boolean = True
     Public Sub New()
     End Sub
     Public Sub New(pId As Integer, pCodi As String, pNom As String)

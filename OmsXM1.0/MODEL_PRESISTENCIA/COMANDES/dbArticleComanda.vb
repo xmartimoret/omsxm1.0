@@ -171,12 +171,20 @@ Module dbArticleComanda
                                           " WHERE " & ID & "=?"
             .Parameters.Append(ADOPARAM.ToInt(obj.idComanda))
             .Parameters.Append(ADOPARAM.ToInt(obj.pos))
-            .Parameters.Append(ADOPARAM.ToSingle(obj.preu))
-            .Parameters.Append(ADOPARAM.ToSingle(obj.tpcDescompte))
-            .Parameters.Append(ADOPARAM.ToInt(obj.tIva.id))
-            .Parameters.Append(ADOPARAM.ToInt(obj.unitat.id))
-            .Parameters.Append(ADOPARAM.ToSingle(obj.quantitat))
-            .Parameters.Append(ADOPARAM.ToString(obj.nom))
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.preu * 1000, 0)))
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.tpcDescompte * 100, 0)))
+            If Not IsNothing(obj.tIva) Then
+                .Parameters.Append(ADOPARAM.ToInt(obj.tIva.id))
+            Else
+                .Parameters.Append(ADOPARAM.ToInt(-1))
+            End If
+            If Not IsNothing(obj.unitat) Then
+                .Parameters.Append(ADOPARAM.ToInt(obj.unitat.id))
+            Else
+                .Parameters.Append(ADOPARAM.ToInt(-1))
+            End If
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.quantitat * 100.0)))
+            .Parameters.Append(ADOPARAM.ToString(Left(obj.nom, 249)))
             .Parameters.Append(ADOPARAM.ToString(obj.codi))
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
         End With
@@ -209,12 +217,20 @@ Module dbArticleComanda
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
             .Parameters.Append(ADOPARAM.ToInt(obj.idComanda))
             .Parameters.Append(ADOPARAM.ToInt(obj.pos))
-            .Parameters.Append(ADOPARAM.ToSingle(obj.preu))
-            .Parameters.Append(ADOPARAM.ToSingle(obj.tpcDescompte))
-            .Parameters.Append(ADOPARAM.ToInt(obj.tIva.id))
-            .Parameters.Append(ADOPARAM.ToInt(obj.unitat.id))
-            .Parameters.Append(ADOPARAM.ToSingle(obj.quantitat))
-            .Parameters.Append(ADOPARAM.ToString(obj.nom))
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.preu * 1000, 0)))
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.tpcDescompte * 100, 0)))
+            If Not IsNothing(obj.tIva) Then
+                .Parameters.Append(ADOPARAM.ToInt(obj.tIva.id))
+            Else
+                .Parameters.Append(ADOPARAM.ToInt(-1))
+            End If
+            If Not IsNothing(obj.unitat) Then
+                .Parameters.Append(ADOPARAM.ToInt(obj.unitat.id))
+            Else
+                .Parameters.Append(ADOPARAM.ToInt(-1))
+            End If
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.quantitat * 100.0)))
+            .Parameters.Append(ADOPARAM.ToString(Left(obj.nom, 249)))
             .Parameters.Append(ADOPARAM.ToString(obj.codi))
         End With
         Try
@@ -273,22 +289,24 @@ Module dbArticleComanda
     ''' </summary>
     ''' <returns>una llista de centres</returns>
     Private Function getObjectsDBF() As List(Of articleComanda)
-        Dim rc As ADODB.Recordset, a As articleComanda
+        Dim rc As ADODB.Recordset, a As articleComanda, p As frmAvis
         rc = New ADODB.Recordset
         getObjectsDBF = New List(Of articleComanda)
+        p = New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("carregantDades"), IDIOMA.getString("articlesComandes"))
         rc.Open("Select * FROM " & getTable(), DBCONNECT.getConnectionDbf)
         While Not rc.EOF
             a = New articleComanda(rc(ID).Value, rc(ID_COMANDA).Value,
                                rc(POSICIO_FILA).Value, Trim(CONFIG.validarNull(rc(CODI).Value)),
                                Trim(CONFIG.validarNull(rc(NOM).Value)))
-            a.preu = rc(PREU).Value
-            a.tpcDescompte = rc(DESCOMPTE).Value
-            a.quantitat = rc(QUANTITAT).Value
+            a.preu = Math.Round(rc(PREU).Value / 1000, 3)
+            a.tpcDescompte = Math.Round(rc(DESCOMPTE).Value / 100, 2)
+            a.quantitat = Math.Round(rc(QUANTITAT).Value / 100, 2)
             a.tIva = ModelTipusIva.getAuxiliar.getObject(rc(ID_TIPUS_IVA).Value)
             a.unitat = ModelUnitat.getAuxiliar.getObject(rc(ID_UNITAT).Value)
             getObjectsDBF.Add(a)
             rc.MoveNext()
         End While
+        p.tancar()
         If rc.State = 1 Then rc.Close()
         rc = Nothing
     End Function

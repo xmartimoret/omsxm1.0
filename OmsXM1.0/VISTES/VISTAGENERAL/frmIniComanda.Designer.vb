@@ -25,8 +25,26 @@ Partial Class frmIniComanda
         Me.pMenu = New System.Windows.Forms.Panel()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.mnuAplicacio = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuApliServidor = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuApliRutaDirectori = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuServidorMydoc = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
+        Me.mnuActualitzarF56 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuActualitzarTot = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator()
+        Me.mnuActualitzarProveidor = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuActualitzarMagatzem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuActualitzarProjecte = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuActualitzarResponsable = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuActualitzarEmpresa = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
+        Me.mnuRutaSolicituts = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuRutaComandes = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuRutaInformes = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator10 = New System.Windows.Forms.ToolStripSeparator()
+        Me.mnuReset = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator11 = New System.Windows.Forms.ToolStripSeparator()
+        Me.mnuAplicacioVaris = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuAplicacioFirmaCorreu = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuConfig = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuAxiliars = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuTipusPagament = New System.Windows.Forms.ToolStripMenuItem()
@@ -35,26 +53,39 @@ Partial Class frmIniComanda
         Me.mnuTipusIva = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuUnitats = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuFamilies = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuCodiComanda = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuResponsableCompra = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.mnuCentres = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuLlocsEntrega = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuContactesCentre = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.mnuProveidors = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuFabricants = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.mnuFabricants = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuArticles = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuSolicitutComanda = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuEditarSolicitutComanda = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator12 = New System.Windows.Forms.ToolStripSeparator()
+        Me.MYDOCToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WorkFlowPedidosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuComandes = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuImportF56 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.mnuCodisComanda2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
         Me.mnuNovaComanda = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuVeureComandaEdicio = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
-        Me.mnuVeureComandes = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuComandesEnviar = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
+        Me.mnuComandaEliminar = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuInformes = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuF56 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuEnviarF56 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuInformeArticles = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuinformeArticlesComandes = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuInfoComandes = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnucercadorComandes = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuComptabilitat = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuInformeSubctesCompra = New System.Windows.Forms.ToolStripMenuItem()
         Me.panelTabs = New System.Windows.Forms.Panel()
         Me.pData = New System.Windows.Forms.Panel()
         Me.pMenu.SuspendLayout()
@@ -74,7 +105,7 @@ Partial Class frmIniComanda
         'MenuStrip1
         '
         Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAplicacio, Me.mnuConfig, Me.mnuSolicitutComanda, Me.mnuComandes, Me.mnuInformes})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAplicacio, Me.mnuConfig, Me.mnuComandes, Me.mnuInformes})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(4, 2, 0, 2)
@@ -84,140 +115,262 @@ Partial Class frmIniComanda
         '
         'mnuAplicacio
         '
-        Me.mnuAplicacio.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuApliServidor, Me.mnuApliRutaDirectori})
+        Me.mnuAplicacio.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuApliRutaDirectori, Me.mnuServidorMydoc, Me.ToolStripSeparator8, Me.mnuActualitzarF56, Me.ToolStripSeparator9, Me.mnuRutaSolicituts, Me.mnuRutaComandes, Me.mnuRutaInformes, Me.ToolStripSeparator10, Me.mnuReset, Me.ToolStripSeparator11, Me.mnuAplicacioVaris})
         Me.mnuAplicacio.Name = "mnuAplicacio"
         Me.mnuAplicacio.Size = New System.Drawing.Size(66, 20)
         Me.mnuAplicacio.Text = "aplicacio"
         '
-        'mnuApliServidor
-        '
-        Me.mnuApliServidor.Name = "mnuApliServidor"
-        Me.mnuApliServidor.Size = New System.Drawing.Size(205, 22)
-        Me.mnuApliServidor.Text = "Sewrvidor"
-        '
         'mnuApliRutaDirectori
         '
         Me.mnuApliRutaDirectori.Name = "mnuApliRutaDirectori"
-        Me.mnuApliRutaDirectori.Size = New System.Drawing.Size(205, 22)
+        Me.mnuApliRutaDirectori.Size = New System.Drawing.Size(213, 22)
         Me.mnuApliRutaDirectori.Text = "Ruta Directgori Aplicacio"
+        '
+        'mnuServidorMydoc
+        '
+        Me.mnuServidorMydoc.Name = "mnuServidorMydoc"
+        Me.mnuServidorMydoc.Size = New System.Drawing.Size(213, 22)
+        Me.mnuServidorMydoc.Text = "Servidor Mydoc"
+        '
+        'ToolStripSeparator8
+        '
+        Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
+        Me.ToolStripSeparator8.Size = New System.Drawing.Size(210, 6)
+        '
+        'mnuActualitzarF56
+        '
+        Me.mnuActualitzarF56.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuActualitzarTot, Me.ToolStripSeparator7, Me.mnuActualitzarProveidor, Me.mnuActualitzarMagatzem, Me.mnuActualitzarProjecte, Me.mnuActualitzarResponsable, Me.mnuActualitzarEmpresa})
+        Me.mnuActualitzarF56.Name = "mnuActualitzarF56"
+        Me.mnuActualitzarF56.Size = New System.Drawing.Size(213, 22)
+        Me.mnuActualitzarF56.Text = "actualitzarF56"
+        '
+        'mnuActualitzarTot
+        '
+        Me.mnuActualitzarTot.Name = "mnuActualitzarTot"
+        Me.mnuActualitzarTot.Size = New System.Drawing.Size(183, 22)
+        Me.mnuActualitzarTot.Text = "tot"
+        '
+        'ToolStripSeparator7
+        '
+        Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
+        Me.ToolStripSeparator7.Size = New System.Drawing.Size(180, 6)
+        '
+        'mnuActualitzarProveidor
+        '
+        Me.mnuActualitzarProveidor.Name = "mnuActualitzarProveidor"
+        Me.mnuActualitzarProveidor.Size = New System.Drawing.Size(183, 22)
+        Me.mnuActualitzarProveidor.Text = "proveidor"
+        '
+        'mnuActualitzarMagatzem
+        '
+        Me.mnuActualitzarMagatzem.Name = "mnuActualitzarMagatzem"
+        Me.mnuActualitzarMagatzem.Size = New System.Drawing.Size(183, 22)
+        Me.mnuActualitzarMagatzem.Text = "magatzems"
+        '
+        'mnuActualitzarProjecte
+        '
+        Me.mnuActualitzarProjecte.Name = "mnuActualitzarProjecte"
+        Me.mnuActualitzarProjecte.Size = New System.Drawing.Size(183, 22)
+        Me.mnuActualitzarProjecte.Text = "projectes"
+        '
+        'mnuActualitzarResponsable
+        '
+        Me.mnuActualitzarResponsable.Name = "mnuActualitzarResponsable"
+        Me.mnuActualitzarResponsable.Size = New System.Drawing.Size(183, 22)
+        Me.mnuActualitzarResponsable.Text = "responsable Compra"
+        '
+        'mnuActualitzarEmpresa
+        '
+        Me.mnuActualitzarEmpresa.Name = "mnuActualitzarEmpresa"
+        Me.mnuActualitzarEmpresa.Size = New System.Drawing.Size(183, 22)
+        Me.mnuActualitzarEmpresa.Text = "Empreas"
+        '
+        'ToolStripSeparator9
+        '
+        Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
+        Me.ToolStripSeparator9.Size = New System.Drawing.Size(210, 6)
+        '
+        'mnuRutaSolicituts
+        '
+        Me.mnuRutaSolicituts.Name = "mnuRutaSolicituts"
+        Me.mnuRutaSolicituts.Size = New System.Drawing.Size(213, 22)
+        Me.mnuRutaSolicituts.Text = "ruta solicuts de comanada"
+        '
+        'mnuRutaComandes
+        '
+        Me.mnuRutaComandes.Name = "mnuRutaComandes"
+        Me.mnuRutaComandes.Size = New System.Drawing.Size(213, 22)
+        Me.mnuRutaComandes.Text = "ruta comandes Enviades"
+        '
+        'mnuRutaInformes
+        '
+        Me.mnuRutaInformes.Name = "mnuRutaInformes"
+        Me.mnuRutaInformes.Size = New System.Drawing.Size(213, 22)
+        Me.mnuRutaInformes.Text = "Informes"
+        '
+        'ToolStripSeparator10
+        '
+        Me.ToolStripSeparator10.Name = "ToolStripSeparator10"
+        Me.ToolStripSeparator10.Size = New System.Drawing.Size(210, 6)
+        '
+        'mnuReset
+        '
+        Me.mnuReset.Name = "mnuReset"
+        Me.mnuReset.Size = New System.Drawing.Size(213, 22)
+        Me.mnuReset.Text = "resetdades"
+        '
+        'ToolStripSeparator11
+        '
+        Me.ToolStripSeparator11.Name = "ToolStripSeparator11"
+        Me.ToolStripSeparator11.Size = New System.Drawing.Size(210, 6)
+        '
+        'mnuAplicacioVaris
+        '
+        Me.mnuAplicacioVaris.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAplicacioFirmaCorreu})
+        Me.mnuAplicacioVaris.Name = "mnuAplicacioVaris"
+        Me.mnuAplicacioVaris.Size = New System.Drawing.Size(213, 22)
+        Me.mnuAplicacioVaris.Text = "varis"
+        '
+        'mnuAplicacioFirmaCorreu
+        '
+        Me.mnuAplicacioFirmaCorreu.Name = "mnuAplicacioFirmaCorreu"
+        Me.mnuAplicacioFirmaCorreu.Size = New System.Drawing.Size(139, 22)
+        Me.mnuAplicacioFirmaCorreu.Text = "firma correu"
         '
         'mnuConfig
         '
-        Me.mnuConfig.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAxiliars, Me.ToolStripSeparator1, Me.mnuCentres, Me.mnuLlocsEntrega, Me.mnuContactesCentre, Me.ToolStripSeparator2, Me.mnuProveidors, Me.mnuFabricants, Me.ToolStripSeparator3, Me.mnuArticles})
+        Me.mnuConfig.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAxiliars, Me.ToolStripSeparator1, Me.mnuCentres, Me.mnuLlocsEntrega, Me.mnuContactesCentre, Me.ToolStripSeparator2, Me.mnuProveidors, Me.ToolStripSeparator3, Me.mnuFabricants, Me.mnuArticles, Me.ToolStripSeparator12, Me.MYDOCToolStripMenuItem})
         Me.mnuConfig.Name = "mnuConfig"
         Me.mnuConfig.Size = New System.Drawing.Size(86, 20)
         Me.mnuConfig.Text = "configuracio"
         '
         'mnuAxiliars
         '
-        Me.mnuAxiliars.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuTipusPagament, Me.mnuProvincies, Me.mnuPaisos, Me.mnuTipusIva, Me.mnuUnitats, Me.mnuFamilies})
+        Me.mnuAxiliars.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuTipusPagament, Me.mnuProvincies, Me.mnuPaisos, Me.mnuTipusIva, Me.mnuUnitats, Me.mnuFamilies, Me.mnuCodiComanda, Me.mnuResponsableCompra})
         Me.mnuAxiliars.Name = "mnuAxiliars"
-        Me.mnuAxiliars.Size = New System.Drawing.Size(180, 22)
+        Me.mnuAxiliars.Size = New System.Drawing.Size(162, 22)
         Me.mnuAxiliars.Text = "auxiliars"
         '
         'mnuTipusPagament
         '
         Me.mnuTipusPagament.Name = "mnuTipusPagament"
-        Me.mnuTipusPagament.Size = New System.Drawing.Size(154, 22)
+        Me.mnuTipusPagament.Size = New System.Drawing.Size(207, 22)
         Me.mnuTipusPagament.Text = "tipusPagament"
         '
         'mnuProvincies
         '
         Me.mnuProvincies.Name = "mnuProvincies"
-        Me.mnuProvincies.Size = New System.Drawing.Size(154, 22)
+        Me.mnuProvincies.Size = New System.Drawing.Size(207, 22)
         Me.mnuProvincies.Text = "provincies"
         '
         'mnuPaisos
         '
         Me.mnuPaisos.Name = "mnuPaisos"
-        Me.mnuPaisos.Size = New System.Drawing.Size(154, 22)
+        Me.mnuPaisos.Size = New System.Drawing.Size(207, 22)
         Me.mnuPaisos.Text = "paisos"
         '
         'mnuTipusIva
         '
         Me.mnuTipusIva.Name = "mnuTipusIva"
-        Me.mnuTipusIva.Size = New System.Drawing.Size(154, 22)
+        Me.mnuTipusIva.Size = New System.Drawing.Size(207, 22)
         Me.mnuTipusIva.Text = "tipus iva"
         '
         'mnuUnitats
         '
         Me.mnuUnitats.Name = "mnuUnitats"
-        Me.mnuUnitats.Size = New System.Drawing.Size(154, 22)
+        Me.mnuUnitats.Size = New System.Drawing.Size(207, 22)
         Me.mnuUnitats.Text = "Unitats"
         '
         'mnuFamilies
         '
         Me.mnuFamilies.Name = "mnuFamilies"
-        Me.mnuFamilies.Size = New System.Drawing.Size(154, 22)
+        Me.mnuFamilies.Size = New System.Drawing.Size(207, 22)
         Me.mnuFamilies.Text = "families"
+        '
+        'mnuCodiComanda
+        '
+        Me.mnuCodiComanda.Name = "mnuCodiComanda"
+        Me.mnuCodiComanda.Size = New System.Drawing.Size(207, 22)
+        Me.mnuCodiComanda.Text = "actualitzar codi comanda"
+        '
+        'mnuResponsableCompra
+        '
+        Me.mnuResponsableCompra.Name = "mnuResponsableCompra"
+        Me.mnuResponsableCompra.Size = New System.Drawing.Size(207, 22)
+        Me.mnuResponsableCompra.Text = "responsable compra"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(159, 6)
         '
         'mnuCentres
         '
         Me.mnuCentres.Name = "mnuCentres"
-        Me.mnuCentres.Size = New System.Drawing.Size(180, 22)
+        Me.mnuCentres.Size = New System.Drawing.Size(162, 22)
         Me.mnuCentres.Text = "centrres"
         '
         'mnuLlocsEntrega
         '
         Me.mnuLlocsEntrega.Name = "mnuLlocsEntrega"
-        Me.mnuLlocsEntrega.Size = New System.Drawing.Size(180, 22)
+        Me.mnuLlocsEntrega.Size = New System.Drawing.Size(162, 22)
         Me.mnuLlocsEntrega.Text = "llocsEntrega"
         '
         'mnuContactesCentre
         '
         Me.mnuContactesCentre.Name = "mnuContactesCentre"
-        Me.mnuContactesCentre.Size = New System.Drawing.Size(180, 22)
+        Me.mnuContactesCentre.Size = New System.Drawing.Size(162, 22)
         Me.mnuContactesCentre.Text = "ContactesCentre"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(159, 6)
         '
         'mnuProveidors
         '
         Me.mnuProveidors.Name = "mnuProveidors"
-        Me.mnuProveidors.Size = New System.Drawing.Size(180, 22)
+        Me.mnuProveidors.Size = New System.Drawing.Size(162, 22)
         Me.mnuProveidors.Text = "proveidors"
-        '
-        'mnuFabricants
-        '
-        Me.mnuFabricants.Name = "mnuFabricants"
-        Me.mnuFabricants.Size = New System.Drawing.Size(180, 22)
-        Me.mnuFabricants.Text = "fabricants"
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(159, 6)
+        '
+        'mnuFabricants
+        '
+        Me.mnuFabricants.Name = "mnuFabricants"
+        Me.mnuFabricants.Size = New System.Drawing.Size(162, 22)
+        Me.mnuFabricants.Text = "fabricants"
         '
         'mnuArticles
         '
         Me.mnuArticles.Name = "mnuArticles"
-        Me.mnuArticles.Size = New System.Drawing.Size(180, 22)
+        Me.mnuArticles.Size = New System.Drawing.Size(162, 22)
         Me.mnuArticles.Text = "articles"
         '
-        'mnuSolicitutComanda
+        'ToolStripSeparator12
         '
-        Me.mnuSolicitutComanda.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuEditarSolicitutComanda})
-        Me.mnuSolicitutComanda.Name = "mnuSolicitutComanda"
-        Me.mnuSolicitutComanda.Size = New System.Drawing.Size(120, 20)
-        Me.mnuSolicitutComanda.Text = "solicitutdComanda"
+        Me.ToolStripSeparator12.Name = "ToolStripSeparator12"
+        Me.ToolStripSeparator12.Size = New System.Drawing.Size(159, 6)
         '
-        'mnuEditarSolicitutComanda
+        'MYDOCToolStripMenuItem
         '
-        Me.mnuEditarSolicitutComanda.Name = "mnuEditarSolicitutComanda"
-        Me.mnuEditarSolicitutComanda.Size = New System.Drawing.Size(104, 22)
-        Me.mnuEditarSolicitutComanda.Text = "Editar"
+        Me.MYDOCToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WorkFlowPedidosToolStripMenuItem})
+        Me.MYDOCToolStripMenuItem.Name = "MYDOCToolStripMenuItem"
+        Me.MYDOCToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
+        Me.MYDOCToolStripMenuItem.Text = "MYDOC"
+        '
+        'WorkFlowPedidosToolStripMenuItem
+        '
+        Me.WorkFlowPedidosToolStripMenuItem.Name = "WorkFlowPedidosToolStripMenuItem"
+        Me.WorkFlowPedidosToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.WorkFlowPedidosToolStripMenuItem.Text = "WorkFlow pedidos"
         '
         'mnuComandes
         '
-        Me.mnuComandes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuImportF56, Me.mnuNovaComanda, Me.mnuVeureComandaEdicio, Me.ToolStripSeparator4, Me.ToolStripSeparator5, Me.mnuVeureComandes, Me.mnuComandesEnviar})
+        Me.mnuComandes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuImportF56, Me.ToolStripSeparator4, Me.mnuCodisComanda2, Me.ToolStripSeparator5, Me.mnuNovaComanda, Me.mnuVeureComandaEdicio, Me.mnuComandesEnviar, Me.ToolStripSeparator6, Me.mnuComandaEliminar})
         Me.mnuComandes.Name = "mnuComandes"
         Me.mnuComandes.Size = New System.Drawing.Size(74, 20)
         Me.mnuComandes.Text = "comandes"
@@ -225,48 +378,112 @@ Partial Class frmIniComanda
         'mnuImportF56
         '
         Me.mnuImportF56.Name = "mnuImportF56"
-        Me.mnuImportF56.Size = New System.Drawing.Size(249, 22)
+        Me.mnuImportF56.Size = New System.Drawing.Size(242, 22)
         Me.mnuImportF56.Text = "Importar Solicitutd de comanda"
+        '
+        'ToolStripSeparator4
+        '
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(239, 6)
+        '
+        'mnuCodisComanda2
+        '
+        Me.mnuCodisComanda2.Name = "mnuCodisComanda2"
+        Me.mnuCodisComanda2.Size = New System.Drawing.Size(242, 22)
+        Me.mnuCodisComanda2.Text = "Actualitzar codis comanda"
+        '
+        'ToolStripSeparator5
+        '
+        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(239, 6)
         '
         'mnuNovaComanda
         '
         Me.mnuNovaComanda.Name = "mnuNovaComanda"
-        Me.mnuNovaComanda.Size = New System.Drawing.Size(249, 22)
+        Me.mnuNovaComanda.Size = New System.Drawing.Size(242, 22)
         Me.mnuNovaComanda.Text = "nova Comanda"
         '
         'mnuVeureComandaEdicio
         '
         Me.mnuVeureComandaEdicio.Name = "mnuVeureComandaEdicio"
-        Me.mnuVeureComandaEdicio.Size = New System.Drawing.Size(249, 22)
+        Me.mnuVeureComandaEdicio.Size = New System.Drawing.Size(242, 22)
         Me.mnuVeureComandaEdicio.Text = "Comandes en edicio"
-        '
-        'ToolStripSeparator4
-        '
-        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(246, 6)
-        '
-        'ToolStripSeparator5
-        '
-        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(246, 6)
-        '
-        'mnuVeureComandes
-        '
-        Me.mnuVeureComandes.Name = "mnuVeureComandes"
-        Me.mnuVeureComandes.Size = New System.Drawing.Size(249, 22)
-        Me.mnuVeureComandes.Text = "cercar Comandes"
         '
         'mnuComandesEnviar
         '
         Me.mnuComandesEnviar.Name = "mnuComandesEnviar"
-        Me.mnuComandesEnviar.Size = New System.Drawing.Size(249, 22)
-        Me.mnuComandesEnviar.Text = "Comandes per Enviar a proveidor"
+        Me.mnuComandesEnviar.Size = New System.Drawing.Size(242, 22)
+        Me.mnuComandesEnviar.Text = "Comandes a ENVIAR"
+        '
+        'ToolStripSeparator6
+        '
+        Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(239, 6)
+        '
+        'mnuComandaEliminar
+        '
+        Me.mnuComandaEliminar.Name = "mnuComandaEliminar"
+        Me.mnuComandaEliminar.Size = New System.Drawing.Size(242, 22)
+        Me.mnuComandaEliminar.Text = "Comandes pendent d'eliminar"
         '
         'mnuInformes
         '
+        Me.mnuInformes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuF56, Me.mnuInformeArticles, Me.mnuInfoComandes, Me.mnuComptabilitat})
         Me.mnuInformes.Name = "mnuInformes"
         Me.mnuInformes.Size = New System.Drawing.Size(66, 20)
         Me.mnuInformes.Text = "informes"
+        '
+        'mnuF56
+        '
+        Me.mnuF56.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuEnviarF56})
+        Me.mnuF56.Name = "mnuF56"
+        Me.mnuF56.Size = New System.Drawing.Size(180, 22)
+        Me.mnuF56.Text = "F56"
+        '
+        'mnuEnviarF56
+        '
+        Me.mnuEnviarF56.Name = "mnuEnviarF56"
+        Me.mnuEnviarF56.Size = New System.Drawing.Size(138, 22)
+        Me.mnuEnviarF56.Text = "ENVIAR F56 "
+        '
+        'mnuInformeArticles
+        '
+        Me.mnuInformeArticles.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuinformeArticlesComandes})
+        Me.mnuInformeArticles.Name = "mnuInformeArticles"
+        Me.mnuInformeArticles.Size = New System.Drawing.Size(180, 22)
+        Me.mnuInformeArticles.Text = "articles"
+        '
+        'mnuinformeArticlesComandes
+        '
+        Me.mnuinformeArticlesComandes.Name = "mnuinformeArticlesComandes"
+        Me.mnuinformeArticlesComandes.Size = New System.Drawing.Size(163, 22)
+        Me.mnuinformeArticlesComandes.Text = "articlesComanda"
+        '
+        'mnuInfoComandes
+        '
+        Me.mnuInfoComandes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnucercadorComandes})
+        Me.mnuInfoComandes.Name = "mnuInfoComandes"
+        Me.mnuInfoComandes.Size = New System.Drawing.Size(180, 22)
+        Me.mnuInfoComandes.Text = "comandes"
+        '
+        'mnucercadorComandes
+        '
+        Me.mnucercadorComandes.Name = "mnucercadorComandes"
+        Me.mnucercadorComandes.Size = New System.Drawing.Size(225, 22)
+        Me.mnucercadorComandes.Text = "ComandesProjecteProveidor"
+        '
+        'mnuComptabilitat
+        '
+        Me.mnuComptabilitat.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuInformeSubctesCompra})
+        Me.mnuComptabilitat.Name = "mnuComptabilitat"
+        Me.mnuComptabilitat.Size = New System.Drawing.Size(180, 22)
+        Me.mnuComptabilitat.Text = "comptabilitat"
+        '
+        'mnuInformeSubctesCompra
+        '
+        Me.mnuInformeSubctesCompra.Name = "mnuInformeSubctesCompra"
+        Me.mnuInformeSubctesCompra.Size = New System.Drawing.Size(220, 22)
+        Me.mnuInformeSubctesCompra.Text = "informe Subcta de compres"
         '
         'panelTabs
         '
@@ -299,7 +516,7 @@ Partial Class frmIniComanda
         Me.Controls.Add(Me.pMenu)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "frmIniComanda"
-        Me.Text = "frmIniComanda"
+        Me.Text = "COMANDES REMONDIS"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.pMenu.ResumeLayout(False)
         Me.pMenu.PerformLayout()
@@ -329,19 +546,50 @@ Partial Class frmIniComanda
     Friend WithEvents mnuArticles As ToolStripMenuItem
     Friend WithEvents mnuNovaComanda As ToolStripMenuItem
     Friend WithEvents mnuVeureComandaEdicio As ToolStripMenuItem
-    Friend WithEvents mnuVeureComandes As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents mnuLlocsEntrega As ToolStripMenuItem
     Friend WithEvents mnuContactesCentre As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
     Friend WithEvents mnuAplicacio As ToolStripMenuItem
-    Friend WithEvents mnuApliServidor As ToolStripMenuItem
+    Friend WithEvents mnuServidorMydoc As ToolStripMenuItem
     Friend WithEvents mnuApliRutaDirectori As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
     Friend WithEvents ToolStripSeparator5 As ToolStripSeparator
-    Friend WithEvents mnuSolicitutComanda As ToolStripMenuItem
-    Friend WithEvents mnuEditarSolicitutComanda As ToolStripMenuItem
     Friend WithEvents mnuImportF56 As ToolStripMenuItem
     Friend WithEvents mnuComandesEnviar As ToolStripMenuItem
+    Friend WithEvents mnuCodiComanda As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator6 As ToolStripSeparator
+    Friend WithEvents mnuCodisComanda2 As ToolStripMenuItem
+    Friend WithEvents mnuRutaSolicituts As ToolStripMenuItem
+    Friend WithEvents mnuResponsableCompra As ToolStripMenuItem
+    Friend WithEvents mnuReset As ToolStripMenuItem
+    Friend WithEvents mnuRutaComandes As ToolStripMenuItem
+    Friend WithEvents mnuActualitzarF56 As ToolStripMenuItem
+    Friend WithEvents mnuActualitzarTot As ToolStripMenuItem
+    Friend WithEvents mnuActualitzarProveidor As ToolStripMenuItem
+    Friend WithEvents mnuActualitzarMagatzem As ToolStripMenuItem
+    Friend WithEvents mnuActualitzarProjecte As ToolStripMenuItem
+    Friend WithEvents mnuActualitzarResponsable As ToolStripMenuItem
+    Friend WithEvents mnuActualitzarEmpresa As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator7 As ToolStripSeparator
+    Friend WithEvents ToolStripSeparator8 As ToolStripSeparator
+    Friend WithEvents ToolStripSeparator9 As ToolStripSeparator
+    Friend WithEvents ToolStripSeparator10 As ToolStripSeparator
+    Friend WithEvents ToolStripSeparator11 As ToolStripSeparator
+    Friend WithEvents mnuAplicacioVaris As ToolStripMenuItem
+    Friend WithEvents mnuAplicacioFirmaCorreu As ToolStripMenuItem
+    Friend WithEvents mnuF56 As ToolStripMenuItem
+    Friend WithEvents mnuEnviarF56 As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator12 As ToolStripSeparator
+    Friend WithEvents mnuInformeArticles As ToolStripMenuItem
+    Friend WithEvents mnuinformeArticlesComandes As ToolStripMenuItem
+    Friend WithEvents mnuInfoComandes As ToolStripMenuItem
+    Friend WithEvents mnucercadorComandes As ToolStripMenuItem
+    Friend WithEvents mnuRutaInformes As ToolStripMenuItem
+    Friend WithEvents mnuComptabilitat As ToolStripMenuItem
+    Friend WithEvents mnuInformeSubctesCompra As ToolStripMenuItem
+    Friend WithEvents MYDOCToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents WorkFlowPedidosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents mnuComandaEliminar As ToolStripMenuItem
 End Class

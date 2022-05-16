@@ -189,13 +189,8 @@
     <value>ERROR</value>
     <comment>comu</comment>
   </data>
-  <data name="esperar.moment" xml:space="preserve">
-    <value>ESPERI UNS MOMENTS ... </value>
-    <comment>comu</comment>
-  </data>
-  <data name="esperar_moment" xml:space="preserve">
-    <value>Espera un Moment</value>
-    <comment>FrmAvis.Caption</comment>
+  <data name="esperaUnMoment" xml:space="preserve">
+    <value>ESPERA UN MOMENT !!!.</value>
   </data>
   <data name="estat.correcte" xml:space="preserve">
     <value>CORRECTE</value>
@@ -3619,8 +3614,8 @@
     <value>SOLICITUT F56</value>
     <comment>frmIniComanda</comment>
   </data>
-  <data name="amagarF56" xml:space="preserve">
-    <value>AMAGAR F56</value>
+  <data name="amagarFitxersAdjunts" xml:space="preserve">
+    <value>AMAGAR ADJUNTS</value>
     <comment>pComanda</comment>
   </data>
   <data name="veureF56" xml:space="preserve">
@@ -3718,5 +3713,571 @@
   </data>
   <data name="transport" xml:space="preserve">
     <value>TRANSPORT</value>
+  </data>
+  <data name="cercadorComandes" xml:space="preserve">
+    <value>CERCADOR COMANDES</value>
+    <comment>menu</comment>
+  </data>
+  <data name="comandesAEnviar" xml:space="preserve">
+    <value>COMANDES A ENVIAR A PROVEIDOR</value>
+    <comment>menu</comment>
+  </data>
+  <data name="comandesEnValidacio" xml:space="preserve">
+    <value>COMANDES PENDENT DE VALIDAR</value>
+    <comment>menu</comment>
+  </data>
+  <data name="enviarAProveidor" xml:space="preserve">
+    <value>ENVIAR A PROVEIDOR</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="enviarAValidar" xml:space="preserve">
+    <value>ENVIAR A VALIDAR</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="errActualitzacioCodiComanda" xml:space="preserve">
+    <value>ERR. EL NOU CODI ES MES PETIT QUE EL CODI DE LA SERIE ACTUAL. NO ES POT ACTUALITZAR</value>
+    <comment>errors</comment>
+  </data>
+  <data name="modificarCodiComanda" xml:space="preserve">
+    <value>MODIFICAR -ACTUALITZAR CODI COMANDA</value>
+    <comment>DCodiComanda</comment>
+  </data>
+  <data name="volsSerieComanda" xml:space="preserve">
+    <value>- VOLS ELIMINAR LA SERIE ACTUAL</value>
+    <comment>MISSATGES</comment>
+  </data>
+  <data name="actualitzarCodiComanda" xml:space="preserve">
+    <value>ACTUALITZAR CODIS COMANDA</value>
+  </data>
+  <data name="avisFaltaContacteEntrega" xml:space="preserve">
+    <value>Avis. Falta el contacte de l'entrega de la comanda.</value>
+  </data>
+  <data name="avisFaltaMagatzemComanda" xml:space="preserve">
+    <value>Avis. Falta lloc d'entrega de la comanda.</value>
+  </data>
+  <data name="avisFaltaTipusPagament" xml:space="preserve">
+    <value>Avis. Falta el tipus de pagament de la comanda.</value>
+  </data>
+  <data name="avisFataContacteProveidor" xml:space="preserve">
+    <value>Avis. Falta el contacte del proveidor de la comanda.</value>
+  </data>
+  <data name="codisComanda" xml:space="preserve">
+    <value>CODI COMANDA</value>
+    <comment>dAuxiliar</comment>
+  </data>
+  <data name="codisComandaModificar" xml:space="preserve">
+    <value>MODIFICAR-RESETEJAR CODI COMANDA</value>
+    <comment>dAuxiliars</comment>
+  </data>
+  <data name="errFaltaData" xml:space="preserve">
+    <value>ERROR. FALTA LA DATA</value>
+  </data>
+  <data name="errFaltaEmpresa" xml:space="preserve">
+    <value>ERROR. FALTA L'EMPRESA</value>
+  </data>
+  <data name="errFaltaProjecteEmpresa" xml:space="preserve">
+    <value>ERROR. FALTA EL PROJECTE-EMPRESA</value>
+  </data>
+  <data name="errFaltaProveidor" xml:space="preserve">
+    <value>ERROR. FALTA EL PROVEÏDOR</value>
+  </data>
+  <data name="novaComanda" xml:space="preserve">
+    <value>NOVA.COMANDA</value>
+  </data>
+  <data name="cercaArticleToolTip" xml:space="preserve">
+    <value>CERCA ELS DIFERENTS ARTICLES EXISTENTS EN EL SISTEMA. permet seleccionar i afegir a la graella d'articles de la comanda actual)</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="copiarArticleToolTip" xml:space="preserve">
+    <value>COPIA L'ARTICLE ACTUAL (en una nova fila BOTO ENGANTXAR)</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="copiarComandaToolTip" xml:space="preserve">
+    <value>COPIA LA COMANDA ACTUAL I EN CREA UNA DE NOVA (en Mode edició)</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="eliminarArticleToolTip" xml:space="preserve">
+    <value>ELIMINA L'ARTICLE ACTUAL (borra la fila)</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="eliminarComandaToolTip" xml:space="preserve">
+    <value>ELIMNA LA COMANDA ACTUAL (només es poden eliminar les comandes en edició</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="engantxarArticleToolTip" xml:space="preserve">
+    <value>AFEGEIX L'ARTICLE. Prèviament copiat.</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="enviarComandaEdicio" xml:space="preserve">
+    <value>TORNAR A EDITAR</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="enviarComandaToolTip" xml:space="preserve">
+    <value>ENVIA LA COMANDA AL PROVEIDOR. (imprimeix en format PDF, afegeix el correu del proveidor si existeix) </value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="errFaltenArticles" xml:space="preserve">
+    <value>ERR. NO HI HA CAP ARTICLE SELECCIONAT. NO ES POT GENERAR LA COMANDA!!!</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="estatComandaToolTip" xml:space="preserve">
+    <value>MOSTRA ELS DIFERENTS ESTATS EN QUE ES TROBA LA COMANDA. Avisa a l'usuari de les diferents mancances de la comanda actual.</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="guardarComandaToolTip" xml:space="preserve">
+    <value>GUARDA LA COMANDA ACTUAL (només es poden guardar les comandes  en edició)</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="missatgePendentEliminarComanda" xml:space="preserve">
+    <value>- VOLS PASSAR LA COMANDA ACTUAL A LA PAPERERA (pendent eliminar)</value>
+    <comment>MISSATGES</comment>
+  </data>
+  <data name="mostraAmagaF56ToolTip" xml:space="preserve">
+    <value>MOSTRA O AMAGA LA SOL·LICTUD DE COMANDA (F56) ASSOCIADA A LA COMANDA. En cas que existeixi</value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="noEsPotCrearComanda" xml:space="preserve">
+    <value>ERR. NO ES POT VALIDAR LA COMANDA PER: </value>
+    <comment>ERRORS</comment>
+  </data>
+  <data name="volsTornarEdicioComanda" xml:space="preserve">
+    <value>- VOLS TORNAR A EDITAR LA COMANDA ACTUAL </value>
+    <comment>pComanda</comment>
+  </data>
+  <data name="volsValidarComanda" xml:space="preserve">
+    <value>VOLS VALIDAR LA COMANDA ACTUAL</value>
+    <comment>MISSATGES</comment>
+  </data>
+  <data name="volsValidarComandaAvisos" xml:space="preserve">
+    <value>AVIS. VOLS VALIDAR LA COMANDA, 'Conté avisos'.</value>
+    <comment>MISSATGES</comment>
+  </data>
+  <data name="configRutaFitxersSolicituts" xml:space="preserve">
+    <value>DIRECTORI FITXERS SOLICITUT DE COMANDA</value>
+  </data>
+  <data name="mnuDirectoriFitxersSolicituts" xml:space="preserve">
+    <value>RUTA DIRECTORI FITXERS SOLICITUT DE COMANDA</value>
+  </data>
+  <data name="errFaltaResponsableCompra" xml:space="preserve">
+    <value>ERROR. FALTA EL RESPONSABLE DE LA COMPRA</value>
+  </data>
+  <data name="responsableCompra" xml:space="preserve">
+    <value>RESPONSABLE COMPRA</value>
+  </data>
+  <data name="dobjectAfegirobject" xml:space="preserve">
+    <value>AFEGIR NOU OBJECTE</value>
+  </data>
+  <data name="dobjectModificarobject" xml:space="preserve">
+    <value>MODIFICAR OBJECTE ACTUAL</value>
+  </data>
+  <data name="respCompra" xml:space="preserve">
+    <value>RESP.COMPRA</value>
+  </data>
+  <data name="volsguardarComandaActual" xml:space="preserve">
+    <value>- VOLS GUARDAR LA COMANDA ACTUAL</value>
+  </data>
+  <data name="comandaEnValidacio" xml:space="preserve">
+    <value>ESTAT COMANDA EN VALIDACIO: </value>
+  </data>
+  <data name="comandesEnviar" xml:space="preserve">
+    <value>COMANDES A ENVIAR</value>
+    <comment>frm_ini</comment>
+  </data>
+  <data name="comandesPendentEnviar" xml:space="preserve">
+    <value>COMANDES PENDENT D'ENVIAR A PROVEIDOR</value>
+  </data>
+  <data name="enviarEdicio" xml:space="preserve">
+    <value>TORNAR A EDITAR</value>
+  </data>
+  <data name="errMostrarComandaValidacio" xml:space="preserve">
+    <value>ERROR. NO ES POT IMPRIMIR LA COMANDA PER ERROR INTERN. AVISAR A L'ADMINISTRADOR DEL SISTEMA.</value>
+  </data>
+  <data name="avisFaltaContacteProveidor" xml:space="preserve">
+    <value>Avis. Falta el contacte del proveidor de la comanda.</value>
+  </data>
+  <data name="cercar" xml:space="preserve">
+    <value>CERCAR</value>
+  </data>
+  <data name="cercarComandes" xml:space="preserve">
+    <value>CERCAR COMANDES</value>
+  </data>
+  <data name="dataInici" xml:space="preserve">
+    <value>DATA INICI</value>
+  </data>
+  <data name="articlesComandes" xml:space="preserve">
+    <value>ARTICLES-COMANDA</value>
+  </data>
+  <data name="%entrega" xml:space="preserve">
+    <value>% a la entrega de la comanda.</value>
+  </data>
+  <data name="%iniciComanda" xml:space="preserve">
+    <value>% al realitzar la comanda.</value>
+  </data>
+  <data name="%iniciTreballs" xml:space="preserve">
+    <value>% al iniciar els treballs.</value>
+  </data>
+  <data name="facturacio" xml:space="preserve">
+    <value>FACTURACIO</value>
+  </data>
+  <data name="alIniciComanda" xml:space="preserve">
+    <value>AL PEDIDO</value>
+  </data>
+  <data name="entregaComanda" xml:space="preserve">
+    <value>ENTREGA PEDIDO</value>
+  </data>
+  <data name="iniciTreballs" xml:space="preserve">
+    <value>AL INICIAR TRABAJOS</value>
+  </data>
+  <data name="lArticle" xml:space="preserve">
+    <value>L'ARTICLE</value>
+  </data>
+  <data name="noestaDonatDAlta" xml:space="preserve">
+    <value>NO EXISTEIX</value>
+  </data>
+  <data name="volsDonarloDAlta" xml:space="preserve">
+    <value>- VOLS DONAR-LO D'ALTA, AL SISTEMA?</value>
+  </data>
+  <data name="passarComandaEnviada" xml:space="preserve">
+    <value>-VOLS PASSAR LA COMANDA A ENVIADA?.</value>
+  </data>
+  <data name="preuArticles" xml:space="preserve">
+    <value>PREUS ARTICLES</value>
+  </data>
+  <data name="cmdActualitzarToolTip" xml:space="preserve">
+    <value>Actualitzar dades</value>
+  </data>
+  <data name="String6" xml:space="preserve">
+    <value>Call filtrar(txtFiltrar.Text)</value>
+  </data>
+  <data name="String7" xml:space="preserve">
+    <value>End If</value>
+  </data>
+  <data name="errPdfComanda" xml:space="preserve">
+    <value>ERR. NO S'HA TROBAT EL FITXER PDF DE LA COMANDA SELECCIONADA</value>
+  </data>
+  <data name="imprimintComanda" xml:space="preserve">
+    <value>IMPRIMINT COMANDA. ...</value>
+  </data>
+  <data name="guardarComanda" xml:space="preserve">
+    <value>GUARDANT COMANDA ...</value>
+  </data>
+  <data name="passarComandaEdicio" xml:space="preserve">
+    <value>- VOLS TORNAR EDITAR LA COMANDA?. </value>
+  </data>
+  <data name="cercantComandes" xml:space="preserve">
+    <value>CERCANT COMANDES. ...</value>
+  </data>
+  <data name="copiantComanda" xml:space="preserve">
+    <value>COPIANT NOVA COMANDA. ...</value>
+  </data>
+  <data name="copiarNovaComanda" xml:space="preserve">
+    <value>- VOLS COPIAR LA COMANDA ACTUAL  I CREAR-NE UNA DE NOVA?.</value>
+  </data>
+  <data name="presentantComandes" xml:space="preserve">
+    <value>PRESENTANT COMANDES. ....</value>
+  </data>
+  <data name="errNomContacte" xml:space="preserve">
+    <value>ERROR. JA EXISTEIX UN CONTACTE AMB EL MATEIX NOM. </value>
+  </data>
+  <data name="actualitzantEmail" xml:space="preserve">
+    <value>ACTUALITZANT CORREU ELECTRONIC, ....</value>
+  </data>
+  <data name="guardantComanda" xml:space="preserve">
+    <value>GUARDANT COMANDA (ESTAT: ENVIADA). .... </value>
+  </data>
+  <data name="configRutaComandes" xml:space="preserve">
+    <value>DIRECTORI FITXERS COMANDES ENVIADES</value>
+  </data>
+  <data name="mnuDirectoriFitxersComandes" xml:space="preserve">
+    <value>RUTA DIRECTORI FITXERS COMANDA (PDF)</value>
+  </data>
+  <data name="mitjaImpressio" xml:space="preserve">
+    <value>Escollir plataforma impressió</value>
+  </data>
+  <data name="registresActuals" xml:space="preserve">
+    <value>Registres Actuals</value>
+  </data>
+  <data name="registreSeleccionat" xml:space="preserve">
+    <value>Registre seleccionat</value>
+  </data>
+  <data name="tipusImpressio" xml:space="preserve">
+    <value>Tipus Impressió</value>
+  </data>
+  <data name="cmdEscollir" xml:space="preserve">
+    <value>ESCOLLIR</value>
+  </data>
+  <data name="elContacteNoExisteix" xml:space="preserve">
+    <value>El contacte del lloc d'entrega / magatzem</value>
+    <comment>DimportF56Avisos</comment>
+  </data>
+  <data name="elContacteProveidorNoExisteix" xml:space="preserve">
+    <value>El contacte del proveidor no existeix</value>
+    <comment>DimportF56Avisos</comment>
+  </data>
+  <data name="elMagatzemNoExisteix" xml:space="preserve">
+    <value>El magatzem no existeix</value>
+    <comment>DimportF56Avisos</comment>
+  </data>
+  <data name="elProveidorNoExisteix" xml:space="preserve">
+    <value>El proveidor no existeix</value>
+    <comment>DimportF56Avisos</comment>
+  </data>
+  <data name="volsDonarloAlta" xml:space="preserve">
+    <value>Vols donar-lo d'alta o seleccionar un d'existent?</value>
+    <comment>DimportF56Avisos</comment>
+  </data>
+  <data name="actualitzarF56" xml:space="preserve">
+    <value>ACTUALITZAR TAULES F-56 (SOLICITUTS COMANDA)</value>
+    <comment>frmIniComanda</comment>
+  </data>
+  <data name="actualitzarTaulaEmpresa" xml:space="preserve">
+    <value>TAULA EMPRESA</value>
+    <comment>frmIniComanda</comment>
+  </data>
+  <data name="actualitzarTaulaLlocEntrega" xml:space="preserve">
+    <value>TAULA LLOCS ENTREGA-MAGATZEMS-CONTACTES</value>
+    <comment>frmIniComanda</comment>
+  </data>
+  <data name="actualitzarTaulaProjecte" xml:space="preserve">
+    <value>TAULA PROJECTE</value>
+    <comment>frmIniComanda</comment>
+  </data>
+  <data name="actualitzarTaulaProveidor" xml:space="preserve">
+    <value>TAULA PROVEIDOR-CONTACTES</value>
+    <comment>frmIniComanda</comment>
+  </data>
+  <data name="actualitzarTaulaResponsable" xml:space="preserve">
+    <value>TAULA RESPONSABLE COMPRA</value>
+    <comment>frmIniComanda</comment>
+  </data>
+  <data name="actualitzarTotTaula" xml:space="preserve">
+    <value>TOTES LES TAULES</value>
+    <comment>frmIniComanda</comment>
+  </data>
+  <data name="actualitzantTaula" xml:space="preserve">
+    <value>ACTUALITZANT TAULA</value>
+    <comment>GOOGLE_SHEETS</comment>
+  </data>
+  <data name="errActualtizarGoogleSheets" xml:space="preserve">
+    <value>ERROR. NO S'HA POGUT ACTUALITZAR LES DADES AL SERVIDOR EXTERN F56 - GOOGLE DRIVE. COMPROVA LA CONNEXIÓ.</value>
+  </data>
+  <data name="avisosimportComanda" xml:space="preserve">
+    <value>AVISOS IMPORT SOLICITUD COMANDA.</value>
+  </data>
+  <data name="contacteProveidor" xml:space="preserve">
+    <value>CONTACTE PROVEIDOR</value>
+  </data>
+  <data name="dataModificacio" xml:space="preserve">
+    <value>DATA MODIFICACIÓ</value>
+  </data>
+  <data name="elContacte" xml:space="preserve">
+    <value>EL CONTACTE </value>
+  </data>
+  <data name="elContacteProveidor" xml:space="preserve">
+    <value>EL CONTACTE PROVEIDOR </value>
+  </data>
+  <data name="elProveidor" xml:space="preserve">
+    <value>EL PROVEÏDOR </value>
+  </data>
+  <data name="enConstruccio" xml:space="preserve">
+    <value>- EN CONSTRUCCIÓ !!!.</value>
+  </data>
+  <data name="imprimintInforme" xml:space="preserve">
+    <value>IMPRIMINT INFORME!.</value>
+  </data>
+  <data name="noEsPotEliminarCulpaComanda" xml:space="preserve">
+    <value>NO ES POT ELIMINAR. PARTICIPA EN UNA O VARIES COMANDES.</value>
+  </data>
+  <data name="volsDonarloDBaixa" xml:space="preserve">
+    <value>- VOLS DONAR-LO DE BAIXA?.</value>
+  </data>
+  <data name="informe" xml:space="preserve">
+    <value>INFORME</value>
+  </data>
+  <data name="errServerMyDoc" xml:space="preserve">
+    <value>ERROR. AL CONNECTAR AL SERVIDOR DE DADES DEL MYDOC. REVISAR CONNEXIONS (WIFI, ETHERNET, ...)</value>
+  </data>
+  <data name="mnuConfigServerMydoc_Caption" xml:space="preserve">
+    <value>SERVIDOR DADES MYDOC</value>
+  </data>
+  <data name="adjunto" xml:space="preserve">
+    <value>Adjunto</value>
+  </data>
+  <data name="buenosDias" xml:space="preserve">
+    <value>Buenos Días</value>
+  </data>
+  <data name="configSignEmail" xml:space="preserve">
+    <value>CONFIGURAR  LA SIGNATURA DELS CORREUS A ENVIAR LES COMANDES (CODI HTML).</value>
+  </data>
+  <data name="etqSignEmail" xml:space="preserve">
+    <value>SIGN-EMAIL</value>
+  </data>
+  <data name="firmaCorreu" xml:space="preserve">
+    <value>SIGNATURA CORREU COMANDES</value>
+  </data>
+  <data name="guardarSignaturaEmail" xml:space="preserve">
+    <value>GUARDAR SIGNATURA</value>
+  </data>
+  <data name="varis" xml:space="preserve">
+    <value>VARIS</value>
+  </data>
+  <data name="noEsPotEliminarCulpaProjecte" xml:space="preserve">
+    <value>NO ES POT ELIMINAR PERQUÈ ESTÀ VINCULAT A UN PROJECTE</value>
+  </data>
+  <data name="fitxersAdjunts" xml:space="preserve">
+    <value>FITXERS ADJUNTS</value>
+  </data>
+  <data name="afegirNouResponsableCompra" xml:space="preserve">
+    <value>AFEGIR NOU RESPONSABLE DE COMPRA</value>
+  </data>
+  <data name="contactesProveidor" xml:space="preserve">
+    <value>CONTACTES PROVEIDORS</value>
+  </data>
+  <data name="correuPredeterminat" xml:space="preserve">
+    <value>CORREU PREDETERMINAT</value>
+  </data>
+  <data name="creantInforme" xml:space="preserve">
+    <value>CREANT INFORME!!!</value>
+  </data>
+  <data name="f56Enviar" xml:space="preserve">
+    <value>ENVIAR F56 ACTUALITZAT</value>
+  </data>
+  <data name="f56SolicitutComanda" xml:space="preserve">
+    <value>F56- SOLICITUT COMANDA</value>
+  </data>
+  <data name="fitxerF568132bits" xml:space="preserve">
+    <value>F-056_Rev08.1_32b_SOLICITUD_DE_PEDIDOS_REMONDIS</value>
+  </data>
+  <data name="modificarResponsableCompra" xml:space="preserve">
+    <value>MODIFICAR RESPONSABLE DE COMPRA</value>
+  </data>
+  <data name="responsablesCompra" xml:space="preserve">
+    <value>RESPONSABLES COMPRA</value>
+  </data>
+  <data name="selectResponsable" xml:space="preserve">
+    <value>SELECCIONA UN RESPONSABLE</value>
+  </data>
+  <data name="String8" xml:space="preserve">
+    <value />
+  </data>
+  <data name="enviarComandaMyDoc" xml:space="preserve">
+    <value>ENVIANT COMANDA AL MYDOC.</value>
+  </data>
+  <data name="rutaAdjuntsMydoc" xml:space="preserve">
+    <value>DIRECTORI ADJUNTS MYDOC</value>
+  </data>
+  <data name="enEdicio" xml:space="preserve">
+    <value>EDICIO</value>
+  </data>
+  <data name="enValidacio" xml:space="preserve">
+    <value>VALIDACIO</value>
+  </data>
+  <data name="enviada" xml:space="preserve">
+    <value>ENVIADA</value>
+  </data>
+  <data name="totesLesEmpreses" xml:space="preserve">
+    <value>TOTES LES EMPRESES</value>
+  </data>
+  <data name="veureArticlesComandes" xml:space="preserve">
+    <value>VEURE ARTICLES * COMANDES</value>
+  </data>
+  <data name="configRutaImpresioInformes" xml:space="preserve">
+    <value>DIRECTORI PRINT INFORMES</value>
+  </data>
+  <data name="mnuRutaInformes" xml:space="preserve">
+    <value>RUTA DIRECTORI IMPRESIO INFORMES</value>
+  </data>
+  <data name="informeArticlesComanda" xml:space="preserve">
+    <value>INFORME ARTICLES-COMANDA</value>
+  </data>
+  <data name="dataEntradaMydoc" xml:space="preserve">
+    <value>DATA VALIDAT</value>
+  </data>
+  <data name="estatMydoc" xml:space="preserve">
+    <value>ESTAT MYDOC</value>
+  </data>
+  <data name="modificarCodiMydoc" xml:space="preserve">
+    <value>MODIFICAR NUM.MYDOC</value>
+  </data>
+  <data name="myDoc" xml:space="preserve">
+    <value>Nº MYDOC</value>
+  </data>
+  <data name="numMydoc" xml:space="preserve">
+    <value>NUMERO MYDOC</value>
+  </data>
+  <data name="cmdCrearComanda" xml:space="preserve">
+    <value>CREAR COMANDA</value>
+  </data>
+  <data name="selectContacteProveidor" xml:space="preserve">
+    <value>SELECCIONAR CONTACTE</value>
+  </data>
+  <data name="comandesEnEdicio" xml:space="preserve">
+    <value>COMANDES EN EDICIO</value>
+  </data>
+  <data name="comptabilitat" xml:space="preserve">
+    <value>COMPTABILITAT</value>
+  </data>
+  <data name="importDadesDiario" xml:space="preserve">
+    <value>IMPORT DADES DIARIO</value>
+  </data>
+  <data name="informeResumSubcomptesCompra" xml:space="preserve">
+    <value>INFORME.RESUM SUBCOMPTES COMPRES</value>
+  </data>
+  <data name="String9" xml:space="preserve">
+    <value>IMPRIMINT INFORME</value>
+  </data>
+  <data name="laComandaExteixMydoc" xml:space="preserve">
+    <value>LA COMANDA JA EXISTEIX EN EL MYDOC.</value>
+  </data>
+  <data name="volsenviarValidar" xml:space="preserve">
+    <value>- VOLS ENVIAR-LA ALTRA VEGADA A VALIDAR AL MYDOC?.</value>
+  </data>
+  <data name="afegirFitxerAdjunt" xml:space="preserve">
+    <value>Afegir Fitxer</value>
+  </data>
+  <data name="escollirFitxerAdjuntar" xml:space="preserve">
+    <value>ESCOLLIR FITXER A ADJUNTAR</value>
+  </data>
+  <data name="taulaPedidos" xml:space="preserve">
+    <value>Taula Comandes Mydoc</value>
+  </data>
+  <data name="enviadaAProveidor" xml:space="preserve">
+    <value>ENVIADA A PROV.</value>
+  </data>
+  <data name="tancarComanda" xml:space="preserve">
+    <value>TANCAR COMANDA</value>
+  </data>
+  <data name="comentaris" xml:space="preserve">
+    <value>COMENTARIS</value>
+  </data>
+  <data name="cmdBaixar" xml:space="preserve">
+    <value>Descarrega el fitxer i el guarda al directori configurat predeterminadament</value>
+  </data>
+  <data name="preEliminar" xml:space="preserve">
+    <value>Posa la comanda com  pendent d'eliminar</value>
+  </data>
+  <data name="veureFitxersAdjunts" xml:space="preserve">
+    <value>Mostra els fitxers  Adjunts</value>
+  </data>
+  <data name="comandesAEliminar" xml:space="preserve">
+    <value>COMANDES PENDENT ELIMINAR</value>
+  </data>
+  <data name="comandesEliminacio" xml:space="preserve">
+    <value>PENDENTS ELIMINAR</value>
+  </data>
+  <data name="comandesPendentsEliminar" xml:space="preserve">
+    <value>COMANDES PENDENTS D'ELIMINAR</value>
+  </data>
+  <data name="volsTornarEditarComanda" xml:space="preserve">
+    <value>-VOLS TORNAR A EDITAR LA COMANDA ACTUAL PENDENT D'ELIMINAR? (en cas afirmatiu passarà a l'estat comandes en edició)</value>
+  </data>
+  <data name="actualitzantDades" xml:space="preserve">
+    <value>ACTUALITZANT DADES .... </value>
+  </data>
+  <data name="nouArticle" xml:space="preserve">
+    <value>NOU ARTICLE</value>
+  </data>
+  <data name="passarComandaEnviades" xml:space="preserve">
+    <value>- VOLS PASSAR LES COMANDES SELECCIONADES COM ENVIADES?.</value>
   </data>
 </root>

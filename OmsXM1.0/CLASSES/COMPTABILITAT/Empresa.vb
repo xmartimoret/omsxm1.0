@@ -21,6 +21,10 @@ Public Class Empresa
         _seccions = New List(Of Seccio)
         _empresesContaplus = New List(Of Contaplus)
     End Sub
+    Public Function getCodiString() As String
+        If Me.codi = "OMS" Then Return "REM"
+        Return Me.codi
+    End Function
     Public Sub New(pId As Integer, pCodi As String, pOrdre As String, pCif As String, pNom As String, PParticipa As Integer, pEmpresesContaplus As List(Of Contaplus), pSeccions As List(Of Seccio))
         Me.id = pId
         Me.codi = pCodi

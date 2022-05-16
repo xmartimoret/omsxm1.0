@@ -9,7 +9,7 @@
     End Sub
     Private Sub setCentres()
         Dim f As frmAvis
-        f = New frmAvis(IDIOMA.getString("esperar_moment"), IDIOMA.getString("carregantDades"), dadesInforme.seccioActual.ToString)
+        f = New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("carregantDades"), dadesInforme.seccioActual.ToString)
         dgvCentres = New dataTransitoriesCentres(dadesInforme)
         Me.split1.Panel1.Controls.Clear()
         dgvCentres.Dock = DockStyle.Fill

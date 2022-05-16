@@ -192,35 +192,7 @@ Module ModelBudget
         logActual = Nothing
         dAvis = Nothing
     End Sub
-    Public Sub clearDataGrupR()
-        '    Dim logActual As Log, dAvis As frmAvis
-        '    Dim centres As CentresGB, c As Projecte
-        '    centres = dBorrarDades.getProjectesBudget
-        '    logActual = New Log
-        '    logActual.titol = IDIOMA.getString("logEsborrarBudgets")
-        '    logActual.descripcio = IDIOMA.getString("logEsborrarBudgets1")
-        '    If centres IsNot Nothing Then
-        '        dAvis = New frmAvis(IDIOMA.getString("esborrarBudget"), IDIOMA.getString("esborrarDadesDe"), "-")
-        '        For Each c In centres.centres
-        '            Call logActual.entrades.dades.add(ModelLog.getEntradaLog(AVIS_log, "ESBORRAR", "S'esborren budgets de " & c.ToString))
-        '            Call frmCarregarDades.actualitzar(c.codi)
-        '            If removeBudgetSubgrupR(c.id, centres.mesActual, centres.anyActual) Then
-        '                Call logActual.entrades.dades.add(ModelLog.getEntradaLog(MIS_LOG, "ESBORRAR.OK", "ESBORRATS budgets de " & c.ToString))
-        '            Else
-        '                Call logActual.entrades.dades.add(ModelLog.getEntradaLog(AVIS_log, "ERROR", "No s'ha esborrat els budgets " & c.ToString & ". Comprovar si existeixen"))
-        '            End If
-        '        Next c
-        '        Call frmCarregarDades.tancar
-        '        Call MISSATGE.DATA_ACTULITZADES
-        '        Call ModelCompact.DBBudget
-        '        Call resetIndex()
-        '    Else
-        '        Call logActual.entrades.dades.add(ModelLog.getEntradaLog(AVIS_log, "CANCEL", "S'ha cancel·lat l'operació d'esborrar"))
-        '    End If
-        'Set centres = Nothing
-        'Set c = Nothing
-        'Set logActual = Nothing
-    End Sub
+
     Public Sub removeProjecte(idProjecte As Integer, calendari As AnyMesos)
         Dim m As Integer
         For m = 1 To 12

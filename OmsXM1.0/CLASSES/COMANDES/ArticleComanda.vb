@@ -6,7 +6,7 @@
     Public Property unitat As Unitat
     Public Property preu As Double
     Public Property tpcDescompte As Double
-    Public Property tIva As TipusIva
+    Public Property tIva As TipusIva = New TipusIva
 
     Public Sub New()
         _quantitat = 0
@@ -50,7 +50,7 @@
     Public ReadOnly Property iva As Double
         Get
             If tIva Is Nothing Then Return 0
-            Return base * (_tIva.impost / 100)
+            Return base * (TIva.impost / 100)
         End Get
     End Property
 
@@ -58,7 +58,7 @@
 
     Public ReadOnly Property total As Double
         Get
-            Return base - descompte + iva
+            Return base + iva
         End Get
     End Property
     Public Function copy() As articleComanda

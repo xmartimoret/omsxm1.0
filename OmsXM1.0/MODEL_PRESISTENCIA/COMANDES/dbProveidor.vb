@@ -18,7 +18,6 @@ Module dbProveidor
     Private Const IBAN3 As String = "iban3"
     Private Const EMAIL As String = "email"
     Private Const CODI_COMPTABLE As String = "CCOMPT"
-
     Public Function update(obj As Proveidor) As Integer
         If IS_SQLSERVER Then Return updateSQL(obj)
         Return updateDBF(obj)
@@ -81,6 +80,7 @@ Module dbProveidor
         sc.Parameters.Add("@email", SqlDbType.VarChar).Value = obj.email
         sc.Parameters.Add("@actiu", SqlDbType.Bit).Value = obj.actiu
         sc.Parameters.Add("@codiComptable", SqlDbType.VarChar).Value = obj.codiComptable
+
         i = sc.ExecuteNonQuery
         sc = Nothing
         If i >= 1 Then
@@ -128,6 +128,7 @@ Module dbProveidor
         sc.Parameters.Add("@email", SqlDbType.VarChar).Value = obj.email
         sc.Parameters.Add("@actiu", SqlDbType.Bit).Value = obj.actiu
         sc.Parameters.Add("@codiComptable", SqlDbType.VarChar).Value = obj.codiComptable
+
         i = sc.ExecuteNonQuery
 
         sc = Nothing
@@ -178,6 +179,7 @@ Module dbProveidor
             pr.contactes = ModelProveidorContacte.getObjects(pr.id)
             pr.anotacions = ModelProveidorAnotacio.getObjects(pr.id)
             pr.codiComptable = CONFIG.validarNull(sdr(CODI_COMPTABLE))
+
             getObjectsSQL.Add(pr)
         End While
         sdr.Close()
@@ -313,32 +315,41 @@ Module dbProveidor
     ''' </summary>
     ''' <returns>una llista de centres</returns>
     Private Function getObjectsDBF() As List(Of Proveidor)
-        Dim rc As ADODB.Recordset, p As Proveidor
+        Dim rc As ADODB.Recordset, p As Proveidor, a As frmAvis, i As Integer, max As Integer
         rc = New ADODB.Recordset
         getObjectsDBF = New List(Of Proveidor)
-        rc.Open("SELECT * FROM " & getTable(), DBCONNECT.getConnectionDbf)
-        While Not rc.EOF
-            p = New Proveidor(rc(ID).Value,
-                               (CONFIG.validarNull(rc(CIF).Value)),
-                               (CONFIG.validarNull(rc(NOM).Value)),
-                               (CONFIG.validarNull(rc(NOM_FISCAL).Value)),
-                               (CONFIG.validarNull(rc(DIRECCIO).Value)),
-                               (CONFIG.validarNull(rc(POBLACIO).Value)))
-            p.codiComptable = (CONFIG.validarNull(rc(CODI_COMPTABLE).Value))
-            p.pais = ModelPais.getAuxiliar.getObject(rc(ID_PAIS).Value)
-            p.provincia = ModelProvincia.getAuxiliar.getObject(rc(ID_PROVINCIA).Value)
-            p.tipusPagament = ModelTipusPagament.getAuxiliar.getObject(rc(ID_TIPUS_PAGAMENT).Value)
-            p.iban1 = (CONFIG.validarNull(rc(IBAN1).Value))
-            p.iban2 = (CONFIG.validarNull(rc(IBAN2).Value))
-            p.iban3 = (CONFIG.validarNull(rc(IBAN3).Value))
-            p.email = (CONFIG.validarNull(rc(EMAIL).Value))
-            p.contactes = ModelProveidorContacte.getObjects(rc(ID).Value)
-            p.anotacions = ModelProveidorAnotacio.getObjects(
-                rc(ID).Value)
 
-            getObjectsDBF.Add(p)
-            rc.MoveNext()
-        End While
+        rc.Open("SELECT count(id) FROM " & getTable(), DBCONNECT.getConnectionDbf)
+        If Not rc.EOF Then
+            max = rc(0).Value
+            a = New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("carregantDades"), IDIOMA.getString("proveidors"), max)
+            rc.Close()
+            rc.Open("SELECT * FROM " & getTable(), DBCONNECT.getConnectionDbf)
+            i = 1
+            While Not rc.EOF
+                p = New Proveidor(rc(ID).Value,
+                                   (CONFIG.validarNull(rc(CIF).Value)),
+                                   (CONFIG.validarNull(rc(NOM).Value)),
+                                   (CONFIG.validarNull(rc(NOM_FISCAL).Value)),
+                                   (CONFIG.validarNull(rc(DIRECCIO).Value)),
+                                   (CONFIG.validarNull(rc(POBLACIO).Value)))
+                p.codiComptable = (CONFIG.validarNull(rc(CODI_COMPTABLE).Value))
+                p.pais = ModelPais.getAuxiliar.getObject(rc(ID_PAIS).Value)
+                p.provincia = ModelProvincia.getAuxiliar.getObject(rc(ID_PROVINCIA).Value)
+                p.tipusPagament = ModelTipusPagament.getAuxiliar.getObject(rc(ID_TIPUS_PAGAMENT).Value)
+                p.iban1 = (CONFIG.validarNull(rc(IBAN1).Value))
+                p.iban2 = (CONFIG.validarNull(rc(IBAN2).Value))
+                p.iban3 = (CONFIG.validarNull(rc(IBAN3).Value))
+                p.email = (CONFIG.validarNull(rc(EMAIL).Value))
+                p.contactes = ModelProveidorContacte.getObjects(rc(ID).Value, "")
+                p.anotacions = ModelProveidorAnotacio.getObjects(rc(ID).Value)
+                getObjectsDBF.Add(p)
+                a.setData(p.toStringComanda, i)
+                rc.MoveNext()
+                i = i + 1
+            End While
+            a.tancar()
+        End If
         If rc.State = 1 Then rc.Close()
         rc = Nothing
         getObjectsDBF.Sort()

@@ -244,14 +244,16 @@ Module dbCentre
     ''' </summary>
     ''' <returns>una llista de centres</returns>
     Private Function getObjectsDBF() As List(Of Centre)
-        Dim rc As ADODB.Recordset
+        Dim rc As ADODB.Recordset, p As frmAvis
         rc = New ADODB.Recordset
         getObjectsDBF = New List(Of Centre)
+        p = New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("carregantDades"), IDIOMA.getString("centres"))
         rc.Open("SELECT c.id as CID, S.ID AS SID, C.CODI AS CCODI, C.NOM AS CNOM, C.NOTES AS CNOTES,C.ORDRE AS CORDRE, C.ACTIU AS CACTIU, S.CODI AS SCODI, E.ID AS EID, E.CODI AS ECODI , E.PARTICIPA AS EPARTICIPACIO FROM ((" & DBCONNECT.getTaulaCentres & " AS C INNER JOIN " & DBCONNECT.getTaulaSeccions & " AS S ON (S.ID= C.IDSECCIO)) INNER JOIN " & DBCONNECT.GetTaulaEmpresa & " AS E ON (E.ID=S.IDEMPRESA)) ", DBCONNECT.getConnectionDbf)
         While Not rc.EOF
             getObjectsDBF.Add(New Centre(rc("CID").Value, rc("SID").Value, Trim(CONFIG.validarNull(rc("CCODI").Value)), Trim(CONFIG.validarNull(rc("CNOM").Value)), Trim(CONFIG.validarNull(rc("CNOTES").Value)), CONFIG.validarNull(rc("CORDRE").Value), rc("CACTIU").Value, ModelProjecteCentre.getObjects(rc("CID").Value), Trim(CONFIG.validarNull(rc("SCODI").Value)), Trim(rc("EID").Value), Trim(CONFIG.validarNull(rc("ECODI").Value)), Trim(rc("EPARTICIPACIO").Value)))
             rc.MoveNext()
         End While
+        p.tancar()
         If rc.State = 1 Then rc.Close()
         rc = Nothing
         getObjectsDBF.Sort()

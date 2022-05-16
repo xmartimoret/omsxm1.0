@@ -57,7 +57,7 @@ Module dbLlocEntrega
         sc.Parameters.Add("@idPais", SqlDbType.Int).Value = obj.pais.id
         sc.Parameters.Add("@idProvincia", SqlDbType.Int).Value = obj.provincia.id
         sc.Parameters.Add("@notes", SqlDbType.VarChar).Value = obj.notes
-        sc.Parameters.Add("@estat", SqlDbType.Bit).Value = obj.estat
+        sc.Parameters.Add("@estat", SqlDbType.Bit).Value = obj.actiu
         i = sc.ExecuteNonQuery
         sc = Nothing
         If i >= 1 Then
@@ -89,7 +89,7 @@ Module dbLlocEntrega
         sc.Parameters.Add("@idPais", SqlDbType.Int).Value = obj.pais.id
         sc.Parameters.Add("@idProvincia", SqlDbType.Int).Value = obj.provincia.id
         sc.Parameters.Add("@notes", SqlDbType.VarChar).Value = obj.notes
-        sc.Parameters.Add("@estat", SqlDbType.Bit).Value = obj.estat
+        sc.Parameters.Add("@estat", SqlDbType.Bit).Value = obj.actiu
         i = sc.ExecuteNonQuery
 
         sc = Nothing
@@ -135,7 +135,7 @@ Module dbLlocEntrega
             pr.provincia = ModelProvincia.getAuxiliar.getObject(sdr(ID_PROVINCIA))
             pr.notes = CONFIG.validarNull(sdr(notes))
             'todo falta posar els LlocEntregas projecte
-            pr.estat = sdr(ESTAT)
+            pr.actiu = sdr(ESTAT)
             getObjectsSql.Add(pr)
         End While
         sdr.Close()
@@ -165,7 +165,7 @@ Module dbLlocEntrega
             .Parameters.Append(ADOPARAM.ToInt(obj.pais.id))
             .Parameters.Append(ADOPARAM.ToInt(obj.provincia.id))
             .Parameters.Append(ADOPARAM.ToString(obj.notes))
-            .Parameters.Append(ADOPARAM.toBool(obj.estat))
+            .Parameters.Append(ADOPARAM.toBool(obj.actiu))
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
         End With
         Try
@@ -205,7 +205,7 @@ Module dbLlocEntrega
             .Parameters.Append(ADOPARAM.ToInt(obj.pais.id))
             .Parameters.Append(ADOPARAM.ToInt(obj.provincia.id))
             .Parameters.Append(ADOPARAM.ToString(obj.notes))
-            .Parameters.Append(ADOPARAM.toBool(obj.estat))
+            .Parameters.Append(ADOPARAM.toBool(obj.actiu))
         End With
         Try
             sc.Execute()
@@ -259,7 +259,7 @@ Module dbLlocEntrega
             pc.pais = ModelPais.getAuxiliar.getObject(rc(ID_PAIS).Value)
             pc.provincia = ModelProvincia.getAuxiliar.getObject(rc(ID_PROVINCIA).Value)
             pc.notes = CONFIG.validarNull(rc(notes).Value)
-            pc.estat = rc(ESTAT).Value
+            pc.actiu = rc(ESTAT).Value
             getObjectsDBF.Add(pc)
             rc.MoveNext()
         End While

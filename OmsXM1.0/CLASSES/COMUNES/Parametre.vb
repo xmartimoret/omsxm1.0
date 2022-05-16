@@ -7,6 +7,7 @@ Public Class Parametre
     End Sub
     Public Sub New(pId As Integer, pValor As String)
         Me.id = pId
+
         _valor = pValor
     End Sub
 End Class

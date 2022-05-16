@@ -31,6 +31,8 @@ Partial Class DNovaComanda
         Me.cmdGuardar = New System.Windows.Forms.Button()
         Me.cmdCancelar = New System.Windows.Forms.Button()
         Me.pProveidor = New System.Windows.Forms.Panel()
+        Me.cbResponsable = New OmsXM.CBBOX()
+        Me.lblResponsable = New OmsXM.LBLRIGHT()
         Me.TableLayoutPanel2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -103,7 +105,7 @@ Partial Class DNovaComanda
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.cmdGuardar, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.cmdCancelar, 1, 0)
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(89, 195)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(89, 183)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 1
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -138,11 +140,38 @@ Partial Class DNovaComanda
         Me.pProveidor.Size = New System.Drawing.Size(356, 37)
         Me.pProveidor.TabIndex = 3
         '
+        'cbResponsable
+        '
+        Me.cbResponsable.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbResponsable.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbResponsable.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cbResponsable.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.cbResponsable.ForeColor = System.Drawing.Color.Blue
+        Me.cbResponsable.FormattingEnabled = True
+        Me.cbResponsable.Location = New System.Drawing.Point(107, 76)
+        Me.cbResponsable.Name = "cbResponsable"
+        Me.cbResponsable.Size = New System.Drawing.Size(356, 26)
+        Me.cbResponsable.TabIndex = 2
+        '
+        'lblResponsable
+        '
+        Me.lblResponsable.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.lblResponsable.ForeColor = System.Drawing.Color.Black
+        Me.lblResponsable.Location = New System.Drawing.Point(-3, 79)
+        Me.lblResponsable.Name = "lblResponsable"
+        Me.lblResponsable.Size = New System.Drawing.Size(104, 18)
+        Me.lblResponsable.TabIndex = 93
+        Me.lblResponsable.Text = "Lblright1"
+        Me.lblResponsable.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'DNovaComanda
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(491, 243)
+        Me.ClientSize = New System.Drawing.Size(491, 231)
+        Me.Controls.Add(Me.cbResponsable)
+        Me.Controls.Add(Me.lblResponsable)
         Me.Controls.Add(Me.pProveidor)
         Me.Controls.Add(Me.TableLayoutPanel2)
         Me.Controls.Add(Me.lblProveidor)
@@ -171,4 +200,6 @@ Partial Class DNovaComanda
     Friend WithEvents cmdGuardar As Button
     Friend WithEvents cmdCancelar As Button
     Friend WithEvents pProveidor As Panel
+    Friend WithEvents cbResponsable As CBBOX
+    Friend WithEvents lblResponsable As LBLRIGHT
 End Class

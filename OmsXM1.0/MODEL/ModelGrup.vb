@@ -34,6 +34,18 @@ Public Module ModelGrup
         End If
         g = Nothing
     End Function
+    Public Function getListViewItem(g As Grup) As ListViewItem
+        Return New ListViewItem(New String() {g.id, g.ToString})
+
+    End Function
+    Public Function getListViewItem(id As Integer) As ListViewItem
+        Dim a As Grup
+        a = getObject(id)
+        If a IsNot Nothing Then
+            Return getListViewItem(id)
+        End If
+        Return Nothing
+    End Function
     Public Function getListObjects(grups As List(Of Grup)) As Object()
         Dim obj As Grup, i As Integer = 0, objectes() As Object
         ReDim objectes(grups.Count - 1)

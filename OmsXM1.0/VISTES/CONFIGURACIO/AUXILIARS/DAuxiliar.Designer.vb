@@ -72,7 +72,7 @@ Partial Class DAuxiliar
         Me.txtCodi.ForeColor = System.Drawing.Color.Blue
         Me.txtCodi.Location = New System.Drawing.Point(92, 45)
         Me.txtCodi.Name = "txtCodi"
-        Me.txtCodi.Size = New System.Drawing.Size(83, 26)
+        Me.txtCodi.Size = New System.Drawing.Size(168, 26)
         Me.txtCodi.TabIndex = 45
         '
         'lblCodi

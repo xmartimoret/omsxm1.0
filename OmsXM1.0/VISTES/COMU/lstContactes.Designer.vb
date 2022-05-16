@@ -41,6 +41,7 @@ Partial Class lstContactes
         Me.cb.Location = New System.Drawing.Point(0, 0)
         Me.cb.Name = "cb"
         Me.cb.Size = New System.Drawing.Size(293, 26)
+        Me.cb.Sorted = True
         Me.cb.TabIndex = 14
         '
         'cmdAfegir

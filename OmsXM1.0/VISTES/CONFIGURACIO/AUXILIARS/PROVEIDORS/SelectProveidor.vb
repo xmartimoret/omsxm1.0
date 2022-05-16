@@ -19,7 +19,17 @@ Public Class SelectProveidor
         Dim d As Proveidor
         d = ModelProveidor.getObject(id)
         If d IsNot Nothing Then
-            If MISSATGES.CONFIRM_REMOVE_PROVEIDOR(d.ToString) Then
+            If ModelComanda.existObject(id, New Proveidor) Then
+                If MISSATGES.CONFIRM_NO_REMOVE_DOWN_OBJECT(UCase(IDIOMA.getString("elProveidor"))) Then
+                    d.actiu = False
+                    Call ModelProveidor.save(d)
+                End If
+            ElseIf ModelComandaEnEdicio.existObject(id, New proveidor) Then
+                If MISSATGES.CONFIRM_NO_REMOVE_DOWN_OBJECT(UCase(IDIOMA.getString("elProveidor"))) Then
+                    d.actiu = False
+                    Call ModelProveidor.save(d)
+                End If
+            ElseIf MISSATGES.CONFIRM_REMOVE_PROVEIDOR(d.ToString) Then
                 Return ModelProveidor.remove(d)
             End If
         End If
@@ -38,7 +48,7 @@ Public Class SelectProveidor
         Dim i As Integer, j As Integer
         proveidors = New List(Of Proveidor)
         j = 0
-        If ids.Count >= 0 Then
+        If ids.Count > 0 Then
             For Each i In ids
                 proveidors.Add(ModelProveidor.getObject(i))
             Next
@@ -47,6 +57,7 @@ Public Class SelectProveidor
         End If
         Return False
     End Function
+
     Private Function save(obj As Proveidor) As Integer
         If Not obj Is Nothing Then
             If Not ModelProveidor.exist(obj) Then
@@ -70,6 +81,30 @@ Public Class SelectProveidor
     Public Overrides Function filtrar(idParent As Integer, txt As String) As DataList
         Return Nothing
     End Function
+
+    Public Overrides Function getRow(id As Integer) As ListViewItem
+        Return ModelProveidor.getListViewItem(id)
+    End Function
+    Private Function getOrderedObjects() As List(Of Proveidor)
+        Dim i As Integer, o As Proveidor
+        getOrderedObjects = New List(Of Proveidor)
+        For Each i In Me.getIndexs
+            o = ModelProveidor.getObject(i)
+            getOrderedObjects.Add(o)
+        Next
+    End Function
+    Public Overrides Sub imprimir(pdf As Boolean, filtre As String)
+        Call modulInfoProveidor.execute(getOrderedObjects, pdf, filtre)
+    End Sub
+    Public Overrides Sub actualitzar(id As List(Of Integer))
+
+    End Sub
+    Public Overrides Sub toolTipText(id As Integer)
+
+    End Sub
+    Public Overrides Sub guardarCopia(id As Integer)
+        Call ERRORS.EN_CONSTRUCCIO()
+    End Sub
 End Class
 
 

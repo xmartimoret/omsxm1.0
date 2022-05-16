@@ -41,6 +41,7 @@ Partial Class lstLlocsEntrega
         Me.cb.Location = New System.Drawing.Point(0, 1)
         Me.cb.Name = "cb"
         Me.cb.Size = New System.Drawing.Size(318, 26)
+        Me.cb.Sorted = True
         Me.cb.TabIndex = 11
         '
         'cmdAfegir

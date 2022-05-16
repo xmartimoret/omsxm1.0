@@ -42,14 +42,20 @@
         InitializeComponent()
         actualitzar = True
         Call setData()
+
         Call validateControls()
         ' Add any initialization after the InitializeComponent() call.
     End Sub
+
     Private Sub setData()
         cb.Items.Clear()
-        cb.Items.AddRange(auxiliar.getListObjects)
+        cb.Items.AddRange(auxiliar.getListObjectsActives)
         cb.SelectedItem = _obj
         cmdAfegir.Select()
+    End Sub
+    Public Sub setObjects(estat As Boolean)
+        cb.Enabled = estat
+        cmdAfegir.Enabled = estat
     End Sub
     Public Property obj As Object
         Get
@@ -119,6 +125,8 @@
                 temp = DAuxiliar.getobject(New Unitat, getTitol)
             Case DBCONNECT.getTaulaFabricant
                 temp = DAuxiliar.getobject(New Fabricant, getTitol)
+            Case DBCONNECT.getTaulaResponsableCompra
+                temp = DAuxiliar.getobject(New ResponsableCompra, getTitol)
             Case Else
                 temp = DAuxiliar.getobject(New Provincia, getTitol)
         End Select
@@ -156,6 +164,8 @@
             Case DBCONNECT.getTaulaUnitat
                 temp = DAuxiliar.getobject(_obj, getTitol)
             Case DBCONNECT.getTaulaFabricant
+                temp = DAuxiliar.getobject(_obj, getTitol)
+            Case DBCONNECT.getTaulaResponsableCompra
                 temp = DAuxiliar.getobject(_obj, getTitol)
             Case Else
                 temp = DAuxiliar.getobject(_obj, getTitol)

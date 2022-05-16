@@ -18,7 +18,6 @@ Public Class dRutaServidorDades
         End If
     End Function
     Private Sub setLanguage()
-
         Me.cmdGuardar.Text = IDIOMA.getString("cmdGuardar")
         Me.cmdCancelar.Text = IDIOMA.getString("cmdCancelar")
     End Sub

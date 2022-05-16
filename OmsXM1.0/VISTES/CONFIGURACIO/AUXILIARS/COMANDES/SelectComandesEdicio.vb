@@ -1,5 +1,6 @@
 ﻿Public Class SelectComandesEdicio
     Inherits LVObjects
+    Friend Property dades As DataList
     Friend Property comandes As List(Of Comanda)
     Friend Event selectObject(p As Comanda)
 
@@ -21,30 +22,32 @@
         comandes = New List(Of Comanda)
     End Sub
     Public Overrides Function afegir(id As Integer) As Integer
-        'aqui cal obrir la finestra per crear una nova comanda
 
-        'no ens caldrà guardar la comanda o es una nova comanda que te vida per si sola.
-        'ens caldrà posar un control de actualització cada vegada que s'activi la pestanya. (per si s'en guarda una de nova com si es valida una d'actualitzada
-        ' Return save(DComanda.getComanda(New Comanda))
+        Return -1
     End Function
     Public Overrides Function eliminar(id As Integer) As Boolean
         Dim d As Comanda
         d = ModelComandaEnEdicio.getObject(id)
         If d IsNot Nothing Then
-            If MISSATGES.CONFIRM_REMOVE_COMANDA(d.ToString) Then
-                Return ModelComandaEnEdicio.remove(d)
+            If MISSATGES.CONFIRM_PENDENT_REMOVE_COMANDA() Then
+                If ModelComandaEnEdicio.aBassura(d) Then
+                    Call frmIniComanda.updatecomanda()
+                    Call frmIniComanda.updateComandaEliminacio()
+                    Return True
+                End If
             End If
         End If
         Return False
     End Function
 
     Public Overrides Function filtrar(txt As String) As DataList
-        Return ModelComandaEnEdicio.getDataList(ModelComandaEnEdicio.getObjects(txt))
+        dades = ModelComandaEnEdicio.getDataList(ModelComandaEnEdicio.getObjects(0, txt))
+        Return dades
     End Function
 
     Public Overrides Function modificar(id As Integer) As Integer
         Call frmIniComanda.modificarComanda(ModelComandaEnEdicio.getObject(id))
-
+        Return id
     End Function
 
     Public Overrides Function seleccionar(ids As List(Of Integer)) As Boolean
@@ -83,7 +86,23 @@
         Public Overrides Function filtrar(idParent As Integer, txt As String) As DataList
             Return Nothing
         End Function
-    End Class
+
+    Public Overrides Function getRow(id As Integer) As ListViewItem
+        Return ModelComandaEnEdicio.getListViewItem(id)
+    End Function
+    Public Overrides Sub imprimir(pdf As Boolean, filtre As String)
+        Call ModulInfoAuxiliar.infoComandes(Me.listOrdered, pdf, IDIOMA.getString("comandesEnEdicio"), filtre)
+    End Sub
+    Public Overrides Sub actualitzar(id As List(Of Integer))
+
+    End Sub
+    Public Overrides Sub toolTipText(id As Integer)
+
+    End Sub
+    Public Overrides Sub guardarCopia(id As Integer)
+        Call ERRORS.EN_CONSTRUCCIO()
+    End Sub
+End Class
 
 
 

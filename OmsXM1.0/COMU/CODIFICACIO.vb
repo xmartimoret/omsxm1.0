@@ -1,3 +1,0 @@
-﻿Module CODIFICACIO
-
-End Module

@@ -27,6 +27,17 @@ Module ModelColumna
         End If
         c = Nothing
     End Function
+    Public Function getListViewItem(c As Columna) As ListViewItem
+        Return New ListViewItem(New String() {c.id, c.codi, c.nom, IDIOMA.getString("columnes")})
+    End Function
+    Public Function getListViewItem(id As Integer) As ListViewItem
+        Dim a As Columna
+        a = getObject(id)
+        If a IsNot Nothing Then
+            Return getListViewItem(a)
+        End If
+        Return Nothing
+    End Function
     Public Function getObject(id As Integer) As Object
         If Not isUpdated() Then objects = getRemoteObjects()
         Return objects.Find(Function(x) StrComp(x.id, id, CompareMethod.Text) = 0)
