@@ -4,6 +4,7 @@ Public Class SelectEmpreses
     Inherits LVObjects
 
     Friend Property empreses As List(Of Empresa)
+    Friend Event selectObject(e As Empresa)
     Public Sub New(pAccio As Integer, pMultiselect As Boolean, parentForm As Boolean, Optional pTitol As String = "", Optional pOrdre As Integer = 0)
         Me.accio = pAccio
         Me.multiselect = pMultiselect
@@ -42,6 +43,7 @@ Public Class SelectEmpreses
             For Each i In ids
                 empreses.Add(ModelEmpresa.getObject(i))
             Next
+            RaiseEvent selectObject(empreses.Item(0))
             Return True
         End If
         Return False

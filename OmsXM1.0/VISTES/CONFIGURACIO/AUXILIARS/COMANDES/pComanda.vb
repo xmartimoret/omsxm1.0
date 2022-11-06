@@ -59,6 +59,7 @@ Class pComanda
         AddHandler panelEmpr.selectObject, AddressOf setEmpresa
         AddHandler panelEmpr.selectProjecte, AddressOf setProjecte
         AddHandler panelEmpr.selectResponsable, AddressOf setResponsable
+        AddHandler panelEmpr.canviEmpresa, AddressOf setCanviEmpresa
         Call setObjects(pModeEdicio)
         ' Add any initialization after the InitializeComponent() call.
         Panel6.Controls.Clear()
@@ -165,7 +166,7 @@ Class pComanda
         mnuEliminar.Text = IDIOMA.getString("eliminar")
         mnuCopiar.Text = IDIOMA.getString("copiar")
         mnuEngatxar.Text = IDIOMA.getString("engantxar")
-
+        xecUrgent.Text = IDIOMA.getString("urgent")
         cmdAfegirAdjunt.Text = IDIOMA.getString("afegirFitxerAdjunt")
         lblAdjunts.Text = IDIOMA.getString("fitxersAdjunts")
         lblEstatComanda.Text = IDIOMA.getString("estatComanda") & ":"
@@ -213,6 +214,19 @@ Class pComanda
             waitSave = True
         End If
     End Sub
+    Private Sub setCanviEmpresa(idAccio As Integer)
+        If idAccio = 1 Then
+            comandaActual.id = -1
+            comandaActual.codi = "-1"
+            waitSave = True
+        ElseIf idAccio = 2 Then
+            If ModelComandaEnEdicio.remove(comandaActual) Then
+                comandaActual.id = -1
+                comandaActual.codi = "-1"
+                waitSave = True
+            End If
+        End If
+    End Sub
     Private Sub setComanda()
         Dim i As Integer
         actualitzar = False
@@ -229,6 +243,11 @@ Class pComanda
         For i = DGVArticles.Rows.Count To comandaActual.getMaxFilesArticles
             DGVArticles.Rows.Add()
         Next
+        If comandaActual.urgent Then
+            xecUrgent.Checked = True
+        Else
+            xecUrgent.Checked = False
+        End If
         Call setArticles(comandaActual.articles, comandaActual.getTotalFiles)
         actualitzar = True
         If actualitzar Then
@@ -376,6 +395,12 @@ Class pComanda
         c.solicitutF56 = comandaActual.solicitutF56
         c.documentacio = comandaActual.documentacio
         c.docMyDoc = comandaActual.docMyDoc
+        c.departament = panelComanda.departament
+        If xecUrgent.Checked Then
+            c.urgent = True
+        Else
+            c.urgent = False
+        End If
         Return c
     End Function
     Private Function getArticle(r As DataGridViewRow) As articleComanda
@@ -579,7 +604,8 @@ Class pComanda
 
 
     Private Sub cmdGuardar_Click(sender As Object, e As EventArgs) Handles cmdGuardar.Click
-        Dim c As Comanda, isSave As Boolean
+        Dim c As Comanda, isSave As Boolean, codiC As CodiComanda
+        waitSave = True
         c = getComanda()
         c.articles = getArticles()
         isSave = True
@@ -589,16 +615,32 @@ Class pComanda
             Else
                 isSave = False
             End If
+        ElseIf c.codi = "-1" Then
+            c.id = -1
+            c.serie = Year(Now)
+            codiC = ModelCodiComanda.getObject(c.serie, c.empresa.id)
+            If Not IsNothing(codiC) Then
+                c.codi = codiC.codi
+                codiC.codi = codiC.codi + 1
+            Else
+                codiC = New CodiComanda(-1, c.serie, 1, c.empresa.id, "")
+                c.codi = 1
+                codiC.codi = 2
+            End If
+            Call ModelCodiComanda.save(codiC)
         End If
+        c.articles = getArticles()
+        If c.id > 0 Then Call MISSATGES.COMANDA_GUARDADA(c.getCodi)
+        RaiseEvent UpdateComanda()
         If isSave Then
             c.estat = 0
             c.id = ModelComandaEnEdicio.save(c)
             If c.id > 0 Then Call MISSATGES.COMANDA_GUARDADA(c.getCodi)
             RaiseEvent UpdateComanda()
-
             c = Nothing
             waitSave = False
         End If
+        codiC = Nothing
     End Sub
 
 
@@ -704,7 +746,7 @@ Class pComanda
 
     Private Sub cmdValidar_Click_1(sender As Object, e As EventArgs) Handles cmdValidar.Click
         Dim isValidate As Boolean, ac As articleComanda, ap As ArticlePreu, a As article, d As doc, rutaFitxer As String, enviarAValidar As Boolean
-        Dim rutaAdjuntsMydoc As String = ""
+        Dim rutaAdjuntsMydoc As String = "", codiC As CodiComanda
         Call validateControls()
         waitSave = False
         If comandaActual.errorsComanda.Count > 0 Then
@@ -716,6 +758,20 @@ Class pComanda
             isValidate = MISSATGES.CONFIRM_VALIDAR_COMANDA(toolTipComanda)
         End If
         If isValidate Then
+            If comandaActual.codi = "-1" Then
+                comandaActual.id = -1
+                comandaActual.serie = Year(Now)
+                codiC = ModelCodiComanda.getObject(comandaActual.serie, comandaActual.empresa.id)
+                If Not IsNothing(codiC) Then
+                    comandaActual.codi = codiC.codi
+                    codiC.codi = codiC.codi + 1
+                Else
+                    codiC = New CodiComanda(-1, comandaActual.serie, 1, comandaActual.empresa.id, "")
+                    comandaActual.codi = 1
+                    codiC.codi = 2
+                End If
+                Call ModelCodiComanda.save(codiC)
+            End If
             For Each ac In comandaActual.articles
                 If ac.codi <> "" Then
                     If Not ModelArticle.exist(ac.codi) Then
@@ -736,10 +792,12 @@ Class pComanda
                             End If
                         End If
                     Else
+                        ' TODO CAL REVISAR AQUESTA FUNCIÓ. 
                         a = ModelArticle.getObject(ac.codi)
                         ap = ModelarticlePreu.getLastObject(a.id, comandaActual.proveidor.id)
                         If Not IsNothing(ap) Then
-                            If Not ap.Equals(New ArticlePreu(-1, a.id, comandaActual.proveidor.id, comandaActual.data, ac.preu, ac.tpcDescompte)) Then
+                            '31/05/22 xmarti es canvia la comparació, a partir d'ara crec que ho agregarà.
+                            If Not ap.base <> ac.base Or ap.descompte <> ap.descompte Then
                                 ap = New ArticlePreu
                                 ap.base = ac.preu
                                 ap.idArticle = a.id
@@ -762,15 +820,12 @@ Class pComanda
                 End If
             Next
             comandaActual.estat = 1
+
             If ModelComandaEnEdicio.save(comandaActual) > -1 Then
                 Dim f As New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("imprimintComanda"), "")
                 rutaFitxer = ModulExportarComanda.execute(comandaActual, True, CONFIG.getDirectoriPDFComandesEnValidacio & comandaActual.getCodi, False)
                 RaiseEvent UpdateComanda()
                 f.setData(IDIOMA.getString("enviarComandaMyDoc"), comandaActual.getCodi)
-
-                ' NOM FITXER, CODI COMANDA, PROVEIDOR, PROJECTE
-                '1 ENS CAL COPIAR  ELS ADJUNTS  A LA CARPETA PREDETERMINADA
-                '2  ENS  CAL COPIAR  ELS ADJUNTS A LA CARPETA 3 
 
                 enviarAValidar = True
                 If Not IsNothing(comandaActual.docMyDoc) Then
@@ -787,22 +842,22 @@ Class pComanda
                             End If
                         Next
                     End If
-                        If CONFIG.fileExist(rutaFitxer) Then
-                            FileCopy(rutaFitxer, CONFIG.setFolder(RUTA_SCANER_MYDOC) & toStringMydoc() & ".pdf")
-                            'MsgBox(CONFIG.setFolder(RUTA_SCANER_MYDOC) & toStringMydoc() & ".pdf")
-                        End If
+                    If CONFIG.fileExist(rutaFitxer) Then
+                        FileCopy(rutaFitxer, CONFIG.setFolder(RUTA_SCANER_MYDOC) & toStringMydoc() & ".pdf")
+                        'MsgBox(CONFIG.setFolder(RUTA_SCANER_MYDOC) & toStringMydoc() & ".pdf")
                     End If
-
-                    f.tancar()
-                    frmIniComanda.activateComandaValidada(comandaActual)
-                    frmIniComanda.updateComandesEnviades()
                 End If
+
+                f.tancar()
+                frmIniComanda.activateComandaValidada(comandaActual)
+                frmIniComanda.updateComandesEnviades()
             End If
+        End If
     End Sub
     ' todo cal revisar 
     Private Function toStringMydoc() As String
-        If Not IsNothing(comandaActual.solicitutF56) Then
-            Return comandaActual.empresa.nom & "@" & comandaActual.projecte.codi & "@" & comandaActual.projecte.nom & "@" & comandaActual.solicitutF56.departament & "@" & comandaActual.proveidor.nomFiscal & "@" & comandaActual.getCodi & "@" & comandaActual.responsableCompra.nom & "@" & comandaActual.tipusComanda
+        If Not IsNothing(comandaActual.departament) Then
+            Return comandaActual.empresa.nom & "@" & comandaActual.projecte.codi & "@" & comandaActual.projecte.nom & "@" & comandaActual.departament & "@" & comandaActual.proveidor.nomFiscal & "@" & comandaActual.getCodi & "@" & comandaActual.responsableCompra.nom & "@" & comandaActual.tipusComanda
         Else
             Return comandaActual.empresa.nom & "@" & comandaActual.projecte.codi & "@" & comandaActual.projecte.nom & "@EXPLOTACIONES@" & comandaActual.proveidor.nomFiscal & "@" & comandaActual.getCodi & "@" & comandaActual.responsableCompra.nom & "@" & comandaActual.tipusComanda
         End If
@@ -831,10 +886,26 @@ Class pComanda
     End Function
 
     Friend Sub saveComanda()
+        Dim codiC As CodiComanda
         If waitSave Then
             If MISSATGES.CONFIRM_SAVE_COMANDA Then
                 Dim c As Comanda
                 c = getComanda()
+                If c.codi = "-1" Then
+                    c.id = -1
+                    c.estat = 0
+                    c.serie = Year(Now)
+                    codiC = ModelCodiComanda.getObject(c.serie, c.empresa.id)
+                    If Not IsNothing(codiC) Then
+                        c.codi = codiC.codi
+                        codiC.codi = codiC.codi + 1
+                    Else
+                        codiC = New CodiComanda(-1, c.serie, 1, c.empresa.id, "")
+                        c.codi = 1
+                        codiC.codi = 2
+                    End If
+                    Call ModelCodiComanda.save(codiC)
+                End If
                 c.articles = getArticles()
                 c.id = ModelComandaEnEdicio.save(c)
                 If c.id > 0 Then Call MISSATGES.COMANDA_GUARDADA(c.getCodi)
@@ -843,6 +914,7 @@ Class pComanda
                 waitSave = False
             End If
         End If
+        codiC = Nothing
     End Sub
 
     Private Sub cmdCopiar_Click(sender As Object, e As EventArgs) Handles cmdCopiar.Click

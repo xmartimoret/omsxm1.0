@@ -10,6 +10,11 @@
     Public Sub New()
         InitializeComponent()
         empresaActual = ModelEmpresa.getObject(1)
+        If txtCercarCodi.TextLength < 4 Then
+            Me.cmdCercarCodi.Enabled = False
+        Else
+            Me.cmdCercarCodi.Enabled = True
+        End If
         Call setLanguage()
         Call setEmpreses()
         Call setDates()
@@ -22,6 +27,9 @@
         Me.lblEmpresa.Text = IDIOMA.getString("empreses")
         Me.cmdFiltrar.Text = IDIOMA.getString("cercar")
         Me.xecTotesEmpresa.Text = IDIOMA.getString("totesLesEmpreses")
+        Me.lblCercarCodi.Text = IDIOMA.getString("cercarPerCodi")
+        Me.cmdCercarCodi.Text = IDIOMA.getString("cercar")
+
     End Sub
     Private Sub setEmpreses()
         actualitzar = False
@@ -80,7 +88,7 @@
     End Property
 
     Private Sub cmdFiltrar_Click(sender As Object, e As EventArgs) Handles cmdFiltrar.Click
-        Dim P As New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("cercantComandes"), ""), comandes As List(Of Comanda), a As Comanda
+        Dim P As New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("cercantComandes"), ""), comandes As List(Of Comanda)
         comandes = New List(Of Comanda)
         '   For Each a In ModelComandaEnEdicio.getObjects(CDate(pDataIni.txtData.Text), CDate(pDataFi.txtData.Text), empresaActual.id, getProveidors, getProjectes, 0)
         If xecTotesEmpresa.Checked Then
@@ -115,7 +123,21 @@
         p = Nothing
     End Function
 
-    Private Sub xecTotesEmpresa_CheckedChanged(sender As Object, e As EventArgs) Handles xecTotesEmpresa.CheckedChanged
+    Private Sub cmdCercarCodi_Click(sender As Object, e As EventArgs) Handles cmdCercarCodi.Click
+        Dim P As New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("cercantComandes"), ""), comandes As List(Of Comanda), idEmpresa As Integer = -1
+        comandes = New List(Of Comanda)
+        If xecTotesEmpresa.Checked Then idEmpresa = empresaActual.id
+        comandes.AddRange(ModelComandaEnEdicio.getObjectsByCodiComanda(Me.txtCercarCodi.Text))
+        comandes.AddRange(ModelComanda.getObjectsByCodiComanda(Me.txtCercarCodi.Text, idEmpresa))
+        RaiseEvent selectObjects(comandes)
+        P.tancar()
+    End Sub
 
+    Private Sub txtCercarCodi_TextChanged(sender As Object, e As EventArgs) Handles txtCercarCodi.TextChanged
+        If txtCercarCodi.TextLength < 1 Then
+            Me.cmdCercarCodi.Enabled = False
+        Else
+            Me.cmdCercarCodi.Enabled = True
+        End If
     End Sub
 End Class

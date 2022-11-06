@@ -12,6 +12,7 @@
     Friend Event selectObject()
     Friend Event selectProjecte()
     Friend Event selectResponsable()
+    Friend Event canviEmpresa(idAccio As Integer)
     Private actualitzar As Boolean
     Private elements As List(Of Control)
 
@@ -250,22 +251,51 @@
     End Sub
 
     Private Sub cbEmpresa_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbEmpresa.SelectedIndexChanged
-
+        Dim i As Integer
         If cbEmpresa.SelectedIndex > -1 Then
+
+            If empresaActual.id <> cbEmpresa.SelectedItem.id Then
+
+                i = MISSATGES.CONFIRM_CANVI_EMPRESA_COMANDA
+                If i = 1 Then
+                    RaiseEvent canviEmpresa(1)
+                    'TODO ESTIC AQUI CAL VEURE  COM GUARDAR LA COMANDA ACTUAL I CREAR-NE UNA DE NOVA I DEIXAR-LA OBERTA. 
+                    ' ES A DIR POSAR L'ID A -1 I GUARDAR LA VELLA ABANS DE CANVIAR EL NOM DE LA EMPRESA
+                    projecteActual = New Projecte
+                    empresaActual = cbEmpresa.SelectedItem
+                    Call setEmpresa()
+                    If lblAccio.Text = " + " Then
+                        Call setAccio()
+                    End If
+
+                ElseIf i = 2 Then
+                    RaiseEvent canviEmpresa(2)
+                    empresaActual = cbEmpresa.SelectedItem
+                    projecteActual = New Projecte
+                    Call setEmpresa()
+                    If lblAccio.Text = " + " Then
+                        Call setAccio()
+                    End If
+
+                Else
+                    cbEmpresa.SelectedItem = empresaActual
+                End If
+            Else
                 empresaActual = cbEmpresa.SelectedItem
                 Call setEmpresa()
                 If lblAccio.Text = " + " Then
                     Call setAccio()
                 End If
-            Else
-                empresaActual = Nothing
-                Call setEmpresa()
-                cbProjecte.SelectedIndex = -1
-                If lblAccio.Text = " - " Then
-                    Call setAccio()
-                End If
             End If
-            Call validateControls()
+        Else
+            empresaActual = Nothing
+            Call setEmpresa()
+            cbProjecte.SelectedIndex = -1
+            If lblAccio.Text = " - " Then
+                Call setAccio()
+            End If
+        End If
+        Call validateControls()
 
     End Sub
     Private Sub cbEmpresa_TextChanged(sender As Object, e As EventArgs) Handles cbEmpresa.TextChanged

@@ -239,6 +239,7 @@
             idsActual = New List(Of Integer)
             idActual = -1
         End If
+
         Call validateControls()
     End Sub
     Private Sub lstData_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles lstData.MouseDoubleClick
@@ -426,7 +427,9 @@
         Call guardarCopia(idActual)
     End Sub
 
+    Private Sub lblFiltrar_Click(sender As Object, e As EventArgs) Handles lblFiltrar.Click
 
+    End Sub
 End Class
 
 

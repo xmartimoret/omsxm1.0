@@ -75,7 +75,7 @@ Public Class DResponsableCompra
         Call validateControls()
     End Sub
     Private Sub txtCodi_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCodi.KeyPress
-        e.KeyChar = VALIDAR.AlfaNumeric(e.KeyChar, sender.Text.Length, 3)
+        e.KeyChar = VALIDAR.AlfaNumeric(e.KeyChar, sender.Text.Length, 15)
     End Sub
 
 End Class

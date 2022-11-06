@@ -138,13 +138,15 @@ Module ModelComandaSolicitud
 
     Private Function getRemoteObjects(estat As Integer) As List(Of SolicitudComanda)
         Dim s As SolicitudComanda
-        getRemoteObjects = New List(Of SolicitudComanda)
+        'getRemoteObjects = New List(Of SolicitudComanda)
         dateUpdate = Now()
         estatActual = estat
-        For Each s In dbSolicitudComanda.getObjects(estat)
-            s.articles = ModelArticleSolicitut.getObjects(s.id)
-            getRemoteObjects.Add(s)
-        Next
+        Return dbSolicitudComanda.getObjects(estat)
+        ' todo es fa prova i no ees carreguen els articles 
+        'For Each s In dbSolicitudComanda.getObjects(estat)
+        '    s.articles = ModelArticleSolicitut.getObjects(s.id)
+        '    getRemoteObjects.Add(s)
+        'Next
     End Function
 
     ''' <summary>

@@ -29,6 +29,8 @@ Module dbComanda
     Private Const RESPONSABLE_COMPRA As String = "RESPC"
     Private Const BASE_COMANDA As String = "BASE"
     Private Const IVA_COMANDA As String = "IVA"
+    Private Const URGENT As String = "URG"
+    Private Const DEPARTAMENT As String = "DEP"
     'ACCESSORS CENTRE
     ''' <summary>
     ''' SAVE. Guarda un centre a la base de dades. 
@@ -47,6 +49,10 @@ Module dbComanda
     Public Function updateEstat(idComanda As Integer, estat As Integer) As Integer
         If IS_SQLSERVER() Then Return updateEstatSQL(idComanda, estat)
         Return updateEstatDBF(idComanda, estat)
+    End Function
+    Public Function updateUrgent(idComanda As Integer, estat As Integer, valor As Boolean) As Integer
+        If IS_SQLSERVER() Then Return updateUrgentSQL(idComanda, estat, valor)
+        Return updateUrgentDBF(idComanda, estat, valor)
     End Function
     Public Function insert(obj As Comanda, estat As Integer) As Integer
         If IS_SQLSERVER() Then Return insertSQL(obj, estat)
@@ -145,6 +151,20 @@ Module dbComanda
                                       " WHERE " & ID & "=@id", DBCONNECT.getConnection)
         sc.Parameters.Add("@id", SqlDbType.Int).Value = idComanda
         sc.Parameters.Add("@estat", SqlDbType.Int).Value = e
+        i = sc.ExecuteNonQuery
+        sc = Nothing
+        If i >= 1 Then
+            Return idComanda
+        End If
+        Return -1
+    End Function
+    Private Function updateUrgentSQL(idComanda As Integer, e As Integer, v As Boolean) As Integer
+        Dim sc As SqlCommand, i As Integer
+        sc = New SqlCommand("UPDATE " & getTable(e) & " " &
+                            " SET " & URGENT & "=@valor " &
+                                      " WHERE " & ID & "=@id", DBCONNECT.getConnection)
+        sc.Parameters.Add("@id", SqlDbType.Int).Value = idComanda
+        sc.Parameters.Add("@valor", SqlDbType.Bit).Value = v
         i = sc.ExecuteNonQuery
         sc = Nothing
         If i >= 1 Then
@@ -298,7 +318,9 @@ Module dbComanda
                                       IDSOLICITUT & " =?, " &
                                       RESPONSABLE_COMPRA & " =?, " &
                                       BASE_COMANDA & " =?, " &
-                                      IVA_COMANDA & " =? " &
+                                      IVA_COMANDA & " =?, " &
+                                      DEPARTAMENT & " =?, " &
+                                      URGENT & " =? " &
                                       " WHERE " & ID & "=?"
             .Parameters.Append(ADOPARAM.ToString(obj.codi))
             .Parameters.Append(ADOPARAM.ToInt(getInt(obj.empresa)))
@@ -326,6 +348,8 @@ Module dbComanda
             .Parameters.Append(ADOPARAM.ToInt(obj.responsableCompra.id))
             .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.baseComanda) * 1000, 0))
             .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.ivaComanda) * 1000, 0))
+            .Parameters.Append(ADOPARAM.ToString(getStr(obj.departament)))
+            .Parameters.Append(ADOPARAM.toBool(getStr(obj.urgent)))
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
         End With
         Try
@@ -382,6 +406,28 @@ Module dbComanda
             sc = Nothing
         End Try
     End Function
+    Private Function updateUrgentDBF(idComanda As Integer, e As Integer, v As Boolean) As Integer
+        Dim sc As ADODB.Command
+        sc = New ADODB.Command
+        With sc
+            .ActiveConnection = DBCONNECT.getConnectionDbf
+            .CommandText = "UPDATE " & getTable(e) & " " &
+                            " SET " & URGENT & "=?" & " " &
+                                      " WHERE " & ID & "=?"
+
+            .Parameters.Append(ADOPARAM.toBool(v))
+            .Parameters.Append(ADOPARAM.ToInt(idComanda))
+        End With
+        Try
+            sc.Execute()
+            Return idComanda
+        Catch ex As Exception
+            Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
+            Return -1
+        Finally
+            sc = Nothing
+        End Try
+    End Function
     'ACCESSORS CENTRE
     ''' <summary>
     ''' SAVE. Guarda un centre a la base de dades. 
@@ -397,8 +443,8 @@ Module dbComanda
             .ActiveConnection = DBCONNECT.getConnectionDbf
             .CommandText = (" INSERT INTO " & getTable(e) & " " &
                         " (" & ID & ",  " & CODI & ", " & ID_EMPRESA & ", " & SERIE & "," & ID_PROVEIDOR & ", " & ID_CONTACTE_PROVEIDOR & ", " & ID_PROJECTE & ", " & ID_CONTACTE_PROJECTE & ", " & ID_MAGATZEM & "," &
-                         DATA_COMANDA & "," & DATA_MUNTATGE & "," & DATA_ENTREGA & "," & INICI_COMANDA & "," & INICI_MUNTATGE & "," & ENTREGA & "," & OFERTA & "," & ID_TIPUS_PAGAMENT & "," & DADES_BANCARIES & "," & PORTS & "," & NOTES & "," & RESPONSABLE & "," & DIRECTOR & "," & ESTAT & "," & IDSOLICITUT & "," & RESPONSABLE_COMPRA & "," & BASE_COMANDA & "," & IVA_COMANDA & ")" &
-                        " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
+                         DATA_COMANDA & "," & DATA_MUNTATGE & "," & DATA_ENTREGA & "," & INICI_COMANDA & "," & INICI_MUNTATGE & "," & ENTREGA & "," & OFERTA & "," & ID_TIPUS_PAGAMENT & "," & DADES_BANCARIES & "," & PORTS & "," & NOTES & "," & RESPONSABLE & "," & DIRECTOR & "," & ESTAT & "," & IDSOLICITUT & "," & RESPONSABLE_COMPRA & "," & BASE_COMANDA & "," & IVA_COMANDA & "," & DEPARTAMENT & "," & URGENT & ")" &
+                        " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
 
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
             .Parameters.Append(ADOPARAM.ToString(obj.codi))
@@ -427,6 +473,8 @@ Module dbComanda
             .Parameters.Append(ADOPARAM.ToInt(obj.responsableCompra.id))
             .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.baseComanda) * 1000, 0))
             .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.ivaComanda) * 1000, 0))
+            .Parameters.Append(ADOPARAM.ToString(obj.departament))
+            .Parameters.Append(ADOPARAM.toBool(obj.urgent))
         End With
         Try
             sc.Execute()
@@ -513,6 +561,8 @@ Module dbComanda
             c.responsableCompra = ModelResponsableCompra.getAuxiliar.getObject(rc(RESPONSABLE_COMPRA).Value)
             c.baseComanda = Math.Round(rc(BASE_COMANDA).Value / 1000, 3)
             c.ivaComanda = Math.Round(rc(IVA_COMANDA).Value / 1000, 3)
+            c.departament = CONFIG.validarNull(rc(DEPARTAMENT).Value)
+            c.urgent = rc(URGENT).Value
             If e = 2 Then
                 c.documentacio = ModelDocumentacio.getObjectsComanda(c.id, c.getAnyo)
                 c.articles = ModelarticleComanda.getObjects(c.id)
@@ -526,6 +576,69 @@ Module dbComanda
         If rc.State = 1 Then rc.Close()
         rc = Nothing
         getObjectsDBF.Sort()
+    End Function
+    Public Function getObjectsDBFByCodi(pCodi As String, e As Integer, idEmpresa As Integer) As List(Of Comanda)
+        Dim rc As ADODB.Recordset, c As Comanda
+        rc = New ADODB.Recordset
+        getObjectsDBFByCodi = New List(Of Comanda)
+        If idEmpresa > 0 Then
+            rc.Open("Select * FROM " & getTable(e) & " where num   ='" & pCodi & "' and IDEMP=" & idEmpresa, DBCONNECT.getConnectionDbf)
+        Else
+            rc.Open("Select * FROM " & getTable(e) & " where num   ='" & pCodi & "'", DBCONNECT.getConnectionDbf)
+        End If
+
+        While Not rc.EOF
+            c = New Comanda(rc(ID).Value, CONFIG.validarNull(Trim(rc(CODI).Value)), ModelProveidor.getObject(CInt(rc(ID_PROVEIDOR).Value)), ModelEmpresa.getObject(CInt(rc(ID_EMPRESA).Value)), ModelProjecte.getObject(CInt(rc(ID_PROJECTE).Value)))
+            If rc(ID_MYDOC).Value Is Nothing OrElse rc(ID_MYDOC).Value.GetType.Name = "DBNull" Then
+                'If rc(ID_MYDOC).Value <= 0 Then
+                c.docMyDoc = New PedidoMD
+                c.comentaris = New List(Of ComentariMD)
+            Else
+                c.docMyDoc = ModelPedidosMydoc.getObject(rc(ID_MYDOC).Value)
+                c.idMydoc = rc(ID_MYDOC).Value
+                If rc(ID_MYDOC).Value > 10000 Then
+                    c.comentaris = ModelComentarisMydoc.getObjects(rc(ID_MYDOC).Value)
+                End If
+            End If
+            c.contacte = ModelContacte.getObject(CInt(rc(ID_CONTACTE_PROJECTE).Value))
+            c.contacteProveidor = ModelProveidorContacte.getObject(rc(ID_CONTACTE_PROVEIDOR).Value)
+            c.dadesBancaries = CONFIG.validarNull(rc(DADES_BANCARIES).Value)
+            c.data = CONFIG.validarNullDate(rc(DATA_COMANDA).Value)
+            c.dataEntrega = CONFIG.validarNullDate(rc(DATA_ENTREGA).Value)
+            c.dataMuntatge = CONFIG.validarNullDate(rc(DATA_MUNTATGE).Value)
+            c.inici = rc(INICI_COMANDA).Value
+            c.magatzem = ModelLlocEntrega.getObject(rc(ID_MAGATZEM).Value)
+            c.nOferta = CONFIG.validarNull(rc(OFERTA).Value)
+            c.notes = CONFIG.validarNull(rc(NOTES).Value)
+            c.ports = CONFIG.validarNull(rc(PORTS).Value)
+            c.entrega = rc(ENTREGA).Value
+            c.entregaEquips = rc(INICI_MUNTATGE).Value
+            c.tipusPagament = ModelTipusPagament.getAuxiliar.getObject(rc(ID_TIPUS_PAGAMENT).Value)
+            c.responsable = CONFIG.validarNull(rc(RESPONSABLE).Value)
+            c.director = CONFIG.validarNull(rc(DIRECTOR).Value)
+            c.estat = rc(ESTAT).Value
+            c.serie = CONFIG.validarNull(rc(SERIE).Value)
+            c.idSolicitut = rc(IDSOLICITUT).Value
+            '220516 desactivat xmarti pq tarda molt a carregar-se. Sobretot al carregar tots els articles/solicitut. caldria fer un array de llistes i anar-les carregant a poc a poc.
+            'c.solicitutF56 = ModelComandaSolicitud.getObject(c.idSolicitut)
+            c.responsableCompra = ModelResponsableCompra.getAuxiliar.getObject(rc(RESPONSABLE_COMPRA).Value)
+            c.baseComanda = Math.Round(rc(BASE_COMANDA).Value / 1000, 3)
+            c.ivaComanda = Math.Round(rc(IVA_COMANDA).Value / 1000, 3)
+            c.departament = CONFIG.validarNull(rc(DEPARTAMENT).Value)
+            c.urgent = rc(URGENT).Value
+            If e = 2 Then
+                c.documentacio = ModelDocumentacio.getObjectsComanda(c.id, c.getAnyo)
+                c.articles = ModelarticleComanda.getObjects(c.id)
+            Else
+                c.documentacio = ModelDocumentacio.getObjectsComandaEdicio(c.id, c.getAnyo)
+                c.articles = ModelArticleComandaEnEdicio.getObjects(c.id)
+            End If
+            getObjectsDBFByCodi.Add(c)
+            rc.MoveNext()
+        End While
+        If rc.State = 1 Then rc.Close()
+        rc = Nothing
+        getObjectsDBFByCodi.Sort()
     End Function
     ''' <summary>
     ''' Obté tots els centres del sistema 

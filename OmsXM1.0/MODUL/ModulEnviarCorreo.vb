@@ -6,6 +6,7 @@ Module ModulEnviarCorreo
         Dim objMessage As MAIL.MailItem
         Dim objCorreo As MAIL.Account
         Dim objRecipient As Object
+
         Dim desti As String
         'Dim AccountFrom As MAIL.Account
         On Error GoTo ERRFI
@@ -15,16 +16,23 @@ Module ModulEnviarCorreo
         objMessage = objOutlook.CreateItem(MAIL.OlItemType.olMailItem)
         desti = Pdesti
         objRecipient = objSession.CreateRecipient(desti)
+
+
         objSession.Logon()
         'AccountFrom = getAccountOutlook(objOutlook, CONFIG_FILE.getTag(CONFIG_FILE.TAG.CORREU_PREDETERMINAT))
         'If Not IsNothing(AccountFrom) Then objMessage.SendUsigAccount = AccountFrom
+
+
         If desti <> "" Then
             objMessage.Recipients.Add(desti)
         Else
             objMessage.Recipients.Add("compras@remondis.es")
         End If
-        'objMessage.CC = CONFIG_RUTES.getCorreuCC
+
         objMessage.Subject = titol
+        If existCorreuPredeterminat(objSession.Accounts, CONFIG_FILE.getTag(TAG.CORREU_PREDETERMINAT)) Then
+            objMessage.SendUsingAccount = objSession.Accounts(CONFIG_FILE.getTag(TAG.CORREU_PREDETERMINAT))
+        End If
         'objMessage.RTFBody
         'objMessage.Body = cos
         If CONFIG.fileExist(adjunt) Then objMessage.Attachments.Add(adjunt)
@@ -146,6 +154,16 @@ ERRFI:
             End If
         Next
         Return Nothing
+    End Function
+
+    Private Function existCorreuPredeterminat(sAcounts As MAIL.Accounts, p As String) As Boolean
+        Dim a As MAIL.Account
+        For Each a In sAcounts
+            If StrComp(a.SmtpAddress, p, CompareMethod.Text) = 0 Then
+                Return True
+            End If
+        Next
+        Return False
     End Function
     'Private Function getAccountOutlook(ByVal application As MAIL.Application, ByVal smtpAddress As String) As MAIL.Account
     '    Dim accounts As MAIL.Accounts = application.Session.Accounts

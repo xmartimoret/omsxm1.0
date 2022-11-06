@@ -592,5 +592,15 @@
         End If
         Return False
     End Function
+    Public Function CONFIRM_CANVI_EMPRESA_COMANDA() As Integer
+        Dim result As MsgBoxResult
+        result = MsgBox(IDIOMA.getString("volsCanviarEmpresa") & vbCrLf & IDIOMA.getString("esGeneraCopiaComanda") & vbCrLf & IDIOMA.getString("esGeneraNovaComanda"), MsgBoxStyle.Question + MsgBoxStyle.YesNoCancel, CONFIRMAR)
+        If result = vbYes Then
+            Return 1
+        ElseIf result = vbNo Then
+            Return 2
+        End If
+        Return 0
+    End Function
 End Module
 

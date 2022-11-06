@@ -4280,4 +4280,40 @@
   <data name="passarComandaEnviades" xml:space="preserve">
     <value>- VOLS PASSAR LES COMANDES SELECCIONADES COM ENVIADES?.</value>
   </data>
+  <data name="esGeneraCopiaComanda" xml:space="preserve">
+    <value>SI= CREA UNA COPIA DE LA COMANDA PER LA NOVA EMPRESA</value>
+  </data>
+  <data name="esGeneraNovaComanda" xml:space="preserve">
+    <value>NO= ESBORRA LA COMANDA DE L'EMPRESA ACTUAL I CREA UNA NOVA COMANDA A LA NOVA EMPRESA</value>
+  </data>
+  <data name="urgent" xml:space="preserve">
+    <value>URGENT</value>
+  </data>
+  <data name="volsCanviarEmpresa" xml:space="preserve">
+    <value>- VOLS CREAR UNA COPIA DE LA COMANDA (SI) O  VOLS CANVIAR  D'EMPRESA, LA COMANDA ACTUAL (NO)</value>
+  </data>
+  <data name="errFaltaEmpresaSolicitut" xml:space="preserve">
+    <value>ERROR. FALTA L'EMPRESA DE LA SOLICITUT DE COMANDA</value>
+  </data>
+  <data name="errFaltaProjecteSolicitut" xml:space="preserve">
+    <value>ERROR. FALTA EL PROJECTE DE LA SOLICITUT DE COMANDA</value>
+  </data>
+  <data name="noEsPotCrearSolicitut" xml:space="preserve">
+    <value>NO ES POT CREAR LA COMANDA!!</value>
+  </data>
+  <data name="noHiHaEmpresa" xml:space="preserve">
+    <value>La solicitut de comanda no té cap empresa. Cal seleccionar  una empresa per poder  crear la comanda</value>
+  </data>
+  <data name="noHiHaProjecte" xml:space="preserve">
+    <value>La solicitut de comanda no té cap projecte. Cal seleccionar un projecte per poder  crear la comanda</value>
+  </data>
+  <data name="errRemovePdfComanda" xml:space="preserve">
+    <value>ERROR. NO S'HA POGUT ESBORRAR EL FITXER </value>
+  </data>
+  <data name="a" xml:space="preserve">
+    <value>a</value>
+  </data>
+  <data name="cercarPerCodi" xml:space="preserve">
+    <value>CERCAR*CODI</value>
+  </data>
 </root>

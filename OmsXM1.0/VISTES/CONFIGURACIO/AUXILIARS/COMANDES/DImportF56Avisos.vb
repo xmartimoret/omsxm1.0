@@ -5,11 +5,15 @@
 ' llavors  caldrà veure si hi ha proveidor, si hi ha contacte proveidor, si hi ha magatzem, si hi ha contacte magatzem. 
 ' també cal saber si les dades son les correctes. 
 Public Class DImportF56Avisos
+    Private empresaActual As Empresa
+    Private projecteActual As Projecte
     Private solicitutActual As SolicitudComanda
     Private proveidorActual As Proveidor
     Private contacteProveidorActual As ProveidorCont
     Private magatzemActual As LlocEntrega
     Private contacteMagatzemActual As Contacte
+    Private isEmpresa As Boolean = False
+    Private isProjecte As Boolean = False
     Private isProveidor As Boolean = False
     Private isContacteProveidor As Boolean = False
     Private isMagatzem As Boolean = False
@@ -34,10 +38,34 @@ Public Class DImportF56Avisos
     End Function
     Private Sub setData()
         Dim ll As LlocEntrega, c As Contacte
+        Me.lblEmpresa.Text = solicitutActual.empresa
+        Me.lblProjecte.Text = solicitutActual.codiProjecte
         Me.lblProveidor.Text = solicitutActual.proveidor
         Me.lblContacteProveidor.Text = solicitutActual.contacteProveidor
         Me.lblLlocEntrega.Text = solicitutActual.llocEntrega
         Me.lblContacte.Text = solicitutActual.contacteEntrega
+
+        empresaActual = ModelEmpresa.getObject(solicitutActual.empresa)
+        If IsNothing(empresaActual) Then
+            Me.Panel6.Visible = True
+            empresaActual = New Empresa
+            lblAvis6.Text = IDIOMA.getString("noHiHaEmpresa")
+            isEmpresa = True
+        Else
+            Me.Panel6.Visible = False
+            isEmpresa = False
+        End If
+        projecteActual = ModelProjecte.getObject(solicitutActual.codiProjecte)
+        If IsNothing(projecteActual) Then
+            Me.Panel5.Visible = True
+            projecteActual = New Projecte
+            lblAvis5.Text = IDIOMA.getString("noHiHaProjecte")
+            isProjecte = True
+        Else
+            Me.Panel5.Visible = False
+            isProjecte = False
+        End If
+
         proveidorActual = ModelProveidor.getObject(solicitutActual.idProveidor)
         If IsNothing(proveidorActual) Then
             Me.Panel1.Visible = True
@@ -105,6 +133,8 @@ Public Class DImportF56Avisos
         Me.lblTProveidor.Text = UCase(IDIOMA.getString("proveidor")) & ":"
         Me.cmdCancelar.Text = IDIOMA.getString("cmdCancelar")
         Me.cmdGuardar.Text = IDIOMA.getString("cmdCrearComanda")
+        Me.cmdEscollirEmpresa.Text = IDIOMA.getString("cmdEscollir")
+        Me.cmdEscollirProjecte.Text = IDIOMA.getString("cmdEscollir")
     End Sub
     Private Sub validateControls()
         Dim i As Integer
@@ -113,7 +143,7 @@ Public Class DImportF56Avisos
         If proveidorActual Is Nothing Then
             cmdAfegir2.Enabled = False
             cmdEscollir2.Enabled = False
-        ElseIf proveidoractual.id = -1 Then
+        ElseIf proveidorActual.id = -1 Then
             cmdAfegir2.Enabled = False
             cmdEscollir2.Enabled = False
         End If
@@ -246,11 +276,43 @@ Public Class DImportF56Avisos
 
 
     Private Sub cmdTancar_Click(sender As Object, e As EventArgs) Handles cmdGuardar.Click
-        isUnload = False
-        Me.Hide()
+        If isEmpresa Then
+            Call ERRORS.ERR_FALTA_EMPRESA_SOLICITUT()
+        ElseIf isProjecte Then
+            Call ERRORS.ERR_FALTA_PROJECTE_SOLICITUT()
+        Else
+            isUnload = False
+            Me.Hide()
+        End If
     End Sub
 
     Private Sub cmdCancelar_Click(sender As Object, e As EventArgs) Handles cmdCancelar.Click
         Me.Hide()
+    End Sub
+
+    Private Sub cmdEscollirEmpresa_Click(sender As Object, e As EventArgs) Handles cmdEscollirEmpresa.Click
+        Dim p As Empresa
+        p = DAuxiliars.getEmpresa
+        If Not p Is Nothing Then
+            If p.id > 0 Then
+                empresaActual = p
+                solicitutActual.empresa = p.codi
+                Call setData()
+            End If
+        End If
+        p = Nothing
+    End Sub
+
+    Private Sub cmdEscollirProjecte_Click(sender As Object, e As EventArgs) Handles cmdEscollirProjecte.Click
+        Dim p As Projecte
+        p = DAuxiliars.getProjecte
+        If Not p Is Nothing Then
+            If p.id > 0 Then
+                projecteActual = p
+                solicitutActual.codiProjecte = p.codi
+                Call setData()
+            End If
+        End If
+        p = Nothing
     End Sub
 End Class

@@ -831,4 +831,27 @@ Module CONFIG
     Public Function getRutaFitxerSignaturaCorreu() As String
         Return setFolder(DBCONNECT.getRutaDBActual) & NOM_FITXER_SIGNATURA_CORREU
     End Function
+    Public Function getRutaComandaPDF(idEmpresa As Integer, codi As String, anyo As String, e As Integer)
+        Dim f As String, ruta As String, temp() As String
+        If e = 2 Then
+            ruta = CONFIG.getDirectoriPDFComandesEnviades(idEmpresa)
+        Else
+            ruta = CONFIG.getDirectoriPDFComandesEnValidacio()
+        End If
+        f = Dir(ruta & "*.pdf", FileAttribute.Archive)
+        Do While f <> ""
+            temp = Split(f, "-")
+            If UBound(temp) > 0 Then
+                If Strings.Right(Val(temp(0)), 2) = anyo Then
+                    If Val(temp(1)) = Val(codi) Then
+                        If Val(temp(3)) = idEmpresa Then
+                            Return ruta & f
+                        End If
+                    End If
+                End If
+            End If
+            f = Dir()
+        Loop
+        Return ""
+    End Function
 End Module

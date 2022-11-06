@@ -2,6 +2,7 @@
 Public Class SelectProjectes
     Inherits LVObjects
     Friend Property projectes As List(Of Projecte)
+    Friend Event selectObject(p As Projecte)
     Private tipusProjecte As Integer
     Public Sub New(pAccio As Integer, pMultiselect As Boolean, parentForm As Boolean, Optional pTitol As String = "", Optional pOrdre As Integer = 0)
         Me.accio = pAccio
@@ -68,6 +69,7 @@ Public Class SelectProjectes
             For Each i In ids
                 projectes.Add(ModelProjecte.getObject(i))
             Next
+            RaiseEvent selectObject(projectes.Item(0))
             Return True
         End If
         Return False

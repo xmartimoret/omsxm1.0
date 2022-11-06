@@ -69,12 +69,30 @@
         Next
         a = Nothing
     End Function
+    Public Function getObjectsByCodiComanda(pCodi As String) As List(Of Comanda)
+        Dim a As Comanda
+        If Not isUpdated() Then objects = getRemoteObjects()
+        Call importNumsMydoc()
+        getObjectsByCodiComanda = New List(Of Comanda)
+        For Each a In objects
+            If InStr(a.codi, pCodi, CompareMethod.Text) > 0 Then
+                If a.estat = 0 Then
+                    a.notes = IDIOMA.getString("enEdicio")
+                ElseIf a.estat = 1 Then
+                    a.notes = IDIOMA.getString("enValidacio")
+                End If
+                getObjectsByCodiComanda.Add(a)
+            End If
+        Next
+        a = Nothing
+    End Function
     Public Function getDataList(comandes As List(Of Comanda)) As DataList
-        Dim a As Comanda, esEnviada As String, comentString As String, cm As ComentariMD
+        Dim a As Comanda, esEnviada As String, comentString As String, cm As ComentariMD, esUrgent As String, i As Integer
         getDataList = New DataList
         comandes.Sort()
         If comandes.Count > 0 Then
             getDataList.columns.Add(COLUMN.ID)
+            getDataList.columns.Add(COLUMN.GENERICA("urgent", 65, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.GENERICA("codi", 90, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.GENERICA("data", 90, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.GENERICA("empresa", 50, HorizontalAlignment.Center))
@@ -88,6 +106,7 @@
             getDataList.columns.Add(COLUMN.GENERICA("dataEntradaMydoc", 100, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.GENERICA("enviadaAProveidor", 50, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.GENERICA("comentaris", 300, HorizontalAlignment.Left))
+            i = 0
             For Each a In comandes
                 If a.empresa Is Nothing Then a.empresa = New Empresa
                 If a.projecte Is Nothing Then a.projecte = New Projecte
@@ -96,6 +115,11 @@
                     esEnviada = IDIOMA.getString("si")
                 Else
                     esEnviada = IDIOMA.getString("no")
+                End If
+                If a.urgent Then
+                    esUrgent = IDIOMA.getString("si")
+                Else
+                    esUrgent = IDIOMA.getString("no")
                 End If
                 comentString = ""
                 For Each cm In a.comentaris
@@ -107,31 +131,76 @@
 
                 Next
                 If a.empresa.id = 1 Then
-                    getDataList.rows.Add(New ListViewItem(New String() {a.id, a.codi, a.data, "REM", a.projecte.codi, a.proveidor.nom, Format(a.baseComanda, "#,##0.00 €"), Format(a.ivaComanda, "#,##0.00 €"), Format(a.totalComanda, "#,##0.00 €"), a.idMydoc, a.getStringTascaMydoc, a.getDataTascaMydoc, esEnviada, comentString}))
+                    getDataList.rows.Add(New ListViewItem(New String() {a.id, esUrgent, a.codi, a.data, "REM", a.projecte.codi, a.proveidor.nom, Format(a.baseComanda, "#,##0.00 €"), Format(a.ivaComanda, "#,##0.00 €"), Format(a.totalComanda, "#,##0.00 €"), a.idMydoc, a.getStringTascaMydoc, a.getDataTascaMydoc, esEnviada, comentString}))
                 Else
-                    getDataList.rows.Add(New ListViewItem(New String() {a.id, a.codi, a.data, a.empresa.codi, a.projecte.codi, a.proveidor.nom, Format(a.baseComanda, "#,##0.00 €"), Format(a.ivaComanda, "#,##0.00 €"), Format(a.totalComanda, "#,##0.00 €"), a.idMydoc, a.getStringTascaMydoc, a.getDataTascaMydoc, esEnviada, comentString}))
+                    getDataList.rows.Add(New ListViewItem(New String() {a.id, esUrgent, a.codi, a.data, a.empresa.codi, a.projecte.codi, a.proveidor.nom, Format(a.baseComanda, "#,##0.00 €"), Format(a.ivaComanda, "#,##0.00 €"), Format(a.totalComanda, "#,##0.00 €"), a.idMydoc, a.getStringTascaMydoc, a.getDataTascaMydoc, esEnviada, comentString}))
                 End If
-
+                If a.urgent Then
+                    getDataList.rows(i).BackColor = Color.Cyan
+                Else
+                    getDataList.rows(i).BackColor = Color.White
+                End If
+                i = i + 1
             Next
         End If
         a = Nothing
     End Function
     Public Function getListViewItem(a As Comanda) As ListViewItem
-        If a.empresa.id = 1 Then
-            Return New ListViewItem(New String() {a.id, a.codi, a.data, "REM", a.projecte.codi, a.proveidor.nom, Format(a.baseComanda, "#,##0.00 €"), Format(a.ivaComanda, "#,##0.00 €"), Format(a.totalComanda, "#,##0.00 €")})
+        Dim esUrgent As String, esEnviada As String, comentString As String
+        If a.idMydoc > 0 And a.docMyDoc Is Nothing Then
+            esEnviada = IDIOMA.getString("si")
         Else
-            Return New ListViewItem(New String() {a.id, a.codi, a.data, a.empresa.codi, a.projecte.codi, a.proveidor.nom, Format(a.baseComanda, "#,##0.00 €"), Format(a.ivaComanda, "#,##0.00 €"), Format(a.totalComanda, "#,##0.00 €")})
+            esEnviada = IDIOMA.getString("no")
+        End If
+        If a.urgent Then
+            esUrgent = IDIOMA.getString("si")
+        Else
+            esUrgent = IDIOMA.getString("no")
+        End If
+        comentString = ""
+        For Each cm In a.comentaris
+            If comentString = "" Then
+                comentString = Format(cm.dataIni, "dd-MM-yy hh:mm") & " (" & cm.loginUsuari & ") - " & cm.comentari
+            Else
+                comentString = comentString & " --> " & Format(cm.dataIni, "dd-MM-yy hh:mm") & " (" & cm.loginUsuari & ") - " & cm.comentari
+            End If
+
+        Next
+        If a.empresa.id = 1 Then
+            '{a.id, esUrgent, a.codi, a.data, "REM", a.projecte.codi, a.proveidor.nom, Format(a.baseComanda, "#,##0.00 €"), Format(a.ivaComanda, "#,##0.00 €"), Format(a.totalComanda, "#,##0.00 €"), a.idMydoc, a.getStringTascaMydoc, a.getDataTascaMydoc, esEnviada, comentString}
+            Return New ListViewItem(New String() {a.id, esUrgent, a.codi, a.data, "REM", a.projecte.codi, a.proveidor.nom, Format(a.baseComanda, "#,##0.00 €"), Format(a.ivaComanda, "#,##0.00 €"), Format(a.totalComanda, "#,##0.00 €"), a.idMydoc, a.getStringTascaMydoc, a.getDataTascaMydoc, esEnviada, comentString})
+        Else
+            Return New ListViewItem(New String() {a.id, esUrgent, a.codi, a.data, a.empresa.codi, a.projecte.codi, a.proveidor.nom, Format(a.baseComanda, "#,##0.00 €"), Format(a.ivaComanda, "#,##0.00 €"), Format(a.totalComanda, "#,##0.00 €"), a.idMydoc, a.getStringTascaMydoc, a.getDataTascaMydoc, esEnviada, comentString})
         End If
 
     End Function
     Public Function getListViewItem(id As Integer) As ListViewItem
-        Dim a As Comanda
+        Dim a As Comanda, esUrgent As String, esEnviada As String, comentString As String
         a = getObject(id)
+        If a.idMydoc > 0 And a.docMyDoc Is Nothing Then
+            esEnviada = IDIOMA.getString("si")
+        Else
+            esEnviada = IDIOMA.getString("no")
+        End If
+        If a.urgent Then
+            esUrgent = IDIOMA.getString("si")
+        Else
+            esUrgent = IDIOMA.getString("no")
+        End If
+        comentString = ""
+        For Each cm In a.comentaris
+            If comentString = "" Then
+                comentString = Format(cm.dataIni, "dd-MM-yy hh:mm") & " (" & cm.loginUsuari & ") - " & cm.comentari
+            Else
+                comentString = comentString & " --> " & Format(cm.dataIni, "dd-MM-yy hh:mm") & " (" & cm.loginUsuari & ") - " & cm.comentari
+            End If
+
+        Next
         If a IsNot Nothing Then
             If a.empresa.id = 1 Then
-                Return New ListViewItem(New String() {a.id, a.codi, a.data, "REM", a.projecte.codi, a.proveidor.nom, a.base, a.iva, a.total})
+                Return New ListViewItem(New String() {a.id, esUrgent, a.codi, a.data, "REM", a.projecte.codi, a.proveidor.nom, Format(a.baseComanda, "#,##0.00 €"), Format(a.ivaComanda, "#,##0.00 €"), Format(a.totalComanda, "#,##0.00 €"), a.idMydoc, a.getStringTascaMydoc, a.getDataTascaMydoc, esEnviada, comentString})
             Else
-                Return New ListViewItem(New String() {a.id, a.codi, a.data, a.empresa.codi, a.projecte.codi, a.proveidor.nom, a.base, a.iva, a.total})
+                Return New ListViewItem(New String() {a.id, esUrgent, a.codi, a.data, a.empresa.codi, a.projecte.codi, a.proveidor.nom, Format(a.baseComanda, "#,##0.00 €"), Format(a.ivaComanda, "#,##0.00 €"), Format(a.totalComanda, "#,##0.00 €"), a.idMydoc, a.getStringTascaMydoc, a.getDataTascaMydoc, esEnviada, comentString})
             End If
 
         End If
@@ -152,19 +221,19 @@
         If c IsNot Nothing Then Return c.codi
         Return Nothing
     End Function
-    Friend Function getLastCodiEmpresa(idEmpresa As Integer, anyo As Integer) As Integer
-        Dim c As Comanda, id As Integer
-        If Not isUpdated() Then objects = getRemoteObjects()
-        id = 1
-        For Each c In objects
-            If idEmpresa = c.empresa.id Then
-                If id < Val(c.codi) Then
-                    id = Val(c.codi)
-                End If
-            End If
-        Next
-        Return id
-    End Function
+    'Friend Function getLastCodiEmpresa(idEmpresa As Integer, anyo As Integer) As Integer
+    '    Dim c As Comanda, id As Integer
+    '    If Not isUpdated() Then objects = getRemoteObjects()
+    '    id = 1
+    '    For Each c In objects
+    '        If idEmpresa = c.empresa.id Then
+    '            If id < Val(c.codi) Then
+    '                id = Val(c.codi)
+    '            End If
+    '        End If
+    '    Next
+    '    Return id
+    'End Function
     Public Function getNom(id As Integer) As String
         Dim a As Comanda
         getNom = ""
@@ -240,15 +309,13 @@
         Dim c As Comanda, e As Empresa, p As Projecte, ct As Contacte, pr As Proveidor, a As articleComanda, aF As ArticleSolicitut, descrip As String, posDescrip As Integer = 0
         Dim nomCognom() As String
         e = ModelEmpresa.getObject(obj.empresa)
-        p = ModelProjecte.getObject(obj.codiProjecte)
+        p = ModelProjecte.getObject(obj.codiProjecte, e.id)
         pr = ModelProveidor.getObject(obj.idProveidor)
         c = New Comanda(-1, -1, pr, e, p)
-        c.responsable = p.responsable
-        c.director = p.director
         c.magatzem = ModelLlocEntrega.getObject(obj.idLlocEntrega)
-        c.magatzem = ModelLlocEntrega.getObjectByName(obj.llocEntrega)
+        If IsNothing(c.magatzem) Then If obj.llocEntrega <> "" Then c.magatzem = ModelLlocEntrega.getObjectByName(obj.llocEntrega)
         c.contacte = ModelContacte.getObject(obj.idContacteEntrega)
-        If IsNothing(c.contacte) Then c.contacte = ModelContacte.getObjectByName(obj.contacteEntrega)
+        If IsNothing(c.contacte) Then If obj.contacteEntrega <> "" Then c.contacte = ModelContacte.getObjectByName(obj.contacteEntrega)
         c.contacteProveidor = ModelProveidorContacte.getObject(obj.idContacteProveidor)
         If IsNothing(c.contacteProveidor) Then If Not IsNothing(pr) Then c.contacteProveidor = pr.contacteActual()
         If Not IsNothing(pr) Then c.dadesBancaries = pr.iban1
@@ -263,6 +330,7 @@
         c.estat = 0
         c.solicitutF56 = obj
         c.idSolicitut = obj.id
+        c.departament = obj.departament
         nomCognom = Split(obj.responsableCompra)
         If UBound(nomCognom) = 1 Then
             c.responsableCompra = ModelResponsableCompra.getObject(nomCognom(0), nomCognom(1))
@@ -368,57 +436,19 @@
         End If
         Return obj.id
     End Function
-    ''' <summary>
-    ''' Envia la comanda al proveidor. per fer-ho  hi dos camimns. desde l'objecte PanelPDF. comanda en concret o desde la listview comandes en validacio 
-    ''' </summary>
-    ''' <param name="idComandaValidacio"></param>
-    ''' <param name="rutaFitxerPDF"></param>
-    ''' <returns></returns>
-    'Public Function enviarComandaProveidor(idComandaValidacio As Integer, rutaFitxerPDF As String) As Integer
-    '    Dim d As Comanda, idComanda As Integer
-    '    Dim pdfOrigen As String, P As frmAvis, ruta2 As String
-    '    d = ModelComandaEnEdicio.getObject(idComandaValidacio)
-    '    If Not IsNothing(d) Then
-    '        If CONFIG.fileExist(rutaFitxerPDF) Then
-    '            P = New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("actualitzantEmail"), d.getCorreuProveidor)
-    '            Call ModulEnviarCorreo.enviarCorreu(rutaFitxerPDF, IDIOMA.getString("comanda") & "-" & d.ToString, d, d.getCorreuProveidor)
-    '            P.tancar()
-    '            If MISSATGES.CONFIRM_SEND_COMANDA Then
-    '                P = New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("guardarComanda"), rutaFitxerPDF)
-    '                If ModelComandaEnEdicio.remove(d) Then
-    '                    Call ModelArticleComandaEnEdicio.remove(d)
-    '                    frmIniComanda.updatecomanda()
-    '                End If
-    '                d.baseComanda = d.base - d.descompte
-    '                d.ivaComanda = d.iva
-    '                d.estat = 2
-    '                idComanda = ModelComanda.insert(d.copy)
-    '                If idComanda > 0 Then
-    '                    pdfOrigen = CONFIG.getfitxerComandaEnValidacio(d.getCodi())
-    '                    If CONFIG.fileExist(pdfOrigen) Then
-    '                        FileCopy(pdfOrigen, setSeparator(CONFIG.getDirectoriPDFComandesEnviades(d.empresa.id)) & CONFIG.getFitxer(pdfOrigen))
-    '                        ruta2 = CONFIG_FILE.getTag(CONFIG_FILE.TAG.RUTA_FITXERS_COMANDA)
-    '                        ruta2 = getRutaEmpresaComandesPDF(d.empresa.nom)
-    '                        If CONFIG.folderExist(ruta2) Then
-    '                            ruta2 = CONFIG.setSeparator(ruta2) & d.getCodi & " " & Strings.Left(d.proveidor.nom, 10) & ".pdf"
-    '                            FileCopy(pdfOrigen, ruta2)
-    '                        End If
-    '                        frmIniComanda.updateComandesEnviades()
-    '                    End If
-    '                    P.tancar()
-
-    '                    'cal actualitzar l'estat del mydoc. 
-    '                    '1. si la comanda està a enviar comandes al proveidor. llavors  cal posar  com a finalitzat i sinò cal canviar l'estat  de  la comanda com enviada.
-
-    '                    'aqui ens cal modificar el mydoc. 
-    '                    ' en funció de quin estat està. 
-    '                    Return idComanda
-    '                End If
-    '            End If
-    '        End If
-    '    End If
-    '    Return -1
-    'End Function
+    Public Function updateUrgent(id As Integer) As Integer
+        Dim obj As Comanda
+        If Not isUpdated() Then objects = getRemoteObjects()
+        obj = getObject(id)
+        obj.urgent = obj.urgent = False
+        id = dbComanda.updateUrgent(obj.id, obj.estat, obj.urgent)
+        If obj.id > -1 Then
+            dateUpdate = Now()
+            objects.Remove(obj)
+            objects.Add(obj)
+        End If
+        Return obj.id
+    End Function
     Public Function enviarComanda(comandaActual As Comanda, pdfActual As String) As Integer
         Dim pdfOrigen As String, P As frmAvis, d As doc, eventActual As EventsMD, eventSeguent As EventsMD
         P = New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("actualitzantEmail"), comandaActual.getCorreuProveidor)
@@ -449,8 +479,6 @@
                     pdfOrigen = CONFIG.getfitxerComandaEnValidacio(comandaActual.getCodi())
                     If CONFIG.fileExist(pdfOrigen) Then
                         FileCopy(pdfOrigen, setSeparator(CONFIG.getDirectoriPDFComandesEnviades(comandaActual.empresa.id)) & CONFIG.getFitxer(pdfOrigen))
-
-                        'TODOxmarti 12/10/21 cal revisar
                         eventActual.dataFi = Now
                         eventActual.finalitzat = 1
                         eventActual.idUsuari = 91
@@ -477,21 +505,22 @@
                 End If
             Else
                 Call ModelPedidosMydoc.updateEnviado(comandaActual.docMyDoc)
-                    P.tancar()
-                    Return 0
-                End If
+                P.tancar()
+                Return 0
             End If
-            P.tancar()
+        End If
+        P.tancar()
         Return -1
     End Function
+
     Public Function passarAEnviada(comandaActual As Comanda, pdfActual As String) As Integer
         Dim pdfOrigen As String, d As doc, idComanda As Integer
         If ModelComandaEnEdicio.remove(comandaActual) Then
-                Call ModelArticleComandaEnEdicio.remove(comandaActual)
-                frmIniComanda.updatecomanda()
-            End If
-            comandaActual.baseComanda = comandaActual.base - comandaActual.descompte
-            comandaActual.ivaComanda = comandaActual.iva
+            Call ModelArticleComandaEnEdicio.remove(comandaActual)
+            frmIniComanda.updatecomanda()
+        End If
+        comandaActual.baseComanda = comandaActual.base - comandaActual.descompte
+        comandaActual.ivaComanda = comandaActual.iva
         comandaActual.estat = 2
         idcomanda = ModelComanda.insert(comandaActual.copy)
         If idcomanda > 0 Then
@@ -503,6 +532,11 @@
             pdfOrigen = CONFIG.getfitxerComandaEnValidacio(comandaActual.getCodi())
             If CONFIG.fileExist(pdfOrigen) Then
                 FileCopy(pdfOrigen, setSeparator(CONFIG.getDirectoriPDFComandesEnviades(comandaActual.empresa.id)) & CONFIG.getFitxer(pdfOrigen))
+                Try
+                    Kill(pdfOrigen)
+                Catch ex As Exception
+                    Call ERRORS.ERR_REMOVE_PDF_COMANDA(pdfOrigen)
+                End Try
                 frmIniComanda.updateComandesEnviades()
                 Return 1
             End If

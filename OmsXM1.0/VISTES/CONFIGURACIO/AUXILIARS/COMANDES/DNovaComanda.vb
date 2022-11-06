@@ -112,7 +112,7 @@ Public Class DNovaComanda
 
     Private Sub cmdGuardar_Click(sender As Object, e As EventArgs) Handles cmdGuardar.Click
         If empresaActual Is Nothing Then
-            ERRORS.ERR_NO_EMPRESA_COMANDA
+            ERRORS.ERR_NO_EMPRESA_COMANDA()
         Else
             Me.DialogResult = DialogResult.OK
             Me.Hide()

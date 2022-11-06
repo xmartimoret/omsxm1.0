@@ -9,7 +9,8 @@
         Me.multiselect = pMultiselect
         Me.isForm = parentForm
         Me.titol = pTitol
-        Me.orderColumn = 1
+        Me.orderColumn = 3
+        Me.mnoAfegir.Text = IDIOMA.getString("urgent")
         comandes = New List(Of Comanda)
     End Sub
     Public Sub New(pAccio As Integer, pMultiselect As Boolean, parentForm As Boolean, pFiltre As String, Optional pTitol As String = "", Optional pOrdre As Integer = 0)
@@ -18,12 +19,11 @@
         Me.isForm = parentForm
         Me.titol = pTitol
         Me.txtFiltrar.Text = pFiltre
-        Me.orderColumn = 1
+        Me.orderColumn = 3
         comandes = New List(Of Comanda)
     End Sub
     Public Overrides Function afegir(id As Integer) As Integer
-
-        Return -1
+        Return ModelComandaEnEdicio.updateUrgent(id)
     End Function
     Public Overrides Function eliminar(id As Integer) As Boolean
         Dim d As Comanda

@@ -70,7 +70,6 @@
             isFilter = True
         Else
             filtres = Split(textFiltre, "+")
-            If UBound(filtres) = 0 Then filtres = Split(textFiltre, " ")
             If UBound(filtres) = 0 Then filtres = Split(textFiltre, "*")
             For Each f In filtres
                 If InStr(1, Me.nom, f, vbTextCompare) > 0 Or

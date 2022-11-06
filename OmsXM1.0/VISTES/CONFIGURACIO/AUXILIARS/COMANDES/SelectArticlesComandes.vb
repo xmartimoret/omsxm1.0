@@ -1,7 +1,7 @@
 ﻿Public Class SelectArticlesComandes
     Inherits LVObjectsCopiar
     Friend Property comandes As List(Of Comanda)
-
+    Friend Property comandaActual As Comanda
     Friend Event selectObject(p As Comanda)
 
     Public Sub New(pTitol As String, pComandes As List(Of Comanda))
@@ -55,6 +55,14 @@
 
 
     Public Overrides Function seleccionar(id As Integer, estat As Integer) As Boolean
+        If id >= 0 Then
+            If estat = 2 Then
+                comandaActual = ModelComanda.getObject(id)
+            Else
+                comandaActual = ModelComandaEnEdicio.getObject(id)
+            End If
+            Return True
+        End If
         Return False
     End Function
     Private Function save(obj As Comanda) As Integer
@@ -71,6 +79,10 @@
     End Function
 
     Public Overrides Function mostrar() As Boolean
+        If comandaActual IsNot Nothing Then
+            RaiseEvent selectObject(comandaActual)
+            Return True
+        End If
         Return False
     End Function
 

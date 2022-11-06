@@ -178,6 +178,32 @@ Public Class DAuxiliars
         getProveidors = p.proveidors
         Me.Dispose()
     End Function
+    Public Function getEmpresa() As Empresa
+        Dim p As SelectEmpreses
+        p = New SelectEmpreses(0, False, True, IDIOMA.getString("empresa"), 1)
+        Me.Text = IDIOMA.getString("selectEmpresa")
+        p.Dock = DockStyle.Fill
+        PData.Controls.Clear()
+        PData.Controls.Add(p)
+        AddHandler p.selectObject, AddressOf setObject
+        p.Show()
+        Me.ShowDialog()
+        If TypeName(ObjectActual) = "Empresa" Then getEmpresa = ObjectActual
+        Me.Dispose()
+    End Function
+    Public Function getProjecte() As Projecte
+        Dim p As SelectProjectes
+        p = New SelectProjectes(0, False, True, IDIOMA.getString("projecte"), 1)
+        Me.Text = IDIOMA.getString("selectProjecte")
+        p.Dock = DockStyle.Fill
+        PData.Controls.Clear()
+        PData.Controls.Add(p)
+        AddHandler p.selectObject, AddressOf setObject
+        p.Show()
+        Me.ShowDialog()
+        If TypeName(ObjectActual) = "Projecte" Then getProjecte = ObjectActual
+        Me.Dispose()
+    End Function
     Public Function getProveidor() As Proveidor
         Dim p As SelectProveidor
         p = New SelectProveidor(0, False, True, IDIOMA.getString("proveidors"), 1)
@@ -191,6 +217,7 @@ Public Class DAuxiliars
         If TypeName(ObjectActual) = "Proveidor" Then getProveidor = ObjectActual
         Me.Dispose()
     End Function
+
     Public Function getContacteProveidor(pProveidor As Proveidor) As ProveidorCont
         Dim p As SelectContacteProveidor
         p = New SelectContacteProveidor(pProveidor.id, pProveidor.nom)
@@ -326,7 +353,4 @@ Public Class DAuxiliars
         Me.Dispose()
     End Sub
 
-    Private Sub PData_Paint(sender As Object, e As PaintEventArgs) Handles PData.Paint
-
-    End Sub
 End Class

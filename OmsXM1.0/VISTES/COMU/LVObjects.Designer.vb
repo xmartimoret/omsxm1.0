@@ -54,7 +54,7 @@ Partial Class LVObjects
         Me.lblCount.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblCount.Font = New System.Drawing.Font("Arial", 10.0!)
         Me.lblCount.ForeColor = System.Drawing.Color.Blue
-        Me.lblCount.Location = New System.Drawing.Point(187, 434)
+        Me.lblCount.Location = New System.Drawing.Point(194, 427)
         Me.lblCount.Name = "lblCount"
         Me.lblCount.Size = New System.Drawing.Size(394, 21)
         Me.lblCount.TabIndex = 16
@@ -98,7 +98,7 @@ Partial Class LVObjects
         Me.lstData.Location = New System.Drawing.Point(0, 56)
         Me.lstData.MultiSelect = False
         Me.lstData.Name = "lstData"
-        Me.lstData.Size = New System.Drawing.Size(588, 373)
+        Me.lstData.Size = New System.Drawing.Size(588, 368)
         Me.lstData.TabIndex = 13
         Me.lstData.UseCompatibleStateImageBehavior = False
         Me.lstData.View = System.Windows.Forms.View.Details
@@ -120,15 +120,12 @@ Partial Class LVObjects
         Me.xecTots.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.xecTots.AutoSize = True
         Me.xecTots.Font = New System.Drawing.Font("Arial", 10.0!)
-        Me.xecTots.Location = New System.Drawing.Point(7, 435)
+        Me.xecTots.Location = New System.Drawing.Point(14, 428)
         Me.xecTots.Name = "xecTots"
         Me.xecTots.Size = New System.Drawing.Size(92, 20)
         Me.xecTots.TabIndex = 21
         Me.xecTots.Text = "SelectTots"
         Me.xecTots.UseVisualStyleBackColor = True
-        '
-        'tTip1
-        '
         '
         'mnuContextual
         '
@@ -287,7 +284,7 @@ Partial Class LVObjects
         Me.Controls.Add(Me.lblFiltrar)
         Me.Controls.Add(Me.lstData)
         Me.Name = "LVObjects"
-        Me.Size = New System.Drawing.Size(596, 458)
+        Me.Size = New System.Drawing.Size(596, 469)
         Me.mnuContextual.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()

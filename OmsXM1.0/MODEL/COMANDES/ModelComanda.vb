@@ -1,6 +1,7 @@
 ﻿Option Explicit On
 Module ModelComanda
     Private objects(2100) As List(Of Comanda)
+
     Private dateUpdate As DateTime
     Private anyActual As Integer
     Public Function getObjects(anyo As Integer, Optional filtre As String = "") As List(Of Comanda)
@@ -21,6 +22,9 @@ Module ModelComanda
                 End If
             End If
         Next
+    End Function
+    Public Function getObjectsByCodiComanda(pCodi As String, idEmpresa As Integer) As List(Of Comanda)
+        getObjectsByCodiComanda = dbComanda.getObjectsDBFByCodi(pCodi, 2, idEmpresa)
     End Function
     Public Function getObjects(dIni As Date, dFi As Date, idempresa As Integer, proveidors As List(Of Proveidor), projectes As List(Of Projecte)) As List(Of Comanda)
         Dim a As Comanda, i As Integer, okProveidor As Boolean, okProjecte As Boolean
@@ -90,7 +94,8 @@ Module ModelComanda
         Dim c As Comanda, a As articleComanda
         getDataListArticles = New DataList
         If comandes.Count > 0 Then
-
+            getDataListArticles.columns.Add(COLUMN.GENERICA("ID", 0, HorizontalAlignment.Center))
+            getDataListArticles.columns.Add(COLUMN.GENERICA("idEstat", 0, HorizontalAlignment.Center))
             getDataListArticles.columns.Add(COLUMN.GENERICA("estat", 80, HorizontalAlignment.Center))
             getDataListArticles.columns.Add(COLUMN.GENERICA("codi", 140, HorizontalAlignment.Center))
             getDataListArticles.columns.Add(COLUMN.GENERICA("data", 70, HorizontalAlignment.Center))
@@ -111,17 +116,18 @@ Module ModelComanda
                         If c.empresa Is Nothing Then c.empresa = New Empresa
                         If c.projecte Is Nothing Then c.projecte = New Projecte
                         If c.proveidor Is Nothing Then c.proveidor = New Proveidor
-                        getDataListArticles.rows.Add(New ListViewItem(New String() {c.notes, c.getCodi, Format(c.data, "dd-MM-yy"), c.projecte.codi, c.proveidor.nom, a.codi, a.quantitat, a.nom, Format(a.preu, "#,##0.00 €"), Format(a.tpcDescompte, "#,##0%"), Format(a.base, "#,##0.00 €"), Format(a.total, "#,##0.00 €")}))
+                        getDataListArticles.rows.Add(New ListViewItem(New String() {c.id, c.estat, c.notes, c.getCodi, Format(c.data, "dd-MM-yy"), c.projecte.codi, c.proveidor.nom, a.codi, a.quantitat, a.nom, Format(a.preu, "#,##0.00 €"), Format(a.tpcDescompte / 100, "#,##0%"), Format(a.base, "#,##0.00 €"), Format(a.total, "#,##0.00 €")}))
                     End If
                 Next
             Next
         End If
         a = Nothing
     End Function
-    Public Function getObject(id As Integer) As Comanda
+    Public Function getObject(id As Integer, Optional pAnyo As Integer = -1) As Comanda
         Dim c As Comanda, i As Integer
-        'If Not isUpdated(ANYO) Then objects = getRemoteObjects(ANYO)
-
+        If pAnyo > 0 Then
+            If Not isUpdated(pAnyo) Then objects(pAnyo) = getRemoteObjects(pAnyo)
+        End If
         For i = 2010 To 2100
             If Not IsNothing(objects(i)) Then
                 For Each c In objects(i)

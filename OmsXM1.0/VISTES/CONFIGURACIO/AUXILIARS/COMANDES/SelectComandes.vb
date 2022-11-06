@@ -27,6 +27,8 @@
             If a.proveidor IsNot Nothing Then altres = a.proveidor.nom
             If a.projecte IsNot Nothing Then altres = altres & a.projecte.nom
             If a.empresa IsNot Nothing Then altres = altres & a.empresa.nom
+            If a.codi IsNot Nothing Then altres = altres & a.codi
+            altres = altres & a.data
             altres = altres & a.total
             altres = altres & a.base
             If altres <> "" Then

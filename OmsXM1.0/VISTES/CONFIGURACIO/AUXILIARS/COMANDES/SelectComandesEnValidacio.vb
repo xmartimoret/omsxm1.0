@@ -3,24 +3,24 @@
     Friend Property comandes As List(Of Comanda)
     Friend Event selectObject(p As Comanda)
 
-    Public Sub New(pAccio As Integer, pMultiselect As Boolean, parentForm As Boolean, Optional pTitol As String = "", Optional pOrdre As Integer = 0)
+    Public Sub New(pAccio As Integer, pMultiselect As Boolean, parentForm As Boolean, Optional pTitol As String = "", Optional pOrdre As Integer = 3)
         Me.accio = pAccio
         Me.multiselect = pMultiselect
         Me.isForm = parentForm
         Me.titol = pTitol
-        Me.orderColumn = 1
+        Me.orderColumn = pOrdre
         comandes = New List(Of Comanda)
         Me.mnuContextual.Items(0).Text = IDIOMA.getString("enviarComanda")
         Me.mnuContextual.Items(1).Text = IDIOMA.getString("tancarComanda")
 
     End Sub
-    Public Sub New(pAccio As Integer, pMultiselect As Boolean, parentForm As Boolean, pFiltre As String, Optional pTitol As String = "", Optional pOrdre As Integer = 0)
+    Public Sub New(pAccio As Integer, pMultiselect As Boolean, parentForm As Boolean, pFiltre As String, Optional pTitol As String = "", Optional pOrdre As Integer = 3)
         Me.accio = pAccio
         Me.multiselect = pMultiselect
         Me.isForm = parentForm
         Me.titol = pTitol
         Me.txtFiltrar.Text = pFiltre
-        Me.orderColumn = 1
+        Me.orderColumn = pOrdre
         comandes = New List(Of Comanda)
         Me.mnuContextual.Items(0).Text = IDIOMA.getString("enviarComanda")
         Me.mnuContextual.Items(1).Text = IDIOMA.getString("tancarComanda")
@@ -111,6 +111,7 @@
     Public Overrides Function getRow(id As Integer) As ListViewItem
         Return ModelComandaEnEdicio.getListViewItem(id)
     End Function
+
     Public Overrides Sub imprimir(pdf As Boolean, filtre As String)
         Call ModulInfoAuxiliar.infoComandes(Me.listOrdered, pdf, IDIOMA.getString("comandesEnValidacio"), filtre)
     End Sub

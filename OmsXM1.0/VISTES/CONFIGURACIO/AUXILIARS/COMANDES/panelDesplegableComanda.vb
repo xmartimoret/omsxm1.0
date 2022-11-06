@@ -53,6 +53,7 @@ Public Class panelDesplegableComanda
         Me.lblFacturacio.Text = IDIOMA.getString("facturacio") & ":"
         Me.lblEEquips.Text = IDIOMA.getString("%iniciTreballs")
         Me.lblEntrega.Text = IDIOMA.getString("%entrega")
+        Me.lblDepartament.Text = IDIOMA.getString("departament") & ":"
     End Sub
     Private Sub setData()
         Me.lblComanda.Text = comandaActual.getCodi
@@ -62,11 +63,12 @@ Public Class panelDesplegableComanda
         Me.txtEntrega.Text = comandaActual.entrega
         Me.txtIniciTreballs.Text = comandaActual.entregaEquips
         Me.txtFactComanda.Text = comandaActual.inici
-
+        Me.cbDepartament.Text = comandaActual.departament
 
     End Sub
     Public Sub setObjects(estat As Boolean)
         Me.txtPorts.Enabled = estat
+        Me.cbDepartament.Enabled = estat
         Me.txtDadesBancaries.Enabled = estat
         Me.txtOferta.Enabled = estat
         Me.txtEntrega.Enabled = estat
@@ -158,6 +160,7 @@ Public Class panelDesplegableComanda
     End Sub
     Private Function getControls() As List(Of Control)
         getControls = New List(Of Control)
+        getControls.Add(Me.cbDepartament)
         getControls.Add(Me.panelDataComanda.txtData)
         getControls.Add(txtPorts)
         getControls.Add(Me.panelDataEntregaEquips.txtData)
@@ -263,6 +266,14 @@ Public Class panelDesplegableComanda
             txtOferta.Text = value
         End Set
     End Property
+    Public Property departament As String
+        Get
+            Return cbDepartament.Text
+        End Get
+        Set(value As String)
+            cbDepartament.Text = value
+        End Set
+    End Property
     Public Property iniciTreballs As Integer
         Get
             Return txtIniciTreballs.Text
@@ -292,5 +303,4 @@ Public Class panelDesplegableComanda
     Private Sub txtEnter_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtFactComanda.KeyPress, txtEntrega.KeyPress, txtIniciTreballs.KeyPress
         e.KeyChar = VALIDAR.EnterMax(e.KeyChar, Len(sender.text), 3, sender.text, 100)
     End Sub
-
 End Class

@@ -29,12 +29,14 @@
     Friend Property documentacio As List(Of doc)
     Friend Property comentaris As List(Of ComentariMD)
     Friend Property entregaEquips As Integer = 0
-
+    Friend Property departament As String = ""
+    Friend Property urgent As Boolean
     Private baseComandaImport As Double = 0
     Private ivaComandaImport As Double = 0
     Private pagines(15, 49, 1) As articleComanda
     Public Sub New()
         _estat = 0
+        _projecte = New Projecte
         _articles = New List(Of articleComanda)
         _data = Now
         _docMyDoc = New PedidoMD
@@ -51,6 +53,7 @@
         _docMyDoc = New PedidoMD
         _comentaris = New List(Of ComentariMD)
         _idMydoc = -1
+        _projecte = New Projecte
     End Sub
     Public Sub New(pId As Integer, pCodi As String, pProveidor As Proveidor, pEmpresa As Empresa, pProjecte As Projecte)
         Me.id = pId
@@ -114,6 +117,8 @@
         copy.docMyDoc = _docMyDoc
         copy.idMydoc = _idMydoc
         copy.comentaris = _comentaris
+        copy.departament = _departament
+        copy.urgent = _urgent
     End Function
     Public Function base() As Double
         Dim a As articleComanda, suma As Double
@@ -234,10 +239,11 @@
 
     Public Function getCodi() As String
         Dim c As CodiComanda
-
         Try
+
             c = New CodiComanda(-1, serie, Me.codi, _empresa.id, _projecte.codi, "")
         Catch ex As Exception
+
             c = New CodiComanda
         End Try
         Return c.toString
@@ -320,7 +326,6 @@
             If Not IsNothing(_proveidor) Then fComanda = fComanda & _proveidor.nom
             If Not IsNothing(_empresa) Then fComanda = fComanda & _empresa.nom
             filtres = Split(textFiltre, "+")
-            If UBound(filtres) = 0 Then filtres = Split(textFiltre, " ")
             If UBound(filtres) = 0 Then filtres = Split(textFiltre, "*")
             For Each f In filtres
                 If InStr(1, fComanda, f, vbTextCompare) > 0 Or

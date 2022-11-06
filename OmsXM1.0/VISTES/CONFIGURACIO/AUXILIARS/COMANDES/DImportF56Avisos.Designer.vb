@@ -38,6 +38,7 @@ Partial Class DImportF56Avisos
         Me.cmdEscollir4 = New OmsXM.BOTO()
         Me.lblAvis4 = New OmsXM.LBLRED()
         Me.cmdAfegir4 = New OmsXM.BOTO()
+        Me.cmdCancelar = New OmsXM.BOTO()
         Me.lblContacte = New OmsXM.LBLBLUE()
         Me.lblTContacte = New OmsXM.LBLRIGHT()
         Me.lblLlocEntrega = New OmsXM.LBLBLUE()
@@ -47,11 +48,22 @@ Partial Class DImportF56Avisos
         Me.lblProveidor = New OmsXM.LBLBLUE()
         Me.lblTProveidor = New OmsXM.LBLRIGHT()
         Me.cmdGuardar = New OmsXM.BOTO()
-        Me.cmdCancelar = New OmsXM.BOTO()
+        Me.lblProjecte = New OmsXM.LBLBLUE()
+        Me.Lblright1 = New OmsXM.LBLRIGHT()
+        Me.lblEmpresa = New OmsXM.LBLBLUE()
+        Me.Lblright2 = New OmsXM.LBLRIGHT()
+        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.cmdEscollirProjecte = New OmsXM.BOTO()
+        Me.lblAvis5 = New OmsXM.LBLRED()
+        Me.Panel6 = New System.Windows.Forms.Panel()
+        Me.cmdEscollirEmpresa = New OmsXM.BOTO()
+        Me.lblAvis6 = New OmsXM.LBLRED()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel4.SuspendLayout()
+        Me.Panel5.SuspendLayout()
+        Me.Panel6.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
@@ -60,7 +72,7 @@ Partial Class DImportF56Avisos
         Me.Panel1.Controls.Add(Me.cmdEscollir1)
         Me.Panel1.Controls.Add(Me.lblAvis1)
         Me.Panel1.Controls.Add(Me.cmdAfegir1)
-        Me.Panel1.Location = New System.Drawing.Point(21, 106)
+        Me.Panel1.Location = New System.Drawing.Point(11, 244)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(705, 58)
         Me.Panel1.TabIndex = 2
@@ -76,7 +88,7 @@ Partial Class DImportF56Avisos
         Me.cmdEscollir1.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.cmdEscollir1.Location = New System.Drawing.Point(615, 11)
         Me.cmdEscollir1.Name = "cmdEscollir1"
-        Me.cmdEscollir1.Size = New System.Drawing.Size(74, 34)
+        Me.cmdEscollir1.Size = New System.Drawing.Size(74, 40)
         Me.cmdEscollir1.TabIndex = 5
         Me.cmdEscollir1.Text = "Escollir"
         Me.cmdEscollir1.UseVisualStyleBackColor = False
@@ -103,7 +115,7 @@ Partial Class DImportF56Avisos
         Me.cmdAfegir1.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.cmdAfegir1.Location = New System.Drawing.Point(535, 11)
         Me.cmdAfegir1.Name = "cmdAfegir1"
-        Me.cmdAfegir1.Size = New System.Drawing.Size(74, 34)
+        Me.cmdAfegir1.Size = New System.Drawing.Size(74, 40)
         Me.cmdAfegir1.TabIndex = 1
         Me.cmdAfegir1.Text = "Afegir"
         Me.cmdAfegir1.UseVisualStyleBackColor = False
@@ -114,7 +126,7 @@ Partial Class DImportF56Avisos
         Me.Panel2.Controls.Add(Me.cmdEscollir2)
         Me.Panel2.Controls.Add(Me.lblAvis2)
         Me.Panel2.Controls.Add(Me.cmdAfegir2)
-        Me.Panel2.Location = New System.Drawing.Point(21, 170)
+        Me.Panel2.Location = New System.Drawing.Point(11, 308)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(705, 58)
         Me.Panel2.TabIndex = 3
@@ -130,7 +142,7 @@ Partial Class DImportF56Avisos
         Me.cmdEscollir2.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.cmdEscollir2.Location = New System.Drawing.Point(615, 11)
         Me.cmdEscollir2.Name = "cmdEscollir2"
-        Me.cmdEscollir2.Size = New System.Drawing.Size(74, 34)
+        Me.cmdEscollir2.Size = New System.Drawing.Size(74, 40)
         Me.cmdEscollir2.TabIndex = 4
         Me.cmdEscollir2.Text = "SI"
         Me.cmdEscollir2.UseVisualStyleBackColor = False
@@ -157,7 +169,7 @@ Partial Class DImportF56Avisos
         Me.cmdAfegir2.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.cmdAfegir2.Location = New System.Drawing.Point(535, 11)
         Me.cmdAfegir2.Name = "cmdAfegir2"
-        Me.cmdAfegir2.Size = New System.Drawing.Size(74, 34)
+        Me.cmdAfegir2.Size = New System.Drawing.Size(74, 40)
         Me.cmdAfegir2.TabIndex = 1
         Me.cmdAfegir2.Text = "SI"
         Me.cmdAfegir2.UseVisualStyleBackColor = False
@@ -168,7 +180,7 @@ Partial Class DImportF56Avisos
         Me.Panel3.Controls.Add(Me.cmdEscollir3)
         Me.Panel3.Controls.Add(Me.lblAvis3)
         Me.Panel3.Controls.Add(Me.cmdAfegir3)
-        Me.Panel3.Location = New System.Drawing.Point(21, 234)
+        Me.Panel3.Location = New System.Drawing.Point(11, 372)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(705, 58)
         Me.Panel3.TabIndex = 5
@@ -184,7 +196,7 @@ Partial Class DImportF56Avisos
         Me.cmdEscollir3.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.cmdEscollir3.Location = New System.Drawing.Point(615, 8)
         Me.cmdEscollir3.Name = "cmdEscollir3"
-        Me.cmdEscollir3.Size = New System.Drawing.Size(74, 34)
+        Me.cmdEscollir3.Size = New System.Drawing.Size(74, 40)
         Me.cmdEscollir3.TabIndex = 3
         Me.cmdEscollir3.Text = "SI"
         Me.cmdEscollir3.UseVisualStyleBackColor = False
@@ -211,7 +223,7 @@ Partial Class DImportF56Avisos
         Me.cmdAfegir3.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.cmdAfegir3.Location = New System.Drawing.Point(535, 8)
         Me.cmdAfegir3.Name = "cmdAfegir3"
-        Me.cmdAfegir3.Size = New System.Drawing.Size(74, 34)
+        Me.cmdAfegir3.Size = New System.Drawing.Size(74, 40)
         Me.cmdAfegir3.TabIndex = 1
         Me.cmdAfegir3.Text = "SI"
         Me.cmdAfegir3.UseVisualStyleBackColor = False
@@ -222,7 +234,7 @@ Partial Class DImportF56Avisos
         Me.Panel4.Controls.Add(Me.cmdEscollir4)
         Me.Panel4.Controls.Add(Me.lblAvis4)
         Me.Panel4.Controls.Add(Me.cmdAfegir4)
-        Me.Panel4.Location = New System.Drawing.Point(21, 298)
+        Me.Panel4.Location = New System.Drawing.Point(11, 436)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(705, 58)
         Me.Panel4.TabIndex = 6
@@ -238,7 +250,7 @@ Partial Class DImportF56Avisos
         Me.cmdEscollir4.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.cmdEscollir4.Location = New System.Drawing.Point(615, 8)
         Me.cmdEscollir4.Name = "cmdEscollir4"
-        Me.cmdEscollir4.Size = New System.Drawing.Size(74, 34)
+        Me.cmdEscollir4.Size = New System.Drawing.Size(74, 40)
         Me.cmdEscollir4.TabIndex = 2
         Me.cmdEscollir4.Text = "SI"
         Me.cmdEscollir4.UseVisualStyleBackColor = False
@@ -265,17 +277,34 @@ Partial Class DImportF56Avisos
         Me.cmdAfegir4.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.cmdAfegir4.Location = New System.Drawing.Point(535, 8)
         Me.cmdAfegir4.Name = "cmdAfegir4"
-        Me.cmdAfegir4.Size = New System.Drawing.Size(74, 34)
+        Me.cmdAfegir4.Size = New System.Drawing.Size(74, 40)
         Me.cmdAfegir4.TabIndex = 1
         Me.cmdAfegir4.Text = "SI"
         Me.cmdAfegir4.UseVisualStyleBackColor = False
+        '
+        'cmdCancelar
+        '
+        Me.cmdCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdCancelar.AutoSize = True
+        Me.cmdCancelar.BackColor = System.Drawing.Color.SeaShell
+        Me.cmdCancelar.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdCancelar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.cmdCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.cmdCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cmdCancelar.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.cmdCancelar.Location = New System.Drawing.Point(584, 498)
+        Me.cmdCancelar.Name = "cmdCancelar"
+        Me.cmdCancelar.Size = New System.Drawing.Size(102, 34)
+        Me.cmdCancelar.TabIndex = 15
+        Me.cmdCancelar.Text = "CANCELAR"
+        Me.cmdCancelar.UseVisualStyleBackColor = False
         '
         'lblContacte
         '
         Me.lblContacte.AutoSize = True
         Me.lblContacte.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblContacte.ForeColor = System.Drawing.Color.Blue
-        Me.lblContacte.Location = New System.Drawing.Point(163, 76)
+        Me.lblContacte.Location = New System.Drawing.Point(172, 129)
         Me.lblContacte.Name = "lblContacte"
         Me.lblContacte.Size = New System.Drawing.Size(62, 16)
         Me.lblContacte.TabIndex = 14
@@ -285,7 +314,7 @@ Partial Class DImportF56Avisos
         '
         Me.lblTContacte.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.lblTContacte.ForeColor = System.Drawing.Color.Black
-        Me.lblTContacte.Location = New System.Drawing.Point(2, 74)
+        Me.lblTContacte.Location = New System.Drawing.Point(11, 127)
         Me.lblTContacte.Name = "lblTContacte"
         Me.lblTContacte.Size = New System.Drawing.Size(152, 18)
         Me.lblTContacte.TabIndex = 13
@@ -297,7 +326,7 @@ Partial Class DImportF56Avisos
         Me.lblLlocEntrega.AutoSize = True
         Me.lblLlocEntrega.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblLlocEntrega.ForeColor = System.Drawing.Color.Blue
-        Me.lblLlocEntrega.Location = New System.Drawing.Point(163, 53)
+        Me.lblLlocEntrega.Location = New System.Drawing.Point(172, 95)
         Me.lblLlocEntrega.Name = "lblLlocEntrega"
         Me.lblLlocEntrega.Size = New System.Drawing.Size(62, 16)
         Me.lblLlocEntrega.TabIndex = 12
@@ -307,7 +336,7 @@ Partial Class DImportF56Avisos
         '
         Me.lblTLlocEntrega.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.lblTLlocEntrega.ForeColor = System.Drawing.Color.Black
-        Me.lblTLlocEntrega.Location = New System.Drawing.Point(-1, 51)
+        Me.lblTLlocEntrega.Location = New System.Drawing.Point(8, 93)
         Me.lblTLlocEntrega.Name = "lblTLlocEntrega"
         Me.lblTLlocEntrega.Size = New System.Drawing.Size(155, 18)
         Me.lblTLlocEntrega.TabIndex = 11
@@ -319,7 +348,7 @@ Partial Class DImportF56Avisos
         Me.lblContacteProveidor.AutoSize = True
         Me.lblContacteProveidor.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblContacteProveidor.ForeColor = System.Drawing.Color.Blue
-        Me.lblContacteProveidor.Location = New System.Drawing.Point(163, 30)
+        Me.lblContacteProveidor.Location = New System.Drawing.Point(172, 72)
         Me.lblContacteProveidor.Name = "lblContacteProveidor"
         Me.lblContacteProveidor.Size = New System.Drawing.Size(62, 16)
         Me.lblContacteProveidor.TabIndex = 10
@@ -329,7 +358,7 @@ Partial Class DImportF56Avisos
         '
         Me.lblTContacteProveidor.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.lblTContacteProveidor.ForeColor = System.Drawing.Color.Black
-        Me.lblTContacteProveidor.Location = New System.Drawing.Point(2, 28)
+        Me.lblTContacteProveidor.Location = New System.Drawing.Point(11, 70)
         Me.lblTContacteProveidor.Name = "lblTContacteProveidor"
         Me.lblTContacteProveidor.Size = New System.Drawing.Size(152, 18)
         Me.lblTContacteProveidor.TabIndex = 9
@@ -341,7 +370,7 @@ Partial Class DImportF56Avisos
         Me.lblProveidor.AutoSize = True
         Me.lblProveidor.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblProveidor.ForeColor = System.Drawing.Color.Blue
-        Me.lblProveidor.Location = New System.Drawing.Point(163, 7)
+        Me.lblProveidor.Location = New System.Drawing.Point(172, 49)
         Me.lblProveidor.Name = "lblProveidor"
         Me.lblProveidor.Size = New System.Drawing.Size(62, 16)
         Me.lblProveidor.TabIndex = 8
@@ -351,11 +380,11 @@ Partial Class DImportF56Avisos
         '
         Me.lblTProveidor.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.lblTProveidor.ForeColor = System.Drawing.Color.Black
-        Me.lblTProveidor.Location = New System.Drawing.Point(2, 5)
+        Me.lblTProveidor.Location = New System.Drawing.Point(11, 47)
         Me.lblTProveidor.Name = "lblTProveidor"
         Me.lblTProveidor.Size = New System.Drawing.Size(152, 23)
         Me.lblTProveidor.TabIndex = 7
-        Me.lblTProveidor.Text = "Proveidor"
+        Me.lblTProveidor.Text = "Proveidor:"
         Me.lblTProveidor.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'cmdGuardar
@@ -368,35 +397,142 @@ Partial Class DImportF56Avisos
         Me.cmdGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.cmdGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmdGuardar.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.cmdGuardar.Location = New System.Drawing.Point(86, 375)
+        Me.cmdGuardar.Location = New System.Drawing.Point(86, 498)
         Me.cmdGuardar.Name = "cmdGuardar"
         Me.cmdGuardar.Size = New System.Drawing.Size(139, 34)
         Me.cmdGuardar.TabIndex = 2
         Me.cmdGuardar.Text = "CREAR COMANDA"
         Me.cmdGuardar.UseVisualStyleBackColor = False
         '
-        'cmdCancelar
+        'lblProjecte
         '
-        Me.cmdCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdCancelar.AutoSize = True
-        Me.cmdCancelar.BackColor = System.Drawing.Color.SeaShell
-        Me.cmdCancelar.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdCancelar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.cmdCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmdCancelar.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.cmdCancelar.Location = New System.Drawing.Point(584, 375)
-        Me.cmdCancelar.Name = "cmdCancelar"
-        Me.cmdCancelar.Size = New System.Drawing.Size(102, 34)
-        Me.cmdCancelar.TabIndex = 15
-        Me.cmdCancelar.Text = "CANCELAR"
-        Me.cmdCancelar.UseVisualStyleBackColor = False
+        Me.lblProjecte.AutoSize = True
+        Me.lblProjecte.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblProjecte.ForeColor = System.Drawing.Color.Blue
+        Me.lblProjecte.Location = New System.Drawing.Point(173, 25)
+        Me.lblProjecte.Name = "lblProjecte"
+        Me.lblProjecte.Size = New System.Drawing.Size(62, 16)
+        Me.lblProjecte.TabIndex = 19
+        Me.lblProjecte.Text = "Lblblue2"
+        '
+        'Lblright1
+        '
+        Me.Lblright1.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.Lblright1.ForeColor = System.Drawing.Color.Black
+        Me.Lblright1.Location = New System.Drawing.Point(12, 23)
+        Me.Lblright1.Name = "Lblright1"
+        Me.Lblright1.Size = New System.Drawing.Size(152, 18)
+        Me.Lblright1.TabIndex = 18
+        Me.Lblright1.Text = "Projecte:"
+        Me.Lblright1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'lblEmpresa
+        '
+        Me.lblEmpresa.AutoSize = True
+        Me.lblEmpresa.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEmpresa.ForeColor = System.Drawing.Color.Blue
+        Me.lblEmpresa.Location = New System.Drawing.Point(173, 2)
+        Me.lblEmpresa.Name = "lblEmpresa"
+        Me.lblEmpresa.Size = New System.Drawing.Size(62, 16)
+        Me.lblEmpresa.TabIndex = 17
+        Me.lblEmpresa.Text = "Lblblue1"
+        '
+        'Lblright2
+        '
+        Me.Lblright2.Font = New System.Drawing.Font("Tahoma", 9.0!)
+        Me.Lblright2.ForeColor = System.Drawing.Color.Black
+        Me.Lblright2.Location = New System.Drawing.Point(12, 0)
+        Me.Lblright2.Name = "Lblright2"
+        Me.Lblright2.Size = New System.Drawing.Size(152, 23)
+        Me.Lblright2.TabIndex = 16
+        Me.Lblright2.Text = "Empresa:"
+        Me.Lblright2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Panel5
+        '
+        Me.Panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel5.Controls.Add(Me.cmdEscollirProjecte)
+        Me.Panel5.Controls.Add(Me.lblAvis5)
+        Me.Panel5.Location = New System.Drawing.Point(12, 178)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(705, 58)
+        Me.Panel5.TabIndex = 6
+        '
+        'cmdEscollirProjecte
+        '
+        Me.cmdEscollirProjecte.AutoSize = True
+        Me.cmdEscollirProjecte.BackColor = System.Drawing.Color.SeaShell
+        Me.cmdEscollirProjecte.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdEscollirProjecte.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.cmdEscollirProjecte.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.cmdEscollirProjecte.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cmdEscollirProjecte.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.cmdEscollirProjecte.Location = New System.Drawing.Point(615, 11)
+        Me.cmdEscollirProjecte.Name = "cmdEscollirProjecte"
+        Me.cmdEscollirProjecte.Size = New System.Drawing.Size(74, 40)
+        Me.cmdEscollirProjecte.TabIndex = 4
+        Me.cmdEscollirProjecte.Text = "SI"
+        Me.cmdEscollirProjecte.UseVisualStyleBackColor = False
+        '
+        'lblAvis5
+        '
+        Me.lblAvis5.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAvis5.ForeColor = System.Drawing.Color.Red
+        Me.lblAvis5.Location = New System.Drawing.Point(3, 0)
+        Me.lblAvis5.Name = "lblAvis5"
+        Me.lblAvis5.Size = New System.Drawing.Size(526, 45)
+        Me.lblAvis5.TabIndex = 0
+        Me.lblAvis5.Text = "No hi ha cap projecte seleccionat"
+        Me.lblAvis5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Panel6
+        '
+        Me.Panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel6.Controls.Add(Me.cmdEscollirEmpresa)
+        Me.Panel6.Controls.Add(Me.lblAvis6)
+        Me.Panel6.Location = New System.Drawing.Point(12, 114)
+        Me.Panel6.Name = "Panel6"
+        Me.Panel6.Size = New System.Drawing.Size(705, 58)
+        Me.Panel6.TabIndex = 5
+        '
+        'cmdEscollirEmpresa
+        '
+        Me.cmdEscollirEmpresa.AutoSize = True
+        Me.cmdEscollirEmpresa.BackColor = System.Drawing.Color.SeaShell
+        Me.cmdEscollirEmpresa.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdEscollirEmpresa.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.cmdEscollirEmpresa.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.cmdEscollirEmpresa.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cmdEscollirEmpresa.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.cmdEscollirEmpresa.Location = New System.Drawing.Point(615, 11)
+        Me.cmdEscollirEmpresa.Name = "cmdEscollirEmpresa"
+        Me.cmdEscollirEmpresa.Size = New System.Drawing.Size(74, 40)
+        Me.cmdEscollirEmpresa.TabIndex = 5
+        Me.cmdEscollirEmpresa.Text = "Escollir"
+        Me.cmdEscollirEmpresa.UseVisualStyleBackColor = False
+        '
+        'lblAvis6
+        '
+        Me.lblAvis6.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAvis6.ForeColor = System.Drawing.Color.Red
+        Me.lblAvis6.Location = New System.Drawing.Point(3, 0)
+        Me.lblAvis6.Name = "lblAvis6"
+        Me.lblAvis6.Size = New System.Drawing.Size(526, 45)
+        Me.lblAvis6.TabIndex = 0
+        Me.lblAvis6.Text = "No hi ha cap empresa seleccionada"
+        Me.lblAvis6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'DImportF56Avisos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(731, 421)
+        Me.ClientSize = New System.Drawing.Size(731, 544)
+        Me.Controls.Add(Me.Panel5)
+        Me.Controls.Add(Me.Panel6)
+        Me.Controls.Add(Me.lblProjecte)
+        Me.Controls.Add(Me.Lblright1)
+        Me.Controls.Add(Me.lblEmpresa)
+        Me.Controls.Add(Me.Lblright2)
         Me.Controls.Add(Me.cmdCancelar)
         Me.Controls.Add(Me.lblContacte)
         Me.Controls.Add(Me.lblTContacte)
@@ -426,6 +562,10 @@ Partial Class DImportF56Avisos
         Me.Panel3.PerformLayout()
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
+        Me.Panel5.ResumeLayout(False)
+        Me.Panel5.PerformLayout()
+        Me.Panel6.ResumeLayout(False)
+        Me.Panel6.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -457,4 +597,14 @@ Partial Class DImportF56Avisos
     Friend WithEvents lblContacte As LBLBLUE
     Friend WithEvents lblTContacte As LBLRIGHT
     Friend WithEvents cmdCancelar As BOTO
+    Friend WithEvents lblProjecte As LBLBLUE
+    Friend WithEvents Lblright1 As LBLRIGHT
+    Friend WithEvents lblEmpresa As LBLBLUE
+    Friend WithEvents Lblright2 As LBLRIGHT
+    Friend WithEvents Panel5 As Panel
+    Friend WithEvents cmdEscollirProjecte As BOTO
+    Friend WithEvents lblAvis5 As LBLRED
+    Friend WithEvents Panel6 As Panel
+    Friend WithEvents cmdEscollirEmpresa As BOTO
+    Friend WithEvents lblAvis6 As LBLRED
 End Class

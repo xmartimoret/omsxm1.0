@@ -28,7 +28,7 @@
         If c.estat = 0 Then
             Call frmIniComanda.modificarComanda(c)
         Else
-            ruta = getRutaPDF(c.empresa.id, c.codi, Strings.Right(c.getAnyo, 2), c.estat)
+            ruta = CONFIG.getRutaComandaPDF(c.empresa.id, c.codi, Strings.Right(c.getAnyo, 2), c.estat)
             If CONFIG.fileExist(ruta) Then
 
                 Call frmIniComanda.mostrarComanda(c, ruta)
@@ -49,27 +49,31 @@
         lblTotal.Text = IDIOMA.getString("total") & ": " & Format(base + iva, "#,##0.00  €")
         c = Nothing
     End Sub
-    Private Function getRutaPDF(idEmpresa As Integer, codi As String, anyo As String, e As Integer)
-        Dim f As String, ruta As String, temp() As String
-        If e = 2 Then
-            ruta = CONFIG.getDirectoriPDFComandesEnviades(idEmpresa)
-        Else
-            ruta = CONFIG.getDirectoriPDFComandesEnValidacio()
-        End If
-        f = Dir(ruta & "*.pdf", FileAttribute.Archive)
-        Do While f <> ""
-            temp = Split(f, "-")
-            If UBound(temp) > 0 Then
-                If Strings.Right(Val(temp(0)), 2) = anyo Then
-                    If Val(temp(1)) = Val(codi) Then
-                        Return ruta & f
-                    End If
-                End If
-            End If
-            f = Dir()
-        Loop
-        Return ""
-    End Function
+
+
+    'Private Function getRutaPDF(idEmpresa As Integer, codi As String, anyo As String, e As Integer)
+    '    Dim f As String, ruta As String, temp() As String
+    '    If e = 2 Then
+    '        ruta = CONFIG.getDirectoriPDFComandesEnviades(idEmpresa)
+    '    Else
+    '        ruta = CONFIG.getDirectoriPDFComandesEnValidacio()
+    '    End If
+    '    f = Dir(ruta & "*.pdf", FileAttribute.Archive)
+    '    Do While f <> ""
+    '        temp = Split(f, "-")
+    '        If UBound(temp) > 0 Then
+    '            If Strings.Right(Val(temp(0)), 2) = anyo Then
+    '                If Val(temp(1)) = Val(codi) Then
+    '                    If Val(temp(3)) = idEmpresa Then
+    '                        Return ruta & f
+    '                    End If
+    '                End If
+    '                End If
+    '        End If
+    '        f = Dir()
+    '    Loop
+    '    Return ""
+    'End Function
 
 
 End Class

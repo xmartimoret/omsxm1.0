@@ -24,33 +24,35 @@ Partial Class panelDesplegableComanda
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.panelTipTool = New System.Windows.Forms.Panel()
+        Me.lblTitpTool = New OmsXM.LBLBLUE()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.panelData = New System.Windows.Forms.Panel()
         Me.lblEntrega = New System.Windows.Forms.Label()
+        Me.txtEntrega = New OmsXM.TXT()
         Me.lblEEquips = New System.Windows.Forms.Label()
+        Me.txtIniciTreballs = New OmsXM.TXT()
         Me.lblInici = New System.Windows.Forms.Label()
+        Me.txtFactComanda = New OmsXM.TXT()
         Me.lblFacturacio = New System.Windows.Forms.Label()
+        Me.txtDadesBancaries = New OmsXM.TXT()
         Me.lblDadesBancaries = New System.Windows.Forms.Label()
         Me.panelCondicionsPagament = New System.Windows.Forms.Panel()
         Me.lblCondicionsPagament = New System.Windows.Forms.Label()
+        Me.txtOferta = New OmsXM.TXT()
         Me.lblOferta = New System.Windows.Forms.Label()
         Me.panelDataMuntatge = New System.Windows.Forms.Panel()
         Me.lblEntregaMuntatge = New System.Windows.Forms.Label()
         Me.panelDataEquips = New System.Windows.Forms.Panel()
         Me.lblEntregaEquips = New System.Windows.Forms.Label()
+        Me.txtPorts = New OmsXM.TXT()
         Me.lblPorts = New System.Windows.Forms.Label()
         Me.PanelDate = New System.Windows.Forms.Panel()
         Me.lblData = New System.Windows.Forms.Label()
         Me.lblAccio = New OmsXM.LBLBLUE()
-        Me.lblTitpTool = New OmsXM.LBLBLUE()
         Me.lblComanda = New OmsXM.LBLRIGHT()
-        Me.txtEntrega = New OmsXM.TXT()
-        Me.txtIniciTreballs = New OmsXM.TXT()
-        Me.txtFactComanda = New OmsXM.TXT()
-        Me.txtDadesBancaries = New OmsXM.TXT()
-        Me.txtOferta = New OmsXM.TXT()
-        Me.txtPorts = New OmsXM.TXT()
+        Me.lblDepartament = New System.Windows.Forms.Label()
+        Me.cbDepartament = New OmsXM.CBBOX()
         Me.panelTipTool.SuspendLayout()
         Me.panelData.SuspendLayout()
         Me.SuspendLayout()
@@ -66,6 +68,17 @@ Partial Class panelDesplegableComanda
         Me.panelTipTool.Name = "panelTipTool"
         Me.panelTipTool.Size = New System.Drawing.Size(97, 29)
         Me.panelTipTool.TabIndex = 81
+        '
+        'lblTitpTool
+        '
+        Me.lblTitpTool.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lblTitpTool.Font = New System.Drawing.Font("Arial", 8.0!)
+        Me.lblTitpTool.ForeColor = System.Drawing.SystemColors.ControlDark
+        Me.lblTitpTool.Location = New System.Drawing.Point(0, 0)
+        Me.lblTitpTool.Name = "lblTitpTool"
+        Me.lblTitpTool.Size = New System.Drawing.Size(97, 29)
+        Me.lblTitpTool.TabIndex = 0
+        Me.lblTitpTool.Text = "Lblblue1"
         '
         'Button1
         '
@@ -106,7 +119,7 @@ Partial Class panelDesplegableComanda
         Me.panelData.Controls.Add(Me.lblData)
         Me.panelData.Location = New System.Drawing.Point(2, 38)
         Me.panelData.Name = "panelData"
-        Me.panelData.Size = New System.Drawing.Size(513, 239)
+        Me.panelData.Size = New System.Drawing.Size(513, 231)
         Me.panelData.TabIndex = 83
         '
         'lblEntrega
@@ -114,30 +127,60 @@ Partial Class panelDesplegableComanda
         Me.lblEntrega.Font = New System.Drawing.Font("Tahoma", 8.0!)
         Me.lblEntrega.Location = New System.Drawing.Point(157, 198)
         Me.lblEntrega.Name = "lblEntrega"
-        Me.lblEntrega.Size = New System.Drawing.Size(302, 25)
+        Me.lblEntrega.Size = New System.Drawing.Size(127, 25)
         Me.lblEntrega.TabIndex = 127
         Me.lblEntrega.Text = "% Entrega"
         Me.lblEntrega.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'txtEntrega
+        '
+        Me.txtEntrega.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.txtEntrega.ForeColor = System.Drawing.Color.Blue
+        Me.txtEntrega.Location = New System.Drawing.Point(109, 198)
+        Me.txtEntrega.Name = "txtEntrega"
+        Me.txtEntrega.Size = New System.Drawing.Size(42, 26)
+        Me.txtEntrega.TabIndex = 126
+        Me.txtEntrega.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'lblEEquips
         '
         Me.lblEEquips.Font = New System.Drawing.Font("Tahoma", 8.0!)
         Me.lblEEquips.Location = New System.Drawing.Point(157, 175)
         Me.lblEEquips.Name = "lblEEquips"
-        Me.lblEEquips.Size = New System.Drawing.Size(302, 25)
+        Me.lblEEquips.Size = New System.Drawing.Size(127, 25)
         Me.lblEEquips.TabIndex = 125
         Me.lblEEquips.Text = "% Equips"
         Me.lblEEquips.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'txtIniciTreballs
+        '
+        Me.txtIniciTreballs.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.txtIniciTreballs.ForeColor = System.Drawing.Color.Blue
+        Me.txtIniciTreballs.Location = New System.Drawing.Point(109, 175)
+        Me.txtIniciTreballs.Name = "txtIniciTreballs"
+        Me.txtIniciTreballs.Size = New System.Drawing.Size(42, 26)
+        Me.txtIniciTreballs.TabIndex = 124
+        Me.txtIniciTreballs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'lblInici
         '
         Me.lblInici.Font = New System.Drawing.Font("Tahoma", 8.0!)
         Me.lblInici.Location = New System.Drawing.Point(157, 155)
         Me.lblInici.Name = "lblInici"
-        Me.lblInici.Size = New System.Drawing.Size(318, 25)
+        Me.lblInici.Size = New System.Drawing.Size(127, 25)
         Me.lblInici.TabIndex = 123
         Me.lblInici.Text = "% inici"
         Me.lblInici.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'txtFactComanda
+        '
+        Me.txtFactComanda.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.txtFactComanda.ForeColor = System.Drawing.Color.Blue
+        Me.txtFactComanda.Location = New System.Drawing.Point(109, 154)
+        Me.txtFactComanda.Name = "txtFactComanda"
+        Me.txtFactComanda.Size = New System.Drawing.Size(42, 26)
+        Me.txtFactComanda.TabIndex = 122
+        Me.txtFactComanda.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'lblFacturacio
         '
@@ -148,6 +191,17 @@ Partial Class panelDesplegableComanda
         Me.lblFacturacio.TabIndex = 121
         Me.lblFacturacio.Text = "Label5"
         Me.lblFacturacio.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtDadesBancaries
+        '
+        Me.txtDadesBancaries.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtDadesBancaries.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.txtDadesBancaries.ForeColor = System.Drawing.Color.Blue
+        Me.txtDadesBancaries.Location = New System.Drawing.Point(101, 126)
+        Me.txtDadesBancaries.Name = "txtDadesBancaries"
+        Me.txtDadesBancaries.Size = New System.Drawing.Size(374, 26)
+        Me.txtDadesBancaries.TabIndex = 8
         '
         'lblDadesBancaries
         '
@@ -177,6 +231,17 @@ Partial Class panelDesplegableComanda
         Me.lblCondicionsPagament.TabIndex = 114
         Me.lblCondicionsPagament.Text = "Label5"
         Me.lblCondicionsPagament.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtOferta
+        '
+        Me.txtOferta.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtOferta.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.txtOferta.ForeColor = System.Drawing.Color.Blue
+        Me.txtOferta.Location = New System.Drawing.Point(77, 64)
+        Me.txtOferta.Name = "txtOferta"
+        Me.txtOferta.Size = New System.Drawing.Size(398, 26)
+        Me.txtOferta.TabIndex = 6
         '
         'lblOferta
         '
@@ -224,6 +289,16 @@ Partial Class panelDesplegableComanda
         Me.lblEntregaEquips.Text = "Label5"
         Me.lblEntregaEquips.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
+        'txtPorts
+        '
+        Me.txtPorts.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtPorts.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.txtPorts.ForeColor = System.Drawing.Color.Blue
+        Me.txtPorts.Location = New System.Drawing.Point(390, 3)
+        Me.txtPorts.Name = "txtPorts"
+        Me.txtPorts.Size = New System.Drawing.Size(120, 26)
+        Me.txtPorts.TabIndex = 2
+        '
         'lblPorts
         '
         Me.lblPorts.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -266,17 +341,6 @@ Partial Class panelDesplegableComanda
         Me.lblAccio.Text = "-"
         Me.lblAccio.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         '
-        'lblTitpTool
-        '
-        Me.lblTitpTool.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lblTitpTool.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.lblTitpTool.ForeColor = System.Drawing.SystemColors.ControlDark
-        Me.lblTitpTool.Location = New System.Drawing.Point(0, 0)
-        Me.lblTitpTool.Name = "lblTitpTool"
-        Me.lblTitpTool.Size = New System.Drawing.Size(97, 29)
-        Me.lblTitpTool.TabIndex = 0
-        Me.lblTitpTool.Text = "Lblblue1"
-        '
         'lblComanda
         '
         Me.lblComanda.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -285,85 +349,48 @@ Partial Class panelDesplegableComanda
         Me.lblComanda.ForeColor = System.Drawing.Color.Blue
         Me.lblComanda.Location = New System.Drawing.Point(32, 10)
         Me.lblComanda.Name = "lblComanda"
-        Me.lblComanda.Size = New System.Drawing.Size(483, 18)
+        Me.lblComanda.Size = New System.Drawing.Size(220, 18)
         Me.lblComanda.TabIndex = 80
         Me.lblComanda.Text = "Lblright1"
         Me.lblComanda.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'txtEntrega
+        'lblDepartament
         '
-        Me.txtEntrega.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.txtEntrega.ForeColor = System.Drawing.Color.Blue
-        Me.txtEntrega.Location = New System.Drawing.Point(109, 198)
-        Me.txtEntrega.Name = "txtEntrega"
-        Me.txtEntrega.Size = New System.Drawing.Size(42, 26)
-        Me.txtEntrega.TabIndex = 126
-        Me.txtEntrega.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.lblDepartament.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblDepartament.Font = New System.Drawing.Font("Tahoma", 8.0!)
+        Me.lblDepartament.Location = New System.Drawing.Point(258, 8)
+        Me.lblDepartament.Name = "lblDepartament"
+        Me.lblDepartament.Size = New System.Drawing.Size(88, 25)
+        Me.lblDepartament.TabIndex = 105
+        Me.lblDepartament.Text = "Label5"
+        Me.lblDepartament.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'txtIniciTreballs
+        'cbDepartament
         '
-        Me.txtIniciTreballs.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.txtIniciTreballs.ForeColor = System.Drawing.Color.Blue
-        Me.txtIniciTreballs.Location = New System.Drawing.Point(109, 175)
-        Me.txtIniciTreballs.Name = "txtIniciTreballs"
-        Me.txtIniciTreballs.Size = New System.Drawing.Size(42, 26)
-        Me.txtIniciTreballs.TabIndex = 124
-        Me.txtIniciTreballs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'txtFactComanda
-        '
-        Me.txtFactComanda.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.txtFactComanda.ForeColor = System.Drawing.Color.Blue
-        Me.txtFactComanda.Location = New System.Drawing.Point(109, 154)
-        Me.txtFactComanda.Name = "txtFactComanda"
-        Me.txtFactComanda.Size = New System.Drawing.Size(42, 26)
-        Me.txtFactComanda.TabIndex = 122
-        Me.txtFactComanda.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'txtDadesBancaries
-        '
-        Me.txtDadesBancaries.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtDadesBancaries.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.txtDadesBancaries.ForeColor = System.Drawing.Color.Blue
-        Me.txtDadesBancaries.Location = New System.Drawing.Point(101, 126)
-        Me.txtDadesBancaries.Name = "txtDadesBancaries"
-        Me.txtDadesBancaries.Size = New System.Drawing.Size(374, 26)
-        Me.txtDadesBancaries.TabIndex = 8
-        '
-        'txtOferta
-        '
-        Me.txtOferta.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtOferta.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.txtOferta.ForeColor = System.Drawing.Color.Blue
-        Me.txtOferta.Location = New System.Drawing.Point(77, 64)
-        Me.txtOferta.Name = "txtOferta"
-        Me.txtOferta.Size = New System.Drawing.Size(398, 26)
-        Me.txtOferta.TabIndex = 6
-        '
-        'txtPorts
-        '
-        Me.txtPorts.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtPorts.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.txtPorts.ForeColor = System.Drawing.Color.Blue
-        Me.txtPorts.Location = New System.Drawing.Point(390, 3)
-        Me.txtPorts.Name = "txtPorts"
-        Me.txtPorts.Size = New System.Drawing.Size(120, 26)
-        Me.txtPorts.TabIndex = 1
+        Me.cbDepartament.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbDepartament.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.cbDepartament.ForeColor = System.Drawing.Color.Blue
+        Me.cbDepartament.FormattingEnabled = True
+        Me.cbDepartament.Items.AddRange(New Object() {"EXPLOTACIONES", "OBRAS", "GENERICO"})
+        Me.cbDepartament.Location = New System.Drawing.Point(353, 6)
+        Me.cbDepartament.Name = "cbDepartament"
+        Me.cbDepartament.Size = New System.Drawing.Size(159, 26)
+        Me.cbDepartament.TabIndex = 1
         '
         'panelDesplegableComanda
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
+        Me.Controls.Add(Me.cbDepartament)
+        Me.Controls.Add(Me.lblDepartament)
         Me.Controls.Add(Me.lblAccio)
         Me.Controls.Add(Me.panelTipTool)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.lblComanda)
         Me.Controls.Add(Me.panelData)
         Me.Name = "panelDesplegableComanda"
-        Me.Size = New System.Drawing.Size(518, 282)
+        Me.Size = New System.Drawing.Size(518, 271)
         Me.panelTipTool.ResumeLayout(False)
         Me.panelData.ResumeLayout(False)
         Me.panelData.PerformLayout()
@@ -400,4 +427,6 @@ Partial Class panelDesplegableComanda
     Friend WithEvents lblFacturacio As Label
     Friend WithEvents lblEntrega As Label
     Friend WithEvents txtEntrega As TXT
+    Friend WithEvents lblDepartament As Label
+    Friend WithEvents cbDepartament As CBBOX
 End Class

@@ -281,4 +281,14 @@ Module ERRORS
     Public Sub EN_CONSTRUCCIO()
         Call MsgBox(IDIOMA.getString("enConstruccio"), vbCritical, IDIOMA.getString("abort"))
     End Sub
+    '
+    Public Sub ERR_FALTA_EMPRESA_SOLICITUT()
+        Call MsgBox(IDIOMA.getString("errFaltaEmpresaSolicitut") & vbCrLf & IDIOMA.getString("noEsPotCrearSolicitut"), vbCritical, IDIOMA.getString("abort"))
+    End Sub
+    Public Sub ERR_FALTA_PROJECTE_SOLICITUT()
+        Call MsgBox(IDIOMA.getString("errFaltaProjecteSolicitut") & vbCrLf & IDIOMA.getString("noEsPotCrearSolicitut"), vbCritical, IDIOMA.getString("abort"))
+    End Sub
+    Public Sub ERR_REMOVE_PDF_COMANDA(p As String)
+        Call MsgBox(IDIOMA.getString("errRemovePdfComanda") & vbCrLf & p, vbCritical, IDIOMA.getString("abort"))
+    End Sub
 End Module

@@ -24,7 +24,7 @@
     '    Dim ac As articleComanda
     '    ac = ModelarticleComanda.getObject(id)
     '    If Not IsNothing(ac) Then
-    '        Return ModelarticleComanda.getDataList(ModelarticleComanda.getObjects(ac.codi))
+    '        Return ModelarticleComanda.getDataList((ac.codi))
     '    End If
     '    Return Nothing
     'End Function

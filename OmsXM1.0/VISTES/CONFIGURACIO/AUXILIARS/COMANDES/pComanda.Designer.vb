@@ -23,7 +23,6 @@ Partial Class pComanda
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(pComanda))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -33,6 +32,7 @@ Partial Class pComanda
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(pComanda))
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.mnuContextual = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.mnuAfegir = New System.Windows.Forms.ToolStripMenuItem()
@@ -42,6 +42,7 @@ Partial Class pComanda
         Me.mnuEngatxar = New System.Windows.Forms.ToolStripMenuItem()
         Me.cbEstat = New System.Windows.Forms.ComboBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.xecUrgent = New OmsXM.XEC()
         Me.cmdExcel = New System.Windows.Forms.Button()
         Me.cmdAdjunts = New System.Windows.Forms.Button()
         Me.cmdCopiar = New System.Windows.Forms.Button()
@@ -64,17 +65,11 @@ Partial Class pComanda
         Me.cmdEngantxarArticle = New System.Windows.Forms.Button()
         Me.cmdCopiarArticle = New System.Windows.Forms.Button()
         Me.cmdTreureFila = New System.Windows.Forms.Button()
+        Me.txtFiltrarArticle = New OmsXM.TXT()
         Me.lblCercador = New OmsXM.LBLRED()
         Me.cmdCercadorArticle = New System.Windows.Forms.Button()
         Me.cmdEliminarArticle = New System.Windows.Forms.Button()
         Me.cmdModificarArticle = New System.Windows.Forms.Button()
-        Me.cmdAfegirAdjunt = New System.Windows.Forms.Button()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.pdfReader = New AxAcroPDFLib.AxAcroPDF()
-        Me.lblAdjunts = New OmsXM.LBLRED()
-        Me.cbAdjunts = New System.Windows.Forms.ComboBox()
-        Me.openFile = New System.Windows.Forms.OpenFileDialog()
-        Me.txtFiltrarArticle = New OmsXM.TXT()
         Me.DGVArticles = New OmsXM.dgvExtended()
         Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.codi = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -86,6 +81,12 @@ Partial Class pComanda
         Me.base = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.iva = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.total = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cmdAfegirAdjunt = New System.Windows.Forms.Button()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.pdfReader = New AxAcroPDFLib.AxAcroPDF()
+        Me.lblAdjunts = New OmsXM.LBLRED()
+        Me.cbAdjunts = New System.Windows.Forms.ComboBox()
+        Me.openFile = New System.Windows.Forms.OpenFileDialog()
         Me.mnuContextual.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.SplitC, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,9 +95,9 @@ Partial Class pComanda
         Me.SplitC.SuspendLayout()
         Me.panelArticle.SuspendLayout()
         Me.Panel3.SuspendLayout()
+        CType(Me.DGVArticles, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         CType(Me.pdfReader, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DGVArticles, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ToolTip1
@@ -161,6 +162,7 @@ Partial Class pComanda
         Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.BackColor = System.Drawing.SystemColors.InactiveCaption
+        Me.Panel1.Controls.Add(Me.xecUrgent)
         Me.Panel1.Controls.Add(Me.cmdExcel)
         Me.Panel1.Controls.Add(Me.cmdAdjunts)
         Me.Panel1.Controls.Add(Me.cmdCopiar)
@@ -174,6 +176,19 @@ Partial Class pComanda
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1477, 32)
         Me.Panel1.TabIndex = 73
+        '
+        'xecUrgent
+        '
+        Me.xecUrgent.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.xecUrgent.AutoSize = True
+        Me.xecUrgent.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.xecUrgent.ForeColor = System.Drawing.Color.Black
+        Me.xecUrgent.Location = New System.Drawing.Point(1228, 7)
+        Me.xecUrgent.Name = "xecUrgent"
+        Me.xecUrgent.Size = New System.Drawing.Size(71, 22)
+        Me.xecUrgent.TabIndex = 81
+        Me.xecUrgent.Text = "Urgent"
+        Me.xecUrgent.UseVisualStyleBackColor = True
         '
         'cmdExcel
         '
@@ -192,9 +207,9 @@ Partial Class pComanda
         Me.cmdAdjunts.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.cmdAdjunts.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.cmdAdjunts.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.cmdAdjunts.Location = New System.Drawing.Point(1281, 2)
+        Me.cmdAdjunts.Location = New System.Drawing.Point(1334, 2)
         Me.cmdAdjunts.Name = "cmdAdjunts"
-        Me.cmdAdjunts.Size = New System.Drawing.Size(192, 28)
+        Me.cmdAdjunts.Size = New System.Drawing.Size(139, 28)
         Me.cmdAdjunts.TabIndex = 78
         Me.cmdAdjunts.Text = "Veure F56"
         Me.cmdAdjunts.UseVisualStyleBackColor = False
@@ -230,7 +245,7 @@ Partial Class pComanda
         Me.lblComptadorEstat.ForeColor = System.Drawing.Color.Black
         Me.lblComptadorEstat.Location = New System.Drawing.Point(828, 5)
         Me.lblComptadorEstat.Name = "lblComptadorEstat"
-        Me.lblComptadorEstat.Size = New System.Drawing.Size(409, 24)
+        Me.lblComptadorEstat.Size = New System.Drawing.Size(378, 24)
         Me.lblComptadorEstat.TabIndex = 74
         Me.lblComptadorEstat.Text = "Cercador"
         Me.lblComptadorEstat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -453,6 +468,16 @@ Partial Class pComanda
         Me.cmdTreureFila.TabStop = False
         Me.cmdTreureFila.UseVisualStyleBackColor = True
         '
+        'txtFiltrarArticle
+        '
+        Me.txtFiltrarArticle.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.txtFiltrarArticle.ForeColor = System.Drawing.Color.Red
+        Me.txtFiltrarArticle.Location = New System.Drawing.Point(497, 2)
+        Me.txtFiltrarArticle.Name = "txtFiltrarArticle"
+        Me.txtFiltrarArticle.Size = New System.Drawing.Size(369, 26)
+        Me.txtFiltrarArticle.TabIndex = 35
+        Me.txtFiltrarArticle.TabStop = False
+        '
         'lblCercador
         '
         Me.lblCercador.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -496,73 +521,6 @@ Partial Class pComanda
         Me.cmdModificarArticle.TabIndex = 29
         Me.cmdModificarArticle.TabStop = False
         Me.cmdModificarArticle.UseVisualStyleBackColor = True
-        '
-        'cmdAfegirAdjunt
-        '
-        Me.cmdAfegirAdjunt.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdAfegirAdjunt.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.cmdAfegirAdjunt.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.cmdAfegirAdjunt.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.cmdAfegirAdjunt.Location = New System.Drawing.Point(641, 3)
-        Me.cmdAfegirAdjunt.Name = "cmdAfegirAdjunt"
-        Me.cmdAfegirAdjunt.Size = New System.Drawing.Size(107, 28)
-        Me.cmdAfegirAdjunt.TabIndex = 81
-        Me.cmdAfegirAdjunt.Text = "Veure F56"
-        Me.cmdAfegirAdjunt.UseVisualStyleBackColor = False
-        '
-        'Panel2
-        '
-        Me.Panel2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel2.Controls.Add(Me.pdfReader)
-        Me.Panel2.Location = New System.Drawing.Point(3, 33)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(745, 472)
-        Me.Panel2.TabIndex = 76
-        '
-        'pdfReader
-        '
-        Me.pdfReader.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pdfReader.Enabled = True
-        Me.pdfReader.Location = New System.Drawing.Point(0, 0)
-        Me.pdfReader.Name = "pdfReader"
-        Me.pdfReader.OcxState = CType(resources.GetObject("pdfReader.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.pdfReader.Size = New System.Drawing.Size(745, 472)
-        Me.pdfReader.TabIndex = 0
-        '
-        'lblAdjunts
-        '
-        Me.lblAdjunts.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAdjunts.ForeColor = System.Drawing.Color.Black
-        Me.lblAdjunts.Location = New System.Drawing.Point(26, 8)
-        Me.lblAdjunts.Name = "lblAdjunts"
-        Me.lblAdjunts.Size = New System.Drawing.Size(148, 19)
-        Me.lblAdjunts.TabIndex = 75
-        Me.lblAdjunts.Text = "Cercador"
-        Me.lblAdjunts.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'cbAdjunts
-        '
-        Me.cbAdjunts.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cbAdjunts.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbAdjunts.ForeColor = System.Drawing.Color.Blue
-        Me.cbAdjunts.FormattingEnabled = True
-        Me.cbAdjunts.Location = New System.Drawing.Point(180, 3)
-        Me.cbAdjunts.Name = "cbAdjunts"
-        Me.cbAdjunts.Size = New System.Drawing.Size(455, 24)
-        Me.cbAdjunts.TabIndex = 74
-        '
-        'txtFiltrarArticle
-        '
-        Me.txtFiltrarArticle.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.txtFiltrarArticle.ForeColor = System.Drawing.Color.Red
-        Me.txtFiltrarArticle.Location = New System.Drawing.Point(497, 2)
-        Me.txtFiltrarArticle.Name = "txtFiltrarArticle"
-        Me.txtFiltrarArticle.Size = New System.Drawing.Size(369, 26)
-        Me.txtFiltrarArticle.TabIndex = 35
-        Me.txtFiltrarArticle.TabStop = False
         '
         'DGVArticles
         '
@@ -717,6 +675,63 @@ Partial Class pComanda
         Me.total.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.total.Width = 125
         '
+        'cmdAfegirAdjunt
+        '
+        Me.cmdAfegirAdjunt.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdAfegirAdjunt.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.cmdAfegirAdjunt.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.cmdAfegirAdjunt.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.cmdAfegirAdjunt.Location = New System.Drawing.Point(633, 3)
+        Me.cmdAfegirAdjunt.Name = "cmdAfegirAdjunt"
+        Me.cmdAfegirAdjunt.Size = New System.Drawing.Size(107, 28)
+        Me.cmdAfegirAdjunt.TabIndex = 81
+        Me.cmdAfegirAdjunt.Text = "Veure F56"
+        Me.cmdAfegirAdjunt.UseVisualStyleBackColor = False
+        '
+        'Panel2
+        '
+        Me.Panel2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel2.Controls.Add(Me.pdfReader)
+        Me.Panel2.Location = New System.Drawing.Point(3, 33)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(737, 472)
+        Me.Panel2.TabIndex = 76
+        '
+        'pdfReader
+        '
+        Me.pdfReader.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pdfReader.Enabled = True
+        Me.pdfReader.Location = New System.Drawing.Point(0, 0)
+        Me.pdfReader.Name = "pdfReader"
+        Me.pdfReader.OcxState = CType(resources.GetObject("pdfReader.OcxState"), System.Windows.Forms.AxHost.State)
+        Me.pdfReader.Size = New System.Drawing.Size(737, 472)
+        Me.pdfReader.TabIndex = 0
+        '
+        'lblAdjunts
+        '
+        Me.lblAdjunts.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAdjunts.ForeColor = System.Drawing.Color.Black
+        Me.lblAdjunts.Location = New System.Drawing.Point(26, 8)
+        Me.lblAdjunts.Name = "lblAdjunts"
+        Me.lblAdjunts.Size = New System.Drawing.Size(148, 19)
+        Me.lblAdjunts.TabIndex = 75
+        Me.lblAdjunts.Text = "Cercador"
+        Me.lblAdjunts.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'cbAdjunts
+        '
+        Me.cbAdjunts.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbAdjunts.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbAdjunts.ForeColor = System.Drawing.Color.Blue
+        Me.cbAdjunts.FormattingEnabled = True
+        Me.cbAdjunts.Location = New System.Drawing.Point(180, 3)
+        Me.cbAdjunts.Name = "cbAdjunts"
+        Me.cbAdjunts.Size = New System.Drawing.Size(447, 24)
+        Me.cbAdjunts.TabIndex = 74
+        '
         'pComanda
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -730,6 +745,7 @@ Partial Class pComanda
         Me.Size = New System.Drawing.Size(1487, 609)
         Me.mnuContextual.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.SplitC.Panel1.ResumeLayout(False)
         Me.SplitC.Panel2.ResumeLayout(False)
         CType(Me.SplitC, System.ComponentModel.ISupportInitialize).EndInit()
@@ -737,9 +753,9 @@ Partial Class pComanda
         Me.panelArticle.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
+        CType(Me.DGVArticles, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         CType(Me.pdfReader, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DGVArticles, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -796,4 +812,5 @@ Partial Class pComanda
     Friend WithEvents total As DataGridViewTextBoxColumn
     Friend WithEvents cmdAfegirAdjunt As Button
     Friend WithEvents openFile As OpenFileDialog
+    Friend WithEvents xecUrgent As XEC
 End Class

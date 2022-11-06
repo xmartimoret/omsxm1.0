@@ -158,7 +158,7 @@ Public Class frmIniComanda
                 ElseIf t.nom = IDIOMA.getString("comandesEnviar") Then
                     If refrescarComandes Then
                         Dim p As SelectComandesEnValidacio
-                        p = New SelectComandesEnValidacio(1, True, False, IDIOMA.getString("comandesPendentEnviar"), 2)
+                        p = New SelectComandesEnValidacio(1, True, False, IDIOMA.getString("comandesPendentEnviar"), 3)
                         AddHandler p.updateData, AddressOf updatecomanda
                         t.panel = p
                         t.panel.Dock = DockStyle.Fill
@@ -510,14 +510,14 @@ Public Class frmIniComanda
 
     Private Sub mnuResponsableCompra_Click(sender As Object, e As EventArgs) Handles mnuResponsableCompra.Click
         Dim p As DAuxiliars
-        p = New DAuxiliars
+        p = New DAuxiliars()
         p.setResponsableCompra()
         p = Nothing
     End Sub
 
     Private Sub mnuComandesEnviar_Click(sender As Object, e As EventArgs) Handles mnuComandesEnviar.Click
         Dim p As SelectComandesEnValidacio
-        p = New SelectComandesEnValidacio(1, True, False, IDIOMA.getString("comandesPendentEnviar"), 2)
+        p = New SelectComandesEnValidacio(1, True, False, IDIOMA.getString("comandesPendentEnviar"), 3)
         Call setTab(IDIOMA.getString("comandesEnviar"), p)
         AddHandler p.selectObject, AddressOf actualitzarPanelValidacio
     End Sub

@@ -237,11 +237,19 @@ Module ModulImportSolicituds
         s = getSolicitudComanda(f)
         Try
             If CONFIG.fileExist(f) Then
-                Call Kill(f)
+                My.Computer.FileSystem.MoveFile(f, CONFIG.setSeparator(CONFIG.getRutaComandesImportades) & CONFIG.getFitxer(f), True)
+                'My.Computer.FileSystem.DeleteFile(f)
+                'Call Kill(f)
+
                 ruta = CONFIG.setFolder(CONFIG.getDirectori(f))
                 For Each d In s.documentacio
-                    If CONFIG.fileExist(ruta & d.nom) Then Kill(ruta & d.nom)
+                    If CONFIG.fileExist(ruta & d.nom) Then
+                        'My.Computer.FileSystem.DeleteFile(ruta & d.nom)
+                        My.Computer.FileSystem.MoveFile(ruta & d.nom, CONFIG.setSeparator(CONFIG.getRutaComandesImportades) & d.nom, True)
+                        'Kill(ruta & d.nom)
+                    End If
                 Next
+                objects = getObjects()
                 Return True
             End If
         Catch ex As Exception
@@ -257,8 +265,9 @@ Module ModulImportSolicituds
                 d.anyo = sc.getAnyo
                 If ModelDocumentacio.save(d) > 0 Then
                     If CONFIG.fileExist(CONFIG.setSeparator(CONFIG_FILE.getTag(TAG.RUTA_FITXERS_SOLICITUT)) & d.nom) Then
-                        Call FileCopy(CONFIG.setSeparator(CONFIG_FILE.getTag(TAG.RUTA_FITXERS_SOLICITUT)) & d.nom, CONFIG.setSeparator(CONFIG.getDirectoriServidorOfertes) & d.nom)
-                        Kill(CONFIG.setSeparator(CONFIG_FILE.getTag(TAG.RUTA_FITXERS_SOLICITUT)) & d.nom)
+                        My.Computer.FileSystem.MoveFile(CONFIG.setSeparator(CONFIG_FILE.getTag(TAG.RUTA_FITXERS_SOLICITUT)) & d.nom, CONFIG.setSeparator(CONFIG.getDirectoriServidorOfertes) & d.nom, True)
+                        'Call FileCopy(CONFIG.setSeparator(CONFIG_FILE.getTag(TAG.RUTA_FITXERS_SOLICITUT)) & d.nom, CONFIG.setSeparator(CONFIG.getDirectoriServidorOfertes) & d.nom)
+                        'Kill(CONFIG.setSeparator(CONFIG_FILE.getTag(TAG.RUTA_FITXERS_SOLICITUT)) & d.nom)                        
                     End If
                 End If
             Next
@@ -270,8 +279,9 @@ Module ModulImportSolicituds
     Private Function setFitxers(f As String, docs As List(Of doc)) As Boolean
 
         If CONFIG.fileExist(f) Then
-            Call FileCopy(f, CONFIG.setSeparator(CONFIG.getRutaComandesImportades) & CONFIG.getFitxer(f))
-            Call Kill(f)
+            My.Computer.FileSystem.MoveFile(f, CONFIG.setSeparator(CONFIG.getRutaComandesImportades) & CONFIG.getFitxer(f), True)
+            'Call FileCopy(f, CONFIG.setSeparator(CONFIG.getRutaComandesImportades) & CONFIG.getFitxer(f))
+            'Call Kill(f)
         End If
         For Each d In docs
 
