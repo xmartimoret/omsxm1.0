@@ -38,6 +38,12 @@ Public Class AnyMesos
         Get
             Return _mesos
         End Get
-
     End Property
+    Public Function mesActual() As Integer
+        Dim i As Integer
+        For i = 1 To 12
+            If _mesos(i) Then Return i
+        Next
+        Return 0
+    End Function
 End Class

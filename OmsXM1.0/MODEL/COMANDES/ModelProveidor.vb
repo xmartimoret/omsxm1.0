@@ -85,6 +85,18 @@ Module ModelProveidor
         objectes = Nothing
         obj = Nothing
     End Function
+    Public Function getListObjects(p As List(Of Proveidor)) As Object()
+        Dim obj As Proveidor, i As Integer = 0, objectes() As Object, temp As List(Of Proveidor)
+        temp = p
+        ReDim objectes(temp.Count - 1)
+        For Each obj In temp
+            objectes(i) = obj
+            i = i + 1
+        Next
+        getListObjects = objectes
+        objectes = Nothing
+        obj = Nothing
+    End Function
     Public Function getListViewItem(c As Proveidor) As ListViewItem
         If c.actiu Then
             Return New ListViewItem(New String() {c.id, c.codi, c.codiComptable, c.nom, c.poblacio, c.provincia.nom, c.email, IDIOMA.getString("actiu")})

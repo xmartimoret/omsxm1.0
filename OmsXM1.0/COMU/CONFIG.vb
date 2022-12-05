@@ -37,7 +37,7 @@ Module CONFIG
     Private Const PLANTILLA_INFO_LLOCS_ENTREGA As String = "plantillaLlocsEntrega.xlsx"
     Private Const PLANTILLA_INFO_PROVEIDOR As String = "plantillaProveidor.xlsx"
     Private Const PLANTILLA_INFO_PROVEIDORS As String = "plantillaProveidors.xlsx"
-    Private Const PLANTILLA_LLIBRE_MAJOR As String = "plantillaLlibreMajor.xls"
+    Private Const PLANTILLA_LLIBRE_MAJOR As String = "plantillaLlibreMajor.xlsx"
     Private Const RUTA_APLICACIO As String = "C:\APLIXM_OMS_SACEDE"
     Private Const RUTA_EXPORTACIO_DBF As String = "EXPORT_DBF"
     Private Const RUTA_EXPORTACIO_DEPARTAMENTS As String = "EXPORT_PROJECTES_DEPARTAMENT"

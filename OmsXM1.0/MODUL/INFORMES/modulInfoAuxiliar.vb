@@ -238,16 +238,23 @@ Module ModulInfoAuxiliar
             wb.Application.Calculation = exc.XlCalculation.xlCalculationManual
             f = New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("imprimintInforme"), "")
             i = 1
-            xls = wb.Worksheets(1).range("a4")
-            wb.Worksheets(1).range("a1") = titol
-            wb.Worksheets(1).range("a2") = filtre
+            xls = wb.Worksheets(1).range("a7")
+            wb.Worksheets(1).range("E1") = titol
+            wb.Worksheets(1).range("c2") = filtre
             For Each r In comandes
                 j = 1
                 For Each s In r
                     'If IsDate(s) Then
                     '    xls(i, j) = CDate(s)
                     'Else
-                    xls(i, j) = s
+                    If j = 6 Or j = 15 Then 'DATA
+                        If IsDate(s) Then xls(i, j) = CDate(s)
+                    ElseIf j = 10 Or j = 11 Or j = 12 Then 'BASE, IVA I TOTAL
+                        If IsNumeric(s) Then xls(i, j) = CDbl(s)
+                    Else
+                        xls(i, j) = s
+                    End If
+
                     'End If
                     j = j + 1
                 Next
@@ -260,11 +267,11 @@ Module ModulInfoAuxiliar
                 Try
                     If CONFIG.folderExist(ruta) Then
                         ruta2 = ruta & Format(Now, "yyMMddhhmm") & "_INF_COMANDES.Pdf"
-                        wb.ExportAsFixedFormat(exc.XlFixedFormatType.xlTypePDF, ruta, 1, , , , , True)
+                        wb.ExportAsFixedFormat(exc.XlFixedFormatType.xlTypePDF, ruta2, 1, , , , , True)
                     End If
                 Catch e As Exception
                     MsgBox(e.Message)
-                    ERRORS.ERR_PDF_CLOSE(ruta)
+                    ERRORS.ERR_PDF_CLOSE(ruta2)
                 End Try
                 wb.Close(False)
             Else

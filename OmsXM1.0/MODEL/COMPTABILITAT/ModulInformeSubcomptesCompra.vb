@@ -12,15 +12,17 @@ Module ModulInformeSubcomptesCompra
         If Not IsNothing(c) Then
             contaplusActual = c
             dataInicial = DateSerial(c.anyo, 1, 1)
-            dataFinal = DateSerial(c.anyo, 12, 31)
+            If a.mesActual = 12 Then
+                dataFinal = DateSerial(c.anyo, a.mesActual, 31)
+            Else
+                dataFinal = DateAdd(DateInterval.Day, -1, DateSerial(c.anyo, a.mesActual + 1, 1))
+            End If
             If dataFinal > dataInicial Then
-
                 Call setData(c)
-
                 Call MISSATGES.DATA_UPDATED()
             End If
         End If
-        c = Nothing
+            c = Nothing
     End Sub
     Private Sub setData(c As Contaplus)
         Dim wb As EXC.Workbook, ws As EXC.Worksheet, f As frmAvis

@@ -1,6 +1,9 @@
 ﻿Public Class ComparadorOrdre : Implements IComparable
     Public Overridable Property ordre As String
     Public Overridable Property id As Integer = -1
+    Public Function idGrup() As Integer
+        Return _id \ 100
+    End Function
     Public Overrides Function GetHashCode() As Integer
         Return _id
     End Function

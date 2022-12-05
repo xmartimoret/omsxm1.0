@@ -48,6 +48,18 @@ Module ModelProjecte
         objectes = Nothing
         obj = Nothing
     End Function
+    Public Function getListObjects(p As List(Of Projecte)) As Object()
+        Dim obj As Projecte, i As Integer = 0, objectes() As Object, temp As List(Of Projecte)
+        temp = p
+        ReDim objectes(temp.Count - 1)
+        For Each obj In temp
+            objectes(i) = obj
+            i = i + 1
+        Next
+        getListObjects = objectes
+        objectes = Nothing
+        obj = Nothing
+    End Function
     Public Function getStringProjectes() As String(,)
         Dim obj As Projecte, dades(,) As String, i As Integer
         If Not isUpdated() Then objects = getRemoteObjects()

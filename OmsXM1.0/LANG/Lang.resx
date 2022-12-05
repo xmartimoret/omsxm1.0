@@ -4316,4 +4316,48 @@
   <data name="cercarPerCodi" xml:space="preserve">
     <value>CERCAR*CODI</value>
   </data>
+  <data name="projectesACercar" xml:space="preserve">
+    <value>PROJECTES A CERCAR:</value>
+    <comment>pFiltreComandes</comment>
+  </data>
+  <data name="proveidorsACercar" xml:space="preserve">
+    <value>PROVEÏDORS A CERCAR:</value>
+    <comment>pFiltreComandes</comment>
+  </data>
+  <data name="cercarComanda" xml:space="preserve">
+    <value>CERCA COMANDA/ES</value>
+  </data>
+  <data name="cercarComandesCodi" xml:space="preserve">
+    <value>CERCAR COMANDES PER CODI</value>
+  </data>
+  <data name="errComandaNoTrobada" xml:space="preserve">
+    <value>AVIS.NO S'HA TROBAT CAP COMANDA PER LES DADES ESPECIFICADES.</value>
+  </data>
+  <data name="perCodiComanda" xml:space="preserve">
+    <value>PER CODI COMANDA</value>
+  </data>
+  <data name="perNumMydoc" xml:space="preserve">
+    <value>PER NUMERO MYDOC</value>
+  </data>
+  <data name="reindexarComandes" xml:space="preserve">
+    <value>RE-INDEXAR COMANDES</value>
+  </data>
+  <data name="reindexarComandesEnviades" xml:space="preserve">
+    <value>COMANDES ENVIADES</value>
+  </data>
+  <data name="reindexarComandesValidacio" xml:space="preserve">
+    <value>COMANDES EN EDICIO/VALIDACIO</value>
+  </data>
+  <data name="reindexarNumMyDoc" xml:space="preserve">
+    <value>RE-INDEXAR Nº MYDOC COMANDES</value>
+  </data>
+  <data name="diarioContaplus" xml:space="preserve">
+    <value>DIARIO.CONTAPLUS</value>
+  </data>
+  <data name="mostrarDadesComptabilitat" xml:space="preserve">
+    <value>MOSTRAR DADES COMPTABLES</value>
+  </data>
+  <data name="mostrarLlibreMajor" xml:space="preserve">
+    <value>MOSTRAR DADES LLIBRE MAJOR.PROJECTES</value>
+  </data>
 </root>

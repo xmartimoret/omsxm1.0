@@ -3,7 +3,7 @@
     Friend Property comandaActual As Comanda
     Friend Property comandes As List(Of Comanda)
     Friend Event selectObject(p As Comanda)
-
+    Private filtreActual As String
     Public Sub New(pTitol As String, pComandes As List(Of Comanda))
         Me.accio = 0
         Me.multiselect = False
@@ -11,6 +11,15 @@
         Me.titol = pTitol
         Me.orderColumn = 1
         comandes = pComandes
+    End Sub
+    Public Sub New(pTitol As String, pFiltre As String, pComandes As List(Of Comanda))
+        Me.accio = 0
+        Me.multiselect = False
+        Me.isForm = False
+        Me.titol = pTitol
+        Me.orderColumn = 1
+        comandes = pComandes
+        filtreActual = pFiltre
     End Sub
     Public Overrides Function eliminar() As Boolean
         If comandaActual IsNot Nothing Then
@@ -106,7 +115,10 @@
     End Function
 
     Public Overrides Sub imprimir(pdf As Boolean, dades As List(Of List(Of String)), filtre As String)
-
-        Call ModulInfoAuxiliar.infoComandes(dades, pdf, IDIOMA.getString("comandes"), filtre)
+        If filtre.Length > 0 Then
+            Call ModulInfoAuxiliar.infoComandes(dades, pdf, Me.titol, filtreActual & vbCrLf & filtre)
+        Else
+            Call ModulInfoAuxiliar.infoComandes(dades, pdf, Me.titol, filtreActual)
+        End If
     End Sub
 End Class

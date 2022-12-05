@@ -69,19 +69,23 @@
         Next
         a = Nothing
     End Function
-    Public Function getObjectsByCodiComanda(pCodi As String) As List(Of Comanda)
+    Public Function getObjectsByCodiComanda(pCodi As String, idEmpresa As Integer, anyo As Integer) As List(Of Comanda)
         Dim a As Comanda
         If Not isUpdated() Then objects = getRemoteObjects()
         Call importNumsMydoc()
         getObjectsByCodiComanda = New List(Of Comanda)
         For Each a In objects
-            If InStr(a.codi, pCodi, CompareMethod.Text) > 0 Then
-                If a.estat = 0 Then
-                    a.notes = IDIOMA.getString("enEdicio")
-                ElseIf a.estat = 1 Then
-                    a.notes = IDIOMA.getString("enValidacio")
+            If idEmpresa = a.empresa.id Or idEmpresa <= 0 Then
+                If a.serie = anyo Or anyo <= 0 Then
+                    If StrComp(a.codi, pCodi, CompareMethod.Text) = 0 Then
+                        If a.estat = 0 Then
+                            a.notes = IDIOMA.getString("enEdicio")
+                        ElseIf a.estat = 1 Then
+                            a.notes = IDIOMA.getString("enValidacio")
+                        End If
+                        getObjectsByCodiComanda.Add(a)
+                    End If
                 End If
-                getObjectsByCodiComanda.Add(a)
             End If
         Next
         a = Nothing
@@ -257,9 +261,9 @@
     Public Function save(obj As Comanda) As Integer
         Dim a As articleComanda
         If Not isUpdated() Then objects = getRemoteObjects()
+        obj.baseComanda = 0
+        obj.ivaComanda = 0
         If obj.id = -1 Then
-            'obj.codi = getLastCodiEmpresa(obj.empresa.id, obj.getAnyo) + 1
-            'obj.codi = "NOVA"            
             obj.id = dbComanda.insert(obj, obj.estat)
             For Each a In obj.articles
                 a.idComanda = obj.id
@@ -274,6 +278,19 @@
             If Not ModelArticleComandaEnEdicio.saveComanda(obj) Then Return -1
         End If
         Return obj.id
+    End Function
+    Private Function save(idComanda As Integer) As Integer
+        Dim obj As Comanda
+        If Not isUpdated() Then objects = getRemoteObjects()
+        obj = ModelComandaEnEdicio.getObject(idComanda)
+        obj.baseComanda = 0
+        obj.ivaComanda = 0
+        obj.id = dbComanda.update(obj, obj.estat)
+        If obj.id > -1 Then
+            dateUpdate = Now()
+        End If
+        obj = Nothing
+        Return idComanda
     End Function
     Public Function aBassura(obj As Comanda) As Boolean
         obj.estat = -1
@@ -456,8 +473,8 @@
         P.tancar()
         If MISSATGES.CONFIRM_SEND_COMANDA Then
             P = New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("guardarComanda"), pdfActual)
-            comandaActual.baseComanda = comandaActual.base - comandaActual.descompte
-            comandaActual.ivaComanda = comandaActual.iva
+            'comandaActual.baseComanda = comandaActual.base - comandaActual.descompte
+            'comandaActual.ivaComanda = comandaActual.iva
             If IsNothing(comandaActual.docMyDoc) Then comandaActual.docMyDoc = New PedidoMD
             If comandaActual.docMyDoc.id = -1 Then
                 comandaActual.docMyDoc = ModelPedidosMydoc.getObject(comandaActual.idMydoc)
@@ -519,8 +536,8 @@
             Call ModelArticleComandaEnEdicio.remove(comandaActual)
             frmIniComanda.updatecomanda()
         End If
-        comandaActual.baseComanda = comandaActual.base - comandaActual.descompte
-        comandaActual.ivaComanda = comandaActual.iva
+        'comandaActual.baseComanda = comandaActual.base - comandaActual.descompte
+        'comandaActual.ivaComanda = comandaActual.iva
         comandaActual.estat = 2
         idcomanda = ModelComanda.insert(comandaActual.copy)
         If idcomanda > 0 Then
@@ -544,4 +561,18 @@
         End If
         Return -1
     End Function
+    Public Sub reindexarPreusComanda()
+        Dim a As Comanda, avis As frmAvis, i As Integer
+        avis = New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("reIndexantComandes"), "")
+        If Not isUpdated() Then objects = getRemoteObjects()
+        For Each a In objects
+            i = i + 1
+            avis.setData(a.ToString, i & " " & IDIOMA.getString("de") & " " & objects.Count)
+            Call save(a.id)
+        Next
+        avis.tancar()
+        If i > 0 Then Call MISSATGES.DATA_UPDATED()
+        a = Nothing
+    End Sub
+
 End Module

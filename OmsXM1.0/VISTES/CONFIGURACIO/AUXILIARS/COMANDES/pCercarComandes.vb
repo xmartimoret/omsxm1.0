@@ -9,10 +9,22 @@
         splitCercador.Panel1.Controls.Add(pFiltre)
         AddHandler pFiltre.selectObjects, AddressOf setComandes
     End Sub
-
+    Public Sub New(pComandes As List(Of Comanda))
+        InitializeComponent()
+        pFiltre = New pFiltreComandes
+        pFiltre.Dock = DockStyle.Fill
+        splitCercador.Panel1.Controls.Clear()
+        splitCercador.Panel1.Controls.Add(pFiltre)
+        AddHandler pFiltre.selectObjects, AddressOf setComandes
+        Call setComandes(pComandes)
+    End Sub
     Private Sub setComandes(comandes As List(Of Comanda))
         Dim P As New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("presentantComandes"), "")
-        pComandes = New SelectComandes(IDIOMA.getString("comandes"), comandes)
+        If pFiltre.xecTotesEmpresa.Checked Then
+            pComandes = New SelectComandes(IDIOMA.getString("comandes"), pFiltre.filtreActual, comandes)
+        Else
+            pComandes = New SelectComandes(IDIOMA.getString("comandes") & " " & pFiltre.empresa.nom, pFiltre.filtreActual, comandes)
+        End If
         pComandes.Dock = DockStyle.Fill
         panelComandes.Controls.Clear()
         panelComandes.Controls.Add(pComandes)
@@ -41,14 +53,16 @@
     Private Sub setTotal()
         Dim c As ListViewItem, base As Double = 0, iva As Double = 0
         For Each c In pComandes.lstData.Items
-            base = base + c.SubItems(8).Text
-            iva = iva + c.SubItems(9).Text
+            base = base + c.SubItems(9).Text
+            iva = iva + c.SubItems(10).Text
         Next
         lblBase.Text = IDIOMA.getString("base") & ": " & Format(base, "#,##0.00 €")
         lblIva.Text = IDIOMA.getString("iva") & ": " & Format(iva, "#,##0.00 €")
         lblTotal.Text = IDIOMA.getString("total") & ": " & Format(base + iva, "#,##0.00  €")
         c = Nothing
     End Sub
+
+
 
 
     'Private Function getRutaPDF(idEmpresa As Integer, codi As String, anyo As String, e As Integer)

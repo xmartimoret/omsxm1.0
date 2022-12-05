@@ -49,7 +49,5 @@
         c = Nothing
     End Sub
 
-    Private Sub splitCercador_Panel2_Paint(sender As Object, e As PaintEventArgs) Handles splitCercador.Panel2.Paint
 
-    End Sub
 End Class

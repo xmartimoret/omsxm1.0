@@ -135,7 +135,7 @@
             Next
             For Each c In dadesInforme.seccioActual.centres
                 If Not c.actualitzat Then
-                    f.setData(IDIOMA.getString("carregantDades"), c.nom, "")
+                    f.setData(IDIOMA.getString("carregantDades"), c.nom)
                     If c.projectes.Count > 0 Then
                         c.assentaments = ModelDiario.getAssentamentsCentreByMes(dadesInforme.empresaActual, dadesInforme.contaplusActual, c)
                         c.transitories = ModelTransitoria.getObjectsByCentreAny(dadesInforme.empresaActual, c, dadesInforme.mesActual.anyo)

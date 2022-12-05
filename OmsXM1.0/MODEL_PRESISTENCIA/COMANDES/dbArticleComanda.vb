@@ -36,7 +36,7 @@ Module dbArticleComanda
         Return removeDBF(obj)
     End Function
     Public Function getObjects() As List(Of articleComanda)
-        If IS_SQLSERVER Then Return getObjectsSQL()
+        If IS_SQLSERVER() Then Return getObjectsSQL()
         Return getObjectsDBF()
     End Function
     Private Function updateSQL(obj As articleComanda) As Integer
@@ -294,6 +294,28 @@ Module dbArticleComanda
         getObjectsDBF = New List(Of articleComanda)
         p = New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("carregantDades"), IDIOMA.getString("articlesComandes"))
         rc.Open("Select * FROM " & getTable(), DBCONNECT.getConnectionDbf)
+        While Not rc.EOF
+            a = New articleComanda(rc(ID).Value, rc(ID_COMANDA).Value,
+                               rc(POSICIO_FILA).Value, Trim(CONFIG.validarNull(rc(CODI).Value)),
+                               Trim(CONFIG.validarNull(rc(NOM).Value)))
+            a.preu = Math.Round(rc(PREU).Value / 1000, 3)
+            a.tpcDescompte = Math.Round(rc(DESCOMPTE).Value / 100, 2)
+            a.quantitat = Math.Round(rc(QUANTITAT).Value / 100, 2)
+            a.tIva = ModelTipusIva.getAuxiliar.getObject(rc(ID_TIPUS_IVA).Value)
+            a.unitat = ModelUnitat.getAuxiliar.getObject(rc(ID_UNITAT).Value)
+            getObjectsDBF.Add(a)
+            rc.MoveNext()
+        End While
+        p.tancar()
+        If rc.State = 1 Then rc.Close()
+        rc = Nothing
+    End Function
+    Private Function getObjectsDBF(ini As Integer, fi As Integer) As List(Of articleComanda)
+        Dim rc As ADODB.Recordset, a As articleComanda, p As frmAvis
+        rc = New ADODB.Recordset
+        getObjectsDBF = New List(Of articleComanda)
+        p = New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("carregantDades"), IDIOMA.getString("articlesComandes"))
+        rc.Open("Select * FROM " & getTable() & " WHERE " & ID_COMANDA & " BETWEEN  " & ini & " AND " & fi, DBCONNECT.getConnectionDbf)
         While Not rc.EOF
             a = New articleComanda(rc(ID).Value, rc(ID_COMANDA).Value,
                                rc(POSICIO_FILA).Value, Trim(CONFIG.validarNull(rc(CODI).Value)),

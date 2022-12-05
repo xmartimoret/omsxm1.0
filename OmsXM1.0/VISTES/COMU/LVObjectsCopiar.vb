@@ -249,4 +249,8 @@
         Next i
         Return d
     End Function
+
+    Private Sub mnuImprimir_Click(sender As Object, e As EventArgs) Handles mnuImprimir.Click
+
+    End Sub
 End Class

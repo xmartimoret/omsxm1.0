@@ -45,6 +45,10 @@ Partial Class frmIniComanda
         Me.ToolStripSeparator11 = New System.Windows.Forms.ToolStripSeparator()
         Me.mnuAplicacioVaris = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuAplicacioFirmaCorreu = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuReindexarComandes = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuReindexarComandesValidacio = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuReindexarComandesEnviades = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuReindexarMyDoc = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuConfig = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuAxiliars = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuTipusPagament = New System.Windows.Forms.ToolStripMenuItem()
@@ -77,6 +81,13 @@ Partial Class frmIniComanda
         Me.mnuComandesEnviar = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
         Me.mnuComandaEliminar = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator13 = New System.Windows.Forms.ToolStripSeparator()
+        Me.mnuComandaCercar = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuComandaCercarCodi = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuComandaCercarMydoc = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnucontabilitat = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuVeureDades = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuMajors = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuInformes = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuF56 = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuEnviarF56 = New System.Windows.Forms.ToolStripMenuItem()
@@ -105,7 +116,7 @@ Partial Class frmIniComanda
         'MenuStrip1
         '
         Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAplicacio, Me.mnuConfig, Me.mnuComandes, Me.mnuInformes})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAplicacio, Me.mnuConfig, Me.mnuComandes, Me.mnucontabilitat, Me.mnuInformes})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(4, 2, 0, 2)
@@ -226,7 +237,7 @@ Partial Class frmIniComanda
         '
         'mnuAplicacioVaris
         '
-        Me.mnuAplicacioVaris.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAplicacioFirmaCorreu})
+        Me.mnuAplicacioVaris.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAplicacioFirmaCorreu, Me.mnuReindexarComandes, Me.mnuReindexarMyDoc})
         Me.mnuAplicacioVaris.Name = "mnuAplicacioVaris"
         Me.mnuAplicacioVaris.Size = New System.Drawing.Size(213, 22)
         Me.mnuAplicacioVaris.Text = "varis"
@@ -234,8 +245,33 @@ Partial Class frmIniComanda
         'mnuAplicacioFirmaCorreu
         '
         Me.mnuAplicacioFirmaCorreu.Name = "mnuAplicacioFirmaCorreu"
-        Me.mnuAplicacioFirmaCorreu.Size = New System.Drawing.Size(139, 22)
+        Me.mnuAplicacioFirmaCorreu.Size = New System.Drawing.Size(189, 22)
         Me.mnuAplicacioFirmaCorreu.Text = "firma correu"
+        '
+        'mnuReindexarComandes
+        '
+        Me.mnuReindexarComandes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuReindexarComandesValidacio, Me.mnuReindexarComandesEnviades})
+        Me.mnuReindexarComandes.Name = "mnuReindexarComandes"
+        Me.mnuReindexarComandes.Size = New System.Drawing.Size(189, 22)
+        Me.mnuReindexarComandes.Text = "ReindexarComandes"
+        '
+        'mnuReindexarComandesValidacio
+        '
+        Me.mnuReindexarComandesValidacio.Name = "mnuReindexarComandesValidacio"
+        Me.mnuReindexarComandesValidacio.Size = New System.Drawing.Size(191, 22)
+        Me.mnuReindexarComandesValidacio.Text = "ComandesEnValidacio"
+        '
+        'mnuReindexarComandesEnviades
+        '
+        Me.mnuReindexarComandesEnviades.Name = "mnuReindexarComandesEnviades"
+        Me.mnuReindexarComandesEnviades.Size = New System.Drawing.Size(191, 22)
+        Me.mnuReindexarComandesEnviades.Text = "ComandesEnviades"
+        '
+        'mnuReindexarMyDoc
+        '
+        Me.mnuReindexarMyDoc.Name = "mnuReindexarMyDoc"
+        Me.mnuReindexarMyDoc.Size = New System.Drawing.Size(189, 22)
+        Me.mnuReindexarMyDoc.Text = "ReindexarCodiMyDoc"
         '
         'mnuConfig
         '
@@ -370,7 +406,7 @@ Partial Class frmIniComanda
         '
         'mnuComandes
         '
-        Me.mnuComandes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuImportF56, Me.ToolStripSeparator4, Me.mnuCodisComanda2, Me.ToolStripSeparator5, Me.mnuNovaComanda, Me.mnuVeureComandaEdicio, Me.mnuComandesEnviar, Me.ToolStripSeparator6, Me.mnuComandaEliminar})
+        Me.mnuComandes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuImportF56, Me.ToolStripSeparator4, Me.mnuCodisComanda2, Me.ToolStripSeparator5, Me.mnuNovaComanda, Me.mnuVeureComandaEdicio, Me.mnuComandesEnviar, Me.ToolStripSeparator6, Me.mnuComandaEliminar, Me.ToolStripSeparator13, Me.mnuComandaCercar})
         Me.mnuComandes.Name = "mnuComandes"
         Me.mnuComandes.Size = New System.Drawing.Size(74, 20)
         Me.mnuComandes.Text = "comandes"
@@ -426,6 +462,51 @@ Partial Class frmIniComanda
         Me.mnuComandaEliminar.Size = New System.Drawing.Size(242, 22)
         Me.mnuComandaEliminar.Text = "Comandes pendent d'eliminar"
         '
+        'ToolStripSeparator13
+        '
+        Me.ToolStripSeparator13.Name = "ToolStripSeparator13"
+        Me.ToolStripSeparator13.Size = New System.Drawing.Size(239, 6)
+        '
+        'mnuComandaCercar
+        '
+        Me.mnuComandaCercar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuComandaCercarCodi, Me.mnuComandaCercarMydoc})
+        Me.mnuComandaCercar.Name = "mnuComandaCercar"
+        Me.mnuComandaCercar.Size = New System.Drawing.Size(242, 22)
+        Me.mnuComandaCercar.Text = "Cercar Comandes "
+        '
+        'mnuComandaCercarCodi
+        '
+        Me.mnuComandaCercarCodi.Name = "mnuComandaCercarCodi"
+        Me.mnuComandaCercarCodi.Size = New System.Drawing.Size(239, 22)
+        Me.mnuComandaCercarCodi.Text = "Per codi comanda"
+        '
+        'mnuComandaCercarMydoc
+        '
+        Me.mnuComandaCercarMydoc.Name = "mnuComandaCercarMydoc"
+        Me.mnuComandaCercarMydoc.Size = New System.Drawing.Size(239, 22)
+        Me.mnuComandaCercarMydoc.Text = "(*novisible) Per numero mydoc"
+        Me.mnuComandaCercarMydoc.Visible = False
+        '
+        'mnucontabilitat
+        '
+        Me.mnucontabilitat.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuVeureDades, Me.mnuMajors})
+        Me.mnucontabilitat.Name = "mnucontabilitat"
+        Me.mnucontabilitat.Size = New System.Drawing.Size(160, 20)
+        Me.mnucontabilitat.Text = "(*)no visible*** contabilitat"
+        Me.mnucontabilitat.Visible = False
+        '
+        'mnuVeureDades
+        '
+        Me.mnuVeureDades.Name = "mnuVeureDades"
+        Me.mnuVeureDades.Size = New System.Drawing.Size(180, 22)
+        Me.mnuVeureDades.Text = "dades"
+        '
+        'mnuMajors
+        '
+        Me.mnuMajors.Name = "mnuMajors"
+        Me.mnuMajors.Size = New System.Drawing.Size(180, 22)
+        Me.mnuMajors.Text = "majors"
+        '
         'mnuInformes
         '
         Me.mnuInformes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuF56, Me.mnuInformeArticles, Me.mnuInfoComandes, Me.mnuComptabilitat})
@@ -437,7 +518,7 @@ Partial Class frmIniComanda
         '
         Me.mnuF56.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuEnviarF56})
         Me.mnuF56.Name = "mnuF56"
-        Me.mnuF56.Size = New System.Drawing.Size(180, 22)
+        Me.mnuF56.Size = New System.Drawing.Size(145, 22)
         Me.mnuF56.Text = "F56"
         '
         'mnuEnviarF56
@@ -450,7 +531,7 @@ Partial Class frmIniComanda
         '
         Me.mnuInformeArticles.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuinformeArticlesComandes})
         Me.mnuInformeArticles.Name = "mnuInformeArticles"
-        Me.mnuInformeArticles.Size = New System.Drawing.Size(180, 22)
+        Me.mnuInformeArticles.Size = New System.Drawing.Size(145, 22)
         Me.mnuInformeArticles.Text = "articles"
         '
         'mnuinformeArticlesComandes
@@ -463,7 +544,7 @@ Partial Class frmIniComanda
         '
         Me.mnuInfoComandes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnucercadorComandes})
         Me.mnuInfoComandes.Name = "mnuInfoComandes"
-        Me.mnuInfoComandes.Size = New System.Drawing.Size(180, 22)
+        Me.mnuInfoComandes.Size = New System.Drawing.Size(145, 22)
         Me.mnuInfoComandes.Text = "comandes"
         '
         'mnucercadorComandes
@@ -476,7 +557,7 @@ Partial Class frmIniComanda
         '
         Me.mnuComptabilitat.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuInformeSubctesCompra})
         Me.mnuComptabilitat.Name = "mnuComptabilitat"
-        Me.mnuComptabilitat.Size = New System.Drawing.Size(180, 22)
+        Me.mnuComptabilitat.Size = New System.Drawing.Size(145, 22)
         Me.mnuComptabilitat.Text = "comptabilitat"
         '
         'mnuInformeSubctesCompra
@@ -592,4 +673,15 @@ Partial Class frmIniComanda
     Friend WithEvents MYDOCToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents WorkFlowPedidosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents mnuComandaEliminar As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator13 As ToolStripSeparator
+    Friend WithEvents mnuComandaCercar As ToolStripMenuItem
+    Friend WithEvents mnuComandaCercarCodi As ToolStripMenuItem
+    Friend WithEvents mnuComandaCercarMydoc As ToolStripMenuItem
+    Friend WithEvents mnuReindexarComandes As ToolStripMenuItem
+    Friend WithEvents mnuReindexarComandesValidacio As ToolStripMenuItem
+    Friend WithEvents mnuReindexarComandesEnviades As ToolStripMenuItem
+    Friend WithEvents mnuReindexarMyDoc As ToolStripMenuItem
+    Friend WithEvents mnucontabilitat As ToolStripMenuItem
+    Friend WithEvents mnuVeureDades As ToolStripMenuItem
+    Friend WithEvents mnuMajors As ToolStripMenuItem
 End Class

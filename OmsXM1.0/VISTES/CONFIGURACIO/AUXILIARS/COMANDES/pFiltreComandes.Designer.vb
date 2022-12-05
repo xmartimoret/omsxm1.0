@@ -25,17 +25,23 @@ Partial Class pFiltreComandes
         Me.panelDataFi = New System.Windows.Forms.Panel()
         Me.panelDataInici = New System.Windows.Forms.Panel()
         Me.panelProjecte = New System.Windows.Forms.Panel()
+        Me.cmdTreureProjecte = New OmsXM.BOTO()
+        Me.cmdAfegirProjecte = New OmsXM.BOTO()
+        Me.lstProjectes = New OmsXM.LSTBOX()
+        Me.lblProjectes = New OmsXM.LBLRIGHT()
         Me.panelProveidor = New System.Windows.Forms.Panel()
+        Me.cmdTreureProveidor = New OmsXM.BOTO()
+        Me.cmdAfegirProveidor = New OmsXM.BOTO()
+        Me.lstProveidors = New OmsXM.LSTBOX()
+        Me.lblProveidors = New OmsXM.LBLRIGHT()
+        Me.xecTotesEmpresa = New OmsXM.XEC()
         Me.lblDataFi = New OmsXM.LBLRIGHT()
         Me.lblDataIni = New OmsXM.LBLRIGHT()
         Me.cmdFiltrar = New OmsXM.BOTO()
         Me.lblEmpresa = New OmsXM.LBLRIGHT()
         Me.cbEmpresa = New OmsXM.CBBOX()
-        Me.xecTotesEmpresa = New OmsXM.XEC()
-        Me.cmdCercarCodi = New OmsXM.BOTO()
-        Me.lblCercarCodi = New OmsXM.LBLRIGHT()
-        Me.txtCercarCodi = New OmsXM.TXT()
-        Me.Lblright1 = New OmsXM.LBLRIGHT()
+        Me.panelProjecte.SuspendLayout()
+        Me.panelProveidor.SuspendLayout()
         Me.SuspendLayout()
         '
         'panelDataFi
@@ -56,20 +62,162 @@ Partial Class pFiltreComandes
         '
         Me.panelProjecte.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.panelProjecte.Controls.Add(Me.cmdTreureProjecte)
+        Me.panelProjecte.Controls.Add(Me.cmdAfegirProjecte)
+        Me.panelProjecte.Controls.Add(Me.lstProjectes)
+        Me.panelProjecte.Controls.Add(Me.lblProjectes)
         Me.panelProjecte.Location = New System.Drawing.Point(298, 14)
         Me.panelProjecte.Name = "panelProjecte"
-        Me.panelProjecte.Size = New System.Drawing.Size(531, 162)
+        Me.panelProjecte.Size = New System.Drawing.Size(508, 131)
         Me.panelProjecte.TabIndex = 15
+        '
+        'cmdTreureProjecte
+        '
+        Me.cmdTreureProjecte.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdTreureProjecte.AutoSize = True
+        Me.cmdTreureProjecte.BackColor = System.Drawing.Color.SeaShell
+        Me.cmdTreureProjecte.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdTreureProjecte.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.cmdTreureProjecte.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.cmdTreureProjecte.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cmdTreureProjecte.Font = New System.Drawing.Font("Tahoma", 8.0!)
+        Me.cmdTreureProjecte.Location = New System.Drawing.Point(419, 71)
+        Me.cmdTreureProjecte.Name = "cmdTreureProjecte"
+        Me.cmdTreureProjecte.Size = New System.Drawing.Size(76, 25)
+        Me.cmdTreureProjecte.TabIndex = 24
+        Me.cmdTreureProjecte.Text = "Treure"
+        Me.cmdTreureProjecte.UseVisualStyleBackColor = False
+        '
+        'cmdAfegirProjecte
+        '
+        Me.cmdAfegirProjecte.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdAfegirProjecte.AutoSize = True
+        Me.cmdAfegirProjecte.BackColor = System.Drawing.Color.SeaShell
+        Me.cmdAfegirProjecte.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdAfegirProjecte.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.cmdAfegirProjecte.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.cmdAfegirProjecte.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cmdAfegirProjecte.Font = New System.Drawing.Font("Tahoma", 8.0!)
+        Me.cmdAfegirProjecte.Location = New System.Drawing.Point(419, 35)
+        Me.cmdAfegirProjecte.Name = "cmdAfegirProjecte"
+        Me.cmdAfegirProjecte.Size = New System.Drawing.Size(76, 25)
+        Me.cmdAfegirProjecte.TabIndex = 21
+        Me.cmdAfegirProjecte.Text = "Afegir"
+        Me.cmdAfegirProjecte.UseVisualStyleBackColor = False
+        '
+        'lstProjectes
+        '
+        Me.lstProjectes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lstProjectes.Font = New System.Drawing.Font("Tahoma", 8.0!)
+        Me.lstProjectes.ForeColor = System.Drawing.Color.Blue
+        Me.lstProjectes.FormattingEnabled = True
+        Me.lstProjectes.Location = New System.Drawing.Point(18, 35)
+        Me.lstProjectes.Name = "lstProjectes"
+        Me.lstProjectes.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended
+        Me.lstProjectes.Size = New System.Drawing.Size(395, 82)
+        Me.lstProjectes.TabIndex = 23
+        '
+        'lblProjectes
+        '
+        Me.lblProjectes.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblProjectes.Font = New System.Drawing.Font("Tahoma", 8.0!)
+        Me.lblProjectes.ForeColor = System.Drawing.Color.Black
+        Me.lblProjectes.Location = New System.Drawing.Point(15, 11)
+        Me.lblProjectes.Name = "lblProjectes"
+        Me.lblProjectes.Size = New System.Drawing.Size(490, 18)
+        Me.lblProjectes.TabIndex = 21
+        Me.lblProjectes.Text = "Projectes a Cercar"
+        Me.lblProjectes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'panelProveidor
         '
         Me.panelProveidor.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.panelProveidor.Location = New System.Drawing.Point(835, 12)
+        Me.panelProveidor.Controls.Add(Me.cmdTreureProveidor)
+        Me.panelProveidor.Controls.Add(Me.cmdAfegirProveidor)
+        Me.panelProveidor.Controls.Add(Me.lstProveidors)
+        Me.panelProveidor.Controls.Add(Me.lblProveidors)
+        Me.panelProveidor.Location = New System.Drawing.Point(812, 12)
         Me.panelProveidor.Name = "panelProveidor"
-        Me.panelProveidor.Size = New System.Drawing.Size(237, 161)
+        Me.panelProveidor.Size = New System.Drawing.Size(383, 133)
         Me.panelProveidor.TabIndex = 16
+        '
+        'cmdTreureProveidor
+        '
+        Me.cmdTreureProveidor.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdTreureProveidor.AutoSize = True
+        Me.cmdTreureProveidor.BackColor = System.Drawing.Color.SeaShell
+        Me.cmdTreureProveidor.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdTreureProveidor.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.cmdTreureProveidor.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.cmdTreureProveidor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cmdTreureProveidor.Font = New System.Drawing.Font("Tahoma", 8.0!)
+        Me.cmdTreureProveidor.Location = New System.Drawing.Point(298, 81)
+        Me.cmdTreureProveidor.Name = "cmdTreureProveidor"
+        Me.cmdTreureProveidor.Size = New System.Drawing.Size(76, 25)
+        Me.cmdTreureProveidor.TabIndex = 28
+        Me.cmdTreureProveidor.Text = "Treure"
+        Me.cmdTreureProveidor.UseVisualStyleBackColor = False
+        '
+        'cmdAfegirProveidor
+        '
+        Me.cmdAfegirProveidor.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdAfegirProveidor.AutoSize = True
+        Me.cmdAfegirProveidor.BackColor = System.Drawing.Color.SeaShell
+        Me.cmdAfegirProveidor.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdAfegirProveidor.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.cmdAfegirProveidor.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.cmdAfegirProveidor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cmdAfegirProveidor.Font = New System.Drawing.Font("Tahoma", 8.0!)
+        Me.cmdAfegirProveidor.Location = New System.Drawing.Point(298, 45)
+        Me.cmdAfegirProveidor.Name = "cmdAfegirProveidor"
+        Me.cmdAfegirProveidor.Size = New System.Drawing.Size(76, 25)
+        Me.cmdAfegirProveidor.TabIndex = 25
+        Me.cmdAfegirProveidor.Text = "Afegir"
+        Me.cmdAfegirProveidor.UseVisualStyleBackColor = False
+        '
+        'lstProveidors
+        '
+        Me.lstProveidors.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lstProveidors.Font = New System.Drawing.Font("Tahoma", 8.0!)
+        Me.lstProveidors.ForeColor = System.Drawing.Color.Blue
+        Me.lstProveidors.FormattingEnabled = True
+        Me.lstProveidors.Location = New System.Drawing.Point(17, 45)
+        Me.lstProveidors.Name = "lstProveidors"
+        Me.lstProveidors.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended
+        Me.lstProveidors.Size = New System.Drawing.Size(275, 69)
+        Me.lstProveidors.TabIndex = 27
+        '
+        'lblProveidors
+        '
+        Me.lblProveidors.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblProveidors.Font = New System.Drawing.Font("Tahoma", 8.0!)
+        Me.lblProveidors.ForeColor = System.Drawing.Color.Black
+        Me.lblProveidors.Location = New System.Drawing.Point(14, 21)
+        Me.lblProveidors.Name = "lblProveidors"
+        Me.lblProveidors.Size = New System.Drawing.Size(360, 18)
+        Me.lblProveidors.TabIndex = 26
+        Me.lblProveidors.Text = "Proveidors a Cercar"
+        Me.lblProveidors.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'xecTotesEmpresa
+        '
+        Me.xecTotesEmpresa.AutoSize = True
+        Me.xecTotesEmpresa.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.xecTotesEmpresa.ForeColor = System.Drawing.Color.Black
+        Me.xecTotesEmpresa.Location = New System.Drawing.Point(15, 49)
+        Me.xecTotesEmpresa.Name = "xecTotesEmpresa"
+        Me.xecTotesEmpresa.Size = New System.Drawing.Size(59, 22)
+        Me.xecTotesEmpresa.TabIndex = 0
+        Me.xecTotesEmpresa.Text = "Xec1"
+        Me.xecTotesEmpresa.UseVisualStyleBackColor = True
         '
         'lblDataFi
         '
@@ -102,7 +250,7 @@ Partial Class pFiltreComandes
         Me.cmdFiltrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.cmdFiltrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmdFiltrar.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.cmdFiltrar.Location = New System.Drawing.Point(142, 103)
+        Me.cmdFiltrar.Location = New System.Drawing.Point(142, 113)
         Me.cmdFiltrar.Name = "cmdFiltrar"
         Me.cmdFiltrar.Size = New System.Drawing.Size(150, 30)
         Me.cmdFiltrar.TabIndex = 12
@@ -130,79 +278,11 @@ Partial Class pFiltreComandes
         Me.cbEmpresa.Size = New System.Drawing.Size(289, 21)
         Me.cbEmpresa.TabIndex = 0
         '
-        'xecTotesEmpresa
-        '
-        Me.xecTotesEmpresa.AutoSize = True
-        Me.xecTotesEmpresa.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.xecTotesEmpresa.ForeColor = System.Drawing.Color.Black
-        Me.xecTotesEmpresa.Location = New System.Drawing.Point(15, 49)
-        Me.xecTotesEmpresa.Name = "xecTotesEmpresa"
-        Me.xecTotesEmpresa.Size = New System.Drawing.Size(59, 22)
-        Me.xecTotesEmpresa.TabIndex = 0
-        Me.xecTotesEmpresa.Text = "Xec1"
-        Me.xecTotesEmpresa.UseVisualStyleBackColor = True
-        '
-        'cmdCercarCodi
-        '
-        Me.cmdCercarCodi.AutoSize = True
-        Me.cmdCercarCodi.BackColor = System.Drawing.Color.SeaShell
-        Me.cmdCercarCodi.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdCercarCodi.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdCercarCodi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.cmdCercarCodi.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cmdCercarCodi.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.cmdCercarCodi.Location = New System.Drawing.Point(230, 143)
-        Me.cmdCercarCodi.Name = "cmdCercarCodi"
-        Me.cmdCercarCodi.Size = New System.Drawing.Size(62, 30)
-        Me.cmdCercarCodi.TabIndex = 17
-        Me.cmdCercarCodi.Text = "Cercar"
-        Me.cmdCercarCodi.UseVisualStyleBackColor = False
-        Me.cmdCercarCodi.Visible = False
-        '
-        'lblCercarCodi
-        '
-        Me.lblCercarCodi.Font = New System.Drawing.Font("Tahoma", 8.0!)
-        Me.lblCercarCodi.ForeColor = System.Drawing.Color.Black
-        Me.lblCercarCodi.Location = New System.Drawing.Point(3, 147)
-        Me.lblCercarCodi.Name = "lblCercarCodi"
-        Me.lblCercarCodi.Size = New System.Drawing.Size(96, 18)
-        Me.lblCercarCodi.TabIndex = 18
-        Me.lblCercarCodi.Text = "Cercar pe codi:"
-        Me.lblCercarCodi.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.lblCercarCodi.Visible = False
-        '
-        'txtCercarCodi
-        '
-        Me.txtCercarCodi.Font = New System.Drawing.Font("Tahoma", 11.25!)
-        Me.txtCercarCodi.ForeColor = System.Drawing.Color.Blue
-        Me.txtCercarCodi.Location = New System.Drawing.Point(105, 144)
-        Me.txtCercarCodi.Name = "txtCercarCodi"
-        Me.txtCercarCodi.Size = New System.Drawing.Size(119, 26)
-        Me.txtCercarCodi.TabIndex = 19
-        Me.txtCercarCodi.Visible = False
-        '
-        'Lblright1
-        '
-        Me.Lblright1.BackColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Lblright1.Font = New System.Drawing.Font("Tahoma", 8.0!)
-        Me.Lblright1.ForeColor = System.Drawing.Color.Black
-        Me.Lblright1.Location = New System.Drawing.Point(1, 136)
-        Me.Lblright1.Name = "Lblright1"
-        Me.Lblright1.Size = New System.Drawing.Size(295, 2)
-        Me.Lblright1.TabIndex = 20
-        Me.Lblright1.Text = "Lblright1"
-        Me.Lblright1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Lblright1.Visible = False
-        '
         'pFiltreComandes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.Lblright1)
-        Me.Controls.Add(Me.txtCercarCodi)
         Me.Controls.Add(Me.xecTotesEmpresa)
-        Me.Controls.Add(Me.cmdCercarCodi)
-        Me.Controls.Add(Me.lblCercarCodi)
         Me.Controls.Add(Me.panelProveidor)
         Me.Controls.Add(Me.panelProjecte)
         Me.Controls.Add(Me.lblDataFi)
@@ -213,7 +293,11 @@ Partial Class pFiltreComandes
         Me.Controls.Add(Me.lblEmpresa)
         Me.Controls.Add(Me.cbEmpresa)
         Me.Name = "pFiltreComandes"
-        Me.Size = New System.Drawing.Size(1075, 176)
+        Me.Size = New System.Drawing.Size(1198, 148)
+        Me.panelProjecte.ResumeLayout(False)
+        Me.panelProjecte.PerformLayout()
+        Me.panelProveidor.ResumeLayout(False)
+        Me.panelProveidor.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -229,8 +313,12 @@ Partial Class pFiltreComandes
     Friend WithEvents panelProjecte As Panel
     Friend WithEvents panelProveidor As Panel
     Friend WithEvents xecTotesEmpresa As XEC
-    Friend WithEvents cmdCercarCodi As BOTO
-    Friend WithEvents lblCercarCodi As LBLRIGHT
-    Friend WithEvents txtCercarCodi As TXT
-    Friend WithEvents Lblright1 As LBLRIGHT
+    Friend WithEvents cmdTreureProjecte As BOTO
+    Friend WithEvents cmdAfegirProjecte As BOTO
+    Friend WithEvents lstProjectes As LSTBOX
+    Friend WithEvents lblProjectes As LBLRIGHT
+    Friend WithEvents cmdTreureProveidor As BOTO
+    Friend WithEvents cmdAfegirProveidor As BOTO
+    Friend WithEvents lstProveidors As LSTBOX
+    Friend WithEvents lblProveidors As LBLRIGHT
 End Class

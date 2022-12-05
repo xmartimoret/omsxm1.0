@@ -54,7 +54,6 @@ Partial Class DMesosEmpresa
         Me.lstMes.ItemHeight = 18
         Me.lstMes.Location = New System.Drawing.Point(86, 76)
         Me.lstMes.Name = "lstMes"
-        Me.lstMes.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple
         Me.lstMes.Size = New System.Drawing.Size(185, 220)
         Me.lstMes.TabIndex = 53
         '

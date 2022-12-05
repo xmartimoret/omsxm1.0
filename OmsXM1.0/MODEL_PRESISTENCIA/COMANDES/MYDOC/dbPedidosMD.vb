@@ -11,7 +11,7 @@ Module dbPedidosMD
     Private Const MTD_PROVEIDOR As String = "MTD_00030"
     Private Const MTD_DEPARTAMENT As String = "MTD_00035"
     Private Const MTD_RESPONSABLE_COMPRA As String = "MTD_00029"
-    Private Const MTD_EMPRESA As String = "MTD_00030"
+    Private Const MTD_EMPRESA As String = "MTD_00033"
     Private Const MTD_ESTADO As String = "MTD_00150"
     Public Function update(id As Integer, estat As Integer) As Integer
         Return updateSQL(id, estat)
@@ -25,6 +25,10 @@ Module dbPedidosMD
     Public Function getObjects() As List(Of PedidoMD)
         Return getObjectsSQL()
     End Function
+    Public Function getObjects(pEstat As Integer) As List(Of PedidoMD)
+        Return getObjectsSQL(pEstat)
+    End Function
+
     Private Function updateSQL(idComanda As Integer, pEstat As Integer) As Integer
         Dim sc As SqlCommand, i As Integer
         sc = New SqlCommand("UPDATE " & getTable() & " " &
@@ -63,6 +67,24 @@ Module dbPedidosMD
             a.codiProjecte = Trim(CONFIG.validarNull(sdr(MTD_CODI_PROJECTE)))
             a.proveidor = Trim(CONFIG.validarNull(sdr(MTD_PROVEIDOR)))
             a.events = ModelEventsMyDOc.getObjects(sdr(SYSID))
+            getObjectsSQL.Add(a)
+        End While
+        sdr.Close()
+        getObjectsSQL.Sort()
+        sdr = Nothing
+        sc = Nothing
+    End Function
+    Private Function getObjectsSQL(pEstat As Integer) As List(Of PedidoMD)
+        Dim sc As SqlCommand, sdr As SqlDataReader, a As PedidoMD
+        getObjectsSQL = New List(Of PedidoMD)
+        sc = New SqlCommand("Select * FROM " & getTable() & " WHERE " & ESTAT & "=" & pEstat, DBCONNECT.getConnectioMyDoc)
+        sdr = sc.ExecuteReader
+        While sdr.Read()
+            a = New PedidoMD(sdr(SYSID), Trim(CONFIG.validarNull(sdr(MTD_CODI))), Trim(CONFIG.validarNull(sdr(NOM))), sdr(ESTAT))
+            a.codiProjecte = Trim(CONFIG.validarNull(sdr(MTD_CODI_PROJECTE)))
+            a.proveidor = Trim(CONFIG.validarNull(sdr(MTD_PROVEIDOR)))
+            a.empresa = Trim(CONFIG.validarNull(sdr(MTD_EMPRESA)))
+            'a.events = ModelEventsMyDOc.getObjects(sdr(SYSID))
             getObjectsSQL.Add(a)
         End While
         sdr.Close()

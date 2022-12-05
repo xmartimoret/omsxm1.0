@@ -31,7 +31,7 @@
         Dim d As SolicitudComanda
         d = ModelComandaSolicitud.getObject(id, 0)
         If d IsNot Nothing Then
-            If MISSATGES.CONFIRM_REMOVE_SOLICITUD_COMANDA(d.ToString) Then
+            If MISSATGES.CONFIRM_REMOVE_SOLICITUD_COMANDA(d.toString) Then
                 Return ModelComandaSolicitud.remove(d)
             End If
         End If

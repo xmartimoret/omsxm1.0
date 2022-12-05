@@ -133,11 +133,11 @@ Module modulInfoArticle
             wb.Application.EnableEvents = False
             wb.Worksheets(1).range("A4:H4525").rows.entirerow.hidden = True
             i = 1
-            xls = wb.Worksheets(1).range("A1")
+            xls = wb.Worksheets(1).range("D1")
             xls(1, 1) = UCase(IDIOMA.getString("informeArticlesComanda"))
             'If filtre <> "" Then
-            xls = wb.Worksheets(1).range("A2")
-                xls(1, 1) = UCase(IDIOMA.getString("filtratPer")) & " (" & filtre & ")"
+            xls = wb.Worksheets(1).range("D2")
+            xls(1, 1) = UCase(IDIOMA.getString("filtratPer")) & " (" & filtre & ")"
             ' End If
             xls = wb.Worksheets(1).range("a4")
 
@@ -148,15 +148,17 @@ Module modulInfoArticle
                 xls(i, 1) = f(0)
                 xls(i, 2) = f(1)
                 xls(i, 3) = f(2)
-                xls(i, 4) = f(3)
-                xls(i, 5) = f(4)
+                If IsDate(f(3)) Then xls(i, 4) = CDate(f(3))
+                xls(i, 5) = "'" & f(4)
                 xls(i, 6) = f(5)
                 xls(i, 7) = f(6)
                 xls(i, 8) = f(7)
                 xls(i, 9) = CDbl(f(8))
                 xls(i, 10) = f(9)
                 xls(i, 11) = CDbl(f(10))
-                xls(i, 12) = CDbl(f(11))
+                xls(i, 12) = f(11)
+                xls(i, 13) = CDbl(f(12))
+                xls(i, 14) = CDbl(f(13))
                 i = i + 1
             Next
 

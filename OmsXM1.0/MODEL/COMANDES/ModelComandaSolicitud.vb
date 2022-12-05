@@ -114,7 +114,7 @@ Module ModelComandaSolicitud
             objects.Remove(obj)
             objects.Add(obj)
             If Not ModelArticleSolicitut.save(obj.articles, obj.id) Then Return -1
-            'AQUI ENS CAL GUARDAR ELS ADJUNTS
+
         End If
         Return obj.id
 

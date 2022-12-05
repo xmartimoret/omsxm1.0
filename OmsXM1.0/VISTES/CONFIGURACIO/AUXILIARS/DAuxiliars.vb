@@ -204,6 +204,30 @@ Public Class DAuxiliars
         If TypeName(ObjectActual) = "Projecte" Then getProjecte = ObjectActual
         Me.Dispose()
     End Function
+    Public Function getProjectes() As List(Of Projecte)
+        Dim p As SelectProjectes
+        p = New SelectProjectes(0, True, True, IDIOMA.getString("projecte"), 1)
+        Me.Text = IDIOMA.getString("selectProjecte")
+        p.Dock = DockStyle.Fill
+        PData.Controls.Clear()
+        PData.Controls.Add(p)
+        p.Show()
+        Me.ShowDialog()
+        getProjectes = p.projectes
+        Me.Dispose()
+    End Function
+    Public Function getProjectes(idempresa As Integer) As List(Of Projecte)
+        Dim p As SelectProjectes
+        p = New SelectProjectes(4, idempresa, 0, True, True, IDIOMA.getString("projecte"), 1)
+        Me.Text = IDIOMA.getString("selectProjecte")
+        p.Dock = DockStyle.Fill
+        PData.Controls.Clear()
+        PData.Controls.Add(p)
+        p.Show()
+        Me.ShowDialog()
+        getProjectes = p.projectes
+        Me.Dispose()
+    End Function
     Public Function getProveidor() As Proveidor
         Dim p As SelectProveidor
         p = New SelectProveidor(0, False, True, IDIOMA.getString("proveidors"), 1)

@@ -54,6 +54,10 @@ Module dbComanda
         If IS_SQLSERVER() Then Return updateUrgentSQL(idComanda, estat, valor)
         Return updateUrgentDBF(idComanda, estat, valor)
     End Function
+    'updateDBFImport
+    Public Function updateImport(obj As Comanda, estat As Integer) As Integer
+        Return updateDBFImport(obj, estat)
+    End Function
     Public Function insert(obj As Comanda, estat As Integer) As Integer
         If IS_SQLSERVER() Then Return insertSQL(obj, estat)
         Return insertDBF(obj, estat)
@@ -65,6 +69,10 @@ Module dbComanda
     Public Function getObjects(anyo As Integer, estat As Integer) As List(Of Comanda)
         If IS_SQLSERVER() Then Return getObjectsSQL(anyo, estat)
         Return getObjectsDBF(anyo, estat)
+    End Function
+    Public Function getObjects(codi As String, estat As Integer, idempresa As Integer, Optional anyo As Integer = 0) As List(Of Comanda)
+        If IS_SQLSERVER() Then Return getObjectsSQL(anyo, estat)
+        Return getObjectsDBFByCodi(codi, estat, idempresa, anyo)
     End Function
     Public Function exist(id As Integer, p As Object, estat As Integer) As Boolean
         If IS_SQLSERVER() Then Return existSQL(id, p, estat)
@@ -320,8 +328,9 @@ Module dbComanda
                                       BASE_COMANDA & " =?, " &
                                       IVA_COMANDA & " =?, " &
                                       DEPARTAMENT & " =?, " &
-                                      URGENT & " =? " &
-                                      " WHERE " & ID & "=?"
+                                      URGENT & " =?, " &
+                                      ID_MYDOC & " =? " &
+                            " WHERE " & ID & "=?"
             .Parameters.Append(ADOPARAM.ToString(obj.codi))
             .Parameters.Append(ADOPARAM.ToInt(getInt(obj.empresa)))
             .Parameters.Append(ADOPARAM.ToString(getStr(obj.serie)))
@@ -346,10 +355,34 @@ Module dbComanda
             .Parameters.Append(ADOPARAM.ToInt(obj.estat))
             .Parameters.Append(ADOPARAM.ToInt(obj.idSolicitut))
             .Parameters.Append(ADOPARAM.ToInt(obj.responsableCompra.id))
-            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.baseComanda) * 1000, 0))
-            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.ivaComanda) * 1000, 0))
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.baseComanda * 1000, 0)))
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.ivaComanda * 1000, 0)))
             .Parameters.Append(ADOPARAM.ToString(getStr(obj.departament)))
             .Parameters.Append(ADOPARAM.toBool(getStr(obj.urgent)))
+            .Parameters.Append(ADOPARAM.ToInt(getStr(obj.idMydoc)))
+            .Parameters.Append(ADOPARAM.ToInt(obj.id))
+        End With
+        Try
+            sc.Execute()
+            Return obj.id
+        Catch ex As Exception
+            Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
+            Return -1
+        Finally
+            sc = Nothing
+        End Try
+    End Function
+    Private Function updateDBFImport(obj As Comanda, e As Integer) As Integer
+        Dim sc As ADODB.Command
+        sc = New ADODB.Command
+        With sc
+            .ActiveConnection = DBCONNECT.getConnectionDbf
+            .CommandText = "UPDATE " & getTable(e) & " " &
+                            " SET " & BASE_COMANDA & " =?, " &
+                                      IVA_COMANDA & " =? " &
+                                      " WHERE " & ID & "=?"
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.baseComanda * 1000, 0)))
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.ivaComanda * 1000, 0)))
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
         End With
         Try
@@ -370,7 +403,6 @@ Module dbComanda
             .CommandText = "UPDATE " & getTable(e) & " " &
                             " SET " & ID_MYDOC & "=?" & " " &
                                       " WHERE " & ID & "=?"
-
             .Parameters.Append(ADOPARAM.ToInt(idMyDoc))
             .Parameters.Append(ADOPARAM.ToInt(idComanda))
         End With
@@ -443,8 +475,8 @@ Module dbComanda
             .ActiveConnection = DBCONNECT.getConnectionDbf
             .CommandText = (" INSERT INTO " & getTable(e) & " " &
                         " (" & ID & ",  " & CODI & ", " & ID_EMPRESA & ", " & SERIE & "," & ID_PROVEIDOR & ", " & ID_CONTACTE_PROVEIDOR & ", " & ID_PROJECTE & ", " & ID_CONTACTE_PROJECTE & ", " & ID_MAGATZEM & "," &
-                         DATA_COMANDA & "," & DATA_MUNTATGE & "," & DATA_ENTREGA & "," & INICI_COMANDA & "," & INICI_MUNTATGE & "," & ENTREGA & "," & OFERTA & "," & ID_TIPUS_PAGAMENT & "," & DADES_BANCARIES & "," & PORTS & "," & NOTES & "," & RESPONSABLE & "," & DIRECTOR & "," & ESTAT & "," & IDSOLICITUT & "," & RESPONSABLE_COMPRA & "," & BASE_COMANDA & "," & IVA_COMANDA & "," & DEPARTAMENT & "," & URGENT & ")" &
-                        " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
+                         DATA_COMANDA & "," & DATA_MUNTATGE & "," & DATA_ENTREGA & "," & INICI_COMANDA & "," & INICI_MUNTATGE & "," & ENTREGA & "," & OFERTA & "," & ID_TIPUS_PAGAMENT & "," & DADES_BANCARIES & "," & PORTS & "," & NOTES & "," & RESPONSABLE & "," & DIRECTOR & "," & ESTAT & "," & IDSOLICITUT & "," & RESPONSABLE_COMPRA & "," & BASE_COMANDA & "," & IVA_COMANDA & "," & DEPARTAMENT & "," & URGENT & "," & ID_MYDOC & ")" &
+                        " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
 
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
             .Parameters.Append(ADOPARAM.ToString(obj.codi))
@@ -471,10 +503,11 @@ Module dbComanda
             .Parameters.Append(ADOPARAM.ToInt(obj.estat))
             .Parameters.Append(ADOPARAM.ToInt(obj.idSolicitut))
             .Parameters.Append(ADOPARAM.ToInt(obj.responsableCompra.id))
-            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.baseComanda) * 1000, 0))
-            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.ivaComanda) * 1000, 0))
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.baseComanda * 1000, 0)))
+            .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.ivaComanda * 1000, 0)))
             .Parameters.Append(ADOPARAM.ToString(obj.departament))
             .Parameters.Append(ADOPARAM.toBool(obj.urgent))
+            .Parameters.Append(ADOPARAM.toBool(obj.idMydoc))
         End With
         Try
             sc.Execute()
@@ -577,16 +610,23 @@ Module dbComanda
         rc = Nothing
         getObjectsDBF.Sort()
     End Function
-    Public Function getObjectsDBFByCodi(pCodi As String, e As Integer, idEmpresa As Integer) As List(Of Comanda)
+    Public Function getObjectsDBFByCodi(pCodi As String, e As Integer, idEmpresa As Integer, anyo As Integer) As List(Of Comanda)
         Dim rc As ADODB.Recordset, c As Comanda
         rc = New ADODB.Recordset
         getObjectsDBFByCodi = New List(Of Comanda)
-        If idEmpresa > 0 Then
-            rc.Open("Select * FROM " & getTable(e) & " where num   ='" & pCodi & "' and IDEMP=" & idEmpresa, DBCONNECT.getConnectionDbf)
+        If anyo = 0 Then
+            If idEmpresa > 0 Then
+                rc.Open("Select * FROM " & getTable(e) & " where num = '" & pCodi & "' and IDEMP=" & idEmpresa, DBCONNECT.getConnectionDbf)
+            Else
+                rc.Open("Select * FROM " & getTable(e) & " where num = '" & pCodi & "'", DBCONNECT.getConnectionDbf)
+            End If
         Else
-            rc.Open("Select * FROM " & getTable(e) & " where num   ='" & pCodi & "'", DBCONNECT.getConnectionDbf)
+            If idEmpresa > 0 Then
+                rc.Open("Select * FROM " & getTable(e) & " where num   ='" & pCodi & "' and IDEMP=" & idEmpresa & " AND SERIE='" & anyo & "' ", DBCONNECT.getConnectionDbf)
+            Else
+                rc.Open("Select * FROM " & getTable(e) & " where num   ='" & pCodi & "' AND SERIE='" & anyo & "'", DBCONNECT.getConnectionDbf)
+            End If
         End If
-
         While Not rc.EOF
             c = New Comanda(rc(ID).Value, CONFIG.validarNull(Trim(rc(CODI).Value)), ModelProveidor.getObject(CInt(rc(ID_PROVEIDOR).Value)), ModelEmpresa.getObject(CInt(rc(ID_EMPRESA).Value)), ModelProjecte.getObject(CInt(rc(ID_PROJECTE).Value)))
             If rc(ID_MYDOC).Value Is Nothing OrElse rc(ID_MYDOC).Value.GetType.Name = "DBNull" Then
@@ -688,4 +728,6 @@ Module dbComanda
         End Select
         Return ""
     End Function
+    'Right(_serie, 2) & "-" & codiToString() & "-" & Right(_codiProjecte, 4) & "-" & CONFIG.getDosDigits(idEmpresa)
 End Module
+

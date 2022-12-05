@@ -86,6 +86,17 @@ Public Class frmIniComanda
         Me.mnuActualitzarTot.Text = IDIOMA.getString("actualitzarTotTaula")
 
         Me.mnuComandaEliminar.Text = IDIOMA.getString("comandesAEliminar")
+        Me.mnuReindexarComandes.Text = IDIOMA.getString("reindexarComandes")
+        Me.mnuReindexarComandesEnviades.Text = IDIOMA.getString("reindexarComandesEnviades")
+        Me.mnuReindexarComandesValidacio.Text = IDIOMA.getString("reindexarComandesValidacio")
+        Me.mnuComandaCercar.Text = IDIOMA.getString("cercarComanda")
+        Me.mnuComandaCercarCodi.Text = IDIOMA.getString("perCodiComanda")
+        Me.mnuComandaCercarMydoc.Text = IDIOMA.getString("perNumMydoc")
+        Me.mnuReindexarMyDoc.Text = IDIOMA.getString("reindexarNumMyDoc")
+
+        Me.mnucontabilitat.Text = IDIOMA.getString("comptabilitat")
+        Me.mnuVeureDades.Text = IDIOMA.getString("mostrarDadesComptabilitat")
+        Me.mnuMajors.Text = IDIOMA.getString("llibreMajor")
 
     End Sub
 
@@ -645,5 +656,132 @@ Public Class frmIniComanda
 
     Private Sub mnuInformes_Click(sender As Object, e As EventArgs) Handles mnuInformes.Click
 
+    End Sub
+
+    Private Sub mnuReindexarComandesValidacio_Click(sender As Object, e As EventArgs) Handles mnuReindexarComandesValidacio.Click
+        Call ModelComandaEnEdicio.resetIndex()
+        Call ModelComandaEnEdicio.reindexarPreusComanda()
+    End Sub
+
+    Private Sub mnuReindexarComandesEnviades_Click(sender As Object, e As EventArgs) Handles mnuReindexarComandesEnviades.Click
+        Call ModelComanda.resetIndex()
+        Call ModelComanda.reindexarPreusComanda()
+    End Sub
+
+    Private Sub mnuComandaCercarCodi_Click(sender As Object, e As EventArgs) Handles mnuComandaCercarCodi.Click
+        Dim am As AnyMesos, comandes As List(Of Comanda), c As Comanda, ruta As String
+        am = DAnyEmpresaCodi.getCodiComanda
+        If Not IsNothing(am) Then
+            comandes = New List(Of Comanda)
+            comandes.AddRange(ModelComandaEnEdicio.getObjectsByCodiComanda(am.ruta, am.idEmpresa, am.any))
+            comandes.AddRange(ModelComanda.getObjectsByCodiComanda(am.ruta, am.idEmpresa, am.any))
+            If comandes.Count = 0 Then
+                Call ERRORS.COMANDA_NO_TROBADA
+            ElseIf comandes.Count = 1 Then
+                c = comandes.Item(0)
+                If c.estat = 0 Then
+                    Call modificarComanda(c)
+                ElseIf c.estat = 1 Then
+                    Call mostrarComandaValidacio(c)
+                ElseIf c.estat = 2 Then
+                    ruta = CONFIG.getRutaComandaPDF(c.empresa.id, c.codi, Strings.Right(c.getAnyo, 2), c.estat)
+                    If CONFIG.fileExist(ruta) Then
+                        Call mostrarComanda(c, ruta)
+                    Else
+                        Call ERRORS.COMANDA_NO_TROBADA()
+                    End If
+                Else
+                    Call ERRORS.COMANDA_NO_TROBADA
+                End If
+            Else
+                Dim pc As pCercarComandes
+                pc = New pCercarComandes(comandes)
+                Call setTab(IDIOMA.getString("cercarComandes"), pc)
+            End If
+        End If
+        am = Nothing
+        comandes = Nothing
+        c = Nothing
+    End Sub
+    Private Sub mnuReindexarMyDoc_Click(sender As Object, e As EventArgs) Handles mnuReindexarMyDoc.Click
+        Call ModelComanda.reindexarNumMyDoc(2018)
+    End Sub
+
+    Private Sub pData_Paint(sender As Object, e As PaintEventArgs) Handles pData.Paint
+
+    End Sub
+
+    Private Sub mnucontabilitat_Click(sender As Object, e As EventArgs) Handles mnucontabilitat.Click
+
+    End Sub
+
+    Private Sub mnuMajors_Click(sender As Object, e As EventArgs) Handles mnuMajors.Click
+        Call ModulExportarDepartaments.execute()
+    End Sub
+
+    Private Sub mnuVeureDades_Click(sender As Object, e As EventArgs) Handles mnuVeureDades.Click
+        Dim t As ToolStripMenuItem, emp As Empresa, c As Contaplus, t1 As ToolStripMenuItem
+        mnuVeureDades.DropDownItems.Clear()
+        Try
+            For Each emp In ModelEmpresa.getObjects
+                t = New ToolStripMenuItem(emp.nom)
+                mnuVeureDades.DropDownItems.Add(t)
+                For Each c In emp.empresesContaplus
+                    t1 = New ToolStripMenuItem(c.anyo)
+                    t1.Name = c.idEmpresa
+                    AddHandler t1.Click, AddressOf testMessage
+                    t.DropDownItems.Add(t1)
+                Next
+            Next
+        Catch ex As Exception
+            Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
+        End Try
+        t = Nothing
+        t1 = Nothing
+        emp = Nothing
+        c = Nothing
+    End Sub
+    Private Sub testMessage(sender As Object, e As EventArgs)
+        Dim emp As Empresa, c As Contaplus, p As panelData
+        emp = ModelEmpresa.getObject(CInt(sender.name))
+        c = ModelEmpresaContaplus.getObjectByEmpresaAny(sender.name, CInt(sender.text))
+        p = New panelData(emp, c)
+        Call setTab(IDIOMA.getString(emp.nom), p)
+    End Sub
+
+    Private Sub mnuComandaCercarMydoc_Click(sender As Object, e As EventArgs) Handles mnuComandaCercarMydoc.Click
+        Dim am As AnyMesos, comandes As List(Of Comanda), c As Comanda, ruta As String
+        am = DAnyEmpresaCodi.getCodiComanda
+        If Not IsNothing(am) Then
+            comandes = New List(Of Comanda)
+            comandes.AddRange(ModelComandaEnEdicio.getObjectsByCodiComanda(am.ruta, am.idEmpresa, am.any))
+            comandes.AddRange(ModelComanda.getObjectsByCodiComanda(am.ruta, am.idEmpresa, am.any))
+            If comandes.Count = 0 Then
+                Call ERRORS.COMANDA_NO_TROBADA()
+            ElseIf comandes.Count = 1 Then
+                c = comandes.Item(0)
+                If c.estat = 0 Then
+                    Call modificarComanda(c)
+                ElseIf c.estat = 1 Then
+                    Call mostrarComandaValidacio(c)
+                ElseIf c.estat = 2 Then
+                    ruta = CONFIG.getRutaComandaPDF(c.empresa.id, c.codi, Strings.Right(c.getAnyo, 2), c.estat)
+                    If CONFIG.fileExist(ruta) Then
+                        Call mostrarComanda(c, ruta)
+                    Else
+                        Call ERRORS.COMANDA_NO_TROBADA()
+                    End If
+                Else
+                    Call ERRORS.COMANDA_NO_TROBADA()
+                End If
+            Else
+                Dim pc As pCercarComandes
+                pc = New pCercarComandes(comandes)
+                Call setTab(IDIOMA.getString("cercarComandes"), pc)
+            End If
+        End If
+        am = Nothing
+        comandes = Nothing
+        c = Nothing
     End Sub
 End Class

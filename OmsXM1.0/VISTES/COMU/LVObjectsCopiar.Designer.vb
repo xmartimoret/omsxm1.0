@@ -99,7 +99,7 @@ Partial Class LVObjectsCopiar
         '
         Me.mnuContextual.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuMostrar, Me.mnoCopiar, Me.mnuEliminar, Me.mnuImprimir})
         Me.mnuContextual.Name = "mnuContextual"
-        Me.mnuContextual.Size = New System.Drawing.Size(195, 92)
+        Me.mnuContextual.Size = New System.Drawing.Size(195, 114)
         '
         'mnuMostrar
         '

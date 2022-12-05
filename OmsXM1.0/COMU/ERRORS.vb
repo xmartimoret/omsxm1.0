@@ -291,4 +291,7 @@ Module ERRORS
     Public Sub ERR_REMOVE_PDF_COMANDA(p As String)
         Call MsgBox(IDIOMA.getString("errRemovePdfComanda") & vbCrLf & p, vbCritical, IDIOMA.getString("abort"))
     End Sub
+    Public Sub COMANDA_NO_TROBADA()
+        Call MsgBox(IDIOMA.getString("errComandaNoTrobada"), vbCritical, IDIOMA.getString("abort"))
+    End Sub
 End Module

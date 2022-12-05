@@ -238,12 +238,20 @@
     End Function
 
     Public Function getCodi() As String
-        Dim c As CodiComanda
+        Dim c As CodiComanda, idEmpresa As Integer, codiProjecte As String
+        If IsNothing(_empresa) Then
+            idEmpresa = -1
+        Else
+            idEmpresa = _empresa.id
+        End If
+        If IsNothing(_projecte) Then
+            codiProjecte = "-1"
+        Else
+            codiProjecte = _projecte.codi
+        End If
         Try
-
-            c = New CodiComanda(-1, serie, Me.codi, _empresa.id, _projecte.codi, "")
+            c = New CodiComanda(-1, serie, Me.codi, idEmpresa, codiProjecte, "")
         Catch ex As Exception
-
             c = New CodiComanda
         End Try
         Return c.toString
@@ -369,7 +377,11 @@
             e = docMyDoc.getEstatWorkflow
             If Not IsNothing(e) Then
                 Return ModelTasca.getNom(e.idTasca)
+            ElseIf _idMydoc > 0 Then
+                Return "GESTOR DOCUMENTAL"
             End If
+        ElseIf _idMydoc > 0 Then
+            Return "GESTOR DOCUMENTAL"
         End If
         Return ""
     End Function

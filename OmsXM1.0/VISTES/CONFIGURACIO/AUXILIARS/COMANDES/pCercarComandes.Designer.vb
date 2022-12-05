@@ -23,10 +23,10 @@ Partial Class pCercarComandes
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.splitCercador = New System.Windows.Forms.SplitContainer()
-        Me.panelComandes = New System.Windows.Forms.Panel()
         Me.lblBase = New OmsXM.LBLRIGHT()
         Me.lblIva = New OmsXM.LBLRIGHT()
         Me.lblTotal = New OmsXM.LBLRIGHT()
+        Me.panelComandes = New System.Windows.Forms.Panel()
         CType(Me.splitCercador, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.splitCercador.Panel2.SuspendLayout()
         Me.splitCercador.SuspendLayout()
@@ -55,17 +55,6 @@ Partial Class pCercarComandes
         Me.splitCercador.Size = New System.Drawing.Size(1138, 613)
         Me.splitCercador.SplitterDistance = 131
         Me.splitCercador.TabIndex = 0
-        '
-        'panelComandes
-        '
-        Me.panelComandes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.panelComandes.Cursor = System.Windows.Forms.Cursors.Default
-        Me.panelComandes.Location = New System.Drawing.Point(3, 3)
-        Me.panelComandes.Name = "panelComandes"
-        Me.panelComandes.Size = New System.Drawing.Size(1130, 419)
-        Me.panelComandes.TabIndex = 0
         '
         'lblBase
         '
@@ -102,6 +91,17 @@ Partial Class pCercarComandes
         Me.lblTotal.TabIndex = 1
         Me.lblTotal.Text = "0,00 €"
         Me.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'panelComandes
+        '
+        Me.panelComandes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.panelComandes.Cursor = System.Windows.Forms.Cursors.Default
+        Me.panelComandes.Location = New System.Drawing.Point(3, 3)
+        Me.panelComandes.Name = "panelComandes"
+        Me.panelComandes.Size = New System.Drawing.Size(1130, 419)
+        Me.panelComandes.TabIndex = 0
         '
         'pCercarComandes
         '

@@ -1,5 +1,4 @@
-﻿'estic aqui
-Option Explicit On
+﻿Option Explicit On
 Module ModelarticleComanda
     Private objects As List(Of articleComanda)
     Private dateUpdate As DateTime
@@ -97,5 +96,6 @@ Module ModelarticleComanda
         If isUpdated Then dateUpdate = Now
     End Function
 End Module
+
 
 

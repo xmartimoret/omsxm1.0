@@ -34,9 +34,9 @@ Module dbArticleSolicitut
         If IS_SQLSERVER() Then Return removeSQL(obj)
         Return removeDBF(obj)
     End Function
-    Public Function getObjects() As List(Of ArticleSolicitut)
+    Public Function getObjects(iniArticle As Integer, fiArticle As Integer) As List(Of ArticleSolicitut)
         If IS_SQLSERVER() Then Return getObjectsSQL()
-        Return getObjectsDBF()
+        Return getObjectsDBF(iniArticle, fiArticle)
     End Function
     Private Function updateSQL(obj As ArticleSolicitut) As Integer
         Dim sc As SqlCommand, i As Integer
@@ -270,6 +270,34 @@ Module dbArticleSolicitut
         rc = New ADODB.Recordset
         getObjectsDBF = New List(Of ArticleSolicitut)
         rc.Open("Select * FROM " & getTable(), DBCONNECT.getConnectionDbf)
+        While Not rc.EOF
+            a = New ArticleSolicitut(rc(ID).Value, rc(ID_SOLICITUT).Value,
+                               rc(POSICIO_FILA).Value, Trim(CONFIG.validarNull(rc(CODI).Value)),
+                               Trim(CONFIG.validarNull(rc(NOM).Value)))
+            a.preu = Math.Round(rc(PREU).Value / 1000, 3)
+            a.tpcDescompte = Math.Round(rc(DESCOMPTE).Value / 100, 2)
+            a.quantitat = Math.Round(rc(QUANTITAT).Value / 100, 2)
+            Try
+                a.unitat = rc(ID_UNITAT).Value
+            Catch ex As System.InvalidCastException
+                a.unitat = ""
+            End Try
+
+            getObjectsDBF.Add(a)
+            rc.MoveNext()
+        End While
+        If rc.State = 1 Then rc.Close()
+        rc = Nothing
+    End Function
+    ''' <summary>
+    ''' Obté tots els centres del sistema 
+    ''' </summary>
+    ''' <returns>una llista de centres</returns>
+    Private Function getObjectsDBF(ini As Integer, fi As Integer) As List(Of ArticleSolicitut)
+        Dim rc As ADODB.Recordset, a As ArticleSolicitut
+        rc = New ADODB.Recordset
+        getObjectsDBF = New List(Of ArticleSolicitut)
+        rc.Open("Select * FROM " & getTable() & " WHERE " & ID_SOLICITUT & " BETWEEN " & ini & " AND " & fi, DBCONNECT.getConnectionDbf)
         While Not rc.EOF
             a = New ArticleSolicitut(rc(ID).Value, rc(ID_SOLICITUT).Value,
                                rc(POSICIO_FILA).Value, Trim(CONFIG.validarNull(rc(CODI).Value)),
