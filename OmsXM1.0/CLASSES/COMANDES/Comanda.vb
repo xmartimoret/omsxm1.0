@@ -334,7 +334,6 @@
             If Not IsNothing(_proveidor) Then fComanda = fComanda & _proveidor.nom
             If Not IsNothing(_empresa) Then fComanda = fComanda & _empresa.nom
             filtres = Split(textFiltre, "+")
-            If UBound(filtres) = 0 Then filtres = Split(textFiltre, "*")
             For Each f In filtres
                 If InStr(1, fComanda, f, vbTextCompare) > 0 Or
                (opcionalP1 <> "" And InStr(1, opcionalP1, f, vbTextCompare) > 0) Or
@@ -345,6 +344,20 @@
                     isFilter = False
                 End If
             Next
+            If Not isFilter Then
+                isFilter = False
+                filtres = Split(textFiltre, "*")
+                For Each f In filtres
+                    If InStr(1, fComanda, f, vbTextCompare) > 0 Or
+                   (opcionalP1 <> "" And InStr(1, opcionalP1, f, vbTextCompare) > 0) Or
+                   (opcionalP2 <> "" And InStr(1, opcionalP2, f, vbTextCompare) > 0) Then
+                        isFilter = True
+                        Exit For
+                    Else
+                        isFilter = False
+                    End If
+                Next
+            End If
         End If
     End Function
     Public Function getEventActual() As EventsMD

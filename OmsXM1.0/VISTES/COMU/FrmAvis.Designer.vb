@@ -30,6 +30,7 @@ Partial Class frmAvis
         '
         'lblComptador
         '
+        Me.lblComptador.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblComptador.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblComptador.ForeColor = System.Drawing.Color.Blue
         Me.lblComptador.Location = New System.Drawing.Point(397, 156)

@@ -91,7 +91,7 @@
         Return ModelComandaEnEdicio.getListViewItem(id)
     End Function
     Public Overrides Sub imprimir(pdf As Boolean, filtre As String)
-        Call ModulInfoAuxiliar.infoComandes(Me.listOrdered, pdf, IDIOMA.getString("comandesEnEdicio"), filtre)
+        Call ModulInfoAuxiliar.infoComandesEnValidacio(Me.listOrdered, pdf, IDIOMA.getString("comandesEnEdicio"), filtre)
     End Sub
     Public Overrides Sub actualitzar(id As List(Of Integer))
 

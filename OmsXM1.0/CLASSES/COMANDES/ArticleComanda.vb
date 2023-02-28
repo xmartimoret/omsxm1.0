@@ -54,13 +54,19 @@
         End Get
     End Property
 
-
-
     Public ReadOnly Property total As Double
         Get
             Return base + iva
         End Get
     End Property
+    Public Overrides Function ToString() As String
+        If base = 0 Then
+            Return CONFIG.setTab(" ", 8, True) & CONFIG.setTab(" ", 5, False) & CONFIG.setTab(" ", 12, True) & CONFIG.setTab(Me.nom, 50, True)
+        Else
+            Return CONFIG.setTab(Me.codi, 8, True) & CONFIG.setTab(_quantitat, 5, False) & CONFIG.setTab(Format(base, "#,##0.00€"), 12, True) & CONFIG.setTab(Me.nom, 50, True)
+        End If
+
+    End Function
     Public Function copy() As articleComanda
         copy = New articleComanda
         copy.id = Me.id

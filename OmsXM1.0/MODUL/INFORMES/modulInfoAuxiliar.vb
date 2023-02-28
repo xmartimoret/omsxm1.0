@@ -289,6 +289,74 @@ Module ModulInfoAuxiliar
         xls = Nothing
         Return ruta2
     End Function
+    Public Function infoComandesEnValidacio(comandes As List(Of List(Of String)), isPDf As Boolean, titol As String, filtre As String) As String
+        Dim wb As exc.Workbook, xls As exc.Range, i As Integer, r As List(Of String), s As String, j As Integer, f As frmAvis
+        Dim ruta As String = getRuta(), ruta2 As String = "", xlsComment As exc.Comment, xlsRange As exc.Range
+
+        wb = EXCEL.getWorkbook(CONFIG.getPlantillaComandesEnEdicio)
+
+        If IsNothing(wb) Then wb = EXCEL.openWorkbook(CONFIG.getRutaPlantillaComandesEnEdicio,, True)
+        If Not IsNothing(wb) Then
+            wb.Application.Visible = False
+            wb.Application.Calculation = exc.XlCalculation.xlCalculationManual
+            f = New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("imprimintInforme"), comandes.Count)
+            i = 1
+            xls = wb.Worksheets(1).range("a7")
+            wb.Worksheets(1).range("E1") = titol
+            wb.Worksheets(1).range("c2") = filtre
+            For Each r In comandes
+                j = 1
+
+                For Each s In r
+                    If j = 4 Or j = 13 Then 'DATA
+                        If IsDate(s) Then xls(i, j) = CDate(s)
+                    ElseIf j = 8 Or j = 9 Then 'BASE, IVA I TOTAL
+                        If IsNumeric(s) Then xls(i, j) = CDbl(s)
+                    Else
+                        xls(i, j) = s
+                    End If
+                    If j = 7 Then
+                        f.setData(s, i)
+                        xls(i, j).ClearComments
+                        xlsComment = xls(i, j).AddComment(ModelArticleComandaEnEdicio.getStringArticles(Val(r(0))))
+
+                        xlsComment.Shape.ScaleHeight(0.2 * ModelArticleComandaEnEdicio.getnumArticles(Val(r(0))), Microsoft.Office.Core.MsoTriState.msoFalse)
+                        xlsComment.Shape.ScaleWidth(4, Microsoft.Office.Core.MsoTriState.msoFalse)
+                        'xlsComment.Text(ModelArticleComandaEnEdicio.getStringArticles(Val(r(0))))
+                    End If
+                    j = j + 1
+                Next
+                i = i + 1
+            Next
+            wb.Application.Calculation = exc.XlCalculation.xlCalculationAutomatic
+            wb.Application.Visible = True
+            If isPDf Then
+                Call PDF.killProcess()
+                Try
+                    If CONFIG.folderExist(ruta) Then
+                        ruta2 = ruta & Format(Now, "yyMMddhhmm") & "_INF_COMANDES.Pdf"
+                        wb.ExportAsFixedFormat(exc.XlFixedFormatType.xlTypePDF, ruta2, 1, , , , , True)
+                    End If
+                Catch e As Exception
+                    MsgBox(e.Message)
+                    ERRORS.ERR_PDF_CLOSE(ruta2)
+                End Try
+                wb.Close(False)
+            Else
+                i = 1
+                Do
+                    ruta2 = ruta & Format(Now, "yyMMddhhmm") & "_INF_COMANDES-" & i & ".xlsx"
+                    i = i + 1
+                Loop While CONFIG.fileExist(ruta2)
+                wb.SaveAs(ruta2)
+            End If
+            f.tancar()
+
+        End If
+        wb = Nothing
+        xls = Nothing
+        Return ruta2
+    End Function
     Private Function getRuta() As String
         Dim p As String
         p = CONFIG_FILE.getTag(CONFIG_FILE.TAG.RUTA_IMPRESSIO_INFORMES)

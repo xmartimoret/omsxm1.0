@@ -113,7 +113,7 @@
     End Function
 
     Public Overrides Sub imprimir(pdf As Boolean, filtre As String)
-        Call ModulInfoAuxiliar.infoComandes(Me.listOrdered, pdf, IDIOMA.getString("comandesEnValidacio"), filtre)
+        Call ModulInfoAuxiliar.infoComandesEnValidacio(Me.listOrdered, pdf, IDIOMA.getString("comandesEnValidacio"), filtre)
     End Sub
     Public Overrides Sub actualitzar(ids As List(Of Integer))
         Dim d As Comanda, rutaFitxer As String, result As Integer, id As Integer, f As frmAvis, i As Integer

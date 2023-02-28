@@ -24,6 +24,7 @@ Module CONFIG
     Private Const NOM_FITXER_SIGNATURA_CORREU As String = "signEmail.txt"
     Private Const PLANTILLA_RESUM_SUBCOMPTE_COMPRES As String = "plantillaSubcomptesCompres.xlsx"
     Private Const PLANTILLA_COMANDES As String = "plantillaComandes.xlsx"
+    Private Const PLANTILLA_COMANDES_EN_EDICIO As String = "plantillaComandesEnValidacio.xlsx"
     Private Const PLANTILLA As String = "plantilles"
     Private Const PLANTILLA_INFO_ARTICLES_COMANDES As String = "plantillaArticlesComandes.xlsx"
     Private Const PLANTILLA_F56 As String = "plantillaF56.xls"
@@ -133,8 +134,14 @@ Module CONFIG
     Public Function getPlantillaComandes() As String
         Return PLANTILLA_COMANDES
     End Function
+    Public Function getPlantillaComandesEnEdicio() As String
+        Return PLANTILLA_COMANDES_EN_EDICIO
+    End Function
     Public Function getRutaPlantillaComandes() As String
         Return setFolder(getRutaPlantilles) & getPlantillaComandes()
+    End Function
+    Public Function getRutaPlantillaComandesEnEdicio() As String
+        Return setFolder(getRutaPlantilles) & getPlantillaComandesEnEdicio()
     End Function
     Public Function getRutaPlantillaLlocsEntrega() As String
         Return setFolder(getRutaPlantilles) & getPlantillaLlocsEntrega()
@@ -853,5 +860,18 @@ Module CONFIG
             f = Dir()
         Loop
         Return ""
+    End Function
+    Public Function setTab(p As String, espais As Integer, esquerra As Boolean) As String
+        Dim i As Integer, temp As String
+
+        temp = Left(p, espais)
+        For i = 1 To espais - p.Length
+            If esquerra Then
+                temp = temp & " "
+            Else
+                temp = " " & temp
+            End If
+        Next
+        Return temp & "   "
     End Function
 End Module

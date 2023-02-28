@@ -5,6 +5,10 @@
         If Not isUpdated() Then objects = getRemoteObjects()
         getObjects = objects.FindAll(Function(x) x.idComanda = idComanda)
     End Function
+    Public Function getnumArticles(idComanda) As Integer
+        If Not isUpdated() Then objects = getRemoteObjects()
+        Return getObjects(idComanda).Count
+    End Function
     Public Function getDataList(ArticlesComanda As List(Of articleComanda)) As DataList
         Dim a As articleComanda
         getDataList = New DataList
@@ -24,6 +28,17 @@
             Next
         End If
         a = Nothing
+    End Function
+
+    Public Function getStringArticles(idComanda As Integer) As String
+        Dim articles As List(Of articleComanda), a As articleComanda, temp As String = ""
+        articles = getObjects(idComanda)
+        For Each a In articles
+            temp = temp & a.ToString & vbCrLf
+        Next
+        a = Nothing
+        articles = Nothing
+        Return temp
     End Function
     Public Function getObject(id As Integer) As articleComanda
         If Not isUpdated() Then objects = getRemoteObjects()
