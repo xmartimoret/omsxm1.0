@@ -27,7 +27,7 @@ Public Class DAnyEmpresaCodi
     'End Function
 
     Private Sub setLanguage()
-        Me.cmdGuardar.Text = IDIOMA.getString("cmdGuardar")
+        Me.cmdGuardar.Text = IDIOMA.getString("cmdCercador")
         Me.cmdCancelar.Text = IDIOMA.getString("cmdCancelar")
         Me.lblAny.Text = IDIOMA.getString("any") & ":"
         Me.lblEmpresa.Text = IDIOMA.getString("empresa") & ":"
@@ -69,4 +69,7 @@ Public Class DAnyEmpresaCodi
         Me.Hide()
     End Sub
 
+    Private Sub DAnyEmpresaCodi_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

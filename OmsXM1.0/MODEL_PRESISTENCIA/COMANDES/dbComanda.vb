@@ -23,8 +23,6 @@ Module dbComanda
     Private Const DADES_BANCARIES As String = "BANC"
     Private Const PORTS As String = "PORTS"
     Private Const NOTES As String = "notes"
-    Private Const RESPONSABLE As String = "RESPON"
-    Private Const DIRECTOR As String = "DIRECTO"
     Private Const ESTAT As String = "ESTAT"
     Private Const IDSOLICITUT As String = "IDSOL"
     Private Const RESPONSABLE_COMPRA As String = "RESPC"
@@ -101,9 +99,6 @@ Module dbComanda
                                       ID_TIPUS_PAGAMENT & " =@idTipusPagament, " &
                                       DADES_BANCARIES & " =@dadesBancaries, " &
                                       PORTS & " =@ports, " &
-                                      NOTES & " =@notes, " &
-                                      RESPONSABLE & " =@responsable, " &
-                                      DIRECTOR & " =@director, " &
                                       ESTAT & " =@estat, " &
                                       IDSOLICITUT & " =@idSolicitut, " &
                                       RESPONSABLE_COMPRA & " =@responsableCompra " &
@@ -127,9 +122,6 @@ Module dbComanda
         sc.Parameters.Add("@idTipusPagament", SqlDbType.SmallInt).Value = obj.tipusPagament.id
         sc.Parameters.Add("@dadesBancaries", SqlDbType.VarChar).Value = obj.dadesBancaries
         sc.Parameters.Add("@ports", SqlDbType.VarChar).Value = obj.ports
-        sc.Parameters.Add("@notes", SqlDbType.VarChar).Value = obj.notes
-        sc.Parameters.Add("@responsable", SqlDbType.VarChar).Value = obj.responsable
-        sc.Parameters.Add("@director", SqlDbType.VarChar).Value = obj.director
         sc.Parameters.Add("@estat", SqlDbType.Int).Value = obj.estat
         sc.Parameters.Add("@idSolitut", SqlDbType.Int).Value = obj.idSolicitut
         sc.Parameters.Add("@responsableCompra", SqlDbType.Int).Value = obj.responsableCompra.id
@@ -194,8 +186,8 @@ Module dbComanda
         obj.id = DBCONNECT.getMaxId(getTable(e)) + 1
         sc = New SqlCommand(" INSERT INTO " & getTable(e) & " " &
                         " (" & ID & "," & IDCE & "," & ID_MYDOC & ", " & CODI & ", " & ID_EMPRESA & ", " & ID_PROVEIDOR & ", " & ID_CONTACTE_PROVEIDOR & ", " & ID_PROJECTE & ", " & ID_CONTACTE_PROJECTE & ", " & ID_MAGATZEM & "," &
-                         DATA_COMANDA & "," & DATA_MUNTATGE & "," & DATA_ENTREGA & "," & INICI_COMANDA & "," & INICI_MUNTATGE & "," & ENTREGA & "," & OFERTA & "," & ID_TIPUS_PAGAMENT & "," & DADES_BANCARIES & "," & PORTS & "," & NOTES & "," & RESPONSABLE & "," & DIRECTOR & "," & ESTAT & "," & RESPONSABLE_COMPRA & "," & IDSOLICITUT & ")" &
-                        " VALUES(@id,@idce,@idMydoc,@codi,@idEmpresa,@idProveidor,@idContacteProveidor,@idProjecte,@idContacteProjecte,@idMagatzem,@dataComanda,@dataMuntatge,@dataEntrega,@iniciComanda,@iniciMuntatge,entrega,@oferta,@idtipusPagament,@dadesBancaries,@ports,@notes,@responsable,@director,@estat,@responsableCompra,@idSolicitut)", DBCONNECT.getConnection)
+                         DATA_COMANDA & "," & DATA_MUNTATGE & "," & DATA_ENTREGA & "," & INICI_COMANDA & "," & INICI_MUNTATGE & "," & ENTREGA & "," & OFERTA & "," & ID_TIPUS_PAGAMENT & "," & DADES_BANCARIES & "," & PORTS & "," & ESTAT & "," & RESPONSABLE_COMPRA & "," & IDSOLICITUT & ")" &
+                        " VALUES(@id,@idce,@idMydoc,@codi,@idEmpresa,@idProveidor,@idContacteProveidor,@idProjecte,@idContacteProjecte,@idMagatzem,@dataComanda,@dataMuntatge,@dataEntrega,@iniciComanda,@iniciMuntatge,entrega,@oferta,@idtipusPagament,@dadesBancaries,@ports,@estat,@responsableCompra,@idSolicitut)", DBCONNECT.getConnection)
         sc.Parameters.Add("@id", SqlDbType.Int).Value = obj.id
         sc.Parameters.Add("@idce", SqlDbType.Int).Value = obj.idComandaEdicio
         sc.Parameters.Add("@idMydoc", SqlDbType.Int).Value = obj.idMydoc
@@ -216,9 +208,6 @@ Module dbComanda
         sc.Parameters.Add("@idTipusPagament", SqlDbType.SmallInt).Value = obj.tipusPagament.id
         sc.Parameters.Add("@dadesBancaries", SqlDbType.VarChar).Value = obj.dadesBancaries
         sc.Parameters.Add("@ports", SqlDbType.VarChar).Value = obj.ports
-        sc.Parameters.Add("@notes", SqlDbType.VarChar).Value = obj.notes
-        sc.Parameters.Add("@responsable", SqlDbType.VarChar).Value = obj.responsable
-        sc.Parameters.Add("@director", SqlDbType.VarChar).Value = obj.director
         sc.Parameters.Add("@estat", SqlDbType.Int).Value = obj.estat
         sc.Parameters.Add("@idSolicitut", SqlDbType.Int).Value = obj.idSolicitut
         sc.Parameters.Add("@responsableCompra", SqlDbType.Int).Value = obj.responsableCompra.id
@@ -269,12 +258,9 @@ Module dbComanda
             c.entregaEquips = sdr(INICI_MUNTATGE)
             c.magatzem = ModelLlocEntrega.getObject(sdr(ID_MAGATZEM))
             c.nOferta = Trim(CONFIG.validarNull(sdr(OFERTA)))
-            c.notes = Trim(CONFIG.validarNull(sdr(NOTES)))
             c.ports = Trim(CONFIG.validarNull(sdr(PORTS)))
             c.entrega = sdr(ENTREGA)
             c.tipusPagament = ModelTipusPagament.getAuxiliar.getObject(sdr(ID_TIPUS_PAGAMENT))
-            c.responsable = CONFIG.validarNull(sdr(RESPONSABLE))
-            c.director = CONFIG.validarNull(sdr(DIRECTOR))
             c.estat = sdr(ESTAT)
             c.idSolicitut = sdr(IDSOLICITUT)
             c.responsableCompra = ModelResponsableCompra.getAuxiliar.getObject(sdr(RESPONSABLE_COMPRA))
@@ -323,9 +309,6 @@ Module dbComanda
                                       ID_TIPUS_PAGAMENT & " =?, " &
                                       DADES_BANCARIES & " =?, " &
                                       PORTS & " =?, " &
-                                      NOTES & " =?, " &
-                                      RESPONSABLE & " =?, " &
-                                      DIRECTOR & " =?, " &
                                       ESTAT & " =?, " &
                                       IDSOLICITUT & " =?, " &
                                       RESPONSABLE_COMPRA & " =?, " &
@@ -354,9 +337,6 @@ Module dbComanda
             .Parameters.Append(ADOPARAM.ToInt(getInt(obj.tipusPagament)))
             .Parameters.Append(ADOPARAM.ToString(getStr(obj.dadesBancaries)))
             .Parameters.Append(ADOPARAM.ToString(getStr(obj.ports)))
-            .Parameters.Append(ADOPARAM.ToString(getStr(obj.notes)))
-            .Parameters.Append(ADOPARAM.ToString(getStr(obj.responsable)))
-            .Parameters.Append(ADOPARAM.ToString(getStr(obj.director)))
             .Parameters.Append(ADOPARAM.ToInt(obj.estat))
             .Parameters.Append(ADOPARAM.ToInt(obj.idSolicitut))
             .Parameters.Append(ADOPARAM.ToInt(obj.responsableCompra.id))
@@ -480,7 +460,7 @@ Module dbComanda
             .ActiveConnection = DBCONNECT.getConnectionDbf
             .CommandText = (" INSERT INTO " & getTable(e) & " " &
                         " (" & ID & "," & IDCE & "," & CODI & ", " & ID_EMPRESA & ", " & SERIE & "," & ID_PROVEIDOR & ", " & ID_CONTACTE_PROVEIDOR & ", " & ID_PROJECTE & ", " & ID_CONTACTE_PROJECTE & ", " & ID_MAGATZEM & "," &
-                         DATA_COMANDA & "," & DATA_MUNTATGE & "," & DATA_ENTREGA & "," & INICI_COMANDA & "," & INICI_MUNTATGE & "," & ENTREGA & "," & OFERTA & "," & ID_TIPUS_PAGAMENT & "," & DADES_BANCARIES & "," & PORTS & "," & NOTES & "," & RESPONSABLE & "," & DIRECTOR & "," & ESTAT & "," & IDSOLICITUT & "," & RESPONSABLE_COMPRA & "," & BASE_COMANDA & "," & IVA_COMANDA & "," & DEPARTAMENT & "," & URGENT & "," & ID_MYDOC & ")" &
+                         DATA_COMANDA & "," & DATA_MUNTATGE & "," & DATA_ENTREGA & "," & INICI_COMANDA & "," & INICI_MUNTATGE & "," & ENTREGA & "," & OFERTA & "," & ID_TIPUS_PAGAMENT & "," & DADES_BANCARIES & "," & PORTS & "," & ESTAT & "," & IDSOLICITUT & "," & RESPONSABLE_COMPRA & "," & BASE_COMANDA & "," & IVA_COMANDA & "," & DEPARTAMENT & "," & URGENT & "," & ID_MYDOC & ")" &
                         " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
 
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
@@ -503,9 +483,6 @@ Module dbComanda
             .Parameters.Append(ADOPARAM.ToInt(getInt(obj.tipusPagament)))
             .Parameters.Append(ADOPARAM.ToString(getStr(obj.dadesBancaries)))
             .Parameters.Append(ADOPARAM.ToString(getStr(obj.ports)))
-            .Parameters.Append(ADOPARAM.ToString(getStr(obj.notes)))
-            .Parameters.Append(ADOPARAM.ToString(getStr(obj.responsable)))
-            .Parameters.Append(ADOPARAM.ToString(getStr(obj.director)))
             .Parameters.Append(ADOPARAM.ToInt(obj.estat))
             .Parameters.Append(ADOPARAM.ToInt(obj.idSolicitut))
             .Parameters.Append(ADOPARAM.ToInt(obj.responsableCompra.id))
@@ -586,13 +563,10 @@ Module dbComanda
             c.inici = rc(INICI_COMANDA).Value
             c.magatzem = ModelLlocEntrega.getObject(rc(ID_MAGATZEM).Value)
             c.nOferta = CONFIG.validarNull(rc(OFERTA).Value)
-            c.notes = CONFIG.validarNull(rc(NOTES).Value)
             c.ports = CONFIG.validarNull(rc(PORTS).Value)
             c.entrega = rc(ENTREGA).Value
             c.entregaEquips = rc(INICI_MUNTATGE).Value
             c.tipusPagament = ModelTipusPagament.getAuxiliar.getObject(rc(ID_TIPUS_PAGAMENT).Value)
-            c.responsable = CONFIG.validarNull(rc(RESPONSABLE).Value)
-            c.director = CONFIG.validarNull(rc(DIRECTOR).Value)
             c.estat = rc(ESTAT).Value
             c.serie = CONFIG.validarNull(rc(SERIE).Value)
             c.idSolicitut = rc(IDSOLICITUT).Value
@@ -658,13 +632,10 @@ Module dbComanda
             c.inici = rc(INICI_COMANDA).Value
             c.magatzem = ModelLlocEntrega.getObject(rc(ID_MAGATZEM).Value)
             c.nOferta = CONFIG.validarNull(rc(OFERTA).Value)
-            c.notes = CONFIG.validarNull(rc(NOTES).Value)
             c.ports = CONFIG.validarNull(rc(PORTS).Value)
             c.entrega = rc(ENTREGA).Value
             c.entregaEquips = rc(INICI_MUNTATGE).Value
             c.tipusPagament = ModelTipusPagament.getAuxiliar.getObject(rc(ID_TIPUS_PAGAMENT).Value)
-            c.responsable = CONFIG.validarNull(rc(RESPONSABLE).Value)
-            c.director = CONFIG.validarNull(rc(DIRECTOR).Value)
             c.estat = rc(ESTAT).Value
             c.serie = CONFIG.validarNull(rc(SERIE).Value)
             c.idSolicitut = rc(IDSOLICITUT).Value

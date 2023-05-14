@@ -291,7 +291,7 @@ Partial Class frmIniComanda
         '
         Me.mnuAxiliars.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuTipusPagament, Me.mnuProvincies, Me.mnuPaisos, Me.mnuTipusIva, Me.mnuUnitats, Me.mnuFamilies, Me.mnuCodiComanda, Me.mnuResponsableCompra})
         Me.mnuAxiliars.Name = "mnuAxiliars"
-        Me.mnuAxiliars.Size = New System.Drawing.Size(162, 22)
+        Me.mnuAxiliars.Size = New System.Drawing.Size(180, 22)
         Me.mnuAxiliars.Text = "auxiliars"
         '
         'mnuTipusPagament
@@ -345,64 +345,64 @@ Partial Class frmIniComanda
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(159, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(177, 6)
         '
         'mnuCentres
         '
         Me.mnuCentres.Name = "mnuCentres"
-        Me.mnuCentres.Size = New System.Drawing.Size(162, 22)
+        Me.mnuCentres.Size = New System.Drawing.Size(180, 22)
         Me.mnuCentres.Text = "centrres"
         '
         'mnuLlocsEntrega
         '
         Me.mnuLlocsEntrega.Name = "mnuLlocsEntrega"
-        Me.mnuLlocsEntrega.Size = New System.Drawing.Size(162, 22)
+        Me.mnuLlocsEntrega.Size = New System.Drawing.Size(180, 22)
         Me.mnuLlocsEntrega.Text = "llocsEntrega"
         '
         'mnuContactesCentre
         '
         Me.mnuContactesCentre.Name = "mnuContactesCentre"
-        Me.mnuContactesCentre.Size = New System.Drawing.Size(162, 22)
+        Me.mnuContactesCentre.Size = New System.Drawing.Size(180, 22)
         Me.mnuContactesCentre.Text = "ContactesCentre"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(159, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(177, 6)
         '
         'mnuProveidors
         '
         Me.mnuProveidors.Name = "mnuProveidors"
-        Me.mnuProveidors.Size = New System.Drawing.Size(162, 22)
+        Me.mnuProveidors.Size = New System.Drawing.Size(180, 22)
         Me.mnuProveidors.Text = "proveidors"
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(159, 6)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(177, 6)
         '
         'mnuFabricants
         '
         Me.mnuFabricants.Name = "mnuFabricants"
-        Me.mnuFabricants.Size = New System.Drawing.Size(162, 22)
+        Me.mnuFabricants.Size = New System.Drawing.Size(180, 22)
         Me.mnuFabricants.Text = "fabricants"
         '
         'mnuArticles
         '
         Me.mnuArticles.Name = "mnuArticles"
-        Me.mnuArticles.Size = New System.Drawing.Size(162, 22)
+        Me.mnuArticles.Size = New System.Drawing.Size(180, 22)
         Me.mnuArticles.Text = "articles"
         '
         'ToolStripSeparator12
         '
         Me.ToolStripSeparator12.Name = "ToolStripSeparator12"
-        Me.ToolStripSeparator12.Size = New System.Drawing.Size(159, 6)
+        Me.ToolStripSeparator12.Size = New System.Drawing.Size(177, 6)
         '
         'MYDOCToolStripMenuItem
         '
         Me.MYDOCToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WorkFlowPedidosToolStripMenuItem})
         Me.MYDOCToolStripMenuItem.Name = "MYDOCToolStripMenuItem"
-        Me.MYDOCToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
+        Me.MYDOCToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.MYDOCToolStripMenuItem.Text = "MYDOC"
         '
         'WorkFlowPedidosToolStripMenuItem
@@ -525,7 +525,7 @@ Partial Class frmIniComanda
         '
         Me.mnuF56.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuEnviarF56})
         Me.mnuF56.Name = "mnuF56"
-        Me.mnuF56.Size = New System.Drawing.Size(145, 22)
+        Me.mnuF56.Size = New System.Drawing.Size(180, 22)
         Me.mnuF56.Text = "F56"
         '
         'mnuEnviarF56
@@ -538,20 +538,20 @@ Partial Class frmIniComanda
         '
         Me.mnuInformeArticles.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuinformeArticlesComandes})
         Me.mnuInformeArticles.Name = "mnuInformeArticles"
-        Me.mnuInformeArticles.Size = New System.Drawing.Size(145, 22)
+        Me.mnuInformeArticles.Size = New System.Drawing.Size(180, 22)
         Me.mnuInformeArticles.Text = "articles"
         '
         'mnuinformeArticlesComandes
         '
         Me.mnuinformeArticlesComandes.Name = "mnuinformeArticlesComandes"
-        Me.mnuinformeArticlesComandes.Size = New System.Drawing.Size(163, 22)
+        Me.mnuinformeArticlesComandes.Size = New System.Drawing.Size(180, 22)
         Me.mnuinformeArticlesComandes.Text = "articlesComanda"
         '
         'mnuInfoComandes
         '
         Me.mnuInfoComandes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnucercadorComandes})
         Me.mnuInfoComandes.Name = "mnuInfoComandes"
-        Me.mnuInfoComandes.Size = New System.Drawing.Size(145, 22)
+        Me.mnuInfoComandes.Size = New System.Drawing.Size(180, 22)
         Me.mnuInfoComandes.Text = "comandes"
         '
         'mnucercadorComandes
@@ -564,7 +564,7 @@ Partial Class frmIniComanda
         '
         Me.mnuComptabilitat.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuInformeSubctesCompra})
         Me.mnuComptabilitat.Name = "mnuComptabilitat"
-        Me.mnuComptabilitat.Size = New System.Drawing.Size(145, 22)
+        Me.mnuComptabilitat.Size = New System.Drawing.Size(180, 22)
         Me.mnuComptabilitat.Text = "comptabilitat"
         '
         'mnuInformeSubctesCompra
@@ -579,9 +579,9 @@ Partial Class frmIniComanda
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.panelTabs.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.panelTabs.ForeColor = System.Drawing.Color.Coral
-        Me.panelTabs.Location = New System.Drawing.Point(1, 30)
+        Me.panelTabs.Location = New System.Drawing.Point(1, 35)
         Me.panelTabs.Name = "panelTabs"
-        Me.panelTabs.Size = New System.Drawing.Size(660, 32)
+        Me.panelTabs.Size = New System.Drawing.Size(657, 32)
         Me.panelTabs.TabIndex = 1
         '
         'pData
@@ -589,9 +589,9 @@ Partial Class frmIniComanda
         Me.pData.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.pData.Location = New System.Drawing.Point(1, 65)
+        Me.pData.Location = New System.Drawing.Point(1, 68)
         Me.pData.Name = "pData"
-        Me.pData.Size = New System.Drawing.Size(660, 391)
+        Me.pData.Size = New System.Drawing.Size(657, 376)
         Me.pData.TabIndex = 2
         '
         'frmIniComanda

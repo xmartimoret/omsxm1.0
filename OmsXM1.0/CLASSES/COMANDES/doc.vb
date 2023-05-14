@@ -4,6 +4,9 @@
     Public Property idComandaEnEdicio As Integer
     Public Property idComanda As Integer
     Public Property anyo As Integer
+    Public Property idProveidor As Integer
+    Public Property nomProveidor As String
+    Public Property data As Date
     Public Sub New()
 
     End Sub

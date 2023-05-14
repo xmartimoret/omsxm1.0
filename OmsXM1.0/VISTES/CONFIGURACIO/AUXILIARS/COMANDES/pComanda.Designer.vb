@@ -327,7 +327,7 @@ Partial Class pComanda
         Me.SplitC.Panel2.Controls.Add(Me.lblAdjunts)
         Me.SplitC.Panel2.Controls.Add(Me.cbAdjunts)
         Me.SplitC.Size = New System.Drawing.Size(1472, 510)
-        Me.SplitC.SplitterDistance = 707
+        Me.SplitC.SplitterDistance = 918
         Me.SplitC.SplitterWidth = 8
         Me.SplitC.TabIndex = 74
         '
@@ -336,7 +336,7 @@ Partial Class pComanda
         Me.lblTotalIva.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblTotalIva.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTotalIva.ForeColor = System.Drawing.Color.Black
-        Me.lblTotalIva.Location = New System.Drawing.Point(384, 482)
+        Me.lblTotalIva.Location = New System.Drawing.Point(595, 482)
         Me.lblTotalIva.Name = "lblTotalIva"
         Me.lblTotalIva.Size = New System.Drawing.Size(130, 23)
         Me.lblTotalIva.TabIndex = 75
@@ -348,7 +348,7 @@ Partial Class pComanda
         Me.lblTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblTotal.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTotal.ForeColor = System.Drawing.Color.Black
-        Me.lblTotal.Location = New System.Drawing.Point(510, 482)
+        Me.lblTotal.Location = New System.Drawing.Point(721, 482)
         Me.lblTotal.Name = "lblTotal"
         Me.lblTotal.Size = New System.Drawing.Size(170, 23)
         Me.lblTotal.TabIndex = 74
@@ -360,7 +360,7 @@ Partial Class pComanda
         Me.Panel8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel8.BackColor = System.Drawing.SystemColors.Control
         Me.Panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel8.Location = New System.Drawing.Point(79, 3)
+        Me.Panel8.Location = New System.Drawing.Point(290, 3)
         Me.Panel8.Name = "Panel8"
         Me.Panel8.Size = New System.Drawing.Size(623, 129)
         Me.Panel8.TabIndex = 75
@@ -370,7 +370,7 @@ Partial Class pComanda
         Me.lblTotalBI.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblTotalBI.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTotalBI.ForeColor = System.Drawing.Color.Black
-        Me.lblTotalBI.Location = New System.Drawing.Point(241, 482)
+        Me.lblTotalBI.Location = New System.Drawing.Point(452, 482)
         Me.lblTotalBI.Name = "lblTotalBI"
         Me.lblTotalBI.Size = New System.Drawing.Size(147, 23)
         Me.lblTotalBI.TabIndex = 73
@@ -403,7 +403,7 @@ Partial Class pComanda
         Me.panelArticle.Controls.Add(Me.DGVArticles)
         Me.panelArticle.Location = New System.Drawing.Point(3, 137)
         Me.panelArticle.Name = "panelArticle"
-        Me.panelArticle.Size = New System.Drawing.Size(696, 331)
+        Me.panelArticle.Size = New System.Drawing.Size(907, 331)
         Me.panelArticle.TabIndex = 76
         '
         'Panel3
@@ -421,7 +421,7 @@ Partial Class pComanda
         Me.Panel3.Controls.Add(Me.cmdModificarArticle)
         Me.Panel3.Location = New System.Drawing.Point(2, 3)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(682, 32)
+        Me.Panel3.Size = New System.Drawing.Size(893, 32)
         Me.Panel3.TabIndex = 72
         '
         'cmdAfegirFila
@@ -550,7 +550,7 @@ Partial Class pComanda
         Me.DGVArticles.Location = New System.Drawing.Point(1, 37)
         Me.DGVArticles.Name = "DGVArticles"
         Me.DGVArticles.RowHeadersWidth = 30
-        Me.DGVArticles.Size = New System.Drawing.Size(683, 198)
+        Me.DGVArticles.Size = New System.Drawing.Size(894, 198)
         Me.DGVArticles.TabIndex = 70
         '
         'ID
@@ -681,7 +681,7 @@ Partial Class pComanda
         Me.cmdAfegirAdjunt.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.cmdAfegirAdjunt.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.cmdAfegirAdjunt.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.cmdAfegirAdjunt.Location = New System.Drawing.Point(633, 3)
+        Me.cmdAfegirAdjunt.Location = New System.Drawing.Point(418, 3)
         Me.cmdAfegirAdjunt.Name = "cmdAfegirAdjunt"
         Me.cmdAfegirAdjunt.Size = New System.Drawing.Size(107, 28)
         Me.cmdAfegirAdjunt.TabIndex = 81
@@ -696,7 +696,7 @@ Partial Class pComanda
         Me.Panel2.Controls.Add(Me.pdfReader)
         Me.Panel2.Location = New System.Drawing.Point(3, 33)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(737, 472)
+        Me.Panel2.Size = New System.Drawing.Size(522, 472)
         Me.Panel2.TabIndex = 76
         '
         'pdfReader
@@ -706,7 +706,7 @@ Partial Class pComanda
         Me.pdfReader.Location = New System.Drawing.Point(0, 0)
         Me.pdfReader.Name = "pdfReader"
         Me.pdfReader.OcxState = CType(resources.GetObject("pdfReader.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.pdfReader.Size = New System.Drawing.Size(737, 472)
+        Me.pdfReader.Size = New System.Drawing.Size(522, 472)
         Me.pdfReader.TabIndex = 0
         '
         'lblAdjunts
@@ -729,7 +729,7 @@ Partial Class pComanda
         Me.cbAdjunts.FormattingEnabled = True
         Me.cbAdjunts.Location = New System.Drawing.Point(180, 3)
         Me.cbAdjunts.Name = "cbAdjunts"
-        Me.cbAdjunts.Size = New System.Drawing.Size(447, 24)
+        Me.cbAdjunts.Size = New System.Drawing.Size(232, 24)
         Me.cbAdjunts.TabIndex = 74
         '
         'pComanda

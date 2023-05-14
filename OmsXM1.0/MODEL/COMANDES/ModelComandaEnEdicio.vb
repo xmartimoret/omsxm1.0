@@ -275,6 +275,7 @@
             dateUpdate = Now()
             objects.Remove(obj)
             objects.Add(obj)
+            Call ModelDocumentacio.saveComanda(obj.documentacio, obj.id, -1, obj.data, obj.proveidor.id)
             If Not ModelArticleComandaEnEdicio.saveComanda(obj) Then Return -1
         End If
         Return obj.id
@@ -487,11 +488,12 @@
                 End If
                 comandaActual.estat = 2
                 If ModelComanda.insert(comandaActual.copy) > 0 Then
-                    For Each d In comandaActual.documentacio
-                        d.idComanda = comandaActual.id
-                        d.anyo = comandaActual.getAnyo
-                        Call ModelDocumentacio.save(d)
-                    Next
+                    's'integra al modelcomanda xmarti 13/5/2023 
+                    'For Each d In comandaActual.documentacio
+                    '    d.idComanda = comandaActual.id
+                    '    d.anyo = comandaActual.getAnyo
+                    '    Call ModelDocumentacio.save(d)
+                    'Next
                     pdfOrigen = CONFIG.getfitxerComandaEnValidacio(comandaActual.getCodi())
                     If CONFIG.fileExist(pdfOrigen) Then
                         FileCopy(pdfOrigen, setSeparator(CONFIG.getDirectoriPDFComandesEnviades(comandaActual.empresa.id)) & CONFIG.getFitxer(pdfOrigen))
@@ -539,12 +541,13 @@
         'comandaActual.ivaComanda = comandaActual.iva
         comandaActual.estat = 2
         idcomanda = ModelComanda.insert(comandaActual.copy)
-        If idcomanda > 0 Then
-            For Each d In comandaActual.documentacio
-                d.idComanda = idcomanda
-                d.anyo = comandaActual.getAnyo
-                Call ModelDocumentacio.save(d)
-            Next
+        If idComanda > 0 Then
+            's'integra al modelcomanda xmarti 13/5/2023
+            'For Each d In comandaActual.documentacio
+            '    d.idComanda = idcomanda
+            '    d.anyo = comandaActual.getAnyo
+            '    Call ModelDocumentacio.save(d)
+            'Next
             pdfOrigen = CONFIG.getfitxerComandaEnValidacio(comandaActual.getCodi())
             If CONFIG.fileExist(pdfOrigen) Then
                 FileCopy(pdfOrigen, setSeparator(CONFIG.getDirectoriPDFComandesEnviades(comandaActual.empresa.id)) & CONFIG.getFitxer(pdfOrigen))

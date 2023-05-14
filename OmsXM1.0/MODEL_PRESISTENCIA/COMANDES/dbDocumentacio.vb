@@ -1,12 +1,14 @@
 ﻿Imports System.Data.SqlClient
 Module dbDocumentacio
     Private Const ID As String = "ID"
+    Private Const ID_PROVEIDOR As String = "IDPROV"
     Private Const CODI As String = "CODI"
     Private Const NOM As String = "NOM"
     Private Const ID_SOLICITUT As String = "IDSE"
     Private Const ID_COMANDA_EDICIO As String = "IDCE"
     Private Const ID_COMANDA As String = "IDC"
     Private Const ANYO As String = "ANYO"
+    Private Const DATA As String = "DATA"
     'ACCESSORS CENTRE
     ''' <summary>
     ''' SAVE. Guarda un centre a la base de dades. 
@@ -138,6 +140,8 @@ Module dbDocumentacio
                                           NOM & " =?, " &
                                           ID_SOLICITUT & " =?, " &
                                           ID_COMANDA_EDICIO & " =?, " &
+                                          DATA & " =?, " &
+                                          ID_PROVEIDOR & " =?, " &
                                           ANYO & " =?, " &
                                           ID_COMANDA & " =? " &
                                           " WHERE " & ID & "=?"
@@ -145,6 +149,8 @@ Module dbDocumentacio
             .Parameters.Append(ADOPARAM.ToString(obj.nom))
             .Parameters.Append(ADOPARAM.ToInt(obj.idSolicitut))
             .Parameters.Append(ADOPARAM.ToInt(obj.idComandaEnEdicio))
+            .Parameters.Append(ADOPARAM.ToDate(obj.data))
+            .Parameters.Append(ADOPARAM.ToInt(obj.idProveidor))
             .Parameters.Append(ADOPARAM.ToInt(obj.anyo))
             .Parameters.Append(ADOPARAM.ToInt(obj.idComanda))
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
@@ -173,14 +179,16 @@ Module dbDocumentacio
         With sc
             .ActiveConnection = DBCONNECT.getConnectionDbf
             .CommandText = " INSERT INTO " & getTable() & " " &
-                            " (" & ID & ", " & CODI & ", " & NOM & ", " & ID_SOLICITUT & ", " & ID_COMANDA_EDICIO & ", " & ID_COMANDA & ", " & ANYO & ")" &
-                            " VALUES(?,?,?,?,?,?,?)"
+                            " (" & ID & ", " & ID_PROVEIDOR & ", " & CODI & ", " & NOM & ", " & ID_SOLICITUT & ", " & ID_COMANDA_EDICIO & ", " & ID_COMANDA & ", " & DATA & ", " & ANYO & ")" &
+                            " VALUES(?,?,?,?,?,?,?,?,?)"
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
+            .Parameters.Append(ADOPARAM.ToInt(obj.idProveidor))
             .Parameters.Append(ADOPARAM.ToString(obj.codi))
             .Parameters.Append(ADOPARAM.ToString(obj.nom))
             .Parameters.Append(ADOPARAM.ToInt(obj.idSolicitut))
             .Parameters.Append(ADOPARAM.ToInt(obj.idComandaEnEdicio))
             .Parameters.Append(ADOPARAM.ToInt(obj.idComanda))
+            .Parameters.Append(ADOPARAM.ToDate(obj.data))
             .Parameters.Append(ADOPARAM.ToInt(obj.anyo))
 
         End With
@@ -241,6 +249,9 @@ Module dbDocumentacio
                 d.codi = Trim(CONFIG.validarNull(rc(CODI).Value))
                 d.nom = Trim(CONFIG.validarNull(rc(NOM).Value))
                 d.anyo = rc(ANYO).Value
+                d.idProveidor = rc(ID_PROVEIDOR).Value
+                If d.idProveidor > 0 Then d.nomProveidor = ModelProveidor.getNom(d.idProveidor)
+                d.data = Trim(CONFIG.validarNullDate(rc(DATA).Value))
 
                 getObjectsDBF.Add(d)
                 av.setData(d.nom, i)

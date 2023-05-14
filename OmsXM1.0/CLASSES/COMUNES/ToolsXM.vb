@@ -8,35 +8,35 @@
         Me.FlatAppearance.BorderSize = 1
         Me.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.Font = New System.Drawing.Font("Arial", 10.0!)
         Me.UseVisualStyleBackColor = False
     End Sub
 End Class
 Public Class TXT
     Inherits System.Windows.Forms.TextBox
     Sub New()
-        Me.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.Font = New System.Drawing.Font("Arial", 10.0!)
         Me.ForeColor = System.Drawing.Color.Blue
     End Sub
 End Class
 Public Class CBBOX
     Inherits System.Windows.Forms.ComboBox
     Public Sub New()
-        Me.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.Font = New System.Drawing.Font("Arial", 10.0!)
         Me.ForeColor = System.Drawing.Color.Blue
     End Sub
 End Class
 Public Class LSTBOX
     Inherits System.Windows.Forms.ListBox
     Public Sub New()
-        Me.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.Font = New System.Drawing.Font("Arial", 10.0!)
         Me.ForeColor = System.Drawing.Color.Blue
     End Sub
 End Class
 Public Class LBLRED
     Inherits System.Windows.Forms.Label
     Public Sub New()
-        Me.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.Red
         Me.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
     End Sub
@@ -44,7 +44,7 @@ End Class
 Public Class LBLREDTopLeft
     Inherits System.Windows.Forms.Label
     Public Sub New()
-        Me.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.Red
         Me.TextAlign = System.Drawing.ContentAlignment.TopLeft
     End Sub
@@ -52,7 +52,7 @@ End Class
 Public Class LBLRIGHT
     Inherits System.Windows.Forms.Label
     Public Sub New()
-        Me.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.Black
         Me.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.AutoSize = False
@@ -61,7 +61,7 @@ End Class
 Public Class LBLMIDDLE
     Inherits System.Windows.Forms.Label
     Public Sub New()
-        Me.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ForeColor = System.Drawing.Color.Black
         Me.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.AutoSize = False
@@ -78,7 +78,7 @@ End Class
 Public Class XEC
     Inherits System.Windows.Forms.CheckBox
     Public Sub New()
-        Me.Font = New System.Drawing.Font("Tahoma", 11.25!)
+        Me.Font = New System.Drawing.Font("Arial", 10.0!)
         Me.ForeColor = System.Drawing.Color.Black
         Me.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.UseVisualStyleBackColor = True

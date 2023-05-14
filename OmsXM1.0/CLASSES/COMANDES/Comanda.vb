@@ -19,8 +19,6 @@
     Friend Property dadesBancaries As String = ""
     Friend Property articles As List(Of articleComanda)
     Friend Property ports As String = ""
-    Friend Property responsable As String = ""
-    Friend Property director As String = ""
     Friend Property estat As Integer
     Friend Property nomFitxerSolicitut As String = ""
     Friend Property solicitutF56 As SolicitudComanda = New SolicitudComanda
@@ -75,8 +73,6 @@
         _proveidor = pProveidor
         _empresa = pEmpresa
         _projecte = pProjecte
-        _responsable = pResponsable
-        _director = pDirector
         _articles = New List(Of articleComanda)
         _documentacio = New List(Of doc)
         _data = Now
@@ -132,8 +128,6 @@
         copy.articles = _articles
         copy.documentacio = _documentacio
         copy.ports = _ports
-        copy.responsable = _responsable
-        copy.director = _director
         copy.nomFitxerSolicitut = _nomFitxerSolicitut
         copy.solicitutF56 = _solicitutF56
         copy.responsableCompra = _responsableCompra

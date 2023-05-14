@@ -275,6 +275,7 @@ Module ModelComanda
             dateUpdate = Now()
             objects(obj.getAnyo).Remove(obj)
             objects(obj.getAnyo).Add(obj)
+            Call ModelDocumentacio.saveComanda(obj.documentacio, obj.idComandaEdicio, obj.id, obj.data, obj.proveidor.id)
             If Not ModelarticleComanda.insertComanda(obj.articles, obj.id) Then Return -1
         End If
         Return obj.id

@@ -38,10 +38,10 @@
         docs.Sort()
         If docs.Count > 0 Then
             getDataList.columns.Add(COLUMN.GENERICA("ID", 0, HorizontalAlignment.Center))
-            getDataList.columns.Add(COLUMN.GENERICA("codi", 100, HorizontalAlignment.Center))
+            getDataList.columns.Add(COLUMN.GENERICA("proveidor", 100, HorizontalAlignment.Center))
             getDataList.columns.Add(COLUMN.GENERICA("nom", 100, HorizontalAlignment.Left))
             For Each a In docs
-                getDataList.rows.Add(New ListViewItem(New String() {a.id, a.codi, a.nom}))
+                getDataList.rows.Add(New ListViewItem(New String() {a.id, a.nomProveidor, a.nom}))
             Next
         End If
         a = Nothing
@@ -59,6 +59,18 @@
             objects(obj.anyo).Add(obj)
         End If
         Return obj.id
+    End Function
+    Public Function saveComanda(ac As List(Of doc), idComandaEnEdicio As Integer, idComanda As Integer, dataComanda As Date, idProveidor As Integer) As Boolean
+        Dim d As doc
+        For Each d In ac
+            d.idComandaEnEdicio = idComandaEnEdicio
+            d.idComanda = idComanda
+            d.data = dataComanda
+            d.anyo = dataComanda.Year
+            d.idProveidor = idProveidor
+            If save(d) = -1 Then Return False
+        Next
+        Return True
     End Function
     Public Function remove(obj As doc) As Boolean
         Dim result As Boolean

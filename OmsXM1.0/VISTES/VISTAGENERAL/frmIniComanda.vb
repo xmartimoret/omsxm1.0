@@ -441,17 +441,19 @@ Public Class frmIniComanda
 
                             Call ModelCodiComanda.save(codiC)
                             c.id = ModelComandaEnEdicio.save(c)
-                            If c.id > 0 Then
-                                For Each d In c.documentacio
-                                    d.idComandaEnEdicio = c.id
-                                    d.anyo = c.getAnyo
-                                    Call ModelDocumentacio.save(d)
-                                    'If CONFIG.fileExist(CONFIG.setSeparator(CONFIG_FILE.getTag(Tag.RUTA_FITXERS_SOLICITUT)) & d.nom) Then
-                                    '    Call FileCopy(CONFIG.setSeparator(CONFIG_FILE.getTag(Tag.RUTA_FITXERS_SOLICITUT)) & d.nom, CONFIG.setSeparator(CONFIG.getDirectoriServidorOfertes) & d.nom)
-                                    '    Kill(CONFIG.setSeparator(CONFIG_FILE.getTag(Tag.RUTA_FITXERS_SOLICITUT)) & d.nom)
-                                    'End If                    
-                                Next
-                            End If
+                            's'integra al modelcomanda xmarti 13/5/2023
+                            ' If c.id > 0 Then
+
+                            'For Each d In c.documentacio
+                            '    d.idComandaEnEdicio = c.id
+                            '    d.anyo = c.getAnyo
+                            '    Call ModelDocumentacio.save(d)
+                            '    'If CONFIG.fileExist(CONFIG.setSeparator(CONFIG_FILE.getTag(Tag.RUTA_FITXERS_SOLICITUT)) & d.nom) Then
+                            '    '    Call FileCopy(CONFIG.setSeparator(CONFIG_FILE.getTag(Tag.RUTA_FITXERS_SOLICITUT)) & d.nom, CONFIG.setSeparator(CONFIG.getDirectoriServidorOfertes) & d.nom)
+                            '    '    Kill(CONFIG.setSeparator(CONFIG_FILE.getTag(Tag.RUTA_FITXERS_SOLICITUT)) & d.nom)
+                            '    'End If                    
+                            'Next
+                            'End If
                             i = i + 1
                         End If
                     End If
@@ -817,4 +819,6 @@ Public Class frmIniComanda
         Next a
         Call MISSATGES.DATA_UPDATED()
     End Sub
+
+
 End Class
