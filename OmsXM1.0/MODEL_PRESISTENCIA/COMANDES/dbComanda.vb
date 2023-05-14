@@ -507,7 +507,7 @@ Module dbComanda
             .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.ivaComanda * 1000, 0)))
             .Parameters.Append(ADOPARAM.ToString(obj.departament))
             .Parameters.Append(ADOPARAM.toBool(obj.urgent))
-            .Parameters.Append(ADOPARAM.toBool(obj.idMydoc))
+            .Parameters.Append(ADOPARAM.ToInt(obj.idMydoc))
         End With
         Try
             sc.Execute()

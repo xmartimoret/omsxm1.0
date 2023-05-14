@@ -97,6 +97,8 @@ Public Class frmIniComanda
         Me.mnucontabilitat.Text = IDIOMA.getString("comptabilitat")
         Me.mnuVeureDades.Text = IDIOMA.getString("mostrarDadesComptabilitat")
         Me.mnuMajors.Text = IDIOMA.getString("llibreMajor")
+        Me.mnuReindexarComandesRecepcio.Text = IDIOMA.getString("reindexarComandesRecepcio")
+
 
     End Sub
 
@@ -256,7 +258,7 @@ Public Class frmIniComanda
     End Sub
 
     Private Sub mnuCentres_Click(sender As Object, e As EventArgs) Handles mnuCentres.Click
-        Call setTab(IDIOMA.getString("centres"), New pProjectesContactes)
+        Call setTab(IDIOMA.getString("centresProjectes"), New pProjectesContactes)
     End Sub
     Private Function getIdTab(p As String) As Integer
         Dim t As tabControl
@@ -783,5 +785,36 @@ Public Class frmIniComanda
         am = Nothing
         comandes = Nothing
         c = Nothing
+    End Sub
+
+    Private Sub mnuReindexarComandesRecepcio_Click(sender As Object, e As EventArgs) Handles mnuReindexarComandesRecepcio.Click
+        Dim comandes As List(Of Comanda), c As Comanda, f As frmAvis, i As Integer, a As Integer
+        ' ens cal borrar totes les comandes
+        f = New frmAvis(IDIOMA.getString("esborrantDades"))
+        Call ModelComandaRecepcio.remove(False)
+        Call ModelComandaRecepcio.remove(True)
+        f.tancar()
+        comandes = ModelComandaEnEdicio.getObjects(1)
+        f = New frmAvis(IDIOMA.getString("actualitzantDades"), IDIOMA.getString("comandesEnviar"), "", comandes.Count)
+
+        i = 1
+        For Each c In comandes
+            f.setData(IDIOMA.getString("comandesEnviar"), c.ToString, i)
+            ModelComandaRecepcio.insert(c.getComandaRecepcio)
+            i = i + 1
+        Next
+        f.tancar()
+        For a = 2021 To Now.Year
+            comandes = ModelComanda.getObjects(a)
+            f = New frmAvis(IDIOMA.getString("actualitzantDades"), IDIOMA.getString("reindexarComandesEnviades") & " - " & a, "", comandes.Count)
+            i = 1
+            For Each c In comandes
+                f.setData(IDIOMA.getString("reindexarComandesEnviades") & " - " & a, c.ToString, i)
+                ModelComandaRecepcio.insert(c.getComandaRecepcio)
+                i = i + 1
+            Next
+            f.tancar()
+        Next a
+        Call MISSATGES.DATA_UPDATED()
     End Sub
 End Class

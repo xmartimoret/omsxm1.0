@@ -99,6 +99,7 @@ Partial Class frmIniComanda
         Me.mnuInformeSubctesCompra = New System.Windows.Forms.ToolStripMenuItem()
         Me.panelTabs = New System.Windows.Forms.Panel()
         Me.pData = New System.Windows.Forms.Panel()
+        Me.mnuReindexarComandesRecepcio = New System.Windows.Forms.ToolStripMenuItem()
         Me.pMenu.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -237,7 +238,7 @@ Partial Class frmIniComanda
         '
         'mnuAplicacioVaris
         '
-        Me.mnuAplicacioVaris.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAplicacioFirmaCorreu, Me.mnuReindexarComandes, Me.mnuReindexarMyDoc})
+        Me.mnuAplicacioVaris.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuAplicacioFirmaCorreu, Me.mnuReindexarComandes, Me.mnuReindexarMyDoc, Me.mnuReindexarComandesRecepcio})
         Me.mnuAplicacioVaris.Name = "mnuAplicacioVaris"
         Me.mnuAplicacioVaris.Size = New System.Drawing.Size(213, 22)
         Me.mnuAplicacioVaris.Text = "varis"
@@ -245,14 +246,14 @@ Partial Class frmIniComanda
         'mnuAplicacioFirmaCorreu
         '
         Me.mnuAplicacioFirmaCorreu.Name = "mnuAplicacioFirmaCorreu"
-        Me.mnuAplicacioFirmaCorreu.Size = New System.Drawing.Size(189, 22)
+        Me.mnuAplicacioFirmaCorreu.Size = New System.Drawing.Size(231, 22)
         Me.mnuAplicacioFirmaCorreu.Text = "firma correu"
         '
         'mnuReindexarComandes
         '
         Me.mnuReindexarComandes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuReindexarComandesValidacio, Me.mnuReindexarComandesEnviades})
         Me.mnuReindexarComandes.Name = "mnuReindexarComandes"
-        Me.mnuReindexarComandes.Size = New System.Drawing.Size(189, 22)
+        Me.mnuReindexarComandes.Size = New System.Drawing.Size(231, 22)
         Me.mnuReindexarComandes.Text = "ReindexarComandes"
         '
         'mnuReindexarComandesValidacio
@@ -270,7 +271,7 @@ Partial Class frmIniComanda
         'mnuReindexarMyDoc
         '
         Me.mnuReindexarMyDoc.Name = "mnuReindexarMyDoc"
-        Me.mnuReindexarMyDoc.Size = New System.Drawing.Size(189, 22)
+        Me.mnuReindexarMyDoc.Size = New System.Drawing.Size(231, 22)
         Me.mnuReindexarMyDoc.Text = "ReindexarCodiMyDoc"
         '
         'mnuConfig
@@ -498,13 +499,13 @@ Partial Class frmIniComanda
         'mnuVeureDades
         '
         Me.mnuVeureDades.Name = "mnuVeureDades"
-        Me.mnuVeureDades.Size = New System.Drawing.Size(180, 22)
+        Me.mnuVeureDades.Size = New System.Drawing.Size(110, 22)
         Me.mnuVeureDades.Text = "dades"
         '
         'mnuMajors
         '
         Me.mnuMajors.Name = "mnuMajors"
-        Me.mnuMajors.Size = New System.Drawing.Size(180, 22)
+        Me.mnuMajors.Size = New System.Drawing.Size(110, 22)
         Me.mnuMajors.Text = "majors"
         '
         'mnuInformes
@@ -586,6 +587,12 @@ Partial Class frmIniComanda
         Me.pData.Name = "pData"
         Me.pData.Size = New System.Drawing.Size(660, 391)
         Me.pData.TabIndex = 2
+        '
+        'mnuReindexarComandesRecepcio
+        '
+        Me.mnuReindexarComandesRecepcio.Name = "mnuReindexarComandesRecepcio"
+        Me.mnuReindexarComandesRecepcio.Size = New System.Drawing.Size(231, 22)
+        Me.mnuReindexarComandesRecepcio.Text = "ReindexarComandesRecepcio"
         '
         'frmIniComanda
         '
@@ -684,4 +691,5 @@ Partial Class frmIniComanda
     Friend WithEvents mnucontabilitat As ToolStripMenuItem
     Friend WithEvents mnuVeureDades As ToolStripMenuItem
     Friend WithEvents mnuMajors As ToolStripMenuItem
+    Friend WithEvents mnuReindexarComandesRecepcio As ToolStripMenuItem
 End Class

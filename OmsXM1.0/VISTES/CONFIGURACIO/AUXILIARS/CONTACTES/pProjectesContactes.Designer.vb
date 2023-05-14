@@ -51,6 +51,9 @@ Partial Class pProjectesContactes
         Me.SContainer.Name = "SContainer"
         Me.SContainer.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
+        'SContainer.Panel1
+        '
+        '
         'SContainer.Panel2
         '
         Me.SContainer.Panel2.Controls.Add(Me.SplitContainer1)

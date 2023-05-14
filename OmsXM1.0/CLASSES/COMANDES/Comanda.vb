@@ -83,6 +83,34 @@
         _comentaris = New List(Of ComentariMD)
         _idMydoc = -1
     End Sub
+    Public Function getComandaRecepcio() As ComandaRecepcio
+        Dim cr As ComandaRecepcio
+        cr = New ComandaRecepcio
+        cr.id = Me.id
+        cr.idMydoc = _idMydoc
+        cr.serie = _serie
+        cr.num = Me.codi
+        cr.codiComanda = Me.getCodi
+        If Not IsNothing(_proveidor) Then
+            cr.cifProveidor = _proveidor.codi
+            cr.nomProveidor = _proveidor.nom
+        End If
+        If Not IsNothing(_projecte) Then cr.codiProjecte = _projecte.codi
+        If Not IsNothing(_responsableCompra) Then cr.responsableCompra = _responsableCompra.nom
+        cr.data = _data
+        cr.base = Me.baseComanda
+        If Not IsNothing(_tipusPagament) Then cr.tipusPagament = _tipusPagament.ToString
+        If _estat = 2 Then
+            _estat = True
+        Else
+            _estat = False
+        End If
+        If Not IsNothing(_empresa) Then
+            cr.codiEmpresa = _empresa.codi
+            cr.idEmpresa = _empresa.id
+        End If
+        Return cr
+    End Function
     Public Function copy() As Comanda
         copy = New Comanda
         copy.id = Me.id

@@ -371,7 +371,7 @@ Partial Class panelDesplegableComanda
         Me.cbDepartament.Font = New System.Drawing.Font("Tahoma", 11.25!)
         Me.cbDepartament.ForeColor = System.Drawing.Color.Blue
         Me.cbDepartament.FormattingEnabled = True
-        Me.cbDepartament.Items.AddRange(New Object() {"EXPLOTACIONES", "OBRAS", "GENERICO"})
+        Me.cbDepartament.Items.AddRange(New Object() {"EXPLOTACIONES", "OBRAS", "GENERICO", "INDUSTRIAL"})
         Me.cbDepartament.Location = New System.Drawing.Point(353, 6)
         Me.cbDepartament.Name = "cbDepartament"
         Me.cbDepartament.Size = New System.Drawing.Size(159, 26)

@@ -24,7 +24,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>52</ApplicationRevision>
+    <ApplicationRevision>53</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -233,6 +233,7 @@
     <Compile Include="CLASSES\COMANDES\ArticleComanda.vb" />
     <Compile Include="CLASSES\COMANDES\ArticlePreu.vb" />
     <Compile Include="CLASSES\COMANDES\ArticleSolicitut.vb" />
+    <Compile Include="CLASSES\COMANDES\ComandaRecepcio.vb" />
     <Compile Include="CLASSES\COMUNES\objectGrup.vb" />
     <Compile Include="CLASSES\COMANDES\doc.vb" />
     <Compile Include="CLASSES\COMANDES\MYDOC\ComentariMD.vb" />
@@ -343,6 +344,7 @@
     <Compile Include="MODEL\COMANDES\ModelArticleSolicitut.vb" />
     <Compile Include="MODEL\COMANDES\ModelComanda.vb" />
     <Compile Include="MODEL\COMANDES\ModelComandaEnEdicio.vb" />
+    <Compile Include="MODEL\COMANDES\ModelComandaRecepcio.vb" />
     <Compile Include="MODEL\COMANDES\ModelComandaSolicitud.vb" />
     <Compile Include="MODEL\COMANDES\ModelDocumentacio.vb" />
     <Compile Include="MODEL\COMANDES\ModelLlocEntrega.vb" />
@@ -366,6 +368,7 @@
     <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbArticleSolicitut.vb" />
     <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbCodiComanda.vb" />
     <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbComanda.vb" />
+    <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbComandaRecepcio.vb" />
     <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbDocumentacio.vb" />
     <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbSolicitudComanda.vb" />
     <Compile Include="MODEL_PRESISTENCIA\COMANDES\dbUpdateDrive.vb" />

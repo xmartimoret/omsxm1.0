@@ -7,6 +7,7 @@ Module DBCONNECT
     Private Const PROC_DATA_ACTUALITZACIO As String = "GET_DATE_UPDATED"
     Private Const DATABASE As String = "ApliOmsSacedeXM"
     Private Const DATABASE_MYDOC As String = "MYDB"
+    Private Const TAULA_COMANDA_RECEPCIO As String = "COMREP"
     Private Const TAULA_DOCUMENTACIO As String = "DOCUM"
     Private Const TAULA_UPDATE_DRIVE As String = "UDRIVE"
     Private Const TAULA_RESPONSABLE_COMPRA As String = "RCOMPRA"
@@ -163,6 +164,9 @@ Module DBCONNECT
         If cnActual IsNot Nothing Then If cnActual.State = 1 Then cnActual.Close()
         cnActual = Nothing
     End Sub
+    Public Function getTaulaComandaRecepcio() As String
+        Return TAULA_COMANDA_RECEPCIO
+    End Function
     Public Function getTaulaDocumentacio() As String
         Return TAULA_DOCUMENTACIO
     End Function

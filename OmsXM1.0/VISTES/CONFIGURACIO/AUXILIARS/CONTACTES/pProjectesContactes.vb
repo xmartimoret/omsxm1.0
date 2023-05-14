@@ -3,8 +3,16 @@
 
     End Sub
     Private Sub pProjectesContactes_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Dim p As SelectProjecte
-        p = New SelectProjecte(IDIOMA.getString("projectesEntreguesContactes"), 1)
+        'Dim p As SelectProjecte
+        'p = New SelectProjecte(IDIOMA.getString("projectesEntreguesContactes"), 1)
+        'SContainer.Panel1.Controls.Clear()
+        'p.Dock = DockStyle.Fill
+        'SContainer.Panel1.Controls.Add(p)
+        'AddHandler p.selectObject, AddressOf setAuxiliars
+        'Call setLanguage()
+        'p.Show()        
+        Dim p As SelectProjectes
+        p = New SelectProjectes(0, -1, 1, False, True, "", 1)
         SContainer.Panel1.Controls.Clear()
         p.Dock = DockStyle.Fill
         SContainer.Panel1.Controls.Add(p)
@@ -35,5 +43,7 @@
         Me.SplitContainer1.Panel1.Controls.Add(entregues)
     End Sub
 
+    Private Sub SContainer_Panel1_Paint(sender As Object, e As PaintEventArgs) Handles SContainer.Panel1.Paint
 
+    End Sub
 End Class

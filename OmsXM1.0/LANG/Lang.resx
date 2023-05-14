@@ -4360,4 +4360,14 @@
   <data name="mostrarLlibreMajor" xml:space="preserve">
     <value>MOSTRAR DADES LLIBRE MAJOR.PROJECTES</value>
   </data>
+  <data name="reindexarComandesRecepcio" xml:space="preserve">
+    <value>REINDEXAR COMANDES-VALIDACIO MYDOC</value>
+    <comment>frmIni</comment>
+  </data>
+  <data name="esborrantDades" xml:space="preserve">
+    <value>ESBORRANT DADES. ...</value>
+  </data>
+  <data name="centresProjectes" xml:space="preserve">
+    <value>CENTRES/PROJECTES</value>
+  </data>
 </root>
