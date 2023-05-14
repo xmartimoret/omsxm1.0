@@ -473,8 +473,7 @@
         P.tancar()
         If MISSATGES.CONFIRM_SEND_COMANDA Then
             P = New frmAvis(IDIOMA.getString("esperaUnMoment"), IDIOMA.getString("guardarComanda"), pdfActual)
-            'comandaActual.baseComanda = comandaActual.base - comandaActual.descompte
-            'comandaActual.ivaComanda = comandaActual.iva
+
             If IsNothing(comandaActual.docMyDoc) Then comandaActual.docMyDoc = New PedidoMD
             If comandaActual.docMyDoc.id = -1 Then
                 comandaActual.docMyDoc = ModelPedidosMydoc.getObject(comandaActual.idMydoc)

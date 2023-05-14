@@ -1,5 +1,6 @@
 ﻿Public Class Comanda
     Inherits Base
+    Friend Property idComandaEdicio As Integer
     Friend Property docMyDoc As PedidoMD
     Friend Property idMydoc As Long
     Friend Property serie As String
@@ -114,6 +115,7 @@
     Public Function copy() As Comanda
         copy = New Comanda
         copy.id = Me.id
+        copy.idComandaEdicio = _idComandaEdicio
         copy.codi = Me.codi
         copy.empresa = _empresa
         copy.proveidor = _proveidor

@@ -49,6 +49,7 @@ Partial Class frmIniComanda
         Me.mnuReindexarComandesValidacio = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuReindexarComandesEnviades = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuReindexarMyDoc = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuReindexarComandesRecepcio = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuConfig = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuAxiliars = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuTipusPagament = New System.Windows.Forms.ToolStripMenuItem()
@@ -99,7 +100,6 @@ Partial Class frmIniComanda
         Me.mnuInformeSubctesCompra = New System.Windows.Forms.ToolStripMenuItem()
         Me.panelTabs = New System.Windows.Forms.Panel()
         Me.pData = New System.Windows.Forms.Panel()
-        Me.mnuReindexarComandesRecepcio = New System.Windows.Forms.ToolStripMenuItem()
         Me.pMenu.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -273,6 +273,12 @@ Partial Class frmIniComanda
         Me.mnuReindexarMyDoc.Name = "mnuReindexarMyDoc"
         Me.mnuReindexarMyDoc.Size = New System.Drawing.Size(231, 22)
         Me.mnuReindexarMyDoc.Text = "ReindexarCodiMyDoc"
+        '
+        'mnuReindexarComandesRecepcio
+        '
+        Me.mnuReindexarComandesRecepcio.Name = "mnuReindexarComandesRecepcio"
+        Me.mnuReindexarComandesRecepcio.Size = New System.Drawing.Size(231, 22)
+        Me.mnuReindexarComandesRecepcio.Text = "ReindexarComandesRecepcio"
         '
         'mnuConfig
         '
@@ -587,12 +593,6 @@ Partial Class frmIniComanda
         Me.pData.Name = "pData"
         Me.pData.Size = New System.Drawing.Size(660, 391)
         Me.pData.TabIndex = 2
-        '
-        'mnuReindexarComandesRecepcio
-        '
-        Me.mnuReindexarComandesRecepcio.Name = "mnuReindexarComandesRecepcio"
-        Me.mnuReindexarComandesRecepcio.Size = New System.Drawing.Size(231, 22)
-        Me.mnuReindexarComandesRecepcio.Text = "ReindexarComandesRecepcio"
         '
         'frmIniComanda
         '

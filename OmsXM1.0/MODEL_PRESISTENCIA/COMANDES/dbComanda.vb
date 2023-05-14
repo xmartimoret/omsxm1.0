@@ -2,6 +2,7 @@
 Imports System.Data.SqlClient
 Module dbComanda
     Private Const ID As String = "ID"
+    Private Const IDCE As String = "IDCE"
     Private Const ID_MYDOC As String = "IDMYDOC"
     Private Const SERIE As String = "SERIE"
     Private Const CODI As String = "NUM"
@@ -83,6 +84,7 @@ Module dbComanda
         Dim sc As SqlCommand, i As Integer
         sc = New SqlCommand("UPDATE " & getTable(e) & " " &
                             " SET " & CODI & "=@codi," &
+                                      IDCE & "=@idce," &
                                       ID_EMPRESA & " =@idEmpresa, " &
                                       ID_PROVEIDOR & " =@idProveidor, " &
                                       ID_CONTACTE_PROVEIDOR & " =@IdContacteProveidor, " &
@@ -108,7 +110,7 @@ Module dbComanda
                                       " WHERE " & ID & "=@id", DBCONNECT.getConnection)
         sc.Parameters.Add("@id", SqlDbType.Int).Value = obj.id
         sc.Parameters.Add("@codi", SqlDbType.VarChar).Value = obj.codi
-
+        sc.Parameters.Add("@idce", SqlDbType.Int).Value = obj.idComandaEdicio
         sc.Parameters.Add("@idempresa", SqlDbType.SmallInt).Value = obj.empresa.id
         sc.Parameters.Add("@idProveidor", SqlDbType.SmallInt).Value = obj.proveidor.id
         sc.Parameters.Add("@IdContacteProveidor", SqlDbType.SmallInt).Value = obj.contacteProveidor.id
@@ -191,11 +193,12 @@ Module dbComanda
         Dim sc As SqlCommand, i As Integer
         obj.id = DBCONNECT.getMaxId(getTable(e)) + 1
         sc = New SqlCommand(" INSERT INTO " & getTable(e) & " " &
-                        " (" & ID & ", " & ID_MYDOC & ", " & CODI & ", " & ID_EMPRESA & ", " & ID_PROVEIDOR & ", " & ID_CONTACTE_PROVEIDOR & ", " & ID_PROJECTE & ", " & ID_CONTACTE_PROJECTE & ", " & ID_MAGATZEM & "," &
+                        " (" & ID & "," & IDCE & "," & ID_MYDOC & ", " & CODI & ", " & ID_EMPRESA & ", " & ID_PROVEIDOR & ", " & ID_CONTACTE_PROVEIDOR & ", " & ID_PROJECTE & ", " & ID_CONTACTE_PROJECTE & ", " & ID_MAGATZEM & "," &
                          DATA_COMANDA & "," & DATA_MUNTATGE & "," & DATA_ENTREGA & "," & INICI_COMANDA & "," & INICI_MUNTATGE & "," & ENTREGA & "," & OFERTA & "," & ID_TIPUS_PAGAMENT & "," & DADES_BANCARIES & "," & PORTS & "," & NOTES & "," & RESPONSABLE & "," & DIRECTOR & "," & ESTAT & "," & RESPONSABLE_COMPRA & "," & IDSOLICITUT & ")" &
-                        " VALUES(@id,@idMydoc,@codi,@idEmpresa,@idProveidor,@idContacteProveidor,@idProjecte,@idContacteProjecte,@idMagatzem,@dataComanda,@dataMuntatge,@dataEntrega,@iniciComanda,@iniciMuntatge,entrega,@oferta,@idtipusPagament,@dadesBancaries,@ports,@notes,@responsable,@director,@estat,@responsableCompra,@idSolicitut)", DBCONNECT.getConnection)
+                        " VALUES(@id,@idce,@idMydoc,@codi,@idEmpresa,@idProveidor,@idContacteProveidor,@idProjecte,@idContacteProjecte,@idMagatzem,@dataComanda,@dataMuntatge,@dataEntrega,@iniciComanda,@iniciMuntatge,entrega,@oferta,@idtipusPagament,@dadesBancaries,@ports,@notes,@responsable,@director,@estat,@responsableCompra,@idSolicitut)", DBCONNECT.getConnection)
         sc.Parameters.Add("@id", SqlDbType.Int).Value = obj.id
-        sc.Parameters.Add("@idMydoc", SqlDbType.Int).Value = obj.id
+        sc.Parameters.Add("@idce", SqlDbType.Int).Value = obj.idComandaEdicio
+        sc.Parameters.Add("@idMydoc", SqlDbType.Int).Value = obj.idMydoc
         sc.Parameters.Add("@codi", SqlDbType.VarChar).Value = obj.codi
         sc.Parameters.Add("@idempresa", SqlDbType.SmallInt).Value = obj.empresa.id
         sc.Parameters.Add("@idProveidor", SqlDbType.SmallInt).Value = obj.proveidor.id
@@ -255,7 +258,7 @@ Module dbComanda
             c = New Comanda(sdr(ID), CONFIG.validarNull(Trim(sdr(CODI))), ModelProveidor.getObject(sdr(ID_PROVEIDOR)), ModelEmpresa.getObject(sdr(ID_EMPRESA)), ModelProjecte.getObject(sdr(ID_PROJECTE)))
             'TODO CAL IMPLEMENTAR ARTICLES COMANDA 
             'c.articles = modela
-
+            c.idComandaEdicio = sdr(IDCE)
             c.contacte = ModelContacte.getObject(sdr(ID_CONTACTE_PROJECTE))
             c.contacteProveidor = ModelProveidorContacte.getObject(sdr(ID_CONTACTE_PROVEIDOR))
             c.dadesBancaries = CONFIG.validarNull(Trim(sdr(DADES_BANCARIES)))
@@ -302,6 +305,7 @@ Module dbComanda
             .ActiveConnection = DBCONNECT.getConnectionDbf
             .CommandText = "UPDATE " & getTable(e) & " " &
                             " SET " & CODI & "=?," &
+                                      IDCE & " =?, " &
                                       ID_EMPRESA & " =?, " &
                                       SERIE & "=?," &
                                       ID_PROVEIDOR & " =?, " &
@@ -332,6 +336,7 @@ Module dbComanda
                                       ID_MYDOC & " =? " &
                             " WHERE " & ID & "=?"
             .Parameters.Append(ADOPARAM.ToString(obj.codi))
+            .Parameters.Append(ADOPARAM.ToInt(getInt(obj.idComandaEdicio)))
             .Parameters.Append(ADOPARAM.ToInt(getInt(obj.empresa)))
             .Parameters.Append(ADOPARAM.ToString(getStr(obj.serie)))
             .Parameters.Append(ADOPARAM.ToInt(getInt(obj.proveidor)))
@@ -474,11 +479,12 @@ Module dbComanda
         With sc
             .ActiveConnection = DBCONNECT.getConnectionDbf
             .CommandText = (" INSERT INTO " & getTable(e) & " " &
-                        " (" & ID & ",  " & CODI & ", " & ID_EMPRESA & ", " & SERIE & "," & ID_PROVEIDOR & ", " & ID_CONTACTE_PROVEIDOR & ", " & ID_PROJECTE & ", " & ID_CONTACTE_PROJECTE & ", " & ID_MAGATZEM & "," &
+                        " (" & ID & "," & IDCE & "," & CODI & ", " & ID_EMPRESA & ", " & SERIE & "," & ID_PROVEIDOR & ", " & ID_CONTACTE_PROVEIDOR & ", " & ID_PROJECTE & ", " & ID_CONTACTE_PROJECTE & ", " & ID_MAGATZEM & "," &
                          DATA_COMANDA & "," & DATA_MUNTATGE & "," & DATA_ENTREGA & "," & INICI_COMANDA & "," & INICI_MUNTATGE & "," & ENTREGA & "," & OFERTA & "," & ID_TIPUS_PAGAMENT & "," & DADES_BANCARIES & "," & PORTS & "," & NOTES & "," & RESPONSABLE & "," & DIRECTOR & "," & ESTAT & "," & IDSOLICITUT & "," & RESPONSABLE_COMPRA & "," & BASE_COMANDA & "," & IVA_COMANDA & "," & DEPARTAMENT & "," & URGENT & "," & ID_MYDOC & ")" &
-                        " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
+                        " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
 
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
+            .Parameters.Append(ADOPARAM.ToInt(obj.idComandaEdicio))
             .Parameters.Append(ADOPARAM.ToString(obj.codi))
             .Parameters.Append(ADOPARAM.ToInt(getInt(obj.empresa)))
             .Parameters.Append(ADOPARAM.ToString(getStr(obj.serie)))
@@ -570,6 +576,7 @@ Module dbComanda
                     c.comentaris = ModelComentarisMydoc.getObjects(rc(ID_MYDOC).Value)
                 End If
             End If
+            c.idComandaEdicio = rc(IDCE).Value
             c.contacte = ModelContacte.getObject(CInt(rc(ID_CONTACTE_PROJECTE).Value))
             c.contacteProveidor = ModelProveidorContacte.getObject(rc(ID_CONTACTE_PROVEIDOR).Value)
             c.dadesBancaries = CONFIG.validarNull(rc(DADES_BANCARIES).Value)
@@ -596,11 +603,12 @@ Module dbComanda
             c.ivaComanda = Math.Round(rc(IVA_COMANDA).Value / 1000, 3)
             c.departament = CONFIG.validarNull(rc(DEPARTAMENT).Value)
             c.urgent = rc(URGENT).Value
+
             If e = 2 Then
-                c.documentacio = ModelDocumentacio.getObjectsComanda(c.id, c.getAnyo)
+                c.documentacio = ModelDocumentacio.getObjectsComanda(c.id, c.idComandaEdicio, c.getAnyo)
                 c.articles = ModelarticleComanda.getObjects(c.id)
             Else
-                c.documentacio = ModelDocumentacio.getObjectsComandaEdicio(c.id, c.getAnyo)
+                c.documentacio = ModelDocumentacio.getObjectsComandaEdicio(c.idComandaEdicio, c.getAnyo)
                 c.articles = ModelArticleComandaEnEdicio.getObjects(c.id)
             End If
             getObjectsDBF.Add(c)
@@ -640,6 +648,7 @@ Module dbComanda
                     c.comentaris = ModelComentarisMydoc.getObjects(rc(ID_MYDOC).Value)
                 End If
             End If
+            c.idComandaEdicio = rc(IDCE).Value
             c.contacte = ModelContacte.getObject(CInt(rc(ID_CONTACTE_PROJECTE).Value))
             c.contacteProveidor = ModelProveidorContacte.getObject(rc(ID_CONTACTE_PROVEIDOR).Value)
             c.dadesBancaries = CONFIG.validarNull(rc(DADES_BANCARIES).Value)
@@ -667,7 +676,7 @@ Module dbComanda
             c.departament = CONFIG.validarNull(rc(DEPARTAMENT).Value)
             c.urgent = rc(URGENT).Value
             If e = 2 Then
-                c.documentacio = ModelDocumentacio.getObjectsComanda(c.id, c.getAnyo)
+                c.documentacio = ModelDocumentacio.getObjectsComanda(c.id, c.idComandaEdicio, c.getAnyo)
                 c.articles = ModelarticleComanda.getObjects(c.id)
             Else
                 c.documentacio = ModelDocumentacio.getObjectsComandaEdicio(c.id, c.getAnyo)

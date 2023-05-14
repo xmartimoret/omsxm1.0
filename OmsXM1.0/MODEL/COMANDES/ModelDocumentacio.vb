@@ -17,10 +17,14 @@
         If Not isUpdated(anyo) Then objects(anyo) = getRemoteObjects(anyo)
         getObjectsComandaEdicio = objects(anyo).FindAll(Function(x) x.idComandaEnEdicio = id)
     End Function
-    Public Function getObjectsComanda(id As Integer, anyo As Integer) As List(Of doc)
+    Public Function getObjectsComanda(id As Integer, idEdicio As Integer, anyo As Integer) As List(Of doc)
         Dim d As doc, altres As String = ""
         If Not isUpdated(anyo) Then objects(anyo) = getRemoteObjects(anyo)
-        getObjectsComanda = objects(anyo).FindAll(Function(x) x.idComanda = id)
+        If idEdicio > 0 Then
+            getObjectsComanda = objects(anyo).FindAll(Function(x) x.idComandaEnEdicio = idEdicio)
+        Else
+            getObjectsComanda = objects(anyo).FindAll(Function(x) x.idComanda = id)
+        End If
     End Function
     Public Function getObject(id As Integer, anyo As Integer) As doc
         Dim d As doc, altres As String = ""
