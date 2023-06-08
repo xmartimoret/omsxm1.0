@@ -319,7 +319,7 @@ Module dbComanda
                                       ID_MYDOC & " =? " &
                             " WHERE " & ID & "=?"
             .Parameters.Append(ADOPARAM.ToString(obj.codi))
-            .Parameters.Append(ADOPARAM.ToInt(getInt(obj.idComandaEdicio)))
+            .Parameters.Append(ADOPARAM.ToInt(obj.idComandaEdicio))
             .Parameters.Append(ADOPARAM.ToInt(getInt(obj.empresa)))
             .Parameters.Append(ADOPARAM.ToString(getStr(obj.serie)))
             .Parameters.Append(ADOPARAM.ToInt(getInt(obj.proveidor)))
@@ -347,15 +347,18 @@ Module dbComanda
             .Parameters.Append(ADOPARAM.ToInt(getStr(obj.idMydoc)))
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
         End With
-        Try
-            sc.Execute()
-            Return obj.id
-        Catch ex As Exception
-            Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
-            Return -1
-        Finally
-            sc = Nothing
-        End Try
+        sc.Execute()
+        Return obj.id
+
+        'Try
+        '    sc.Execute()
+        '    Return obj.id
+        'Catch ex As Exception
+        '    Call ERRORS.ERR_EXCEPTION_SQL(ex.Message & "xmartiupdate")
+        '    Return -1
+        'Finally
+        '    sc = Nothing
+        'End Try
     End Function
     Private Function updateDBFImport(obj As Comanda, e As Integer) As Integer
         Dim sc As ADODB.Command
@@ -370,15 +373,18 @@ Module dbComanda
             .Parameters.Append(ADOPARAM.ToSingle(Math.Round(obj.ivaComanda * 1000, 0)))
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
         End With
-        Try
-            sc.Execute()
-            Return obj.id
-        Catch ex As Exception
-            Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
-            Return -1
-        Finally
-            sc = Nothing
-        End Try
+
+        sc.Execute()
+        Return obj.id
+        'Try
+        '    sc.Execute()
+        '    Return obj.id
+        'Catch ex As Exception
+        '    Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
+        '    Return -1
+        'Finally
+        '    sc = Nothing
+        'End Try
     End Function
     Private Function updateDBF(idComanda As Integer, e As Integer, idMyDoc As Integer) As Integer
         Dim sc As ADODB.Command
@@ -391,15 +397,18 @@ Module dbComanda
             .Parameters.Append(ADOPARAM.ToInt(idMyDoc))
             .Parameters.Append(ADOPARAM.ToInt(idComanda))
         End With
-        Try
-            sc.Execute()
-            Return idComanda
-        Catch ex As Exception
-            Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
-            Return -1
-        Finally
-            sc = Nothing
-        End Try
+        sc.Execute()
+        Return idComanda
+
+        'Try
+        'sc.Execute()
+        '    Return idComanda
+        'Catch ex As Exception
+        '    Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
+        '    Return -1
+        'Finally
+        '    sc = Nothing
+        'End Try
     End Function
     Private Function updateEstatDBF(idComanda As Integer, e As Integer) As Integer
         Dim sc As ADODB.Command
@@ -413,15 +422,17 @@ Module dbComanda
             .Parameters.Append(ADOPARAM.ToInt(e))
             .Parameters.Append(ADOPARAM.ToInt(idComanda))
         End With
-        Try
-            sc.Execute()
-            Return idComanda
-        Catch ex As Exception
-            Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
-            Return -1
-        Finally
-            sc = Nothing
-        End Try
+        sc.Execute()
+        Return idComanda
+        'Try
+        '    sc.Execute()
+        '    Return idComanda
+        'Catch ex As Exception
+        '    Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
+        '    Return -1
+        'Finally
+        '    sc = Nothing
+        'End Try
     End Function
     Private Function updateUrgentDBF(idComanda As Integer, e As Integer, v As Boolean) As Integer
         Dim sc As ADODB.Command
@@ -435,15 +446,17 @@ Module dbComanda
             .Parameters.Append(ADOPARAM.toBool(v))
             .Parameters.Append(ADOPARAM.ToInt(idComanda))
         End With
-        Try
-            sc.Execute()
-            Return idComanda
-        Catch ex As Exception
-            Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
-            Return -1
-        Finally
-            sc = Nothing
-        End Try
+        sc.Execute()
+        Return idComanda
+        'Try
+        '    sc.Execute()
+        '    Return idComanda
+        'Catch ex As Exception
+        '    Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
+        '    Return -1
+        'Finally
+        '    sc = Nothing
+        'End Try
     End Function
     'ACCESSORS CENTRE
     ''' <summary>
@@ -461,7 +474,8 @@ Module dbComanda
             .CommandText = (" INSERT INTO " & getTable(e) & " " &
                         " (" & ID & "," & IDCE & "," & CODI & ", " & ID_EMPRESA & ", " & SERIE & "," & ID_PROVEIDOR & ", " & ID_CONTACTE_PROVEIDOR & ", " & ID_PROJECTE & ", " & ID_CONTACTE_PROJECTE & ", " & ID_MAGATZEM & "," &
                          DATA_COMANDA & "," & DATA_MUNTATGE & "," & DATA_ENTREGA & "," & INICI_COMANDA & "," & INICI_MUNTATGE & "," & ENTREGA & "," & OFERTA & "," & ID_TIPUS_PAGAMENT & "," & DADES_BANCARIES & "," & PORTS & "," & ESTAT & "," & IDSOLICITUT & "," & RESPONSABLE_COMPRA & "," & BASE_COMANDA & "," & IVA_COMANDA & "," & DEPARTAMENT & "," & URGENT & "," & ID_MYDOC & ")" &
-                        " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
+                        " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
+            '" VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
 
             .Parameters.Append(ADOPARAM.ToInt(obj.id))
             .Parameters.Append(ADOPARAM.ToInt(obj.idComandaEdicio))
@@ -492,15 +506,17 @@ Module dbComanda
             .Parameters.Append(ADOPARAM.toBool(obj.urgent))
             .Parameters.Append(ADOPARAM.ToInt(obj.idMydoc))
         End With
-        Try
-            sc.Execute()
-            Return obj.id
-        Catch ex As Exception
-            Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
-            Return -1
-        Finally
-            sc = Nothing
-        End Try
+        sc.Execute()
+        Return obj.id
+        'Try
+        '    sc.Execute()
+        '    Return obj.id
+        'Catch ex As Exception
+        '    Call ERRORS.ERR_EXCEPTION_SQL(ex.Message)
+        '    Return -1
+        'Finally
+        '    sc = Nothing
+        'End Try
     End Function
     ''' <summary>
     '''  Elimina  un centre de la base de dades
@@ -582,7 +598,7 @@ Module dbComanda
                 c.documentacio = ModelDocumentacio.getObjectsComanda(c.id, c.idComandaEdicio, c.getAnyo)
                 c.articles = ModelarticleComanda.getObjects(c.id)
             Else
-                c.documentacio = ModelDocumentacio.getObjectsComandaEdicio(c.idComandaEdicio, c.getAnyo)
+                c.documentacio = ModelDocumentacio.getObjectsComandaEdicio(c.id, c.getAnyo)
                 c.articles = ModelArticleComandaEnEdicio.getObjects(c.id)
             End If
             getObjectsDBF.Add(c)

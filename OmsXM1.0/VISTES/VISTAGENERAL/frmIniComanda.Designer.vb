@@ -525,7 +525,7 @@ Partial Class frmIniComanda
         '
         Me.mnuF56.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuEnviarF56})
         Me.mnuF56.Name = "mnuF56"
-        Me.mnuF56.Size = New System.Drawing.Size(180, 22)
+        Me.mnuF56.Size = New System.Drawing.Size(145, 22)
         Me.mnuF56.Text = "F56"
         '
         'mnuEnviarF56
@@ -538,20 +538,20 @@ Partial Class frmIniComanda
         '
         Me.mnuInformeArticles.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuinformeArticlesComandes})
         Me.mnuInformeArticles.Name = "mnuInformeArticles"
-        Me.mnuInformeArticles.Size = New System.Drawing.Size(180, 22)
+        Me.mnuInformeArticles.Size = New System.Drawing.Size(145, 22)
         Me.mnuInformeArticles.Text = "articles"
         '
         'mnuinformeArticlesComandes
         '
         Me.mnuinformeArticlesComandes.Name = "mnuinformeArticlesComandes"
-        Me.mnuinformeArticlesComandes.Size = New System.Drawing.Size(180, 22)
+        Me.mnuinformeArticlesComandes.Size = New System.Drawing.Size(163, 22)
         Me.mnuinformeArticlesComandes.Text = "articlesComanda"
         '
         'mnuInfoComandes
         '
         Me.mnuInfoComandes.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnucercadorComandes})
         Me.mnuInfoComandes.Name = "mnuInfoComandes"
-        Me.mnuInfoComandes.Size = New System.Drawing.Size(180, 22)
+        Me.mnuInfoComandes.Size = New System.Drawing.Size(145, 22)
         Me.mnuInfoComandes.Text = "comandes"
         '
         'mnucercadorComandes
@@ -564,7 +564,7 @@ Partial Class frmIniComanda
         '
         Me.mnuComptabilitat.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuInformeSubctesCompra})
         Me.mnuComptabilitat.Name = "mnuComptabilitat"
-        Me.mnuComptabilitat.Size = New System.Drawing.Size(180, 22)
+        Me.mnuComptabilitat.Size = New System.Drawing.Size(145, 22)
         Me.mnuComptabilitat.Text = "comptabilitat"
         '
         'mnuInformeSubctesCompra
